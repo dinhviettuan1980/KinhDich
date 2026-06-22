@@ -40,6 +40,7 @@ export default function TutorChat() {
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [mode, setMode] = useState('explain') // 'explain' | 'socratic'
   const scrollRef = useRef(null)
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function TutorChat() {
 
     try {
       let full = ''
-      for await (const chunk of streamTutor(msg, history)) {
+      for await (const chunk of streamTutor(msg, history, mode)) {
         full += chunk
         setMessages((prev) =>
           prev.map((m, i) => (i === aiIdx ? { ...m, content: full } : m))
@@ -108,6 +109,24 @@ export default function TutorChat() {
 
       {/* Input */}
       <div className="border-t border-gray-200 dark:border-dark-border p-4 bg-white dark:bg-dark-bg">
+        {/* Mode toggle */}
+        <div className="flex items-center gap-1 mb-2 p-1 rounded-xl bg-gray-100 dark:bg-dark-card w-fit">
+          {[
+            { key: 'explain', label: '💡 Giải thích' },
+            { key: 'socratic', label: '🤔 Socrates' },
+          ].map((m) => (
+            <button
+              key={m.key}
+              onClick={() => setMode(m.key)}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                mode === m.key ? 'bg-white dark:bg-dark-bg text-primary shadow-sm' : 'text-gray-500 dark:text-gray-400'
+              }`}
+              title={m.key === 'socratic' ? 'AI đặt câu hỏi ngược để bạn tự khám phá' : 'AI giải thích trực tiếp'}
+            >
+              {m.label}
+            </button>
+          ))}
+        </div>
         <div className="flex gap-2">
           <input
             type="text"

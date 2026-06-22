@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { fetchLessons, fetchProgress } from '../api'
+import { fetchLessons, fetchProgress, fetchTodayObservation, fetchReflections } from '../api'
 import { useStore, LEVEL_NAMES } from '../store'
 import LevelSection from '../components/LevelSection'
 
@@ -9,6 +9,8 @@ export default function Dashboard() {
   const { progress, lessons, setProgress, setLessons, getTodayDay } = useStore()
   const [loading, setLoading] = useState(!lessons.length)
   const [error, setError] = useState(null)
+  const [obs, setObs] = useState(null)
+  const [recentReflections, setRecentReflections] = useState([])
 
   useEffect(() => {
     const load = async () => {
@@ -23,7 +25,11 @@ export default function Dashboard() {
       }
     }
     load()
+    fetchTodayObservation().then(setObs).catch(() => {})
+    fetchReflections().then((r) => setRecentReflections(r.slice(0, 3))).catch(() => {})
   }, [])
+
+  const obsEmpty = obs && !obs.growing && !obs.declining && !obs.transforming
 
   const todayDay = getTodayDay()
   const completed = progress?.completedDays || []
@@ -123,6 +129,41 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
+
+      {/* Widget: Quan sát hôm nay */}
+      <button
+        onClick={() => navigate('/observe')}
+        className={`card p-4 w-full text-left flex items-center gap-3 transition-colors ${
+          obsEmpty ? 'border-l-4 border-amber-400' : 'border-l-4 border-emerald-400'
+        }`}
+      >
+        <span className="text-2xl">{obsEmpty ? '👁️' : '✓'}</span>
+        <div className="flex-1">
+          <div className="text-sm font-semibold text-gray-800 dark:text-gray-100">Quan sát hôm nay</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">
+            {obs == null ? 'Ghi lại điều đang tăng trưởng / suy giảm / chuyển hóa' :
+             obsEmpty ? 'Hôm nay bạn chưa hoàn thành quan sát →' : 'Đã hoàn thành — xem lại / chỉnh sửa'}
+          </div>
+        </div>
+      </button>
+
+      {/* Widget: Suy ngẫm gần nhất */}
+      {recentReflections.length > 0 && (
+        <div className="card p-4">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-100">🪷 Suy ngẫm gần nhất</h3>
+            <button onClick={() => navigate('/reflection')} className="text-xs text-primary hover:underline">Xem tất cả</button>
+          </div>
+          <div className="space-y-2">
+            {recentReflections.map((r) => (
+              <div key={r.id} className="text-sm text-gray-600 dark:text-gray-300 border-l-2 border-gray-200 dark:border-dark-border pl-3">
+                <span className="text-xs text-gray-400">Ngày {r.day}: </span>
+                <span className="line-clamp-2">{r.content}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Levels */}
       <div className="space-y-6">

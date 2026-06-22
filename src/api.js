@@ -43,6 +43,59 @@ export async function loginUser(username, password) {
   return data // { username, isAdmin }
 }
 
+// ---- Learning Lens (profile) ----
+export async function fetchProfile() {
+  const res = await fetch(`${BASE}/profile/${getUserId()}`)
+  if (!res.ok) throw new Error('Lỗi tải hồ sơ')
+  return res.json() // { userId, learningLens }
+}
+export async function saveLens(learningLens) {
+  const res = await fetch(`${BASE}/profile/${getUserId()}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ learningLens }),
+  })
+  if (!res.ok) throw new Error('Lỗi lưu góc nhìn')
+  return res.json()
+}
+
+// ---- Reflection ----
+export async function saveReflection(day, content) {
+  const res = await fetch(`${BASE}/reflections`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId: getUserId(), day, content }),
+  })
+  if (!res.ok) throw new Error('Lỗi lưu suy ngẫm')
+  return res.json()
+}
+export async function fetchReflections() {
+  const res = await fetch(`${BASE}/reflections/${getUserId()}`)
+  if (!res.ok) throw new Error('Lỗi tải suy ngẫm')
+  return res.json()
+}
+
+// ---- Daily Observation ----
+export async function fetchTodayObservation() {
+  const res = await fetch(`${BASE}/observations/${getUserId()}/today`)
+  if (!res.ok) throw new Error('Lỗi tải quan sát')
+  return res.json()
+}
+export async function fetchObservations() {
+  const res = await fetch(`${BASE}/observations/${getUserId()}`)
+  if (!res.ok) throw new Error('Lỗi tải quan sát')
+  return res.json()
+}
+export async function saveObservation({ growing, declining, transforming }) {
+  const res = await fetch(`${BASE}/observations`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId: getUserId(), growing, declining, transforming }),
+  })
+  if (!res.ok) throw new Error('Lỗi lưu quan sát')
+  return res.json()
+}
+
 export async function fetchLessons() {
   const res = await fetch(`${BASE}/lessons`)
   if (!res.ok) throw new Error('Không kết nối được backend')
@@ -73,12 +126,12 @@ export async function markComplete(day, score) {
   return res.json()
 }
 
-export async function* streamTutor(message, history = []) {
+export async function* streamTutor(message, history = [], mode = 'explain') {
   const userId = getUserId()
   const res = await fetch(`${BASE}/tutor`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, message, history }),
+    body: JSON.stringify({ userId, message, history, mode }),
   })
   if (!res.ok) throw new Error('Lỗi kết nối AI Tutor')
   const reader = res.body.getReader()

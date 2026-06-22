@@ -1,19 +1,26 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
+import LensOnboarding from './components/LensOnboarding'
 import Dashboard from './pages/Dashboard'
 import LearnPage from './pages/LearnPage'
 import QuizPage from './pages/QuizPage'
 import TutorPage from './pages/TutorPage'
 import MapPage from './pages/MapPage'
+import ReflectionPage from './pages/ReflectionPage'
+import ObservePage from './pages/ObservePage'
 import { useStore } from './store'
 
 export default function App() {
-  const { darkMode } = useStore()
+  const { darkMode, loadLens, lensReady, lensChosen } = useStore()
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode)
   }, [darkMode])
+
+  useEffect(() => {
+    loadLens()
+  }, [loadLens])
 
   return (
     <BrowserRouter>
@@ -26,8 +33,11 @@ export default function App() {
             <Route path="/quiz/:day" element={<QuizPage />} />
             <Route path="/tutor" element={<TutorPage />} />
             <Route path="/map" element={<MapPage />} />
+            <Route path="/reflection" element={<ReflectionPage />} />
+            <Route path="/observe" element={<ObservePage />} />
           </Routes>
         </main>
+        {lensReady && !lensChosen && <LensOnboarding />}
       </div>
     </BrowserRouter>
   )

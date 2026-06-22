@@ -3,8 +3,10 @@ import { fetchLessons, fetchProgress } from '../api'
 import { useStore, LEVEL_COLORS, LEVEL_NAMES } from '../store'
 import DayCard from '../components/DayCard'
 
+const LEVEL_ICONS = { 1: '🌱', 2: '☯', 3: '⚡', 4: '🧭', 5: '🔮', 6: '🔄', 7: '🏛' }
+
 export default function MapPage() {
-  const { progress, lessons, setProgress, setLessons, getTodayDay } = useStore()
+  const { progress, lessons, setProgress, setLessons, isDayUnlocked } = useStore()
   const [loading, setLoading] = useState(!lessons.length)
 
   useEffect(() => {
@@ -14,13 +16,12 @@ export default function MapPage() {
       .finally(() => setLoading(false))
   }, [])
 
-  const todayDay = getTodayDay()
   const completed = progress?.completedDays || []
   const scores = progress?.scores || {}
 
   const getStatus = (day) => {
     if (completed.includes(day)) return 'done'
-    if (day <= todayDay) return 'current'
+    if (isDayUnlocked(day)) return 'current'
     return 'locked'
   }
 
@@ -41,7 +42,7 @@ export default function MapPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 space-y-8 animate-fade-in">
       <div>
-        <h1 className="text-2xl font-display font-bold text-gray-900 dark:text-gray-100">Bản đồ 30 ngày</h1>
+        <h1 className="text-2xl font-display font-bold text-gray-900 dark:text-gray-100">🗺️ Hành trình 30 ngày</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           {completed.length}/30 bài hoàn thành · {Math.round((completed.length / 30) * 100)}% tiến độ
         </p>
@@ -67,10 +68,13 @@ export default function MapPage() {
         return (
           <div key={level} className="space-y-3">
             <div className="flex items-center gap-2">
-              <div className={`w-2.5 h-2.5 rounded-full ${colors.dot}`} />
+              <span className="text-lg">{LEVEL_ICONS[Number(level)]}</span>
               <h2 className="font-bold text-sm text-gray-700 dark:text-gray-300 uppercase tracking-wider">
                 Level {level} — {LEVEL_NAMES[Number(level)]}
               </h2>
+              <span className="text-xs text-gray-400 ml-auto">
+                Ngày {grouped[level][0].day}–{grouped[level][grouped[level].length - 1].day}
+              </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {grouped[level].map((lesson) => (

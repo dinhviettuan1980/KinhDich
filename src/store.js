@@ -1,6 +1,12 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { fetchProgress, setActiveUser, clearActiveUser } from './api'
+import { fetchProgress, setActiveUser, clearActiveUser, fetchProfile, saveLens } from './api'
+
+export const LENS = {
+  life: { key: 'life', label: 'Cuộc sống thường ngày', icon: '🌿', field: 'realExample', exampleLabel: '🌍 Ví dụ đời thực' },
+  business: { key: 'business', label: 'Quản lý & Kinh doanh', icon: '📈', field: 'businessExample', exampleLabel: '📈 Trong quản lý & kinh doanh' },
+  tech: { key: 'tech', label: 'CNTT & Công nghệ', icon: '💻', field: 'techExample', exampleLabel: '💻 Trong CNTT / Công nghệ' },
+}
 
 export const LEVEL_COLORS = {
   1: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300', border: 'border-emerald-200 dark:border-emerald-800', dot: 'bg-emerald-500' },
@@ -37,6 +43,21 @@ export const useStore = create(
       setProgress: (p) => set({ progress: p }),
       setLessons: (l) => set({ lessons: l }),
 
+      // ---- Learning Lens ----
+      lens: 'life',        // 'life' | 'business' | 'tech'
+      lensChosen: false,   // user đã chủ động chọn chưa (để hiện onboarding)
+      lensReady: false,    // đã nạp lens từ backend chưa
+      loadLens: async () => {
+        try {
+          const p = await fetchProfile()
+          set({ lens: p.learningLens || 'life', lensChosen: !!p.chosen, lensReady: true })
+        } catch { set({ lensReady: true }) }
+      },
+      setLens: async (lens) => {
+        set({ lens, lensChosen: true })
+        try { await saveLens(lens) } catch { /* noop */ }
+      },
+
       // ---- Người dùng (chỉ để hiển thị; không cần bảo mật) ----
       // user: { provider: 'google'|'facebook'|'user', uid, name, email, avatar }
       user: null,
@@ -44,11 +65,13 @@ export const useStore = create(
         setActiveUser(user.uid)            // tiến độ gắn theo tài khoản
         set({ user })
         try { set({ progress: await fetchProgress() }) } catch { /* noop */ }
+        get().loadLens()                   // nạp góc nhìn của tài khoản
       },
       logout: async () => {
         clearActiveUser()                  // về danh tính khách
         set({ user: null })
         try { set({ progress: await fetchProgress() }) } catch { /* noop */ }
+        get().loadLens()
       },
 
       getTodayDay: () => {

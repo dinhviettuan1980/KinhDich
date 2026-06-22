@@ -1,21 +1,41 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { fetchLesson } from '../api'
-import { LEVEL_COLORS, LEVEL_NAMES } from '../store'
+import { fetchLesson, saveReflection } from '../api'
+import { useStore, LEVEL_COLORS, LEVEL_NAMES, LENS } from '../store'
 import { AllTrigrams, HexagramSVG } from '../components/HexagramSVG'
 
 const TRIGRAM_DAY = { 14: 'qian', 15: 'zhen', 16: 'kan', 17: 'gen' }
 const LEVEL_TRIGRAMS = { 4: true, 5: true }
 
+// Card hiển thị một ví dụ theo góc nhìn
+function ExampleCard({ lensKey, text, accent }) {
+  const l = LENS[lensKey]
+  return (
+    <div className={`card p-5 border-l-4 ${accent}`}>
+      <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">{l.exampleLabel}</h2>
+      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{text}</p>
+    </div>
+  )
+}
+
+const ACCENT = { life: 'border-emerald-400', business: 'border-amber-400', tech: 'border-primary' }
+
 export default function LearnPage() {
   const { day } = useParams()
   const navigate = useNavigate()
+  const { lens } = useStore()
   const [lesson, setLesson] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [showOthers, setShowOthers] = useState(false)
+
+  // Reflection
+  const [reflectionText, setReflectionText] = useState('')
+  const [reflectSaved, setReflectSaved] = useState(false)
+  const [reflectSaving, setReflectSaving] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true); setShowOthers(false); setReflectionText(''); setReflectSaved(false)
     fetchLesson(day)
       .then(setLesson)
       .catch((e) => setError(e.message))
@@ -41,6 +61,18 @@ export default function LearnPage() {
 
   const colors = LEVEL_COLORS[lesson.level] || LEVEL_COLORS[1]
   const dayNum = Number(day)
+
+  // Ví dụ theo lens: primary mở sẵn, hai góc còn lại trong accordion
+  const exampleText = { life: lesson.realExample, business: lesson.businessExample, tech: lesson.techExample }
+  const activeLens = lens || 'life'
+  const others = ['life', 'business', 'tech'].filter((k) => k !== activeLens && exampleText[k])
+
+  const handleSaveReflection = async () => {
+    if (!reflectionText.trim()) return
+    setReflectSaving(true)
+    try { await saveReflection(dayNum, reflectionText.trim()); setReflectSaved(true) }
+    catch { /* noop */ } finally { setReflectSaving(false) }
+  }
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-5 animate-fade-in">
@@ -99,22 +131,56 @@ export default function LearnPage() {
         </div>
       </div>
 
-      {/* Real example */}
-      <div className="card p-5 border-l-4 border-emerald-400">
-        <h2 className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">🌍 Ví dụ đời thực</h2>
-        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{lesson.realExample}</p>
-      </div>
+      {/* Ví dụ theo góc nhìn đã chọn */}
+      {exampleText[activeLens] && <ExampleCard lensKey={activeLens} text={exampleText[activeLens]} accent={ACCENT[activeLens]} />}
 
-      {/* Tech example */}
-      <div className="card p-5 border-l-4 border-primary">
-        <h2 className="text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-light mb-2">💻 Trong CNTT / Quản lý dự án</h2>
-        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{lesson.techExample}</p>
-      </div>
+      {/* Các góc nhìn khác (accordion) */}
+      {others.length > 0 && (
+        <div>
+          <button
+            onClick={() => setShowOthers((v) => !v)}
+            className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-dark-card text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-border transition-colors"
+          >
+            <span>👓 Xem góc nhìn khác ({others.map((k) => LENS[k].icon).join(' ')})</span>
+            <span className={`transition-transform ${showOthers ? 'rotate-180' : ''}`}>▾</span>
+          </button>
+          {showOthers && (
+            <div className="space-y-3 mt-3 animate-slide-up">
+              {others.map((k) => <ExampleCard key={k} lensKey={k} text={exampleText[k]} accent={ACCENT[k]} />)}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Image hint */}
       {lesson.imageHint && (
         <div className="card p-4 bg-gray-50 dark:bg-dark-card/50 text-center">
           <p className="text-xs text-gray-400 dark:text-gray-500 italic">💡 {lesson.imageHint}</p>
+        </div>
+      )}
+
+      {/* Reflection — suy ngẫm trước khi làm quiz */}
+      {lesson.reflection && (
+        <div className="card p-5 bg-gradient-to-br from-purple-50 to-primary/5 dark:from-purple-900/20 dark:to-primary/10 border border-primary/20">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-light mb-2">🪷 Suy ngẫm</h2>
+          <p className="text-gray-700 dark:text-gray-200 text-sm font-medium mb-3">{lesson.reflection}</p>
+          <textarea
+            value={reflectionText}
+            onChange={(e) => { setReflectionText(e.target.value); setReflectSaved(false) }}
+            placeholder="Viết vài dòng quan sát của riêng bạn..."
+            rows={3}
+            className="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-primary resize-none"
+          />
+          <div className="flex items-center gap-3 mt-2">
+            <button
+              onClick={handleSaveReflection}
+              disabled={reflectSaving || !reflectionText.trim()}
+              className="btn-secondary text-sm disabled:opacity-50"
+            >
+              {reflectSaving ? 'Đang lưu...' : 'Lưu suy ngẫm'}
+            </button>
+            {reflectSaved && <span className="text-xs text-emerald-600 dark:text-emerald-400">✓ Đã lưu vào nhật ký</span>}
+          </div>
         </div>
       )}
 
@@ -125,10 +191,7 @@ export default function LearnPage() {
             ← Ngày {dayNum - 1}
           </button>
         )}
-        <button
-          onClick={() => navigate(`/quiz/${dayNum}`)}
-          className="btn-primary flex-1"
-        >
+        <button onClick={() => navigate(`/quiz/${dayNum}`)} className="btn-primary flex-1">
           Làm quiz →
         </button>
       </div>
