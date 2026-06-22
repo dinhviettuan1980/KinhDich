@@ -9,6 +9,7 @@ import TutorPage from './pages/TutorPage'
 import MapPage from './pages/MapPage'
 import ReflectionPage from './pages/ReflectionPage'
 import ObservePage from './pages/ObservePage'
+import CasesPage from './pages/CasesPage'
 import { useStore } from './store'
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/map" element={<MapPage />} />
             <Route path="/reflection" element={<ReflectionPage />} />
             <Route path="/observe" element={<ObservePage />} />
+            <Route path="/cases" element={<CasesPage />} />
           </Routes>
         </main>
         {lensReady && !lensChosen && <LensOnboarding />}

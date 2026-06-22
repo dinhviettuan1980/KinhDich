@@ -96,6 +96,18 @@ export async function saveObservation({ growing, declining, transforming }) {
   return res.json()
 }
 
+// ---- Case Study ----
+export async function fetchCases() {
+  const res = await fetch(`${BASE}/cases`)
+  if (!res.ok) throw new Error('Lỗi tải tình huống')
+  return res.json()
+}
+export async function fetchCase(id) {
+  const res = await fetch(`${BASE}/cases/${id}`)
+  if (!res.ok) throw new Error('Không tìm thấy tình huống')
+  return res.json()
+}
+
 export async function fetchLessons() {
   const res = await fetch(`${BASE}/lessons`)
   if (!res.ok) throw new Error('Không kết nối được backend')
