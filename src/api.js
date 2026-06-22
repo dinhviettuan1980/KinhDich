@@ -9,6 +9,18 @@ export function getUserId() {
   return id
 }
 
+// Gắn danh tính khi đăng nhập (Google/FB/user) — tiến độ học sẽ theo id này.
+export function setActiveUser(uid) {
+  localStorage.setItem('kd_user_id', uid)
+}
+
+// Đăng xuất → quay lại danh tính khách (uuid mới), tiến độ tách khỏi tài khoản.
+export function clearActiveUser() {
+  const guest = crypto.randomUUID()
+  localStorage.setItem('kd_user_id', guest)
+  return guest
+}
+
 export async function fetchLessons() {
   const res = await fetch(`${BASE}/lessons`)
   if (!res.ok) throw new Error('Không kết nối được backend')

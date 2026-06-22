@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { fetchProgress, setActiveUser, clearActiveUser } from './api'
 
 export const LEVEL_COLORS = {
   1: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300', border: 'border-emerald-200 dark:border-emerald-800', dot: 'bg-emerald-500' },
@@ -36,6 +37,20 @@ export const useStore = create(
       setProgress: (p) => set({ progress: p }),
       setLessons: (l) => set({ lessons: l }),
 
+      // ---- Người dùng (chỉ để hiển thị; không cần bảo mật) ----
+      // user: { provider: 'google'|'facebook'|'user', uid, name, email, avatar }
+      user: null,
+      login: async (user) => {
+        setActiveUser(user.uid)            // tiến độ gắn theo tài khoản
+        set({ user })
+        try { set({ progress: await fetchProgress() }) } catch { /* noop */ }
+      },
+      logout: async () => {
+        clearActiveUser()                  // về danh tính khách
+        set({ user: null })
+        try { set({ progress: await fetchProgress() }) } catch { /* noop */ }
+      },
+
       getTodayDay: () => {
         const { progress } = get()
         if (!progress) return 1
@@ -59,7 +74,11 @@ export const useStore = create(
     }),
     {
       name: 'kinhdich-store',
-      partialize: (s) => ({ darkMode: s.darkMode }),
+      partialize: (s) => ({ darkMode: s.darkMode, user: s.user }),
+      // Khi tải lại trang: nếu đã đăng nhập, đảm bảo id tiến độ khớp tài khoản
+      onRehydrateStorage: () => (state) => {
+        if (state?.user?.uid) setActiveUser(state.user.uid)
+      },
     }
   )
 )

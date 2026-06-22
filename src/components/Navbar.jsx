@@ -1,10 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { useStore } from '../store'
+import LoginModal from './LoginModal'
 
 export default function Navbar() {
-  const { darkMode, toggleDark, progress } = useStore()
+  const { darkMode, toggleDark, progress, user, logout } = useStore()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)
+  const [profileOpen, setProfileOpen] = useState(false)
   const location = useLocation()
   const streak = progress?.streak || 0
 
@@ -56,6 +59,52 @@ export default function Navbar() {
           >
             {darkMode ? '☀️' : '🌙'}
           </button>
+
+          {/* Auth */}
+          {user ? (
+            <div className="relative">
+              <button
+                onClick={() => setProfileOpen((v) => !v)}
+                className="flex items-center gap-1.5 pl-1 pr-2 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-dark-card transition-colors"
+              >
+                {user.avatar ? (
+                  <img src={user.avatar} alt="" className="w-7 h-7 rounded-full" referrerPolicy="no-referrer" />
+                ) : (
+                  <span className="w-7 h-7 rounded-full bg-primary/15 text-primary flex items-center justify-center text-sm font-bold">
+                    {(user.name || '?').charAt(0).toUpperCase()}
+                  </span>
+                )}
+                <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-200 max-w-[100px] truncate">{user.name}</span>
+              </button>
+              {profileOpen && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setProfileOpen(false)} />
+                  <div className="absolute right-0 mt-2 w-52 card p-3 z-20 shadow-lg">
+                    <div className="flex items-center gap-2 pb-2 mb-2 border-b border-gray-100 dark:border-dark-border">
+                      <div className="min-w-0">
+                        <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{user.name}</div>
+                        <div className="text-xs text-gray-400 truncate">{user.email || ({ google: 'Google', facebook: 'Facebook', user: 'Tài khoản' }[user.provider])}</div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => { setProfileOpen(false); logout() }}
+                      className="w-full text-left text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg px-2 py-1.5 transition-colors"
+                    >
+                      Đăng xuất
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="px-3 py-1.5 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary-light transition-colors"
+            >
+              Đăng nhập
+            </button>
+          )}
+
           {/* Mobile menu */}
           <button
             className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-dark-card"
@@ -85,6 +134,8 @@ export default function Navbar() {
           ))}
         </div>
       )}
+
+      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
     </nav>
   )
 }
