@@ -1,6 +1,6 @@
 # KinhDich — Học tư duy biến đổi 🧭
 
-Ứng dụng học **Kinh Dịch trong 30 ngày**, viết cho kỹ sư IT: giải thích bằng analogy lập trình / hệ thống / quản lý dự án, **không bói toán** — tập trung vào khung tư duy về sự biến đổi.
+Ứng dụng học **Kinh Dịch trong 30 ngày**, viết cho người phổ thông / kinh doanh / kỹ sư IT: giải thích bằng analogy đời sống · quản lý · lập trình, **không bói toán** — tập trung vào khung tư duy về sự biến đổi và **ứng dụng vào quyết định hằng ngày**.
 
 - **Live:** https://kinhdich.tuandv.id.vn
 - **Frontend:** repo này (Vite + React + Tailwind + Zustand + React Router)
@@ -8,158 +8,147 @@
 
 ---
 
-## 1. Chức năng đã triển khai
+## 1. Chức năng
 
 ### Học tập
-- **30 bài học** chia 7 cấp độ; mỗi bài có giải thích sâu, ví dụ đời thực, ví dụ CNTT, gợi ý minh hoạ, **3 câu quiz**.
+- **30 bài học** chia 7 cấp độ; mỗi bài có giải thích sâu, **ví dụ theo 3 góc nhìn** (đời thực / kinh doanh / CNTT), câu hỏi suy ngẫm, gợi ý minh hoạ, **3 câu quiz**.
 - **Quiz tương tác**: chọn đáp án → phản hồi đúng/sai ngay + giải thích → tính điểm (0–100).
 - **Hexagram SVG**: vẽ quẻ Bát Quái động cho bài Level 4–5.
-- **Bản đồ 30 ngày**: nhìn toàn cảnh lộ trình & trạng thái từng bài.
 
-### Tiến độ & gamification
-- Lưu tiến độ theo người dùng (bài hoàn thành + điểm + ngày).
-- **Streak** — chuỗi ngày học liên tiếp (theo giờ VN).
-- **Khoá/mở bài tuần tự**: xong bài trước mới mở bài sau.
-- Thanh % hoàn thành + thống kê "đã học / còn lại / chuỗi".
+### 🧭 Learning Lens (góc nhìn học)
+- Lần đầu chọn 1 trong 3 góc nhìn: **🌿 Cuộc sống · 📈 Quản lý & Kinh doanh · 💻 CNTT**.
+- Trong bài học, ví dụ hiển thị theo góc nhìn đã chọn (mở sẵn); hai góc còn lại nằm trong accordion "Xem góc nhìn khác".
+- Đổi góc nhìn bất cứ lúc nào qua nút trên thanh điều hướng. Lưu vào hồ sơ người dùng.
 
-### Tài khoản (đăng nhập)
-- **Google** (thật — dùng chung client ID hệ sinh thái tuandv.id.vn; cần thêm origin trong Google Console).
-- **Facebook** (đã wire SDK — cần `VITE_FB_APP_ID` mới chạy).
-- **User/Password** (đăng ký + đăng nhập thật, lưu SQLite, hash SHA‑256).
-- **Admin** (`admin` / `123456`): mở khoá toàn bộ 30 bài để xem hết.
-- Tiến độ gắn theo danh tính; đăng xuất → về chế độ khách.
+### 🪷 Reflection & 👁️ Daily Observation
+- **Suy ngẫm cuối bài**: mỗi bài có câu hỏi gợi mở → người học viết lại quan sát của mình (lưu DB).
+- **Nhật ký suy ngẫm** (`/reflection`): timeline toàn bộ suy ngẫm — để nhìn thấy chính mình thay đổi theo thời gian.
+- **Quan sát hôm nay** (`/observe`): mỗi ngày ghi 3 dòng chảy — 🌱 đang tăng trưởng · 🍂 đang suy giảm · 🔄 đang chuyển hóa.
 
-### AI Tutor
-- Khung chat hỏi đáp Kinh Dịch, **stream SSE** từ Claude (`claude-haiku-4-5`).
-- *Hiện tắt* (chưa có `ANTHROPIC_API_KEY`); bật lại chỉ cần thêm key vào `.env` server.
+### 🧩 Case Study Mode (`/cases`)
+- **30 tình huống** thực tế; chọn đáp án → xem lời giải bằng tư duy Kinh Dịch + khái niệm liên quan.
 
-### Khác
-- Dark mode (lưu localStorage), responsive, animation.
-- Hạ tầng: FE tĩnh (nginx + HTTPS Let's Encrypt), BE chung process `xsmbapi` (pm2), proxy `/kinhdich` → `:8001`.
+### 🤖 AI Tutor (2 chế độ)
+- **💡 Giải thích**: trả lời trực tiếp. **🤔 Socrates**: đặt câu hỏi ngược để người học tự khám phá.
+- Stream SSE từ Claude (`claude-haiku-4-5`). *Cần `ANTHROPIC_API_KEY` trên server để chạy.*
+
+### Tiến độ & tài khoản
+- Lưu tiến độ theo người dùng (bài hoàn thành + điểm + ngày), **streak**, **khoá/mở bài tuần tự**.
+- **Journey Map** (`/map`): bản đồ 30 ngày theo 7 chặng có biểu tượng.
+- Đăng nhập: **Google** (thật) · **Facebook** (cần `VITE_FB_APP_ID`) · **User/Password** (đăng ký thật, SQLite, hash SHA‑256).
+- **Admin** (`admin` / `123456`): mở khoá toàn bộ 30 bài.
 
 ---
 
 ## 2. Sitemap
 
 ### Frontend (React Router)
-| Route | Trang | Mô tả |
-|-------|-------|------|
-| `/` | Dashboard | Tổng quan tiến độ, CTA học bài hôm nay, danh sách theo level |
-| `/learn/:day` | LearnPage | Nội dung bài học đầy đủ |
-| `/quiz/:day` | QuizPage | Làm quiz + màn hình kết quả |
-| `/tutor` | TutorPage | Chat AI Tutor |
-| `/map` | MapPage | Bản đồ 30 ngày |
+| Route | Trang |
+|-------|-------|
+| `/` | Dashboard (tiến độ + widget quan sát/suy ngẫm) |
+| `/learn/:day` | Bài học (theo lens + ô suy ngẫm) |
+| `/quiz/:day` | Quiz + kết quả |
+| `/map` | Journey Map 30 ngày |
+| `/observe` | Quan sát hôm nay |
+| `/cases` | Tình huống thực tế |
+| `/reflection` | Nhật ký suy ngẫm |
+| `/tutor` | AI Tutor (Giải thích / Socrates) |
 
 ### Backend API (prefix `/kinhdich`)
 | Method | Endpoint | Mô tả |
 |--------|----------|------|
-| GET | `/lessons` | Danh sách bài (metadata, **không lộ đáp án**) |
-| GET | `/lessons/:day` | Bài đầy đủ (kèm quiz) |
-| GET | `/progress/:userId` | Tiến độ + streak của user |
-| POST | `/progress` | Đánh dấu hoàn thành `{userId, day, score}` |
-| POST | `/register` | Đăng ký `{username, password}` |
-| POST | `/login` | Đăng nhập `{username, password}` → `{username, isAdmin}` |
-| POST | `/tutor` | Chat AI (SSE stream) — *đang tắt* |
+| GET | `/lessons` · `/lessons/:day` | Danh sách / chi tiết bài (kèm businessExample + reflection) |
+| GET · POST | `/progress/:userId` · `/progress` | Tiến độ + streak |
+| GET · PUT | `/profile/:userId` | Learning Lens (kèm cờ `chosen`) |
+| POST · GET | `/reflections` · `/reflections/:userId` | Suy ngẫm |
+| POST · GET | `/observations` · `/observations/:userId[/today]` | Quan sát hằng ngày |
+| GET | `/cases` · `/cases/:id` | Tình huống (list ẩn đáp án) |
+| POST | `/register` · `/login` | Tài khoản user/pass |
+| POST | `/tutor` | AI Tutor SSE (`mode`: explain/socratic) |
 
 ---
 
 ## 3. Database schema (SQLite, chung `data.sqlite`)
 
 ```sql
--- Tiến độ học
 CREATE TABLE kinhdich_progress (
-  userId       TEXT    NOT NULL,   -- google:email | fb:id | user:tên | <uuid khách>
-  day          INTEGER NOT NULL,   -- 1..30
-  score        INTEGER NOT NULL DEFAULT 0,   -- 0..100, giữ điểm cao nhất
-  completedAt  TEXT    NOT NULL,   -- ISO timestamp
+  userId TEXT, day INTEGER, score INTEGER DEFAULT 0, completedAt TEXT,
   PRIMARY KEY (userId, day)
 );
-
--- Tài khoản user/password
 CREATE TABLE kinhdich_users (
-  username   TEXT    PRIMARY KEY,  -- chữ thường, >= 3 ký tự
-  passhash   TEXT    NOT NULL,     -- SHA-256(password)
-  isAdmin    INTEGER NOT NULL DEFAULT 0,
-  createdAt  TEXT    NOT NULL
+  username TEXT PRIMARY KEY, passhash TEXT, isAdmin INTEGER DEFAULT 0, createdAt TEXT
+);  -- seed: admin / 123456 (isAdmin=1)
+
+-- v2
+CREATE TABLE kinhdich_profile (
+  userId TEXT PRIMARY KEY, learningLens TEXT DEFAULT 'life'  -- life | business | tech
 );
--- Seed sẵn: admin / 123456 (isAdmin=1)
+CREATE TABLE kinhdich_reflections (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, day INTEGER, content TEXT, createdAt TEXT
+);
+CREATE TABLE kinhdich_observations (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, observeDate TEXT,
+  growing TEXT, declining TEXT, transforming TEXT, createdAt TEXT,
+  UNIQUE (userId, observeDate)
+);
 ```
 
-> Google/FB không tạo bản ghi `kinhdich_users` — danh tính lấy từ token, chỉ dùng làm `userId` cho tiến độ.
+> `userId` = `google:email` | `fb:id` | `user:tên` | `<uuid khách>`.
 
 ---
 
-## 4. Cấu trúc một bài học (`xsmbapi/kinhdich/lessons.js`)
+## 4. Cấu trúc bài học
+
+`lessons.js` giữ nội dung lõi; `lessons-extra.js` bổ sung `businessExample` + `reflection` cho từng ngày — router merge khi trả bài.
 
 ```js
-{
-  day: 1, level: 1,
-  title: "Kinh Dịch là gì? Không phải bói toán",
-  concept: "...",          // tóm tắt 1 câu
-  explanation: `...`,      // giảng nhiều đoạn (tách bằng \n\n)
-  realExample: `...`,      // ví dụ đời thực
-  techExample: `...`,      // ví dụ CNTT / quản lý dự án
-  imageHint: `...`,        // gợi ý minh hoạ
-  quiz: [                  // đúng 3 câu
-    { question, options: [4 lựa chọn], correct: 0..3, explanation }
-  ]
-}
+// lessons.js
+{ day, level, title, concept, explanation, realExample, techExample, imageHint,
+  quiz: [{ question, options:[4], correct:0..3, explanation }] }
+// lessons-extra.js
+{ [day]: { businessExample, reflection } }
 ```
 
-**7 cấp độ / 30 ngày:**
+**7 cấp độ / 30 ngày:** 🌱 Nền tảng (1–5) · ☯ Âm Dương (6–10) · ⚡ Tứ Tượng (11–12) · 🧭 Bát Quái (13–17) · 🔮 64 Quẻ (18–22) · 🔄 Hào & Quẻ Biến (23–26) · 🏛 Ứng Dụng (27–30).
 
-| Level | Tên | Ngày |
-|-------|-----|------|
-| 1 | Nền tảng (3 nghĩa của Dịch) | 1–5 |
-| 2 | Âm Dương | 6–10 |
-| 3 | Tứ Tượng | 11–12 |
-| 4 | Bát Quái | 13–17 |
-| 5 | 64 Quẻ | 18–22 |
-| 6 | Hào & Quẻ Biến | 23–26 |
-| 7 | Ứng Dụng (lãnh đạo, kinh doanh, CNTT, ra quyết định) | 27–30 |
+`cases.js`: 30 tình huống — `{ id, title, concept, scenario, options:[4], correct, explanation }`.
 
 ---
 
 ## 5. Learning flow
 
 ```
-Dashboard  ──pick bài hôm nay──▶  LearnPage (/learn/:day)
-   ▲                                  │  đọc: giải thích · ví dụ thực · ví dụ CNTT
-   │                                  │  (quẻ SVG cho Level 4–5)
-   │                                  ▼  "Làm quiz →"
-   │                              QuizPage (/quiz/:day) → QuizFlow
-   │                                  │  3 câu: chọn → feedback + giải thích ngay
-   │                                  ▼  hết câu → score = đúng/tổng × 100
-   │                          POST /progress (markComplete day, score)
-   │                                  │  (lưu DB, cập nhật streak, mở bài kế)
-   └────────── "Về Dashboard" ◀── Màn kết quả (🎉/👍/📚 + điểm)
+(lần đầu) Chọn Learning Lens
+        │
+Dashboard ──▶ LearnPage (ví dụ theo lens + accordion góc nhìn khác)
+        │         │ viết Suy ngẫm (→ Nhật ký)
+        │         ▼
+        │     Quiz → điểm → markComplete (lưu, streak, mở bài kế)
+        ▼
+Hằng ngày: 👁️ Quan sát (tăng/giảm/chuyển hóa) · 🧩 Tình huống · 🤔 hỏi AI Tutor
 ```
 
-- **Mở khoá:** ngày 1 luôn mở; ngày N mở khi ngày N‑1 hoàn thành. **Admin mở hết.**
-- **Điểm** lưu là **cao nhất** giữa các lần làm lại.
+- **Mở khoá:** ngày 1 luôn mở; ngày N mở khi N‑1 hoàn thành. **Admin mở hết.**
+- **Điểm** lưu là cao nhất giữa các lần làm lại.
 
 ---
 
 ## 6. Roadmap
 
-**Ngắn hạn (đang dang dở):**
+**Đã xong (v2):** Learning Lens · Reflection + lịch sử · Daily Observation · Case Study Mode · AI Socrates · Journey Map · Dashboard widgets.
+
+**Cần cấu hình (bên ngoài, do owner):**
 - [ ] Thêm origin `https://kinhdich.tuandv.id.vn` trong Google Console (bật Google login).
-- [ ] Bật AI Tutor: thêm `ANTHROPIC_API_KEY` trên server.
+- [ ] Thêm `ANTHROPIC_API_KEY` trên server (bật AI Tutor — gồm chế độ Socrates).
 - [ ] Tạo Facebook App → `VITE_FB_APP_ID`.
+
+**Tiếp theo:**
 - [ ] GitHub Action auto-deploy cho FE (thay scp tay).
-
-**Trung hạn:**
-- [ ] Trang hồ sơ / giấy chứng nhận khi hoàn thành 30 ngày.
-- [ ] Ôn tập theo lịch (spaced repetition) cho câu quiz sai.
-- [ ] Bảng xếp hạng / huy hiệu theo streak & điểm.
+- [ ] Hồ sơ / chứng nhận hoàn thành 30 ngày · huy hiệu theo streak.
+- [ ] Ôn tập theo lịch (spaced repetition) cho quiz/case sai.
 - [ ] Trang admin quản trị nội dung + thống kê người học.
-- [ ] Tra cứu đầy đủ 64 quẻ + công cụ gieo quẻ minh hoạ.
-
-**Dài hạn:**
-- [ ] Bảo mật thật: JWT/session, salt mật khẩu (hiện SHA‑256 trần).
-- [ ] Đồng bộ tiến độ đa thiết bị (gộp dữ liệu khách khi đăng nhập).
-- [ ] App mobile (Capacitor) hoặc PWA offline.
-- [ ] Đa ngôn ngữ, nội dung audio/video.
+- [ ] Tra cứu đầy đủ 64 quẻ.
+- [ ] Bảo mật thật (JWT/session, salt) · đồng bộ đa thiết bị · PWA offline.
 
 ---
 
@@ -170,9 +159,9 @@ npm install
 npm run dev          # http://localhost:3003
 ```
 
-`vite.config.js` proxy `/kinhdich` → backend prod (`https://api.tuandv.id.vn`) để chạy FE local không cần backend. Đổi về `http://localhost:8001` nếu chạy backend ngay trên máy.
+`vite.config.js` proxy `/kinhdich` → backend prod (`https://api.tuandv.id.vn`); đổi về `http://localhost:8001` nếu chạy backend local.
 
-## Deploy (thủ công, hiện tại)
+## Deploy (thủ công)
 
 ```bash
 npm run build
