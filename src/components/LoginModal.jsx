@@ -81,9 +81,9 @@ export default function LoginModal({ onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-sm card p-6 z-10 animate-fade-in">
+    <div className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 overflow-y-auto">
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative w-full max-w-sm card p-6 z-10 my-8 animate-fade-in">
         <div className="flex items-center justify-between mb-1">
           <h2 className="text-lg font-display font-bold text-gray-900 dark:text-gray-100">Đăng nhập</h2>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 text-xl leading-none">×</button>
