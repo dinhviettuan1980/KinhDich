@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { GoogleLogin } from '@react-oauth/google'
 import { useStore } from '../store'
+import { registerUser, loginUser } from '../api'
 
 function decodeJwt(t) {
   try { return JSON.parse(atob(t.split('.')[1])) } catch { return null }
@@ -24,7 +25,11 @@ function loadFbSdk(appId) {
 
 export default function LoginModal({ onClose }) {
   const { login } = useStore()
-  const [name, setName] = useState('')
+  const [mode, setMode] = useState('login') // 'login' | 'register'
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
 
   const onGoogle = (resp) => {
     const p = decodeJwt(resp.credential)
@@ -49,12 +54,30 @@ export default function LoginModal({ onClose }) {
     })
   }
 
-  const submitUser = (e) => {
+  const submitUser = async (e) => {
     e.preventDefault()
-    const u = name.trim()
-    if (!u) return
-    login({ provider: 'user', uid: `user:${u.toLowerCase()}`, name: u, email: null, avatar: null })
-    onClose()
+    setError('')
+    const u = username.trim()
+    if (!u || !password) return setError('Nhập tên đăng nhập và mật khẩu')
+    setBusy(true)
+    try {
+      const data = mode === 'register'
+        ? await registerUser(u, password)
+        : await loginUser(u, password)
+      await login({
+        provider: 'user',
+        uid: `user:${data.username}`,
+        name: data.username,
+        email: null,
+        avatar: null,
+        isAdmin: !!data.isAdmin,
+      })
+      onClose()
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setBusy(false)
+    }
   }
 
   return (
@@ -87,21 +110,38 @@ export default function LoginModal({ onClose }) {
           <div className="flex-1 h-px bg-gray-200 dark:bg-dark-border" />
         </div>
 
-        {/* Username/password (cơ bản, không xác thực) */}
+        {/* Username/password (đăng ký + đăng nhập thật) */}
         <form onSubmit={submitUser} className="space-y-2">
           <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Tên người dùng"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Tên đăng nhập"
+            autoComplete="username"
             className="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-primary"
           />
           <input
             type="password"
-            placeholder="Mật khẩu (tuỳ chọn)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Mật khẩu"
+            autoComplete={mode === 'register' ? 'new-password' : 'current-password'}
             className="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-primary"
           />
-          <button type="submit" className="btn-primary w-full">Vào học</button>
+          {error && <p className="text-xs text-red-500">{error}</p>}
+          <button type="submit" disabled={busy} className="btn-primary w-full disabled:opacity-60">
+            {busy ? 'Đang xử lý...' : mode === 'register' ? 'Đăng ký & vào học' : 'Đăng nhập'}
+          </button>
         </form>
+
+        <p className="text-center text-xs text-gray-400 mt-3">
+          {mode === 'login' ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'}{' '}
+          <button
+            onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setError('') }}
+            className="text-primary font-semibold hover:underline"
+          >
+            {mode === 'login' ? 'Đăng ký' : 'Đăng nhập'}
+          </button>
+        </p>
       </div>
     </div>
   )

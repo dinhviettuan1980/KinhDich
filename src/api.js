@@ -21,6 +21,28 @@ export function clearActiveUser() {
   return guest
 }
 
+export async function registerUser(username, password) {
+  const res = await fetch(`${BASE}/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'Đăng ký thất bại')
+  return data // { username, isAdmin }
+}
+
+export async function loginUser(username, password) {
+  const res = await fetch(`${BASE}/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'Đăng nhập thất bại')
+  return data // { username, isAdmin }
+}
+
 export async function fetchLessons() {
   const res = await fetch(`${BASE}/lessons`)
   if (!res.ok) throw new Error('Không kết nối được backend')

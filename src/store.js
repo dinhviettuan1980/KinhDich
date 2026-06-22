@@ -52,7 +52,8 @@ export const useStore = create(
       },
 
       getTodayDay: () => {
-        const { progress } = get()
+        const { progress, user } = get()
+        if (user?.isAdmin) return 30 // admin: mở khoá toàn bộ
         if (!progress) return 1
         const completed = progress.completedDays || []
         if (completed.length === 0) return 1
@@ -60,7 +61,8 @@ export const useStore = create(
       },
 
       isDayUnlocked: (day) => {
-        const { progress } = get()
+        const { progress, user } = get()
+        if (user?.isAdmin) return true // admin: không khoá bài nào
         if (day === 1) return true
         if (!progress) return false
         return (progress.completedDays || []).includes(day - 1)
