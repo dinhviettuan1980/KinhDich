@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import coinHeadsImg from '../assets/coin-heads.png'
-import coinTailsImg from '../assets/coin-tails.png'
+import coinHeadsImg from '../assets/coin_yang.png'
+import coinTailsImg from '../assets/coin_yin.png'
 
 // ── CSS keyframes injected once ──────────────────────────────────────────────
 const STYLE_ID = 'coin-anim-css'
