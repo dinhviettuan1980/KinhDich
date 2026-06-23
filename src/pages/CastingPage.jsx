@@ -4,6 +4,10 @@ import FullHexagramSVG from '../components/FullHexagramSVG'
 import CoinAnimation from '../components/CoinAnimation'
 import { computeHexagrams, TRIGRAM_SHORT, TRIGRAM_ELEMENT, getHexagramById } from '../data/hexagrams'
 import { getUserId } from '../api'
+import {
+  playCoinToss, playCoinLand, playLineComplete, playHexagramComplete,
+  isSoundOn, setSoundEnabled,
+} from '../audio'
 
 // --- Coin toss logic ---
 // 3 coins: heads=3, tails=2; sum → line value
@@ -47,6 +51,7 @@ export default function CastingPage() {
   const [result, setResult] = useState(null)       // computeHexagrams output
   const [note, setNote] = useState('')
   const [saving, setSaving] = useState(false)
+  const [soundOn, setSoundOn] = useState(isSoundOn)
   const inputRef = useRef()
 
   const currentLineNum = lines.length + 1  // 1-based, which line we're about to toss
@@ -57,6 +62,7 @@ export default function CastingPage() {
   }
 
   function handleToss() {
+    playCoinToss()
     const r = tossCoins()
     setPendingToss(r)
   }
@@ -65,13 +71,20 @@ export default function CastingPage() {
     const newLines = [...lines, pendingToss.value]
     setPendingToss(null)
     if (newLines.length === 6) {
+      playHexagramComplete()
       const r = computeHexagrams(newLines)
       setLines(newLines)
       setResult(r)
       setStep(STEPS.RESULT)
     } else {
+      playLineComplete()
       setLines(newLines)
     }
+  }
+
+  function toggleSound(on) {
+    setSoundEnabled(on)
+    setSoundOn(on)
   }
 
   async function handleSave() {
@@ -130,6 +143,25 @@ export default function CastingPage() {
           ⚠️ Đây là công cụ học Kinh Dịch — không phải bói toán
         </div>
       </div>
+      {/* Sound settings */}
+      <div className="card px-4 py-3 flex items-center justify-between">
+        <span className="text-sm text-gray-600 dark:text-gray-300">🔊 Âm thanh</span>
+        <div className="flex gap-4">
+          {[{ v: true, label: 'Bật' }, { v: false, label: 'Tắt' }].map(({ v, label }) => (
+            <label key={label} className="flex items-center gap-1.5 text-sm cursor-pointer text-gray-600 dark:text-gray-300 select-none">
+              <input
+                type="radio"
+                name="kd-sound"
+                checked={soundOn === v}
+                onChange={() => toggleSound(v)}
+                className="accent-primary"
+              />
+              {label}
+            </label>
+          ))}
+        </div>
+      </div>
+
       <button
         className="w-full py-3 rounded-xl bg-primary text-white font-semibold text-base hover:bg-primary-light transition-colors"
         onClick={() => setStep(STEPS.QUESTION)}
@@ -207,7 +239,7 @@ export default function CastingPage() {
 
       {/* Coin animation or toss button */}
       {pendingToss ? (
-        <CoinAnimation result={pendingToss} onDone={handleCoinDone} />
+        <CoinAnimation result={pendingToss} onDone={handleCoinDone} onLand={playCoinLand} />
       ) : (
         <div className="flex flex-col items-center gap-4">
           <p className="text-sm text-gray-500 dark:text-gray-400 text-center">

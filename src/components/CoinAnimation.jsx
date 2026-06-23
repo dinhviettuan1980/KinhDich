@@ -267,7 +267,8 @@ function WoodTable({ shaking }) {
 // props:
 //   result  : { coins: [2|3, 2|3, 2|3], value: 6|7|8|9 }
 //   onDone  : () => void
-export default function CoinAnimation({ result, onDone }) {
+//   onLand  : () => void   (optional — fired when coins hit the table)
+export default function CoinAnimation({ result, onDone, onLand }) {
   useEffect(() => { ensureCSS() }, [])
 
   const [phase, setPhase] = useState('idle')
@@ -279,7 +280,7 @@ export default function CoinAnimation({ result, onDone }) {
     setPhase('spinning')
 
     // Sau khi đồng xu rơi xuống: rung bàn
-    const t1 = setTimeout(() => setPhase('landed'), 1300)
+    const t1 = setTimeout(() => { setPhase('landed'); onLand?.() }, 1300)
     // Sau đó hiện kết quả + gọi onDone
     const t2 = setTimeout(() => { setPhase('done'); onDone() }, 2200)
 
