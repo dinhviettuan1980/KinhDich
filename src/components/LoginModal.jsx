@@ -1,28 +1,7 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { GoogleLogin } from '@react-oauth/google'
 import { useStore } from '../store'
 import { registerUser, loginUser } from '../api'
-
-function decodeJwt(t) {
-  try { return JSON.parse(atob(t.split('.')[1])) } catch { return null }
-}
-
-// FB App ID lấy từ env (chưa có ở dự án này); thiếu thì nút FB chỉ báo hướng dẫn.
-const FB_APP_ID = import.meta.env.VITE_FB_APP_ID
-function loadFbSdk(appId) {
-  return new Promise((resolve) => {
-    if (window.FB) return resolve(window.FB)
-    window.fbAsyncInit = function () {
-      window.FB.init({ appId, cookie: true, xfbml: false, version: 'v19.0' })
-      resolve(window.FB)
-    }
-    const s = document.createElement('script')
-    s.src = 'https://connect.facebook.net/en_US/sdk.js'
-    s.async = true; s.defer = true
-    document.body.appendChild(s)
-  })
-}
 
 export default function LoginModal({ onClose }) {
   const { login } = useStore()
@@ -31,29 +10,6 @@ export default function LoginModal({ onClose }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
-
-  const onGoogle = (resp) => {
-    const p = decodeJwt(resp.credential)
-    if (!p) return alert('Không đọc được thông tin Google')
-    login({ provider: 'google', uid: `google:${p.email || p.sub}`, name: p.name, email: p.email, avatar: p.picture })
-    onClose()
-  }
-
-  const onFacebook = () => {
-    if (!FB_APP_ID) {
-      alert('Facebook chưa cấu hình App ID.\nThêm VITE_FB_APP_ID vào .env rồi build lại để bật đăng nhập Facebook.')
-      return
-    }
-    loadFbSdk(FB_APP_ID).then((FB) => {
-      FB.login((res) => {
-        if (!res.authResponse) return
-        FB.api('/me', { fields: 'name,email,picture' }, (me) => {
-          login({ provider: 'facebook', uid: `fb:${me.id}`, name: me.name, email: me.email || null, avatar: me.picture?.data?.url })
-          onClose()
-        })
-      }, { scope: 'public_profile,email' })
-    })
-  }
 
   const submitUser = async (e) => {
     e.preventDefault()
@@ -91,27 +47,6 @@ export default function LoginModal({ onClose }) {
         </div>
         <p className="text-xs text-gray-400 dark:text-gray-500 mb-5">Để lưu tiến độ học theo tài khoản của bạn.</p>
 
-        {/* Google */}
-        <div className="flex justify-center mb-3">
-          <GoogleLogin onSuccess={onGoogle} onError={() => alert('Đăng nhập Google thất bại')} width="300" />
-        </div>
-
-        {/* Facebook */}
-        <button
-          onClick={onFacebook}
-          className="w-full flex items-center justify-center gap-2 bg-[#1877F2] hover:bg-[#166fe0] text-white rounded-lg py-2.5 text-sm font-semibold transition-colors mb-4"
-        >
-          <span className="text-lg">f</span> Tiếp tục với Facebook
-        </button>
-
-        {/* Divider */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex-1 h-px bg-gray-200 dark:bg-dark-border" />
-          <span className="text-xs text-gray-400">hoặc</span>
-          <div className="flex-1 h-px bg-gray-200 dark:bg-dark-border" />
-        </div>
-
-        {/* Username/password (đăng ký + đăng nhập thật) */}
         <form onSubmit={submitUser} className="space-y-2">
           <input
             value={username}
