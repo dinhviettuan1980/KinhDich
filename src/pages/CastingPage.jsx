@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FullHexagramSVG from '../components/FullHexagramSVG'
+import CoinAnimation from '../components/CoinAnimation'
 import { computeHexagrams, TRIGRAM_SHORT, TRIGRAM_ELEMENT, getHexagramById } from '../data/hexagrams'
 import { getUserId } from '../api'
 
@@ -25,45 +26,7 @@ function lineLabel(v) {
   return { symbol: '?', desc: '', color: '' }
 }
 
-// --- Coin animation ---
-function CoinAnim({ result, onDone }) {
-  const [phase, setPhase] = useState('spin') // spin | reveal
-  const [dots, setDots] = useState(1)
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setPhase('reveal'), 1800)
-    const t2 = setTimeout(() => onDone(), 2400)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
-
-  useEffect(() => {
-    const id = setInterval(() => setDots(d => d % 3 + 1), 400)
-    return () => clearInterval(id)
-  }, [])
-
-  const coinEmoji = (v) => v === 3 ? '🪙' : '🔵'
-
-  return (
-    <div className="flex flex-col items-center gap-3 py-4 animate-fade-in">
-      {phase === 'spin' ? (
-        <div className="flex gap-3 text-4xl">
-          {[0, 1, 2].map(i => (
-            <span key={i} className="animate-spin" style={{ animationDuration: `${0.4 + i * 0.1}s` }}>🪙</span>
-          ))}
-        </div>
-      ) : (
-        <div className="flex gap-3 text-4xl">
-          {result.coins.map((v, i) => (
-            <span key={i}>{coinEmoji(v)}</span>
-          ))}
-        </div>
-      )}
-      <div className="text-sm text-gray-500 dark:text-gray-400">
-        {phase === 'spin' ? `Đang tung${'.'.repeat(dots)}` : `Tổng: ${result.coins.join(' + ')} = ${result.value}`}
-      </div>
-    </div>
-  )
-}
+// CoinAnim đã chuyển sang CoinAnimation.jsx
 
 // --- Steps ---
 const STEPS = {
@@ -244,7 +207,7 @@ export default function CastingPage() {
 
       {/* Coin animation or toss button */}
       {pendingToss ? (
-        <CoinAnim result={pendingToss} onDone={handleCoinDone} />
+        <CoinAnimation result={pendingToss} onDone={handleCoinDone} />
       ) : (
         <div className="flex flex-col items-center gap-4">
           <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
@@ -254,7 +217,7 @@ export default function CastingPage() {
             onClick={handleToss}
             className="px-8 py-3 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-base shadow-lg transition-all active:scale-95"
           >
-            🪙 Tung đồng xu
+            Tung đồng xu
           </button>
         </div>
       )}
