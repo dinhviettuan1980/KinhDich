@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Nền trắng nửa phải -->
+  <path d="M50,5 A45,45 0 0,1 50,95 A22.5,22.5 0 0,1 50,50 A22.5,22.5 0 0,0 50,5 Z" fill="#f5f0e8"/>
+  <!-- Nền đen nửa trái -->
+  <path d="M50,5 A45,45 0 0,0 50,95 A22.5,22.5 0 0,0 50,50 A22.5,22.5 0 0,1 50,5 Z" fill="#1a0a00"/>
+  <!-- Viền ngoài -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#1a0a00" stroke-width="2"/>
+  <!-- Chấm trắng trên nền đen (nửa trên bên trái) -->
+  <circle cx="50" cy="27.5" r="8" fill="#f5f0e8"/>
+  <!-- Chấm đen trên nền trắng (nửa dưới bên phải) -->
+  <circle cx="50" cy="72.5" r="8" fill="#1a0a00"/>
+</svg>
