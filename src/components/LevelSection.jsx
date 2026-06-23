@@ -8,9 +8,7 @@ export default function LevelSection({ level, lessons, progress, todayDay }) {
 
   const getStatus = (day) => {
     if (completed.includes(day)) return 'done'
-    if (day === todayDay) return 'current'
-    if (day < todayDay) return 'current'
-    return 'locked'
+    return 'current'
   }
 
   const doneCount = lessons.filter((l) => completed.includes(l.day)).length

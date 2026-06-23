@@ -6,7 +6,7 @@ import DayCard from '../components/DayCard'
 const LEVEL_ICONS = { 1: '🌱', 2: '☯', 3: '⚡', 4: '🧭', 5: '🔮', 6: '🔄', 7: '🏛' }
 
 export default function MapPage() {
-  const { progress, lessons, setProgress, setLessons, isDayUnlocked } = useStore()
+  const { progress, lessons, setProgress, setLessons } = useStore()
   const [loading, setLoading] = useState(!lessons.length)
 
   useEffect(() => {
@@ -21,8 +21,7 @@ export default function MapPage() {
 
   const getStatus = (day) => {
     if (completed.includes(day)) return 'done'
-    if (isDayUnlocked(day)) return 'current'
-    return 'locked'
+    return 'current'
   }
 
   const grouped = {}
