@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import coinHeadsImg from '../assets/coin_yang.png'
-import coinTailsImg from '../assets/coin_yin.png'
 
 // ── CSS keyframes injected once ──────────────────────────────────────────────
 const STYLE_ID = 'coin-anim-css'
@@ -57,24 +55,66 @@ function ensureCSS() {
   document.head.appendChild(el)
 }
 
-// ── Coin face dùng ảnh thật ──────────────────────────────────────────────────
+// ── Ancient coin SVG ─────────────────────────────────────────────────────────
 function AncientCoinSVG({ isHeads, size = 80 }) {
+  const gold   = isHeads ? '#D4A535' : '#9A7C28'
+  const shine  = isHeads ? '#E8C45A' : '#B09040'
+  const rim    = '#5C3D0E'
+  const inner  = isHeads ? '#C49225' : '#856A18'
+  const hole   = '#1A0C06'
+
   return (
-    <div style={{
-      width: size, height: size,
-      borderRadius: '50%',
-      overflow: 'hidden',
-      boxShadow: '0 4px 16px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,220,100,0.3)',
-    }}>
-      <img
-        src={isHeads ? coinHeadsImg : coinTailsImg}
-        width={size}
-        height={size}
-        style={{ display: 'block', objectFit: 'cover', objectPosition: 'center' }}
-        alt=""
-        draggable={false}
-      />
-    </div>
+    <svg viewBox="-52 -52 104 104" width={size} height={size} style={{ display: 'block' }}>
+      <defs>
+        <radialGradient id={`cg${isHeads ? 'h' : 't'}`} cx="35%" cy="30%" r="60%">
+          <stop offset="0%"   stopColor={shine} stopOpacity="0.9" />
+          <stop offset="60%"  stopColor={gold}  stopOpacity="1" />
+          <stop offset="100%" stopColor={rim}   stopOpacity="0.8" />
+        </radialGradient>
+      </defs>
+
+      <circle r={48} fill={`url(#cg${isHeads ? 'h' : 't'})`} />
+      <circle r={48} fill="none" stroke={rim} strokeWidth={3.5} />
+      <circle r={44} fill="none" stroke={rim} strokeWidth={0.8} opacity={0.5} />
+
+      {Array.from({ length: 24 }).map((_, i) => {
+        const a = (i / 24) * Math.PI * 2
+        return <circle key={i} cx={Math.cos(a) * 46} cy={Math.sin(a) * 46} r={1.4} fill={rim} />
+      })}
+
+      <circle r={22} fill={inner} />
+      <circle r={22} fill="none" stroke={rim} strokeWidth={1} opacity={0.4} />
+      <rect x={-10} y={-10} width={20} height={20} fill={hole} rx={1.5} />
+      <rect x={-10} y={-10} width={20} height={20} fill="none" stroke={rim} strokeWidth={1} rx={1.5} />
+
+      {isHeads ? (
+        <>
+          {Array.from({ length: 8 }).map((_, i) => {
+            const a = (i / 8) * Math.PI * 2 + Math.PI / 8
+            return (
+              <line key={i}
+                x1={Math.cos(a) * 13} y1={Math.sin(a) * 13}
+                x2={Math.cos(a) * 20} y2={Math.sin(a) * 20}
+                stroke={rim} strokeWidth={1.5} opacity={0.55} strokeLinecap="round"
+              />
+            )
+          })}
+          {[[-15,-15],[15,-15],[15,15],[-15,15]].map(([x,y],i) => (
+            <circle key={i} cx={x} cy={y} r={2.2} fill={rim} opacity={0.6} />
+          ))}
+          <circle r={17} fill="none" stroke={rim} strokeWidth={0.6} strokeDasharray="2 3" opacity={0.4} />
+        </>
+      ) : (
+        <>
+          <circle r={17} fill="none" stroke={rim} strokeWidth={1} opacity={0.35} />
+          <circle r={13} fill="none" stroke={rim} strokeWidth={0.6} opacity={0.25} />
+          <line x1={-20} y1={0} x2={-12} y2={0} stroke={rim} strokeWidth={0.8} opacity={0.3} strokeLinecap="round" />
+          <line x1={12}  y1={0} x2={20}  y2={0} stroke={rim} strokeWidth={0.8} opacity={0.3} strokeLinecap="round" />
+          <line x1={0} y1={-20} x2={0} y2={-12} stroke={rim} strokeWidth={0.8} opacity={0.3} strokeLinecap="round" />
+          <line x1={0} y1={12}  x2={0} y2={20}  stroke={rim} strokeWidth={0.8} opacity={0.3} strokeLinecap="round" />
+        </>
+      )}
+    </svg>
   )
 }
 
