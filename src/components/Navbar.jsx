@@ -19,6 +19,7 @@ export default function Navbar() {
     { to: '/cases', label: '🧩 Tình huống' },
     { to: '/reflection', label: '🪷 Nhật ký' },
     { to: '/tutor', label: '🤖 AI Tutor' },
+    { to: '/casting', label: '☯ Gieo Quẻ' },
   ]
 
   const isActive = (to) => location.pathname === to

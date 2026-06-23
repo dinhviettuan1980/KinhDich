@@ -10,6 +10,8 @@ import MapPage from './pages/MapPage'
 import ReflectionPage from './pages/ReflectionPage'
 import ObservePage from './pages/ObservePage'
 import CasesPage from './pages/CasesPage'
+import CastingPage from './pages/CastingPage'
+import CastingHistoryPage from './pages/CastingHistoryPage'
 import { useStore } from './store'
 
 export default function App() {
@@ -37,6 +39,8 @@ export default function App() {
             <Route path="/reflection" element={<ReflectionPage />} />
             <Route path="/observe" element={<ObservePage />} />
             <Route path="/cases" element={<CasesPage />} />
+            <Route path="/casting" element={<CastingPage />} />
+            <Route path="/casting-history" element={<CastingHistoryPage />} />
           </Routes>
         </main>
         {lensReady && !lensChosen && <LensOnboarding />}
