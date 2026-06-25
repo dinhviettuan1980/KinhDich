@@ -6,7 +6,7 @@ import LevelSection from '../components/LevelSection'
 
 export default function Dashboard() {
   const navigate = useNavigate()
-  const { progress, lessons, setProgress, setLessons, getTodayDay } = useStore()
+  const { progress, lessons, setProgress, setLessons, getTodayDay, user, openLogin } = useStore()
   const [loading, setLoading] = useState(!lessons.length)
   const [error, setError] = useState(null)
   const [obs, setObs] = useState(null)
@@ -68,6 +68,17 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-6 animate-fade-in">
+      {!user && (
+        <div className="card p-4 border-l-4 border-amber-400 flex items-center gap-3">
+          <span className="text-2xl">🔒</span>
+          <div className="flex-1">
+            <div className="text-sm font-semibold text-gray-800 dark:text-gray-100">Bài học đang khóa</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">Đăng nhập để mở khóa toàn bộ 30 bài học.</div>
+          </div>
+          <button onClick={openLogin} className="btn-primary text-sm px-3 py-1.5 flex-shrink-0">Đăng nhập</button>
+        </div>
+      )}
+
       {/* Hero stats */}
       <div className="card p-6 bg-gradient-to-br from-primary/5 to-purple-100/50 dark:from-primary/10 dark:to-purple-900/20">
         <div className="flex items-start justify-between mb-4">
@@ -105,7 +116,9 @@ export default function Dashboard() {
         </div>
 
         {/* CTA */}
-        {todayLesson && (
+        {!user ? (
+          <button onClick={openLogin} className="btn-primary w-full text-center">🔒 Đăng nhập để bắt đầu học</button>
+        ) : todayLesson && (
           <button
             onClick={() => navigate(`/learn/${todayDay}`)}
             className="btn-primary w-full text-center"

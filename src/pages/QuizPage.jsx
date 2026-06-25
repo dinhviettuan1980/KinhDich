@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fetchLesson } from '../api'
+import { useStore } from '../store'
 import QuizFlow from '../components/QuizFlow'
 
 export default function QuizPage() {
   const { day } = useParams()
   const navigate = useNavigate()
+  const { user, openLogin } = useStore()
   const [lesson, setLesson] = useState(null)
   const [loading, setLoading] = useState(true)
   const [result, setResult] = useState(null)
@@ -15,6 +17,20 @@ export default function QuizPage() {
       .then(setLesson)
       .finally(() => setLoading(false))
   }, [day])
+
+  if (!user) {
+    return (
+      <div className="max-w-xl mx-auto px-4 py-20 text-center space-y-4">
+        <div className="text-5xl">🔒</div>
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">Quiz đang khóa</h2>
+        <p className="text-gray-500 dark:text-gray-400 text-sm">Đăng nhập để làm quiz.</p>
+        <div className="flex gap-3 justify-center">
+          <button onClick={() => navigate('/')} className="btn-secondary">← Trang chủ</button>
+          <button onClick={openLogin} className="btn-primary">Đăng nhập</button>
+        </div>
+      </div>
+    )
+  }
 
   if (loading) {
     return (

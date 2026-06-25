@@ -58,8 +58,13 @@ export const useStore = create(
         try { await saveLens(lens) } catch { /* noop */ }
       },
 
+      // ---- Modal đăng nhập (điều khiển toàn cục để mọi trang mở được) ----
+      loginOpen: false,
+      openLogin: () => set({ loginOpen: true }),
+      closeLogin: () => set({ loginOpen: false }),
+
       // ---- Người dùng (chỉ để hiển thị; không cần bảo mật) ----
-      // user: { provider: 'google'|'facebook'|'user', uid, name, email, avatar }
+      // user: { provider: 'google'|'facebook'|'user', uid, name, email, avatar, isAdmin }
       user: null,
       login: async (user) => {
         setActiveUser(user.uid)            // tiến độ gắn theo tài khoản
@@ -83,13 +88,8 @@ export const useStore = create(
         return Math.min(Math.max(...completed) + 1, 30)
       },
 
-      isDayUnlocked: (day) => {
-        const { progress, user } = get()
-        if (user?.isAdmin) return true // admin: không khoá bài nào
-        if (day === 1) return true
-        if (!progress) return false
-        return (progress.completedDays || []).includes(day - 1)
-      },
+      // Khóa theo ĐĂNG NHẬP: chưa login → khóa hết; đã login (kể cả admin) → mở hết.
+      isDayUnlocked: () => !!get().user,
 
       isDayCompleted: (day) => {
         const { progress } = get()

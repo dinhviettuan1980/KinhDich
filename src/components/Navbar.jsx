@@ -4,9 +4,8 @@ import { useStore, LENS } from '../store'
 import LoginModal from './LoginModal'
 
 export default function Navbar() {
-  const { darkMode, toggleDark, progress, user, logout, lens, setLens } = useStore()
+  const { darkMode, toggleDark, progress, user, logout, lens, setLens, loginOpen, openLogin, closeLogin } = useStore()
   const [menuOpen, setMenuOpen] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const [lensOpen, setLensOpen] = useState(false)
   const location = useLocation()
@@ -21,6 +20,7 @@ export default function Navbar() {
     { to: '/reflection', label: '🪷 Nhật ký' },
     { to: '/tutor', label: '🤖 AI Tutor' },
     { to: '/casting', label: '☯ Gieo Quẻ' },
+    ...(user?.isAdmin ? [{ to: '/admin', label: '👑 Users' }] : []),
   ]
 
   const isActive = (to) => location.pathname === to
@@ -135,7 +135,7 @@ export default function Navbar() {
             </div>
           ) : (
             <button
-              onClick={() => setShowLogin(true)}
+              onClick={openLogin}
               className="px-3 py-1.5 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary-light transition-colors"
             >
               Đăng nhập
@@ -172,7 +172,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
+      {loginOpen && <LoginModal onClose={closeLogin} />}
     </nav>
   )
 }

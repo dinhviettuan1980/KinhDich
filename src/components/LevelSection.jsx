@@ -1,12 +1,14 @@
-import { LEVEL_COLORS, LEVEL_NAMES } from '../store'
+import { useStore, LEVEL_COLORS, LEVEL_NAMES } from '../store'
 import DayCard from './DayCard'
 
 export default function LevelSection({ level, lessons, progress, todayDay }) {
+  const user = useStore((s) => s.user)
   const colors = LEVEL_COLORS[level] || LEVEL_COLORS[1]
   const completed = progress?.completedDays || []
   const scores = progress?.scores || {}
 
   const getStatus = (day) => {
+    if (!user) return 'locked' // chưa đăng nhập → khóa hết
     if (completed.includes(day)) return 'done'
     return 'current'
   }

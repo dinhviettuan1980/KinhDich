@@ -23,7 +23,7 @@ const ACCENT = { life: 'border-emerald-400', business: 'border-amber-400', tech:
 export default function LearnPage() {
   const { day } = useParams()
   const navigate = useNavigate()
-  const { lens } = useStore()
+  const { lens, user, openLogin } = useStore()
   const [lesson, setLesson] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -41,6 +41,20 @@ export default function LearnPage() {
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false))
   }, [day])
+
+  if (!user) {
+    return (
+      <div className="max-w-xl mx-auto px-4 py-20 text-center space-y-4">
+        <div className="text-5xl">🔒</div>
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">Bài học đang khóa</h2>
+        <p className="text-gray-500 dark:text-gray-400 text-sm">Đăng nhập để mở khóa toàn bộ bài học.</p>
+        <div className="flex gap-3 justify-center">
+          <button onClick={() => navigate('/')} className="btn-secondary">← Trang chủ</button>
+          <button onClick={openLogin} className="btn-primary">Đăng nhập</button>
+        </div>
+      </div>
+    )
+  }
 
   if (loading) {
     return (

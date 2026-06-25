@@ -18,7 +18,18 @@ export function setActiveUser(uid) {
 export function clearActiveUser() {
   const guest = crypto.randomUUID()
   localStorage.setItem('kd_user_id', guest)
+  localStorage.removeItem('kd_token')
   return guest
+}
+
+// Admin: danh sách user (gửi token qua header)
+export async function listUsers() {
+  const res = await fetch(`${BASE}/users`, {
+    headers: { 'x-kd-token': localStorage.getItem('kd_token') || '' },
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'Không tải được danh sách user')
+  return data.users
 }
 
 export async function registerUser(username, password) {

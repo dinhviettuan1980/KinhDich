@@ -21,6 +21,7 @@ export default function LoginModal({ onClose }) {
       const data = mode === 'register'
         ? await registerUser(u, password)
         : await loginUser(u, password)
+      if (data.token) localStorage.setItem('kd_token', data.token)
       await login({
         provider: 'user',
         uid: `user:${data.username}`,
