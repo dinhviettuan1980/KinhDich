@@ -12,6 +12,7 @@ export default function ProfilePage() {
 
   const [fullName, setFullName] = useState('')
   const [address, setAddress] = useState('')
+  const [birthday, setBirthday] = useState('')
   const [savingInfo, setSavingInfo] = useState(false)
   const [infoMsg, setInfoMsg] = useState({ ok: false, text: '' })
 
@@ -27,6 +28,7 @@ export default function ProfilePage() {
       .then((d) => {
         setFullName(d.fullName || '')
         setAddress(d.address || '')
+        setBirthday(d.birthday || '')
         updateUser({
           username: d.username,
           fullName: d.fullName || null,
@@ -35,7 +37,8 @@ export default function ProfilePage() {
         })
       })
       .catch(() => {})
-  }, [user]) // eslint-disable-line
+    // Chỉ chạy 1 lần theo phiên (uid ổn định) — tránh updateUser làm chạy lại, xoá ô đang gõ.
+  }, [user?.uid]) // eslint-disable-line
 
   if (!user) {
     return (
@@ -57,7 +60,7 @@ export default function ProfilePage() {
     setInfoMsg({ ok: false, text: '' })
     setSavingInfo(true)
     try {
-      const d = await updateProfile({ fullName, address })
+      const d = await updateProfile({ fullName, address, birthday })
       updateUser({ fullName: d.fullName, name: (d.fullName && d.fullName.trim()) || username })
       setInfoMsg({ ok: true, text: 'Đã lưu ✓' })
     } catch (err) {
@@ -110,6 +113,10 @@ export default function ProfilePage() {
         <div>
           <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">Địa chỉ <span className="text-gray-300">(không bắt buộc)</span></label>
           <input className={inputCls} value={address} onChange={(e) => setAddress(e.target.value)} placeholder="VD: Hà Nội" />
+        </div>
+        <div>
+          <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">Ngày sinh <span className="text-gray-300">(không bắt buộc)</span></label>
+          <input type="date" className={inputCls} value={birthday} onChange={(e) => setBirthday(e.target.value)} />
         </div>
         <div className="flex items-center gap-3">
           <button type="submit" disabled={savingInfo} className="btn-primary disabled:opacity-60">{savingInfo ? 'Đang lưu...' : 'Lưu thông tin'}</button>

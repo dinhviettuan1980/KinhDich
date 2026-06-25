@@ -47,6 +47,30 @@ export async function changePassword(oldPassword, newPassword) {
   return data
 }
 
+// ---- Văn khấn ----
+export async function fetchVanKhanList() {
+  const res = await fetch(`${BASE}/vankhan`)
+  const d = await res.json()
+  if (!res.ok) throw new Error(d.error || 'Lỗi tải văn khấn')
+  return d.items
+}
+export async function addVanKhanUrl(url) {
+  const res = await fetch(`${BASE}/vankhan/from-url`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ url }) })
+  const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
+}
+export async function addVanKhanText({ title, text, source }) {
+  const res = await fetch(`${BASE}/vankhan`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ title, text, source }) })
+  const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
+}
+export async function updateVanKhanText(id, { title, text }) {
+  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'PUT', headers: authHeaders(true), body: JSON.stringify({ title, text }) })
+  const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
+}
+export async function deleteVanKhan(id) {
+  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'DELETE', headers: authHeaders() })
+  const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
+}
+
 // Admin: danh sách user (gửi token qua header)
 export async function listUsers() {
   const res = await fetch(`${BASE}/users`, {
