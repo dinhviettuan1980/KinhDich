@@ -123,6 +123,13 @@ export default function Navbar() {
                         <div className="text-xs text-gray-400 truncate">{user.email || ({ google: 'Google', facebook: 'Facebook', user: 'Tài khoản' }[user.provider])}</div>
                       </div>
                     </div>
+                    <Link
+                      to="/profile"
+                      onClick={() => setProfileOpen(false)}
+                      className="block w-full text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-border rounded-lg px-2 py-1.5 transition-colors mb-1"
+                    >
+                      👤 Hồ sơ & mật khẩu
+                    </Link>
                     <button
                       onClick={() => { setProfileOpen(false); logout() }}
                       className="w-full text-left text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg px-2 py-1.5 transition-colors"

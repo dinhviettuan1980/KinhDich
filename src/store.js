@@ -72,6 +72,7 @@ export const useStore = create(
         try { set({ progress: await fetchProgress() }) } catch { /* noop */ }
         get().loadLens()                   // nạp góc nhìn của tài khoản
       },
+      updateUser: (patch) => set((s) => (s.user ? { user: { ...s.user, ...patch } } : {})),
       logout: async () => {
         clearActiveUser()                  // về danh tính khách
         set({ user: null })

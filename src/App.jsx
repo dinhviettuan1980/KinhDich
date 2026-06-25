@@ -7,6 +7,7 @@ import LearnPage from './pages/LearnPage'
 import QuizPage from './pages/QuizPage'
 import QuePage from './pages/QuePage'
 import AdminUsersPage from './pages/AdminUsersPage'
+import ProfilePage from './pages/ProfilePage'
 import TutorPage from './pages/TutorPage'
 import MapPage from './pages/MapPage'
 import ReflectionPage from './pages/ReflectionPage'
@@ -39,6 +40,7 @@ export default function App() {
             <Route path="/que" element={<QuePage />} />
             <Route path="/que/:so" element={<QuePage />} />
             <Route path="/admin" element={<AdminUsersPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/tutor" element={<TutorPage />} />
             <Route path="/map" element={<MapPage />} />
             <Route path="/reflection" element={<ReflectionPage />} />

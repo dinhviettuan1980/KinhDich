@@ -25,7 +25,9 @@ export default function LoginModal({ onClose }) {
       await login({
         provider: 'user',
         uid: `user:${data.username}`,
-        name: data.username,
+        username: data.username,
+        name: (data.fullName && data.fullName.trim()) || data.username,
+        fullName: data.fullName || null,
         email: null,
         avatar: null,
         isAdmin: !!data.isAdmin,

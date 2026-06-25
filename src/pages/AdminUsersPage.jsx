@@ -54,9 +54,13 @@ export default function AdminUsersPage() {
               {users.map((u, i) => (
                 <tr key={u.username} className="border-b border-gray-100 dark:border-dark-border/50">
                   <td className="px-3 py-2 text-gray-400">{i + 1}</td>
-                  <td className="px-3 py-2 font-medium text-gray-800 dark:text-gray-100">
-                    {u.username}
-                    {u.isAdmin && <span className="ml-1.5 text-[10px] font-bold text-amber-600 bg-amber-100 dark:bg-amber-900/30 rounded px-1.5 py-0.5">ADMIN</span>}
+                  <td className="px-3 py-2">
+                    <div className="font-medium text-gray-800 dark:text-gray-100">
+                      {u.username}
+                      {u.isAdmin && <span className="ml-1.5 text-[10px] font-bold text-amber-600 bg-amber-100 dark:bg-amber-900/30 rounded px-1.5 py-0.5">ADMIN</span>}
+                    </div>
+                    {u.fullName && <div className="text-xs text-gray-400">{u.fullName}</div>}
+                    {u.address && <div className="text-[11px] text-gray-400">📍 {u.address}</div>}
                   </td>
                   <td className="px-3 py-2 text-center text-gray-700 dark:text-gray-300">{u.doneDays}/30</td>
                   <td className="px-3 py-2 text-gray-500 dark:text-gray-400">{fmt(u.createdAt)}</td>
