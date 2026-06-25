@@ -1,0 +1,988 @@
+[
+ {
+  "id": 1,
+  "title": "Văn Khấn Thành Hoàng Làng",
+  "slug": "van-khan-thanh-hoang-lang",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Thành Hoàng Làng là vị thần bảo hộ của mỗi làng quê Việt Nam, được thờ phụng tại đình làng. Việc cúng lễ Thành Hoàng thể hiện lòng biết ơn và cầu mong sự che chở, bình an cho cộng đồng. Dưới đây là bài văn khấn truyền thống thường được sử dụng:"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Kim Niên Đương cai Thái tuế chí đức Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Bản cảnh Thành Hoàng chư vị Đại Vương."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con thành tâm sửa biện hương hoa, lễ vật, trà quả, thắp nén tâm hương dâng lên trước án, kính cẩn tâu trình:"
+   },
+   {
+    "tag": "p",
+    "text": "Đức Bản cảnh Thành Hoàng chư vị Đại Vương nhận mệnh Thiên đình giáng lâm ở nước Việt Nam, làm Bản cảnh Thành Hoàng chủ tể một phương, bấy lâu nay ban phúc lành, che chở cho dân."
+   },
+   {
+    "tag": "p",
+    "text": "Nay tín chủ con thành tâm kính lễ, dâng lên lễ bạc, cúi xin chư vị Đại Vương chứng giám, phù hộ độ trì cho chúng con và toàn thể gia đình được mạnh khỏe, bình an, vạn sự tốt lành, lộc tài thịnh vượng, gia đạo hưng long."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Lưu ý rằng nội dung bài văn khấn có thể thay đổi tùy theo phong tục và truyền thống của từng địa phương. Khi hành lễ, quan trọng nhất là giữ lòng thành kính và tôn trọng đối với các vị thần linh."
+   }
+  ]
+ },
+ {
+  "id": 2,
+  "title": "Văn Khấn Ban Công Đồng",
+  "slug": "van-khan-ban-cong-dong",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Ban Công Đồng là nơi thờ phụng tập thể các vị thần linh trong tín ngưỡng dân gian Việt Nam, bao gồm Tam Tòa Thánh Mẫu, Ngọc Hoàng Thượng Đế, và các vị thần khác. Việc khấn tại Ban Công Đồng thể hiện lòng thành kính và cầu nguyện cho sức khỏe, bình an, tài lộc cho gia đình và bản thân."
+   },
+   {
+    "tag": "p",
+    "text": "Dưới đây là bài văn khấn thường được sử dụng khi hành lễ tại Ban Công Đồng:"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy đức Vua Cha Ngọc Hoàng Thượng Đế."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Tam Tòa Thánh Mẫu."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Tam phủ Công Đồng, Tứ phủ Vạn Linh."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Tứ phủ Khâm Sai."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Chầu Bà Thủ Mệnh."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Tứ phủ Đức Thánh Hoàng."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Tứ phủ Đức Thánh Cô."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Tứ phủ Đức Thánh Cậu."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy cộng đồng các Giá, các Quan, mười tám cửa rừng, mười hai cửa bể."
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy Quan Chầu Gia."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con về đền... thành tâm kính lễ, xin Chúa phù hộ độ trì cho gia đình chúng con sức khỏe dồi dào, phúc thọ khang ninh, cầu tài đắc tài, cầu lộc đắc lộc, cầu bình an đắc bình an, vạn sự hanh thông, gặp nhiều may mắn."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Lưu ý rằng nội dung bài văn khấn có thể thay đổi tùy theo phong tục và truyền thống của từng địa phương. Khi hành lễ, quan trọng nhất là giữ lòng thành kính và tôn trọng đối với các vị thần linh."
+   }
+  ]
+ },
+ {
+  "id": 3,
+  "title": "Văn Khấn Tam Tòa Thánh Mẫu",
+  "slug": "van-khan-tam-toa-thanh-mau",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Tam Tòa Thánh Mẫu bao gồm ba vị thánh mẫu linh thiêng trong tín ngưỡng dân gian Việt Nam:"
+   },
+   {
+    "tag": "p",
+    "text": "Việc thờ cúng Tam Tòa Thánh Mẫu thể hiện lòng tôn kính và biết ơn đối với các vị thần đã bảo hộ và ban phước lành cho con người. Khi hành lễ tại đền, miếu thờ Tam Tòa Thánh Mẫu, người dân thường chuẩn bị lễ vật và đọc bài văn khấn để cầu mong sức khỏe, bình an và tài lộc."
+   },
+   {
+    "tag": "p",
+    "text": "Dưới đây là bài văn khấn Tam Tòa Thánh Mẫu thường được sử dụng:"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Mẫu Thượng Thiên, Mẫu Thượng Ngàn, Mẫu Thoải."
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Thành tâm sửa biện hương hoa, lễ vật, trà quả, thắp nén tâm hương dâng lên trước án, kính cẩn tâu trình:"
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con kính lạy Tam Tòa Thánh Mẫu, các vị Mẫu Thiên Tiên, Địa Tiên, Thoải Tiên, cùng chư vị Thánh linh."
+   },
+   {
+    "tag": "p",
+    "text": "Cúi xin các Ngài chứng giám, phù hộ độ trì cho tín chủ con và gia đình được bình an, mạnh khỏe, mọi sự hanh thông, tài lộc dồi dào, sở cầu như ý, sở nguyện tòng tâm."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Lưu ý rằng nội dung bài văn khấn có thể thay đổi tùy theo phong tục và truyền thống của từng địa phương. Khi hành lễ, quan trọng nhất là giữ lòng thành kính và tôn trọng đối với các vị thần linh."
+   }
+  ]
+ },
+ {
+  "id": 4,
+  "title": "Văn Khấn Cô Chín",
+  "slug": "van-khan-co-chin",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Cô Chín, theo truyền thuyết dân gian Việt Nam, là một Tiên nữ hầu cận Mẫu Liễu Hạnh, nổi tiếng với sự linh thiêng và khả năng ban phước lành cho những ai thành tâm cầu nguyện. Đền thờ Cô Chín, đặc biệt là Đền Cô Chín Giếng ở Thanh Hóa, là điểm đến tâm linh thu hút đông đảo người dân đến dâng hương và cầu xin sức khỏe, tài lộc, tình duyên."
+   },
+   {
+    "tag": "p",
+    "text": "Khi đến viếng Đền Cô Chín, việc chuẩn bị lễ vật và đọc văn khấn đúng nghi thức là rất quan trọng để thể hiện lòng thành kính. Dưới đây là hướng dẫn về lễ vật và bài văn khấn Cô Chín:"
+   },
+   {
+    "tag": "h3",
+    "text": "Lễ Vật Dâng Cúng Cô Chín"
+   },
+   {
+    "tag": "p",
+    "text": "Lưu ý rằng số lượng lễ vật thường chọn số lẻ, thể hiện sự dương thịnh trong quan niệm dân gian."
+   },
+   {
+    "tag": "h3",
+    "text": "Bài Văn Khấn Cô Chín"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Đông Trù Tư mệnh Táo phủ Thần quân."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy các ngài Thần linh, Thổ địa cai quản trong xứ này."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Cô Chín linh thiêng."
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Thành tâm sửa biện hương hoa, lễ vật, trà quả, thắp nén tâm hương dâng lên trước án, kính cẩn tâu trình:"
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con kính lạy Cô Chín, vị Tiên nữ linh thiêng, xin Cô chứng giám lòng thành, phù hộ độ trì cho tín chủ con và gia đình được bình an, mạnh khỏe, mọi sự hanh thông, tài lộc dồi dào, sở cầu như ý, sở nguyện tòng tâm."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Khi đọc văn khấn, quan trọng nhất là giữ lòng thành kính, đọc với giọng trang trọng, rõ ràng, thể hiện sự tôn trọng đối với Cô Chín và thế giới tâm linh."
+   }
+  ]
+ },
+ {
+  "id": 5,
+  "title": "Văn Khấn Ông Hoàng Bảy",
+  "slug": "van-khan-ong-hoang-bay",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Ông Hoàng Bảy, được thờ chính tại đền Bảo Hà, tỉnh Lào Cai, là một trong những vị thánh linh thiêng trong tín ngưỡng thờ Mẫu của người Việt. Ngài được biết đến với sự uy dũng và khả năng bảo hộ, ban phước lành cho những ai thành tâm cầu nguyện. Hàng năm, đặc biệt vào ngày giỗ chính của Ông (17/7 âm lịch), đông đảo người dân từ khắp nơi tụ hội về đền Bảo Hà để dâng hương, cầu tài lộc, bình an và may mắn trong cuộc sống."
+   },
+   {
+    "tag": "p",
+    "text": "Khi đến viếng đền Ông Hoàng Bảy, việc chuẩn bị lễ vật và đọc văn khấn đúng nghi thức là rất quan trọng để thể hiện lòng thành kính. Dưới đây là hướng dẫn về lễ vật và bài văn khấn Ông Hoàng Bảy:"
+   },
+   {
+    "tag": "h3",
+    "text": "Lễ Vật Dâng Cúng Ông Hoàng Bảy"
+   },
+   {
+    "tag": "p",
+    "text": "Lưu ý rằng số lượng lễ vật thường chọn số lẻ, thể hiện sự dương thịnh trong quan niệm dân gian. Quan trọng nhất là lòng thành kính và sự trang nghiêm khi dâng lễ."
+   },
+   {
+    "tag": "h3",
+    "text": "Bài Văn Khấn Ông Hoàng Bảy"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Quan Hoàng Bảy Bảo Hà hiển linh."
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Thành tâm sửa biện hương hoa, lễ vật, trà quả, thắp nén tâm hương dâng lên trước án, kính cẩn tâu trình:"
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con kính lạy Quan Hoàng Bảy Bảo Hà, vị thánh linh thiêng, xin Ngài chứng giám lòng thành, phù hộ độ trì cho tín chủ con và gia đình được bình an, mạnh khỏe, mọi sự hanh thông, tài lộc dồi dào, sở cầu như ý, sở nguyện tòng tâm."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Khi đọc văn khấn, quan trọng nhất là giữ lòng thành kính, đọc với giọng trang trọng, rõ ràng, thể hiện sự tôn trọng đối với Ông Hoàng Bảy và thế giới tâm linh."
+   }
+  ]
+ },
+ {
+  "id": 6,
+  "title": "Văn Khấn Chúa Thác Bờ",
+  "slug": "van-khan-chua-thac-bo",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Chúa Thác Bờ là vị thần linh thiêng được thờ phụng tại đền Chúa Thác Bờ, tọa lạc bên dòng sông Đà thuộc tỉnh Hòa Bình. Ngài được nhân dân tôn kính vì đã có công giúp đỡ vua Lê Lợi và nhân dân trong cuộc kháng chiến chống giặc ngoại xâm, mang lại bình yên cho vùng đất này. Hàng năm, đông đảo du khách và người dân địa phương đến đền để dâng hương, cầu mong sức khỏe, bình an và tài lộc cho gia đình."
+   },
+   {
+    "tag": "p",
+    "text": "Khi đến viếng đền Chúa Thác Bờ, việc chuẩn bị lễ vật và đọc văn khấn đúng nghi thức là rất quan trọng để thể hiện lòng thành kính. Dưới đây là hướng dẫn về lễ vật và bài văn khấn Chúa Thác Bờ:"
+   },
+   {
+    "tag": "h3",
+    "text": "Lễ Vật Dâng Cúng Chúa Thác Bờ"
+   },
+   {
+    "tag": "p",
+    "text": "Lưu ý rằng lễ vật không cần quá cầu kỳ, quan trọng nhất là lòng thành kính và sự trang nghiêm khi dâng lễ."
+   },
+   {
+    "tag": "h3",
+    "text": "Bài Văn Khấn Chúa Thác Bờ"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Đức Phật Thích Ca Mâu Ni, Đức Phật A Di Đà, Quan Thế Âm Bồ Tát và chư vị Bồ Tát."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Chúa Thác Bờ linh thiêng, người che chở và phù trợ nhân dân."
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Thành tâm sửa biện hương hoa, lễ vật, kính dâng lên Chúa Thác Bờ và các vị thần linh tại đền."
+   },
+   {
+    "tag": "p",
+    "text": "Cúi xin các ngài từ bi chứng giám, phù hộ độ trì cho gia đình chúng con được mạnh khỏe, bình an, tài lộc dồi dào, mọi sự hanh thông."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con nguyện sống tốt đời đẹp đạo, tích đức lâu dài, hướng thiện và làm điều lành."
+   },
+   {
+    "tag": "p",
+    "text": "Nếu có điều gì thiếu sót, kính mong các ngài lượng thứ."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Khi đọc văn khấn, quan trọng nhất là giữ lòng thành kính, đọc với giọng trang trọng, rõ ràng, thể hiện sự tôn trọng đối với Chúa Thác Bờ và thế giới tâm linh."
+   }
+  ]
+ },
+ {
+  "id": 7,
+  "title": "Văn Khấn Đức Thánh Trần",
+  "slug": "van-khan-duc-thanh-tran",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "(3 lạy)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Tứ phủ Công Đồng Trần Triều."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Đức Thánh Trần – Hưng Đạo Đại Vương, bậc anh hùng dân tộc, danh tướng hiển linh, phù hộ độ trì cho muôn dân."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy tứ vị Thánh tử đại vương, Nhị vị Vương cô Hoàng Thánh."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Đức Ông Phạm Điệu Suý Tôn Thần, Tả Quan Nam Tào, Hữu Quan Bắc Đẩu, cùng chư vị bách quan trong triều."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử con là: ..................................................................................."
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay, ngày ..... tháng ..... năm ......."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử chúng con thành tâm sửa biện hương hoa, phẩm oản, lễ vật, kim ngân, trà quả và các thứ lễ khác, dâng lên trước án."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm kính mời Đức Thánh Trần cùng chư vị tôn thần lai lâm hiển linh trước án, chứng giám lòng thành, thụ hưởng lễ vật."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử chúng con chấp kỳ lễ bái, xin các vị phù hộ độ trì cho hương tử con cùng toàn gia quyến được luôn mạnh khỏe, tai qua nạn khỏi, điều lành mang đến, điều dữ giải đi, cầu tài đắc tài, cầu lộc đắc lộc, cầu bình an đắc bình an."
+   },
+   {
+    "tag": "p",
+    "text": "Xin cho chúng con được nhân an vật thịnh, đi đến nơi về đến chốn, làm ăn thuận buồm xuôi gió, vạn sự như ý."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   }
+  ]
+ },
+ {
+  "id": 8,
+  "title": "Văn Khấn Quan Lớn Tuần Tranh",
+  "slug": "van-khan-quan-lon-tuan-tranh",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "(3 lạy)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương trời, mười phương chư Phật, chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Quan Lớn Tuần Tranh tối linh."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử con là: ..................................................................................."
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay, ngày ..... tháng ..... năm ......."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm sửa biện hương hoa, phẩm quả, lễ vật, kim ngân, trà quả và các thứ lễ khác, dâng lên trước án."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm kính mời Quan Lớn Tuần Tranh cùng chư vị tôn thần lai lâm hiển linh trước án, chứng giám lòng thành, thụ hưởng lễ vật."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử chúng con cúi xin Quan Lớn Tuần Tranh phù hộ độ trì cho chúng con cùng toàn gia quyến được mạnh khỏe, bình an, vạn sự tốt lành, công việc hanh thông, tài lộc dồi dào."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật!"
+   }
+  ]
+ },
+ {
+  "id": 9,
+  "title": "Văn Khấn Các Vị Thần Linh Trong Đền",
+  "slug": "van-khan-cac-vi-than-linh-trong-den",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Kim Niên Đương cai Thái Tuế chí đức Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Bản cảnh Thành Hoàng chư vị Đại Vương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Đông Trù Tư mệnh Táo phủ Thần quân."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Bản gia Thổ Địa Long Mạch Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy các ngài Ngũ Phương, Ngũ Thổ, Phúc đức chính thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy các vị Tôn thần cai quản trong khu vực này."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử con là: ..................................................................................."
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử con thành tâm sửa biện hương hoa, lễ vật, kim ngân, trà quả và các thứ lễ khác, dâng lên trước án."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm kính mời các ngài Kim Niên Đương cai Thái Tuế chí đức Tôn thần, Bản cảnh Thành Hoàng chư vị Đại Vương, Đông Trù Tư mệnh Táo phủ Thần quân, Bản gia Thổ Địa Long Mạch Tôn thần, các ngài Ngũ Phương, Ngũ Thổ, Phúc đức chính thần, cùng các vị Tôn thần cai quản trong khu vực này, lai lâm hiển linh trước án, chứng giám lòng thành, thụ hưởng lễ vật."
+   },
+   {
+    "tag": "p",
+    "text": "Hương tử chúng con cúi xin các ngài phù hộ độ trì cho chúng con cùng toàn gia quyến được mạnh khỏe, bình an, vạn sự tốt lành, công việc hanh thông, tài lộc dồi dào."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   }
+  ]
+ },
+ {
+  "id": 10,
+  "title": "Văn Khấn Ngày Rằm, Mùng Một",
+  "slug": "van-khan-ngay-ram-mung-mot",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Bản cảnh Thành Hoàng, ngài Bản xứ Thổ Địa, ngài Bản gia Táo Quân cùng chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Tổ tiên, Hiển khảo, Hiển tỷ, chư vị Hương linh."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con thành tâm sửa biện hương hoa, lễ vật, kim ngân, trà quả và các thứ lễ khác, dâng lên trước án."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm kính mời các ngài Hoàng thiên Hậu Thổ chư vị Tôn thần, ngài Bản cảnh Thành Hoàng, ngài Bản xứ Thổ Địa, ngài Bản gia Táo Quân cùng chư vị Tôn thần, cùng Tổ tiên, Hiển khảo, Hiển tỷ, chư vị Hương linh, lai lâm hiển linh trước án, chứng giám lòng thành, thụ hưởng lễ vật."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ chúng con cúi xin các ngài phù hộ độ trì cho chúng con cùng toàn gia quyến được mạnh khỏe, bình an, vạn sự tốt lành, công việc hanh thông, tài lộc dồi dào."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   }
+  ]
+ },
+ {
+  "id": 11,
+  "title": "Văn Khấn Cầu Tài Lộc",
+  "slug": "van-khan-cau-tai-loc",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Đông Trù Tư mệnh Táo phủ Thần quân."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Bản gia Thổ Địa Long Mạch Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Thần Tài vị tiền."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy các ngài Ngũ Phương, Ngũ Thổ, Phúc đức chính thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy các vị Tôn thần cai quản trong khu vực này."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con thành tâm sửa biện hương hoa, lễ vật, kim ngân, trà quả và các thứ lễ khác, dâng lên trước án."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm kính mời các ngài Hoàng Thiên Hậu Thổ chư vị Tôn thần, ngài Đông Trù Tư mệnh Táo phủ Thần quân, ngài Bản gia Thổ Địa Long Mạch Tôn thần, ngài Thần Tài vị tiền, các ngài Ngũ Phương, Ngũ Thổ, Phúc đức chính thần, cùng các vị Tôn thần cai quản trong khu vực này, lai lâm hiển linh trước án, chứng giám lòng thành, thụ hưởng lễ vật."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ chúng con cúi xin các ngài phù hộ độ trì cho chúng con cùng toàn gia quyến được mạnh khỏe, bình an, vạn sự tốt lành, công việc hanh thông, tài lộc dồi dào, kinh doanh phát đạt."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   }
+  ]
+ },
+ {
+  "id": 12,
+  "title": "Văn Khấn Cầu Công Danh, Sự Nghiệp",
+  "slug": "van-khan-cau-cong-danh-su-nghiep",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Đức Thánh Hiền, chư vị thần linh cai quản tại ngôi đền này."
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Con thành tâm dâng lễ hương hoa, trà quả, kính lễ trước các vị thần linh."
+   },
+   {
+    "tag": "p",
+    "text": "Con cầu xin chư vị phù hộ độ trì, mở rộng đường công danh sự nghiệp, giúp con thành công trong công việc, đạt được những nguyện vọng chính đáng."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   }
+  ]
+ },
+ {
+  "id": 13,
+  "title": "Văn Khấn Cầu Bình An, Sức Khỏe",
+  "slug": "van-khan-cau-binh-an-suc-khoe",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Bản cảnh Thành Hoàng, ngài Bản xứ Thổ Địa, ngài Bản gia Táo Quân cùng chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Tổ tiên, Hiển khảo, Hiển tỷ, chư vị Hương linh."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con thành tâm sửa biện hương hoa, lễ vật, kim ngân, trà quả và các thứ lễ khác, dâng lên trước án."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm kính mời các ngài Hoàng Thiên Hậu Thổ chư vị Tôn thần, ngài Bản cảnh Thành Hoàng, ngài Bản xứ Thổ Địa, ngài Bản gia Táo Quân cùng chư vị Tôn thần, cùng Tổ tiên, Hiển khảo, Hiển tỷ, chư vị Hương linh, lai lâm hiển linh trước án, chứng giám lòng thành, thụ hưởng lễ vật."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ chúng con cúi xin các ngài phù hộ độ trì cho chúng con cùng toàn gia quyến được mạnh khỏe, bình an, thân không bệnh tật, tâm không phiền não, mọi sự tốt lành, an khang thịnh vượng."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   }
+  ]
+ },
+ {
+  "id": 14,
+  "title": "Văn Khấn Khi Đi Đền Lần Đầu",
+  "slug": "van-khan-khi-di-den-lan-dau",
+  "blocks": [
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   },
+   {
+    "tag": "p",
+    "text": "Con lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy ngài Bản cảnh Thành Hoàng, ngài Bản xứ Thổ Địa, ngài Bản gia Táo Quân cùng chư vị Tôn thần."
+   },
+   {
+    "tag": "p",
+    "text": "Con kính lạy chư vị Thánh linh cai quản tại đền này."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ con là: {{ten}}"
+   },
+   {
+    "tag": "p",
+    "text": "Ngụ tại: {{diaChi}}"
+   },
+   {
+    "tag": "p",
+    "text": "Hôm nay là {{ngayAm}}."
+   },
+   {
+    "tag": "p",
+    "text": "Nhân dịp lần đầu tiên đến viếng đền, tín chủ con thành tâm sửa biện hương hoa, lễ vật, kim ngân, trà quả và các thứ lễ khác, dâng lên trước án."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con thành tâm kính mời các ngài Hoàng Thiên Hậu Thổ chư vị Tôn thần, ngài Bản cảnh Thành Hoàng, ngài Bản xứ Thổ Địa, ngài Bản gia Táo Quân cùng chư vị Tôn thần, chư vị Thánh linh cai quản tại đền này, lai lâm hiển linh trước án, chứng giám lòng thành, thụ hưởng lễ vật."
+   },
+   {
+    "tag": "p",
+    "text": "Tín chủ chúng con cúi xin các ngài phù hộ độ trì cho chúng con cùng toàn gia quyến được mạnh khỏe, bình an, gia đạo hưng thịnh, vạn sự hanh thông, sở cầu như ý."
+   },
+   {
+    "tag": "p",
+    "text": "Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được phù hộ độ trì."
+   },
+   {
+    "tag": "p",
+    "text": "Nam mô A Di Đà Phật! (3 lần)"
+   }
+  ]
+ }
+]
