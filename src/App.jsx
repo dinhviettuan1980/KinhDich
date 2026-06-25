@@ -5,6 +5,7 @@ import LensOnboarding from './components/LensOnboarding'
 import Dashboard from './pages/Dashboard'
 import LearnPage from './pages/LearnPage'
 import QuizPage from './pages/QuizPage'
+import QuePage from './pages/QuePage'
 import TutorPage from './pages/TutorPage'
 import MapPage from './pages/MapPage'
 import ReflectionPage from './pages/ReflectionPage'
@@ -34,6 +35,8 @@ export default function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/learn/:day" element={<LearnPage />} />
             <Route path="/quiz/:day" element={<QuizPage />} />
+            <Route path="/que" element={<QuePage />} />
+            <Route path="/que/:so" element={<QuePage />} />
             <Route path="/tutor" element={<TutorPage />} />
             <Route path="/map" element={<MapPage />} />
             <Route path="/reflection" element={<ReflectionPage />} />
