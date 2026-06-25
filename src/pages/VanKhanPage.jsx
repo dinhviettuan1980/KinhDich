@@ -104,11 +104,16 @@ export default function VanKhanPage() {
   const [me, setMe] = useState(null)
   const [adding, setAdding] = useState(false)
   const [editing, setEditing] = useState(null)
+  const [speaking, setSpeaking] = useState(false)
   const ngayAm = useMemo(() => lunarTodayText(), [])
 
   const reload = () => fetchVanKhanList().then(setData).catch(() => setData([]))
   useEffect(() => { reload() }, [])
   useEffect(() => { if (user) getMe().then(setMe).catch(() => {}); else setMe(null) }, [user?.uid]) // eslint-disable-line
+  // Nạp sẵn danh sách giọng + dừng đọc khi rời trang
+  useEffect(() => { try { window.speechSynthesis.getVoices() } catch { /* noop */ } return () => { try { window.speechSynthesis.cancel() } catch { /* noop */ } } }, [])
+  // Đổi bài thì dừng đọc
+  useEffect(() => { try { window.speechSynthesis.cancel() } catch { /* noop */ } setSpeaking(false) }, [slug])
 
   if (!data) {
     return <div className="max-w-xl mx-auto px-4 py-16 flex justify-center"><div className="w-10 h-10 rounded-full border-4 border-primary border-t-transparent animate-spin" /></div>
@@ -116,6 +121,27 @@ export default function VanKhanPage() {
 
   const isAdmin = user?.isAdmin
   const vals = { ten: me?.fullName || '', diaChi: me?.address || '', ngayAm }
+
+  const readAloud = (blocks) => {
+    const synth = window.speechSynthesis
+    if (!synth) return alert('Trình duyệt không hỗ trợ đọc (text-to-speech).')
+    synth.cancel()
+    const voice = synth.getVoices().find((v) => /vi[-_]?vn/i.test(v.lang) || /viet/i.test(v.name))
+    const lines = blocks
+      .map((b) => b.text
+        .replace('{{ten}}', vals.ten || '')
+        .replace('{{diaChi}}', vals.diaChi || '')
+        .replace('Hôm nay là {{ngayAm}}.', `Hôm nay là ${vals.ngayAm}.`))
+      .map((s) => s.trim()).filter(Boolean)
+    setSpeaking(true)
+    lines.forEach((line, i) => {
+      const u = new SpeechSynthesisUtterance(line)
+      u.lang = 'vi-VN'; if (voice) u.voice = voice; u.rate = 0.95
+      if (i === lines.length - 1) u.onend = () => setSpeaking(false)
+      synth.speak(u)
+    })
+  }
+  const stopRead = () => { try { window.speechSynthesis.cancel() } catch { /* noop */ } setSpeaking(false) }
 
   const onDelete = async (item) => {
     if (!window.confirm(`Xóa bài "${item.title}"?`)) return
@@ -131,14 +157,18 @@ export default function VanKhanPage() {
     const filledInfo = me?.fullName || me?.address
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 animate-fade-in">
-        <div className="flex items-center justify-between mb-4">
-          <button onClick={() => navigate('/van-khan')} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-sm">← Tất cả văn khấn</button>
-          {isAdmin && (
-            <div className="flex gap-2">
+        <div className="flex items-center justify-between mb-4 gap-2">
+          <button onClick={() => navigate('/van-khan')} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-sm flex-shrink-0">← Tất cả văn khấn</button>
+          <div className="flex items-center gap-3">
+            <button onClick={() => (speaking ? stopRead() : readAloud(item.blocks))}
+              className={`text-xs font-semibold px-2.5 py-1 rounded-lg ${speaking ? 'bg-red-100 text-red-600 dark:bg-red-900/30' : 'bg-primary/10 text-primary hover:bg-primary/20'}`}>
+              {speaking ? '⏸ Dừng đọc' : '🔊 Đọc'}
+            </button>
+            {isAdmin && <>
               <button onClick={() => setEditing(item)} className="text-xs text-blue-600 hover:underline">✏️ Sửa</button>
               <button onClick={() => onDelete(item)} className="text-xs text-red-500 hover:underline">🗑️ Xóa</button>
-            </div>
-          )}
+            </>}
+          </div>
         </div>
         <h1 className="font-display font-bold text-2xl text-gray-900 dark:text-gray-100 mb-2">{item.title}</h1>
         <div className="text-xs rounded-lg px-3 py-2 mb-4 bg-primary/5 dark:bg-primary/10 text-gray-600 dark:text-gray-300">
