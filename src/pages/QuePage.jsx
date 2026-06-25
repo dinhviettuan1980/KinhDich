@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
+import { BAT_QUAI, NGHIA, decodeTen } from '../data/baquai'
 
 // Tải 1 lần, cache ở module để chuyển trang không fetch lại
 let _cache = null
@@ -67,7 +68,20 @@ function Detail({ item, all }) {
         <div>
           <div className="text-xs text-gray-400">Quẻ số {item.so}</div>
           <h1 className="font-display font-bold text-2xl text-gray-900 dark:text-gray-100">{item.ten}</h1>
-          {item.trieu && <div className="text-sm text-accent font-medium mt-0.5">{item.trieu}</div>}
+          {(() => {
+            const d = decodeTen(item.ten)
+            return (
+              <div className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                <span title={d.tren?.quai}>{d.tren?.glyph} {d.tren?.hinh}</span>
+                <span className="text-gray-400 text-xs"> (trên)</span>
+                <span className="text-gray-300 mx-1">/</span>
+                <span title={d.duoi?.quai}>{d.duoi?.glyph} {d.duoi?.hinh}</span>
+                <span className="text-gray-400 text-xs"> (dưới)</span>
+                {NGHIA[item.so] && <span className="block text-primary font-medium mt-0.5">{d.ten}: {NGHIA[item.so]}</span>}
+              </div>
+            )
+          })()}
+          {item.trieu && <div className="text-xs text-accent mt-1">điềm: {item.trieu}</div>}
         </div>
       </div>
 
@@ -133,21 +147,43 @@ export default function QuePage() {
         className="w-full mb-4 rounded-xl border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
       />
 
+      {/* Bát Quái — chìa khóa đọc tên */}
+      <div className="card p-3 mb-4">
+        <div className="text-xs font-bold text-gray-500 dark:text-gray-400 mb-2">🔑 Bát Quái — thuộc 8 cái này là đọc được mọi tên quẻ</div>
+        <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+          {BAT_QUAI.map((t) => (
+            <div key={t.quai} className="text-center">
+              <div className="text-2xl text-primary leading-none">{t.glyph}</div>
+              <div className="text-[11px] font-semibold text-gray-700 dark:text-gray-200 mt-0.5">{t.hinh}</div>
+              <div className="text-[10px] text-gray-400">{t.quai}</div>
+            </div>
+          ))}
+        </div>
+        <div className="text-[11px] text-gray-400 mt-2 leading-relaxed">
+          Tên quẻ = <b>quái trên</b> + <b>quái dưới</b> + tên. VD: <b>Địa Sơn Khiêm</b> = Đất ☷ trên Núi ☶ → quẻ Khiêm.
+        </div>
+      </div>
+
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
-        {filtered.map((x) => (
-          <Link
-            key={x.so}
-            to={`/que/${x.so}`}
-            className="card p-3 flex items-center gap-3 hover:border-primary/50 hover:shadow-md transition-all"
-          >
-            <span className="text-3xl text-primary leading-none flex-shrink-0">{glyph(x.so)}</span>
-            <span className="min-w-0">
-              <span className="block text-xs text-gray-400">Quẻ {x.so}</span>
-              <span className="block font-semibold text-sm text-gray-900 dark:text-gray-100 truncate">{x.ten}</span>
-              {x.trieu && <span className="block text-[11px] text-accent truncate">{x.trieu}</span>}
-            </span>
-          </Link>
-        ))}
+        {filtered.map((x) => {
+          const d = decodeTen(x.ten)
+          return (
+            <Link
+              key={x.so}
+              to={`/que/${x.so}`}
+              className="card p-3 flex items-center gap-3 hover:border-primary/50 hover:shadow-md transition-all"
+            >
+              <span className="text-3xl text-primary leading-none flex-shrink-0">{glyph(x.so)}</span>
+              <span className="min-w-0">
+                <span className="block text-xs text-gray-400">Quẻ {x.so}</span>
+                <span className="block font-semibold text-sm text-gray-900 dark:text-gray-100 truncate">{x.ten}</span>
+                <span className="block text-[11px] text-gray-500 dark:text-gray-400 truncate">
+                  <span className="mr-1">{d.tren?.glyph}{d.duoi?.glyph}</span>{NGHIA[x.so]}
+                </span>
+              </span>
+            </Link>
+          )
+        })}
       </div>
       {filtered.length === 0 && <p className="text-sm text-gray-400 mt-6 text-center">Không tìm thấy quẻ nào.</p>}
     </div>
