@@ -120,7 +120,7 @@ export default function VanKhanPage() {
   const { user, openLogin } = useStore()
   const [data, setData] = useState(null)
   const [kw, setKw] = useState('')
-  const [cat, setCat] = useState('all')
+  const [cat, setCat] = useState('den')
   const [me, setMe] = useState(null)
   const [adding, setAdding] = useState(false)
   const [editing, setEditing] = useState(null)
