@@ -227,18 +227,23 @@ export async function fetchHantuProgress() {
   if (!res.ok) throw new Error('Lỗi tải tiến độ');
   return res.json();
 }
-export async function saveHantuProgress(charId, score, reviewCount) {
+export async function fetchHantuStats() {
+  const res = await fetch(`${BASE}/hantu/stats/${getUserId()}`);
+  if (!res.ok) throw new Error('Lỗi tải thống kê');
+  return res.json();
+}
+export async function fetchDailyHantu() {
+  const res = await fetch(`${BASE}/hantu/daily/${getUserId()}`);
+  if (!res.ok) throw new Error('Lỗi tải hàng ngày');
+  return res.json();
+}
+export async function saveHantuProgress(charId, score, reviewCount, correct) {
   const res = await fetch(`${BASE}/hantu-progress`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId: getUserId(), charId, score, reviewCount }),
+    body: JSON.stringify({ userId: getUserId(), charId, score, reviewCount, correct }),
   });
   if (!res.ok) throw new Error('Lỗi lưu tiến độ');
-  return res.json();
-}
-export async function fetchTodayHantu() {
-  const res = await fetch(`${BASE}/hantu/today/${getUserId()}`);
-  if (!res.ok) throw new Error('Lỗi tải chữ hôm nay');
   return res.json();
 }
 
