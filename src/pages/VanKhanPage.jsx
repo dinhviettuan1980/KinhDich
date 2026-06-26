@@ -34,6 +34,7 @@ function VanKhanForm({ editItem, onClose, onSaved }) {
   const [url, setUrl] = useState('')
   const [title, setTitle] = useState(editItem ? editItem.title : '')
   const [text, setText] = useState(editItem ? blocksToText(editItem.blocks) : '')
+  const [category, setCategory] = useState(editItem?.category || 'den')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
@@ -41,9 +42,9 @@ function VanKhanForm({ editItem, onClose, onSaved }) {
     e.preventDefault(); setError(''); setBusy(true)
     try {
       let r
-      if (isEdit) r = await updateVanKhanText(editItem.id, { title, text })
-      else if (tab === 'url') r = await addVanKhanUrl(url)
-      else r = await addVanKhanText({ title, text })
+      if (isEdit) r = await updateVanKhanText(editItem.id, { title, text, category })
+      else if (tab === 'url') r = await addVanKhanUrl(url, category)
+      else r = await addVanKhanText({ title, text, category })
       onSaved(r)
     } catch (err) { setError(err.message) } finally { setBusy(false) }
   }
@@ -85,6 +86,15 @@ function VanKhanForm({ editItem, onClose, onSaved }) {
           </>
         )}
 
+        <div>
+          <label className="block text-xs text-gray-500 mb-1">Phân loại</label>
+          <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputCls}>
+            <option value="den">🏛️ Đền / Phủ / Miếu</option>
+            <option value="chua">🪷 Tại chùa</option>
+            <option value="nha">🏠 Tại nhà</option>
+            <option value="cauguyen">🙏 Cầu nguyện</option>
+          </select>
+        </div>
         {error && <p className="text-sm text-red-500">{error}</p>}
         <div className="flex justify-end gap-2">
           <button type="button" onClick={onClose} className="btn-secondary">Hủy</button>
@@ -95,12 +105,22 @@ function VanKhanForm({ editItem, onClose, onSaved }) {
   )
 }
 
+const CATS = [
+  { key: 'all', label: 'Tất cả', icon: '📜' },
+  { key: 'den', label: 'Đền / Phủ', icon: '🏛️' },
+  { key: 'chua', label: 'Chùa', icon: '🪷' },
+  { key: 'nha', label: 'Tại nhà', icon: '🏠' },
+  { key: 'cauguyen', label: 'Cầu nguyện', icon: '🙏' },
+]
+const CAT_LABEL = { den: '🏛️ Đền / Phủ', chua: '🪷 Chùa', nha: '🏠 Tại nhà', cauguyen: '🙏 Cầu nguyện' }
+
 export default function VanKhanPage() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const { user, openLogin } = useStore()
   const [data, setData] = useState(null)
   const [kw, setKw] = useState('')
+  const [cat, setCat] = useState('all')
   const [me, setMe] = useState(null)
   const [adding, setAdding] = useState(false)
   const [editing, setEditing] = useState(null)
@@ -193,15 +213,33 @@ export default function VanKhanPage() {
 
   // ----- Danh sách -----
   const k = kw.trim().toLowerCase()
-  const filtered = k ? data.filter((x) => x.title.toLowerCase().includes(k)) : data
+  const filtered = data.filter((x) => {
+    if (k && !x.title.toLowerCase().includes(k)) return false
+    if (cat !== 'all' && (x.category || 'den') !== cat) return false
+    return true
+  })
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="flex items-start justify-between gap-2 mb-4">
         <div>
-          <h1 className="font-display font-bold text-xl text-gray-900 dark:text-gray-100">🙏 Văn khấn ở đền</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{data.length} bài — tự điền tên, địa chỉ (từ hồ sơ) và ngày âm hôm nay.</p>
+          <h1 className="font-display font-bold text-xl text-gray-900 dark:text-gray-100">🙏 Văn khấn</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{data.length} bài — tự điền tên, địa chỉ và ngày âm hôm nay.</p>
         </div>
         {isAdmin && <button onClick={() => setAdding(true)} className="btn-primary text-sm px-3 py-1.5 flex-shrink-0">➕ Thêm bài</button>}
+      </div>
+
+      {/* Tabs phân loại */}
+      <div className="flex gap-1.5 flex-wrap mb-3">
+        {CATS.map((c) => {
+          const cnt = c.key === 'all' ? data.length : data.filter((x) => (x.category || 'den') === c.key).length
+          if (c.key !== 'all' && cnt === 0) return null
+          return (
+            <button key={c.key} onClick={() => setCat(c.key)}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${cat === c.key ? 'bg-primary text-white shadow-sm' : 'bg-gray-100 dark:bg-dark-card text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}>
+              {c.icon} {c.label} <span className={`ml-1 text-[10px] ${cat === c.key ? 'opacity-80' : 'opacity-50'}`}>{cnt}</span>
+            </button>
+          )
+        })}
       </div>
 
       <input value={kw} onChange={(e) => setKw(e.target.value)} placeholder="Tìm theo tên bài khấn…"
@@ -211,8 +249,11 @@ export default function VanKhanPage() {
         {filtered.map((x) => (
           <div key={x.slug} className="card p-3.5 flex items-center gap-3 hover:border-primary/50 transition-all">
             <Link to={`/van-khan/${x.slug}`} className="flex items-center gap-3 flex-1 min-w-0">
-              <span className="text-2xl flex-shrink-0">🙏</span>
-              <span className="font-semibold text-sm text-gray-900 dark:text-gray-100 truncate">{x.title}</span>
+              <span className="text-xl flex-shrink-0">{CATS.find((c) => c.key === (x.category || 'den'))?.icon || '🙏'}</span>
+              <div className="min-w-0">
+                <span className="font-semibold text-sm text-gray-900 dark:text-gray-100 truncate block">{x.title}</span>
+                <span className="text-[10px] text-gray-400">{CAT_LABEL[x.category || 'den']}</span>
+              </div>
             </Link>
             {isAdmin
               ? <div className="flex gap-2 flex-shrink-0">

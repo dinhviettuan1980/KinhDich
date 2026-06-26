@@ -58,16 +58,16 @@ export async function fetchVanKhanList() {
   if (!res.ok) throw new Error(d.error || 'Lỗi tải văn khấn')
   return d.items
 }
-export async function addVanKhanUrl(url) {
-  const res = await fetch(`${BASE}/vankhan/from-url`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ url }) })
+export async function addVanKhanUrl(url, category) {
+  const res = await fetch(`${BASE}/vankhan/from-url`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ url, category }) })
   const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
 }
-export async function addVanKhanText({ title, text, source }) {
-  const res = await fetch(`${BASE}/vankhan`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ title, text, source }) })
+export async function addVanKhanText({ title, text, source, category }) {
+  const res = await fetch(`${BASE}/vankhan`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ title, text, source, category }) })
   const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
 }
-export async function updateVanKhanText(id, { title, text }) {
-  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'PUT', headers: authHeaders(true), body: JSON.stringify({ title, text }) })
+export async function updateVanKhanText(id, { title, text, category }) {
+  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'PUT', headers: authHeaders(true), body: JSON.stringify({ title, text, category }) })
   const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
 }
 export async function deleteVanKhan(id) {
