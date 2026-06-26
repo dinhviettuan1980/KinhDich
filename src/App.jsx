@@ -17,9 +17,10 @@ import CasesPage from './pages/CasesPage'
 import CastingPage from './pages/CastingPage'
 import CastingHistoryPage from './pages/CastingHistoryPage'
 import { useStore } from './store'
+import { getMe } from './api'
 
 export default function App() {
-  const { darkMode, loadLens, lensReady, lensChosen } = useStore()
+  const { darkMode, loadLens, lensReady, lensChosen, user, logout } = useStore()
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode)
@@ -28,6 +29,15 @@ export default function App() {
   useEffect(() => {
     loadLens()
   }, [loadLens])
+
+  // Kiểm tra token 1 lần khi app khởi động — nếu token không hợp lệ thì tự logout,
+  // không check định kỳ, không timeout.
+  useEffect(() => {
+    if (!user) return
+    getMe().catch((err) => {
+      if (err.status === 401) logout()
+    })
+  }, []) // eslint-disable-line
 
   return (
     <BrowserRouter>

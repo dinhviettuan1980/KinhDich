@@ -31,11 +31,15 @@ function authHeaders(json) {
 export async function getMe() {
   const res = await fetch(`${BASE}/me`, { headers: authHeaders() })
   const data = await res.json()
-  if (!res.ok) throw new Error(data.error || 'Lỗi tải hồ sơ')
-  return data // { username, isAdmin, fullName, address }
+  if (!res.ok) {
+    const err = new Error(data.error || 'Lỗi tải hồ sơ')
+    err.status = res.status
+    throw err
+  }
+  return data // { username, isAdmin, fullName, address, birthday }
 }
-export async function updateProfile({ fullName, address }) {
-  const res = await fetch(`${BASE}/me`, { method: 'PUT', headers: authHeaders(true), body: JSON.stringify({ fullName, address }) })
+export async function updateProfile({ fullName, address, birthday }) {
+  const res = await fetch(`${BASE}/me`, { method: 'PUT', headers: authHeaders(true), body: JSON.stringify({ fullName, address, birthday }) })
   const data = await res.json()
   if (!res.ok) throw new Error(data.error || 'Lỗi lưu hồ sơ')
   return data

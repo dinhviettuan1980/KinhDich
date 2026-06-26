@@ -8,7 +8,7 @@ const inputCls =
 
 export default function ProfilePage() {
   const navigate = useNavigate()
-  const { user, openLogin, updateUser } = useStore()
+  const { user, openLogin, updateUser, logout } = useStore()
 
   const [fullName, setFullName] = useState('')
   const [address, setAddress] = useState('')
@@ -36,7 +36,9 @@ export default function ProfilePage() {
           isAdmin: !!d.isAdmin,
         })
       })
-      .catch(() => {})
+      .catch((err) => {
+        if (err.status === 401) logout()
+      })
     // Chỉ chạy 1 lần theo phiên (uid ổn định) — tránh updateUser làm chạy lại, xoá ô đang gõ.
   }, [user?.uid]) // eslint-disable-line
 
