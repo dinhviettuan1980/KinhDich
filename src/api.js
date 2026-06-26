@@ -202,6 +202,46 @@ export async function markComplete(day, score) {
   return res.json()
 }
 
+// ---- Hán Tự Kinh Dịch ----
+export async function fetchHantuList({ level, topic, search } = {}) {
+  const params = new URLSearchParams();
+  if (level) params.set('level', level);
+  if (topic) params.set('topic', topic);
+  if (search) params.set('search', search);
+  const res = await fetch(`${BASE}/hantu?${params}`);
+  if (!res.ok) throw new Error('Lỗi tải danh sách chữ Hán');
+  return res.json();
+}
+export async function fetchHantu(id) {
+  const res = await fetch(`${BASE}/hantu/${id}`);
+  if (!res.ok) throw new Error('Không tìm thấy chữ Hán');
+  return res.json();
+}
+export async function fetchHantuQuiz(id) {
+  const res = await fetch(`${BASE}/hantu/${id}/quiz`);
+  if (!res.ok) throw new Error('Lỗi tải quiz');
+  return res.json();
+}
+export async function fetchHantuProgress() {
+  const res = await fetch(`${BASE}/hantu-progress/${getUserId()}`);
+  if (!res.ok) throw new Error('Lỗi tải tiến độ');
+  return res.json();
+}
+export async function saveHantuProgress(charId, score, reviewCount) {
+  const res = await fetch(`${BASE}/hantu-progress`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId: getUserId(), charId, score, reviewCount }),
+  });
+  if (!res.ok) throw new Error('Lỗi lưu tiến độ');
+  return res.json();
+}
+export async function fetchTodayHantu() {
+  const res = await fetch(`${BASE}/hantu/today/${getUserId()}`);
+  if (!res.ok) throw new Error('Lỗi tải chữ hôm nay');
+  return res.json();
+}
+
 export async function* streamTutor(message, history = [], mode = 'explain') {
   const userId = getUserId()
   const res = await fetch(`${BASE}/tutor`, {

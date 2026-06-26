@@ -21,6 +21,7 @@ export default function Navbar() {
     { to: '/reflection', label: '🪷 Nhật ký' },
     { to: '/tutor', label: '🤖 AI Tutor' },
     { to: '/casting', label: '☯ Gieo Quẻ' },
+    { to: '/additional/chinese', label: '🈶 Hán Tự' },
     ...(user?.isAdmin ? [{ to: '/admin', label: '👑 Users' }] : []),
   ]
 
