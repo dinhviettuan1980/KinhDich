@@ -259,6 +259,14 @@ export async function searchKinhdich(query, topK = 6) {
   return data.results || []
 }
 
+// Nguyên văn sách của 1 quẻ, khớp THEO TÊN (không dùng model). name = tên trong sách (BOOK_NAMES).
+export async function fetchHexagramText(name) {
+  const res = await fetch(`${BASE}/hexagram/${encodeURIComponent(name)}`)
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'Lỗi tải nguyên văn quẻ')
+  return data.chunks || [] // [{ chunk_id, title, summary, content }]
+}
+
 export async function* streamTutor(message, history = [], mode = 'explain') {
   const userId = getUserId()
   const res = await fetch(`${BASE}/tutor`, {
