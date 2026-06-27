@@ -247,6 +247,18 @@ export async function saveHantuProgress(charId, score, reviewCount, correct) {
   return res.json();
 }
 
+// ---- Tra cứu Kinh Dịch (semantic search) ----
+export async function searchKinhdich(query, topK = 6) {
+  const res = await fetch(`${BASE}/search`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, topK }),
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'Lỗi tìm kiếm')
+  return data.results || []
+}
+
 export async function* streamTutor(message, history = [], mode = 'explain') {
   const userId = getUserId()
   const res = await fetch(`${BASE}/tutor`, {

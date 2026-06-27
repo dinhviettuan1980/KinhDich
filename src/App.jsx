@@ -17,6 +17,7 @@ import CasesPage from './pages/CasesPage'
 import CastingPage from './pages/CastingPage'
 import CastingHistoryPage from './pages/CastingHistoryPage'
 import ChineseCharPage from './pages/ChineseCharPage'
+import SearchPage from './pages/SearchPage'
 import { useStore } from './store'
 import { getMe } from './api'
 
@@ -63,6 +64,7 @@ export default function App() {
             <Route path="/casting" element={<CastingPage />} />
             <Route path="/casting-history" element={<CastingHistoryPage />} />
             <Route path="/additional/chinese" element={<ChineseCharPage />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/additional/chinese/:id" element={<ChineseCharPage />} />
           </Routes>
         </main>
