@@ -267,12 +267,12 @@ export async function fetchHexagramText(name) {
   return data.chunks || [] // [{ chunk_id, title, summary, content }]
 }
 
-export async function* streamTutor(message, history = [], mode = 'explain') {
+export async function* streamTutor(message, history = [], mode = 'explain', topic = 'kinhdich') {
   const userId = getUserId()
   const res = await fetch(`${BASE}/tutor`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, message, history, mode }),
+    body: JSON.stringify({ userId, message, history, mode, topic }),
   })
   if (!res.ok) throw new Error('Lỗi kết nối AI Tutor')
   const reader = res.body.getReader()
