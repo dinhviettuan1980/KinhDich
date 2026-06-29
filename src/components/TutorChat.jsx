@@ -30,7 +30,7 @@ const TOPIC_CFG = {
   },
 }
 
-function Message({ role, content, streaming, avatar = '☯' }) {
+function Message({ role, content, streaming, avatar = '☯', sources }) {
   const isUser = role === 'user'
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} animate-slide-up`}>
@@ -47,6 +47,18 @@ function Message({ role, content, streaming, avatar = '☯' }) {
         } ${streaming ? 'cursor-blink' : ''}`}
       >
         {content || (streaming ? '' : '...')}
+        {!isUser && !streaming && sources && sources.length > 0 && (
+          <div className="mt-2 pt-2 border-t border-gray-200 dark:border-dark-border">
+            <div className="text-[11px] text-gray-400 dark:text-gray-500 mb-1">📚 Nguồn tham khảo:</div>
+            <div className="flex flex-wrap gap-1">
+              {sources.map((s, i) => (
+                <span key={i} className="text-[11px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -80,14 +92,22 @@ export default function TutorChat({ topic = 'kinhdich' }) {
 
     try {
       let full = ''
-      for await (const chunk of streamTutor(msg, history, mode, topic)) {
-        full += chunk
-        setMessages((prev) =>
-          prev.map((m, i) => (i === aiIdx ? { ...m, content: full } : m))
-        )
+      let srcs = []
+      for await (const part of streamTutor(msg, history, mode, topic)) {
+        if (part.text) {
+          full += part.text
+          setMessages((prev) =>
+            prev.map((m, i) => (i === aiIdx ? { ...m, content: full } : m))
+          )
+        } else if (part.sources) {
+          srcs = part.sources
+          setMessages((prev) =>
+            prev.map((m, i) => (i === aiIdx ? { ...m, sources: srcs } : m))
+          )
+        }
       }
       setMessages((prev) =>
-        prev.map((m, i) => (i === aiIdx ? { ...m, streaming: false } : m))
+        prev.map((m, i) => (i === aiIdx ? { ...m, streaming: false, sources: srcs } : m))
       )
     } catch (err) {
       setMessages((prev) =>

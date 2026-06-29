@@ -288,7 +288,8 @@ export async function* streamTutor(message, history = [], mode = 'explain', topi
         if (data && data !== '[DONE]') {
           try {
             const parsed = JSON.parse(data)
-            if (parsed.text) yield parsed.text
+            if (parsed.text) yield { text: parsed.text }
+            else if (parsed.sources) yield { sources: parsed.sources }
           } catch {}
         }
       }
