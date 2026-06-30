@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { fetchLesson, saveReflection } from '../api'
 import { useStore, LEVEL_COLORS, LEVEL_NAMES, LENS } from '../store'
 import { AllTrigrams, HexagramSVG } from '../components/HexagramSVG'
+import ReadAloudButton from '../components/ReadAloudButton'
 
 const TRIGRAM_DAY = { 14: 'qian', 15: 'zhen', 16: 'kan', 17: 'gen' }
 const LEVEL_TRIGRAMS = { 4: true, 5: true }
@@ -116,7 +117,14 @@ export default function LearnPage() {
         <h1 className="text-2xl font-display font-bold text-gray-900 dark:text-gray-100 leading-tight mb-2">
           {lesson.title}
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-sm italic">{lesson.concept}</p>
+        <p className="text-gray-500 dark:text-gray-400 text-sm italic mb-3">{lesson.concept}</p>
+        <ReadAloudButton getText={() => [
+          lesson.title,
+          lesson.concept,
+          lesson.explanation,
+          exampleText[activeLens],
+          lesson.reflection,
+        ].filter(Boolean).join('. ')} />
       </div>
 
       {/* Hexagram for level 4+ */}

@@ -1,6 +1,19 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { BAT_QUAI, NGHIA, decodeTen } from '../data/baquai'
+import ReadAloudButton from '../components/ReadAloudButton'
+
+// Gom nội dung các block thành văn bản để đọc
+function blocksToText(blocks) {
+  return (blocks || [])
+    .map((b) => {
+      if (b.tag === 'ul') return (b.items || []).join('. ')
+      if (b.tag === 'table') return (b.rows || []).map((r) => r.join(', ')).join('. ')
+      return b.text || ''
+    })
+    .filter(Boolean)
+    .join('. ')
+}
 
 // Tải 1 lần, cache ở module để chuyển trang không fetch lại
 let _cache = null
@@ -61,7 +74,14 @@ function Detail({ item, all }) {
   const next = all.find((x) => x.so === item.so + 1)
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 animate-fade-in">
-      <button onClick={() => navigate('/que')} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-sm mb-4">← Tất cả 64 quẻ</button>
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <button onClick={() => navigate('/que')} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-sm">← Tất cả 64 quẻ</button>
+        <ReadAloudButton getText={() => [
+          `Quẻ số ${item.so}: ${item.ten}`,
+          NGHIA[item.so],
+          blocksToText(item.blocks),
+        ].filter(Boolean).join('. ')} />
+      </div>
 
       <div className="flex items-center gap-4 mb-5">
         <div className="text-5xl text-primary leading-none">{glyph(item.so)}</div>
