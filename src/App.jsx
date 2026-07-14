@@ -18,6 +18,17 @@ import CastingPage from './pages/CastingPage'
 import CastingHistoryPage from './pages/CastingHistoryPage'
 import ChineseCharPage from './pages/ChineseCharPage'
 import SearchPage from './pages/SearchPage'
+import FingerCpuIntroPage from './pages/FingerCpuIntroPage'
+import FingerCpuLessonPage from './pages/FingerCpuLessonPage'
+import FingerCpuSimulatorPage from './pages/FingerCpuSimulatorPage'
+import FingerCpuMemoryVisualizerPage from './pages/FingerCpuMemoryVisualizerPage'
+import FingerCpuAlgorithmVisualizerPage from './pages/FingerCpuAlgorithmVisualizerPage'
+import FingerCpuDataStructureModePage from './pages/FingerCpuDataStructureModePage'
+import FingerCpuDebugModePage from './pages/FingerCpuDebugModePage'
+import FingerCpuGameMemoryPage from './pages/FingerCpuGameMemoryPage'
+import FingerCpuGameSpeedPage from './pages/FingerCpuGameSpeedPage'
+import FingerCpuGameHexagramBuilderPage from './pages/FingerCpuGameHexagramBuilderPage'
+import FingerCpuGameBinaryModePage from './pages/FingerCpuGameBinaryModePage'
 import { useStore } from './store'
 import { getMe } from './api'
 
@@ -65,6 +76,17 @@ export default function App() {
             <Route path="/casting-history" element={<CastingHistoryPage />} />
             <Route path="/additional/chinese" element={<ChineseCharPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/finger-cpu" element={<FingerCpuIntroPage />} />
+            <Route path="/finger-cpu/bai/:id" element={<FingerCpuLessonPage />} />
+            <Route path="/finger-cpu/simulator" element={<FingerCpuSimulatorPage />} />
+            <Route path="/finger-cpu/memory-visualizer" element={<FingerCpuMemoryVisualizerPage />} />
+            <Route path="/finger-cpu/algorithm-visualizer" element={<FingerCpuAlgorithmVisualizerPage />} />
+            <Route path="/finger-cpu/data-structure-mode" element={<FingerCpuDataStructureModePage />} />
+            <Route path="/finger-cpu/debug-mode" element={<FingerCpuDebugModePage />} />
+            <Route path="/finger-cpu/game/ghi-nho" element={<FingerCpuGameMemoryPage />} />
+            <Route path="/finger-cpu/game/toc-do" element={<FingerCpuGameSpeedPage />} />
+            <Route path="/finger-cpu/game/hexagram-builder" element={<FingerCpuGameHexagramBuilderPage />} />
+            <Route path="/finger-cpu/game/binary-mode" element={<FingerCpuGameBinaryModePage />} />
             <Route path="/additional/chinese/:id" element={<ChineseCharPage />} />
           </Routes>
         </main>

@@ -8,7 +8,9 @@ export default defineConfig({
     proxy: {
       // FE chạy local, gọi backend đã deploy (prod). Đổi về 'http://localhost:8001'
       // nếu chạy backend ngay trên máy.
-      '/kinhdich': { target: 'https://api.tuandv.id.vn', changeOrigin: true },
+      // LƯU Ý: domain đúng của kinhdichapi là kinhdichapi.tuandv.id.vn (port 8033) —
+      // KHÔNG phải api.tuandv.id.vn (domain đó thực ra trỏ sang xsmbapi trên VPS).
+      '/kinhdich': { target: 'https://kinhdichapi.tuandv.id.vn', changeOrigin: true },
     },
   },
 })
