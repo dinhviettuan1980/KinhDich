@@ -1,0 +1,148 @@
+{
+  "id": 56,
+  "hanzi": "旅",
+  "pinyin": "Lǚ",
+  "hanviet": "Lữ",
+  "english": "The Wanderer (Traveling Stranger)",
+  "upperTrigram": "li",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "旅：小亨，旅貞吉。",
+    "hanviet": "Lữ: Tiểu hanh, Lữ trinh cát.",
+    "translation": "Lữ (du hành, khách thù): có lợi nhỏ, khi khách thù giữ vững chính đáng thì tốt lành.",
+    "english": "Transition means that small attainments are possible. If the traveling stranger is firm and correct, there will be good fortune."
+  },
+
+  "daTuong": {
+    "hanzi": "山上有火，旅；君子以明慎用刑，而不留獄。",
+    "hanviet": "Sơn thượng hữu hỏa, Lữ; quân tử dĩ minh thận dụng hình, nhi bất lưu ngục.",
+    "translation": "Trên núi có lửa (lửa nơi trên cao, một chỗ tạm thời) — đó là hình tượng quẻ Lữ. Người quân tử noi theo đó mà sáng suốt, thận trọng trong việc thi hành hình phạt, và không để cho vụ kiện kéo dài mà bỏ quên.",
+    "english": "A fire on the mountain — the image of Transition. The superior man exerts cautious wisdom in his punishments, and does not permit prolonged litigation.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Lữ là quẻ về sự du hành, khách làng, không có nhà cửa ổn định. 'Trên núi có lửa' (Li-Gen, Ly-Cấn: lửa nơi cao — tạm thời, không cách nào giữ được) tượng trưng cho sự tạm bợ, không có gốc rễ. Quẻ này không nói rằng du hành là xấu — mà dạy: khi đang ở trạng thái khách, hãy thận trọng, tôn trọng người chủ, không để lại rác rưởi, sẽ không gặp phiền toái. Sáu hào kể trọn vẹn: từ người lính nhỏ bé, ngu dốt (Sơ Lục) → người biết tìm được nơi ở tốt (Lục Nhị) → người cứng đầu, bị phạt (Cửu Tam) → người tạm thời yên tâm nhưng lòng vẫn buồn bã (Cửu Tứ) → người bắn pheasant, sau cùng được công nhận (Lục Ngũ) → người khốn khó, cô đơn, bị phạt đúng thực (Thượng Cửu). Quẻ dạy rằng tạm bợ lâu quá sẽ tổn thương cả hai bên.",
+
+  "computer_science": "Lữ là hình mẫu của một contractor/consultant project: bạn là 'khách' trong một codebase lạ, team lạ, culture lạ. Hành động ngoài tầm hiểu biết, lời đề xuất không được lắng nghe, hoặc ngang hàng với cấp quản lý — tất cả đều dẫn tới disaster. 'Trên núi có lửa' = ánh sáng của bạn là tạm thời, không căn cơ — nếu không cẩn thận, sẽ để lại rác rưởi khi rời đi.",
+
+  "life": "Bài học của Lữ: khi bạn là khách, không thể đòi hỏi được như chủ nhân. Không có gốc rễ trong tạm bợ dài — vì thế cần phải linh hoạt, tôn trọng, cẩn thận. Đừng để lại vết sẹo trong bộ tộc mà bạn tạm trú qua.",
+
+  "programming": "Khi join một team/project mới là contractor hay onboard vào codebase lạ: đừng vội vàng đề xuất thay đổi lớn, hãy lắng nghe trước, hiểu cách họ làm việc, rồi mới đóng góp từ từ. Nếu cứ ngang hàng với senior dev hoặc suggest refactor quá lớn, sẽ bị phản ứng tiêu cực — kéo dài conflict (prolonged litigation) không ai hạnh phúc.",
+
+  "characters": [
+    {
+      "hanzi": "旅",
+      "pinyin": "lǚ",
+      "hanviet": "lữ",
+      "meaning": "Du hành, khách du, nhân viên lính (quân), hàng hộ (nhóm từng người).",
+      "origin": "Chữ hình thanh: 方 (phương, hướng) + 亍 (chỉ, từng bước đi). Vốn biểu thị 'nhóm người đi theo một hướng' (quân đội hành quân, hoặc khách du).",
+      "example": "旅行 (lữ hành) = du lịch; 旅客 (lữ khách) = hành khách.",
+      "cs": "Ephemeral Connection",
+      "csExplain": "Kết nối tạm thời giữa một service và một môi trường mới — không có state được retain lâu dài, mọi thứ có tính tạm bợ."
+    },
+    {
+      "hanzi": "火",
+      "pinyin": "huǒ",
+      "hanviet": "hỏa",
+      "meaning": "Lửa, bỏng, nhiệt.",
+      "origin": "Chữ tượng hình vẽ trực tiếp hình lửa bốc lên — một trong những chữ oldest của Hán tự, giữ được hình dáng gần như nguyên bản qua các thời kỳ.",
+      "example": "火災 (hỏa tại) = cháy nổ; 火紅 (hỏa hồng) = đỏ như lửa.",
+      "cs": "Transient State",
+      "csExplain": "Một trạng thái tạm thời, không thể lưu giữ lâu — như lửa, nếu không có nhiên liệu liên tục, sẽ tắt đi."
+    },
+    {
+      "hanzi": "山",
+      "pinyin": "shān",
+      "hanviet": "sơn",
+      "meaning": "Núi, dãy núi, cao, vững chắc.",
+      "origin": "Chữ tượng hình vẽ 3 đỉnh núi chữ A — rất dễ nhận dạng, giữ được hình thái gốc qua nhiều thời kỳ.",
+      "example": "山地 (sơn địa) = vùng núi; 山頂 (sơn đỉnh) = đỉnh núi.",
+      "cs": "Stable Foundation",
+      "csExplain": "Cấu trúc vững chắc, tĩnh lặng — nhưng cũng có nghĩa là 'khó thay đổi' hoặc 'nơi khách không thể tự mình điều khiển'."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：旅瑣瑣，斯其所取災。",
+      "hanviet": "Sơ Lục: Lữ tác tác, tư kỳ sở thủ tai.",
+      "translation": "Khách du bị nhỏ nhen, bé xíu — chính cái tính nhỏ nhen đó là nguồn gốc của tai họa mà họ gặp phải.",
+      "english": "The first line, magnetic, shows the stranger mean and meanly occupied. It is thus that she brings on herself further calamity.",
+      "explain": "Vị trí thấp nhất của Lữ — người khách không tôn trọng, nhỏ nhen, dễ dùng, tự mình gây ra phiền toái.",
+      "itExample": "Một junior contractor vào project mới mà cư xử thiếu tôn trọng, thích 'doa ơi' trước khi hiểu rõ — tự mình tìm thêm phiền toái.",
+      "lifeExample": "Đi khách mà cử xử nhỏ nhen, keo kiệt — sẽ bị ghét, tự mình tạo ra những rắc rối thêm."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：旅即次，懷其資，得童僕貞。",
+      "hanviet": "Lục Nhị: Lữ tức thứ, hoài kỳ tư, đắc đồng phục trinh.",
+      "translation": "Khách du tìm được nơi dừng chân, nơi ở tạm thời — giữ quản lý được tài sản, gặp được một hầu bộ quân trẻ đáng tin cậy — không có lỗi.",
+      "english": "The second line, magnetic, shows the stranger occupying her lodging-house, carrying her means of livelihood, and provided with good and trusty servants.",
+      "explain": "Tuy là khách nhưng biết cách tìm được nơi ở ổn định, quản lý tài sản, có được sự giúp đỡ — điều kiện tốt cho khách du.",
+      "itExample": "Một contractor join project — vừa được giao task rõ ràng, vừa có junior dev giúp, vừa có resources cần thiết — khá ổn định.",
+      "lifeExample": "Khi phải sống khách ở nơi xa, nhưng tìm được nơi ở tốt, có tiền, có người giúp — đủ để tồn tại ổn định."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：旅焚其次，喪其童僕，貞厲。",
+      "hanviet": "Cửu Tam: Lữ phấn kỳ thứ, táng kỳ đồng phục, trinh lệ.",
+      "translation": "Khách du bị cháy nhà tạm trú của mình, mất đi những hầu bộ trẻ của mình — giữ vững chính đáng thì vẫn nguy hiểm.",
+      "english": "The third line, dynamic, shows the stranger, burning his lodging-house, and having lost his servants. However firm and correct he tries to be, he will be in peril.",
+      "explain": "Khách du gặp thảm họa lớn — nhà bị cháy, mất đi sự hỗ trợ — dù cố gắng sửa sai, vẫn trong tình trạng nguy hiểm.",
+      "itExample": "Một sprint quay trở lại, build bị break, ci/cd pipeline fail, mất đi senior dev vì attrition — ngay cả khi cố gắng fix, vẫn nguy hiểm.",
+      "lifeExample": "Thảm họa bất ngờ: nhà cửa, công việc, người mình tin tưởng — mặc dù cố gắng, vẫn phải sống trong hoảng loạn tạm thời."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：旅于處，得其資斧，我心不快。",
+      "hanviet": "Cửu Tứ: Lữ vu xứ, đắc kỳ tư toán, ngã tâm bất khoái.",
+      "translation": "Khách du tạm dừng ở nơi đó, có được những tài sản, công cụ cần thiết — nhưng lòng tôi vẫn không vui.",
+      "english": "The fourth line, dynamic, shows the traveler in a resting place, having also the means of livelihood and the axe, but still saying: 'I am not at ease in my mind.'",
+      "explain": "Vật chất ổn định nhưng tinh thần chưa yên tâm — vẫn là khách, không phải nhà mình.",
+      "itExample": "Project ổn định, được cấp resource đủ, nhưng lòng vẫn không thuộc — vì biết đây chỉ là temporary assignment, không long-term future.",
+      "lifeExample": "Sống ở chỗ tạm thời mà có tiền, có việc — nhưng lòng vẫn bận tâm, còn nhớ nhà cũ, không thể yên tâm hoàn toàn."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：射雉一矢亡，終以譽命。",
+      "hanviet": "Lục Ngũ: Xạ trĩ nhất tǐ vong, chung dĩ dự mệnh.",
+      "translation": "Bắn một con chim trĩ, mất mũi tên — nhưng cuối cùng sẽ được công nhận, được tây phía một vị trí cao.",
+      "english": "The fifth line, magnetic, shows its subject shooting a pheasant. She will lose her arrow, but in the end she will obtain praise and a high charge.",
+      "explain": "Ở vị trí cao (Lục Ngũ) của Lữ — dù phải hy sinh (mất mũi tên), nhưng cuối cùng sẽ được công nhận và thăng chức.",
+      "itExample": "Một consultant project phải sacrifice lợi nhuận ngắn hạn để giữ relationship — cuối cùng được họ hire full-time hoặc reference tới công ty khác lớn hơn.",
+      "lifeExample": "Phải hy sinh cái gì đó (tiền, thời gian, tự ái) khi du khách — nhưng nếu làm tốt, sẽ được công nhận và được mời lại hoặc upgrade vị trí."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：鳥焚其巢，旅人先笑後號咷。喪牛于易，凶。",
+      "hanviet": "Thượng Cửu: Điểu phấn kỳ tào, Lữ nhân tiên tiếu hậu hao đào. Táng ngưu vu dịch, hung.",
+      "translation": "Con chim bị cháy tổ — khách du trước cười sau khóc thét. Mất đi con bò trên đường dễ dàng — xấu.",
+      "english": "The sixth line, dynamic, suggests the idea of a bird burning its nest. The stranger, thus represented, first laughs and then cries out. He has lost his ox-like docility too readily and easily. There will be evil.",
+      "explain": "Hào cuối cùng của Lữ — khách du hoàn toàn bị phá huỷ, từ vui sắp trở thành khóc — quá ngoài kiểm soát.",
+      "itExample": "End of contract bất ngờ, công ty shutdown, mất hết savings — từ vui vẻ mong lương tháng sau sang hoảng loạn tìm việc.",
+      "lifeExample": "Sự cố cuối cùng của du khách: mất nhà, mất tiền, mất tất cả — được khôn ngoan nếu biết rút lui sớm thay vì cố bám víu."
+    }
+  ],
+
+  "keywords": ["Lữ", "旅", "khách du", "tạm bợ", "linh hoạt", "tôn trọng chủ nhân", "không có gốc rễ"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/lv1", "note": "Bản dịch tiếng Anh public domain." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 56", "url": "https://www.jamesdekorne.com/GBCh/hex56.htm", "note": "Trang tổng hợp Legge." },
+    { "source": "維基文庫 Wikisource — 周易/旅", "url": "https://zh.wikisource.org/zh-hant/周易/旅", "note": "Đối chiếu chéo." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/56", "label": "64 Quẻ — Quẻ 56: Hỏa Sơn Lữ" }
+  ]
+}

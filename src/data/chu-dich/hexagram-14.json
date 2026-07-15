@@ -1,0 +1,168 @@
+{
+  "id": 14,
+  "hanzi": "大有",
+  "pinyin": "Dà Yǒu",
+  "hanviet": "Đại Hữu",
+  "english": "Possession in Great Measure",
+  "upperTrigram": "li",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "大有：元亨。",
+    "hanviet": "Đại Hữu: Nguyên, hanh.",
+    "translation": "Đại Hữu (Sở hữu lớn lao): mở đầu lớn lao, hanh thông.",
+    "english": "Tâ Yû indicates that, (under the circumstances which it implies), there will be great progress and success."
+  },
+
+  "daTuong": {
+    "hanzi": "火在天上，大有；君子以遏惡揚善，順天休命。",
+    "hanviet": "Hỏa tại thiên thượng, Đại Hữu; quân tử dĩ át ác dương thiện, thuận thiên hưu mệnh.",
+    "translation": "Lửa ở trên trời — đó là quẻ Đại Hữu. Người quân tử xem đó mà ngăn chặn cái ác, nâng cao cái thiện, tuân theo lệnh tốt lành của trời.",
+    "english": "Fire in the heavens above forms the symbol of Great Possession. The superior man, in accordance with this, represses what is evil and gives distinction to what is good, in sympathy with the excellent will of Heaven.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Đại Hữu (大有) ghép bởi Ly (lửa, sáng sủa, rạng rỡ) ở trên và Càn (trời, cương kiện, mạnh mẽ) ở dưới — lửa được trời hỗ trợ nên cháy rực rỡ, tỏa ánh sáng xa xôi. Quẻ nói về thăng tiến, sự phong phú, sức mạnh và ảnh hưởng lớn lao. Nhưng điều đặc biệt là Đại Tượng không nói 'hưởng thụ sự phong phú', mà nói 'ngăn chặn cái ác, nâng cao cái thiện' — thông điệp rõ ràng: chủ sở hữu lớn phải chịu trách nhiệm đặc biệt. Sáu hào mô tả từ việc 'không gây hại khi còn nhỏ' (hào 1), qua việc 'dùng công cụ lớn để chở' (hào 2 — chiếc xe lớn), đến việc 'cống hiến cho người ở trên' (hào 3 — quân tước), nhưng cuối cùng (hào 6) là 'được trời giúp đỡ' — tức là thành công đến từ sự hài hòa với ý trời, không phải từ vật chất hay quyền lực riêng.",
+
+  "computer_science": "Đại Hữu như một platform/service đã trở nên dominant, có nhiều user, nhiều traffic, tạo ra giá trị lớn (possession in great measure). Lửa (visibility, influence) rực rỡ dưới hỗ trợ của Trời (scaling infrastructure). Nhưng lúc này trách nhiệm cũng tăng lên: phải cuốn chiếu (repress evil = security, abuse prevention) và nâng cao (promote good = developer experience, innovation). Đây không phải lúc rest on laurels — đây là lúc governance becomes critical. Hào 6 'được trời giúp' không nghĩa là may mắn, mà là kết quả của việc tuân theo những nguyên tắc chính đáng (integrity, backward compatibility, responsible scaling).",
+
+  "life": "Thời gian của bạn đã đạt được thành tựu lớn, có ảnh hưởng, tài nguyên nhiều — nhưng đó cũng là lúc trách nhiệm tăng lên. Cách bạn xử lý sức mạnh này sẽ quyết định liệu bạn giữ nó lâu dài hay nhanh chóng mất đi. Tinh thần của quẻ: dùng sức mạnh để làm tốt, chặn cái xấu, giúp đỡ người yếu.",
+
+  "programming": "Khi một feature hoặc service của bạn trở nên critical infrastructure cho nhiều user/team: đôi khi có cơ hội abuse nó (hào 3 có thể bạo hành), hay có cơ hội tận dụng vị thế để sai lệch chuẩn — nhưng tinh thần Đại Hữu là 'ngăn chặn cái ác, nâng cao cái thiện': implement proper access control, maintain backward compatibility ngay cả khi costly, prioritize security over feature velocity.",
+
+  "characters": [
+    {
+      "hanzi": "大",
+      "pinyin": "dà",
+      "hanviet": "đại",
+      "meaning": "To lớn, lớn lao.",
+      "origin": "Giáp cốt văn vẽ hình người đứng thẳng với cánh tay dang rộng — hình ảnh của cái 'to' — một trong những chữ tượng hình cơ bản nhất.",
+      "example": "大小 (đại tiểu) = to nhỏ; 大師 (đại sư) = bậc thầy, thầy to.",
+      "cs": "Scale / Magnitude",
+      "csExplain": "Biểu thị mức độ hoặc quy mô — khi một service 'to', nó có ảnh hưởng rộng lớn, cần quản lý khác."
+    },
+    {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "hanviet": "hữu",
+      "meaning": "Có, sở hữu, tồn tại.",
+      "origin": "Giáp cốt văn là chữ hội ý gồm 手 (tay) và 肉 (thịt) — hình ảnh cầm nắm trong tay, từ đó 'có, sở hữu'.",
+      "example": "有我 (hữu ngã) = có tôi, tôi tồn tại; 所有 (sở hữu) = sở hữu, cái gì được sở hữu.",
+      "cs": "State / Resources",
+      "csExplain": "Chỉ các tài nguyên, trạng thái mà hệ thống 'giữ' — quản lý tốt những gì 'có' là khóa thành công."
+    },
+    {
+      "hanzi": "火",
+      "pinyin": "huǒ",
+      "hanviet": "hỏa",
+      "meaning": "Lửa, sáng sủa.",
+      "origin": "Giáp cốt văn vẽ hình lửa với ngọn nhộng nhao lên — tượng hình của lửa cháy rực rỡ.",
+      "example": "火熱 (hỏa nhiệt) = rực rỡ, nhiệt tình cao; 火力 (hỏa lực) = sức tấn công, sức mạnh.",
+      "cs": "Visibility / Influence",
+      "csExplain": "Lửa rạng rỡ = visibility, reputation, ảnh hưởng — những gì làm cho service của bạn được chú ý."
+    },
+    {
+      "hanzi": "遏",
+      "pinyin": "è",
+      "hanviet": "át",
+      "meaning": "Ngăn chặn, cấm.",
+      "origin": "Chữ hình thanh với bộ 辶 (bước chân) và phần biểu âm — nghĩa 'cản lại, ngăn chặn'.",
+      "example": "遏止 (át chỉ) = ngăn chặn, dừng lại.",
+      "cs": "Access Control / Prevention",
+      "csExplain": "Chủ động ngăn chặn các hành vi không mong muốn — không chỉ phát hiện hậu kỳ mà ngăn trước."
+    },
+    {
+      "hanzi": "善",
+      "pinyin": "shàn",
+      "hanviet": "thiện",
+      "meaning": "Tốt, nhân từ, thích hợp.",
+      "origin": "Chữ hội ý gồm 言 (lời nói) và 羊 (cừu, động vật hiền lành) — hình ảnh lời nói hiền lành, tốt lành.",
+      "example": "善良 (thiện lương) = tốt bụng; 善待 (thiện đãi) = đối xử tốt.",
+      "cs": "Positive / Best Practice",
+      "csExplain": "Nâng cao các thực hành tốt nhất (best practices), positive behaviors — đó là vai trò của platform leader."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：无交害，匪咎，艱則无咎。",
+      "hanviet": "Sơ Cửu: Vô giao hại, phỉ cữu, gian tắc vô cữu.",
+      "translation": "Không trao đổi tổn hại (lợi thế của mình), không phải lỗi; dù khó khăn vẫn không có lỗi.",
+      "english": "In the first line, undivided, there is no approach to what is injurious, and there is no error.",
+      "explain": "Ở vị trí khởi đầu khi mới có sự sở hữu lớn, giữ đúng nguyên tắc — không lợi dụng vị thế — thì không có lỗi.",
+      "itExample": "Khi một tool mới nổi lên trở nên popular, giữ vững những nguyên tắc ban đầu, không bán cho các bên muốn sử dụng vào mục đích lạm dụng.",
+      "lifeExample": "Khi đạt được thành tựu đầu tiên, giữ vững giá trị cốt lõi, không lợi dụng uy tín mới xây dựng để kiếm lợi tức nhanh."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：大車以載，有攸往，无咎。",
+      "hanviet": "Cửu Nhị: Đại xa dĩ tải, hữu duân vãng, vô cữu.",
+      "translation": "Chiếc xe lớn để chở, có nơi để đi tới, không có lỗi.",
+      "english": "In the second line, undivided, we have a large waggon with its load. In whatever direction advance is made, there will be no error.",
+      "explain": "Có sức chứa đủ lớn (chiếc xe lớn) để vận chuyển giá trị — hành động đi tới bất kỳ hướng nào cũng không gặp lỗi vì nền tảng vững chắc.",
+      "itExample": "Platform đã có infrastructure đủ robust để scale, có khả năng xử lý tăng trưởng nhanh — có thể mở rộng theo bất kỳ hướng nào mà không lo sợ sụp đổ.",
+      "lifeExample": "Khi đã xây dựng đủ nền móng (kinh nghiệm, tiết kiệm, mạng lưới), bạn có tự do để thử các hướng mới mà không sợ thất bại."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：公用亨于天子，小人弗克。",
+      "hanviet": "Cửu Tam: Công dụng hanh vu thiên tử, tiểu nhân phất khắc.",
+      "translation": "Người quốc công dùng lễ cúng tên Vua Trời (cống hiến lên), người tiểu nhân không đủ năng lực để làm vậy.",
+      "english": "The third line, undivided, shows a feudal prince presenting his offerings to the Son of Heaven.",
+      "explain": "Sở hữu lớn mang theo trách nhiệm cống hiến lên — người lãnh đạo thực sự (công) mới có khả năng này; người tiểu nhân chỉ biết tư lợi thôi.",
+      "itExample": "Một open source maintainer hoặc platform owner có quyền quyết định cách dùng công nghệ — người có đạo đức sẽ dùng quyền lực này để cống hiến cho cộng đồng; người tiểu nhân dùng để tư lợi.",
+      "lifeExample": "Khi có ảnh hưởng lớn, bạn có cơ hội để cống hiến lên một mục tiêu cao hơn (xã hội, nhân loại) — đó là điều phân biệt người lãnh đạo thực sự với người chỉ tìm lợi."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：匪其彭，无咎。",
+      "hanviet": "Cửu Tứ: Phỉ kỳ bằng, vô cữu.",
+      "translation": "Không phô trương, không kiêu căng; không có lỗi.",
+      "english": "The fourth line, undivided, shows its subject keeping his great resources under restraint. There will be no error.",
+      "explain": "Ở vị trí gần quyền lực, biết chế ngự bản thân, không phô bày quá mức — đó là cách giữ ổn định.",
+      "itExample": "Một tech lead hoặc architect có ảnh hưởng lớn nhưng không dùng uy tín đó để áp đặt quyết định — giữ quyền hạn trong ranh giới hợp lý.",
+      "lifeExample": "Có thể dùng quyền lực để ép đúng mệnh lệnh, nhưng chọn cách lắng nghe, dân chủ hóa quyết định — cách này duy trì niềm tin lâu dài."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：厥孚交如，威如；吉。",
+      "hanviet": "Lục Ngũ: Quyết phu giao như, uy như; cát.",
+      "translation": "Lòng tin nổi lên như giao thứ (biểu tượng sự xáo trộn, sôi động), vừa đầy vẻ uy quyền — tốt lành.",
+      "english": "The fifth line, divided, shows the sincerity of its subject reciprocated by that of all the others (represented in the hexagram). There will be good fortune.",
+      "explain": "Ở ngôi vua, có lòng tin từ mọi người — không phải vì bạo lực hay áp lực, mà vì sự chân thật thấm nhuần, dù vẫn giữ uy thế cần thiết.",
+      "itExample": "Một CEO hay open source lead được yêu mến vì sự chân thật và tầm nhìn rõ ràng, không phải vì quyền lực — mọi người thực sự tín nhiệm không phải vì bị bắt buộc.",
+      "lifeExample": "Sức mạnh thực sự đến từ sự lòng tin chân thành, không phải từ position hay wealth — khi được lòng tin, bạn có tự do hành động mà không cần áp lực."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：自天佑之，吉无不利。",
+      "hanviet": "Thượng Cửu: Tự thiên hữu chi, cát vô bất lợi.",
+      "translation": "Tự trời giúp đỡ, tốt lành, không điều gì không thuận lợi.",
+      "english": "The topmost line, undivided, shows its subject with help accorded to him from Heaven. There will be good fortune, advantage in every respect.",
+      "explain": "Hào cuối cùng — nếu đi theo con đường chính đạo suốt cả hành trình, mọi thứ sẽ thành công. 'Được trời giúp' không là thần kỳ, mà là quy luật tự nhiên: khi bạn giữ vững nguyên tắc, vũ trụ sẽ hỗ trợ bạn.",
+      "itExample": "Một platform hay movement đã xây dựng đủ niềm tin, đạo đức, innovation — nó tự nhiên thu hút nhân tài, tài trợ, sự hỗ trợ từ cộng đồng mà không cần cầu xin.",
+      "lifeExample": "Khi bạn đã đi theo con đường chính đạo đủ lâu, xây dựng được uy tín, bất ngờ cơ hội đến tìm bạn — đó không phải may mắn, mà là kết quả tự nhiên của sự kiên định."
+    }
+  ],
+
+  "keywords": ["Đại Hữu", "大有", "sở hữu lớn", "trách nhiệm", "ngăn ác nâng thiện", "Hỏa Thiên"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/大有", "url": "https://zh.wikisource.org/zh-hant/周易/大有", "note": "Nguyên văn chữ Hán: 卦辭, 彖曰, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 14", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_14", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 14 (mirror của bản dịch Legge)", "url": "https://www.jamesdekorne.com/GBCh/hex14.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/14", "label": "64 Quẻ — Quẻ 14: Hỏa Thiên Đại Hữu" }
+  ]
+}

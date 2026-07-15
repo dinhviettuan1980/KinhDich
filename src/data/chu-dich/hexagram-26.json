@@ -1,0 +1,158 @@
+{
+  "id": 26,
+  "hanzi": "大畜",
+  "pinyin": "Dà Xù",
+  "hanviet": "Đại Súc",
+  "english": "The Taming Power of the Great",
+  "upperTrigram": "gen",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "大畜：利貞，不家食吉，利涉大川。",
+    "hanviet": "Đại Súc: Lợi trinh, bất gia thực cát, lợi thiệp đại xuyên.",
+    "translation": "Đại Súc (tích lũy lớn): thuận lợi khi giữ chính đính; không ăn ở nhà (ra ngoài phụng sự) thì tốt; thuận lợi khi vượt sông lớn.",
+    "english": "Under the conditions of Tâ Khû it will be advantageous to be firm and correct. (If its subject do not seek to) enjoy his revenues in his own family (without taking service at court), there will be good fortune. It will be advantageous for him to cross the great stream."
+  },
+
+  "daTuong": {
+    "hanzi": "天在山中，大畜；君子以多識前言往行，以畜其德。",
+    "hanviet": "Thiên tại sơn trung, Đại Súc; quân tử dĩ đa thức tiền ngôn vãng hành, dĩ súc kỳ đức.",
+    "translation": "Trời ở trong lòng núi, đó là tượng của Đại Súc; người quân tử noi theo đó mà ghi nhớ thật nhiều lời nói và việc làm của người xưa, để tích lũy đức hạnh của mình.",
+    "english": "(The trigram representing) a mountain, and in the midst of it that (representing) heaven, form Tâ Khû. The superior man, in accordance with this, stores largely in his memory the words and deeds of former men, to subserve the accumulation of his virtue.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Đại Súc nghĩa là 'tích lũy lớn' — quẻ này ghép Trời (Càn, sức mạnh thuần Dương) ở dưới bị Núi (Cấn) chặn/giữ lại ở trên, tạo ra hình ảnh một nguồn năng lượng cực lớn đang được kiềm chế có chủ đích, không phải bị triệt tiêu. Sáu hào kể câu chuyện quá trình 'thuần hóa' sức mạnh đó: ban đầu phải dừng lại và tự kiềm chế (hào 1-2), rồi luyện tập gian khổ (hào 3), sau đó ngăn chặn rủi ro từ gốc thay vì đối đầu trực diện (hào 4-5 — be sừng bò non, thiến lợn rừng), và cuối cùng khi đã đủ chín muồi thì con đường rộng mở (hào 6). Đây là bài học về sự chuẩn bị: sức mạnh không được kiểm soát thì nguy hiểm, nhưng sức mạnh bị kiềm chế đúng cách sẽ tích lũy thành nội lực lớn.",
+
+  "computer_science": "Đại Súc giống hệt giai đoạn 'capacity building' có kiểm soát trước khi mở rộng hệ thống: nguồn sức mạnh thuần Dương (Càn — compute/throughput gốc) bị 1 lớp guardrail (Cấn — rate limiter, feature flag, staging environment) giữ lại có chủ đích. Đây không phải rào cản tiêu cực mà là buffer tích lũy: giống gradient accumulation trong training ML — gom nhiều batch nhỏ lại trước khi thực sự update, để đảm bảo bước đi cuối cùng vững chắc hơn.",
+
+  "life": "Giai đoạn tích lũy — học nghề, để dành, rèn luyện — không phải thời gian lãng phí mà là lúc xây nội lực. Ngăn chặn thói xấu hay rủi ro từ gốc rễ (hào 4, 5) hiệu quả hơn nhiều so với chờ nó bùng phát rồi mới đối phó (hào 1-3 phải dừng, phải vất vả luyện tập).",
+
+  "programming": "Một feature mạnh (breaking change, hệ thống mới) cần được 'nhốt' trong feature flag / staging environment đủ lâu (hào 1-3: dừng lại, mất bánh xe, luyện tập phòng thủ) trước khi mở full traffic. Ngăn bug tiềm ẩn từ thiết kế (hào 4: 'be sừng bò non' ~ input validation từ sớm) rẻ hơn nhiều so với vá lỗi sau khi đã production (hào 5: 'thiến lợn' ~ hotfix loại bỏ root cause). Khi đã đủ testing, hào 6 mở ra: GA (General Availability) release.",
+
+  "characters": [
+    {
+      "hanzi": "畜",
+      "pinyin": "xù",
+      "hanviet": "súc",
+      "meaning": "Nuôi dưỡng, tích chứa, ngăn giữ.",
+      "origin": "Chữ liên quan tới hình ảnh ruộng (田) phía trên và bộ 幺/con vật nuôi phía dưới, biểu thị việc nuôi súc vật/tích trữ lương thực; một số học giả cho rằng gốc là hình dạ dày động vật no đầy thức ăn — cách giải nghĩa cụ thể còn có nhiều thuyết khác nhau, chưa thống nhất tuyệt đối.",
+      "example": "畜牧 (súc mục) = chăn nuôi; 家畜 (gia súc) = vật nuôi trong nhà.",
+      "cs": "Buffering / Accumulation",
+      "csExplain": "Gom giữ dữ liệu/năng lượng trong 1 vùng đệm trước khi giải phóng, giống buffer hoặc write-ahead log."
+    },
+    {
+      "hanzi": "貞",
+      "pinyin": "zhēn",
+      "hanviet": "trinh",
+      "meaning": "Chính đính, ngay thẳng, kiên định, bền vững.",
+      "origin": "Chữ ghép từ 卜 (bốc, việc bói) + 貝/鼎 (bối/đỉnh, đồ tế khí) — nghĩa gốc liên quan tới việc bói hỏi để xác định điều chính đáng, mở rộng thành 'giữ vững chính đạo, kiên định'.",
+      "example": "貞固 (trinh cố) = kiên định.",
+      "cs": "Invariant / Correctness constraint",
+      "csExplain": "Điều kiện bất biến phải giữ đúng trong suốt quá trình tích lũy, giống 1 assertion/invariant không được vi phạm."
+    },
+    {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "hanviet": "gia",
+      "meaning": "Nhà, gia đình, hộ.",
+      "origin": "Chữ ghép 宀 (miên, mái nhà) + 豕 (thỉ, con lợn) — nhà có nuôi lợn dưới mái, biểu tượng cho hộ gia đình nông nghiệp cổ.",
+      "example": "家庭 (gia đình), 國家 (quốc gia).",
+      "cs": "Local scope",
+      "csExplain": "'Ở nhà' (gia) ví như giữ trong local scope/sandbox riêng — câu 不家食 (không ăn ở nhà) ý nói phải 'export' năng lực ra ngoài phục vụ, không giữ khép kín."
+    },
+    {
+      "hanzi": "涉",
+      "pinyin": "shè",
+      "hanviet": "thiệp",
+      "meaning": "Lội qua, vượt qua (sông).",
+      "origin": "Chữ ghép 水 (thủy, nước) + 步 (bộ, bước chân) — hình ảnh bước chân lội qua dòng nước, nghĩa gốc 'lội qua sông', mở rộng thành 'trải qua, dấn thân vào việc khó'.",
+      "example": "涉獵 (thiệp liệp) = tìm hiểu qua loa nhiều lĩnh vực; 跋涉 (bạt thiệp) = lặn lội.",
+      "cs": "Migration / Risky deployment",
+      "csExplain": "'Vượt sông lớn' là ẩn dụ kinh điển cho việc dấn thân vào 1 thay đổi lớn có rủi ro — giống 1 cuộc migration hệ thống quan trọng, chỉ nên làm khi đã tích lũy đủ năng lực."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：有厲利已。",
+      "hanviet": "Sơ Cửu: Hữu lệ lợi dĩ.",
+      "translation": "Đang gặp nguy hiểm, nên dừng lại thì có lợi.",
+      "english": "The first NINE, undivided, shows its subject in a position of peril. It will be advantageous for him to stop his advance.",
+      "explain": "Hào thấp nhất, sức mạnh thuần Dương mới khởi phát nhưng gặp trở lực từ trên — đây chưa phải lúc xông lên, biết dừng đúng lúc mới tránh được nguy hiểm.",
+      "itExample": "Muốn ship 1 tính năng lớn ngay sprint đầu tiên khi hạ tầng chưa vững — dấu hiệu cảnh báo (CI đỏ liên tục, thiếu test) cho biết nên dừng lại, đừng cố merge.",
+      "lifeExample": "Vừa có ý tưởng lớn nhưng chưa đủ nguồn lực/kiến thức — nhận ra rủi ro sớm và tạm dừng để chuẩn bị thêm là khôn ngoan, không phải yếu đuối."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：輿說輹。",
+      "hanviet": "Cửu Nhị: Dư thoát phục.",
+      "translation": "Xe (bị) tháo mất đai trục — buộc phải dừng lại.",
+      "english": "The second NINE, undivided, shows a carriage with the strap under it removed.",
+      "explain": "Hào giữa quẻ dưới, có nội lực nhưng chủ động 'tháo bánh xe' — tự kiềm chế mình lại thay vì bị hoàn cảnh ép buộc, đây là sự tự chủ khôn ngoan.",
+      "itExample": "Chủ động tắt (feature flag off) 1 module mới dù đã code xong, vì nhận ra dependency chưa sẵn sàng — tự dừng còn tốt hơn để nó chạy lỗi rồi mới rollback gấp.",
+      "lifeExample": "Tự nguyện hoãn một kế hoạch lớn (mua nhà, đổi việc) khi nhận thấy điều kiện chưa chín muồi, thay vì để hoàn cảnh xấu buộc mình phải dừng giữa chừng."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：良馬逐，利艱貞。曰閑輿衛，利有攸往。",
+      "hanviet": "Cửu Tam: Lương mã trục, lợi gian trinh. Viết nhàn dư vệ, lợi hữu du vãng.",
+      "translation": "Như ngựa tốt đang rong ruổi; nên ý thức được khó khăn mà giữ vững chính đính. Ngày ngày luyện tập đánh xe và phòng vệ, thì tiến tới đâu cũng có lợi.",
+      "english": "The third NINE, undivided, shows its subject urging his way with good horses. It will be advantageous for him to realise the difficulty (of his course), and to be firm and correct, exercising himself daily in his charioteering and methods of defence; then there will be advantage in whatever direction he may advance.",
+      "explain": "Đã có đà tiến (ngựa tốt) nhưng vẫn còn trong giai đoạn tích lũy — chỉ có luyện tập nghiêm túc, ý thức rõ khó khăn phía trước mới biến đà tiến thành năng lực thật sự.",
+      "itExample": "Team đã có momentum tốt (velocity cao) nhưng vẫn cần daily practice: code review kỹ, viết test đều đặn, diễn tập incident response — chuẩn bị kỹ trước khi đối mặt production thật.",
+      "lifeExample": "Đang trên đà tiến bộ nhanh (học hành, sự nghiệp) — đừng chủ quan, tiếp tục rèn luyện kỷ luật mỗi ngày sẽ giúp đà tiến đó bền vững."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：童牛之牿，元吉。",
+      "hanviet": "Lục Tứ: Đồng ngưu chi cốc, nguyên cát.",
+      "translation": "Buộc thanh gỗ chắn lên sừng con bò non — rất tốt lành.",
+      "english": "The fourth SIX, divided, shows the young bull, (and yet) having the piece of wood over his horns. There will be great good fortune.",
+      "explain": "Ngăn chặn rủi ro từ khi nó còn nhỏ (bò non chưa kịp húc ai) là cách phòng ngừa khôn ngoan nhất — dễ dàng và ít tốn kém hơn nhiều so với xử lý khi đã lớn.",
+      "itExample": "Thêm input validation và type-check ngay từ lúc thiết kế API (khi hệ thống còn 'non'), thay vì để lỗi dữ liệu lan tràn rồi mới vá — phòng bệnh hơn chữa bệnh.",
+      "lifeExample": "Uốn nắn một thói quen xấu của con/của bản thân ngay từ khi mới hình thành, dễ hơn rất nhiều so với sửa khi nó đã ăn sâu."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：豶豕之牙，吉。",
+      "hanviet": "Lục Ngũ: Phần thỉ chi nha, cát.",
+      "translation": "Thiến con lợn rừng đi thì dù còn răng nanh cũng không còn nguy hiểm — tốt lành.",
+      "english": "The fifth SIX, divided, shows the teeth of a castrated hog. There will be good fortune.",
+      "explain": "Cùng là ngăn chặn rủi ro, nhưng ở vị trí lãnh đạo (hào 5) cách làm là triệt tiêu gốc rễ của nguy hiểm (bản năng hung hãn) thay vì chỉ đối phó biểu hiện (răng nanh) — xử lý nguyên nhân, không chỉ triệu chứng.",
+      "itExample": "Thay vì liên tục vá từng lỗi bảo mật xuất hiện (triệu chứng), refactor lại cơ chế xác thực từ gốc (nguyên nhân) — 1 lần sửa đúng chỗ giải quyết cả lớp bug tương lai.",
+      "lifeExample": "Giải quyết tận gốc nguyên nhân gây stress (thay đổi môi trường làm việc) thay vì chỉ tìm cách 'chịu đựng' triệu chứng mỗi ngày."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：何天之衢，亨。",
+      "hanviet": "Thượng Cửu: Hà thiên chi cù, hanh.",
+      "translation": "Con đường trời thênh thang biết bao — hanh thông.",
+      "english": "The sixth NINE, undivided, shows its subject (as) in command of the firmament of heaven. There will be progress.",
+      "explain": "Sau cả quá trình kiềm chế và tích lũy đủ lâu, hào cuối cùng mở ra: sức mạnh đã được thuần hóa đúng cách giờ đây được tự do phát huy trên con đường rộng mở — đây là thành quả xứng đáng của sự kiên nhẫn.",
+      "itExample": "Sau nhiều sprint xây nền tảng vững chắc (test coverage cao, kiến trúc rõ ràng), giờ đây team có thể ship feature mới với tốc độ rất nhanh mà không sợ vỡ trận — nền tảng tốt mở ra 'đường cao tốc' phát triển.",
+      "lifeExample": "Sau nhiều năm tích lũy kiến thức và kinh nghiệm âm thầm, cơ hội lớn đến và bạn có đủ năng lực nắm bắt ngay — không phải may mắn, mà là kết quả của sự chuẩn bị."
+    }
+  ],
+
+  "keywords": ["Đại Súc", "大畜", "tích lũy", "kiềm chế", "Cấn", "Càn", "vượt sông lớn", "capacity building"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/大畜", "url": "https://zh.wikisource.org/zh-hant/周易/大畜", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 26 (bản mirror)", "url": "https://baharna.com/iching/legge/111001.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes : Da Xu", "url": "https://ctext.org/book-of-changes/da-xu", "note": "Nguồn học thuật công khai, xác nhận tên/slug quẻ 大畜 Da Xu." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/26", "label": "64 Quẻ — Quẻ 26: Sơn Thiên Đại Súc" }
+  ]
+}

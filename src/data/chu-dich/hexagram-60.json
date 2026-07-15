@@ -1,0 +1,148 @@
+{
+  "id": 60,
+  "hanzi": "節",
+  "pinyin": "Jié",
+  "hanviet": "Tiết",
+  "english": "Limitations (Water over Lake)",
+  "upperTrigram": "kan",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "節：亨。苦節，不可貞。",
+    "hanviet": "Tiết: Hanh. Khổ tiết, bất khả trinh.",
+    "translation": "Tiết (Giới hạn): hanh thông; nhưng giới hạn quá khốc liệt sẽ không bền vững.",
+    "english": "Jie intimates that (under its conditions) there will be progress and attainment. (But) if the regulations (which it prescribes) be severe and difficult, they cannot be permanent."
+  },
+
+  "daTuong": {
+    "hanzi": "澤上有水，節；君子以制數度，議德行。",
+    "hanviet": "Trạch thượng hữu thủy, Tiết; quân tử dĩ chế số độ, nghị đức hành.",
+    "translation": "Nước nằm phía trên hồ/đầm là tượng của quẻ Tiết; người quân tử noi theo đó mà định ra các qui tắc, đo lường, và cân nhắc về đạo đức, hành vi.",
+    "english": "(The trigram representing) a lake, and above it that for water, form Jie. The superior man, in accordance with this, constructs his (methods of) numbering and measurement, and discusses (points of) virtue and conduct.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Tiết là hình ảnh của giới hạn, qui định, quy tắc — nước ở trong hồ sẽ tràn ra nếu không có bờ. Cốt lõi của quẻ là: giới hạn là cần thiết để duy trì trật tự, nhưng giới hạn quá khốc liệt (khổ tiết) lại không bền vững — cần tìm được cân bằng. Sáu hào kể câu chuyện từ: không ra khỏi cửa (Sơ Cửu, không ra cửa sân) → vẫn bị kẹt (Cửu Nhị, không ra cửa chính, xấu) → đau khóc vì quá giới hạn (Lục Tam, nhưng không có lỗi vì biết nhân ra) → giới hạn tự nhiên (Lục Tứ, yên bình) → vui vẻ tuân theo giới hạn (Cửu Ngũ) → giới hạn khốc liệt dẫn tới xấu nhưng cuối cùng lại biến thành lợi.",
+
+  "computer_science": "Tiết giống rate limiting, resource quota, SLA constraint — những rào cản nhìn mặt khó chịu lúc đầu nhưng lại tạo ra stability thực. Hệ thống không có boundary sẽ chaos (thundering herd, resource exhaustion); có boundary khéo léo sẽ fair, predictable, bền vững — nhưng nếu boundary quá chặt sẽ stifle innovation.",
+
+  "life": "Hạn chế tự do cá nhân là cần thiết để sống chung, nhưng hạn chế quá chặt sẽ làm người chán chảy. Bài học: tìm được 'giới hạn tự nhiên' (natural boundary) mà khi tuân theo không cảm thấy khó chịu — đó là trí tuệ thực sự.",
+
+  "programming": "API rate limit, database connection pool, timeout, memory limit — những ràng buộc này trông 'hạn chế' nhưng lại bảo vệ hệ thống khỏi cascading failure. Nhưng giới hạn quá chặt (timeout quá ngắn, quota quá nhỏ) sẽ làm user frustrated — cân bằng là chìa khóa.",
+
+  "characters": [
+    {
+      "hanzi": "節",
+      "pinyin": "jié",
+      "hanviet": "tiết",
+      "meaning": "Gút/khớp; đốc gỗ; tiết điểm/đoạn; quy tắc, giới hạn; tiết kiệm; tên 1 quẻ.",
+      "origin": "Chữ cổ vẽ hình cây tre/cây gỗ có những đốc rõ rệt (phần trên giống 卩 hình cái khớp, dưới là 竹/木 chỉ cây) — nghĩa gốc 'đốc, gút, khớp', mở rộng thành 'điểm dừng, ranh giới, giới hạn, quy tắc'.",
+      "example": "季節 (quí tiết) = mùa (tiết của năm); 節制 (tiết chế) = kiểm soát, tự chế; 節目 (tiết mục) = chương trình (phân đoạn).",
+      "cs": "Boundary / Constraint",
+      "csExplain": "Ranh giới rõ ràng giữa các phần, hoặc ràng buộc trên tài nguyên/hành vi — tạo ra structure và predictability."
+    },
+    {
+      "hanzi": "澤",
+      "pinyin": "zé",
+      "hanviet": "trạch",
+      "meaning": "Hồ, đầm; nước tích lũy; lợi ích, ơn sủi; tên 1 quái (Đoài).",
+      "origin": "Chữ ghép từ 水 (thủy, nước) + 尺 (xích, đo đạc) — hình ảnh nước tập trung tại một chỗ với đường biên rõ ràng — nghĩa gốc 'đầm nước, hồ'.",
+      "example": "湖澤 (hồ trạch) = đầm hồ; 澤被 (trạch bị) = ơn huệ lan tỏa; 澤潤 (trạch nhuận) = làm ẩm (nước đầm tưới tẩm).",
+      "cs": "Reservoir / Container",
+      "csExplain": "Vùng chứa đựng tài nguyên với ranh giới rõ ràng — như buffer, cache, connection pool trong hệ thống."
+    },
+    {
+      "hanzi": "苦",
+      "pinyin": "kǔ",
+      "hanviet": "khổ",
+      "meaning": "Cay đắng, khốc liệt; đau khổ; gian khó; tên cây khổ.",
+      "origin": "Chữ cổ vẽ cây khổ (phần trên giống 艹 cây cỏ, dưới là 古 cái cổ) — hoặc là tượng hình cái miệng cay đắng — nghĩa gốc 'cay đắng, khổ'.",
+      "example": "吃苦 (ăn khổ) = chịu khổ, thưởng thức cái cay; 苦笑 (khổ tiếu) = cười cay đắng.",
+      "cs": "Harsh / Excessive",
+      "csExplain": "Mức độ quá cao, áp lực quá lớn, ràng buộc quá chặt — tuy có tác dụng nhưng không bền vững hoặc không khả thi."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：不出戶庭，无咎。",
+      "hanviet": "Sơ Cửu: Bất xuất hộ đình, vô cữu.",
+      "translation": "Không bước ra khỏi sân nhà — không có lỗi.",
+      "english": "Its subject not quitting the courtyard outside his door. There will be no error.",
+      "explain": "Hào đầu, vị trí thấp — giữ kỷ luật tự nguyện ở chỗ mình, không tham vọng vượt quá — đây là cách đúng đắn để bắt đầu.",
+      "itExample": "Một junior dev biết giới hạn của mình (scope đúng, không mạo hiểm vượt quá), chỉ làm việc gán cho — đây là sự hiểu biết tốt, không lỗi.",
+      "lifeExample": "Một người mới vào tổ chức biết giữ kỷ luật, không vội chạy theo mọi cơ hội, chỉ focus vào việc của mình — đây là khôn ngoan."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：不出門庭，凶。",
+      "hanviet": "Cửu Nhị: Bất xuất môn đình, hung.",
+      "translation": "Không bước ra khỏi cửa nhà (khu vực chính) — xấu.",
+      "english": "Its subject not quitting the courtyard inside his gate. There will be evil.",
+      "explain": "Hào cơ quan, năng lực đã có nhưng vẫn bị giới hạn tự tạo — không dám bước ra, dẫn tới bị kẹt, không tiến bộ.",
+      "itExample": "Engineer giỏi vẫn chỉ làm trong team của mình, không dám tham gia cross-team project hay mentoring — năng lực bị lãng phí, stagnate.",
+      "lifeExample": "Một người có năng lực nhưng tự giới hạn trong comfort zone, không dám bước ra thử thách mới — cuối cùng sự nghiệp bị kẹt."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：不節若，則嗟若，无咎。",
+      "hanviet": "Lục Tam: Bất tiết nhược, tắc ta nhược, vô cữu.",
+      "translation": "Nếu không tuân theo giới hạn, sẽ kêu than thổn thức; nhưng nếu tuân theo, không có lỗi.",
+      "english": "With no appearance of observing proper regulations, we shall see him lamenting. But there will be no one to blame (but himself).",
+      "explain": "Hào giữa, khó tính — hoặc tuân thủ giới hạn (dù khó chịu) hoặc vi phạm rồi sẽ hối hận; không có đường lùi.",
+      "itExample": "Deadline chặt: hoặc scope down (tuân giới hạn, nhưng deadline vẫn chặt) hoặc delay => project fail (vi phạm deadline, nhưng tự chịu)",
+      "lifeExample": "Khi bị ép (deadline, budget, scope), hoặc tuân theo (khổ nhưng không lỗi) hoặc vi phạm (cuối cùng tự chịu hậu quả)."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "安節，亨。",
+      "hanviet": "Lục Tứ: An tiết, hanh.",
+      "translation": "Giới hạn an tĩnh, tự nhiên — hanh thông.",
+      "english": "Quietly and naturally (attentive to all) regulations. There will be progress and success.",
+      "explain": "Gần vị trí lãnh đạo, tìm được giới hạn 'tự nhiên' mà không cảm thấy khó chịu — đây là điểm cân bằng lý tưởng.",
+      "itExample": "Hệ thống đã ổn định với những giới hạn hợp lý (rate limit phù hợp, timeout sensible) — operate normally mà không tension.",
+      "lifeExample": "Một tổ chức tìm được quy tắc/quy trình mà team hài lòng tuân theo — không cảm thấy áp đặt mà thấy tự nhiên."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：甘節，吉；往有尚。",
+      "hanviet": "Cửu Ngũ: Cam tiết, cát; vãng hữu thượng.",
+      "translation": "Vui vẻ tuân theo giới hạn — tốt lành; phía trước sẽ được kính trọng.",
+      "english": "Sweetly and acceptably enacting his regulations. There will be good fortune. Onward progress will afford ground for admiration.",
+      "explain": "Vị trí lãnh đạo tối cao — đưa ra giới hạn mà mọi người sẵn sàng tuân theo (vì công bằng, rõ ràng) — dẫn tới sự tôn kính.",
+      "itExample": "CEO công bố policy (remote work, budget per team, code review standard) mà engineer/team hài lòng vì rõ ràng, công bằng — công ty được kính trọng.",
+      "lifeExample": "Một leader đưa ra luật lệ mà mọi người sẵn sàng tuân theo vì thấy công bằng — leader đó được kính trọng lâu dài."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "苦節，貞凶，悔亡。",
+      "hanviet": "Thượng Lục: Khổ tiết, trinh hung, hối vong.",
+      "translation": "Giới hạn khốc liệt, dù kiên định vẫn xấu — nhưng cuối cùng hối tiếc tiêu tan.",
+      "english": "Enacting regulations severe and difficult. Even with firmness and correctness there will be evil. But cause for repentance will (by and by) disappear.",
+      "explain": "Hào cuối, quá khốc liệt — dù cố gắng kiên định, vẫn sẽ gặp xấu, nhưng khi hối tiếc rồi sẽ qua được (vì học được bài học).",
+      "itExample": "Team quá khốc liệt về standards (coverage 100%, zero defect), dẫn tới burnout, lỗi tăng => dự án thất bại — nhưng từ đó học được cân bằng.",
+      "lifeExample": "Một người quá chặt chẽ với bản thân/người khác → conflict, burnout → cuối cùng học được cân bằng lý tưởng."
+    }
+  ],
+
+  "keywords": ["Tiết", "節", "giới hạn", "quy tắc", "cân bằng", "không vượt quá", "nước trong hồ", "tự chế"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/jie1", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Tiết (Judgment + 6 hào)." },
+    { "source": "Chinese Text Project — Book of Changes : Xiang Zhuan : Jie", "url": "https://ctext.org/book-of-changes/jie5", "note": "Nguồn Đại Tượng truyện (象曰) kèm dịch Anh ngữ James Legge." },
+    { "source": "維基文庫 Wikisource — 周易/節", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E7%AF%80", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/60", "label": "64 Quẻ — Quẻ 60: Thủy Trạch Tiết" }
+  ]
+}

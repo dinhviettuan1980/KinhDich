@@ -1,0 +1,158 @@
+{
+  "id": 3,
+  "hanzi": "屯",
+  "pinyin": "Zhūn",
+  "hanviet": "Truân",
+  "english": "Difficulty at the Beginning",
+  "upperTrigram": "kan",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "屯：元亨，利貞。勿用有攸往，利建侯。",
+    "hanviet": "Truân: Nguyên hanh, lợi trinh. Vật dụng hữu du vãng, lợi kiến hầu.",
+    "translation": "Truân (Gian nan lúc khởi đầu): mở đầu lớn lao, hanh thông, thuận lợi khi giữ vững chính đạo. Chưa nên vội tiến xa; thuận lợi khi lập nên người đứng đầu để dẫn dắt.",
+    "english": "Kun (indicates that in the case which it presupposes) there will be great progress and success, and the advantage will come from being correct and firm. (But) any movement in advance should not be (lightly) undertaken. There will be advantage in appointing feudal princes."
+  },
+
+  "daTuong": {
+    "hanzi": "雲雷，屯；君子以經綸。",
+    "hanviet": "Vân lôi, Truân; quân tử dĩ kinh luân.",
+    "translation": "Mây và sấm (chưa thành mưa) là tượng của Truân; người quân tử noi theo đó mà sắp xếp, tổ chức (như gỡ mối tơ rối) để trị lý công việc.",
+    "english": "(The trigram representing) clouds and (that representing) thunder form Kun. The superior man, in accordance with this, (adjusts his measures of government) as in sorting the threads of the warp and woof.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Truân là quẻ đầu tiên sau Càn-Khôn giao hòa sinh ra vạn vật — chữ 屯 nguyên là hình tượng mầm cây cố nhú lên khỏi đất còn cong queo, khó khăn. Đây là quẻ về sự khó khăn TỰ NHIÊN của mọi khởi đầu: có tiềm năng lớn (Nguyên Hanh) nhưng chưa nên vội tiến xa, cần thời gian, cần người dẫn dắt (kiến hầu) và sự kiên trì. Sáu hào kể câu chuyện giai đoạn đầu đầy trở ngại: do dự đúng chỗ (Sơ Cửu) → khó khăn bất ngờ nhưng rồi sẽ ổn (Lục Nhị) → hành động khinh suất khi thiếu người dẫn đường sẽ hối tiếc (Lục Tam) → chủ động tìm liên minh (Lục Tứ) → khó khăn ngay cả khi ở vị trí cao (Cửu Ngũ) → và bế tắc cùng cực nếu cứ một mình xoay xở đến cùng (Thượng Lục).",
+
+  "computer_science": "Đây chính là 'Day 1 của bất kỳ dự án/hệ thống mới nào': mọi thứ có tiềm năng lớn nhưng infra chưa ổn định, chưa nên launch/scale vội (勿用有攸往) — việc quan trọng nhất là thiết lập đúng người chịu trách nhiệm/kiến trúc nền (利建侯 ~ appoint an owner). 6 hào giống một pha bootstrap đầy retry: mỗi lần thử tiến lên mà thiếu dependency sẵn sàng (thiếu 'người dẫn đường' đúng) sẽ dẫn tới lỗi, và giải pháp không phải là cố một mình mà là tìm đối tác/pairing để cùng vượt qua giai đoạn khởi tạo.",
+
+  "life": "Mọi khởi đầu — dự án mới, công việc mới, mối quan hệ mới — đều tự nhiên có sự lúng túng, khó khăn ban đầu; đây không phải dấu hiệu thất bại mà là quy luật. Bài học là tìm người dẫn dắt/đồng minh đúng lúc thay vì một mình vật lộn.",
+
+  "programming": "Sprint đầu tiên của dự án mới: yêu cầu chưa rõ, môi trường chưa setup xong, team chưa ăn ý — đừng vội commit deadline lớn (勿用有攸往); việc ưu tiên là chỉ định rõ ai chịu trách nhiệm kiến trúc/quy trình, và chủ động tìm kiếm pairing/mentor (Lục Tứ, 'cầu hôn phối' ~ tìm đối tác hợp tác) thay vì cắm đầu tự làm một mình dẫn tới bế tắc (Thượng Lục).",
+
+  "characters": [
+    {
+      "hanzi": "屯",
+      "pinyin": "zhūn",
+      "hanviet": "truân",
+      "meaning": "Khó khăn lúc mới bắt đầu; đóng quân, tích trữ (đọc tún).",
+      "origin": "Giáp cốt văn/kim văn vẽ hình một mầm cây (屮) uốn cong nhú lên khỏi mặt đất — nghĩa gốc 'mầm non khó nhú, khởi đầu gian nan', về sau mượn đọc 'tún' mở rộng nghĩa 'đóng quân, tích trữ'.",
+      "example": "屯田 (truân điền, đóng quân khai hoang); 屯兵 (truân binh, đóng quân).",
+      "cs": "Bootstrap Phase",
+      "csExplain": "Giai đoạn khởi động hệ thống — tài nguyên chưa đủ, dependency chưa sẵn sàng, mọi request đầu tiên đều khó khăn hơn bình thường."
+    },
+    {
+      "hanzi": "建",
+      "pinyin": "jiàn",
+      "hanviet": "kiến",
+      "meaning": "Dựng lên, thiết lập.",
+      "origin": "Bộ 廴 (dẫn, bước dài) + 聿 (duật, cây bút/công cụ đo đạc). Thuyết Văn giải 'kiến, lập triều dã' — nghĩa gốc liên quan tới việc dùng công cụ đo để 'dựng, lập nên' phép tắc/công trình.",
+      "example": "建立 (kiến lập, thành lập); 建國 (kiến quốc, dựng nước).",
+      "cs": "Initialize Leader / Bootstrap Owner",
+      "csExplain": "Hành động khởi tạo một thực thể chịu trách nhiệm — giống việc elect/appoint một leader node ngay từ đầu để hệ thống có điểm tựa điều phối."
+    },
+    {
+      "hanzi": "侯",
+      "pinyin": "hóu",
+      "hanviet": "hầu",
+      "meaning": "Chư hầu, tước vị người đứng đầu một vùng.",
+      "origin": "Giáp cốt văn vẽ hình mũi tên bắn vào tấm bia — nghĩa gốc liên quan tới người giỏi bắn cung được phong đất, tức 'người được phong làm thủ lĩnh một vùng nhờ công trạng'.",
+      "example": "諸侯 (chư hầu); 王侯 (vương hầu).",
+      "cs": "Delegated Owner / Module Lead",
+      "csExplain": "Người/thực thể được giao quyền phụ trách một vùng chức năng cụ thể — giống việc phân quyền module ownership rõ ràng ngay từ giai đoạn đầu dự án."
+    },
+    {
+      "hanzi": "綸",
+      "pinyin": "lún",
+      "hanviet": "luân",
+      "meaning": "Sợi tơ, mối chỉ; kinh luân = tài trị lý, sắp xếp mối tơ rối.",
+      "origin": "Bộ 糸 (mịch, sợi tơ) + 侖 (luân, biểu âm, gốc nghĩa 'sắp xếp có thứ tự') — nghĩa gốc 'sợi tơ đã xe săn', mở rộng ẩn dụ thành 'sắp xếp có trật tự, trị lý'.",
+      "example": "經綸 (kinh luân, tài trị lý); 綸巾 (luân cân, khăn tơ).",
+      "cs": "Untangling Dependencies / Refactoring",
+      "csExplain": "Gỡ mối 'tơ rối' của hệ thống — giống việc refactor, sắp xếp lại dependency graph cho gọn gàng trong giai đoạn đầu dự án."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：磐桓，利居貞，利建侯。",
+      "hanviet": "Sơ Cửu: Bàn hoàn, lợi cư trinh, lợi kiến hầu.",
+      "translation": "Do dự, quanh quẩn chưa tiến; thuận lợi khi ở yên giữ chính đạo, thuận lợi khi lập người đứng đầu dẫn dắt.",
+      "english": "The first line, undivided, shows the difficulty (its subject has) in advancing. It will be advantageous for him to abide correct and firm; advantageous (also) to be made a feudal ruler.",
+      "explain": "Hào dương ở vị trí thấp nhất, đầy nghị lực nhưng gặp trở ngại ngay từ đầu — bài học: khi tiến khó, đừng cố xông lên, hãy đứng vững tại chỗ và thiết lập nền tảng/tổ chức trước.",
+      "itExample": "Ngày đầu dự án, engineer giỏi nhưng infra chưa có gì — thay vì cố code tính năng ngay, việc đúng đắn là dừng lại thiết lập kiến trúc nền, CI/CD, ownership rõ ràng trước.",
+      "lifeExample": "Người có năng lực nhưng mới bắt đầu sự nghiệp/dự án riêng gặp bế tắc ban đầu — thay vì vội vàng, nên tập trung xây nền tảng vững trước khi tăng tốc."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：屯如邅如，乘馬班如，匪寇婚媾，女子貞不字，十年乃字。",
+      "hanviet": "Lục Nhị: Truân như triên như, thừa mã ban như, phỉ khấu hôn cấu, nữ tử trinh bất tự, thập niên nãi tự.",
+      "translation": "Gian nan, quanh quẩn không tiến được; cưỡi ngựa mà ngựa cứ lùi. Không phải giặc cướp mà là người đến cầu hôn. Người con gái giữ trinh không nhận lời ngay, mười năm sau mới ưng thuận.",
+      "english": "The second line, divided, shows (its subject) distressed and obliged to return; (even) the horses of her chariot (also) seem to be retreating. (But) not by a spoiler (is she assailed), but by one who seeks her to be his wife. The young lady maintains her firm correctness, and declines a union. After ten years she will be united, and have children.",
+      "explain": "Gặp hoàn cảnh rối ren khiến việc vốn tốt lành (cầu hôn) lại bị hiểu lầm/nghi ngại — bài học về sự kiên nhẫn giữ vững nguyên tắc giữa hoàn cảnh mơ hồ, dù phải chờ rất lâu mới sáng tỏ.",
+      "itExample": "Một đề xuất hợp tác/tích hợp tốt bị team nghi ngờ ban đầu do thiếu thông tin rõ ràng trong giai đoạn hỗn loạn — cần thời gian và minh bạch để bên kia tin tưởng và chấp nhận integrate.",
+      "lifeExample": "Một cơ hội tốt (công việc, mối quan hệ) xuất hiện đúng lúc mọi thứ đang rối ren nên bị nghi ngờ, từ chối — đôi khi phải mất thời gian dài mới nhận ra và chấp nhận nó."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：即鹿无虞，惟入于林中，君子幾不如舍，往吝。",
+      "hanviet": "Lục Tam: Tức lộc vô ngu, duy nhập vu lâm trung, quân tử cơ bất như xả, vãng lận.",
+      "translation": "Đuổi theo hươu mà không có người dẫn đường, chỉ càng đi sâu vào rừng. Người quân tử biết vậy thà bỏ cuộc còn hơn, cứ tiến tới sẽ hối tiếc.",
+      "english": "The third line, divided, shows one following the deer without (the guidance of) the forester, and only finding himself in the midst of the forest. The superior man, acquainted with the secret risks, thinks it better to give up the chase. If he went forward, he would regret it.",
+      "explain": "Hành động khinh suất, thiếu người dẫn đường/thông tin đúng trong giai đoạn khó khăn — biết dừng đúng lúc quan trọng hơn cố chấp theo đuổi mục tiêu khi thiếu điều kiện.",
+      "itExample": "Cố gắng tự mày mò tích hợp một hệ thống phức tạp không có tài liệu, không có ai hướng dẫn — càng làm càng lún sâu vào rủi ro; đúng lúc nên dừng lại tìm người biết việc thay vì cố làm tiếp.",
+      "lifeExample": "Theo đuổi một mục tiêu hấp dẫn nhưng không có ai am hiểu chỉ dẫn, càng lao vào càng lạc lối — biết dừng lại đúng lúc là khôn ngoan hơn cố chấp."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：乘馬班如，求婚媾，往，吉无不利。",
+      "hanviet": "Lục Tứ: Thừa mã ban như, cầu hôn cấu, vãng, cát vô bất lợi.",
+      "translation": "Cưỡi ngựa mà ngựa cứ lùi lại; nhưng chủ động đi cầu hôn phối, tiến tới thì tốt lành, không gì bất lợi.",
+      "english": "The fourth line, divided, shows (its subject as a lady), the horses of whose chariot appear in retreat. She seeks, however, (the help of) him who seeks her to be his wife. Advance will be fortunate; all will turn out advantageously.",
+      "explain": "Vẫn còn khó khăn (ngựa lùi) nhưng biết chủ động tìm liên minh đúng người — chủ động tiến tới hợp tác trong lúc khó khăn sẽ mang lại kết quả tốt.",
+      "itExample": "Dù hệ thống còn nhiều trục trặc, team chủ động tìm đối tác/thư viện phù hợp để hợp tác thay vì tự xoay xở — quyết định 'đi tìm liên minh' đúng lúc mang lại kết quả tốt.",
+      "lifeExample": "Giữa lúc khó khăn, chủ động tìm kiếm sự hỗ trợ, hợp tác từ người phù hợp thay vì cố chịu đựng một mình — hành động đúng đắn sẽ được đền đáp."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：屯其膏；小貞吉，大貞凶。",
+      "hanviet": "Cửu Ngũ: Truân kỳ cao; tiểu trinh cát, đại trinh hung.",
+      "translation": "Khó khăn trong việc ban phát ân huệ; giữ vững chính đạo trong việc nhỏ thì tốt, nhưng cố làm việc lớn ngay lúc này sẽ xấu.",
+      "english": "The fifth line, undivided, shows the difficulties in the way of (its subject's) dispensing the rich favours that might be expected from him. With firmness and correctness there will be good fortune in small things; (even) with them in great things there will be evil.",
+      "explain": "Dù ở ngôi vị cao (vua) nhưng vẫn bị kẹt giữa hoàn cảnh Truân chung của cả quẻ — có quyền lực nhưng chưa đủ điều kiện thực thi việc lớn; nên bắt đầu từ việc nhỏ, tích lũy dần.",
+      "itExample": "Một tech lead/CTO mới nhậm chức trong giai đoạn công ty còn hỗn loạn — dù có quyền quyết định lớn, chỉ nên triển khai thay đổi nhỏ, từng bước, chưa vội cải tổ toàn diện ngay.",
+      "lifeExample": "Người mới lên vị trí lãnh đạo giữa giai đoạn tổ chức còn bất ổn — nên khởi động bằng những cải cách nhỏ, chưa vội thực hiện quyết định lớn ngay."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：乘馬班如，泣血漣如。",
+      "hanviet": "Thượng Lục: Thừa mã ban như, khấp huyết liên như.",
+      "translation": "Cưỡi ngựa mà ngựa cứ lùi lại, khóc đến chảy máu mắt, nước mắt tuôn dài.",
+      "english": "The topmost line, divided, shows (its subject) with the horses of his chariot obliged to retreat, and weeping tears of blood in streams.",
+      "explain": "Hào cuối cùng, hết đường — nếu không tìm được liên minh/lối thoát đến cùng của giai đoạn khó khăn, kết cục là bế tắc cùng cực, đau khổ tột độ. Lời cảnh báo: đừng để tình trạng 'Truân' kéo dài đến vô vọng mà không tìm giải pháp.",
+      "itExample": "Một dự án cứ mãi bế tắc, không ai chịu tìm giải pháp hợp tác/xin trợ giúp bên ngoài đến tận cùng — dẫn tới burnout hoàn toàn, dự án sụp đổ trong hỗn loạn.",
+      "lifeExample": "Cố chịu đựng một hoàn cảnh khó khăn đến mức kiệt quệ mà không tìm đến sự giúp đỡ — kết cục là khủng hoảng tinh thần nặng nề, lẽ ra nên tìm lối thoát sớm hơn nhiều."
+    }
+  ],
+
+  "keywords": ["Truân", "屯", "gian nan khởi đầu", "kiến hầu", "mầm cây", "kinh luân", "khởi nghiệp"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_3", "note": "Bản dịch tiếng Anh public domain của Thoán từ và 6 hào từ." },
+    { "source": "維基文庫 Wikisource — 周易/屯", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%B1%AF", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳, 彖傳)." },
+    { "source": "James Legge, Appendix II — The Great Symbolism (Da Xiang)", "url": "https://baharna.com/iching/legge/100010.htm", "note": "Bản dịch Đại Tượng truyện của Legge, bản số hóa đối chiếu với sacred-texts.com/ich/icap2-1.htm." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/3", "label": "64 Quẻ — Quẻ 3: Thủy Lôi Truân" }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "id": 22,
+  "hanzi": "賁",
+  "pinyin": "Bì",
+  "hanviet": "Bí",
+  "english": "Grace",
+  "upperTrigram": "gen",
+  "lowerTrigram": "li",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "賁：亨。小利有攸往。",
+    "hanviet": "Bí: Hanh. Tiểu lợi hữu du vãng.",
+    "translation": "Bí (Trang sức, tô điểm): hanh thông. Có lợi nhỏ khi tiến tới hành động — không nên lấy đó làm việc lớn để dốc toàn lực.",
+    "english": "Pi indicates that there should be free course (in what it denotes). There will be little advantage (however) if it be allowed to advance (and take the lead)."
+  },
+
+  "daTuong": {
+    "hanzi": "山下有火，賁；君子以明庶政，无敢折獄。",
+    "hanviet": "Sơn hạ hữu hỏa, Bí; quân tử dĩ minh thứ chính, vô cảm chiết ngục.",
+    "translation": "Dưới núi có lửa — lửa soi sáng chân núi, đó là hình tượng quẻ Bí; người quân tử nhân đó mà làm sáng tỏ việc chính sự thông thường, nhưng không dám dùng vẻ ngoài để quyết đoán việc xét xử hình ngục.",
+    "english": "(The trigram representing) a mountain and that for fire under it form Pi. The superior man, in accordance with this, throws a brilliancy around his various processes of government, but does not dare (in a similar way) to decide cases of criminal litigation.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "賁 nghĩa là trang sức, tô điểm, làm cho rực rỡ đẹp đẽ. Quẻ này nói về giá trị và giới hạn của hình thức bên ngoài: lửa dưới chân núi soi sáng, làm đẹp cảnh vật, nhưng bản thân núi không đổi bản chất. Vẻ đẹp hình thức giúp việc thường ngày trôi chảy hơn (hanh thông, lợi nhỏ), nhưng không nên dùng nó để quyết định những việc hệ trọng như xét xử — nơi cần sự thật, không phải vẻ ngoài.",
+
+  "computer_science": "Bài học kinh điển về UI polish và core logic: giao diện đẹp, tài liệu trình bày hấp dẫn giúp trải nghiệm người dùng tốt hơn — lợi nhỏ, hanh thông — nhưng không được dùng vẻ ngoài đẹp để che giấu hoặc thay thế tính đúng đắn và an toàn của hệ thống khi ra những quyết định quan trọng như security hay data integrity.",
+
+  "life": "Vẻ ngoài chỉn chu, cách trình bày tốt giúp mọi việc thuận lợi hơn — nhưng đừng để hình thức đánh lừa khi cần đánh giá bản chất thật của một con người hay một quyết định quan trọng.",
+
+  "programming": "Đầu tư vào UI polish, design system, pitch deck là cần thiết và mang lại lợi ích thực — tăng conversion, trải nghiệm tốt hơn — nhưng không thể thay thế cho việc kiểm thử kỹ, đánh giá đúng chất lượng code khi ra quyết định kỹ thuật quan trọng như architecture review hay security audit.",
+
+  "characters": [
+    {
+      "hanzi": "賁",
+      "pinyin": "bì",
+      "hanviet": "bí",
+      "meaning": "Trang sức, tô điểm, văn vẻ, rực rỡ.",
+      "origin": "Chữ hội ý ghép từ 卉 (hủy, cỏ cây tươi tốt) phía trên và 貝 (bối, vỏ sò dùng làm tiền tệ, biểu thị vật quý) phía dưới — nghĩa gốc liên quan tới 'trang trí rực rỡ bằng vật quý', sau mang nghĩa 'văn vẻ, hoa mỹ, tô điểm'.",
+      "example": "賁飾 (bí sức) = trang trí, tô điểm.",
+      "cs": "UI polish / presentation layer",
+      "csExplain": "Lớp trình bày — UI, UX, branding — làm đẹp cho sản phẩm, tương tự việc 'tô điểm' bề ngoài không thay đổi lõi bên trong."
+    },
+    {
+      "hanzi": "庶",
+      "pinyin": "shù",
+      "hanviet": "thứ",
+      "meaning": "Đông đảo, số nhiều; việc thông thường, dân thường.",
+      "origin": "Chữ hội ý ghép từ 广 (nghiễm, mái nhà hoặc vách đá) và 火 (hỏa, lửa) bên dưới — nghĩa gốc là 'đốt lửa dưới mái nhà để nấu cho đông người', mở rộng thành 'đông đảo, số nhiều, việc thường ngày'.",
+      "example": "庶民 (thứ dân) = dân thường; 庶務 (thứ vụ) = việc vặt thường ngày.",
+      "cs": "Routine task / non-critical path",
+      "csExplain": "Các tác vụ thông thường, không trọng yếu — nơi có thể chấp nhận tối ưu hình thức mà không rủi ro lớn."
+    },
+    {
+      "hanzi": "折",
+      "pinyin": "zhé",
+      "hanviet": "chiết",
+      "meaning": "Bẻ gãy; phán quyết, xét xử dứt khoát.",
+      "origin": "Chữ hội ý ghép từ 手/扌 (thủ, bàn tay) và 斤 (cân, cái rìu) — hình ảnh dùng tay và rìu bẻ gãy vật gì đó, nghĩa gốc là 'bẻ gãy, chiết đoạn', mở rộng thành 'phán quyết, phân xử dứt khoát như bẻ gãy tranh chấp'.",
+      "example": "折斷 (chiết đoạn) = bẻ gãy; 折獄 (chiết ngục) = xét xử, phán quyết vụ án.",
+      "cs": "Critical decision / breaking change",
+      "csExplain": "Quyết định mang tính dứt khoát, khó đảo ngược — cần dựa trên bản chất thật (dữ liệu, test), không phải vẻ ngoài đẹp."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：賁其趾，舍車而徒。",
+      "hanviet": "Sơ Cửu: Bí kỳ chỉ, xả xa nhi đồ.",
+      "translation": "Tô điểm cho đôi chân của mình, bỏ xe mà đi bộ.",
+      "english": "The first NINE, undivided, shows one adorning (the way of) his feet. He can discard a carriage and walk on foot.",
+      "explain": "Ở vị trí thấp, biết giữ khí tiết, chọn con đường giản dị, tự lực thay vì phô trương — vẻ đẹp thực chất từ trong ra.",
+      "itExample": "Dev mới chọn tự tay viết từng dòng code để hiểu sâu hệ thống, thay vì dùng ngay công cụ auto-generate hào nhoáng nhưng hời hợt — nền tảng vững chắc hơn.",
+      "lifeExample": "Người trẻ chọn con đường tự lập, giản dị dù có điều kiện dựa dẫm — sự tự trọng và bản lĩnh đó chính là vẻ đẹp thật."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：賁其須。",
+      "hanviet": "Lục Nhị: Bí kỳ tu.",
+      "translation": "Tô điểm cho bộ râu của mình — làm đẹp phần phụ thuộc, đi theo phần chính.",
+      "english": "The second SIX, divided, shows one adorning his beard.",
+      "explain": "Râu mọc theo cằm, phụ thuộc vào phần khác — hào này nói về việc tô điểm phải gắn liền, đi theo đúng với thực chất, không tách rời.",
+      "itExample": "Đội thiết kế chỉ nên tinh chỉnh giao diện dựa theo đúng logic nghiệp vụ đã có sẵn, không tự ý thêm tính năng — giống râu mọc theo cằm chứ không tách biệt.",
+      "lifeExample": "Sự hỗ trợ hay tô điểm cho người khác cần bám sát và phù hợp với hoàn cảnh thực của họ, không áp đặt ý muốn riêng."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：賁如濡如，永貞吉。",
+      "hanviet": "Cửu Tam: Bí như nhu như, vĩnh trinh cát.",
+      "translation": "Vẻ tô điểm nhuần nhị, tươi nhuận; giữ chính đính lâu dài thì tốt.",
+      "english": "The third NINE, undivided, shows its subject with the appearance of being adorned and bedewed (with rich favours). But let him ever maintain his firm correctness, and there will be good fortune.",
+      "explain": "Đang ở giai đoạn rực rỡ, được nhiều ưu ái — nhưng phải giữ vững nguyên tắc lâu dài mới bền, không để vẻ hào nhoáng nhất thời làm lung lay gốc rễ.",
+      "itExample": "Sản phẩm đang được khen ngợi, truyền thông tốt — nhưng team cần giữ vững chất lượng cốt lõi lâu dài, không ngủ quên trên vinh quang.",
+      "lifeExample": "Đang ở giai đoạn được yêu mến, thành công rực rỡ — càng cần giữ vững phẩm chất và nguyên tắc sống để duy trì lâu dài."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：賁如皤如，白馬翰如，匪寇婚媾。",
+      "hanviet": "Lục Tứ: Bí như bà như, bạch mã hàn như, phỉ khấu hôn cấu.",
+      "translation": "Vẻ tô điểm mà lại trắng giản dị, cưỡi ngựa trắng phi như bay tới; không phải giặc cướp mà là đến để cầu hôn.",
+      "english": "The fourth SIX, divided, shows one looking as if adorned, but only in white. As if (mounted on) a white horse, and furnished with wings, (he seeks union with the subject of the first line), while (the intervening third pursues), not as a robber, but intent on a matrimonial alliance.",
+      "explain": "Bên ngoài trông đáng ngờ như giặc cướp phi ngựa đến, nhưng thực chất là thiện ý — đừng vội đánh giá qua vẻ ngoài gây hiểu lầm.",
+      "itExample": "Một breaking change lớn ban đầu gây hoang mang trong team, tưởng là rủi ro phá hoại, nhưng thực chất là bước cần thiết để hệ thống tốt hơn về sau.",
+      "lifeExample": "Một người hay sự việc ban đầu trông đáng nghi ngờ hoặc gây xáo trộn, nhưng thực chất lại mang thiện ý — cần tìm hiểu kỹ trước khi kết luận."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：賁於丘園，束帛戔戔，吝，終吉。",
+      "hanviet": "Lục Ngũ: Bí ư khâu viên, thúc bạch tiên tiên, lận, chung cát.",
+      "translation": "Tô điểm nơi vườn đồi giản dị, chỉ dùng bó lụa mỏng nhỏ làm lễ vật; có vẻ đáng tiếc, keo kiệt, nhưng cuối cùng tốt lành.",
+      "english": "The fifth SIX, divided, shows its subject adorned by (the occupants of) the heights and gardens. He bears his roll of silk, small and slight. He may appear stingy; but there will be good fortune in the end.",
+      "explain": "Chọn sự giản dị, tiết kiệm thay vì phô trương xa hoa — ban đầu có vẻ hơi kém sang nhưng về lâu dài đó là lựa chọn khôn ngoan.",
+      "itExample": "Startup chọn dùng công cụ và hạ tầng đơn giản, tiết kiệm chi phí thay vì mua giải pháp đắt tiền hào nhoáng — ban đầu trông kém sang nhưng bền vững và hiệu quả hơn về sau.",
+      "lifeExample": "Sống giản dị, chi tiêu tiết kiệm dù đôi khi bị chê là keo kiệt — nhưng về lâu dài mang lại sự ổn định và an toàn tài chính."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：白賁，无咎。",
+      "hanviet": "Thượng Cửu: Bạch bí, vô cữu.",
+      "translation": "Trang sức bằng màu trắng thuần khiết — trở về sự giản dị tột cùng, không tô vẽ, không có lỗi.",
+      "english": "The sixth NINE, undivided, shows one with white as his (only) ornament. There will be no error.",
+      "explain": "Đỉnh cao của sự trang sức là quay về với sự mộc mạc, không tô vẽ gì thêm — vẻ đẹp chân thực nhất là sự giản dị tự nhiên.",
+      "itExample": "Kiến trúc hệ thống trưởng thành nhất thường là kiến trúc đơn giản nhất — bỏ hết những trang trí và abstraction thừa, chỉ giữ lại những gì thực sự cần thiết.",
+      "lifeExample": "Đến một độ tuổi hay trải nghiệm nhất định, người ta nhận ra vẻ đẹp thật sự nằm ở sự giản dị, chân thực, không cần phô trương gì thêm."
+    }
+  ],
+
+  "keywords": ["Bí", "賁", "trang sức", "hình thức và bản chất", "vẻ đẹp giản dị", "núi và lửa", "văn vẻ"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/101001.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Bí, đối chiếu từng hào." },
+    { "source": "維基文庫 Wikisource — 周易/賁", "url": "https://zh.wikisource.org/zh-hant/周易/賁", "note": "Nguồn nguyên văn chữ Hán (卦辭, 爻辭, 象曰), đối chiếu nội dung khớp với bản dịch Legge." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/bi", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn; trang chặn truy cập tự động (CAPTCHA) khi thử đối chiếu trực tiếp cho quẻ này." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/22", "label": "64 Quẻ — Quẻ 22: Sơn Hỏa Bí" }
+  ]
+}

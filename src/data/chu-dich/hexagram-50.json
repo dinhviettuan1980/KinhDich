@@ -1,0 +1,148 @@
+{
+  "id": 50,
+  "hanzi": "鼎",
+  "pinyin": "Dǐng",
+  "hanviet": "Đỉnh",
+  "english": "The Cauldron",
+  "upperTrigram": "li",
+  "lowerTrigram": "xun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "鼎：元吉，亨。",
+    "hanviet": "Đỉnh: Nguyên cát, hanh.",
+    "translation": "Đỉnh (cái vạc): rất tốt lành, hanh thông.",
+    "english": "The Sacrificial Vessel means great progress and success."
+  },
+
+  "daTuong": {
+    "hanzi": "木上有火，鼎；君子以正位凝命。",
+    "hanviet": "Mộc thượng hữu hỏa, Đỉnh; quân tử dĩ chính vị ngưng mệnh.",
+    "translation": "Trên gỗ có lửa (gỗ làm chất đốt nấu trong vạc) — đó là hình tượng quẻ Đỉnh. Người quân tử noi theo đó mà giữ vị trí của mình cho ngay chính, làm cho sứ mệnh/trách nhiệm được củng cố vững bền.",
+    "english": "Wood under a fire — the image of a Sacrificial Vessel. The superior man maintains his correctness in every situation to secure the appointment of heaven.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Đỉnh là cái vạc ba chân hai tai dùng để nấu và tế lễ thời cổ — biểu tượng cho quá trình chuyển hoá nguyên liệu thô thành thứ có giá trị dùng được, và xa hơn là biểu tượng quyền lực/trật tự nhà nước (Cửu Đỉnh). Quẻ này đứng ngay sau quẻ Cách (革, hexagram 49 — 'cách mạng, lột xác') trong trình tự 64 quẻ: sau khi phá bỏ cái cũ, Đỉnh là giai đoạn dựng lại một trật tự mới ổn định và đáng tin cậy. Sáu hào kể đúng vòng đời vật lý của một cái vạc: lật úp đổ cặn bã cũ (Sơ Lục) → có thức ăn đầy bên trong (Cửu Nhị) → tai vạc trục trặc, tạm thời bế tắc rồi cũng qua (Cửu Tam) → chân gãy làm đổ hết, thất bại nặng (Cửu Tứ) → tai vàng quai kim loại, vững chắc (Lục Ngũ) → quai ngọc, hoàn thiện tối đa (Thượng Cửu).",
+
+  "computer_science": "鼎 giống hệt một build/ETL pipeline: nguyên liệu thô (mã nguồn, dữ liệu thô) được đưa vào, qua quá trình biến đổi (compile/transform) để ra một artifact ổn định, đáng tin cậy (binary, dataset sạch, service production). Việc quẻ này đứng ngay sau Cách (49, 'refactor/revolution lớn') rất hợp lý về mặt hệ thống: sau khi phá vỡ kiến trúc cũ, bước tiếp theo bắt buộc là dựng lại một pipeline/hệ thống mới vững chắc, không phải tiếp tục phá.",
+
+  "life": "Đỉnh dạy rằng giá trị thật sự được 'nấu chín' qua thời gian và một quá trình chuyển hoá có trật tự, không đến ngay tức khắc. Đổ bỏ cái cũ hư hỏng (Sơ Lục) tưởng như mất mát nhưng lại là điều kiện tiên quyết để có chỗ chứa cho cái mới tốt hơn.",
+
+  "programming": "Vòng đời một pipeline CI/CD: dọn cache và artifact lỗi trước khi build mới (Sơ Lục — trông như phá huỷ nhưng cần thiết), payload được nạp và sẵn sàng xử lý (Cửu Nhị), một sự cố tích hợp tạm thời chặn luồng dữ liệu tốt nhưng rồi cũng được giải quyết (Cửu Tam), nhận tải vượt quá capacity dẫn đến sập toàn bộ — bài học về capacity planning (Cửu Tứ), cấu hình production ổn định đáng tin cậy (Lục Ngũ), và bản release được polish tới mức trở thành chuẩn tham chiếu cho hệ thống khác (Thượng Cửu).",
+
+  "characters": [
+    {
+      "hanzi": "鼎",
+      "pinyin": "dǐng",
+      "hanviet": "đỉnh",
+      "meaning": "Cái vạc (nồi lớn ba chân hai tai bằng đồng), dùng để nấu và tế lễ; mở rộng thành biểu tượng quyền lực nhà nước.",
+      "origin": "Chữ tượng hình nguyên thuỷ vẽ trực tiếp hình cái vạc: hai tai ở trên, thân bụng ở giữa, ba chân ở dưới — một trong số ít chữ Hán giữ được hình dáng vật thể gần như nguyên vẹn qua các đời chữ viết.",
+      "example": "鼎盛 (đỉnh thịnh) = đang ở thời cực thịnh; 一言九鼎 (nhất ngôn cửu đỉnh) = một lời nói nặng tựa chín đỉnh (rất có trọng lượng).",
+      "cs": "Build Artifact",
+      "csExplain": "Kết quả cuối cùng, ổn định của một quá trình transform — như 1 binary/service đã build xong, sẵn sàng đưa vào production."
+    },
+    {
+      "hanzi": "亨",
+      "pinyin": "hēng",
+      "hanviet": "hanh",
+      "meaning": "Hanh thông, thông suốt, trôi chảy.",
+      "origin": "Cùng gốc với 享 (hưởng) — vốn là chữ tượng hình miếu thờ/lễ vật dâng cúng, nghĩa gốc 'dâng tế được ứng nghiệm', về sau mượn nghĩa 'thông suốt, hanh thông'.",
+      "example": "亨通 (hanh thông) = mọi việc suôn sẻ.",
+      "cs": "Pipeline Success",
+      "csExplain": "Trạng thái pipeline chạy hết các bước transform mà không bị lỗi — output cuối cùng đến tay người dùng trót lọt."
+    },
+    {
+      "hanzi": "吉",
+      "pinyin": "jí",
+      "hanviet": "cát",
+      "meaning": "Tốt lành, may mắn, thuận lợi.",
+      "origin": "Giáp cốt văn có 2 cách giải: (1) theo Thuyết Văn, ghép từ 士 (sĩ, kẻ sĩ) + 口 (khẩu, miệng) — lời nói của người hiền là điều tốt lành; (2) một số học giả hiện đại cho là hình vẽ một lưỡi vũ khí đặt yên trong bao/hộp — ý 'an toàn, không có biến cố' nên tốt lành. Cách giải thích còn chưa thống nhất.",
+      "example": "吉利 (cát lợi) = tốt lành thuận lợi; 大吉 (đại cát) = rất tốt.",
+      "cs": "Build Passed",
+      "csExplain": "Tương đương trạng thái CI 'all checks passed' — kết quả kiểm tra không có lỗi, an toàn để tiếp tục."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：鼎顛趾，利出否，得妾以其子，无咎。",
+      "hanviet": "Sơ Lục: Đỉnh điên chỉ, lợi xuất bĩ, đắc thiếp dĩ kỳ tử, vô cữu.",
+      "translation": "Vạc bị lật úp, chân chổng lên trời; nhưng nhờ vậy mà đổ hết được chất cặn bã tồn đọng ra ngoài — có lợi. Cũng như việc lấy thiếp mà nhờ có con nên được coi trọng hơn — không có lỗi.",
+      "english": "The first line, magnetic, shows the cauldron overthrown and its feet turned up. But there will be advantage in getting rid of what was bad in it.",
+      "explain": "Hào thấp nhất, vạc còn trống rỗng — lật úp để đổ hết cặn bã cũ là hành động cần thiết trước khi dùng vào việc mới, dù nhìn bề ngoài có vẻ như hỗn loạn hay phá huỷ.",
+      "itExample": "Xoá sạch cache và artifact lỗi, wipe database staging trước khi chạy migration mới — trông như phá huỷ nhưng là bước dọn dẹp bắt buộc để dữ liệu rác không lẫn vào hệ thống mới.",
+      "lifeExample": "Dọn dẹp triệt để một thói quen xấu hay một mối quan hệ độc hại trước khi bắt đầu giai đoạn mới — trông có vẻ mất mát nhưng thực chất là dọn chỗ cho điều tốt hơn."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：鼎有實，我仇有疾，不我能即，吉。",
+      "hanviet": "Cửu Nhị: Đỉnh hữu thực, ngã cừu hữu tật, bất ngã năng tức, cát.",
+      "translation": "Vạc đã có đồ ăn đầy bên trong; kẻ ghen ghét với ta tuy khó chịu nhưng không thể đến gần hại ta được — tốt lành.",
+      "english": "The second line, dynamic, shows the cauldron with the things to be cooked in it. If he can say, 'My enemy dislikes me, but he cannot approach me,' there will be good fortune.",
+      "explain": "Vạc đã đầy — năng lực và tài nguyên đã đủ vững. Khi thực lực đã chắc chắn, những lời ghen ghét từ bên ngoài không còn ảnh hưởng được.",
+      "itExample": "Service đã có dữ liệu và logic vận hành đầy đủ, ổn định; đối thủ cạnh tranh hay lời chê bai không thể can thiệp được vào vì kiến trúc đã đủ vững chắc.",
+      "lifeExample": "Khi năng lực bản thân đã 'đầy' — đủ kỹ năng, kinh nghiệm — những lời gièm pha của người ghen ghét không còn làm lung lay được bạn."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：鼎耳革，其行塞，雉膏不食，方雨虧悔，終吉。",
+      "hanviet": "Cửu Tam: Đỉnh nhĩ cách, kỳ hành tắc, trĩ cao bất thực, phương vũ khuy hối, chung cát.",
+      "translation": "Tai vạc bị biến đổi, lung lay khiến không nhấc lên được, đường đi bị nghẽn tắc; món thịt chim trĩ béo ngon sẵn đó mà không ăn được. Nhưng khi mưa xuống thì sự hối tiếc sẽ tiêu tan — cuối cùng tốt lành.",
+      "english": "The third line, dynamic, shows the cauldron with the places of its ears changed. The progress of its subject is thus stopped, and the good meat which it contains is thus not eaten... But the genial rain will come, and the grounds for repentance will disappear. There will be good fortune in the end.",
+      "explain": "Giai đoạn giữa gặp trục trặc kỹ thuật (tai vạc lung lay khiến không nhấc lên được) khiến tạm thời bế tắc dù bên trong đã có sẵn giá trị tốt — nhưng đây chỉ là vấn đề nhất thời, sẽ được giải quyết.",
+      "itExample": "Một sự cố tích hợp (integration bug) khiến pipeline tạm thời không xuất được kết quả dù dữ liệu tốt đã sẵn sàng — nhưng bản hotfix ('mưa xuống') sẽ sớm giải quyết, kết quả cuối cùng vẫn tốt.",
+      "lifeExample": "Một dự án tốt bị tắc nghẽn bởi vấn đề thủ tục hay giao tiếp tạm thời — đừng bỏ cuộc, giải pháp thường đến đúng lúc nếu kiên nhẫn chờ."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：鼎折足，覆公餗，其形渥，凶。",
+      "hanviet": "Cửu Tứ: Đỉnh chiết túc, phúc công tốc, kỳ hình ác, hung.",
+      "translation": "Chân vạc bị gãy, làm đổ hết thức ăn ngon dành cho bậc công hầu, hình dạng vấy bẩn ướt át — xấu.",
+      "english": "The fourth line, dynamic, shows the sacrificial vessel with its feet broken, and its contents, designed for the ruler's use, overturned and spilled, while the figure of the actor appears in a position of shame. There will be evil.",
+      "explain": "Cảnh báo nghiêm trọng nhất của quẻ: gánh vác trách nhiệm vượt quá năng lực hay tài nguyên thực có khiến sụp đổ hoàn toàn, làm hỏng cả thành quả lẽ ra thuộc về người khác.",
+      "itExample": "Một service nhận traffic vượt xa capacity đã kiểm thử, dẫn đến crash toàn bộ và mất dữ liệu quan trọng — hậu quả của việc thiếu capacity planning.",
+      "lifeExample": "Nhận trách nhiệm lớn hơn năng lực thực tế của mình (ôm đồm quá nhiều việc) dẫn đến thất bại, ảnh hưởng tới cả những người đang trông cậy vào mình."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：鼎黃耳金鉉，利貞。",
+      "hanviet": "Lục Ngũ: Đỉnh hoàng nhĩ kim huyễn, lợi trinh.",
+      "translation": "Vạc có tai màu vàng, có đòn khiêng bằng kim loại xỏ qua để nhấc lên — thuận lợi, nên giữ vững sự chính đính.",
+      "english": "The fifth line, magnetic, shows the cauldron with yellow ears and rings of metal in them. There will be advantage in being firm and correct.",
+      "explain": "Cấu trúc đã trở nên vững chắc, đáng tin cậy — vị trí trung tâm, mềm mỏng nhưng ổn định. Đây là trạng thái đáng mong đợi của một hệ thống hay một người lãnh đạo.",
+      "itExample": "Hệ thống đã có cấu hình production ổn định, dùng đúng loại kết nối đáng tin cậy (metal handle) — sẵn sàng cho vận hành lâu dài mà không lo gãy đổ.",
+      "lifeExample": "Một vị trí lãnh đạo mềm dẻo nhưng vững vàng, biết lắng nghe (tai vàng) và giữ đúng nguyên tắc — tạo được sự tin cậy bền vững từ mọi người."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：鼎玉鉉，大吉，无不利。",
+      "hanviet": "Thượng Cửu: Đỉnh ngọc huyễn, đại cát, vô bất lợi.",
+      "translation": "Vạc có đòn khiêng bằng ngọc — rất tốt lành, không có gì là không thuận lợi.",
+      "english": "The sixth line, dynamic, shows the cauldron with rings of jade. There will be great good fortune, and all action taken will be in every way advantageous.",
+      "explain": "Đỉnh cao nhất của quẻ — vạc có quai bằng ngọc, biểu tượng của sự hoàn thiện tối đa. Đây là hào tốt nhất trong quẻ, đạt mức 'đại cát, vô bất lợi'.",
+      "itExample": "Phiên bản production được đánh bóng ở mức cao nhất: performance tối ưu, documentation đầy đủ, kiến trúc gọn gàng — trở thành reference implementation cho các hệ thống khác noi theo.",
+      "lifeExample": "Đạt tới trạng thái trưởng thành và tinh tế nhất trong công việc hay sự nghiệp — không chỉ hoàn thành mục tiêu mà còn trở thành hình mẫu cho người khác học hỏi."
+    }
+  ],
+
+  "keywords": ["Đỉnh", "鼎", "vạc", "chuyển hoá", "nấu chín", "sau cách mạng", "trật tự mới", "Cửu Đỉnh"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/ding", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán từng hào; đọc lại nguyên văn Legge qua trang tổng hợp James DeKorne, The Gnostic Book of Changes." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 50", "url": "https://www.jamesdekorne.com/GBCh/hex50.htm", "note": "Trang tổng hợp trích dẫn đầy đủ bản dịch Legge cho Thoán từ, Đại Tượng và 6 hào." },
+    { "source": "維基文庫 Wikisource — 周易/鼎", "url": "https://zh.wikisource.org/zh-hant/周易/鼎", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/50", "label": "64 Quẻ — Quẻ 50: Hỏa Phong Đỉnh" }
+  ]
+}

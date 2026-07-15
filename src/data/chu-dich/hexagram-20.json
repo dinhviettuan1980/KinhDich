@@ -1,0 +1,148 @@
+{
+  "id": 20,
+  "hanzi": "觀",
+  "pinyin": "Guān",
+  "hanviet": "Quan",
+  "english": "Contemplation",
+  "upperTrigram": "xun",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "觀：盥而不薦，有孚顒若。",
+    "hanviet": "Quan: Quán nhi bất tiến, hữu phu ngung nhược.",
+    "translation": "Quan (Quan sát): như người tế lễ đã rửa tay sạch sẽ nhưng chưa dâng lễ vật — với lòng thành tín và dáng vẻ trang nghiêm khiến người khác kính ngưỡng.",
+    "english": "Kwan shows (how he whom it represents should be like) the worshipper who has washed his hands, but not (yet) presented his offerings;—with sincerity and an appearance of dignity (commanding reverent regard)."
+  },
+
+  "daTuong": {
+    "hanzi": "風行地上，觀；先王以省方，觀民設教。",
+    "hanviet": "Phong hành địa thượng, Quan; tiên vương dĩ tỉnh phương, quan dân thiết giáo.",
+    "translation": "Gió thổi trên mặt đất, lan tỏa khắp nơi — đó là hình tượng quẻ Quan; các bậc vua xưa nhân đó mà đi tuần khắp các vùng, xem xét dân tình để đặt ra việc giáo hóa phù hợp.",
+    "english": "(The trigram representing) the earth, and that for wind moving above it, form Kwan. The ancient kings, in accordance with this, examined the (different) regions (of the kingdom), to see the (ways of the) people, and set forth their instructions.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Quan nói về việc quan sát và được quan sát: hai hào Dương ở trên cao là tấm gương cho bốn hào Âm bên dưới nhìn vào noi theo, giống gió thổi khắp mặt đất mà ai cũng cảm nhận được. Hình ảnh 'rửa tay xong nhưng chưa dâng lễ' gợi về thời khắc trang nghiêm, tập trung cao độ trước khi hành động, khiến người xem tin tưởng dù chưa thấy kết quả cuối cùng.",
+
+  "computer_science": "觀 giống hệ thống observability: các thành phần ở tầng trên (dashboard, leadership, API công khai) là nguồn tín hiệu để cả hệ thống bên dưới 'quan sát' và điều chỉnh hành vi theo — làm gương tốt tự nhiên lan tỏa như gió, không cần ép buộc bằng lệnh cứng.",
+
+  "life": "Người ở vị trí cao — cha mẹ, lãnh đạo, người có ảnh hưởng — tự nhiên trở thành hình mẫu để người khác quan sát và học theo. Không cần nói nhiều, hành vi và thái độ nghiêm túc, chân thành sẽ tự lan tỏa ảnh hưởng như gió thổi trên mặt đất.",
+
+  "programming": "Văn hóa kỹ thuật tốt của một team thường lan tỏa từ hành vi của senior hay leadership — code review nghiêm túc, viết test đầy đủ. Junior 'quan sát' và học theo tự nhiên, giống gió thổi khắp bề mặt đất mà không cần ép buộc bằng quy định cứng.",
+
+  "characters": [
+    {
+      "hanzi": "觀",
+      "pinyin": "guān",
+      "hanviet": "quan",
+      "meaning": "Quan sát, nhìn kỹ, xem xét; cũng có nghĩa là biểu lộ, làm gương.",
+      "origin": "Chữ hình thanh ghép từ 見 (kiến, nhìn thấy) và 雚 (quán, phần biểu âm — nguyên là hình một loài chim mắt to, như cò/vạc) — nghĩa gốc liên quan tới 'nhìn kỹ, quan sát tỉ mỉ như chim mắt tinh nhìn xa'.",
+      "example": "觀察 (quan sát); 觀點 (quan điểm).",
+      "cs": "Observability",
+      "csExplain": "Khả năng quan sát trạng thái bên trong hệ thống từ bên ngoài qua logs, metrics, traces — đúng nghĩa đen 'nhìn kỹ' như tên chữ."
+    },
+    {
+      "hanzi": "盥",
+      "pinyin": "guàn",
+      "hanviet": "quán",
+      "meaning": "Rửa tay, nghi thức thanh tẩy trước khi hành lễ.",
+      "origin": "Chữ tượng hình cổ mô tả hai bàn tay đặt trên một cái chậu nước (皿, mãnh — vật đựng) — nghĩa gốc là 'rửa tay bằng nước trong chậu', một nghi thức thanh tẩy trước khi tế lễ.",
+      "example": "盥洗 (quán tẩy) = rửa ráy, vệ sinh trước khi làm việc quan trọng.",
+      "cs": "Sanitize / Pre-condition check",
+      "csExplain": "Bước 'làm sạch' đầu vào hoặc kiểm tra điều kiện trước khi thực hiện một thao tác quan trọng — validation trước khi commit."
+    },
+    {
+      "hanzi": "孚",
+      "pinyin": "fú",
+      "hanviet": "phu",
+      "meaning": "Lòng tin, sự thành tín, đáng tin cậy.",
+      "origin": "Chữ hội ý ghép từ 爪 (trảo, móng vuốt/bàn tay) phía trên và 子 (tử, đứa trẻ hoặc quả trứng) phía dưới — nghĩa gốc là 'chim mẹ dùng chân ấp giữ trứng cho nở', mở rộng thành 'lòng tin chắc chắn, sự thành tín kiên trì'.",
+      "example": "孚信 (phu tín); 深孚眾望 (thâm phu chúng vọng) = rất được tín nhiệm.",
+      "cs": "Trust / reliability guarantee",
+      "csExplain": "Niềm tin của người dùng vào hệ thống được xây dựng qua cam kết nhất quán theo thời gian, giống sự kiên trì 'ấp trứng' tạo niềm tin."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：童觀，小人无咎，君子吝。",
+      "hanviet": "Sơ Lục: Đồng quan, tiểu nhân vô cữu, quân tử lận.",
+      "translation": "Nhìn nhận nông cạn như trẻ con; với kẻ tầm thường thì không lỗi, nhưng với người quân tử thì đáng tiếc.",
+      "english": "The first SIX, divided, shows the looking of a lad;—not blamable in men of inferior rank, but matter for regret in superior men.",
+      "explain": "Vị trí thấp nhất, tầm nhìn còn hạn hẹp, nông cạn — chấp nhận được ở người mới bắt đầu nhưng người có trách nhiệm cao hơn cần nhìn xa hơn.",
+      "itExample": "Junior dev chỉ nhìn vào một dòng code lỗi mà không hiểu bối cảnh hệ thống — bình thường với người mới, nhưng senior mà vẫn nhìn nông cạn như vậy thì đáng lo.",
+      "lifeExample": "Người trẻ nhìn sự việc hời hợt là điều dễ hiểu, nhưng người đã trưởng thành, có trách nhiệm mà vẫn suy nghĩ nông cạn thì cần xem lại."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：闚觀，利女貞。",
+      "hanviet": "Lục Nhị: Khuy quan, lợi nữ trinh.",
+      "translation": "Nhìn trộm qua khe cửa, tầm nhìn hạn hẹp và kín đáo; chỉ thích hợp như sự đoan chính của phận nữ nhi.",
+      "english": "The second SIX, divided, shows one peeping out from a door. It would be advantageous if it were (merely) the firm correctness of a female.",
+      "explain": "Quan sát từ góc nhìn hẹp, kín đáo — phù hợp với vai trò thụ động, dè dặt nhưng không đủ nếu cần tầm nhìn chiến lược rộng.",
+      "itExample": "Nhân viên chỉ nắm thông tin qua một kênh nội bộ hẹp, không chủ động tìm hiểu toàn cảnh dự án — tạm ổn ở vai trò hỗ trợ nhưng không đủ cho vai trò ra quyết định.",
+      "lifeExample": "Chỉ nhìn nhận vấn đề qua góc nhìn hạn hẹp của riêng mình mà không tìm hiểu toàn cảnh — dễ gây hiểu lầm hoặc quyết định thiếu sáng suốt."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：觀我生，進退。",
+      "hanviet": "Lục Tam: Quan ngã sinh, tiến thoái.",
+      "translation": "Tự quan sát đời sống và hành vi của chính mình, để quyết định nên tiến hay nên lùi.",
+      "english": "The third SIX, divided, shows one looking at (the course of) his own life, to advance or recede (accordingly).",
+      "explain": "Biết tự nhìn lại chính mình để đưa ra quyết định tiến hay lùi đúng lúc, không mù quáng lao theo hoàn cảnh.",
+      "itExample": "Trước khi quyết định nhận thêm dự án lớn, tự đánh giá lại năng lực và khối lượng công việc hiện tại của mình để quyết định nhận hay từ chối.",
+      "lifeExample": "Định kỳ nhìn lại chính bản thân, sự nghiệp, sức khỏe để quyết định nên tiến tới hay tạm lùi lại — đó là sự tự nhận thức cần thiết."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：觀國之光，利用賓于王。",
+      "hanviet": "Lục Tứ: Quan quốc chi quang, lợi dụng tân vu vương.",
+      "translation": "Quan sát ánh sáng và sự thịnh vượng của đất nước, thuận lợi khi làm khách của vua — được trọng dụng, làm cố vấn.",
+      "english": "The fourth SIX, divided, shows one contemplating the glory of the kingdom. It will be advantageous for him, being such as he is, (to seek) to be a guest of the king.",
+      "explain": "Ở vị trí gần trung tâm quyền lực, có cơ hội quan sát và tham gia vào những việc lớn, được trọng dụng như một cố vấn thân cận.",
+      "itExample": "Kỹ sư giỏi được mời tham gia ban cố vấn kỹ thuật cấp cao của công ty, có cơ hội quan sát và góp ý cho chiến lược lớn.",
+      "lifeExample": "Được mời tham gia vào những sự kiện hay quyết định quan trọng của tổ chức nhờ tầm nhìn và uy tín đã gây dựng — đây là cơ hội tốt để đóng góp."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：觀我生，君子无咎。",
+      "hanviet": "Cửu Ngũ: Quan ngã sinh, quân tử vô cữu.",
+      "translation": "Tự quan sát đời sống và việc làm của bản thân ở cương vị lãnh đạo; nếu là người quân tử thì không có lỗi.",
+      "english": "The fifth NINE, undivided, shows its subject contemplating his own life(-course). A superior man, he will (thus) fall into no error.",
+      "explain": "Ở vị trí lãnh đạo cao nhất, càng cần soi xét lại chính hành vi và ảnh hưởng của mình lên người khác, vì cả hệ thống đang 'quan sát' mình.",
+      "itExample": "CEO hay tech lead thường xuyên tự đánh giá quyết định và hành vi lãnh đạo của mình, vì cả đội ngũ đang nhìn vào đó làm chuẩn mực — giữ được uy tín.",
+      "lifeExample": "Người đứng đầu gia đình hay tổ chức càng cần gương mẫu, tự xét lại hành vi bản thân vì người khác luôn noi theo."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：觀其生，君子无咎。",
+      "hanviet": "Thượng Cửu: Quan kỳ sinh, quân tử vô cữu.",
+      "translation": "Quan sát ảnh hưởng của mình đối với đời sống người khác; nếu giữ được đạo quân tử thì không có lỗi.",
+      "english": "The sixth NINE, undivided, shows its subject contemplating his character to see if it be indeed that of a superior man. He will not fall into error.",
+      "explain": "Hào cuối, đã ra ngoài vị trí quyền lực trực tiếp nhưng vẫn là hình mẫu được người đời soi vào — cần giữ phẩm cách đến cùng.",
+      "itExample": "Người sáng lập đã rời công ty nhưng văn hóa và di sản họ để lại vẫn được cả tổ chức noi theo — cần đảm bảo di sản đó vẫn đúng đắn.",
+      "lifeExample": "Người đã nghỉ hưu hay không còn ở vị trí lãnh đạo trực tiếp vẫn là tấm gương cho hậu bối — cần giữ gìn phẩm giá đến cuối đời."
+    }
+  ],
+
+  "keywords": ["Quan", "觀", "quan sát", "làm gương", "tự xét mình", "trang nghiêm", "gió trên đất"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/000011.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Quan, đối chiếu từng hào." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/guan", "note": "Nguồn học thuật công khai; truy cập qua proxy do trang chặn truy cập tự động, đối chiếu nguyên văn chữ Hán khớp với Wikisource." },
+    { "source": "維基文庫 Wikisource — 周易/觀", "url": "https://zh.wikisource.org/zh-hant/周易/觀", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/20", "label": "64 Quẻ — Quẻ 20: Phong Địa Quan" }
+  ]
+}

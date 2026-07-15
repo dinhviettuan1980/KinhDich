@@ -1,0 +1,148 @@
+{
+  "id": 55,
+  "hanzi": "豐",
+  "pinyin": "Fēng",
+  "hanviet": "Phong",
+  "english": "Abundance (Fullness)",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "li",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "豐：亨。王假之，勿憂，宜日中。",
+    "hanviet": "Phong: Hanh. Vương giả chi, vật ưu, nghi nhật trung.",
+    "translation": "Phong (phong phú, sung mãn): hanh thông. Vua đạt tới nó, đừng lo lắng, thích hợp khi nhật trung (khi mặt trời ở giữa trời — lúc sáng sủa rõ ràng nhất).",
+    "english": "Expansion of Awareness means progress and development. When the king is enlightened there is no need to fear a change. Let him be as the sun at noon."
+  },
+
+  "daTuong": {
+    "hanzi": "雷電皆至，豐；君子以折獄致刑。",
+    "hanviet": "Lôi điện giai chí, Phong; quân tử dĩ chiết ngục trí hình.",
+    "translation": "Sấm và điện cùng tới — đó là hình tượng quẻ Phong. Người quân tử noi theo đó mà xử lý các vụ kiện xét xử rõ ràng, thi hành hình phạt một cách chính xác.",
+    "english": "The superior man, in accordance with this, decides cases of litigation, and apportions punishments with exactness.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Phong là quẻ của sự phong phú, sung mãn, đầy đủ — giai đoạn cao nhất của một chu kỳ tăng trưởng. Nhưng cảnh báo quan trọng: phong phú có thể che khuất các vấn đề tiềm ẩn. 'Sấm điện cùng tới' (Zhen-Li, Chấn-Ly: vừa có chuyển động vừa có sáng sủa rõ ràng) tượng trưng cho một thời kỳ mà bề ngoài sang trọng nhưng cần phải xét xử/phân tích kỹ lưỡng bên trong để phát hiện những khiếm khuyết. Sáu hào kể trọn vẹn: từ gặp gỡ bạn đồng chí (Sơ Cửu), qua sự che phủ nhưng vẫn lộ ra ánh sáng (Lục Nhị), tới sự chia cắt ngang giữa (Cửu Tam), sự bế tắc tạm thời ở vị trí cao (Cửu Tứ), thừa nhận sự thay đổi tích cực (Lục Ngũ), đến khi nhà ngập nước, chỉ còn lủi thủi ẩn náu (Thượng Lục) — bài học: phong phú không kéo dài mãi, cần sẵn sàng cho chu kỳ suy giảm.",
+
+  "computer_science": "Phong là thời kỳ 'hockey stick growth' sau IPO hay Series C funding: tất cả metric đều lên, ARR tăng nhanh chóng, engineer morale cao — nhưng lặng lẽ bên dưới là technical debt tích tụ (những lỗi được cover bởi success). 'Sấm điện cùng tới' là sự cảnh báo: lúc kinh doanh đang boom, đồng thời cần phải xét xử nội bộ (xử dọn dẹp tech debt, refactor, rewrite component lỗi) một cách chính xác — không thì khi tính tiền lại, sẽ thấy đó là 'nhà ngập nước'.",
+
+  "life": "Bài học của Phong: thời kỳ phong phú là lúc dễ bị mỏng manh, tử huyệt lộ ra — đừng để thành công che mắt mình. Phải vừa tận hưởng vừa tỉnh thức, vừa mở rộng vừa kiểm soát. Nếu cứ vui mừng ngây thơ khi đang ở đỉnh, sẽ bất ngờ khi bắt đầu rơi.",
+
+  "programming": "Khoảng thời gian từ Series B tới IPO của một startup tech: tuyển dụng nhanh chóng, feature release liên tiếp, user growth exponential — nhưng các hệ thống quản lý, CI/CD, logging vẫn nguyên như ngày đầu. Lúc này, 'xử lý liều' (折獄致刑) là đạo quân rút ra technical roadmap cứng rắn, phân công rõ ràng: 30% engineer focus vào tech debt, 70% focus vào feature — không phải cứ feature, feature mà bỏ qua infrastructure.",
+
+  "characters": [
+    {
+      "hanzi": "豐",
+      "pinyin": "fēng",
+      "hanviet": "phong",
+      "meaning": "Sung mãn, phong phú, phong độ, to lớn.",
+      "origin": "Chữ hình thanh-hội ý: bộ 豆 (đậu, tên chỉ một dụng cụ tế lễ, vật chứa to) + 風 (phong/風, gió/vật thổi bay mà làm mở rộng). Hoặc giải khác: 豆 + 豊 (phì, mập mạp). Vốn biểu thị 'dụng cụ chứa đầy dạo' hoặc 'mập mạp/phồng to'.",
+      "example": "豐收 (phong thu) = mùa tốt; 豐富 (phong phú) = phong phú.",
+      "cs": "Peak Performance",
+      "csExplain": "Thời kỳ hệ thống hoạt động ở hiệu suất cao nhất — nhưng cũng lúc cần phải cẩn thận nhất vì một sai sót nhỏ có thể lật tẩy vấn đề ẩn."
+    },
+    {
+      "hanzi": "折",
+      "pinyin": "zhé",
+      "hanviet": "chiết",
+      "meaning": "Gập, cắt, xử lý, phán quyết.",
+      "origin": "Chữ hình thanh: bộ 手 (tay) + 斤 (cầu/rìu, công cụ cắt). Vốn biểu thị 'dùng rìu cắt', về sau mở rộng thành 'gập', 'xử lý', 'phán quyết'.",
+      "example": "折中 (chiết trung) = thỏa hiệp; 折服 (chiết phục) = khuất phục.",
+      "cs": "Critical Decision",
+      "csExplain": "Hành động quyết liệt, không phút chút do dự — cắt bỏ hay giữ lại một phần code/feature dựa trên phán quyết rõ ràng."
+    },
+    {
+      "hanzi": "獄",
+      "pinyin": "yù",
+      "hanviet": "ngục",
+      "meaning": "Ngục, vụ kiện xét xử, tranh chấp.",
+      "origin": "Chữ hình thanh-hội ý: 犬 (khuyển, chó — biểu thị công lý/xét xử, vì chó biểu tượng cho khả năng phân biệt) + 言 (ngôn, lời nói). Biểu thị 'lời nói của chó' (công lý) trong xét xử = 'vụ kiện, ngục'.",
+      "example": "獄訟 (ngục tụng) = vụ kiện tranh chấp; 訊獄 (tấn ngục) = thẩm vấn vụ kiện.",
+      "cs": "Dispute Resolution",
+      "csExplain": "Quá trình tìm ra sự thật trong một conflict — không phải im lặng hay chôn vùi mà đối diện và xử lý công bằng."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：遇其配主，雖旬无咎，往有尚。",
+      "hanviet": "Sơ Cửu: Ngộ kỳ phối chủ, tuy tuần vô cữu, vãng hữu thượng.",
+      "translation": "Gặp được người bạn đồng chí (người phù hợp để kế tác) — dù chỉ trong mười ngày mà không có lỗi, đi tiếp vẫn sẽ được tán thưởng.",
+      "english": "The first line, dynamic, shows its subject meeting with his mate. Though they are both of the same character, there will be no error. Advance will call forth approval.",
+      "explain": "Giai đoạn đầu của Phong — tìm được đối tác/người cùng chí hướng là điều cơ bản để bắt đầu phong phú lớn lao.",
+      "itExample": "Hai cofounder tìm được nhau, cùng vision, cùng khả năng complementary — từ đó startup bắt đầu explosive growth.",
+      "lifeExample": "Tìm được người bạn/mentor đúng đắn ngay từ đầu — đó là nền tảng để vươn lên một mức cao hơn."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：豐其蔀，日中見斗，往得疑疾，有孚發若，吉。",
+      "hanviet": "Lục Nhị: Phong kỳ bao, nhật trung kiến đẩu, vãng đắc nghi tật, hữu thất phát nhược, cát.",
+      "translation": "Mở rộng với những màn che phủ (đôi khi che mất ánh sáng) — khi trưa gắt gao mặt trời vẫn nhìn thấy sao Đẩu (bình thường không thấy được) — nếu đi tiếp sẽ gặp nghi ngờ/mệt mỏi, nhưng nếu có tâm nguyên chân thật thì sẽ phát tỏa như lửa — tốt lành.",
+      "english": "The second line, magnetic, shows its subject surrounded by screens so large and thick that at midday she can see from them the constellation of the Bushel. If she goes and tries to enlighten her ruler who is thus emblemed, she will make herself to be viewed with suspicion and dislike. Let her cherish her feeling of sincere devotion that she may thereby move her ruler's mind, and there will be good fortune.",
+      "explain": "Mở rộng quá nhanh khiến có những lớp màn che phủ, khó nhìn thấu được bên ngoài — nhưng nếu có lòng chân thành, cuối cùng sẽ xuyên thủng những màn che phủ đó.",
+      "itExample": "Công ty phồng lên quá nhanh, nhiều layer management, khó để message từ CEO xuống tới engineer thực tế — nhưng nếu vẫn có culture of transparency + sync-up regular, vẫn có thể maintain alignment.",
+      "lifeExample": "Tăng trưởng sự nghiệp quá nhanh, quanh mình bây giờ toàn là người khác thay vì những người cũ — nhưng nếu vẫn giữ được lòng chân thành, tạo dựng trust, vẫn có thể duy trì được sự ủng hộ."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：豐其沛，日中見沫，折其右肱，无咎。",
+      "hanviet": "Cửu Tam: Phong kỳ phế, nhật trung kiến mạt, chiết kỳ hữu cung, vô cữu.",
+      "translation": "Phong phú với những nước bắn tung tóe (mất kiểm soát) — khi trưa mặt trời vẫn thấy những giọt nước bắn (bình thường không nhìn thấy được dễ) — gập gãy cánh tay phải, không có lỗi.",
+      "english": "The third line, dynamic, shows its subject with an additional screen of a large and thick banner, through which at midday he can see the small Mei star. In the darkness he breaks his right arm; but there will be no error.",
+      "explain": "Sự mở rộng ngoài kiểm soát — có những tác hại xảy ra (gập gãy cánh tay phải — mất đi tay chính) — nhưng nếu chịu tổn thất để giữ được sự sống, vẫn không có lỗi.",
+      "itExample": "Startup scale quá nhanh, không kịp xây dựng foundation đúng cách — bị forced refactor (gập gãy cánh tay phải = mất productivity tạm thời), nhưng đó là bước cần thiết để tồn tại lâu dài.",
+      "lifeExample": "Thành công quá nhanh khiến gặp phải sai lầm lớn (tổn thất, thất bại cục bộ) — chịu tổn thất để học bài học, sẽ không thất bại hoàn toàn."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：豐其蔀，日中見斗，遇其夷主，吉。",
+      "hanviet": "Cửu Tứ: Phong kỳ bao, nhật trung kiến đẩu, ngộ kỳ di chủ, cát.",
+      "translation": "Che phủ mở rộng — khi trưa vẫn thấy sao Đẩu — gặp được một vị chủ nhân bình đẳng/không khác biệt — tốt lành.",
+      "english": "The fourth line, dynamic, shows its subject in a tent so large and thick that at midday he can see from it the constellation of the Bushel. But he meets with the subject of the first line, undivided like himself. There will be good fortune.",
+      "explain": "Mở rộng vẫn còn rất dày, nhưng may mắn gặp được người bạn cùng chí (như Sơ Cửu) để chia sẻ gánh nặng.",
+      "itExample": "Series C, công ty phồng lên, layer management tăng — nhưng đáng mừng là tìm được một partner/CTO khác cùng vision để chia sẻ việc lãnh đạo.",
+      "lifeExample": "Gánh nặng công việc tăng, nhưng tìm được một người cộng sự/mentor hiểu rõ tầm nhìn của bạn để cùng chịu trách nhiệm."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：來章，有慶譽，吉。",
+      "hanviet": "Lục Ngũ: Lai chương, hữu khánh dự, cát.",
+      "translation": "Những tin tức tốt lành đến (hoặc những phần quàng sáng, chiếu sáng lên) — có những lời chúc mừng và danh tiếng — tốt lành.",
+      "english": "The fifth line, magnetic, shows its subject bringing around her the men of brilliant ability. There will be occasion for congratulation and praise. There will be good fortune.",
+      "explain": "Ở vị trí cao nhất có thể của Phong — nhận lấy những người tài năng, được tôn vinh và lời khen ngợi.",
+      "itExample": "Product ở vị trí dẫn đầu thị trường — tuyển được những engineer hàng đầu, được công nhận rộng rãi như market leader.",
+      "lifeExample": "Ở đỉnh cao của sự nghiệp — được công nhận, có influence, tuyển được những người giỏi nhất."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：豐其屋，蔀其家，窺其戶，闃其无人，三歲不覿，凶。",
+      "hanviet": "Thượng Lục: Phong kỳ ốc, bao kỳ gia, khuy kỳ hộ, khuất kỳ vô nhân, tam tuế bất phát, hung.",
+      "translation": "Nhà cửa quá to, lắp đặt những màn che che kín hoàn toàn — nhìn qua cửa mà thấy ngơ ngác, không người — ba năm không gặp được ai — xấu.",
+      "english": "The sixth line, magnetic, shows its subject with her house made large, but only serving as a screen to her household. When she looks at her door, it is still, and there is nobody about it. For three years no one is to be seen. There will be evil.",
+      "explain": "Điểm cuối cùng của Phong — quá mở rộng, quá che phủ khiến mất đi tính kết nối, cô đơn hoàn toàn. Đây là cảnh báo: phong phú vô tổ chức chỉ dẫn đến sụp đổ.",
+      "itExample": "Công ty quá lớn, layer quá nhiều, không ai giao tiếp được với ai — mặc dù có GDP cao nhưng người người chán nản, chảy máu nhân sự không ngừng, không ai còn biết công ty đang làm gì.",
+      "lifeExample": "Phong phú vật chất nhưng suy đồi tinh thần — bị cô lập, mất đi những người thân tốt, ba năm chẳng thấy mặt ai tốt — trở thành cô đơn giàu có."
+    }
+  ],
+
+  "keywords": ["Phong", "豐", "phong phú", "đạt đỉnh cao", "cảnh báo về over-expansion", "cần xử lý nội bộ", "sáng sủa rõ ràng"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/feng", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 55", "url": "http://jamesdekorne.com/GBCh/hex55.htm", "note": "Trang tổng hợp Legge." },
+    { "source": "維基文庫 Wikisource — 周易/豐", "url": "https://zh.wikisource.org/zh-hant/周易/豐", "note": "Đối chiếu chéo nguyên văn chữ Hán." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/55", "label": "64 Quẻ — Quẻ 55: Lôi Hỏa Phong" }
+  ]
+}

@@ -16,6 +16,7 @@ export default function Navbar() {
     { to: '/map', label: 'Bản đồ' },
     { to: '/que', label: '📖 64 Quẻ' },
     { to: '/finger-cpu', label: '🖐️ Finger CPU Lab' },
+    { to: '/chu-dich', label: '📜 Chu Dịch Nguyên Tác' },
     { to: '/search', label: '🔍 Tra cứu' },
     { to: '/van-khan', label: '🙏 Văn khấn' },
     { to: '/observe', label: '👁️ Quan sát' },

@@ -1,0 +1,158 @@
+{
+  "id": 33,
+  "hanzi": "遯",
+  "pinyin": "Dùn",
+  "hanviet": "Độn",
+  "english": "Retreat",
+  "upperTrigram": "qian",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "遯：亨。小利貞。",
+    "hanviet": "Độn: Hanh. Tiểu lợi trinh.",
+    "translation": "Độn (rút lui): hanh thông. Ở việc nhỏ thì thuận lợi khi giữ chính đính.",
+    "english": "Thun indicates successful progress (in its circumstances). To a small extent it will (still) be advantageous to be firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "天下有山，遯；君子以遠小人，不惡而嚴。",
+    "hanviet": "Thiên hạ hữu sơn, Độn; quân tử dĩ viễn tiểu nhân, bất ố nhi nghiêm.",
+    "translation": "Dưới trời có núi, đó là tượng của Độn; người quân tử noi theo đó mà giữ khoảng cách với kẻ tiểu nhân, không tỏ ra ghét bỏ mà vẫn giữ được sự nghiêm trang.",
+    "english": "(The trigram representing) the sky and below it that for a mountain form Thun. The superior man, in accordance with this, keeps small men at a distance, not by showing that he hates them, but by his own dignified gravity.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Độn nghĩa là 'rút lui' — quẻ ghép Trời (Càn) ở trên đang dần rời xa, và Núi (Cấn) ở dưới đang dần dâng lên/lấn tới, biểu tượng cho thế lực tiểu nhân/nguy cơ đang lớn dần trong khi người quân tử chủ động lui về để bảo toàn nguyên tắc. Đây không phải là sự trốn chạy hèn nhát mà là một chiến lược: rút lui đúng lúc, đúng cách để giữ vững phẩm giá và tránh xung đột không cần thiết. Sáu hào mô tả các cách rút lui khác nhau: rút lui muộn nên nguy hiểm (hào 1 'đuôi rút lui'), rút lui kiên quyết không lay chuyển (hào 2), rút lui trong ràng buộc đầy khó khăn (hào 3), rút lui dù còn quyến luyến (hào 4, người quân tử mới làm được), rút lui đúng thời điểm đẹp (hào 5), và rút lui dứt khoát, ung dung nhất (hào 6, tốt nhất).",
+
+  "computer_science": "Độn chính là graceful shutdown / graceful degradation pattern trong thiết kế hệ thống: khi một thành phần (feature, service, API cũ) không còn phù hợp hoặc môi trường đang trở nên bất lợi, cách xử lý đúng không phải là ngắt đột ngột (hard kill) mà là rút lui có kiểm soát — deprecation warning, migration path rõ ràng, timeline hợp lý cho người dùng chuyển đổi (giống hào 5 'rút lui đẹp đẽ' là hình mẫu tốt nhất, còn hào 1 'đuôi rút lui' — chờ tới phút cuối mới rút — là ví dụ về rủi ro của shutdown quá muộn).",
+
+  "life": "Biết rút lui đúng lúc để bảo toàn nguyên tắc và năng lượng không phải là thất bại — đó là một dạng trí tuệ. Rời khỏi một mối quan hệ độc hại, một công việc không còn phù hợp, hay một cuộc tranh luận vô ích, nếu làm đúng cách (giữ phẩm giá, không cần thù hằn) sẽ mở đường cho những cơ hội mới tốt đẹp hơn.",
+
+  "programming": "Deprecate 1 API cũ, remove dead code, hay sunset 1 service không còn ai dùng — tất cả nên tuân theo nguyên tắc graceful exit: thông báo sớm, cung cấp migration guide, cho thời gian chuyển tiếp hợp lý (giống hào 5), thay vì đợi tới khi bị buộc phải cắt bỏ đột ngột trong khủng hoảng (giống hào 1 'đuôi rút lui, nguy hiểm').",
+
+  "characters": [
+    {
+      "hanzi": "遯",
+      "pinyin": "dùn",
+      "hanviet": "độn",
+      "meaning": "Rút lui, lẩn tránh, ẩn mình.",
+      "origin": "Chữ ghép bộ 辵/辶 (sước, đi/bước) + 豚 (đồn, con lợn con) — nghĩa gốc có thể liên quan tới hình ảnh con vật lủi trốn nhanh nhẹn, mở rộng thành 'rút lui, tránh né'; dị thể thường gặp là 遁 (cùng nghĩa, cách đọc Hán Việt gần giống).",
+      "example": "遯世 (độn thế) = lánh đời; 遁逃 (độn đào) = trốn chạy.",
+      "cs": "Graceful shutdown / Retreat pattern",
+      "csExplain": "Một chiến lược rút lui có kiểm soát khỏi trạng thái bất lợi — giống graceful shutdown thay vì crash đột ngột."
+    },
+    {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "hanviet": "tiểu",
+      "meaning": "Nhỏ, ít.",
+      "origin": "Chữ tượng hình 3 chấm/hạt nhỏ, biểu thị vật thể kích thước bé, một trong những chữ tượng hình cơ bản nhất.",
+      "example": "小心 (tiểu tâm) = cẩn thận; 小人 (tiểu nhân) = kẻ tầm thường, thiếu đạo đức.",
+      "cs": "Scoped / Limited action",
+      "csExplain": "Hành động ở phạm vi nhỏ, giới hạn — giống 1 thay đổi nhỏ, có kiểm soát (small scoped change) an toàn hơn thay đổi lớn khi đang trong thế bất lợi."
+    },
+    {
+      "hanzi": "貞",
+      "pinyin": "zhēn",
+      "hanviet": "trinh",
+      "meaning": "Chính đính, ngay thẳng, kiên định, bền vững.",
+      "origin": "Chữ ghép từ 卜 (bốc, việc bói) + 貝/鼎 (bối/đỉnh, đồ tế khí) — nghĩa gốc liên quan tới việc bói hỏi để xác định điều chính đáng, mở rộng thành 'giữ vững chính đạo, kiên định'.",
+      "example": "貞固 (trinh cố) = kiên định.",
+      "cs": "Correctness under retreat",
+      "csExplain": "Giữ đúng nguyên tắc ngay cả khi đang trong quá trình rút lui — giống việc vẫn tuân thủ đúng quy trình rollback dù đang ở thế bị động."
+    },
+    {
+      "hanzi": "亨",
+      "pinyin": "hēng",
+      "hanviet": "hanh",
+      "meaning": "Hanh thông, thông suốt, trôi chảy.",
+      "origin": "Nguyên là chữ tượng hình miếu thờ/lễ vật dâng cúng (cùng gốc với 享 - hưởng), nghĩa gốc 'dâng tế, được hưởng', về sau mượn nghĩa 'thông suốt, hanh thông'.",
+      "example": "亨通 (hanh thông) = mọi việc suôn sẻ.",
+      "cs": "Smooth transition",
+      "csExplain": "Quá trình chuyển đổi/rút lui diễn ra suôn sẻ, không gây gián đoạn lớn — mục tiêu của 1 cuộc migration/deprecation tốt."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：遯尾，厲，勿用有攸往。",
+      "hanviet": "Sơ Lục: Độn vĩ, lệ, vật dụng hữu du vãng.",
+      "translation": "Rút lui ở vị trí cái đuôi (chậm trễ nhất) — nguy hiểm, chớ nên tiến hành thêm việc gì.",
+      "english": "The first SIX, divided, shows a retiring tail. The position is perilous. No movement in any direction should be made.",
+      "explain": "Hào thấp nhất, rút lui chậm nhất (như cái đuôi đi sau cùng) — đã ở thế nguy hiểm nên tốt nhất là án binh bất động, không nên cố làm thêm gì mà chỉ nên chờ thời cơ rút lui an toàn hơn.",
+      "itExample": "Một service đã đến lúc phải sunset nhưng vẫn cố thêm tính năng mới vào phút chót — làm vậy chỉ tăng thêm rủi ro; lúc này tốt nhất là dừng mọi thay đổi, chỉ tập trung vào kế hoạch rút lui an toàn.",
+      "lifeExample": "Nhận ra mình đang ở tình thế bất lợi, chậm chân hơn người khác trong việc rút lui — lúc này không nên liều lĩnh làm thêm gì mạo hiểm, chỉ nên thận trọng chờ thời cơ."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：執之用黃牛之革，莫之勝說。",
+      "hanviet": "Lục Nhị: Chấp chi dụng hoàng ngưu chi cách, mạc chi thắng thoát.",
+      "translation": "Giữ vững ý chí như buộc bằng dây da bò vàng, không gì gỡ ra được.",
+      "english": "The second SIX, divided, shows its subject holding (his purpose) fast as if by a (thong made from the) hide of a yellow ox, which cannot be broken.",
+      "explain": "Dù đang trong thế phải rút lui, hào này vẫn giữ vững nguyên tắc, ý chí kiên định như bị buộc chặt — sự kiên định về giá trị cốt lõi này không đổi dù hoàn cảnh bên ngoài đang thay đổi.",
+      "itExample": "Dù đang deprecate 1 hệ thống cũ, team vẫn kiên quyết giữ đúng cam kết về chất lượng dữ liệu migration (không cẩu thả vì 'sắp bỏ rồi') — nguyên tắc cốt lõi không đổi dù đang trong giai đoạn rút lui.",
+      "lifeExample": "Dù đang rời khỏi 1 vị trí hay mối quan hệ, vẫn giữ vững các giá trị và cam kết cốt lõi của mình — sự kiên định này không phụ thuộc vào hoàn cảnh đang thay đổi."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：系遯，有疾厲，畜臣妾吉。",
+      "hanviet": "Cửu Tam: Hệ độn, hữu tật lệ, súc thần thiếp cát.",
+      "translation": "Rút lui mà còn bị ràng buộc, có bệnh và nguy hiểm; (nhưng) nuôi dưỡng người giúp việc (theo đúng bổn phận nhỏ) thì tốt.",
+      "english": "The third NINE, undivided, shows one retiring but bound,—to his distress and peril. (If he were to deal with his binders as in) nourishing a servant or concubine, it would be fortunate for him.",
+      "explain": "Muốn rút lui nhưng còn vướng bận trách nhiệm/quan hệ ràng buộc — gây khó khăn thực sự; giải pháp là xử lý đúng mực những ràng buộc nhỏ (trách nhiệm hạn chế) trong khi vẫn từng bước rút khỏi cái lớn.",
+      "itExample": "Muốn rời khỏi 1 dự án lớn nhưng vẫn còn vướng vài trách nhiệm nhỏ (support, bàn giao) — xử lý tốt những trách nhiệm nhỏ này trước khi rút lui hoàn toàn là cách làm đúng đắn, tránh bỏ lại hậu quả.",
+      "lifeExample": "Muốn rút khỏi một hoàn cảnh khó khăn nhưng còn vướng bận trách nhiệm với người khác — hoàn thành tốt những bổn phận nhỏ trước khi dứt khoát rời đi là cách hành xử có trách nhiệm."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：好遯君子吉，小人否。",
+      "hanviet": "Cửu Tứ: Hảo độn quân tử cát, tiểu nhân phủ.",
+      "translation": "Rút lui dù còn quyến luyến — người quân tử làm được thì tốt, kẻ tiểu nhân thì không làm được.",
+      "english": "The fourth NINE, undivided, shows its subject retiring notwithstanding his likings. In a superior man this will lead to good fortune; a small man cannot attain to this.",
+      "explain": "Rút lui khi vẫn còn tình cảm, sự quyến luyến với điều mình từ bỏ — đây là thử thách thực sự của ý chí; chỉ người có bản lĩnh (quân tử) mới vượt qua được sự lưu luyến để làm điều đúng đắn.",
+      "itExample": "Quyết định deprecate 1 tính năng do chính mình dày công xây dựng dù vẫn còn 'tình cảm' với nó — đây là quyết định khó, đòi hỏi sự khách quan và bản lĩnh thực sự của người kỹ sư trưởng thành.",
+      "lifeExample": "Từ bỏ một điều mình yêu thích nhưng không còn phù hợp (công việc, mối quan hệ) đòi hỏi bản lĩnh thực sự — không phải ai cũng đủ dũng khí vượt qua sự lưu luyến để làm điều đúng."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：嘉遯，貞吉。",
+      "hanviet": "Cửu Ngũ: Gia độn, trinh cát.",
+      "translation": "Rút lui một cách đẹp đẽ, đúng lúc — giữ chính đính thì tốt lành.",
+      "english": "The fifth NINE, undivided, shows its subject retiring in an admirable way. With firm correctness there will be good fortune.",
+      "explain": "Vị trí lãnh đạo, rút lui đúng thời điểm, đúng cách, được mọi người kính trọng — đây là hình mẫu lý tưởng của 'nghệ thuật rút lui': chủ động, đàng hoàng, không để tình thế ép buộc.",
+      "itExample": "Một sản phẩm/dịch vụ được deprecate đúng lúc, với thông báo rõ ràng, timeline hợp lý và migration path đầy đủ — đây là hình mẫu graceful shutdown lý tưởng, được cả người dùng lẫn team đánh giá cao.",
+      "lifeExample": "Rời khỏi một vị trí lãnh đạo hay vai trò quan trọng đúng lúc, chủ động và đàng hoàng — đây là cách rút lui được mọi người ngưỡng mộ và ghi nhớ."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：肥遯，无不利。",
+      "hanviet": "Thượng Cửu: Phì độn, vô bất lợi.",
+      "translation": "Rút lui một cách ung dung, dứt khoát, thanh thản — không gì bất lợi.",
+      "english": "The topmost NINE, undivided, shows its subject retiring in a noble way. It will be advantageous in every respect.",
+      "explain": "Hào cao nhất, xa nhất khỏi mọi ràng buộc — rút lui hoàn toàn thanh thản, dứt khoát, không chút vướng bận; đây là kết quả tốt đẹp nhất của cả quá trình rút lui đúng đắn.",
+      "itExample": "Một hệ thống legacy được retire hoàn toàn, sạch sẽ, không còn dependency nào vướng lại — đội ngũ có thể hoàn toàn tập trung vào hướng đi mới mà không phải lo bảo trì gì cho cái cũ nữa.",
+      "lifeExample": "Hoàn toàn buông bỏ một giai đoạn cũ của cuộc đời (công việc, mối quan hệ) một cách thanh thản, dứt khoát, không còn vướng bận gì — đây là trạng thái tự do và nhẹ nhõm nhất."
+    }
+  ],
+
+  "keywords": ["Độn", "遯", "rút lui", "trời và núi", "graceful shutdown", "deprecation", "chiến lược lui về"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/遯", "url": "https://zh.wikisource.org/zh-hant/周易/遯", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 33 (bản mirror)", "url": "https://baharna.com/iching/legge/001111.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Trang mục lục nguồn học thuật công khai lưu trữ Chu Dịch; trang riêng của quẻ 遯 không truy cập trực tiếp được trong phiên này nên đối chiếu qua Wikisource + baharna.com." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/33", "label": "64 Quẻ — Quẻ 33: Thiên Sơn Độn" }
+  ]
+}

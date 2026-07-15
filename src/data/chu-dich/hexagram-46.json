@@ -1,0 +1,148 @@
+{
+  "id": 46,
+  "hanzi": "升",
+  "pinyin": "Shēng",
+  "hanviet": "Thăng",
+  "english": "Ascending",
+  "upperTrigram": "kun",
+  "lowerTrigram": "xun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "升：元亨，用見大人，勿恤，南征吉。",
+    "hanviet": "Thăng: Nguyên hanh, dụng kiến đại nhân, vật hưởng, nam chinh cát.",
+    "translation": "Thăng (Leo lên): khởi nguyên thông suốt, nên gặp bậc đại nhân, đừng lo, chinh phương nam được lành.",
+    "english": "Sheng indicates that (under its conditions) there will be great progress and success. Seeking by (the qualities implied in it) to meet with the great man, its subject need have no anxiety. Advance to the south will be fortunate."
+  },
+
+  "daTuong": {
+    "hanzi": "地中生木，升；君子以順德，積小以高大。",
+    "hanviet": "Địa trung sinh mộc, thăng; quân tử dĩ thuận đức, tích tiểu dĩ cao đại.",
+    "translation": "Cây mọc từ giữa đất, tạo nên quẻ Thăng; người quân tử noi theo đó mà tuân theo đức hạnh, tích lũy những điều nhỏ để trở thành lớn lao.",
+    "english": "The trigram representing wood and that for the earth with the wood growing in the midst of it form Sheng. The superior man, in accordance with this, pays careful attention to his virtue, and accumulates the small developments of it till it is high and great.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Thăng ghép từ Xun (Gió, cây gỗ) ở dưới, Kun (Đất) ở trên — cây mọc từ đất, bền bỉ leo lên không cần vận động quá sớm; đó là tiến bộ chắc chắn, từng bước một, không nhảy vọt. Bốn chữ 'nguyên hanh' không xuất hiện trong Thoán từ gốc, nhưng Thoán từ cũ nói 'nguyên hanh' — quẻ này có tính chất 'leo lên' qua sự tích lũy bền vững. Sáu hào kể câu chuyện: được chấp nhận, có lòng tin, tiến vào thành trống (không có cáng đáy), vua tế lễ, tiến bộ từng bước, cuối cùng leo lên trong bóng tối cần kiên định.",
+
+  "computer_science": "Thăng giống 'incremental growth' hoặc 'organic scaling' — không bigbang mà từng sprint một, từng feature một, từng server một; wood growing từ đất means roots deep bên dưới (architecture solid), từ đó leo từng tầng. Đó là phương pháp bền vững hơn là venture-capital-fueled explosive growth.",
+
+  "life": "Tiến bộ đích thực đến từ việc tích lũy nhỏ bé từng ngày, không vội vã; cây mọc từ đất không bao giờ nhanh nhưng bền lâu, và cuối cùng cao tới trời.",
+
+  "programming": "Release chính thức thay vì MVP rapid; mỗi sprint đóng góp 1-2% tới toàn bộ kiến trúc, từng bước xây nền móng chắc (testing, documentation, performance baseline); cuối cùng 1 năm sau bạn sẽ có sản phẩm cao vượt trên competitor vội vã.",
+
+  "characters": [
+    {
+      "hanzi": "升",
+      "pinyin": "shēng",
+      "hanviet": "thăng",
+      "meaning": "Lên, tăng, nâng cấp.",
+      "origin": "Chữ tượng hình dung một người leo lên từng bậc thang, từng từng lên — mở rộng thành 'leo lên, tiến lên'.",
+      "example": "升官 (thăng quan) = thăng chức; 升溫 (thăng ôn) = tăng nhiệt độ.",
+      "cs": "Gradual Ascent",
+      "csExplain": "Tăng từng bước không nhanh nhưng chắc chắn, giống climbing mountain từng camp một."
+    },
+    {
+      "hanzi": "木",
+      "pinyin": "mù",
+      "hanviet": "mộc",
+      "meaning": "Cây, gỗ, mục, tuần tự.",
+      "origin": "Chữ tượng hình cây có thân, cánh, rễ — mở rộng thành 'gỗ, cây, mục'.",
+      "example": "木頭 (mộc đầu) = khúc gỗ; 木工 (mộc công) = thợ mộc.",
+      "cs": "Foundation",
+      "csExplain": "Nền tảng bền vững, giống rễ cây, từ đó các chi nhánh phát triển lên."
+    },
+    {
+      "hanzi": "積",
+      "pinyin": "jī",
+      "hanviet": "tích",
+      "meaning": "Tích lũy, chất chồng, tích góp.",
+      "origin": "Bộ 禾 (lúa) + bộ 日 (ngày) — hình ảnh lúa chồng chất theo ngày, tích lũy thành đống lớn.",
+      "example": "積分 (tích phân); 積累 (tích lũy) = tích góp từng chút.",
+      "cs": "Accumulation",
+      "csExplain": "Dữ liệu/kinh nghiệm/metric tích lũy theo thời gian tạo nên pattern lớn."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：允升，大吉。",
+      "hanviet": "Sơ Lục: Duẫn thăng, đại cát.",
+      "translation": "Được chứng nhận leo lên, đại cát tường.",
+      "english": "The first SIX, divided, shows its subject advancing upwards with the welcome (of those above him). There will be great good fortune.",
+      "explain": "Vị trí thấp nhất, được chấp nhận leo lên — không gây sốc, mọi người đều ủng hộ, đại cát.",
+      "itExample": "Junior dev chuẩn bị lên senior, được mentors ủng hộp, không có chỉ trích nào — đó là dấu hiệu chuẩn bị tốt.",
+      "lifeExample": "Người trẻ muốn lên vị trí cao hơn, được người lớn chứng thực 'em sẵn sàng rồi' — ước mơ sẽ thành hiện thực."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：孚乃利用禴，无咎。",
+      "hanviet": "Cửu Nhị: Phu nãi lợi dụng dược, vô cữu.",
+      "translation": "Có lòng thành thì thuận dụng tế lễ nhỏ, không có lỗi.",
+      "english": "The second NINE, undivided, shows its subject with that sincerity which will make even the (small) offerings of the vernal sacrifice acceptable. There will be no error.",
+      "explain": "Vị trí thứ hai, có lòng chân thật — ngay cả lễ vật nhỏ cũng được chấp nhận, tất cả đều ổn.",
+      "itExample": "Có lòng chân thật làm việc, đầu vào chất lượng có thể còn nhỏ — nhưng được team chấp nhận, không có lỗi.",
+      "lifeExample": "Muốn leo lên nhưng thực lực còn nhỏ, tuy nhiên lòng chân thật — sẽ được mọi người ủng hộ."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "升虛邑。",
+      "hanviet": "Thăng hư ấp.",
+      "translation": "Leo vào một thành phố vắng (sẵn sàng để chiếm lĩnh).",
+      "english": "The third NINE, undivided, shows its subject advancing upwards (as into) an empty city.",
+      "explain": "Lên tiếp, nhập vào một nơi chưa có ai chiếm lĩnh — cơ hội khai phá mới.",
+      "itExample": "Được giao quản lý một codebase cũ, không ai chăm sóc tốt — đó là cơ hội refactor, chuẩn hóa.",
+      "lifeExample": "Được giao một phòng ban hay dự án trống, không ai đã làm tốt nó — đó là cơ hội xây dựng từ đầu theo ý mình."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "王用亨于岐山，吉无咎。",
+      "hanviet": "Vương dụng hưởng vu kỳ sơn, cát vô cữu.",
+      "translation": "Vua dùng đó để tế lễ tại núi Kỳ, tốt, không có lỗi.",
+      "english": "The fourth SIX, divided, shows its subject employed by the king to present his offerings on mount Kh?. There will be good fortune; there will be no mistake.",
+      "explain": "Vị trí lên tới gần vua, được dùng cho lễ tế lớn — danh dự, không lỗi.",
+      "itExample": "Được lãnh đạo công ty chọn để lead một dự án chiến lược — đó là lúc thể hiện, được tin tưởng.",
+      "lifeExample": "Được chọn vào vị trí danh dự, đại diện cho tổ chức — cơ hội thể hiện năng lực thực sự."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "貞吉，升階。",
+      "hanviet": "Trinh cát, thăng giai.",
+      "translation": "Giữ đúng thì tốt, leo lên từng bậc thang.",
+      "english": "The fifth six, divided, shows its subject firmly correct, and therefore enjoying good fortune. He ascends the stairs (with all due ceremony).",
+      "explain": "Vị trí vua, giữ đúng đường lối — từng bậc một leo, thanh lịch, tốt lành.",
+      "itExample": "CEO giữ vững nguyên tắc, từng quarter một tăng revenue — không vội vã, không cheat, phát triển bền vững.",
+      "lifeExample": "Người lớn đạo lãnh đạo từng bước, không bao giờ vội — mọi người tôn trọng, thành công lâu dài."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "冥升，利于不息之貞。",
+      "hanviet": "Minh thăng, lợi vu bất tức chi trinh.",
+      "translation": "Leo lên trong bóng tối, thuận lợi khi giữ liên tục không dừng.",
+      "english": "The sixth six, divided, shows its subject advancing upwards blindly. Advantage will be found in a ceaseless maintenance of firm correctness.",
+      "explain": "Hào cuối, leo lên cao nhất, không thấy gì nữa (bóng tối) — nhưng vẫn tiếp tục, không ngừng theo đúng con đường.",
+      "itExample": "System đã xây dựng đến độ cao, không còn biết có bao nhiêu complexity — nhưng vẫn phải giữ testing/monitoring/stability liên tục.",
+      "lifeExample": "Đạt tới đỉnh cao nhưng không biết đã đủ chưa — cần giữ liên tục cải thiện, không dừng lại."
+    }
+  ],
+
+  "keywords": ["Thăng", "升", "Leo lên", "Tích lũy", "Địa Phong Thăng", "Bền vững"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/sheng", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Thăng (Thoán từ, Hào từ)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/升", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%8D%87", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/46", "label": "64 Quẻ — Quẻ 46: Địa Phong Thăng" }
+  ]
+}

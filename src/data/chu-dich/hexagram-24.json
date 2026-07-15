@@ -1,0 +1,148 @@
+{
+  "id": 24,
+  "hanzi": "復",
+  "pinyin": "Fù",
+  "hanviet": "Phục",
+  "english": "Return",
+  "upperTrigram": "kun",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "復：亨。出入无疾，朋來无咎。反復其道，七日來復，利有攸往。",
+    "hanviet": "Phục: Hanh. Xuất nhập vô tật, bằng lai vô cữu. Phản phục kỳ đạo, thất nhật lai phục, lợi hữu du vãng.",
+    "translation": "Phục (Trở lại, phục hồi): hanh thông. Ra vào không gặp trở ngại, bạn bè đến không có lỗi. Quay lại theo con đường đúng, bảy ngày trở lại (chu kỳ hoàn chỉnh), thuận lợi khi có hành động.",
+    "english": "Fu indicates that there will be free course and progress (in what it denotes). (The subject of it) finds no one to distress him in his exits and entrances; friends come to him, and no error is committed. He will return and repeat his (proper) course. In seven days comes his return. There will be advantage in whatever direction movement is made."
+  },
+
+  "daTuong": {
+    "hanzi": "雷在地中，復；先王以至日閉關，商旅不行，後不省方。",
+    "hanviet": "Lôi tại địa trung, Phục; tiên vương dĩ chí nhật bế quan, thương lữ bất hành, hậu bất tỉnh phương.",
+    "translation": "Sấm nằm giữa lòng đất, không nghe tiếng nó — đó là hình tượng quẻ Phục, mầm sinh sống dưới đất lạnh. Các bậc vua xưa nhân đó mà vào dịp tại nhật (ngày đông chí) đóng cửa các cửa khẩu, không cho thương nhân đi lại buôn bán, không cho các bậc chư hầu tuần du khắp các vùng — để cho thiên địa yên tĩnh, để mầm sinh lớn lên.",
+    "english": "(The trigram representing) the earth and that for thunder in the midst of it form Fu. The ancient kings, in accordance with this, on the day of the (winter) solstice, shut the gates of the passes (from one state to another), so that the travelling merchants could not (then) pursue their journeys, nor the princes go on with the inspection of their states.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Phục nói về sự trở lại sau sự suy tàn, phục hồi sau khúc quanh — là quẻ đối lập với quẻ Bác (23). Sấm là năng lượng, sinh sự, nhưng khi Sấm nằm dưới đất (Khôn) trong giai đoạn mùa đông lạnh, nó tạm dừng, co mình nội tâm để tích lũy sức mạnh. 'Bảy ngày' không phải con số tùy tiện — đó là mộn toán đơn giản của Zhouyi, tượng trưng cho một chu kỳ hoàn chỉnh từ âm cực (24, Phục) tới dương cực (1, Càn). Không nên hành động vội, hãy đợi phục hồi đủ trước khi tiến.",
+
+  "computer_science": "Phục như recovery process sau disaster: không phải khởi động lại ngay lập tức (rủi ro data mismatch, partial state), mà có quy trình từng bước — fsck, integrity check, warmup cache (bảy ngày = quy trình hoàn chỉnh), rồi mới cho traffic quay lại. Biết khi nào system đủ phục hồi trước khi scale traffic up là kỹ năng quan trọng.",
+
+  "life": "Sau giai đoạn khó khăn hay thất bại, không vội vã lao vào hành động mới ngay — hãy yên tĩnh, phục hồi nội tâm, học bài học, rồi từ từ quay lại theo hướng đúng đắn. Thời gian phục hồi không thể vội được.",
+
+  "programming": "Sau major incident, outage, hoặc migration thất bại, không phải restart service rồi ngay cho traffic về — cần quy trình: verify data integrity, check all dependencies, warmup cache, monitor kỹ, rồi mới scale up traffic dần. Kiên nhẫn trong recovery tốt hơn vội vã gây ra secondary incident.",
+
+  "characters": [
+    {
+      "hanzi": "復",
+      "pinyin": "fù",
+      "hanviet": "phục",
+      "meaning": "Trở lại, quay trở lại, lặp lại, phục hồi.",
+      "origin": "Chữ hội ý ghép từ 彳 (xích, hai chân bước đi) + 復 (phất, phần biểu âm — vốn liên quan tới việc quay lại) — nghĩa gốc là 'bước trở lại, quay trở lại con đường cũ'.",
+      "example": "復興 (phục hưng) = hồi sinh, phục hồi; 反復 (phản phục) = lặp lại, quay về.",
+      "cs": "Recovery / restart",
+      "csExplain": "Quá trình quay trở lại trạng thái hoạt động bình thường sau sự cố hoặc tắt máy — phải đi theo quy trình từng bước chứ không thể nhảy tắt."
+    },
+    {
+      "hanzi": "出",
+      "pinyin": "chū",
+      "hanviet": "xuất",
+      "meaning": "Ra, xuất phát, lộ diện.",
+      "origin": "Chữ tượng hình cổ vẽ hình một cái lỗ/cổng (□ hoặc/) và một vật ra khỏi nó (丨hay chân) — nghĩa gốc là 'ra từ bên trong, lộ diện'.",
+      "example": "出口 (xuất khẩu) = lối ra, cũng chỉ hàng xuất khẩu.",
+      "cs": "Output / egress",
+      "csExplain": "Dữ liệu hoặc request đi ra khỏi hệ thống — đối với 入 (nhập, input)."
+    },
+    {
+      "hanzi": "疾",
+      "pinyin": "jí",
+      "hanviet": "tật",
+      "meaning": "Bệnh, tật nguyền, trở ngại, nhanh chóng.",
+      "origin": "Chữ hình thanh ghép từ 疒 (nạ, phần liên quan tới bệnh/người ốm) + 疋 (thất, phần biểu âm) — nghĩa gốc là 'bệnh, tật nguyền', cũng có thể dùng để chỉ 'nhanh' (như gió tật nước — dồn nước chảy nhanh) hay 'trở ngại'.",
+      "example": "疾病 (tật bệnh); 疾風 (tật phong) = gió lớn, gió nhanh.",
+      "cs": "Fault / latency",
+      "csExplain": "Tính toán thực tế trong hệ thống — fault, latency, bottleneck — là những 'tật' cần khắc phục để hệ thống vận hành tốt."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：不復遠，无祗悔，元吉。",
+      "hanviet": "Sơ Cửu: Bất phục viễn, vô tỳ hối, nguyên cát.",
+      "translation": "Sai lầm không đi quá xa thì trở lại, không có lớn hối tiếc, rất tốt lành.",
+      "english": "The first NINE, undivided, shows its subject returning (from an error) of no great extent, which would not proceed to anything requiring repentance. There will be great good fortune.",
+      "explain": "Nhận thức sai lầm ngay sớm, trở lại đúng đạo trước khi đi quá xa — đó là trí tuệ, kết quả rất tốt.",
+      "itExample": "Debug sớm khi phát hiện dấu hiệu lỗi, rollback dễ dàng trước khi dữ liệu bị ô nhiễm quá sâu — khôi phục nhanh, ít rủi ro.",
+      "lifeExample": "Nhận ra sai lầm sớm và quay trở lại đúng đạo — càng sớm nhận ra càng ít hối tiếc, càng dễ sửa chữa."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：休復，吉。",
+      "hanviet": "Lục Nhị: Hưu phục, cát.",
+      "translation": "Trở lại một cách yên tĩnh, an tĩnh, tốt lành.",
+      "english": "The second SIX, divided, shows the admirable return (of its subject). There will be good fortune.",
+      "explain": "Không vội vã, yên tĩnh quay trở lại — đó là cách trở lại đúng đắn, tốt lành hơn là quay trở lại nóng vội.",
+      "itExample": "Sau một failed migration, không patch vá gấp mà tạm dừng, phân tích kỹ nguyên nhân, rồi từ từ migrate lại một cách cẩn trọng — kết quả tốt hơn.",
+      "lifeExample": "Sau một thất bại, chọn yên tĩnh suy ngẫm thay vì lao vào hành động gấp — sự phục hồi sâu sắc hơn."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：頻復，厲无咎。",
+      "hanviet": "Lục Tam: Tần phục, lệ vô cữu.",
+      "translation": "Phải trở lại liên tục, gặp lại sai lầm tương tự — mặc dù nguy hiểm nhưng nếu cẩn trọng không có lỗi lớn.",
+      "english": "The third SIX, divided, shows one who has made repeated returns. The position is perilous, but there will be no error.",
+      "explain": "Lặp lại sai lầm cũ, trở lại liên tục — tình huống nguy hiểm, nhưng nếu biết nhận thức và giữ canh thận thì vẫn tránh được lỗi lớn.",
+      "itExample": "Hệ thống bị một loại lỗi tương tự xảy ra lặp lần — vẫn còn nguy hiểm, nhưng nếu có monitoring và alert tốt thì vẫn có thể chặn ngay.",
+      "lifeExample": "Tình huống tương tự cứ tái diễn, có vẻ bất lực — nhưng nếu cẩn trọng từng lần, có thể học được cách tránh lâu dài."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：中行獨復。",
+      "hanviet": "Lục Tứ: Trung hành độc phục.",
+      "translation": "Ở giữa, tự lập và trở lại con đường riêng của mình — không theo theo dõi người khác.",
+      "english": "The fourth SIX, divided, shows its subject moving right in the centre (among those represented by the other divided lines), and yet returning alone (to his proper path).",
+      "explain": "Giữa đám đông nhưng biết giữ nguyên tắc riêng, quay trở lại theo con đường đúng của chính mình — sự tự lập và kiên định.",
+      "itExample": "Giữa áp lực deploy gấp từ quản lý, dev vẫn kiên định với best practice của mình, rollback nếu thấy không đúng — sự professional và kiên định.",
+      "lifeExample": "Giữa đám đông, giữa áp lực từ bạn bè, vẫn quay trở lại theo nguyên tắc của chính mình — đó là sự kiên định thực sự."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：敦復，无悔。",
+      "hanviet": "Lục Ngũ: Đôn phục, vô hối.",
+      "translation": "Trở lại một cách chân thành, hậu hĩnh, không có hối tiếc.",
+      "english": "The fifth SIX, divided, shows the noble return of its subject. There will be no ground for repentance.",
+      "explain": "Ở vị trí lãnh đạo, trở lại bằng cách chân thành, đôn hậu, hậu đãi mọi người — kết quả tốt, không hối tiếc.",
+      "itExample": "Quản lý sau một sai lầm lãnh đạo, chân thành thừa nhận lỗi trước toàn đội, commit vào kế hoạch khôi phục cụ thể — đội ngũ tin tưởng trở lại.",
+      "lifeExample": "Cha mẹ hay người lãnh đạo, sau khi có sai lầm, chân thành thừa nhận trước mọi người — kích phục được niềm tin và sự tôn trọng."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：迷復，凶，有災眚。用行師，終有大敗，以其國君，凶；至于十年，不克征。",
+      "hanviet": "Thượng Lục: Mê phục, hung, hữu tai sao. Dụng hành sư, chung hữu đại bại, dĩ kỳ quốc quân, hung; chí vu thập niên, bất khắc chinh.",
+      "translation": "Trở lại trong trạng thái mê muội, không nhận thức được lỗi — xấu, gặp tai họa. Nếu cứ dùng đội quân bước vào với tâm trạng đó, cuối cùng sẽ bại trận lớn, kéo cả quốc gia vào thảm họa — xấu; ngay cả mười năm cũng không thể khôi phục.",
+      "english": "The sixth SIX, divided, shows its subject all astray on the subject of returning. There will be evil. There will be calamities and errors. If with his views he put the hosts in motion, the end will be a great defeat, whose issues will extend to the ruler of the state. Even in ten years he will not be able to repair the disaster.",
+      "explain": "Hào cuối, vẫn còn mê muội sai lầm của mình, không nhận thức được — nếu cứ hành động theo trạng thái đó sẽ gây thảm họa lớn, mất rất lâu mới khôi phục được.",
+      "itExample": "Sau một incident lớn, team không hiểu rõ nguyên nhân gốc rễ mà vội deploy lại hệ thống tương tự — sẽ gây incident khác, nghiêm trọng hơn, mất nhiều thời gian khôi phục.",
+      "lifeExample": "Sau một thất bại lớn, vẫn còn mê muội, không nhận thức được sai lầm của mình — nếu cứ làm tiếp sẽ dẫn đến thảm họa lớn hơn, khó khôi phục."
+    }
+  ],
+
+  "keywords": ["Phục", "復", "trở lại", "phục hồi", "sấm dưới đất", "bảy ngày", "chu kỳ"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/100000.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Phục, đối chiếu từng hào." },
+    { "source": "維基文庫 Wikisource — 周易/復", "url": "https://zh.wikisource.org/zh-hant/周易/復", "note": "Nguồn nguyên văn chữ Hán (卦辭, 爻辭, 象曰), đối chiếu nội dung khớp với bản dịch Legge." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/fu", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn; trang chặn truy cập tự động khi thử đối chiếu trực tiếp." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/24", "label": "64 Quẻ — Quẻ 24: Địa Lôi Phục" }
+  ]
+}

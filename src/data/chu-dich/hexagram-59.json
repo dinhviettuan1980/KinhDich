@@ -1,0 +1,148 @@
+{
+  "id": 59,
+  "hanzi": "渙",
+  "pinyin": "Huàn",
+  "hanviet": "Hoán",
+  "english": "Dispersion (Wind on Water)",
+  "upperTrigram": "xun",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "渙：亨。王假有廟，利涉大川，利貞。",
+    "hanviet": "Hoán: Hanh. Vương giả hữu miếu, lợi thiệp đại xuyên, lợi trinh.",
+    "translation": "Hoán (Phân tán): hanh thông; vua đến mặc tế tại miếu; thuận lợi khi vượt qua dòng nước lớn; thuận lợi khi giữ chính đính.",
+    "english": "Huan intimates that (under its conditions) there will be progress and success. The king goes to his ancestral temple; and it will be advantageous to cross the great stream. It will be advantageous to be firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "風行水上，渙；先王以享于帝立廟。",
+    "hanviet": "Phong hành thủy thượng, Hoán; tiên vương dĩ hương vu đế lập miếu.",
+    "translation": "Gió chạy trên mặt nước là tượng của quẻ Hoán; các vua xưa nối theo đó mà dâng tế lên Trời và lập miếu thờ tổ tiên.",
+    "english": "(The trigram representing) water and that for wind moving above the water form Huan. The ancient kings, in accordance with this, presented offerings to God and established the ancestral temple.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Hoán là hình ảnh của sự phân tán, tán loạn — gió thổi khắp, nước lan ra từng phần. Nhưng quẻ nhấn mạnh đây không phải sự tiêu tan hoàn toàn mất kiểm soát, mà là quá trình 'giải phóng' những thứ đang cứng nhắc, rải rác giống như hơi sương. Sáu hào kể câu chuyện: cứu tế từ phía bên ngoài (Sơ Lục) → tìm được chỗ ẩn núp (Cửu Nhị) → buông bỏ tự mình (Lục Tam) → tập hợp người khác, hình thành nên cộng đồng mới (Cửu Tứ) → công bố, phát tán ra ngoài lớn (Cửu Ngũ) → dẫn máu đi ra khỏi (Thượng Cửu). Bài học: đôi khi cần 'phá tán' để 'tái hợp' thành hình dáng mới tốt hơn.",
+
+  "computer_science": "Hoán giống quá trình refactor/decompose một monolith: tách rối từng phần (dispersion), nhưng phải giữ nguyên tắc cốt lõi (các ritual/lễ vật) để không thành tiêu tan hoàn toàn. Cấu trúc mới sẽ 'thớt' (tán ra) qua microservices/modules riêng, nhưng vẫn tuân thủ chung 1 mục đích tôn giáo (business logic, values) — không phải 'phá' mà là 'tái tổ chức'.",
+
+  "life": "Khi cảm thấy bị kẹt, cứng nhắc, bối rối, đôi khi giải pháp là 'buông lỏng' thay vì 'cắn chặt'. Cho phép những thứ cũ tán loạn để tạo không gian cho hình dáng mới — nhưng luôn nhớ tâm lý của bạn (mục đích sâu xa) giống như lễ vật tôn giáo không bao giờ bị phân tán.",
+
+  "programming": "Khi hệ thống đang trở nên 'dính bộ', coupling quá cao: thay vì cố sửa chữa tại chỗ, hãy tách rời từng phần một (refactor thành modules độc lập). Việc này trông 'tương tàn' ở đầu nhưng sẽ giải phóng năng lực mỗi bộ phận, sau đó tái hợp via API/events — kết cấu mới sẽ linh hoạt hơn.",
+
+  "characters": [
+    {
+      "hanzi": "渙",
+      "pinyin": "huàn",
+      "hanviet": "hoán",
+      "meaning": "Phân tán, tán loạn, tan rã; gió thổi làm nước dập dờn; tên 1 quẻ.",
+      "origin": "Chữ ghép từ 水 (thủy, nước) + 奐 (hoán/環, hình vòng/đầy đủ) — hình ảnh nước bị gió thổi tán ra từng hạt, vốn là 1 cục nước liên tục nhưng giờ thành những giọt rơi rác rơi — nghĩa gốc 'tán ra, phân tán, giải tán'.",
+      "example": "渙散 (hoán tán) = tán loạn, rối loạn; 渙然冰釋 (hoán nhiên băng thích) = tan chảy như nước đá, giải tỏa nghi kỵ.",
+      "cs": "Decompose / Refactor",
+      "csExplain": "Quá trình tách rời một hệ thống chặt chẽ thành các phần độc lập hơn — từ monolith → microservices, từ 1 module khổng lồ → nhiều module nhỏ."
+    },
+    {
+      "hanzi": "風",
+      "pinyin": "fēng",
+      "hanviet": "phong",
+      "meaning": "Gió; áng gió; không nhìn thấy được nhưng có tác dụng; tên 1 quái.",
+      "origin": "Chữ cổ vẽ lông/tơ xơ bay trong không khí (phần trên như 八 xẫng, dưới như 虫/虫 chỉ sự vận động) — nghĩa gốc 'gió (cái tự nhiên không nhìn thấy nhưng cảm được)', mở rộng thành 'tục lệ, phong tục' (gió xã hội).",
+      "example": "風吹 (phong xuy) = gió thổi; 風俗 (phong tục) = tục lệ; 風行 (phong hành) = phổ biến (gió thổi đi khắp nơi).",
+      "cs": "Pervasive / Invisible Force",
+      "csExplain": "Lực tác động toàn diện nhưng không thể nắm bắt cụ thể — giống như culture, governance model, hay background job chạy khắp hệ thống."
+    },
+    {
+      "hanzi": "水",
+      "pinyin": "shuǐ",
+      "hanviet": "thủy",
+      "meaning": "Nước; chất lỏng; tên 1 quái (Khảm).",
+      "origin": "Chữ tượng hình dòng nước chảy (những bông như sóng, dòng chữ giữa là đường nước) — một trong những chữ cổ nhất, có ý nghĩa gốc 'nước, chất lỏng lưu động'.",
+      "example": "水流 (thủy lưu) = dòng nước; 水火不容 (thủy hỏa bất dung) = nước lửa không cùng tồn tại.",
+      "cs": "Flow / State of Flux",
+      "csExplain": "Trạng thái lưu động, có khả năng thích ứng — như data flow trong hệ thống, stream processing, hoặc flexible state management."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：用拯馬壯，吉。",
+      "hanviet": "Sơ Lục: Dụng trấn mã tráng, cát.",
+      "translation": "Dùng con ngựa mạnh mẽ để cứu tế từ khoảnh khắc nguy hiểm — tốt lành.",
+      "english": "The first SIX, divided, shows its subject engaged in rescuing (from the impending evil) and having (the assistance of) a strong horse. There will be good fortune.",
+      "explain": "Hào đầu, lực lượng âm nhưng không chủ động phân tán mà là ứng cứu từ bên ngoài — giống như lúc bắt đầu tán loạn, cần hành động nhanh để cứu vãn.",
+      "itExample": "Gặp outage/crisis, team nhanh chóng mobilize (như ngựa mạnh) để cứu tế trước khi chaos lan rộng — response nhanh ngăn chặn tán loạn lan rộng.",
+      "lifeExample": "Khi tình huống bắt đầu loạn, nhanh chóng gọi người mạnh nhất (mentor, thầy cũ) để giúp đỡ — kịp thời ngăn chặn trước khi mất kiểm soát."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：渙奔其机，悔亡。",
+      "hanviet": "Cửu Nhị: Hoán bôn kỳ cơ, hối vong.",
+      "translation": "Chạy nhanh tìm chỗ ẩn núp an toàn giữa tán loạn — hối tiếc tiêu tan.",
+      "english": "The second NINE, undivided, shows its subject, amid the dispersion, hurrying to his contrivance (for security). All occasion for repentance will disappear.",
+      "explain": "Giữa cơn tán loạn, tìm được cách bảo vệ bản thân bằng sự chuẩn bị tốt (contrivance, kỹ xảo) — hành động quyết đoán cứu vãn được tình huống.",
+      "itExample": "Hệ thống đang bị phân mảnh (microservices quá nhiều), engineer nhanh chóng thiết lập message queue/API gateway (kỹ xảo) để tái kết nối lại dòng chảy — qua được khủng hoảng.",
+      "lifeExample": "Khi công việc/mối quan hệ đang rơi vào hỗn loạn, tìm được 'chỗ trú ẩn' an toàn (mentorship, support network) thì tình huống được cứu vãn."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：渙其躬，无悔。",
+      "hanviet": "Lục Tam: Hoán kỳ cung, vô hối.",
+      "translation": "Buông bỏ bản thân, không cố chấp — không có hối tiếc.",
+      "english": "The third SIX, divided, shows its subject discarding any regard to his own person. There will be no occasion for repentance.",
+      "explain": "Từ bỏ tính cách cá nhân/ego trong lúc tán loạn — không cố kéo lại những thứ đã qua mà chấp nhận sự thay đổi, từ đó không có gì phải hối tiếc.",
+      "itExample": "Refactor lớn đòi hỏi bỏ đi những legacy code/design decision cũ kỹ của mình (ego coder) — buông bỏ, chấp nhận thay đổi, kết quả tốt hơn.",
+      "lifeExample": "Khi bị cuốn vào sự tán loạn của môi trường xung quanh, thay vì cố giữ lại 'hình tượng của bản thân', hãy buông tay, chấp nhận sự thay đổi — khi đó không có gì để hối tiếc."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "六四：渙其群，元吉。渙有丘，匪夷所思。",
+      "hanviet": "Cửu Tứ: Hoán kỳ quần, nguyên cát. Hoán hữu khôi, phỉ di sở tư.",
+      "translation": "Phân tán những nhóm rời rạc, tái tập hợp thành đám đông mới — cực tốt lành; giải tán rồi lại tụ thành đồi núi, điều không ai tưởng được.",
+      "english": "The fourth SIX, divided, shows its subject scattering the (different) parties (in the state); which leads to great good fortune. From the dispersion (he collects again good men standing out, a crowd) like a mound, which is what ordinary men would not have thought of.",
+      "explain": "Giai đoạn tái tổ chức — phá vỡ những nhóm lợi ích cũ, rồi từ sự tán loạn đó tập hợp lại một cộng đồng mới có mục đích chung cao hơn.",
+      "itExample": "Sau refactor toàn cục, tái tổ chức team từ theo project sang theo technical domain/platform — sự tán loạn tạm thời nhưng tái hợp thành structure mạnh hơn.",
+      "lifeExample": "Công ty/tổ chức đương đầu với phân tán (lay-off, restructure), nhưng từ đó tái hợp lại những người cùng chí hướng, tạo ra văn hóa mới — không ai nghĩ được điều tốt này từ chaos ban đầu."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：渙汗其大號，渙王居，无咎。",
+      "hanviet": "Cửu Ngũ: Hoán hãn kỳ đại hiệu, Hoán vương cư, vô cữu.",
+      "translation": "Công bố lệnh lớn như nước mồ hôi tuôn ra khắp người — vua định cư yên ổn; không có lỗi.",
+      "english": "The fifth NINE, undivided, shows its subject amidst the dispersion issuing his great announcements as the perspiration (flows from his body). He scatters abroad (also) the accumulations in the royal granaries. There will be no error.",
+      "explain": "Vị trí lãnh đạo tối cao công bố quyết định lớn (thoát ra như mồ hôi) — phân phối tài nguyên khắp mọi nơi, từ đó tạo được sự cân bằng và ổn định.",
+      "itExample": "CEO/CTO công bố vision lớn (public announcement), phân bổ funding rộng khắp team, từ đó tái tập hợp mọi lực lượng hướng tới mục tiêu chung.",
+      "lifeExample": "Lãnh đạo công bố quyết định lớn (thường đau đớn nhưng cần thiết) — phân tán nỗi lo/tài nguyên cho cả tổ chức, từ đó tìm thấy sự cân bằng mới."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：渙其血，去逖出，无咎。",
+      "hanviet": "Thượng Cửu: Hoán kỳ huyết, khứ đắc xuất, vô cữu.",
+      "translation": "Phân tán máu mủ (bệnh tật), đi ra khỏi tức thời, rời xa nỗi lo — không có lỗi.",
+      "english": "The topmost NINE, undivided, shows its subject disposing of (what may be called) its bloody wounds, and going and separating himself from its anxious fears. There will be no error.",
+      "explain": "Hào cuối, kết thúc quá trình tán loạn — loại bỏ hoàn toàn những vết thương cũ (máu là tổn thương), rời xa môi trường nguy hiểm, tìm được yên bình mới.",
+      "itExample": "Sau refactor xong, hoàn toàn loại bỏ legacy codebase (máu/vết thương), di chuyển team ra khỏi thế chính của codebase cũ — cuối cùng tìm được peace of mind.",
+      "lifeExample": "Kết thúc công việc/mối quan hệ cũ, hoàn toàn rời xa, loại bỏ hết lo lắng/trauma liên quan — tìm được yên tĩnh, không có hối tiếc."
+    }
+  ],
+
+  "keywords": ["Hoán", "渙", "phân tán", "giải tán", "tái tập hợp", "gió trên nước", "phá tán để tái tổ chức", "buông bỏ cứng nhắc"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/huan", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Hoán (Judgment + 6 hào)." },
+    { "source": "Chinese Text Project — Book of Changes : Xiang Zhuan : Huan", "url": "https://ctext.org/book-of-changes/huan2", "note": "Nguồn Đại Tượng truyện (象曰) kèm dịch Anh ngữ James Legge." },
+    { "source": "維基文庫 Wikisource — 周易/渙", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E6%B8%99", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/59", "label": "64 Quẻ — Quẻ 59: Phong Thủy Hoán" }
+  ]
+}

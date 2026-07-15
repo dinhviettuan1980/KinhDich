@@ -1,0 +1,158 @@
+{
+  "id": 62,
+  "hanzi": "小過",
+  "pinyin": "Xiǎo Guò",
+  "hanviet": "Tiểu Quá",
+  "english": "Small Exceeding (Thunder over Mountain)",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "小過：亨。利貞。可小事，不可大事。飛鳥遺之音，不宜上宜下，大吉。",
+    "hanviet": "Tiểu Quá: Hanh. Lợi trinh. Khả tiểu sự, bất khả đại sự. Phi điểu duy chi âm, bất nghi thượng nghi hạ, đại cát.",
+    "translation": "Tiểu Quá (Vượt quá nhỏ): hanh thông; thuận lợi khi chính đính. Thích cho những việc nhỏ, không thích cho việc lớn. Chim bay để lại tiếng vang — không nên bay lên mà nên bay xuống, lớn lao tốt lành.",
+    "english": "Xiao Guo indicates that there will be progress and attainment. But it will be advantageous to be firm and correct. (It may be used) for small matters, but not for great matters. We have the symbol of a bird on the wing, and of the notes that come down from such a bird, for which it is better to descend than to ascend, thereby leading to great good fortune."
+  },
+
+  "daTuong": {
+    "hanzi": "山上有雷，小過；君子以行過乎恭，喪過乎哀，用過乎儉。",
+    "hanviet": "Sơn thượng hữu lôi, Tiểu Quá; quân tử dĩ hành quá hồ cung, tang quá hồ ai, dụng quá hồ kiệm.",
+    "translation": "Sấm trên núi là tượng của quẻ Tiểu Quá; người quân tử noi theo đó mà trong hành động vượt quá ở phía tôn kính, trong tang tưởng vượt quá ở phía sầu thương, trong tiêu xài vượt quá ở phía tiết kiệm.",
+    "english": "(The trigram representing) a hill and that for thunder above it form Hsiao Kwo. The superior man, in accordance with this, in his conduct exceeds in humility, in mourning exceeds in sorrow, and in his expenditure exceeds in economy.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Tiểu Quá là hình ảnh của việc vượt quá 'nhỏ' — không phải vượt quá lớn (như Đại Quá, quẻ 28) mà chỉ vượt quá ở những chi tiết. Cốt lõi: những vượt quá nhỏ này nếu được xử lý đúng (humility, sorrow, frugality — những điều 'xuống' thay vì 'lên') sẽ mang lại tốt lành lớn lao. Lưu ý hình ảnh chim bay: tiếng vang từ chim lại từ phía dưới, nghĩa là chim nên bay xuống/hạ thấp hơn là bay cao. Sáu hào kể: chim bay rơi xuống hung (Sơ Lục) → vượt qua tổ ông, không chống lại vua, không lỗi (Lục Nhị) → không cẩn thận, bị tấn công, hung (Cửu Tam) → nhẩy nhưng không vượt quá, không lỗi (Cửu Tứ) → mây mù không mưa, không có ai (Lục Ngũ) → không gặp được mục đích, bay quá cao, hung (Thượng Lục).",
+
+  "computer_science": "Tiểu Quá giống incremental fix / small patch philosophy — không thể fix toàn bộ vấn đề (đại quá) nên fix từng chút một, nhưng mỗi fix phải 'bay xuống' (humble, cẩn thận) chứ không tham vọng quá. Chim 'để lại tiếng vang' = logging/monitoring — bạn không bao giờ biết fix nhỏ của bạn ảnh hưởng sâu như thế nào nếu không nghe tiếng vang từ dưới.",
+
+  "life": "Không phải lúc nào cũng phải 'bay cao' hay 'vượt quá lớn' — đôi khi những bước nhỏ, khiêm tốn, cẩn thận là đúng đắn. Hãy học cách 'bay xuống' (hạ thấp mục tiêu, khiêm tốn) thay vì luôn luôn hướng lên.",
+
+  "programming": "Ship small, frequently, humbly. Mỗi PR nhỏ xử lý 1 vấn đề — không cố 'bay cao' với big feature. Một thay đổi nhỏ tuân thủ chính xác (không vượt spec) sẽ mang lại ổn định hơn ngàn vay vọc lớn.",
+
+  "characters": [
+    {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "hanviet": "tiểu",
+      "meaning": "Nhỏ, bé; trẻ; ít.",
+      "origin": "Chữ cổ vẽ 3 cái chấm nhỏ xếp lên nhau (或 hình 八 tách ra, giữa là 丶) — ý chỉ những thứ nhỏ xíu.",
+      "example": "小事 (tiểu sự) = việc nhỏ; 小人 (tiểu nhân) = người nhỏ/tiểu nhân (tiêu cực); 小時 (tiểu thời) = lúc bé (hoặc hình thức lịch sử của 小時候).",
+      "cs": "Minimal / Constrained",
+      "csExplain": "Phạm vi nhỏ, tài nguyên hạn chế — fix đó chỉ áp dụng trên một tập hợp nhỏ."
+    },
+    {
+      "hanzi": "過",
+      "pinyin": "guò",
+      "hanviet": "quá",
+      "meaning": "Vượt qua, vượt quá, sai lầm; quá mức; qua lại.",
+      "origin": "Chữ ghép từ 辶 (chư, sự di chuyển) + 咠 (hình cái miệng/lỗi) — hình ảnh đi qua rồi bỏ lại hoặc 'đi quá xa' dẫn tới sai lầm.",
+      "example": "過度 (quá độ) = vượt quá; 過失 (quá thất) = lỗi lầm; 過分 (quá phân) = quá mức.",
+      "cs": "Exceed / Overshoot",
+      "csExplain": "Vượt quá threshold, boundary, spec — hoặc vô tình hoặc cố ý."
+    },
+    {
+      "hanzi": "飛",
+      "pinyin": "fēi",
+      "hanviet": "phi",
+      "meaning": "Bay, bay lên; nhanh chóng; rơi vãi.",
+      "origin": "Chữ tượng hình chim bay (cánh, thân) — hoặc từ giác quan thị giác của chim bay lên.",
+      "example": "飛行 (phi hành) = bay; 飛速 (phi tốc) = bay nhanh, rất nhanh; 飛天 (phi thiên) = bay lên trời, thần kỳ.",
+      "cs": "Ascend / Rise",
+      "csExplain": "Hướng lên, leo cao — có khi vượt quá khả năng, dẫn tới nguy hiểm."
+    },
+    {
+      "hanzi": "鳥",
+      "pinyin": "niǎo",
+      "hanviet": "điểu",
+      "meaning": "Chim; công chim; tên chim; loài có cánh.",
+      "origin": "Chữ tượng hình chim (đầu, cánh, đuôi) — một trong những chữ cổ, chỉ chim một cách trực quan.",
+      "example": "鳥飛 (điểu phi) = chim bay; 飛鳥 (phi điểu) = chim bay (đảo thứ tự); 鳥籠 (điểu long) = lồng chim.",
+      "cs": "Mobile / Volatile",
+      "csExplain": "Thứ gì đó có khả năng di chuyển nhanh, dễ biến, không ổn định — giống user session, floating point, temporary state."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：飛鳥以凶。",
+      "hanviet": "Sơ Lục: Phi điểu dĩ hung.",
+      "translation": "Chim bay — xấu.",
+      "english": "The first SIX, divided, suggests (the idea of) a bird flying, (and ascending) till the issue is evil.",
+      "explain": "Hào đầu, quá sớm bay — chưa sẵn sàng mà cố bay → xấu.",
+      "itExample": "Ship feature quá sớm, chưa test đầy đủ — bug trong production, xấu.",
+      "lifeExample": "Vội vàng bước vào đại sự chưa sẵn sàng — thất bại."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：過其祖，遇其妣；不及其君，遇其臣；无咎。",
+      "hanviet": "Lục Nhị: Quá kỳ tổ, ngộ kỳ mẫu; bất cập kỳ quân, ngộ kỳ thần; vô cữu.",
+      "translation": "Vượt qua tổ ông, gặp bà mẹ; không kịp tới vua, gặp viên tế; không có lỗi.",
+      "english": "The second SIX, divided, shows its subject passing by his grandfather, and meeting with his grandmother; not attempting anything against his ruler, but meeting him as his minister. There will be no error.",
+      "explain": "Vượt qua người cao tuổi hơn, gặp được người thấp hơn — biết giữ khoảng cách, tôn trọng quyền lực, không chống lại — vẫn an toàn.",
+      "itExample": "Refactor: vượt quá legacy pattern cũ, gặp được architectural style mới — không cố chống lại pattern cao hơn, chỉ work với phần của mình — OK.",
+      "lifeExample": "Thay đổi công việc: vượt qua mentor cũ, gặp được leader mới — biết giữ vị trí của mình, không chống lại — không lỗi."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：弗過防之，從或戕之，凶。",
+      "hanviet": "Cửu Tam: Phất quá phòng chi, tùng hoặc tăng chi, hung.",
+      "translation": "Không cẩn thận phòng vệ vượt quá, theo đó ai đó có thể tấn công — xấu.",
+      "english": "The third NINE, undivided, shows its subject taking no extraordinary precautions against danger; and some in consequence finding opportunity to assail and injure him. There will be evil.",
+      "explain": "Không cẩn thận/phòng vệ, để lộ lỗ hổng → người khác tấn công → xấu.",
+      "itExample": "Refactor: không cẩn thận xóa logging cũ, để lộ security issue, attacker tận dụng → xấu.",
+      "lifeExample": "Khi thay đổi, lơ là phòng vệ, bị người khác tấn công lợi dụng — thất bại."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：无咎，弗過遇之。往厲必戒，勿用永貞。",
+      "hanviet": "Cửu Tứ: Vô cữu, phất quá ngộ chi. Vãng lệ tất giới, vật dụng vĩnh trinh.",
+      "translation": "Không có lỗi, không vượt quá khi gặp; hướng tới nguy hiểm phải cảnh báo, không nên dùng sự kiên định lâu dài.",
+      "english": "The fourth NINE, undivided, shows its subject falling into no error, but meeting (the exigency of his situation), without exceeding (in his natural course).",
+      "explain": "Gặp tình huống khó, nhưng không vượt quá phạm vi của mình — cảnh báo trước nguy hiểm phía trước, không cố kiên định quá lâu.",
+      "itExample": "Patch: cần sửa vấn đề nhưng không vượt qua scope fix, cảnh báo user có breaking change, không giữ compatibility quá lâu.",
+      "lifeExample": "Khi gặp khó khăn, hành động cẩn thận không vượt quá năng lực, báo động trước, không cố chặn lâu dài."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：密雲不雨，自我西郊，公弋取彼在穴。",
+      "hanviet": "Lục Ngũ: Mật vân bất vũ, tự ngã tây kiều, công dực thủ bỉ tại huyệt.",
+      "translation": "Mây mù dày đặc nhưng không mưa, từ phía tây viễn (của mình); công chúa bắn để lấy cái ở trong lỗ.",
+      "english": "The fifth SIX, divided, (suggests the idea) of dense clouds, but no rain, coming from our borders in the west.",
+      "explain": "Trạng thái treo lơ — có triệu chứng (mây) nhưng không hành động (không mưa) — chẳng giải quyết được gì.",
+      "itExample": "Monitoring alert: có báo cáo (mây) nhưng không hành động (không mưa) — vấn đề vẫn nằm im.",
+      "lifeExample": "Nhận thấy vấn đề (mây) nhưng không làm gì (không mưa) — vấn đề nằm im lâu dài."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：弗遇過之，飛鳥離之，凶，是謂災眚。",
+      "hanviet": "Thượng Lục: Phất ngộ quá chi, phi điểu ly chi, hung, thị vị tai tinh.",
+      "translation": "Không gặp lại hành động vượt quá, chim bay từ bỏ — xấu, gọi là thảm họa.",
+      "english": "The sixth SIX, divided, shows its subject not meeting (the exigency of his situation), and exceeding (his proper course)...There will be evil. (What is denoted) is called 'Exceeding in flying aloft.' (All is) evil.",
+      "explain": "Vượt quá quá mức, không thể quay lại — chim bay khỏi, kết thúc là thảm họa.",
+      "itExample": "Refactor quá lớn không thể rollback, bug không thể sửa — production disaster, catastrophe.",
+      "lifeExample": "Vượt quá quá xa mà không cách nào quay lại — cuối cùng thảm họa."
+    }
+  ],
+
+  "keywords": ["Tiểu Quá", "小過", "vượt quá nhỏ", "chim bay", "bay xuống", "khiêm tốn", "cẩn thận", "incremental fix"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/xiao-guo", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Tiểu Quá (Judgment + 6 hào)." },
+    { "source": "Chinese Text Project — Book of Changes : Xiang Zhuan : Xiao Guo", "url": "https://ctext.org/book-of-changes/xiao-guo2", "note": "Nguồn Đại Tượng truyện (象曰) kèm dịch Anh ngữ James Legge." },
+    { "source": "維基文庫 Wikisource — 周易/小過", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%B0%8F%E9%81%8E", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/62", "label": "64 Quẻ — Quẻ 62: Lôi Sơn Tiểu Quá" }
+  ]
+}

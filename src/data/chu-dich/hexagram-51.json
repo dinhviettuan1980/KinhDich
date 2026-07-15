@@ -1,0 +1,159 @@
+{
+  "id": 51,
+  "hanzi": "震",
+  "pinyin": "Zhèn",
+  "hanviet": "Chấn",
+  "english": "The Arousing (Shock, Thunder)",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "震：亨。震來虩虩，笑言啞啞。震驚百里，不喪匕鬯。",
+    "hanviet": "Chấn: Hanh. Chấn lai hích hích, tiếu ngôn ách ách. Chấn kinh bách lý, bất táng chuỷ sưởng.",
+    "translation": "Chấn (Sấm động): hanh thông. Sấm động đến làm người ta run sợ hoảng hốt, rồi sau đó lại cười nói vui vẻ. Tiếng sấm kinh động cả trăm dặm, nhưng người chủ tế vẫn không đánh rơi muôi và chén rượu tế.",
+    "english": "Shock intimates ease and development. When the time of movement which it indicates comes, the subject of the hexagram will be found looking out with apprehension, and yet smiling and talking cheerfully. When the movement like a crash of thunder terrifies all within a hundred miles, he will be like the sincere worshipper who is not startled into dropping his ladle and cup of sacrificial spirits."
+  },
+
+  "daTuong": {
+    "hanzi": "洊雷，震；君子以恐懼修省。",
+    "hanviet": "Tiến lôi, Chấn; quân tử dĩ khủng cụ tu tỉnh.",
+    "translation": "Sấm dồn dập nối tiếp nhau — đó là hình tượng quẻ Chấn. Người quân tử noi theo đó mà luôn giữ lòng lo sợ, thận trọng để tu dưỡng bản thân và tự xét lại mình.",
+    "english": "The image of Thunder, being repeated, forms Shock. The superior man, in accordance with this, is fearful and apprehensive, cultivates his virtue, and examines his faults.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Chấn là quẻ Sấm chồng lên Sấm — trigram Chấn (雷, sấm động, con trưởng nam) lặp lại 2 lần, tượng trưng cho cú sốc bất ngờ, chấn động dữ dội. Điều đặc biệt của quẻ này: cú sốc không phải điều xấu tự thân — nó 'hanh thông' vì buộc người ta phải tỉnh táo, cẩn trọng hơn. Người chủ tế giữ được muôi và chén rượu không rơi giữa tiếng sấm kinh động trăm dặm chính là hình ảnh về bản lĩnh giữ vững giá trị cốt lõi giữa biến động. Sáu hào đi từ cú sốc đầu tiên rồi hồi phục vui vẻ (Sơ Cửu), tới việc biết lánh nạn đúng lúc (Lục Nhị), tự chấn chỉnh giữa hoảng loạn (Lục Tam), bị lún sâu vì thiếu chỗ dựa (Cửu Tứ), giữ vững vị trí trung tâm dù nguy hiểm lặp lại (Lục Ngũ), và bài học phòng bị từ biến cố của người khác (Thượng Lục).",
+
+  "computer_science": "Chấn là hình mẫu kinh điển của interrupt/exception trong hệ thống: một tín hiệu bất ngờ (thunder) làm gián đoạn luồng xử lý bình thường, hệ thống 'hoảng loạn' trong khoảnh khắc — nhưng nếu có exception handler tốt (quân tử tu tỉnh), nó sẽ catch được lỗi, không làm mất transaction/session đang chạy ('không đánh rơi chén rượu tế'), rồi quay lại trạng thái ổn định. Đây chính là tinh thần chaos engineering: mục tiêu không phải là tránh mọi cú sốc, mà là xây hệ thống phục hồi tốt sau cú sốc.",
+
+  "life": "Cú sốc bất ngờ trong đời không phải lúc nào cũng là điềm xấu — nó thường là lời nhắc để ta sống cẩn trọng và tỉnh táo hơn. Người vượt qua tốt không phải người không bao giờ bị chấn động, mà là người giữ được điều cốt lõi (bình tĩnh, giá trị, trách nhiệm) ngay giữa lúc hoảng loạn nhất.",
+
+  "programming": "Vòng đời một sự cố production kinh điển: alert đầu tiên khiến on-call giật mình nhưng xử lý ổn rồi trở lại bình thường (Sơ Cửu), biết rollback/lánh nạn đúng lúc khi nguy hiểm nghiêm trọng thay vì cố cứu vãn ngay (Lục Nhị), biến cơn hoảng loạn thành hành động khắc phục kịp thời (Lục Tam), thiếu sự hỗ trợ đúng lúc khiến bị kẹt lại giữa khủng hoảng (Cửu Tứ), giữ vững vai trò điều phối trung tâm dù sự cố lặp lại (Lục Ngũ), và bài học chủ động phòng ngừa từ sự cố xảy ra ở nơi khác trước khi nó chạm tới hệ thống của mình (Thượng Lục).",
+
+  "characters": [
+    {
+      "hanzi": "震",
+      "pinyin": "zhèn",
+      "hanviet": "chấn",
+      "meaning": "Sấm, sấm động, rung chuyển, chấn động, kinh sợ.",
+      "origin": "Chữ hình thanh: bộ 雨 (vũ, mưa — chỉ hiện tượng thời tiết) ghép với 辰 (thần, thanh phù chỉ âm đọc, nguyên nghĩa liên quan tới 'rung chuyển/vỏ sò lớn dùng làm nông cụ'). Nghĩa gốc là tiếng sấm làm rung chuyển đất trời, mở rộng thành 'chấn động, kinh sợ'.",
+      "example": "地震 (địa chấn) = động đất; 震驚 (chấn kinh) = kinh động, sửng sốt.",
+      "cs": "Interrupt / Exception",
+      "csExplain": "Tín hiệu bất ngờ làm gián đoạn luồng thực thi bình thường của hệ thống — cần có handler xử lý để không mất trạng thái đang chạy."
+    },
+    {
+      "hanzi": "虩",
+      "pinyin": "xì",
+      "hanviet": "hích",
+      "meaning": "Vẻ sợ hãi, run rẩy hoảng hốt (trong 虩虩 — láy đôi mô tả trạng thái kinh sợ).",
+      "origin": "Chữ hiếm, gần như chỉ xuất hiện trong câu này của Kinh Dịch; Thuyết Văn Giải Tự cho rằng liên quan tới hình ảnh một loài giống nhện/thạch sùng hay giật mình (bộ 虎 hổ ở trên gợi ý sự đáng sợ). Nguồn gốc chữ này còn nhiều tranh cãi trong giới nghiên cứu văn tự học.",
+      "example": "Chỉ xuất hiện trong cụm 震來虩虩 (chấn lai hích hích) của Kinh Dịch, không dùng trong tiếng Hán hiện đại.",
+      "cs": "Panic State",
+      "csExplain": "Trạng thái 'panic' tạm thời của hệ thống ngay khi nhận tín hiệu interrupt — trước khi handler kịp xử lý."
+    },
+    {
+      "hanzi": "匕",
+      "pinyin": "bǐ",
+      "hanviet": "chuỷ",
+      "meaning": "Cái muôi/thìa múc (dùng múc rượu tế trong nghi lễ cổ).",
+      "origin": "Chữ tượng hình vẽ hình cái muôi/thìa có cán; về sau hình dạng gần giống dao găm nên cũng được mượn chỉ 'chuỷ thủ' (dao găm nhỏ), nhưng nghĩa gốc trong bối cảnh tế lễ là dụng cụ múc rượu/thức ăn.",
+      "example": "匕首 (chuỷ thủ) = dao găm.",
+      "cs": "Transaction Handle",
+      "csExplain": "Vật cầm giữ trạng thái nghi lễ đang diễn ra — ẩn dụ cho transaction/session không bị 'rơi' (mất) khi hệ thống bị gián đoạn."
+    },
+    {
+      "hanzi": "鬯",
+      "pinyin": "chàng",
+      "hanviet": "sưởng",
+      "meaning": "Rượu thơm dùng trong tế lễ (ủ từ lúa nếp đen và cỏ thơm uất kim hương).",
+      "origin": "Chữ tượng hình vẽ một vật chứa (có nắp/miệng bình ở trên) đựng ngũ cốc đang lên men bên trong — mô tả bình rượu tế linh thiêng dùng để dâng cúng tổ tiên, thần linh.",
+      "example": "秬鬯 (cự sưởng) = một loại rượu tế cổ làm từ lúa nếp đen.",
+      "cs": "Critical Payload",
+      "csExplain": "Dữ liệu/trạng thái quan trọng nhất cần được bảo toàn nguyên vẹn dù hệ thống có bị gián đoạn bất ngờ tới đâu."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：震來虩虩，後笑言啞啞，吉。",
+      "hanviet": "Sơ Cửu: Chấn lai hích hích, hậu tiếu ngôn ách ách, cát.",
+      "translation": "Sấm động đến khiến run sợ hoảng hốt, nhưng sau đó lại cười nói vui vẻ — tốt lành.",
+      "english": "The first line, dynamic, shows its subject, when the movement approaches, looking out and around with apprehension, and afterwards smiling and talking cheerfully. There will be good fortune.",
+      "explain": "Vị trí thấp nhất nhưng là hào dương mạnh — cú sốc đầu tiên khiến hoảng hốt là phản ứng tự nhiên, nhưng nhờ xử lý đúng nên nhanh chóng quay lại trạng thái bình thường.",
+      "itExample": "Alert đầu tiên (page giữa đêm) khiến on-call giật mình, nhưng sau khi xử lý xong incident thì mọi thứ trở lại bình thường — phản ứng đúng chuẩn với một cảnh báo sớm.",
+      "lifeExample": "Nhận tin bất ngờ khiến hoảng sợ lúc đầu, nhưng nhờ phản ứng đúng đắn mà mọi việc ổn thoả, tâm trạng nhanh chóng trở lại vui vẻ."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：震來厲，億喪貝，躋于九陵，勿逐，七日得。",
+      "hanviet": "Lục Nhị: Chấn lai lệ, ức táng bối, tê vu cửu lăng, vật trục, thất nhật đắc.",
+      "translation": "Sấm động đến nguy hiểm, của cải như mất sạch; hãy trèo lên chín ngọn đồi cao để lánh nạn, đừng cố đuổi theo tìm lại — bảy ngày sau tự nhiên sẽ tìm lại được.",
+      "english": "The second line, magnetic, shows its subject, when the movement approaches in a position of peril. She judges it better to let go the articles in her possession, and to ascend to a very lofty height. There is no occasion for her to pursue after the things she has let go; in seven days she will find them.",
+      "explain": "Khi nguy hiểm quá lớn, biết lánh nạn đúng lúc quan trọng hơn cố giữ tài sản trước mắt — sự việc sẽ tự ổn định trở lại sau một chu kỳ đủ dài nếu không hành động vội vàng.",
+      "itExample": "Khi hệ thống gặp sự cố nghiêm trọng, ưu tiên rollback/ngắt kết nối an toàn thay vì cố cứu vãn ngay dữ liệu đang mất — dữ liệu backup rồi sẽ khôi phục được sau một khoảng thời gian hợp lý.",
+      "lifeExample": "Khi gặp mất mát lớn bất ngờ (tài chính, công việc), tạm lánh và ổn định bản thân trước, đừng cố đuổi theo giành lại ngay — theo thời gian mọi thứ sẽ dần trở lại."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：震蘇蘇，震行无眚。",
+      "hanviet": "Lục Tam: Chấn tô tô, chấn hành vô sảnh.",
+      "translation": "Sấm động khiến choáng váng bất an; nhưng nếu biết hành động (tự chấn chỉnh) đúng lúc thì không gặp tai họa.",
+      "english": "The third line, magnetic, shows its subject distraught amid the startling movements going on. If those movements excite her to right action, there will be no mistake.",
+      "explain": "Vị trí không chính đáng (âm ở hào lẻ) nên choáng váng, mất phương hướng tạm thời — nhưng nếu biến cú sốc thành động lực để hành động đúng, sẽ tránh được hậu quả xấu.",
+      "itExample": "Một cảnh báo khiến cả team hoảng loạn nhất thời; nhưng nếu biến cơn hoảng loạn đó thành hành động khắc phục kịp thời (hotfix, incident response nhanh) thì tránh được hậu quả nghiêm trọng hơn.",
+      "lifeExample": "Một tin xấu khiến bạn mất phương hướng tạm thời — nhưng nếu biến sự hoảng loạn đó thành hành động sửa sai ngay lập tức, bạn sẽ tránh được hậu quả lớn hơn."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：震遂泥。",
+      "hanviet": "Cửu Tứ: Chấn toại nê.",
+      "translation": "Sấm động mà rốt cuộc lún sâu vào bùn lầy, không thoát ra được.",
+      "english": "The fourth line, dynamic, shows its subject, amid the startling movements, supinely sinking deeper in the mud.",
+      "explain": "Tuy là hào dương mạnh nhưng bị kẹt giữa các hào âm bao quanh, mất đà và không có chỗ dựa đúng — nỗ lực hành động giữa biến động lại khiến lún sâu hơn.",
+      "itExample": "Một bản fix được deploy giữa cơn khủng hoảng nhưng thiếu sự hỗ trợ/context từ hệ thống xung quanh nên bị kẹt lại, không giải quyết được gì thêm — giống module bị bao vây bởi legacy code không tương thích.",
+      "lifeExample": "Cố gắng hành động giữa khủng hoảng nhưng thiếu sự hỗ trợ đúng lúc từ xung quanh khiến bạn càng lún sâu vào bế tắc thay vì thoát ra."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：震往來厲，億无喪，有事。",
+      "hanviet": "Lục Ngũ: Chấn vãng lai lệ, ức vô táng, hữu sự.",
+      "translation": "Sấm động lúc đi lúc đến đều nguy hiểm; nhưng xét kỹ thì không mất mát gì lớn, vẫn còn việc để xử lý được.",
+      "english": "The fifth line, magnetic, shows its subject going and coming amidst the startling movements of the time, and always in peril; but perhaps she will not incur loss, and find business which she can accomplish.",
+      "explain": "Vị trí trung tâm (dù là âm ở ngôi vua) giúp giữ được sự cân bằng dù nguy hiểm lặp đi lặp lại — không mất mát nghiêm trọng vì luôn ở vị trí kiểm soát được tình hình.",
+      "itExample": "Hệ thống liên tục hứng chịu các đợt traffic bất thường, nhưng nhờ ở vị trí điều phối trung tâm (load balancer/orchestrator) nên vẫn xử lý được, không mất dữ liệu quan trọng.",
+      "lifeExample": "Đối mặt với chuỗi biến cố liên tiếp trong công việc, nhưng nhờ giữ vững vai trò điều phối trung tâm, bạn vẫn xoay sở ổn thoả qua từng đợt."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：震索索，視矍矍，征凶。震不于其躬，于其鄰，無咎。婚媾有言。",
+      "hanviet": "Thượng Lục: Chấn tác tác, thị quắc quắc, chinh hung. Chấn bất vu kỳ cung, vu kỳ lân, vô cữu. Hôn cấu hữu ngôn.",
+      "translation": "Sấm động khiến run rẩy tan tác, mắt nhìn ngơ ngác hoảng loạn — nếu cứ hành động lúc này thì xấu. Nhưng nếu biến cố chưa giáng vào chính mình mà đang giáng vào người hàng xóm bên cạnh, hãy chủ động phòng bị trước thì không có lỗi — dù có thể bị người thân quen bàn tán, dị nghị.",
+      "english": "The sixth line, magnetic, shows its subject, amidst the startling movements of the time, in breathless dismay and looking around her with trembling apprehension. If she takes action, there will be evil. If, while the startling movements have not reached her own person and her neighbourhood, she were to take precautions, there would be no error, though her relatives might still speak against her.",
+      "explain": "Hào cuối, cực độ hoảng loạn — hành động vội vàng lúc này dễ gặp xấu; nhưng nếu biết rút bài học phòng bị từ biến cố xảy đến với người khác trước khi nó chạm tới mình, sẽ tránh được lỗi.",
+      "itExample": "Một sự cố lớn xảy ra ở hệ thống của công ty khác (chưa phải của mình) — bài học khôn ngoan là chủ động rà soát và phòng ngừa trước, dù có thể bị đồng nghiệp cho là 'quá cẩn thận, lo xa'.",
+      "lifeExample": "Chứng kiến biến cố xảy đến với người xung quanh (chưa phải chính mình) — khôn ngoan là rút kinh nghiệm và phòng bị trước, dù có thể bị người khác bàn tán."
+    }
+  ],
+
+  "keywords": ["Chấn", "震", "Sấm", "thuần Chấn", "chấn động", "cú sốc", "tự tu tỉnh", "phục hồi sau khủng hoảng"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/zhen", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán từng hào; đọc lại nguyên văn Legge qua trang tổng hợp James DeKorne." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 51", "url": "http://jamesdekorne.com/GBCh/hex51.htm", "note": "Trang tổng hợp trích dẫn đầy đủ bản dịch Legge cho Thoán từ, Đại Tượng và 6 hào." },
+    { "source": "維基文庫 Wikisource — 周易/震", "url": "https://zh.wikisource.org/zh-hant/周易/震", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/51", "label": "64 Quẻ — Quẻ 51: Thuần Chấn" }
+  ]
+}

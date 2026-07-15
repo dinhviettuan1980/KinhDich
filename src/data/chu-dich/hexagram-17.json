@@ -1,0 +1,168 @@
+{
+  "id": 17,
+  "hanzi": "隨",
+  "pinyin": "Suí",
+  "hanviet": "Tùy",
+  "english": "Following (Compliance)",
+  "upperTrigram": "dui",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "隨：元亨。利貞。无咎。",
+    "hanviet": "Tùy: Nguyên, hanh. Lợi, trinh. Vô cữu.",
+    "translation": "Tùy (Theo dõi, thích nghi): mở đầu lớn lao, hanh thông. Thuận lợi chính bền, không có lỗi.",
+    "english": "Sui indicates that, under its conditions, there will be great progress and success. It will be advantageous to be firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "澤中有雷，隨；君子以嚮晦入宴息。",
+    "hanviet": "Trạch trung hữu lôi, Tùy; quân tử dĩ hướng hối nhập yến tức.",
+    "translation": "Sấm sét ở giữa hồ nước — đó là quẻ Tùy. Người quân tử xem đó mà khi chiều tối buông xuống thì vào nhà yên tĩnh, an lạc.",
+    "english": "Thunder in the midst of a lake — the symbol of Following. The superior man, in accordance with this, when it is getting towards dark, enters his house and rests.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Tùy (隨) ghép bởi Đoài (hồ, vui vẻ) ở trên, Chấn (sấm sét, động) ở dưới. Sấm sét bản thân là sức mạnh động, nhưng nó ở trong hồ nước — được hợp lý khoanh vùng, điều khiển. Quẻ nói về sự thích nghi, tuân theo (tùy) mà không mất bản tính. Khác với quẻ Dự (sấm sét phát động từ đất, gây xáo trộn), quẻ Tùy là sấm sét được giữ trong bounds của hồ nước — tức là năng lực được điều khiển, tuân theo quy tắc tự nhiên. Đặc biệt: Đại Tượng '入宴息' (vào yên tĩnh, an lạc) — tức là sức mạnh được dùng để tạo ra hòa bình, không phải xâm chiếm. Sáu hào mô tả từ việc thay đổi vai trò (hào 1), qua sự đánh đổi giữa theo dõi người này hay người kia (hào 2-3), đến sự tìm thấy sự thích ứng đúng (hào 4-6).",
+
+  "computer_science": "Tùy giống như responsive design thinking: user behavior thay đổi, bạn adapt; market condition thay đổi, bạn pivot; team size tăng, bạn scale org structure. Nhưng điều quan trọng là adapt theo quy tắc (protocol, interface), không phải abandon principle. Hồ nước điều khiển sấm sét (discipline guides innovation) — không là tight planning mà là 'follow the system while staying true to what you are'. Tùy không phải passivity; nó là active responsiveness với constraints tự nhiên (budget, user needs, physics, tradeoffs).",
+
+  "life": "Giai đoạn này đòi hỏi linh hoạt, thích ứng — nhưng không phải 'theo cái gì cũng được'. Hãy theo những gì hợp lý, có nguyên tắc, giữ vững bản tính của mình. Cách sống tùy nghi mà kiên định = flexibility + integrity.",
+
+  "programming": "Agile methodology chính là Tùy: follow sprint cycles, follow team feedback, follow market signals, iterate quickly. Nhưng 'follow' không phải là 'no principles' — bạn vẫn giữ architectural integrity, backward compatibility khi phát triển. Thay đổi nhanh mà bền vững = responsive + responsible.",
+
+  "characters": [
+    {
+      "hanzi": "隨",
+      "pinyin": "suí",
+      "hanviet": "tùy",
+      "meaning": "Theo dõi, tuân theo, thích ứng.",
+      "origin": "Chữ hình thanh gồm bộ 辶 (bước chân) kết hợp phần 隶/隶 — hình ảnh của 'theo sau, đi sau', mở rộng thành 'thích ứng, tuân theo'.",
+      "example": "隨便 (tùy tiện) = tùy tiện, không cứng nhắc; 隨時 (tùy thời) = theo thời điểm, tùy hoàn cảnh.",
+      "cs": "Adaptive Response",
+      "csExplain": "Hệ thống hoặc người phản ứng linh hoạt với điều kiện thay đổi — không hardcoded, mà responsive."
+    },
+    {
+      "hanzi": "澤",
+      "pinyin": "zé",
+      "hanviet": "trạch",
+      "meaning": "Hồ, bãi nước, giàu có.",
+      "origin": "Giáp cốt văn vẽ nước (水) kết hợp với dấu hiệu mặt nước phẳng — hình ảnh hồ nước tĩnh lặng.",
+      "example": "澤國 (trạch quốc) = đất nhiều hồ; 恩澤 (ân trạch) = ơn huệ, lợi ích được phân chia.",
+      "cs": "Bounded System",
+      "csExplain": "Hệ thống có ranh giới rõ ràng, constraints tự nhiên — như một hồ nước có bờ."
+    },
+    {
+      "hanzi": "晦",
+      "pinyin": "huì",
+      "hanviet": "hối",
+      "meaning": "Tối, chiều tối, mờ tối.",
+      "origin": "Chữ hình thanh gồm 日 (mặt trời) + phần biểu âm — khi mặt trời mờ đi thì là 晦 (tối).",
+      "example": "晦暗 (hối ám) = tối tăm; 晦氣 (hối khí) = xui xẻo (trong tiếng Hoa), mặc dù gốc là 'khí tối'.",
+      "cs": "Rest / Recovery",
+      "csExplain": "Lúc tối là lúc nghỉ ngơi — giống reset cycle, sleep mode, sabbatical để phục hồi."
+    },
+    {
+      "hanzi": "宴",
+      "pinyin": "yàn",
+      "hanviet": "yến",
+      "meaning": "Tiệc, yên tĩnh, an lạc.",
+      "origin": "Chữ hình thanh gồm 宀 (mái nhà) + phần biểu âm — hình ảnh ngồi trong nhà yên tĩnh.",
+      "example": "宴會 (yến hội) = tiệc; 安宴 (an yến) = yên tĩnh, an lạc.",
+      "cs": "Comfortable State",
+      "csExplain": "Trạng thái an lạc, thoải mái — khi hệ thống chạy smooth, mọi người hài lòng."
+    },
+    {
+      "hanzi": "息",
+      "pinyin": "xī",
+      "hanviet": "tức",
+      "meaning": "Nghỉ ngơi, dừng lại, thở ra.",
+      "origin": "Chữ hình thanh gồp 自 (mũi) + 心 (tâm) — hình ảnh thở ra từ tâm tư, ra nhẹ nhõm.",
+      "example": "休息 (hưu tức) = nghỉ ngơi; 氣息 (khí tức) = hơi thở, tiếng thở.",
+      "cs": "Pause / Breathing Room",
+      "csExplain": "Giây phút dừng lại để thở, để recover — không phải dừng hoàn toàn, mà pause để tiếp tục bền lâu."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：官有渝，貞吉。出門交有功。",
+      "hanviet": "Sơ Cửu: Quan hữu dư, trinh cát. Xuất môn giao hữu công.",
+      "translation": "Vai trò sẽ thay đổi, giữ vững chính đạo thì tốt lành. Ra cổng gặp gỡ người khác sẽ có công dụng.",
+      "english": "The first line, undivided, shows one changing the object of his pursuit; but if he be firm and correct, there will be good fortune. To go beyond his own gate in search of fellowship will be fortunate.",
+      "explain": "Khởi đầu của sự theo dõi, tùy nghi — vai trò/mục tiêu sẽ có thay đổi, nhưng nếu giữ vững nguyên tắc, kết nối với mọi người sẽ mang lại thành công.",
+      "itExample": "Khi join một team hay project mới, vai trò bạn sẽ evolve — nhưng nếu giữ vững quality standard, actively kết nối với team — mọi thứ sẽ thành công.",
+      "lifeExample": "Bước vào một giai đoạn mới, vai trò thay đổi, nhưng nếu mở lòng, chủ động kết nối — sẽ tìm được chỗ đứng mới tốt."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：系小子，失丈夫。",
+      "hanviet": "Lục Nhị: Hệ tiểu tử, thất trượng phu.",
+      "translation": "Nương tựa vào kẻ nhỏ tuổi, mất mát người lớn (người có kinh nghiệm).",
+      "english": "The second line, divided, shows one who cleaves to the little boy, and lets go the man of age and experience.",
+      "explain": "Chọn theo một người, mất theo một người khác — đây là mối nguy của sự 'theo dõi': thường dễ theo cái sai hoặc theo người sai.",
+      "itExample": "Một engineer theo mentor trẻ có năng lực kỹ thuật cao nhưng chưa trưởng thành, bỏ lỡ cơ hội học từ seniors có kinh nghiệm công nghệ + đạo đức tốt.",
+      "lifeExample": "Theo một người bạn trẻ, vui vẻ, nhưng thiếu trí tuệ cuộc sống; bỏ lỡ cơ hội học từ người lớn tuổi có kinh nghiệm."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：系丈夫，失小子。隨，有求得利，居貞。",
+      "hanviet": "Lục Tam: Hệ trượng phu, thất tiểu tử. Tùy, hữu cầu đắc lợi, cư trinh.",
+      "translation": "Nương tựa vào người lớn, mất kẻ nhỏ tuổi. Tùy theo đúng người, có nhu cầu gì cũng được thỏa đáng, an cư như vậy thì đúng.",
+      "english": "The third line, divided, shows one who cleaves to the man of age and experience, and lets go the little boy. He obtains that for which he sought. It is advantageous to adhere to what is right.",
+      "explain": "Chọn theo những người đúng, người có kinh nghiệm, giá trị — sẽ đạt được mục tiêu.",
+      "itExample": "Một junior dev lựa chọn theo senior engineers có mindset tốt, architecture sound — học được cách làm việc chất lượng, career sẽ vững chắc.",
+      "lifeExample": "Chọn theo các người lớn tuổi, có đạo đức, kinh nghiệm sâu — sẽ đạt được mục tiêu lâu dài cao hơn."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：隨有獲，貞凶。有孚在道，以明，何咎。",
+      "hanviet": "Cửu Tứ: Tùy hữu hoạch, trinh hung. Hữu phu tại đạo, dĩ minh, hà cữu.",
+      "translation": "Theo tùy mà được lợi ích, nhưng giữ vững chính đạo sẽ xấu — ngược lại, lòng tin ở con đường sẽ rõ ràng, không có lỗi.",
+      "english": "The fourth line, undivided, shows its subject followed and obtaining adherents. Though he be firm and correct, there will be evil. If, however, in his following he be sincere, and in his path accord with what is right, what error can there be?",
+      "explain": "Ở vị trí cao, người này có sức ảnh hưởng lớn — nhiều người theo. Nhưng nếu cứ 'giữ chính' nghĩa là cứng nhắc thì sẽ gây xấu. Thay vào đó, nếu tuân theo con đường đúng (the way) với lòng tin chân thực — sẽ không có lỗi.",
+      "itExample": "Một tech lead có ảnh hưởng lớn — nếu cứng nhắc giữ personal style hoặc decision mà không lắng nghe team, sẽ gây xấu. Nhưng nếu follow team feedback với lòng tin, adapt khi cần — perfect alignment.",
+      "lifeExample": "Khi có ảnh hưởng, nếu cứ giữ quan điểm riêng mà không adapt sẽ gây xấu; nhưng nếu vừa lắng nghe vừa giữ nguyên tắc cốt lõi — không có lỗi."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：孚于嘉，吉。",
+      "hanviet": "Cửu Ngũ: Phu vu gia, cát.",
+      "translation": "Lòng tin vào cái tốt lành, tốt lành.",
+      "english": "The fifth line, undivided, shows the sincerity of the subject in adhering to what is good. There will be good fortune.",
+      "explain": "Ở ngôi vua, người này có lòng tin chân thành vào những điều tốt lành — kết quả là tốt lành.",
+      "itExample": "Một CEO theo sát các best practice (testing, code review, transparency) không phải vì pressure mà vì belief trong chất lượng — tổ chức trở nên strong, stable.",
+      "lifeExample": "Khi ở vị trí cao, tin tưởng vào những điều tốt lành và hành động theo — kết quả là tất cả tốt đẹp."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：拘系之，乃從維之。王用亨于西山。",
+      "hanviet": "Thượng Lục: Câu hệ chi, nãi tùy duy chi. Vương dụng hanh vu tây sơn.",
+      "translation": "Buộc chặt người đó, rồi theo dõi, giữ chắc họ. Vua dùng đó mà cúng tế ở tây sơn (tây phương, nơi tế Thượng Đế).",
+      "english": "The topmost line, divided, shows how he is held fast by the object of his pursuit. He is firm and correct, and (ultimately) there will be good fortune.",
+      "explain": "Hào cuối cùng — sự theo dõi đã đạt đến đỉnh: 'buộc chặt' người hay nguyên tắc mà mình tin tưởng, không buông ra. Kết quả là tốt lành, thậm chí được cúng tế (acknowledged lớn).",
+      "itExample": "Một engineer hoặc leader tuân theo commit trong long-term project, không bỏ dở khi gặp khó — cuối cùng tạo ra legacy lớn, được công nhân.",
+      "lifeExample": "Bạn bám víu vào những nguyên tắc, người bạn tin tưởng — không buông ra dù khó khăn — cuối cùng sẽ được thành công và công nhân lớn."
+    }
+  ],
+
+  "keywords": ["Tùy", "隨", "thích ứng", "theo dõi", "linh hoạt", "Trạch Lôi"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/隨", "url": "https://zh.wikisource.org/zh-hant/周易/隨", "note": "Nguyên văn chữ Hán: 卦辭, 彖曰, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 17", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_17", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 17 (mirror của bản dịch Legge)", "url": "https://jamesdekorne.com/GBCh/hex17.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/17", "label": "64 Quẻ — Quẻ 17: Trạch Lôi Tùy" }
+  ]
+}

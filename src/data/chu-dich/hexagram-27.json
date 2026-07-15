@@ -1,0 +1,158 @@
+{
+  "id": 27,
+  "hanzi": "頤",
+  "pinyin": "Yí",
+  "hanviet": "Di",
+  "english": "The Corners of the Mouth (Nourishment)",
+  "upperTrigram": "gen",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "頤：貞吉。觀頤，自求口實。",
+    "hanviet": "Di: Trinh cát. Quán di, tự cầu khẩu thực.",
+    "translation": "Di (nuôi dưỡng): giữ chính đính thì tốt lành. Hãy quan sát cách nuôi dưỡng — của người và của mình — để tự tìm phương cách nuôi thân cho đúng.",
+    "english": "Î indicates that, with firm correctness, there will be good fortune. We must look at what we are seeking to nourish, and by the exercise of our thoughts seek for the proper aliment."
+  },
+
+  "daTuong": {
+    "hanzi": "山下有雷，頤；君子以慎言語，節飲食。",
+    "hanviet": "Sơn hạ hữu lôi, Di; quân tử dĩ thận ngôn ngữ, tiết ẩm thực.",
+    "translation": "Dưới núi có sấm, đó là tượng của Di; người quân tử noi theo đó mà thận trọng lời nói, tiết chế ăn uống.",
+    "english": "(The trigram representing) a mountain and under it that for thunder form Î. The superior man, in accordance with this, (enjoins) watchfulness over our words, and the temperate regulation of our eating and drinking.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Di nghĩa là nuôi dưỡng, gắn với hình ảnh cái miệng/hàm (2 hào Dương ở trên và dưới bao quanh 4 hào Âm ở giữa, giống 2 hàm răng bao quanh khoang miệng rỗng). Quẻ này nói về việc nuôi dưỡng đúng cách: nuôi thân thể (ăn uống), nuôi trí tuệ (học hỏi, lời nói) và nuôi người khác. Sáu hào đối lập nhau theo cặp: nuôi dưỡng đúng đắn tự lực (hào 4 tốt vì biết nhìn xuống đúng người) đối lập với việc từ bỏ khả năng tự lập để ỷ lại (hào 1 xấu), và nuôi dưỡng ngược quy luật tự nhiên (hào 2, 3, 5 đều nói tới sự 'trái nghịch' — phất). Bài học cốt lõi: cái gì bạn tiêu thụ — thức ăn, thông tin, lời nói — sẽ định hình chính bạn.",
+
+  "computer_science": "Di giống hệt nguyên tắc 'garbage in, garbage out' trong data pipeline: chất lượng đầu ra của hệ thống phụ thuộc trực tiếp vào những gì nó 'ăn' vào — dữ liệu đầu vào, dependency, thư viện bên thứ ba. Hình ảnh cái miệng (2 hào Dương bọc 4 hào Âm) giống input/output validation layer bao bọc lấy phần xử lý bên trong — không kiểm soát input đúng cách thì phần lõi dù mạnh đến đâu cũng dễ hỏng.",
+
+  "life": "Cẩn trọng với những gì bạn 'ăn' vào — không chỉ thức ăn mà cả thông tin, các mối quan hệ, lời nói bạn tiếp nhận và phát ra. Nuôi dưỡng bản thân đúng cách (tự lực, biết chọn lọc) tốt hơn nhiều so với trông chờ người khác nuôi mình hoặc nuôi dưỡng sai quy luật tự nhiên.",
+
+  "programming": "Việc chọn tech stack, thư viện, và cả nguồn dữ liệu training cho hệ thống chính là 'chế độ ăn' của dự án — chọn sai sẽ để lại hậu quả lâu dài dù code logic có tốt đến đâu. Input validation và sanitize dữ liệu đầu vào (giữ 'khẩu' sạch) quan trọng ngang với logic xử lý bên trong.",
+
+  "characters": [
+    {
+      "hanzi": "頤",
+      "pinyin": "yí",
+      "hanviet": "di",
+      "meaning": "Cái má/hàm, nuôi dưỡng.",
+      "origin": "Chữ tượng hình phần dưới khuôn mặt (má, cằm, hàm) đang nhai, mở rộng nghĩa thành 'nuôi dưỡng, bồi dưỡng'.",
+      "example": "頤養 (di dưỡng) = nuôi dưỡng, tĩnh dưỡng.",
+      "cs": "Input/Output boundary",
+      "csExplain": "Cái miệng là ranh giới giữa 'bên trong' và 'bên ngoài' hệ thống — giống input/output boundary nơi dữ liệu được nạp vào hoặc xuất ra."
+    },
+    {
+      "hanzi": "觀",
+      "pinyin": "guān",
+      "hanviet": "quan",
+      "meaning": "Quan sát, xem xét kỹ.",
+      "origin": "Chữ ghép bộ 見 (kiến, nhìn thấy) + 雚 (quán, âm) — nghĩa gốc liên quan tới việc nhìn ngắm kỹ lưỡng, quan sát có chủ đích (khác với 見 là nhìn thấy thông thường).",
+      "example": "觀察 (quan sát), 世界觀 (thế giới quan).",
+      "cs": "Monitoring / Observability",
+      "csExplain": "Chủ động quan sát để hiểu điều gì đang được 'nuôi dưỡng' — giống việc monitor input traffic trước khi quyết định xử lý ra sao."
+    },
+    {
+      "hanzi": "口",
+      "pinyin": "kǒu",
+      "hanviet": "khẩu",
+      "meaning": "Miệng, cửa vào/ra, đơn vị đếm người.",
+      "origin": "Chữ tượng hình miệng người đang mở, một trong những chữ tượng hình cổ nhất và đơn giản nhất.",
+      "example": "入口 (nhập khẩu) = lối vào/cổng nhập, 出口 (xuất khẩu) = lối ra/cổng xuất.",
+      "cs": "Endpoint / Interface",
+      "csExplain": "Miệng là 'endpoint' vật lý để nạp và phát ra — giống API endpoint là nơi dữ liệu ra vào hệ thống."
+    },
+    {
+      "hanzi": "實",
+      "pinyin": "shí",
+      "hanviet": "thực",
+      "meaning": "Đầy, chắc, thực chất, của cải.",
+      "origin": "Chữ ghép bộ 宀 (miên, mái nhà) + 貫 (quán, chuỗi tiền/của cải xâu lại) — nghĩa gốc 'nhà đầy của cải', mở rộng thành 'đầy đặn, thực chất, chân thực'.",
+      "example": "現實 (hiện thực), 充實 (sung thực) = đầy đủ, phong phú.",
+      "cs": "Payload / Content",
+      "csExplain": "'Khẩu thực' (của nuôi miệng) giống payload thực sự được truyền qua 1 interface — có interface tốt mà payload rỗng/sai thì vẫn vô dụng."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：舍爾靈龜，觀我朵頤，凶。",
+      "hanviet": "Sơ Cửu: Xả nhĩ linh quy, quan ngã đóa di, hung.",
+      "translation": "Bỏ đi con rùa thiêng (khả năng tự nuôi sống) của mình, lại nhìn ta mà thèm thuồng (chờ được nuôi) — xấu.",
+      "english": "You leave your efficacious tortoise, and look at me till your lower jaw hangs down. There will be evil.",
+      "explain": "Có sẵn năng lực tự lập (rùa thiêng — biết nhịn ăn sống lâu, biểu tượng tự túc) nhưng lại từ bỏ để trông chờ, ỷ lại người khác — đây là khởi đầu xấu của sự nuôi dưỡng.",
+      "itExample": "Một dev có đủ tài liệu và khả năng tự debug nhưng liên tục hỏi lại đồng nghiệp thay vì tự tra cứu — lãng phí năng lực sẵn có, tạo thói quen ỷ lại không tốt.",
+      "lifeExample": "Có đủ khả năng tự lo cho bản thân nhưng lại chọn dựa dẫm vào người khác một cách không cần thiết — đánh mất sự tự chủ."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：顛頤，拂經，于丘頤，征凶。",
+      "hanviet": "Lục Nhị: Điên di, phất kinh, vu khâu di, chinh hung.",
+      "translation": "Nuôi dưỡng ngược (trông chờ từ trên xuống), trái với lẽ thường; tìm nuôi dưỡng nơi gò cao (dựa vào bề trên không đúng chỗ) — tiến tới thì xấu.",
+      "english": "shows one looking downwards for nourishment, which is contrary to what is proper; or seeking it from the height (above), advance towards which will lead to evil.",
+      "explain": "Nuôi dưỡng bị lệch — không tự lực mà cũng không tìm đúng người để dựa vào — hào này cảnh báo về sự phụ thuộc sai chỗ.",
+      "itExample": "Team liên tục trông chờ 'ai đó cấp trên' quyết định thay vì tự đưa ra giải pháp kỹ thuật trong phạm vi mình phụ trách — dựa dẫm sai chỗ khiến tiến độ đi xuống.",
+      "lifeExample": "Tìm kiếm sự hỗ trợ từ những nguồn không phù hợp (vay mượn sai người, xin lời khuyên sai chuyên môn) sẽ dẫn tới kết quả không như ý."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：拂頤，貞凶，十年勿用，无攸利。",
+      "hanviet": "Lục Tam: Phất di, trinh hung, thập niên vật dụng, vô du lợi.",
+      "translation": "Nuôi dưỡng trái đạo lý; dù giữ vững cũng xấu, mười năm chẳng nên hành động, không có gì lợi.",
+      "english": "shows one acting contrary to the method of nourishing. However firm he may be, there will be evil. For ten years let him not take any action. There will be no advantage in any way.",
+      "explain": "Vị trí bất chính, nuôi dưỡng hoàn toàn sai cách — đây là cảnh báo mạnh nhất trong quẻ: sai từ gốc thì càng cố gắng càng xấu, cần dừng hẳn thời gian dài để sửa lại từ đầu.",
+      "itExample": "Một kiến trúc hệ thống sai nền tảng ngay từ đầu (ví dụ chọn sai database model) — càng cố vá càng tệ; đôi khi giải pháp đúng là dừng hẳn, viết lại từ đầu chứ không phải kiên trì với hướng sai.",
+      "lifeExample": "Theo đuổi một con đường sự nghiệp hoàn toàn không phù hợp với bản thân — càng cố gắng theo hướng sai càng tổn hại nhiều hơn, cần dừng lại và định hướng lại hoàn toàn."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：顛頤吉，虎視眈眈，其欲逐逐，无咎。",
+      "hanviet": "Lục Tứ: Điên di cát, hổ thị đàm đàm, kỳ dục trục trục, vô cữu.",
+      "translation": "Nuôi dưỡng từ trên xuống dưới (giúp đỡ người dưới) thì tốt; nhìn chăm chú như hổ rình mồi, ham muốn theo đuổi liên tục — không có lỗi.",
+      "english": "shows one looking downwards for (the power to) nourish. There will be good fortune. Looking with a tiger's downward unwavering glare, and with his desire to pursue in perpetual succession, he will fall into no error.",
+      "explain": "Cùng là 'nuôi dưỡng ngược' như hào 2 nhưng ở vị trí này lại tốt — vì là bề trên chủ động nuôi dưỡng người dưới với sự tập trung, quyết liệt như hổ rình mồi, đây là trách nhiệm đúng đắn chứ không phải ỷ lại.",
+      "itExample": "Senior engineer chủ động và tập trung cao độ (như hổ rình mồi) trong việc mentor, review kỹ từng dòng code của junior — đầu tư nghiêm túc vào việc 'nuôi dưỡng' năng lực đội nhóm.",
+      "lifeExample": "Cha mẹ hoặc người quản lý tập trung cao độ, kiên trì chăm lo bồi dưỡng cho người mình có trách nhiệm — sự chú tâm quyết liệt đó là điều tốt, không phải áp lực thừa."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：拂經，居貞吉，不可涉大川。",
+      "hanviet": "Lục Ngũ: Phất kinh, cư trinh cát, bất khả thiệp đại xuyên.",
+      "translation": "Trái với lẽ thường (người trên phải nhờ người dưới nuôi dưỡng), nhưng ở yên giữ chính đính thì tốt; không nên vượt sông lớn.",
+      "english": "shows one acting contrary to what is regular and proper; but if he abide in firmness, there will be good fortune. He should not, however, try to cross the great stream.",
+      "explain": "Vị vua/lãnh đạo (hào 5) nhưng lại thiếu năng lực tự nuôi mình, phải dựa vào hào 6 bên dưới trợ giúp — chấp nhận sự thật này và giữ vững vị trí thì ổn, nhưng chưa đủ sức để làm việc lớn (vượt sông).",
+      "itExample": "Một product manager không rành kỹ thuật sâu, biết dựa vào tech lead giỏi để ra quyết định đúng — chấp nhận giới hạn của mình là khôn ngoan, nhưng chưa nên tự mình lao vào 1 dự án kỹ thuật quá lớn.",
+      "lifeExample": "Người lãnh đạo biết mình có điểm yếu và chủ động dựa vào cố vấn giỏi hơn trong lĩnh vực đó — đây là sự khôn ngoan, miễn là không mạo hiểm vào việc vượt quá khả năng."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：由頤，厲吉，利涉大川。",
+      "hanviet": "Thượng Cửu: Do di, lệ cát, lợi thiệp đại xuyên.",
+      "translation": "Nguồn nuôi dưỡng của cả quẻ đến từ đây; dù ở thế nguy hiểm nhưng tốt lành, thuận lợi khi vượt sông lớn.",
+      "english": "shows him from whom comes the nourishing (of all). His position is perilous, but there will be good fortune. It will be advantageous to cross the great stream.",
+      "explain": "Hào cuối, dương cương, là nguồn lực thực sự nuôi dưỡng toàn bộ hệ thống (kể cả vị vua ở hào 5) — trách nhiệm lớn đi kèm rủi ro lớn, nhưng chính vì gánh vác trách nhiệm ấy mà đủ sức làm việc lớn.",
+      "itExample": "Một senior/tech lead thực sự là 'nguồn nuôi dưỡng' năng lực kỹ thuật cho cả tổ chức (kể cả cấp quản lý dựa vào họ) — trách nhiệm nặng nhưng chính họ mới đủ năng lực dẫn dắt dự án lớn, rủi ro cao.",
+      "lifeExample": "Người gánh vác trách nhiệm nuôi dưỡng cả gia đình/tập thể dù áp lực lớn, nhưng chính sự gánh vác đó tạo ra năng lực để vượt qua thử thách lớn trong đời."
+    }
+  ],
+
+  "keywords": ["Di", "頤", "nuôi dưỡng", "cái miệng", "ăn uống", "lời nói", "garbage in garbage out"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/頤", "url": "https://zh.wikisource.org/zh-hant/周易/頤", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 27 (bản mirror)", "url": "https://baharna.com/iching/legge/100001.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Trang mục lục nguồn học thuật công khai lưu trữ Chu Dịch; trang riêng của quẻ 頤 không truy cập trực tiếp được trong phiên này nên đối chiếu qua Wikisource + baharna.com." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/27", "label": "64 Quẻ — Quẻ 27: Sơn Lôi Di" }
+  ]
+}

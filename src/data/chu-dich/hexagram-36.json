@@ -1,0 +1,147 @@
+{
+  "id": 36,
+  "hanzi": "明夷",
+  "pinyin": "Míng Yí",
+  "hanviet": "Minh Di",
+  "english": "Darkening of the Light",
+  "upperTrigram": "kun",
+  "lowerTrigram": "li",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "明夷：利艱貞。",
+    "hanviet": "Minh Di: Lợi gian trinh.",
+    "translation": "Minh Di (Ánh sáng bị tổn thương): thuận lợi khi biết rõ hoàn cảnh khó khăn mà vẫn giữ vững chính đạo.",
+    "english": "Ming Yi indicates that in the circumstances which it denotes it will be advantageous to realise the difficulty (of the position), and maintain firm correctness."
+  },
+
+  "daTuong": {
+    "hanzi": "明入地中，明夷；君子以蒞眾，用晦而明。",
+    "hanviet": "Minh nhập địa trung, Minh Di; quân tử dĩ lị chúng, dụng hối nhi minh.",
+    "translation": "Ánh sáng lặn vào trong lòng đất — đó là tượng của Minh Di; người quân tử noi theo đó, khi cai quản dân chúng thì dùng vẻ tối để giữ sự sáng suốt bên trong.",
+    "english": "The light has entered into the midst of the earth: this is the image of Ming Yi. The superior man, in accordance with this, in his management of the multitude, shows his intelligence by keeping it obscured.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Minh Di ngược hoàn toàn với Tấn (quẻ trước): ánh sáng (Ly) không còn ở trên mà bị chôn xuống dưới đất (Khôn) — ánh sáng bị tổn thương, che khuất. Đây là hình ảnh kinh điển về hoàn cảnh bất lợi: người sáng suốt, có tài, nhưng đang sống dưới một thế lực áp bức (điển hình được nhắc tới trong truyền thống là Cơ Tử — 箕子 — người giả điên để giữ mạng dưới thời bạo chúa). Bài học không phải là chống lại trực diện, mà là biết giấu bớt ánh sáng của mình, giữ sự tỉnh táo bên trong, chờ thời cơ thay đổi.",
+
+  "computer_science": "Minh Di giống một hệ thống/module đang phải chạy trong môi trường thù địch hoặc bị giới hạn nghiêm ngặt (legacy system độc đoán, tổ chức không cho phép thay đổi) — chiến lược đúng không phải là 'refactor công khai' ngay lập tức (sẽ bị chặn/loại bỏ), mà là 'dark mode': âm thầm ghi log, âm thầm viết test, âm thầm xây dựng năng lực, giữ mọi cải tiến ở chế độ ẩn (feature-flagged off, không public) cho tới khi môi trường thay đổi đủ an toàn để bật sáng trở lại.",
+
+  "life": "Không phải môi trường nào cũng phù hợp để thể hiện hết năng lực hay ý kiến thẳng thắn. Khi ở trong hoàn cảnh bất lợi — sếp độc đoán, tổ chức không lành mạnh — sự khôn ngoan là giữ gìn nội lực, không phô trương, không đối đầu trực diện, chờ đúng thời điểm hoặc tìm đường thoát an toàn thay vì hao tổn bản thân vô ích.",
+
+  "programming": "Làm việc trong một codebase/tổ chức không cho phép thay đổi kiến trúc dù biết rõ vấn đề (giống ánh sáng bị chôn dưới đất) — chiến lược khôn ngoan là: âm thầm viết document, âm thầm giữ kỹ năng sắc bén, âm thầm chuẩn bị migration plan, không công khai chỉ trích hệ thống hiện tại. Hào 1 và 2 cho thấy cần chấp nhận thiệt hại tạm thời (3 ngày không ăn, bị thương ở đùi) để thoát khỏi vùng nguy hiểm bằng phương tiện đủ mạnh (ngựa khỏe = kỹ năng/mạng lưới quan hệ tốt).",
+
+  "characters": [
+    {
+      "hanzi": "明",
+      "pinyin": "míng",
+      "hanviet": "minh",
+      "meaning": "Sáng, sáng suốt, rõ ràng.",
+      "origin": "Chữ hội ý, ghép từ 日 (nhật, mặt trời) + 月 (nguyệt, mặt trăng) — hai nguồn sáng lớn nhất hợp lại, nghĩa gốc 'ánh sáng, sự sáng suốt'.",
+      "example": "明白 (minh bạch) = rõ ràng; 聰明 (thông minh) = sáng dạ.",
+      "cs": "Observability",
+      "csExplain": "Khả năng nhìn thấy rõ trạng thái bên trong hệ thống (logs, metrics, traces) — khi 'ánh sáng' này bị chặn, ta mất khả năng chẩn đoán vấn đề."
+    },
+    {
+      "hanzi": "夷",
+      "pinyin": "yí",
+      "hanviet": "di",
+      "meaning": "Bị tổn thương, san bằng, hủy hoại (trong ngữ cảnh quẻ này).",
+      "origin": "Chữ giáp cốt/kim văn nguyên vẽ hình người mang cây cung lớn (大+弓); nghĩa gốc liên quan tới 'người phương Đông dùng cung' về sau mở rộng/giả tá thành 'san bằng, dẹp yên, làm tổn thương' — cách dùng trong quẻ này thiên về nghĩa 'bị hủy hoại, bị dập tắt'.",
+      "example": "夷平 (di bình) = san bằng; từ ghép 明夷 = ánh sáng bị dập tắt/che lấp.",
+      "cs": "Degraded Mode",
+      "csExplain": "Trạng thái hệ thống buộc phải hoạt động dưới năng lực thật (throttled/degraded) do môi trường bên ngoài gây áp lực, không phải do lỗi nội tại."
+    },
+    {
+      "hanzi": "艱",
+      "pinyin": "jiān",
+      "hanviet": "gian",
+      "meaning": "Khó khăn, gian nan, vất vả.",
+      "origin": "Chữ hình thanh, gồm bộ 艮 (cấn, chỉ sự dừng lại/trở ngại, biểu âm) + 堇 (cận, đất sét khó xử lý) — nghĩa gốc gợi ý về tình trạng bị cản trở, khó xoay xở.",
+      "example": "艱難 (gian nan) = khó khăn; 艱苦 (gian khổ) = vất vả cực nhọc.",
+      "cs": "Fault Tolerance",
+      "csExplain": "Khả năng một hệ thống nhận diện đúng mức độ khó khăn của môi trường vận hành và vẫn duy trì tính đúng đắn (correctness) thay vì sụp đổ hoàn toàn."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：明夷于飛，垂其翼。君子于行，三日不食，有攸往，主人有言。",
+      "hanviet": "Sơ Cửu: Minh Di vu phi, thùy kỳ dực. Quân tử vu hành, tam nhật bất thực, hữu du vãng, chủ nhân hữu ngôn.",
+      "translation": "Con chim (ánh sáng bị thương) đang bay mà rũ cánh xuống. Người quân tử trên đường đi, ba ngày không ăn; đi đến đâu cũng bị chủ nhà dị nghị.",
+      "english": "The first line, undivided, shows a bird flying, but drooping its wings. The superior man, in a similar case, when active and pursuing his journey, may be three days without eating; and wherever he goes, he may meet with (unfavourable) remarks from the people of the place.",
+      "explain": "Ngay từ đầu đã nhận ra dấu hiệu nguy hiểm và chủ động rời đi sớm — dù phải chịu thiệt thòi (đói, bị đàm tiếu) nhưng đó là cái giá cần thiết để tránh vướng sâu vào hoàn cảnh xấu.",
+      "itExample": "Nhận ra sớm dấu hiệu công ty/dự án đang đi vào ngõ cụt (văn hóa độc hại, quản lý áp đặt) và chủ động tìm đường rút lui ngay, dù phải chịu giai đoạn khó khăn tài chính/sự nghiệp ngắn hạn — vẫn tốt hơn kẹt lại lâu dài.",
+      "lifeExample": "Rời khỏi một mối quan hệ hay môi trường độc hại ngay khi nhận ra dấu hiệu đầu tiên, dù phải chịu điều tiếng hay khó khăn tạm thời — về lâu dài vẫn là lựa chọn đúng."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：明夷，夷于左股，用拯馬壯，吉。",
+      "hanviet": "Lục Nhị: Minh Di, di vu tả cổ, dụng chửng mã tráng, cát.",
+      "translation": "Ánh sáng bị tổn thương, bị thương ở đùi trái; nhờ con ngựa khỏe mạnh mà thoát được, tốt lành.",
+      "english": "The second line, divided, shows its subject, in the condition denoted by Ming Yi, wounded in the left thigh. If he saves himself by the strength of a (galloping) horse, there will be good fortune.",
+      "explain": "Đã chịu tổn thương thật sự, nhưng nhờ có phương tiện đủ mạnh (kỹ năng, quan hệ, nguồn lực dự phòng) mà thoát hiểm kịp thời.",
+      "itExample": "Bị ảnh hưởng thật sự bởi một quyết định sai của tổ chức (mất dự án, mất uy tín một phần), nhưng nhờ kỹ năng vững và mạng lưới quan hệ tốt (CV mạnh, referral) mà nhanh chóng tìm được vị trí mới tốt hơn.",
+      "lifeExample": "Chịu tổn thất thật sự trong một biến cố (mất việc, đổ vỡ), nhưng nhờ có nền tảng tài chính/kỹ năng/bạn bè vững chắc từ trước mà vượt qua nhanh và an toàn."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：明夷于南狩，得其大首，不可疾貞。",
+      "hanviet": "Cửu Tam: Minh Di vu nam thú, đắc kỳ đại thủ, bất khả tật trinh.",
+      "translation": "Nhân lúc đi săn ở phương nam mà bắt được kẻ đầu sỏ; nhưng không nên vội vàng sửa đổi mọi thứ ngay.",
+      "english": "The third line, undivided, (shows its subject) hunting in the south, and taking the great chief (of the darkness). He should not be (too) hasty in trying to (make everything at once) correct.",
+      "explain": "Cuối cùng cũng có cơ hội và đủ sức xử lý gốc rễ vấn đề (bắt kẻ đầu sỏ) — nhưng cảnh báo quan trọng là không nên nóng vội thay đổi toàn bộ cục diện ngay lập tức, cần từng bước.",
+      "itExample": "Cuối cùng tìm ra và có quyền xử lý root cause của một vấn đề mãn tính trong hệ thống (ví dụ: thay thế hẳn 1 dependency độc hại) — nhưng nên làm theo lộ trình từng bước (phased migration) thay vì rip-and-replace ngay lập tức, tránh gây thêm hỗn loạn.",
+      "lifeExample": "Sau cùng có đủ vị thế để giải quyết tận gốc một vấn đề đã kéo dài — nhưng nên xử lý từ từ, có kế hoạch, thay vì làm đảo lộn mọi thứ cùng lúc."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：入于左腹，獲明夷之心，于出門庭。",
+      "hanviet": "Lục Tứ: Nhập vu tả phúc, hoạch Minh Di chi tâm, vu xuất môn đình.",
+      "translation": "Vào sâu tận bên trong (hiểu rõ thực chất), nắm được cái tâm ý thật của tình cảnh Minh Di, rồi rời khỏi cửa nhà.",
+      "english": "The fourth line, divided, (shows its subject) penetrating (as it were) into the left side of the belly (of the dark ruler). He gets the real mind of Ming Yi, and quits the gate and courtyard (of the palace).",
+      "explain": "Đã hiểu thấu bản chất thật sự của hoàn cảnh xấu (thấy rõ nội tình) — và từ sự hiểu đó, chọn cách rút lui đúng lúc thay vì tiếp tục ở lại.",
+      "itExample": "Sau khi hiểu rõ căn nguyên thật sự của một môi trường làm việc có vấn đề (không phải do mình, mà do cấu trúc/lãnh đạo), quyết định âm thầm rút lui một cách có chuẩn bị thay vì cố ở lại sửa những gì không thể sửa.",
+      "lifeExample": "Sau khi thật sự hiểu rõ bản chất một mối quan hệ hay tổ chức không thể thay đổi được, chọn cách rời đi trong yên bình thay vì tiếp tục cố gắng vô ích."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：箕子之明夷，利貞。",
+      "hanviet": "Lục Ngũ: Cơ Tử chi Minh Di, lợi trinh.",
+      "translation": "Như trường hợp của Cơ Tử trong cảnh Minh Di — giữ vững chính đạo thì có lợi.",
+      "english": "The fifth line, divided, shows the case of the count of Ji in the time of Ming Yi. It will be advantageous to be firm and correct.",
+      "explain": "Điển tích Cơ Tử giả điên để bảo toàn tính mạng và giữ được sự sáng suốt bên trong dưới thời bạo chúa — hào này là hình mẫu chuẩn mực cho cách 'giấu sáng' đúng đắn nhất trong cả quẻ.",
+      "itExample": "Một kỹ sư giỏi tạm thời chấp nhận làm những việc 'kém hào nhoáng' hơn năng lực thật của mình trong một tổ chức không lành mạnh, âm thầm giữ kỹ năng và đạo đức nghề nghiệp, chờ thời điểm thích hợp để phát huy trở lại.",
+      "lifeExample": "Chấp nhận 'ẩn mình', không phô trương tài năng hay chính kiến trong một hoàn cảnh bất lợi, nhưng bên trong vẫn giữ vững nguyên tắc và giá trị bản thân."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：不明晦，初登于天，後入于地。",
+      "hanviet": "Thượng Lục: Bất minh hối, sơ đăng vu thiên, hậu nhập vu địa.",
+      "translation": "Không còn sáng nữa mà chỉ toàn tối tăm; ban đầu lên tới trời cao, sau lại rơi xuống đất.",
+      "english": "The sixth line, divided, shows the case of one who, without light, (only) produces darkness. At first he ascended to heaven; afterwards he goes down into the earth.",
+      "explain": "Hào cuối cùng chỉ chính thế lực gây ra bóng tối — từng ở đỉnh cao quyền lực (lên tới trời), nhưng bản chất thiếu sáng suốt tất yếu dẫn tới sụp đổ (rơi xuống đất).",
+      "itExample": "Một tổ chức/lãnh đạo từng ở đỉnh cao thành công nhờ che giấu thông tin và kiểm soát độc đoán, nhưng thiếu minh bạch thật sự (không có observability, không lắng nghe phản hồi) tất yếu dẫn tới sụp đổ khi vấn đề tích tụ đủ lớn.",
+      "lifeExample": "Một người/thế lực từng ở đỉnh cao nhờ che giấu và áp bức, nhưng vì thiếu sự sáng suốt và chính trực thật sự, sớm muộn cũng sẽ suy sụp."
+    }
+  ],
+
+  "keywords": ["Minh Di", "明夷", "ánh sáng bị che khuất", "giấu tài", "Cơ Tử", "Địa Hỏa", "ẩn nhẫn chờ thời"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/ming-yi", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Minh Di." },
+    { "source": "維基文庫 Wikisource — 周易/明夷", "url": "https://zh.wikisource.org/zh-hant/周易/明夷", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 彖曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/36", "label": "64 Quẻ — Quẻ 36: Địa Hỏa Minh Di" }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "id": 10,
+  "hanzi": "履",
+  "pinyin": "Lǚ",
+  "hanviet": "Lý",
+  "english": "Treading (Conduct)",
+  "upperTrigram": "qian",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "履虎尾，不咥人，亨。",
+    "hanviet": "Lý: Lý hổ vĩ, bất điệt nhân, hanh.",
+    "translation": "Lý (Giẫm đạp, cách cư xử): giẫm lên đuôi cọp mà cọp không cắn, hanh thông.",
+    "english": "Lü (Treading) suggests the idea of one treading on the tail of a tiger, which does not bite him. There will be progress and success."
+  },
+
+  "daTuong": {
+    "hanzi": "上天下澤，履；君子以辨上下，定民志。",
+    "hanviet": "Thượng thiên hạ trạch, Lý; quân tử dĩ biện thượng hạ, định dân chí.",
+    "translation": "Trên là trời, dưới là đầm — đó là quẻ Lý. Người quân tử xem đó mà phân biệt rõ trên dưới, an định ý chí của dân.",
+    "english": "Heaven above, and a marsh below, form Lü (Treading). The superior man, in accordance with this, discriminates between high and low, and thereby gives settlement to the aims of the people.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Lý (履) nghĩa gốc là 'giày dép, bước đi', mở rộng thành 'cách cư xử, hành vi đúng mực'. Quẻ ghép bởi Đoài (hồ, vui vẻ, mềm mỏng) ở dưới và Càn (trời, cương kiện, mạnh mẽ) ở trên — hình ảnh một kẻ yếu/mềm dẫm lên đuôi con hổ mạnh mà không bị cắn, vì biết cách cư xử đúng mực, khiêm nhường và cẩn trọng. Đây là quẻ về nguyên tắc ứng xử khi đối diện nguy hiểm hoặc quyền lực lớn hơn mình: không phải sức mạnh quyết định an toàn, mà là thái độ và cách hành xử đúng lễ độ, đúng vị trí. Sáu hào đi từ bước chân giản dị ban đầu, qua thử thách chủ quan (hào 3 — kẻ tự tin thái quá bị cắn), đến sự thận trọng đúng lúc (hào 4) và tổng kết toàn bộ hành trình ở hào cuối.",
+
+  "computer_science": "Lý giống như lời gọi tới một API/thao tác nguy hiểm, dễ 'ném exception' nếu gọi sai (đạp đuôi hổ = invoke một high-risk operation). Kết quả không phụ thuộc vào việc thao tác đó nguy hiểm hay không (nó luôn nguy hiểm), mà phụ thuộc vào 'protocol' gọi nó có đúng chuẩn hay không — validate input, xử lý edge-case, có cơ chế thận trọng (giống hào 4 'sách sách' — apprehensive caution) thay vì chủ quan tự tin (hào 3, dẫn tới lỗi nghiêm trọng).",
+
+  "life": "Trong đời sống, cách bạn cư xử với người có quyền lực, với rủi ro, hay với hoàn cảnh nguy hiểm quan trọng hơn việc né tránh hoàn toàn rủi ro đó. Sự khiêm nhường, đúng lễ độ và thận trọng biến nguy hiểm thành vô hại; sự chủ quan biến việc nhỏ thành tai họa.",
+
+  "programming": "Giống việc thao tác trên production hoặc gọi một legacy API dễ vỡ: nếu làm đúng quy trình (checklist, rollback plan, staging test trước) thì dù rủi ro cao vẫn an toàn (hào 4 — 'trọn cuối tốt lành'). Nếu chủ quan, tự tin quá mức vào năng lực bản thân mà bỏ qua quy trình (hào 3), hậu quả sẽ nghiêm trọng ngay lập tức.",
+
+  "characters": [
+    {
+      "hanzi": "履",
+      "pinyin": "lǚ",
+      "hanviet": "lý",
+      "meaning": "Giày dép; bước đi, giẫm đạp; hành vi, cách cư xử.",
+      "origin": "Trong chữ triện, 履 là chữ hội ý gồm 尸 (thân người/chân), 彳 (bước chân nhỏ) và phần được cho là hình chiếc giày cách điệu — nghĩa gốc 'giày dép, sự bước đi', mở rộng thành 'thực hành, cách hành xử'.",
+      "example": "履行 (lý hành) = thực hiện, thi hành đúng như đã hứa.",
+      "cs": "Runtime Behavior",
+      "csExplain": "履 là hành vi thực tế lúc 'chạy' — giống như runtime behavior phải tuân thủ đúng protocol/interface đã khai báo, không chỉ nằm trên giấy."
+    },
+    {
+      "hanzi": "虎",
+      "pinyin": "hǔ",
+      "hanviet": "hổ",
+      "meaning": "Con hổ — biểu tượng sức mạnh và nguy hiểm.",
+      "origin": "Chữ tượng hình trong giáp cốt văn, vẽ hình con hổ với vằn vện đặc trưng và miệng lớn.",
+      "example": "虎口 (hổ khẩu) = miệng hổ, chỉ tình huống cận kề nguy hiểm.",
+      "cs": "High-risk Operation",
+      "csExplain": "Đại diện cho một lời gọi/thao tác có rủi ro cao, có thể gây lỗi nghiêm trọng nếu không xử lý đúng cách."
+    },
+    {
+      "hanzi": "咥",
+      "pinyin": "dié",
+      "hanviet": "điệt",
+      "meaning": "Cắn.",
+      "origin": "Chữ hình thanh: bộ 口 (khẩu, miệng) biểu nghĩa, kết hợp phần biểu âm — nghĩa gốc 'cắn, ngoạm'.",
+      "example": "咥人 (điệt nhân) = cắn người, xuất hiện ngay trong quẻ Lý.",
+      "cs": "Exception Thrown",
+      "csExplain": "Kết quả lỗi nghiêm trọng (exception) xảy ra khi một thao tác nguy hiểm không được gọi đúng quy trình."
+    },
+    {
+      "hanzi": "辨",
+      "pinyin": "biàn",
+      "hanviet": "biện",
+      "meaning": "Phân biệt, phân định rạch ròi.",
+      "origin": "Chữ có bộ 刀/刂 (đao) nằm giữa hai chữ 辛 — nghĩa gốc liên quan tới việc dùng dao phân xử, tách bạch, mở rộng thành 'phân biệt rõ ràng'.",
+      "example": "辨別 (biện biệt) = phân biệt rõ ràng đúng sai, cao thấp.",
+      "cs": "Access Control",
+      "csExplain": "Giống việc phân định ranh giới quyền hạn (role-based access control) — phân biệt rạch ròi để hệ thống vận hành đúng trật tự."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：素履，往无咎。",
+      "hanviet": "Sơ Cửu: Tố lý, vãng vô cữu.",
+      "translation": "Bước đi giản dị, chân chất; tiến tới thì không có lỗi.",
+      "english": "The first line, undivided, shows its subject treading his accustomed path. If he go forward, there will be no error.",
+      "explain": "Ở vị trí khởi đầu, giữ nếp sống và cách hành xử giản dị, đúng bản phận — tiến bước theo cách tự nhiên của mình thì không gặp lỗi.",
+      "itExample": "Dùng đúng convention và cấu hình mặc định khi mới bắt đầu một project, không vội tùy biến phức tạp — nền tảng an toàn để tiến xa hơn.",
+      "lifeExample": "Người mới vào môi trường mới cứ giữ phong cách chân thật, giản dị của bản thân, không cần phô trương để gây ấn tượng — vẫn tiến bước tốt."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：履道坦坦，幽人貞吉。",
+      "hanviet": "Cửu Nhị: Lý đạo thản thản, u nhân trinh cát.",
+      "translation": "Đi trên con đường bằng phẳng thênh thang; người sống ẩn dật mà giữ vững chính đạo thì tốt lành.",
+      "english": "The second line, undivided, shows its subject treading the path that is level and easy;—a quiet and solitary man, to whom, if he be firm and correct, there will be good fortune.",
+      "explain": "Ở vị trí giữa, có nội lực vững vàng, con đường trước mắt thông thoáng — không cần phô trương, chỉ cần giữ sự điềm tĩnh, chính trực.",
+      "itExample": "Engineer âm thầm làm việc theo đúng best-practice đã kiểm chứng, không chạy theo trend ồn ào — hệ thống chạy ổn định, ít bug phát sinh.",
+      "lifeExample": "Sống lặng lẽ, tập trung làm đúng việc mình tin là đúng, không cần sự công nhận ồn ào — vẫn đạt kết quả tốt về lâu dài."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：眇能視，跛能履，履虎尾，咥人，凶。武人為于大君。",
+      "hanviet": "Lục Tam: Miễu năng thị, bả năng lý, lý hổ vĩ, điệt nhân, hung. Vũ nhân vi vu đại quân.",
+      "translation": "Người chột mắt mà tưởng mình nhìn rõ, người què chân mà tưởng mình đi vững — giẫm lên đuôi hổ mà bị cắn, xấu. Như kẻ võ biền tự xưng làm bậc quân vương lớn.",
+      "english": "The third line, divided, shows a one-eyed man (who thinks he) can see; a lame man (who thinks he) can walk well; one who treads on the tail of a tiger and is bitten. (All this indicates) ill fortune. We have a (mere) bravo acting the part of a great ruler.",
+      "explain": "Vị trí bất chính (âm ở hào lẻ), năng lực không đủ mà lại chủ quan tự tin thái quá — hành động vượt quá khả năng thật sự thì gặp họa.",
+      "itExample": "Junior dev tự tin cho rằng mình đã hiểu rõ toàn bộ hệ thống rồi tự ý sửa code production mà không qua review — gây outage nghiêm trọng.",
+      "lifeExample": "Đánh giá sai năng lực bản thân, nhận việc quá sức rồi hành xử như một chuyên gia thực thụ — dễ gây hậu quả xấu cho chính mình và người xung quanh."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：履虎尾，愬愬終吉。",
+      "hanviet": "Cửu Tứ: Lý hổ vĩ, sách sách chung cát.",
+      "translation": "Giẫm lên đuôi hổ, nhưng lo sợ cẩn trọng đến cùng thì cuối cùng tốt lành.",
+      "english": "The fourth line, undivided, shows its subject treading on the tail of a tiger. He becomes full of apprehensive caution, and in the end there will be good fortune.",
+      "explain": "Ở gần vị trí cao (kề hào 5 — vua), việc phải làm vẫn nguy hiểm như trước, nhưng nếu luôn thận trọng, dè dặt thì sẽ vượt qua an toàn.",
+      "itExample": "Deploy hotfix trực tiếp lên production (nguy hiểm) nhưng có checklist đầy đủ, rollback plan sẵn sàng, theo dõi sát sao — cuối cùng thành công.",
+      "lifeExample": "Nhận nhiệm vụ rủi ro cao (đàm phán quan trọng, quyết định lớn) nhưng chuẩn bị kỹ lưỡng, thận trọng từng bước — kết quả tốt đẹp."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：夬履，貞厲。",
+      "hanviet": "Cửu Ngũ: Quải lý, trinh lệ.",
+      "translation": "Đi một cách cương quyết, dứt khoát; dù chính đính vẫn có nguy hiểm rình rập.",
+      "english": "The fifth line, undivided, shows the resolute tread of its subject. Though he be firm and correct, there will be peril.",
+      "explain": "Ở ngôi vua, quyền lực và sự quyết đoán tột độ dễ khiến chủ quan; dù hành xử đúng đắn vẫn cần đề phòng vì vị trí cao luôn tiềm ẩn rủi ro.",
+      "itExample": "Người có toàn quyền admin hệ thống, thao tác dứt khoát không cần hỏi ai — dù đúng quy trình vẫn nên cẩn trọng vì một sai sót nhỏ ảnh hưởng toàn hệ thống.",
+      "lifeExample": "Người lãnh đạo ra quyết định nhanh, dứt khoát — dù đúng đắn, quyền lực cao vẫn luôn đi kèm rủi ro cần sự tỉnh táo thường trực."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：視履考祥，其旋元吉。",
+      "hanviet": "Thượng Cửu: Thị lý khảo tường, kỳ toàn nguyên cát.",
+      "translation": "Nhìn lại toàn bộ con đường đã đi qua, xét kỹ điềm lành dữ; nếu trọn vẹn thì tốt lành lớn.",
+      "english": "The sixth line, undivided, tells us to look at (the whole course) that is trodden, and examine the presage which that gives. If it be complete and without failure, there will be great good fortune.",
+      "explain": "Hào cuối cùng — tổng kết cả hành trình. Nhìn lại toàn bộ quá trình hành xử, nếu suốt đường đi đều đúng đắn trọn vẹn thì đại cát.",
+      "itExample": "Post-mortem cuối dự án: review lại toàn bộ quy trình từ đầu tới cuối — nếu mọi bước đều tuân thủ đúng chuẩn thì dự án thành công bền vững.",
+      "lifeExample": "Ở cuối một chặng đường dài (sự nghiệp, dự án lớn), nhìn lại cách mình đã hành xử suốt quá trình — nếu giữ được sự chính trực trọn vẹn thì gặt hái thành quả lớn."
+    }
+  ],
+
+  "keywords": ["Lý", "履", "đạp đuôi hổ", "cẩn trọng", "hành vi", "cách cư xử", "Thiên Trạch"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/履", "url": "https://zh.wikisource.org/zh-hant/周易/履", "note": "Nguyên văn chữ Hán:卦辭, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 10", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_10", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 10 (mirror của bản dịch Legge)", "url": "https://www.jamesdekorne.com/GBCh/hex10.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/10", "label": "64 Quẻ — Quẻ 10: Thiên Trạch Lý" }
+  ]
+}

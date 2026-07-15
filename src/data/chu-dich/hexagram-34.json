@@ -1,0 +1,147 @@
+{
+  "id": 34,
+  "hanzi": "大壯",
+  "pinyin": "Dà Zhuàng",
+  "hanviet": "Đại Tráng",
+  "english": "The Power of the Great",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "大壯：利貞。",
+    "hanviet": "Đại Tráng: Lợi trinh.",
+    "translation": "Đại Tráng (Sức mạnh lớn): thuận lợi khi giữ vững chính đạo.",
+    "english": "Da Zhuang indicates that, under the conditions which it symbolises, it will be advantageous to be firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "雷在天上，大壯；君子以非禮弗履。",
+    "hanviet": "Lôi tại thiên thượng, Đại Tráng; quân tử dĩ phi lễ phất lý.",
+    "translation": "Sấm vang trên trời — đó là tượng của Đại Tráng; người quân tử noi theo đó mà không làm điều gì trái với lẽ phải.",
+    "english": "Thunder in heaven above forms the image of Da Zhuang. The superior man, in accordance with this, does not take a step that is not in accordance with propriety.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Đại Tráng có 4 hào dương liên tiếp từ dưới lên, chỉ còn 2 hào âm ở trên — sức mạnh đã tích lũy đến mức cực thịnh, như sấm (Chấn) nổ vang trên trời (Càn). Thông điệp cốt lõi không phải 'càng mạnh càng tốt': sức mạnh chỉ thật sự có lợi khi đi cùng 'Trinh' — sự chính đính, kỷ luật. Hình ảnh con dê đực húc vào giậu rồi mắc kẹt sừng lặp lại 2 lần trong quẻ (hào 3, hào 6) như một lời cảnh báo: dùng sức mạnh một cách bốc đồng, không tính toán, sẽ tự làm hại chính mình. Ngược lại, hào 4 cho thấy sức mạnh dùng đúng cách — như trục xe lớn chuyển động êm ái, phá được giậu mà không hề vướng — mới tạo ra tiến bộ thật sự.",
+
+  "computer_science": "Đại Tráng giống một hệ thống có năng lực cực lớn — throughput cao, quyền hạn admin, cụm máy chủ mạnh — nhưng năng lực thô (raw power) không tự động là lợi thế nếu thiếu guard rail. 4 hào dương liên tiếp giống 1 service có compute/permission dư thừa; 2 hào âm phía trên đóng vai trò như rate limiter/circuit breaker bắt buộc phải có để hệ thống không 'húc vào giậu' — tự gây outage vì dùng hết sức mạnh mà không kiểm soát (retry storm, thundering herd, quyền admin bị lạm dụng).",
+
+  "life": "Sức mạnh — thể lực, trí tuệ, quyền lực, tiền bạc — không phải là vấn đề; vấn đề là dùng nó có kỷ luật hay không. Người có sức mạnh nhưng thiếu tự chủ (như 'tiểu nhân dùng sức' ở hào 3) sẽ tự làm hại mình; người biết giữ chừng mực mới thật sự đi xa và bền.",
+
+  "programming": "Một engineer/team rất giỏi, throughput cao, dễ rơi vào bẫy over-confidence: deploy thẳng lên production không qua review (hào 3 — húc thẳng vào giậu), gây incident. Cách dùng sức mạnh đúng là như hào 4 — vẫn tiến nhanh nhưng có cơ chế an toàn (feature flag, staged rollout, canary) để 'phá giậu mà không vướng sừng'. Hào 6 nhắc thêm: nếu đã kẹt trong tình huống dùng sức sai (sunk cost), thừa nhận khó khăn và dừng lại tốt hơn là cố vùng vẫy tiếp.",
+
+  "characters": [
+    {
+      "hanzi": "壯",
+      "pinyin": "zhuàng",
+      "hanviet": "tráng",
+      "meaning": "Mạnh mẽ, cường tráng, sung sức.",
+      "origin": "Chữ hình thanh, gồm bộ 士 (sĩ — người ở độ tuổi tráng niên/chiến binh) + 爿 (tường, làm thanh phù chỉ âm đọc). Nghĩa gốc chỉ trạng thái cường tráng, sung sức nhất của đời người.",
+      "example": "強壯 (cường tráng) = khỏe mạnh; 壯觀 (tráng quan) = hùng vĩ, đáng kinh ngạc.",
+      "cs": "Peak Capacity",
+      "csExplain": "Trạng thái hệ thống ở công suất cực đại — CPU/throughput dư thừa; nhưng dư thừa không đồng nghĩa an toàn nếu không có kiểm soát đi kèm."
+    },
+    {
+      "hanzi": "利",
+      "pinyin": "lì",
+      "hanviet": "lợi",
+      "meaning": "Lợi ích, thuận lợi, sắc bén.",
+      "origin": "Chữ ghép từ 禾 (hòa, cây lúa) + 刀 (đao, con dao) — hình ảnh dùng dao gặt lúa, nghĩa gốc 'cắt gặt, thu hoạch', mở rộng thành 'lợi ích, thuận lợi'.",
+      "example": "利益 (lợi ích); 利见大人 (lợi kiến đại nhân).",
+      "cs": "Net Gain",
+      "csExplain": "Giá trị ròng thu được sau khi khai thác sức mạnh đúng cách — bản thân sức mạnh không phải là lợi ích, cách dùng nó mới quyết định có sinh lợi hay không."
+    },
+    {
+      "hanzi": "貞",
+      "pinyin": "zhēn",
+      "hanviet": "trinh",
+      "meaning": "Chính đính, ngay thẳng, kiên định, giữ vững nguyên tắc.",
+      "origin": "Chữ ghép từ 卜 (bốc, việc bói) + 貝/鼎 (đồ tế khí) — nghĩa gốc liên quan việc bói hỏi để xác định điều chính đáng, mở rộng thành 'giữ vững chính đạo, kiên định'.",
+      "example": "貞固 (trinh cố) = kiên định, giữ vững.",
+      "cs": "Guard Rail / Invariant",
+      "csExplain": "Ràng buộc bắt buộc (invariant) giữ cho một hệ thống mạnh vẫn hoạt động đúng hướng — sức mạnh thiếu guard rail rất dễ tự phá hủy chính nó."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：壯于趾，征凶，有孚。",
+      "hanviet": "Sơ Cửu: Tráng vu chỉ, chinh hung, hữu phu.",
+      "translation": "Sức mạnh dồn ở ngón chân; tiến lên ắt gặp điều hung, đây là điều chắc chắn.",
+      "english": "The first line, undivided, shows its subject manifesting his strength in his toes. To advance (in this state) will certainly lead to evil.",
+      "explain": "Vị trí thấp nhất, mới có chút sức mạnh đã vội muốn tiến — chưa đủ nền tảng, hành động sớm chỉ mang lại rủi ro.",
+      "itExample": "Mới có 1 benchmark tốt trên máy dev đã vội scale service lên production traffic lớn, chưa test tải thực tế — dễ sập ngay từ bước đầu.",
+      "lifeExample": "Mới tập gym được vài buổi đã vội nâng mức tạ tối đa — chấn thương gần như chắc chắn xảy ra."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：貞吉。",
+      "hanviet": "Cửu Nhị: Trinh cát.",
+      "translation": "Giữ vững chính đính thì tốt lành.",
+      "english": "The second line, undivided, shows that with firm correctness there will be good fortune.",
+      "explain": "Ở vị trí giữa, sức mạnh được tiết chế bởi sự đúng mực — đây là cách dùng sức mạnh bền vững nhất trong cả quẻ.",
+      "itExample": "Team có năng lực cao nhưng vẫn tuân thủ quy trình review, testing đầy đủ — năng suất cao đi cùng kỷ luật kỹ thuật, hiếm khi gây sự cố lớn.",
+      "lifeExample": "Người có năng lực nhưng vẫn giữ nguyên tắc làm việc rõ ràng, không ỷ mạnh mà làm ẩu — kết quả bền vững hơn hẳn người chỉ dựa vào tài năng."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：小人用壯，君子用罔，貞厲。羝羊觸藩，羸其角。",
+      "hanviet": "Cửu Tam: Tiểu nhân dụng tráng, quân tử dụng võng, trinh lệ. Đê dương xúc phiên, luy kỳ giác.",
+      "translation": "Kẻ tiểu nhân dùng hết sức mạnh, người quân tử thì không làm vậy; dù cố giữ đúng cũng nguy hiểm — như con dê đực húc vào giậu, mắc kẹt sừng.",
+      "english": "The third line, undivided, shows how a small man uses all his strength, while the superior man does not act so. To persist would be perilous — like a ram butting against a fence, he would only entangle his horns.",
+      "explain": "Vị trí cuối hạ quái, sức mạnh sung mãn nhất nhưng cũng dễ bốc đồng nhất — dùng sức mù quáng sẽ tự làm hại mình.",
+      "itExample": "Force-push đè code người khác, hoặc tự ý sửa production database không qua approval vì quá tự tin vào năng lực — kết quả thường là tự gây ra sự cố mà chính mình phải dọn.",
+      "lifeExample": "Tranh cãi thắng bằng mọi giá dù biết mình đuối lý, dùng vị thế để áp đảo — cuối cùng chỉ tự làm mất uy tín, như mắc kẹt sừng vào giậu."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：貞吉悔亡，藩決不羸，壯于大輿之輹。",
+      "hanviet": "Cửu Tứ: Trinh cát hối vong, phiên quyết bất luy, tráng vu đại dư chi phục.",
+      "translation": "Giữ chính đính thì tốt lành, hối tiếc tiêu tan; giậu mở ra mà không bị vướng, sức mạnh vững chắc như trục xe lớn.",
+      "english": "The fourth line, undivided, shows that with firm correctness there will be good fortune, and occasion for repentance will disappear — as if the fence were opened without entanglement, his strength being like the strong spokes of a large carriage.",
+      "explain": "Đã vượt qua giai đoạn bốc đồng của hào 3, sức mạnh giờ được dẫn dắt đúng hướng — như cỗ xe lớn di chuyển êm, tạo ra tiến bộ thật sự thay vì tự làm hại.",
+      "itExample": "Sau giai đoạn 'move fast and break things', team chuyển sang có CI/CD, feature flag, canary release — vẫn tiến nhanh nhưng không còn tự gây outage, giống trục xe chuyển động êm mà không vướng.",
+      "lifeExample": "Đã học được từ những va vấp trước đó, giờ hành động quyết đoán nhưng có tính toán — sức mạnh được dẫn đúng hướng, ít gặp trở ngại hơn hẳn."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：喪羊于易，无悔。",
+      "hanviet": "Lục Ngũ: Táng dương vu dịch, vô hối.",
+      "translation": "Để mất con dê một cách nhẹ nhàng, không có gì hối tiếc.",
+      "english": "The fifth line, divided, shows its subject losing his ram-like strength, but easily, and without occasion for repentance.",
+      "explain": "Ở vị trí lãnh đạo nhưng là hào âm giữa các hào dương — thay vì cố chấp giữ sức mạnh, biết buông bỏ đúng lúc, đúng chỗ lại là điều tốt.",
+      "itExample": "Tech lead chủ động giao bớt quyền quyết định kiến trúc cho team thay vì ôm hết — buông bớt kiểm soát đúng lúc giúp hệ thống và tổ chức linh hoạt hơn, không có gì đáng tiếc.",
+      "lifeExample": "Người lãnh đạo biết nhường vị trí, quyền lợi đúng lúc, đúng chỗ thay vì cố bám giữ — nhẹ nhàng buông bỏ thường tốt hơn là bị tước đoạt."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：羝羊觸藩，不能退，不能遂，无攸利，艱則吉。",
+      "hanviet": "Thượng Lục: Đê dương xúc phiên, bất năng thoái, bất năng toại, vô du lợi, gian tắc cát.",
+      "translation": "Con dê đực húc vào giậu, không thể lùi, không thể tiến, chẳng có gì lợi; nhưng nếu nhận ra và thừa nhận khó khăn thì lại tốt lành.",
+      "english": "The sixth line, divided, shows its subject like a ram butting against a fence, unable either to retreat or to advance. There will be no advantage in any way; but if he realises the difficulty of his position, there will be good fortune.",
+      "explain": "Hào cuối, sức mạnh đã cạn nhưng vẫn cố chấp — mắc kẹt hoàn toàn. Lối thoát duy nhất không phải cố vùng vẫy thêm, mà là thừa nhận thực tế khó khăn.",
+      "itExample": "Một dự án đã đâm lao phải theo lao, sunk-cost fallacy khiến team không dám dừng dù đã rõ thất bại — chỉ khi thừa nhận thẳng thắn 'cái này không work' mới thoát được bế tắc, thay vì đốt thêm resource.",
+      "lifeExample": "Cố chấp theo đuổi một việc đã rõ ràng bế tắc chỉ vì sĩ diện — chỉ khi thành thật thừa nhận khó khăn với chính mình mới tìm được lối ra."
+    }
+  ],
+
+  "keywords": ["Đại Tráng", "大壯", "sức mạnh lớn", "dê húc giậu", "quá cương", "Lôi Thiên", "kiềm chế sức mạnh"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/da-zhuang", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Đại Tráng." },
+    { "source": "維基文庫 Wikisource — 周易/大壯", "url": "https://zh.wikisource.org/zh-hant/周易/大壯", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/34", "label": "64 Quẻ — Quẻ 34: Lôi Thiên Đại Tráng" }
+  ]
+}

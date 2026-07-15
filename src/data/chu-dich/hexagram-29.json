@@ -1,0 +1,159 @@
+{
+  "id": 29,
+  "hanzi": "坎",
+  "pinyin": "Kǎn",
+  "hanviet": "Khảm",
+  "english": "The Abysmal (Water)",
+  "upperTrigram": "kan",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "習坎：有孚，維心亨。行有尚。",
+    "hanviet": "Tập Khảm: Hữu phu, duy tâm hanh. Hành hữu thượng.",
+    "translation": "Khảm chồng Khảm (hiểm nguy nối tiếp hiểm nguy): có lòng thành tín thì tâm được thông suốt. Hành động như vậy sẽ được coi trọng.",
+    "english": "Khân, here repeated, shows the possession of sincerity, through which the mind is penetrating. Action (in accordance with this) will be of high value."
+  },
+
+  "daTuong": {
+    "hanzi": "水洊至，習坎；君子以常德行，習教事。",
+    "hanviet": "Thủy tấn chí, Tập Khảm; quân tử dĩ thường đức hạnh, tập giáo sự.",
+    "translation": "Nước chảy đến liên tiếp không ngừng, đó là tượng của Tập Khảm; người quân tử noi theo đó mà giữ đức hạnh nhất quán, luyện tập thành thục việc dạy dỗ.",
+    "english": "(The trigram representing) water flowing on continuously forms the repeated Khân. The superior man, in accordance with this, maintains constantly (the virtue of his heart) and (the integrity of) his conduct, and practises the business of teaching (affairs).",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Khảm là 1 trong 2 quẻ 'thuần' trong nhóm này — 6 hào lặp lại đúng 1 quái Khảm (nước/hiểm) hai lần chồng lên nhau, biểu tượng cho hiểm nguy nối tiếp hiểm nguy, giống nước chảy xiết không ngừng qua hết hố sâu này tới hố sâu khác. Nhưng khác với vẻ ngoài đáng sợ, cấu trúc mỗi quái Khảm là 1 hào Dương (thực, vững) kẹp giữa 2 hào Âm (rỗng) — biểu tượng cho lòng thành tín/sự vững vàng nội tâm ở giữa hoàn cảnh nguy hiểm bên ngoài. Sáu hào kể câu chuyện đi qua hiểm nguy: sa vào hố (hào 1), tìm được chút lối thoát nhỏ (hào 2), càng vùng vẫy càng nguy (hào 3), giữ sự giản dị chân thành vượt qua (hào 4), hố chưa đầy nhưng đã ổn (hào 5), và cảnh báo nếu không tỉnh táo sẽ bị trói buộc lâu dài (hào 6).",
+
+  "computer_science": "Khảm giống hệt 1 chuỗi sự cố production liên tiếp (cascading failures / repeated exceptions): mỗi 'hố' là 1 lỗi hệ thống, và lỗi này kéo theo lỗi khác. Nhưng bí quyết vượt qua nằm ở hào Dương chính giữa mỗi quái — giữ vững 1 bất biến cốt lõi (data integrity, checksum, idempotency) xuyên suốt các lần retry, giống nguyên tắc thiết kế hệ thống chịu lỗi: dù bên ngoài hỗn loạn, lõi xử lý vẫn phải nhất quán và đáng tin.",
+
+  "life": "Khó khăn chồng chất liên tiếp là điều có thật trong đời — quẻ này không hứa hẹn tránh được hiểm nguy, mà dạy cách đi qua nó: giữ vững lòng thành tín và sự chân thật bên trong (hào Dương giữa mỗi lần Khảm) dù hoàn cảnh bên ngoài đầy bất trắc. Nước chảy đá mòn — kiên trì đi qua từng hố một, không hoảng loạn, không bỏ cuộc.",
+
+  "programming": "Khi hệ thống gặp incident nối tiếp incident, nguyên tắc sống còn là: triage từng lỗi một (không cố giải quyết tất cả cùng lúc — hào 3 cảnh báo 'càng vùng vẫy trong hố kép càng nguy'), giữ giản dị và trung thực trong xử lý (hào 4: chỉ cần 1 bình rượu giản đơn cũng đủ, không cần phô trương), và quan trọng nhất: duy trì 1 core invariant không đổi (idempotent retry, checksum toàn vẹn dữ liệu) xuyên suốt mọi lần thử lại.",
+
+  "characters": [
+    {
+      "hanzi": "習",
+      "pinyin": "xí",
+      "hanviet": "tập",
+      "meaning": "Lặp lại, luyện tập, thành thục.",
+      "origin": "Chữ ghép bộ 羽 (vũ, lông chim/cánh) + phần biểu âm liên quan tới mặt trời/ánh sáng — nghĩa gốc mô tả chim non vỗ cánh lặp đi lặp lại để tập bay, mở rộng thành 'luyện tập, ôn tập, lặp lại nhiều lần'.",
+      "example": "學習 (học tập), 習慣 (tập quán/thói quen).",
+      "cs": "Retry loop / Iteration",
+      "csExplain": "Lặp lại một hành động nhiều lần để dần thành thục — giống retry loop trong xử lý lỗi, mỗi lần thử lại là 1 lần 'luyện tập' hệ thống chịu lỗi tốt hơn."
+    },
+    {
+      "hanzi": "坎",
+      "pinyin": "kǎn",
+      "hanviet": "khảm",
+      "meaning": "Hố, hầm, hiểm nguy.",
+      "origin": "Chữ ghép bộ 土 (thổ, đất) + 欠 (khiếm, âm — nghĩa gốc liên quan tới thiếu hụt/trũng xuống) — chỉ chỗ đất trũng, hố sâu, mở rộng thành biểu tượng hiểm nguy, khó khăn.",
+      "example": "坎坷 (khảm kha) = gập ghềnh, trắc trở.",
+      "cs": "Exception / Failure state",
+      "csExplain": "Một trạng thái lỗi/hố sâu mà hệ thống rơi vào — giống exception hoặc failure state cần được catch và xử lý."
+    },
+    {
+      "hanzi": "孚",
+      "pinyin": "fú",
+      "hanviet": "phu",
+      "meaning": "Thành tín, đáng tin, ấp trứng (nghĩa gốc).",
+      "origin": "Chữ ghép bộ 爪 (trảo, móng vuốt/bàn tay) + 子 (tử, con) — hình ảnh tay giữ/ấp con (như chim ấp trứng), nghĩa gốc 'ấp trứng cho nở', mở rộng thành 'thành tín, điều đáng tin cậy tự nhiên nảy sinh'.",
+      "example": "孚信 (phu tín) = lòng tin đáng có.",
+      "cs": "Integrity / Trust invariant",
+      "csExplain": "Sự toàn vẹn/đáng tin được duy trì bất chấp hoàn cảnh — giống 1 checksum hoặc invariant phải luôn đúng dù hệ thống đang gặp lỗi."
+    },
+    {
+      "hanzi": "尚",
+      "pinyin": "shàng",
+      "hanviet": "thượng",
+      "meaning": "Còn, coi trọng, chuộng.",
+      "origin": "Chữ liên quan tới hình ảnh mái nhà cao/khói bốc lên (bộ 八 trên 向) — nghĩa gốc liên quan tới sự cao/vượt lên, mở rộng thành 'coi trọng, đề cao, còn có giá trị'.",
+      "example": "尚且 (thượng thả) = hơn nữa/vẫn còn, 崇尚 (sùng thượng) = coi trọng, tôn sùng.",
+      "cs": "Priority / Value assigned",
+      "csExplain": "Hành động được 'coi trọng' — giống việc gán priority cao cho 1 hành động đáng tin cậy trong hệ thống xử lý sự cố."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：習坎，入于坎窞，凶。",
+      "hanviet": "Sơ Lục: Tập khảm, nhập vu khảm đạm, hung.",
+      "translation": "Hố hiểm chồng hố hiểm, lại rơi vào hố sâu trong hố — xấu.",
+      "english": "The first SIX, divided, shows its subject in the double defile, and (yet) entering a cavern within it. There will be evil.",
+      "explain": "Hào thấp nhất, âm nhu, chưa có kinh nghiệm đối mặt hiểm nguy nên càng lún sâu hơn — cảnh báo về việc thiếu chuẩn bị khi lần đầu gặp khủng hoảng.",
+      "itExample": "Gặp lỗi production lần đầu, hoảng loạn debug sai hướng khiến lỗi càng lan rộng (lỗi chồng lỗi) — thiếu kinh nghiệm xử lý incident khiến tình hình xấu thêm.",
+      "lifeExample": "Lần đầu gặp khó khăn lớn, do thiếu kinh nghiệm mà phản ứng sai cách khiến vấn đề càng trầm trọng hơn."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：坎有險，求小得。",
+      "hanviet": "Cửu Nhị: Khảm hữu hiểm, cầu tiểu đắc.",
+      "translation": "Trong hố hiểm nguy, tìm được chút lối thoát nhỏ.",
+      "english": "The second NINE, undivided, shows its subject in all the peril of the defile. He will, however, get a little (of the deliverance) that he seeks.",
+      "explain": "Đã có nội lực (Dương) nhưng vẫn đang trong nguy hiểm — chỉ nên đặt mục tiêu nhỏ, từng bước một, không nên kỳ vọng thoát hiểm hoàn toàn ngay lập tức.",
+      "itExample": "Giữa 1 outage lớn, không thể fix toàn bộ ngay — team tập trung khôi phục từng phần nhỏ quan trọng nhất trước (mitigate), chấp nhận 'thắng nhỏ' thay vì chờ giải pháp hoàn hảo.",
+      "lifeExample": "Giữa khủng hoảng lớn, đừng kỳ vọng giải quyết hết mọi thứ ngay — tập trung đạt từng tiến bộ nhỏ sẽ giúp bạn dần thoát ra."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：來之坎坎，險且枕，入于坎窞，勿用。",
+      "hanviet": "Lục Tam: Lai chi khảm khảm, hiểm thả chẩm, nhập vu khảm đạm, vật dụng.",
+      "translation": "Đi tới hay lui đều gặp hố hiểm nối hố hiểm, nguy hiểm bủa vây, lại rơi vào hố sâu trong hố — chớ nên hành động.",
+      "english": "shows its subject, whether he comes or goes, confronted by a defile. All is peril to him and unrest, and (if he try to escape) he will fall into the (further) defile of the cavern. Let him not use (his efforts in this direction).",
+      "explain": "Vị trí chông chênh nhất — cả tiến lẫn lui đều nguy hiểm; bài học ở đây là biết dừng hoàn toàn, không cố hành động khi mọi hướng đều là ngõ cụt.",
+      "itExample": "Một tình huống mà mọi giải pháp đều có rủi ro cao ngang nhau (rollback cũng lỗi, forward-fix cũng lỗi) — lúc này nên dừng lại, gọi thêm người hỗ trợ thay vì tự ý thử thêm giải pháp mạo hiểm.",
+      "lifeExample": "Khi cả tiến lẫn lùi đều có vẻ sai lầm, đôi khi lựa chọn khôn ngoan nhất là dừng hẳn hành động, tìm kiếm sự trợ giúp thay vì tự mình liều lĩnh thử thêm."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：樽酒簋貳，用缶，納約自牖，終无咎。",
+      "hanviet": "Lục Tứ: Tôn tửu quỹ nhị, dụng phẫu, nạp ước tự dũ, chung vô cữu.",
+      "translation": "Một bình rượu, hai bát thức ăn, đựng bằng đồ sành mộc mạc, dâng qua cửa sổ theo lối giản dị — cuối cùng không có lỗi.",
+      "english": "shows its subject (at a feast), with (simply) a bottle of spirits and a subsidiary basket of rice, (while) the (necessary) vessels (of higher style) are (replaced by) earthenware. He introduces his simple offerings through the window (to the ruler in the fifth place). To the last there will be no error.",
+      "explain": "Giữa hiểm nguy, không cần phô trương hình thức — sự giản dị, chân thành và biết tìm đúng 'cửa sổ' (con đường ngắn, đúng chỗ) để tiếp cận người có thể giúp mình mới là cách vượt qua thực sự.",
+      "itExample": "Giữa khủng hoảng, một báo cáo tình huống ngắn gọn, trung thực gửi thẳng tới người ra quyết định (không qua nhiều tầng nấc rườm rà) hiệu quả hơn nhiều so với 1 buổi trình bày hoành tráng nhưng chậm trễ.",
+      "lifeExample": "Khi gặp khó khăn, một lời cầu cứu chân thành, giản dị gửi đúng người có thể giúp thường hiệu quả hơn việc cố gắng thể hiện mọi thứ hoàn hảo."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：坎不盈，祗既平，无咎。",
+      "hanviet": "Cửu Ngũ: Khảm bất doanh, chỉ ký bình, vô cữu.",
+      "translation": "Hố hiểm chưa đầy nhưng đã tới mức bằng phẳng — không có lỗi.",
+      "english": "The fifth NINE, undivided, shows the water of the defile not yet full, and yet what was in the hollow being already displayed. There will be no error.",
+      "explain": "Vị trí lãnh đạo giữa nguy hiểm nhưng đã đạt được sự ổn định tương đối — chưa hoàn toàn thoát hiểm nhưng tình hình đã được kiểm soát, đủ để yên tâm.",
+      "itExample": "Hệ thống chưa hoàn toàn hết lỗi nhưng đã ổn định (error rate về mức chấp nhận được, không còn cascading) — đủ để công bố 'đã kiểm soát được tình hình' dù chưa 100% resolved.",
+      "lifeExample": "Khủng hoảng chưa qua hẳn nhưng tình hình đã tạm ổn định — đây là thời điểm hợp lý để thở phào, dù vẫn cần cảnh giác."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：係用徽纆，寘于叢棘，三歲不得，凶。",
+      "hanviet": "Thượng Lục: Hệ dụng huy mặc, trí vu tùng cức, tam tuế bất đắc, hung.",
+      "translation": "Bị trói bằng dây thừng nhiều tao, giam vào bụi gai rậm rạp, ba năm không thoát được — xấu.",
+      "english": "The topmost SIX, divided, shows its subject bound with cords of three strands or two strands, and placed in the thicket of thorns. But in three years he does not learn the course (to pursue). There will be evil.",
+      "explain": "Hào cuối, sa vào hiểm nguy sâu nhất và không tự thoát ra được trong thời gian dài — cảnh báo về hậu quả của việc để hiểm nguy kéo dài mà không rút ra bài học, không tìm được hướng đi đúng.",
+      "itExample": "Một tổ chức mắc kẹt trong vòng lặp sự cố (tech debt tích tụ, không refactor) suốt nhiều năm mà không rút ra bài học hay thay đổi cách làm — cuối cùng bị 'giam' trong chính hệ thống lỗi thời của mình.",
+      "lifeExample": "Mắc kẹt trong một hoàn cảnh khó khăn kéo dài vì không chịu nhìn nhận và thay đổi cách tiếp cận — càng để lâu càng khó thoát ra."
+    }
+  ],
+
+  "keywords": ["Khảm", "坎", "hiểm nguy", "nước", "thành tín", "hố sâu", "cascading failure", "resilience"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/坎", "url": "https://zh.wikisource.org/zh-hant/周易/坎", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 29 (bản mirror)", "url": "https://baharna.com/iching/legge/010010.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes : Kan", "url": "https://ctext.org/book-of-changes/kan/zh", "note": "Nguồn học thuật công khai, xác nhận tên/slug quẻ 坎 (習坎) Kan." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/29", "label": "64 Quẻ — Quẻ 29: Thuần Khảm" }
+  ]
+}

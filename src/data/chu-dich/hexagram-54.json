@@ -1,0 +1,148 @@
+{
+  "id": 54,
+  "hanzi": "歸妹",
+  "pinyin": "Guī Mèi",
+  "hanviet": "Quy Muội",
+  "english": "The Marrying Maiden",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "歸妹：征凶，无攸利。",
+    "hanviet": "Quy Muội: Chinh hung, vô du lợi.",
+    "translation": "Quy Muội (nàng gái đi về chồng): nếu hành động phiêu lưu thì xấu, không có gì là thuận lợi.",
+    "english": "Propriety indicates that action will be evil, and in no wise advantageous."
+  },
+
+  "daTuong": {
+    "hanzi": "澤上有雷，歸妹；君子以永終知敝。",
+    "hanviet": "Trạch thượng hữu lôi, Quy Muội; quân tử dĩ vĩnh chung tri tì.",
+    "translation": "Trên hồ/trạch (nước) có tiếng sấm — đó là hình tượng quẻ Quy Muội. Người quân tử noi theo đó mà luôn hướng tới kết thúc lâu dài, để biết được những điểm yếu hay tổn hại ẩn chứa.",
+    "english": "The waters of a Marsh with Thunder over it form the hexagram of Propriety. The superior man, in accordance with this, having regard to the far-distant end, knows the mischief that may be done at the beginning.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quy Muội là quẻ ngược của Quy Gia (quẻ 37) — trong khi Quy Gia (嫁娶, nàng gái đi lấy chồng) nói về việc cả gia đình hỗ trợ, thì Quy Muội lại nói về nàng gái đi chỉ với tư cách là phu nhân phe chồng, vị trí thấp hơn. Hình tượng lõi: trên hồ có sấm — tiếng sấm phát ra từ dưới nước, tượng trưng cho sự vô trật tự, không được chuẩn bị kỹ lưỡng. Sáu hào kể trọn vẹn sự cố gắng tồn tại của một nàng gái ở vị trí không xứng đáng: dù bị tàn tật vẫn cố bước đi (Sơ Cửu), mù một mắt vẫn muốn nắm lấy được điều gì đó (Cửu Nhị), không có vị trí chính thức mà chỉ phụ (Lục Tam), cố trì hoãn thời gian đợi chờ (Cửu Tứ), được nhìn nhận nhưng không như những bà vợ chính thức (Lục Ngũ), và cuối cùng trở nên vô dụng hoàn toàn (Thượng Lục). Quẻ này cảnh báo: khi mục tiêu không phù hợp hay vị trí không xứng đáng, mọi nỗ lực chỉ là phí thời gian.",
+
+  "computer_science": "Quy Muội là cảnh báo về mismatch giữa role/responsibility và actual capability — tuyển dụng sai người vào position sai, hoặc force fit một component không phù hợp vào architecture lớn. 'Trên hồ có sấm' (Dui-Zhen, joy on top of thunder) tượng trưng cho sự bất hợp lý, conflict: cô gái vui vẻ (Dui) nhưng ở vị trí bị sấm động (Zhen) — tiếng sấm không nghe được từ trên mà từ dưới, từ vị trí sâu kín của cấu trúc.",
+
+  "life": "Bài học của Quy Muội không phải 'không bao giờ hôn nhân', mà là 'hãy chắc chắn rằng vị trí của bạn trong một hệ thống mới thực sự phù hợp trước khi cam kết'. Một hôn nhân nơi vợ chỉ là phụ kiếp không bao giờ hạnh phúc — tương tự, một công việc nơi bạn ở vị trí sai cũng không bao giờ thành công.",
+
+  "programming": "Khi join một team/project lớn ở vị trí junior hay contractor không rõ quyền hạn — bạn sẽ như nàng gái Quy Muội, luôn ở vị trí phụ, không được nghe tiếng nói dù có ý kiến. Cảnh báo: hãy xác định rõ scope, authority, role của bạn trước khi ngã ba, nếu không sẽ là việc phí thời gian.",
+
+  "characters": [
+    {
+      "hanzi": "歸",
+      "pinyin": "guī",
+      "hanviet": "quy",
+      "meaning": "Về, tẩm quất, trở về (người phụ nữ thành hôn gọi là 'tẩm quất').",
+      "origin": "Chữ hình thanh-hội ý: 女 (nữ, phụ nữ) + 止/歸 (chỉ, bước đi hoặc căn gốc từ 斁 chi liên quan tới hành động) — biểu thị nàng gái bước về nhà chồng.",
+      "example": "歸家 (quy gia) = về nhà; 歸隱 (quy ẩn) = về ẩn sĩ.",
+      "cs": "State Assignment",
+      "csExplain": "Hành động gán một thực thể tới một trạng thái/role mới — cần phải xác định rõ điều kiện trước."
+    },
+    {
+      "hanzi": "妹",
+      "pinyin": "mèi",
+      "hanviet": "muội",
+      "meaning": "Em gái; cô gái non trẻ; phu nhân phụ (wife in a secondary position).",
+      "origin": "Chữ hình thanh-hội ý: 女 (nữ, phụ nữ) + 未 (vị, chưa — biểu thị chưa chín muồi, trẻ tuổi, chưa có kinh nghiệm). Nghĩa gốc là 'em gái', mở rộng thành 'cô gái trẻ' hoặc 'vợ phụ (wife in secondary position)'.",
+      "example": "妹妹 (muội muội) = em gái; 貴妃 (quý phi) = phi tần (địa vị thứ trong harem Hoàng đế).",
+      "cs": "Secondary Instance",
+      "csExplain": "Một instance hay component ở vị trí phụ, không phải chính — tương tự role của em gái so với chị/mẹ trong gia tộc."
+    },
+    {
+      "hanzi": "征",
+      "pinyin": "zhēng",
+      "hanviet": "chinh",
+      "meaning": "Chinh phạt, khổ sở (trong I Ching, thường chỉ hành động liều lĩnh, phiêu lưu).",
+      "origin": "Chữ hình thanh: 彳 (bộ 彳, biểu thị bước đi/hành trình) + 正 (chính, thanh phù + ý 'hướng đúng'/'quân đội hành quân'). Nghĩa gốc là 'quân đội hành quân để chinh phạt', mở rộng thành 'hành động quyết liệt, chinh phạt' trong bối cảnh I Ching.",
+      "example": "遠征 (viễn chinh) = chinh phục xa xôi; 征战 (chinh chiến) = tham chiến.",
+      "cs": "Aggressive Action",
+      "csExplain": "Hành động chủ động, tấn công, phiêu lưu — không phải cách phòng thủ hay cách chờ đợi, mà đi ra ngoài tìm kiếm/thách thức."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：歸妹以娣，跛能履，征吉。",
+      "hanviet": "Sơ Cửu: Quy Muội dĩ đệ, bả năng lã, chinh cát.",
+      "translation": "Nàng gái đi lấy chồng với tư cách là phu nhân phụ (chỉ có địa vị em gái) — dù bị tàn tật (chân đi ngập ngừng) mà vẫn bước được, nếu hành động thì tốt lành.",
+      "english": "The first line, dynamic, shows the young woman married off in a position ancillary to the real wife. It suggests the idea of a person lame in one leg who yet manages to tramp along. Going forward will be fortunate.",
+      "explain": "Tuy ở vị trí thấp, tuy bị khuyết tật, nhưng nếu biết nỗ lực tiến tới không quên hành động, sẽ tốt. Đây là hào duy nhất ở Quy Muội mà 'chinh' lại có lợi.",
+      "itExample": "Một contractor tham gia project lớn không phải như full-time employee, vị trí thấp — nhưng nếu cứ cầu thị, nỗ lực đóng góp được cái mình được phân công, cuối cùng sẽ nhận được đánh giá tốt.",
+      "lifeExample": "Bắt đầu một công việc ở vị trí thấp hay bị chê bai (tàn tật) — nhưng miễn là kiên trì nỗ lực, vẫn có thể thành công."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：眇能視，利幽人之貞。",
+      "hanviet": "Cửu Nhị: Tiêu năng thị, lợi u nhân chi trinh.",
+      "translation": "Mù một mắt nhưng vẫn có thể nhìn được — có lợi khi giữ vững sự chính đáng của những con người lặn sâu (ẩn mình).",
+      "english": "The second line, dynamic, shows her blind of one eye, and yet able to see. There will be advantage in her maintaining the firm correctness of a solitary widow.",
+      "explain": "Tự nhận biết được hạn chế của mình, nhưng vẫn cố gắng làm lợi ích cho người khác — dù bị khuyết tật, vẫn có giá trị.",
+      "itExample": "Một junior developer không phải expert trong tất cả, nhưng tập trung vào góc nhìn riêng của mình và giúp ích cho team — sẽ được quý mến dù không phải top performer.",
+      "lifeExample": "Tự nhận biết mình không phải người tốt nhất, nhưng tập trung vào sức mạnh riêng và giúp đỡ những người xung quanh — sẽ được tôn trọng."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：歸妹以須，反歸以娣。",
+      "hanviet": "Lục Tam: Quy Muội dĩ tu, phản quy dĩ đệ.",
+      "translation": "Nàng gái có dự định lấy chồng (chuẩn bị như một nàng dâu chính) — nhưng cuối cùng lại quay lại với vị trí là phu nhân phụ.",
+      "english": "The third line, magnetic, shows the young woman who was to be married off in a mean position. She returns and accepts an ancillary position.",
+      "explain": "Cố gắng vươn lên nhưng cuối cùng phải chấp nhận vị trí thấp hơn — nhận biết được thực tế rồi quay lại.",
+      "itExample": "Một engineer cố gắng phỏng vấn lên senior position nhưng không pass — chấp nhận quay lại vị trí junior để tiếp tục học, sau này sẽ vươn lên khi đủ kỹ năng.",
+      "lifeExample": "Cố gắng vươn lên nhưng nhận ra mình chưa sẵn sàng — chấp nhận quay lại vị trí thấp hơn để học hỏi thêm."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：歸妹愆期，遲歸有時。",
+      "hanviet": "Cửu Tứ: Quy Muội khiên kỳ, trì quy hữu thời.",
+      "translation": "Nàng gái bị trì hoãn lại (không được lấy chồng đúng thời) — nhưng nếu chờ đủ lâu cũng sẽ có thời điểm hợp lý để về chồng.",
+      "english": "The fourth line, dynamic, shows the young woman who is to be married off protracting the time. She may be late in being married, but the time will come.",
+      "explain": "Thời điểm không phù hợp ngay lúc này — nhưng nếu kiên nhẫn chờ đợi, thời điểm sẽ đến.",
+      "itExample": "Một startup muốn tuyển engineer nhất định nhưng hiện tại chưa có position phù hợp — cơ hội sẽ đến nếu tiếp tục tìm kiếm đúng người.",
+      "lifeExample": "Cơ hội lý tưởng chưa đến lúc ngay bây giờ — nhưng nếu kiên nhẫn chờ, nó sẽ đến đúng lúc."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：帝乙歸妹，其君之袂，不如其娣之袂良，月幾望，吉。",
+      "hanviet": "Lục Ngũ: Đế Ất quy muội, kỳ quân chi mế, bất như kỳ đệ chi mế lương, nguyệt cơ vọng, cát.",
+      "translation": "Đế Ất tẩm quật em gái — áo tay của bà hoàng thất còn không đẹp bằng áo tay của người phu nhân phụ — khi trăng gần tròn, tốt lành.",
+      "english": "[The fifth line] reminds us of the marrying of the younger sister of King Ti-yi...The case suggests the thought of the moon almost full. There will be good fortune.",
+      "explain": "Dù ở vị trí cao (Lục Ngũ) — được vua cưới — nhưng nếu vợ chính không được trọng như người phụ, thì cũng chỉ tốt lành với điều kiện là sự việc được công khai và rõ ràng (trăng gần tròn = sáng rõ).",
+      "itExample": "Một cofounder ở position cao nhưng trách nhiệm thực tế không như một engineer khác có ability cao hơn — miễn là công ty công khai về vai trò/contribution của từng người (trăng tròn = transparency), không có gì phẩn nàn.",
+      "lifeExample": "Dù ở vị trí cao nhưng nhìn nhận được rằng mình không vượt trội như đạo hàm khác — miễn là công khai và tôn trọng những người giỏi hơn, vẫn sẽ là tốt lành."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：女承筐无實，士刲羊无血，无攸利。",
+      "hanviet": "Thượng Lục: Nữ thừa khanh vô thực, sĩ thải dương vô huyết, vô du lợi.",
+      "translation": "Nàng gái mang cái rổ mà không có gì trong nó — người lính giết con cừu nhưng không chảy máu (không được tế lễ đúng cách) — không có gì là thuận lợi.",
+      "english": "The sixth line, magnetic, shows the young lady bearing the basket, but without anything in it, and the gentleman slaughtering the sheep, but without any blood flowing from it. There will be no advantage in any way.",
+      "explain": "Ở hào cuối cùng của Quy Muội — tất cả đã trở nên vô dụng, rỗng tuếch, không còn gì giá trị cả. Bài học: hôn nhân ở vị trí không xứng đáng không bao giờ tốt, chỉ để lại vỏ trống.",
+      "itExample": "Một engineer ở vị trí senior nhưng chỉ có danh vị mà không có quyền quyết định hay ảnh hưởng thật sự — trở nên vô dụng, chỉ là trang trí (cái rổ trống).",
+      "lifeExample": "Ở vị trí cao nhưng không có quyền hạn, không được nghe tiếng nói, không thể giúp ích gì — đó là trạng thái tồi tệ nhất, chỉ là vỏ trống, không bao giờ hạnh phúc."
+    }
+  ],
+
+  "keywords": ["Quy Muội", "歸妹", "nàng gái về chồng", "vị trí phụ", "mismatch", "hãy xác định role rõ ràng"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/gui-mei", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 54", "url": "https://jamesdekorne.com/GBCh/hex54.htm", "note": "Trang tổng hợp trích dẫn đầy đủ Legge." },
+    { "source": "維基文庫 Wikisource — 周易/歸妹", "url": "https://zh.wikisource.org/zh-hant/周易/歸妹", "note": "Đối chiếu chéo nguyên văn chữ Hán." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/54", "label": "64 Quẻ — Quẻ 54: Lôi Trạch Quy Muội" }
+  ]
+}

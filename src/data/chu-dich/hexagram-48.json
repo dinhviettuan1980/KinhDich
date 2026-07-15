@@ -1,0 +1,148 @@
+{
+  "id": 48,
+  "hanzi": "井",
+  "pinyin": "Jǐng",
+  "hanviet": "Tỉnh",
+  "english": "The Well",
+  "upperTrigram": "xun",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "井：改邑不改井，无喪无得，往來井井。汔至，亦未繘井，羸其瓶，凶。",
+    "hanviet": "Tỉnh: Cải ấp bất cải tỉnh, vô tang vô đắc, vãng lai tỉnh tỉnh. Khế chí, diệc vị thiên tỉnh, luy kỳ bình, hung.",
+    "translation": "Tỉnh (Giếng): thay đổi thành phố nhưng không thay đổi giếng, không mất không lợi, đi lại có nước uống. Gần đã tới (nước) nhưng chưa kéo được nước, dây xích giếng đứt, xấu.",
+    "english": "Looking at Jing, we think of how the site of a town may be changed, while the fashion of its wells undergoes no change. The water never disappears and never receives great increase, and those who come and go can draw and enjoy benefit. If drawing is nearly accomplished, but before the rope reaches the water, the bucket is broken, this is evil."
+  },
+
+  "daTuong": {
+    "hanzi": "木上有水，井；君子以勞民勸相。",
+    "hanviet": "Mộc thượng hữu thủy, tỉnh; quân tử dĩ lao dân khuyến tương.",
+    "translation": "Cây trên có nước, tạo nên quẻ Tỉnh; người quân tử noi theo đó mà lao động cùng dân, khuyến khích sự tương trợ lẫn nhau.",
+    "english": "The trigram representing wood and above it that for water form Jing. The superior man, in accordance with this, comforts the people, and stimulates them to mutual helpfulness.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Tỉnh ghép từ Kan (Nước) ở dưới, Xun (Cây, gỗ) ở trên — giếng là nguồn nước vĩnh viễn không đổi, cho dù thành phố xây ở đâu; nó là infrastructure cơ bản của loài người, không thể được 'bán' hay 'sở hữu riêng', mà là của chung. Nhưng để có nước, phải kéo được, phải chuẩn bị dây chuối, xô chứa — nếu dây đứt (sơ suất), sẽ mất hết. Sáu hào kể câu chuyện: giếng bị bùn, không ai uống, kéo được nhưng xô rỗ, giếng sạch nhưng không ai dùng (lạnh lùng), xây lại giếng, nước sạch lạnh, cuối cùng được kéo lên dễ dàng.",
+
+  "computer_science": "Tỉnh giống 'API / infrastructure service' — không thay đổi (stable, vĩnh viễn), nhưng cần client đúng cách để sử dụng (dây chuối = client lib, xô = request format); nếu client broken (xô rỗ, dây đứt) thì không có dữ liệu. Cây trên = query interface, nước dưới = data persistent.",
+
+  "life": "Có những nền tảng lâu dài, cơ bản của đời người — nhưng không tự động có lợi, phải chủ động kéo dùng, phải bảo trì; nếu bỏ rơi, sẽ kiệt sức.",
+
+  "programming": "API stable, backend sound — nhưng client code / integration bị lỗi → cũng như xô rỗ, dây đứt, không lấy được data. Phải kiểm tra end-to-end, không chỉ backend alone.",
+
+  "characters": [
+    {
+      "hanzi": "井",
+      "pinyin": "jǐng",
+      "hanviet": "tỉnh",
+      "meaning": "Giếng, nước, cơ bản.",
+      "origin": "Chữ tượng hình giếng từ trên nhìn xuống: gạch ngang chia làm 9 ô (trường mã hệ 9 thửa ruộng), giữa là giếng chung — mở rộng thành 'giếng, cơ sở'.",
+      "example": "井水 (tỉnh thủy) = nước giếng; 水井 (thủy tỉnh) = giếng nước.",
+      "cs": "Infrastructure",
+      "csExplain": "Nền tảng cơ bản, vĩnh viễn, không đổi, từ đó mọi client draw lấy dữ liệu/dịch vụ."
+    },
+    {
+      "hanzi": "繘",
+      "pinyin": "zú",
+      "hanviet": "thiên",
+      "meaning": "Kéo nước từ giếng, dây chuối, máy kéo.",
+      "origin": "Bộ 糸 (dây) + phần biểu âm liên quan tới 'kéo' — hình ảnh kéo dây để lấy nước, mở rộng thành 'thiết bị kéo nước'.",
+      "example": "繘井 (thiên tỉnh) = kéo nước giếng.",
+      "cs": "Client Library",
+      "csExplain": "Tool để kết nối và lấy dữ liệu từ infrastructure (API client, SQL driver, etc)."
+    },
+    {
+      "hanzi": "瓶",
+      "pinyin": "píng",
+      "hanviet": "bình",
+      "meaning": "Lọ, bình, dụng cụ đựng nước.",
+      "origin": "Bộ 瓦 (đất nung, gốm) + phần biểu âm — hình ảnh bình gốm để đựng nước, mở rộng thành 'bình, dụng cụ'.",
+      "example": "花瓶 (hoa bình) = lọ hoa; 水瓶 (thủy bình) = bình nước.",
+      "cs": "Request/Response Container",
+      "csExplain": "Format/schema để chứa và truyền tải dữ liệu (JSON payload, protocol buffer, etc)."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：井泥不食，舊井无禽。",
+      "hanviet": "Sơ Lục: Tỉnh nê bất thực, cựu tỉnh vô cầm.",
+      "translation": "Giếng bùn không thể uống, giếng cũ không có chim.",
+      "english": "A well so muddy that men will not drink of it; or an old well to which neither birds nor other creatures resort.",
+      "explain": "Vị trí thấp nhất, giếng bị bùn (bẩn) — không ai sử dụng, thậm chí chim thú cũng không ghé.",
+      "itExample": "API cũ, deprecated, documentation bẩn, response time quá lâu — không ai muốn dùng, ngay cả internal tools cũng quay sang dùng khác.",
+      "lifeExample": "Kỹ năng cũ, không được update, trở thành vô dụng — không ai muốn học hay thuê để làm."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "井谷射鮒，瓮敝漏。",
+      "hanviet": "Cửu Nhị: Tỉnh cốc xạ phúc, úng bệ lậu.",
+      "translation": "Cái giếng thung lũng bắn cá lươn, cái xô rách bị rỉ.",
+      "english": "A well from which by a hole the water escapes and flows away to the shrimps, or one whose water leaks from a broken basket.",
+      "explain": "Lấy nước nhưng xô bị rỉ — công sức mà không có lợi, dữ liệu chảy mất.",
+      "itExample": "API bị hit nhiều request, bandwidth quá hạn, response chậm hay bị timeout — client nhận được data không đầy đủ, lỗi ngầm.",
+      "lifeExample": "Học được kiến thức mà tâm trí không tập trung, qua một tai vào tai kia — công sức mà kiến thức chảy mất."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "井渫不食，為我心惻，可用汲，王明，並受其福。",
+      "hanviet": "Cửu Tam: Tỉnh tích bất thực, vi ngã tâm sát, khả dụng cấp, vương minh, tính thụ kỳ phước.",
+      "translation": "Giếng được dọn sạch nhưng không ai uống, tôi thương cảm, có thể kéo nước, nếu vua sáng suốt, cả nước sẽ hưởng phúc.",
+      "english": "A well cleared out but unused... if the king were intelligent, both he and we might receive benefit.",
+      "explain": "Giếng sạch nhưng không ai biết hay không ai tin — cần vua (leader) phát hiện ra để khuyến khích tất cả dùng.",
+      "itExample": "API được tối ưu tốt, đã clean up technical debt, nhưng team không biết dùng — cần leadership promotion, documentation, training để mọi người adopt.",
+      "lifeExample": "Chuẩn bị kỹ năng/sản phẩm tốt nhưng không ai biết — cần người đứng đầu ('vua') khám phá và khuyến khích mọi người dùng."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "井甃，无咎。",
+      "hanviet": "Lục Tứ: Tỉnh chu, vô cữu.",
+      "translation": "Giếng được xây dựng (gạch lát), không có lỗi.",
+      "english": "A well whose lining is well laid. There will be no error.",
+      "explain": "Giếng được xây dựng chắc chắn — infra solid, không có lỗi.",
+      "itExample": "API được design tốt, database schema solid, monitoring setup, no single point of failure — all good.",
+      "lifeExample": "Xây dựng nên cơ sở lâu dài cho bản thân (học tập, sức khỏe, mối quan hệ) — all solid, không lo sợ."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "井冽，寒泉食。",
+      "hanviet": "Cửu Ngũ: Tỉnh liệt, hàn tuyền thực.",
+      "translation": "Giếng sạch lạnh, nước lạnh có thể uống.",
+      "english": "A clear, limpid well whose cold spring waters are freely drunk.",
+      "explain": "Vị vua, giếng hoàn hảo, nước sạch lạnh, mọi người được hưởng — ideal state.",
+      "itExample": "API mature, high performance, good uptime, user love it, adoption rate cao — nước lạnh sạch, mọi người muốn dùng.",
+      "lifeExample": "Người leader, giá trị rõ ràng, mọi người muốn học từ họ — như nước lạnh sạch mà ai cũng muốn uống."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "井收勿幕，有孚元吉。",
+      "hanviet": "Thượng Lục: Tỉnh thu vật mạc, hữu phu nguyên cát.",
+      "translation": "Giếng được kéo lên (nước) không cần che phủ, có lòng thành là đại cát.",
+      "english": "Water drawn up to the top of the well without difficulty. Sincere and dependable – great good fortune.",
+      "explain": "Hào cuối, giếng hoàn toàn vận hành, nước dễ dàng được kéo lên, không cần ẩn giấu — thành công toàn vẹn.",
+      "itExample": "API maturity level cao, tất cả metrics green, user adoption no friction, reliability 99.99%, không cần worry about failure.",
+      "lifeExample": "Đạt được nền tảng lâu dài, tất cả mọi thứ chảy tự nhiên, không cần che giấu hay lo lắng — thành công thực sự."
+    }
+  ],
+
+  "keywords": ["Tỉnh", "井", "Giếng", "Nguồn", "Thủy Phong Tỉnh", "Vĩnh viễn"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/jing", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Tỉnh (Thoán từ, Hào từ)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/井", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E4%BA%95", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/48", "label": "64 Quẻ — Quẻ 48: Thủy Phong Tỉnh" }
+  ]
+}

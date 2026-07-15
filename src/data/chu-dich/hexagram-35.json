@@ -1,0 +1,147 @@
+{
+  "id": 35,
+  "hanzi": "晉",
+  "pinyin": "Jìn",
+  "hanviet": "Tấn",
+  "english": "Progress",
+  "upperTrigram": "li",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "晉：康侯用錫馬蕃庶，晝日三接。",
+    "hanviet": "Tấn: Khang hầu dụng tích mã phồn thứ, trú nhật tam tiếp.",
+    "translation": "Tấn (Tiến lên): vị chư hầu giữ yên được dân được ban tặng nhiều ngựa, trong một ngày được tiếp kiến ba lần.",
+    "english": "In Jin we see a prince who secures the tranquillity of the people, and is on that account presented with numerous horses (by the king), and admitted three times in one day to interviews (with him)."
+  },
+
+  "daTuong": {
+    "hanzi": "明出地上，晉；君子以自昭明德。",
+    "hanviet": "Minh xuất địa thượng, Tấn; quân tử dĩ tự chiêu minh đức.",
+    "translation": "Ánh sáng mọc lên trên mặt đất — đó là tượng của Tấn; người quân tử noi theo đó mà tự làm sáng tỏ đức sáng của mình.",
+    "english": "The sun proceeding upward above the earth forms the image of Jin. The superior man, in accordance with this, gives himself to making more brilliant his bright virtue.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Tấn là quẻ Ly (lửa/mặt trời) ở trên, Khôn (đất) ở dưới — hình ảnh mặt trời mọc lên trên mặt đất, càng lúc càng sáng rõ. Đây là quẻ nói về sự tiến bộ được công nhận: 5/6 hào đều nói tới việc 'tiến' (晉如), và phần lớn kết thúc tốt lành nếu giữ chính đính. Nhưng con đường tiến không phải lúc nào cũng suôn sẻ ngay — hào đầu bị cản trở, hào 2 còn lo lắng — trước khi được tin tưởng và ban phúc. Hào cuối cảnh báo: dùng sự tiến bộ để 'giương sừng' trừng phạt ngay chính người của mình là đi quá xa, dù không sai nhưng đáng tiếc.",
+
+  "computer_science": "Tấn giống một feature/service đang trong quá trình rollout và được công nhận dần: bắt đầu có thể bị chặn ở gate đầu tiên (code review, QA) — 'tiến mà bị cản', nhưng nếu giữ đúng chuẩn (firm and correct) sẽ được merge và ngày càng được tin dùng, giống mặt trời lên cao dần. Ba lần 'tiếp kiến trong một ngày' giống nhịp đồng bộ liên tục (frequent syncs/status report) giữa 1 module đang chứng minh giá trị và ban lãnh đạo/stakeholder.",
+
+  "life": "Đây là quẻ của sự nghiệp đi lên, được công nhận và tin tưởng — nhưng thành công không đến ngay từ đầu, có giai đoạn bị cản trở hoặc còn lo lắng (hào 1, hào 2) trước khi thật sự vững vàng. Bài học lớn nhất nằm ở hào cuối: khi đã đạt được vị thế, đừng dùng nó để 'giương sừng' trừng phạt chính người thân cận — thắng lợi quá đà với người của mình luôn để lại điều đáng tiếc.",
+
+  "programming": "Một tính năng mới trải qua đúng vòng đời: bị block ở PR đầu (hào 1 — 'tiến mà bị cản'), rồi dần được tin tưởng qua review nhiều vòng (hào 2, hào 3 — 'được tin bởi mọi người'), có lúc gặp rủi ro ẩn giống marmot đào hang (hào 4 — kỹ thuật có vẻ ổn nhưng vị trí không chắc, cần thận trọng với dependency ẩn), rồi cuối cùng được release rộng rãi không lo lắng gì (hào 5). Hào 6 là lời nhắc: đừng dùng quyền hạn mới có được để xử lý gắt gao nội bộ team mình — mục tiêu là tiến bộ chung, không phải thị uy.",
+
+  "characters": [
+    {
+      "hanzi": "晉",
+      "pinyin": "jìn",
+      "hanviet": "tấn",
+      "meaning": "Tiến lên, thăng tiến, dâng lên.",
+      "origin": "Chữ hội ý cổ, phần trên là 㸫 (hai mũi tên 至 chỉ hướng tới/đạt tới), phần dưới là 日 (mặt trời), gợi hình ảnh vươn lên như mặt trời mọc — nghĩa gốc 'tiến lên, dâng lên cao'.",
+      "example": "晉升 (tấn thăng) = thăng chức, tiến bộ; 晉見 (tấn kiến) = được vào yết kiến.",
+      "cs": "Progressive Deployment",
+      "csExplain": "Trạng thái một thay đổi đang được đưa dần lên môi trường cao hơn (staging → production), càng lúc càng được tin dùng."
+    },
+    {
+      "hanzi": "錫",
+      "pinyin": "xī",
+      "hanviet": "tích",
+      "meaning": "Ban tặng, ban cho (cùng nghĩa với 賜 tứ).",
+      "origin": "Chữ hình thanh gốc nghĩa là 'thiếc' (kim loại), mượn âm để dùng với nghĩa 'ban tặng' — trong văn cổ 錫 và 賜 thường thông dụng thay nhau.",
+      "example": "錫命 (tích mệnh) = ban chiếu mệnh; 錫福 (tích phúc) = ban phúc.",
+      "cs": "Grant Access",
+      "csExplain": "Hành động cấp quyền hoặc tài nguyên bổ sung từ cấp cao hơn — giống việc admin cấp thêm quota/permission cho một service đã chứng minh được độ tin cậy."
+    },
+    {
+      "hanzi": "接",
+      "pinyin": "jiē",
+      "hanviet": "tiếp",
+      "meaning": "Tiếp nhận, gặp gỡ, kết nối.",
+      "origin": "Chữ hình thanh, gồm 扌 (tay) + 妾 (thiếp, biểu âm) — nghĩa gốc 'lấy tay đón nhận, tiếp xúc', mở rộng thành 'gặp gỡ, kết nối, tiếp đãi'.",
+      "example": "接見 (tiếp kiến) = được gặp mặt; 接口 (tiếp khẩu) = giao diện (interface, trong tiếng Trung hiện đại).",
+      "cs": "Handshake / Sync",
+      "csExplain": "Nhịp đồng bộ lặp lại giữa hai bên (client-server handshake, status sync) — càng đồng bộ thường xuyên, mức độ tin cậy càng tăng."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：晉如，摧如，貞吉。罔孚，裕无咎。",
+      "hanviet": "Sơ Lục: Tấn như, tồi như, trinh cát. Võng phu, dụ vô cữu.",
+      "translation": "Muốn tiến lên nhưng bị cản trở; giữ chính đính thì tốt lành. Dù chưa được tin tưởng, cứ ung dung thì không có lỗi.",
+      "english": "The first line, divided, shows its subject wishing to advance, but being kept back. Let him be firm and correct, and there will be good fortune. Though as yet he is not believed in, if he is magnanimous there will be no error.",
+      "explain": "Vị trí thấp nhất, mới bắt đầu tiến nên chưa được ai tin tưởng hay công nhận — điều cần làm là giữ đúng hướng và kiên nhẫn, không nản lòng hay gượng ép.",
+      "itExample": "PR đầu tiên của một dev mới bị reviewer từ chối/yêu cầu sửa nhiều lần — chưa có uy tín trong team; thay vì nản, cứ giữ chất lượng code và kiên nhẫn thì dần sẽ được ghi nhận.",
+      "lifeExample": "Người mới vào một môi trường, ý tưởng ban đầu chưa được ai tin tưởng — thay vì ép buộc người khác chấp nhận, giữ vững chuẩn mực và kiên nhẫn chờ thời cơ."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：晉如，愁如，貞吉。受茲介福，于其王母。",
+      "hanviet": "Lục Nhị: Tấn như, sầu như, trinh cát. Thụ tư giới phúc, vu kỳ vương mẫu.",
+      "translation": "Có vẻ đang tiến nhưng còn lo lắng; giữ chính đính thì tốt lành. Sẽ nhận được phúc lớn từ bậc trưởng bối.",
+      "english": "The second line, divided, shows the appearance of advancing, and yet of being sorrowful. But if its subject is firm and correct, there will be good fortune. He will receive this great blessing from his (grand-)mother.",
+      "explain": "Đang trên đà tiến nhưng vẫn còn tâm lý lo âu, bất an — đây là cảm giác bình thường ở giai đoạn giữa; giữ vững sự đúng đắn sẽ được đền đáp bởi người có uy tín/kinh nghiệm hơn.",
+      "itExample": "Đang dẫn dắt 1 dự án lớn đầu tiên, vẫn còn lo lắng dù mọi thứ tiến triển tốt — giữ vững cách làm đúng, cuối cùng nhận được sự hỗ trợ/tài nguyên quan trọng từ sếp lớn (senior sponsor) đúng lúc cần.",
+      "lifeExample": "Đang tiến bộ trong công việc nhưng vẫn hay tự nghi ngờ bản thân — nếu vẫn giữ đúng hướng, sự công nhận và giúp đỡ từ người đi trước sẽ đến."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：眾允，悔亡。",
+      "hanviet": "Lục Tam: Chúng doãn, hối vong.",
+      "translation": "Được số đông tin tưởng, mọi hối tiếc đều tiêu tan.",
+      "english": "The third line, divided, shows its subject trusted by all around him. All occasion for repentance will disappear.",
+      "explain": "Đã qua giai đoạn nghi ngờ, giờ được cả tập thể công nhận và tin tưởng — sự đồng thuận của số đông xóa bỏ mọi lo lắng còn sót lại.",
+      "itExample": "Một RFC/thiết kế kỹ thuật ban đầu gây tranh cãi, nhưng sau khi trình bày rõ ràng đã được cả team đồng thuận (consensus) — mọi nghi ngại trước đó không còn quan trọng.",
+      "lifeExample": "Sau một thời gian nỗ lực chứng minh bản thân, cuối cùng được đồng nghiệp/bạn bè tin tưởng rộng rãi — cảm giác bất an trước đó không còn nữa."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：晉如鼫鼠，貞厲。",
+      "hanviet": "Cửu Tứ: Tấn như thạc thử, trinh lệ.",
+      "translation": "Tiến lên như con chuột lớn (chiếm chỗ mà không xứng), dù giữ đúng cũng vẫn nguy hiểm.",
+      "english": "The fourth line, undivided, shows its subject advancing like a marmot. However firm and correct he may try to be, his position is one of peril.",
+      "explain": "Hào dương ở vị trí không xứng (âm vị) trong một quẻ đa phần âm — như kẻ chiếm giữ vị trí không thuộc về mình, dù cố gắng đúng mực vẫn tiềm ẩn rủi ro về mặt cấu trúc.",
+      "itExample": "Một module/service chiếm quá nhiều tài nguyên chung so với vai trò thực sự của nó (giống con chuột đào hang chiếm chỗ) — dù code chạy đúng, kiến trúc lệch vai trò vẫn là rủi ro tiềm ẩn cần refactor.",
+      "lifeExample": "Giữ một vị trí không thật sự phù hợp với năng lực hay vai trò của mình — dù cố gắng làm đúng, cảm giác bấp bênh vẫn luôn tồn tại cho đến khi vị trí được điều chỉnh lại cho đúng."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：悔亡，失得勿恤，往吉，无不利。",
+      "hanviet": "Lục Ngũ: Hối vong, thất đắc vật tuất, vãng cát, vô bất lợi.",
+      "translation": "Hối tiếc tiêu tan; đừng bận tâm chuyện được mất, cứ tiến tới thì tốt lành, không gì bất lợi.",
+      "english": "The fifth line, divided, shows that all occasion for repentance is disappearing. Let its subject not concern himself about loss or gain, and advancing will be fortunate, and in every way advantageous.",
+      "explain": "Vị trí lãnh đạo trong quẻ Tấn — mọi lo âu đã qua, giờ chỉ cần tập trung tiến tới mà không tính toán thiệt hơn từng chút, kết quả chung cuộc sẽ tốt.",
+      "itExample": "Một sản phẩm đã qua giai đoạn thử nghiệm nhiều rủi ro, giờ leadership quyết định đầu tư mạnh mà không quá lăn tăn từng chi phí nhỏ — hướng đi tổng thể đã rõ ràng và đúng đắn.",
+      "lifeExample": "Ở giai đoạn sự nghiệp đã tương đối vững, không cần tính toán thiệt hơn từng việc nhỏ nữa — cứ tiến về phía trước với sự tự tin đã được minh chứng."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：晉其角，維用伐邑，厲吉无咎，貞吝。",
+      "hanviet": "Thượng Cửu: Tấn kỳ giác, duy dụng phạt ấp, lệ cát vô cữu, trinh lận.",
+      "translation": "Tiến đến mức giương sừng, chỉ nên dùng để chỉnh đốn chính ấp mình; nguy hiểm nhưng tốt lành, không lỗi — song nếu cứ khăng khăng làm mãi thì đáng tiếc.",
+      "english": "The sixth line, undivided, shows its subject advancing his horns (only fit) to punish the rebellious in his own city. There will be peril, but there will also be good fortune, and no error, though he be firm and correct, there will be occasion for regret.",
+      "explain": "Đỉnh cao nhất của quẻ Tấn — sức mạnh và vị thế đã đạt tới cực điểm, chỉ nên dùng để chấn chỉnh nội bộ chính mình, không nên vươn ra bên ngoài; dùng đúng mức thì không sai, nhưng nếu lạm dụng lâu dài sẽ hối tiếc.",
+      "itExample": "Đã có đủ quyền hạn/uy tín để 'dọn dẹp' chính team hay codebase của mình (siết lại coding standard, xử lý nợ kỹ thuật nội bộ) — làm đúng phạm vi thì tốt, nhưng lạm dụng quyền lực để kiểm soát quá mức sẽ gây phản tác dụng lâu dài.",
+      "lifeExample": "Đạt được vị thế đủ mạnh để 'chỉnh đốn' người thân cận, đồng đội của mình — làm ở mức cần thiết thì ổn, nhưng nếu biến thành thói quen dùng quyền lực với người gần mình, sẽ để lại rạn nứt về sau."
+    }
+  ],
+
+  "keywords": ["Tấn", "晉", "tiến bộ", "mặt trời mọc trên đất", "được tin tưởng", "Hỏa Địa", "thăng tiến"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/jin", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Tấn." },
+    { "source": "維基文庫 Wikisource — 周易/晉", "url": "https://zh.wikisource.org/zh-hant/周易/晉", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/35", "label": "64 Quẻ — Quẻ 35: Hỏa Địa Tấn" }
+  ]
+}

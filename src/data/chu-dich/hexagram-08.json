@@ -1,0 +1,158 @@
+{
+  "id": 8,
+  "hanzi": "比",
+  "pinyin": "Bǐ",
+  "hanviet": "Tỉ",
+  "english": "Holding Together (Union)",
+  "upperTrigram": "kan",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "比：吉。原筮元永貞，无咎。不寧方來，後夫凶。",
+    "hanviet": "Tỉ: Cát. Nguyên phệ nguyên vĩnh trinh, vô cữu. Bất ninh phương lai, hậu phu hung.",
+    "translation": "Tỉ (Liên kết, thân gần): tốt lành. Xét lại từ gốc, như bói lại lần đầu, thấy giữ được sự lớn lao, lâu bền, chính đính thì không có lỗi. Những ai chưa yên ổn sẽ tìm đến quy thuận; kẻ đến sau cùng, chậm trễ do dự, sẽ gặp xấu.",
+    "english": "Pî indicates that (under the conditions which it supposes) there is good fortune. But let (the principal party intended in it) re-examine himself, (as if) by divination, whether his virtue be great, unintermitting, and firm. If it be so, there will be no error. Those who have not rest will then come to him; and with those who are (too) late in coming it will be ill."
+  },
+
+  "daTuong": {
+    "hanzi": "地上有水，比；先王以建萬國，親諸侯。",
+    "hanviet": "Địa thượng hữu thủy, Tỉ; tiên vương dĩ kiến vạn quốc, thân chư hầu.",
+    "translation": "Trên mặt đất có nước, gắn bó khăng khít không tách rời, là tượng của Tỉ; các bậc vua xưa noi theo đó mà phong lập muôn nước chư hầu, gần gũi thân thiết với các chư hầu.",
+    "english": "(The trigram representing) the earth, and over it (that representing) water, form Pi. The ancient kings, in accordance with this, established the various states and maintained an affectionate relation to their princes.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Tỉ nói về sự liên kết, gắn bó, thân thiết — hình tượng nước trên mặt đất, thấm nhuần khăng khít không tách rời. Đây là quẻ tiếp theo Sư (tổ chức tập thể) một cách tự nhiên: sau khi tổ chức xong, điều cần thiết là gắn kết các thành phần lại với nhau bằng sự tin cậy, gần gũi thật lòng, không phải bằng vũ lực. Điều kiện để liên kết tốt: phải TỰ XÉT LẠI đức hạnh của trung tâm liên kết có đủ lớn, bền, chính đính hay không (nguyên vĩnh trinh) trước khi mong người khác quy thuận. Sáu hào mô tả các mức độ liên kết: thành tín ngay từ đầu (Sơ Lục) → liên kết từ nội tâm, chân thành (Lục Nhị) → liên kết sai đối tượng thì hại (Lục Tam) → liên kết hướng ra bên ngoài đúng người thì tốt (Lục Tứ) → liên kết cởi mở, không ép buộc là kiểu mẫu đẹp nhất (Cửu Ngũ) → và liên kết quá muộn, thiếu nền tảng ngay từ đầu thì xấu (Thượng Lục).",
+
+  "computer_science": "Tỉ giống hệt nguyên lý thiết kế 'service mesh' hay mạng lưới peer-to-peer đáng tin cậy: sự gắn kết bền vững giữa các node không đến từ ép buộc (force join) mà từ một trung tâm (hub/coordinator) đủ tin cậy, ổn định lâu dài (nguyên vĩnh trinh ~ uptime và integrity cao) để các node khác TỰ NGUYỆN kết nối vào; node nào gia nhập/đăng ký quá trễ, thiếu chuẩn bị ngay từ đầu (後夫凶) thường gặp vấn đề tương thích, đồng bộ.",
+
+  "life": "Sự gắn kết bền vững giữa người với người không đến từ việc ép buộc hay lôi kéo, mà từ việc bản thân mình đủ đáng tin cậy, chân thành và ổn định để người khác tự nguyện tìm đến.",
+
+  "programming": "Xây dựng một platform/API tốt để cộng đồng developer tự nguyện tích hợp giống nguyên lý quẻ Tỉ: nền tảng (core) phải đủ ổn định, minh bạch, đáng tin cậy lâu dài (SLA tốt, backward compatibility) thì hệ sinh thái mới tự phát triển xung quanh; những ai tham gia hệ sinh thái quá muộn, không chuẩn bị kỹ thường gặp khó khăn tương thích ngược.",
+
+  "characters": [
+    {
+      "hanzi": "比",
+      "pinyin": "bǐ",
+      "hanviet": "tỉ",
+      "meaning": "So sánh, gần gũi, liên kết.",
+      "origin": "Giáp cốt văn vẽ hình hai người đứng sát nhau, cùng chiều — khác với 从/從 là người đi theo sau. Nghĩa gốc 'hai vật/người đứng sát cạnh nhau, thân cận', mở rộng thành 'so sánh, liên kết, thân thiết'.",
+      "example": "比較 (tỉ giác/so sánh); 比鄰 (tỉ lân, láng giềng gần).",
+      "cs": "Peer Connection / Trusted Link",
+      "csExplain": "Kết nối gắn bó, tin cậy giữa hai node/thành phần đứng ngang hàng nhau — nền tảng của mọi mạng lưới phân tán hoạt động tốt."
+    },
+    {
+      "hanzi": "親",
+      "pinyin": "qīn",
+      "hanviet": "thân",
+      "meaning": "Gần gũi, thân thích, cha mẹ.",
+      "origin": "Bộ 見 (kiến, nhìn thấy) kết hợp phần biểu âm liên quan tới sự gần gũi trực tiếp — nghĩa gốc 'trực tiếp gặp gỡ, tận mắt nhìn thấy', mở rộng thành quan hệ máu mủ ruột thịt, gần gũi thân thiết.",
+      "example": "親人 (thân nhân); 親密 (thân mật).",
+      "cs": "Direct / Affectionate Binding",
+      "csExplain": "Mối liên kết trực tiếp, được vun đắp chủ động, không qua trung gian — giống việc thiết lập quan hệ đối tác/API trực tiếp thay vì qua nhiều lớp trung gian rườm rà."
+    },
+    {
+      "hanzi": "缶",
+      "pinyin": "fǒu",
+      "hanviet": "phẫu",
+      "meaning": "Vò/bình bằng đất nung.",
+      "origin": "Chữ tượng hình cái vò gốm có nắp — nghĩa gốc chỉ đồ đựng bằng đất nung dùng lâu bền, ổn định.",
+      "example": "Bộ thủ trong nhiều chữ liên quan đồ gốm (ví dụ 缸, cang, chum); xuất hiện trong Kinh Dịch '有孚盈缶' (lòng thành đầy như vò).",
+      "cs": "Persistent Storage Container",
+      "csExplain": "Vật chứa bền vững, ổn định, giữ nguyên nội dung theo thời gian — ẩn dụ cho một kho lưu trữ đáng tin cậy, nơi 'lòng thành' (data integrity) được giữ nguyên vẹn."
+    },
+    {
+      "hanzi": "誡",
+      "pinyin": "jiè",
+      "hanviet": "giới",
+      "meaning": "Răn dạy, cảnh báo, cấm đoán.",
+      "origin": "Bộ 言 (ngôn, lời nói) + 戒 (giới, đề phòng — hình hai tay cầm vũ khí canh gác) — nghĩa gốc 'dùng lời nói để răn đe, phòng bị trước'.",
+      "example": "告誡 (cáo giới, răn bảo); 誡命 (giới mệnh, điều răn).",
+      "cs": "Alert / Warning Signal",
+      "csExplain": "Tín hiệu cảnh báo chủ động giữa các thành phần hệ thống — một mạng lưới vận hành tốt (như hào Cửu Ngũ 'không cần răn đe lẫn nhau') là khi các bên tin cậy nhau đến mức không cần cảnh báo, giám sát gắt gao."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：有孚，比之，无咎。有孚盈缶，終來有它，吉。",
+      "hanviet": "Sơ Lục: Hữu phu, tỉ chi, vô cữu. Hữu phu doanh phẫu, chung lai hữu tha, cát.",
+      "translation": "Có lòng thành tín thì mới liên kết được, không có lỗi. Lòng thành tín đầy như vò sành, cuối cùng sẽ có những điều tốt đẹp khác đến, tốt lành.",
+      "english": "The first line, divided, shows its subject seeking by his sincerity to win the attachment of his object. There will be no error. Let (the breast) be full of sincerity as an earthenware vessel is of its contents, and it will in the end bring other advantages.",
+      "explain": "Nền tảng của mọi liên kết bền vững phải bắt đầu từ sự thành tín thật lòng, không phải thủ đoạn — thành tín 'đầy' như vò sành sẽ tự nhiên thu hút thêm những điều tốt đẹp khác.",
+      "itExample": "Xây dựng uy tín với cộng đồng open-source bằng cách minh bạch, giữ đúng cam kết (changelog rõ ràng, phản hồi issue đầy đủ) ngay từ đầu — uy tín tích lũy dần sẽ tự nhiên thu hút thêm contributor và người dùng.",
+      "lifeExample": "Xây dựng một mối quan hệ mới bằng sự chân thành thật lòng ngay từ đầu, không toan tính — sự chân thành đủ đầy sẽ tự nhiên thu hút thêm nhiều điều tốt đẹp khác."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：比之自內，貞吉。",
+      "hanviet": "Lục Nhị: Tỉ chi tự nội, trinh cát.",
+      "translation": "Liên kết xuất phát từ nội tâm, chân thành từ bên trong; giữ chính đạo thì tốt lành.",
+      "english": "In the second line, divided, we see the movement towards union and attachment proceeding from the inward (mind). With firm correctness there will be good fortune.",
+      "explain": "Sự gắn kết đẹp nhất là khi xuất phát tự nhiên từ nội tâm, không bị ép buộc hay vì lợi ích bên ngoài — vị trí trung chính của hào này phản ánh sự liên kết đúng đắn, bền vững.",
+      "itExample": "Một thành viên team gắn bó với dự án vì thực sự tin vào giá trị/mission của nó, không chỉ vì lương thưởng — sự gắn kết này bền vững và tạo ra chất lượng công việc tốt hơn.",
+      "lifeExample": "Mối quan hệ bền vững nhất là khi cả hai bên gắn bó với nhau từ sự chân thành nội tâm, không phải vì tính toán lợi ích bên ngoài."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：比之匪人。",
+      "hanviet": "Lục Tam: Tỉ chi phỉ nhân.",
+      "translation": "Liên kết với người không đáng, không phải người tốt/phù hợp.",
+      "english": "In the third line, divided, we see its subject seeking for union with such as ought not to be associated with.",
+      "explain": "Hào ngắn nhất và duy nhất không nói rõ hậu quả — nhưng ý nghĩa đã rõ ràng trong chính lời hào: liên kết sai đối tượng luôn tiềm ẩn rủi ro nghiêm trọng, đây là lời cảnh báo về việc chọn đối tác/liên minh.",
+      "itExample": "Tích hợp với một thư viện/vendor thiếu uy tín, không được maintain tốt, hoặc hợp tác với đối tác thiếu minh bạch — rủi ro tiềm ẩn có thể kéo sập cả hệ thống của mình về sau.",
+      "lifeExample": "Kết giao, hợp tác với người thiếu đạo đức hoặc không phù hợp giá trị của mình — dù trước mắt có vẻ ổn, về lâu dài luôn tiềm ẩn rủi ro lớn."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：外比之，貞吉。",
+      "hanviet": "Lục Tứ: Ngoại tỉ chi, trinh cát.",
+      "translation": "Liên kết hướng ra bên ngoài, với người ở vị trí cao hơn, đúng đắn hơn; giữ chính đạo thì tốt lành.",
+      "english": "In the fourth line, divided, we see its subject seeking for union with the one beyond himself. With firm correctness there will be good fortune.",
+      "explain": "Biết tìm kiếm liên kết với người/nguồn lực tốt hơn ở 'bên ngoài' phạm vi hạn hẹp của mình (ứng với hào Cửu Ngũ, vị vua sáng suốt) — mở rộng liên kết đúng hướng mang lại kết quả tốt.",
+      "itExample": "Một startup nhỏ chủ động tìm kiếm liên minh/đối tác chiến lược lớn hơn, uy tín hơn, thay vì chỉ loanh quanh trong mạng lưới nội bộ hạn hẹp — mở rộng kết nối đúng hướng giúp phát triển nhanh hơn.",
+      "lifeExample": "Chủ động mở rộng mối quan hệ, tìm kiếm sự kết nối với người giỏi hơn, đáng tin cậy hơn bên ngoài phạm vi quen thuộc của mình — đây là cách phát triển bản thân hiệu quả."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：顯比。王用三驅，失前禽，邑人不誡，吉。",
+      "hanviet": "Cửu Ngũ: Hiển tỉ. Vương dụng tam khu, thất tiền cầm, ấp nhân bất giới, cát.",
+      "translation": "Liên kết rạng rỡ, công khai. Như nhà vua đi săn chỉ vây ba mặt, để chừa lối thoát phía trước cho con thú; dân trong ấp không cần răn đe lẫn nhau, tốt lành.",
+      "english": "The fifth line, undivided, affords the most illustrious instance of seeking union and attachment. (We seem to see in it) the king urging his pursuit of the game (only) in three directions, and allowing the escape of all the animals before him, while the people of his towns do not warn one another (to prevent it). There will be good fortune.",
+      "explain": "Hào tốt nhất của quẻ Tỉ — kiểu liên kết lý tưởng: cởi mở, không ép buộc, chừa đường lui cho người/thú, đến mức người dân tin tưởng nhau tự nhiên mà không cần răn đe, giám sát lẫn nhau.",
+      "itExample": "Một cộng đồng/API mở cho phép người dùng tự do rời đi bất cứ lúc nào, không lock-in, dễ export dữ liệu — lại chính là điều khiến người dùng tự nguyện gắn bó lâu dài nhất; tin cậy đến từ sự cởi mở, không phải ràng buộc.",
+      "lifeExample": "Một cộng đồng/gia đình lành mạnh là nơi mọi người tự nguyện gắn bó, tôn trọng quyền tự do của nhau, không cần kiểm soát hay đề phòng lẫn nhau — đây là kiểu liên kết bền vững và đẹp đẽ nhất."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：比之无首，凶。",
+      "hanviet": "Thượng Lục: Tỉ chi vô thủ, hung.",
+      "translation": "Muốn liên kết mà không có người đứng đầu, không có nền tảng ngay từ đầu, xấu.",
+      "english": "In the topmost line, divided, we see one seeking union and attachment without having taken the first step (to such an end). There will be evil.",
+      "explain": "Hào cuối, quá muộn để bắt đầu liên kết mà thiếu nền tảng, thiếu sự chuẩn bị/dẫn dắt ngay từ đầu — đây chính là hậu quả của 'hậu phu hung' (kẻ đến sau cùng gặp xấu) đã cảnh báo ngay trong lời quẻ.",
+      "itExample": "Một thành viên/đối tác tham gia hệ sinh thái quá trễ, không có ai bảo trợ/hướng dẫn hội nhập ngay từ đầu — dễ bị lạc lõng, không theo kịp chuẩn mực chung, dẫn tới thất bại trong việc hòa nhập.",
+      "lifeExample": "Cố gắng xây dựng mối quan hệ/gia nhập một tập thể mà không có sự chuẩn bị, không có ai dẫn dắt ngay từ đầu, thường dẫn tới cảm giác lạc lõng và khó hòa nhập thực sự."
+    }
+  ],
+
+  "keywords": ["Tỉ", "比", "liên kết", "thân gần", "nước trên đất", "tin cậy", "chư hầu"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (bản số hóa tại baharna.com)", "url": "https://baharna.com/iching/legge/000010.htm", "note": "Bản dịch tiếng Anh public domain của Thoán từ, 6 hào từ, và Đại Tượng truyện (Great Symbolism)." },
+    { "source": "維基文庫 Wikisource — 周易/比", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E6%AF%94", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 彖傳, 象傳)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn, dùng để đối chiếu cấu trúc chung." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/8", "label": "64 Quẻ — Quẻ 8: Thủy Địa Tỉ" }
+  ]
+}

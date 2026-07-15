@@ -1,0 +1,148 @@
+{
+  "id": 49,
+  "hanzi": "革",
+  "pinyin": "Gé",
+  "hanviet": "Cách",
+  "english": "Revolution",
+  "upperTrigram": "li",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "革：巳日乃孚，元亨，利貞，悔亡。",
+    "hanviet": "Cách: Tỷ nhật nãi phu, nguyên hanh, lợi trinh, hối vong.",
+    "translation": "Cách (Cách mạng): khi ngày định rồi thì được tin, khởi nguyên thông suốt, lợi giữ đúng, hối tiếc biến mất.",
+    "english": "What takes place as indicated by Ge is believed in only after it has been accomplished. There will be great progress and success. Advantage will come from being firm and correct. (In that case) occasion for repentance will disappear."
+  },
+
+  "daTuong": {
+    "hanzi": "澤中有火，革；君子以治歷明時。",
+    "hanviet": "Trạch trung hữu hỏa, cách; quân tử dĩ trị lịch minh thời.",
+    "translation": "Hồ nước giữa có lửa, tạo nên quẻ Cách; người quân tử noi theo đó mà chỉnh lý lịch trình, làm sáng tỏ những thời điểm.",
+    "english": "The trigram representing the waters of a marsh and that for fire in the midst of them form Ge. The superior man, in accordance with this, regulates his (astronomical) calculations, and makes clear the seasons and times.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Cách ghép từ Dui (Hồ) ở dưới, Li (Lửa) ở trên — hồ nước bắt lửa, hình ảnh sự xung khắc dẫn đến thay đổi căn bản. '巳日乃孚' (khi ngày định thì được tin) có nghĩa là cách mạng chỉ được tin sau khi thành công rồi, chứ không khi tuyên bố — phải chờ kết quả. Sáu hào kể câu chuyện: bị buộc chặt (bảo thủ), sau khi chờ được quyết định cách mạng, cải cách nhanh rồi xin lỗi ba lần, rồi được tin, đổi phương sách chinh phục, cuối cùng nhân vật nhỏ cũng thay đổi theo.",
+
+  "computer_science": "Cách giống 'major refactor' hay 'breaking API version change' — hồ (dữ liệu cũ) gặp lửa (yêu cầu mới), phải thay đổi xung khắc; 'tỷ nhật乃孚' = không nói trước mà chỉ thực hiện tốt rồi mọi người mới tin; cần thời gian, kế hoạch rõ (治歷), communication rõ (明時).",
+
+  "life": "Sự thay đổi căn bản cần tới thời điểm đúng (cơ hội), không phải vội vã; khi thực hiện phải quyết tâm, không do dự, để lại hối tiếc; người khác chỉ tin khi thấy kết quả.",
+
+  "programming": "Rewrite hoặc major migration: cần timing đúng (khi business chấp nhận được downtime), planning kỹ (thời gian release, rollback plan), thực hiện quyết liệt (không nửa vời), mới được user tin tưởng.",
+
+  "characters": [
+    {
+      "hanzi": "革",
+      "pinyin": "gé",
+      "hanviet": "cách",
+      "meaning": "Thay đổi, cách mạng, da thú.",
+      "origin": "Chữ ghép từ 革 (da thú được tẩu) — hình ảnh da thú bị lột, mở rộng thành 'thay đổi, cách tân, cách mạng'.",
+      "example": "改革 (cải cách); 革命 (cách mệnh) = cách mạng, thay đổi số mệnh.",
+      "cs": "Breaking Change",
+      "csExplain": "Sự thay đổi không thể quay lại, ảnh hưởng tất cả hệ thống, cần quyết tâm thực hiện."
+    },
+    {
+      "hanzi": "巳",
+      "pinyin": "sì",
+      "hanviet": "tỷ",
+      "meaning": "Giờ Tỷ (9-11 sáng), ngày định, đã xong.",
+      "origin": "Chữ mô phỏng con rắn cuộn tròn — trong lịch âm dương, Tỷ là con rắn, giờ thứ 6 của ngày, biểu thị 'đã định rồi'.",
+      "example": "巳時 (tỷ thời) = giờ Tỷ; 巳日 (tỷ nhật) = ngày Tỷ (một trong 10 ngày trong tuần Thiên Gan).",
+      "cs": "Decision Point",
+      "csExplain": "Thời điểm được quyết định, lệnh phát hành, không thể quay lại."
+    },
+    {
+      "hanzi": "孚",
+      "pinyin": "fú",
+      "hanviet": "phu",
+      "meaning": "Được tin, lòng thành, kỳ vọng.",
+      "origin": "Chữ ghép từ 爫 (móng/nắm giữ) + 子 (con) — hình ảnh mẹ chim nắm giữ chim con, biểu tượng sự tin cậy, mở rộng thành 'được tin, thành tín'.",
+      "example": "有孚 (hữu phu) = có lòng thành; 孚信 (phu tín) = được tin tưởng.",
+      "cs": "Trust/Credibility",
+      "csExplain": "Độ tin cậy được xây dựng qua hành động, không phải lời nói."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：鞏用黃牛之革。",
+      "hanviet": "Sơ Cửu: Cứng dụng hoàng ngưu chi cách.",
+      "translation": "Bảo vệ chắc bằng da con bò vàng (bảo thủ cách mạng, giữ vững).",
+      "english": "The first NINE, undivided, shows its subject (as if he were) bound with the skin of a yellow ox.",
+      "explain": "Vị trí thấp nhất, bó buộc bằng da bò (truyền thống) — không nên hành động lúc này, cần kiên nhẫn.",
+      "itExample": "Startup muốn breaking change API lúc mới khởi động, nhưng bò vàng (investor) nói 'không nên' — phải giữ backward compat trước.",
+      "lifeExample": "Muốn thay đổi lớn nhưng bị cấu trúc cũ ràng buộc (gia đình, xã hội) — phải kiên nhẫn đợi thời điểm."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "巳日乃革之，征吉，无咎。",
+      "hanviet": "Lục Nhị: Tỷ nhật nãi cách chi, chinh cát, vô cữu.",
+      "translation": "Khi ngày định rồi thì cách mạng, tiến tới tốt, không có lỗi.",
+      "english": "The second SIX, divided, shows its subject making his changes after some time has passed. Action taken will be fortunate.",
+      "explain": "Đợi được lúc thích hợp, rồi quyết định cách mạng — tiến tới không sợ.",
+      "itExample": "Sau khi có đủ user adoption, chuẩn bị 3 tháng, rồi announce breaking change API version 2.0 — timing đúng, tiến tới tốt.",
+      "lifeExample": "Chờ được timing, gia đình đã chuẩn bị, rồi announce thay đổi lớn (đổi nghề, dời nhà) — không ai phản đối."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "征凶，貞厲，革言三就，有孚。",
+      "hanviet": "Cửu Tam: Chinh hung, trinh lệ, cách ngôn tam tựu, hữu phu.",
+      "translation": "Tiến tới xấu, giữ đúng thì nguy, nói lời cách mạng ba lần rồi thành tựu, được tin.",
+      "english": "The third NINE, undivided, shows that action taken by its subject will be evil... If the change (he contemplates) have been three times fully discussed, he will be believed in.",
+      "explain": "Tiến tới nhanh sẽ xấu — nhưng nếu thảo luận kỹ ba lần (confirm consensus), rồi mới được tin tưởng.",
+      "itExample": "Breaking change RFC phải discuss ba lần (RFC, implementation review, final review) trước khi merge — không vội, mọi người được nghe tiếng nói.",
+      "lifeExample": "Cách mạng gia đình/sự nghiệp cần thảo luận ba lần với mọi người liên quan — rồi mới được ủng hộ thực sự."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "悔亡，有孚改命，吉。",
+      "hanviet": "Cửu Tứ: Hối vong, hữu phu cải mệnh, cát.",
+      "translation": "Hối tiếc biến mất, có lòng thành thay đổi lệnh (thể chế), tốt.",
+      "english": "The fourth NINE, undivided, shows occasion for repentance disappearing... Though he change (existing) ordinances, there will be good fortune.",
+      "explain": "Quyền lực để thay đổi, nếu chân thành sẽ không hối tiếc, tốt lành.",
+      "itExample": "CTO quyết định thay đổi tech stack (Node → Go), được team tin tưởng, không ai hối tiếc — tốt lành.",
+      "lifeExample": "Người lớn quyết định thay đổi quy tắc gia đình, nếu chân thành sẽ được chấp nhận."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "大人虎變，未占有孚。",
+      "hanviet": "Cửu Ngũ: Đại nhân hổ biến, vị chiêm hữu phu.",
+      "translation": "Người lớn thay đổi như hổ (khoác lông mới), chưa cần hỏi đã được tin.",
+      "english": "The fifth NINE, undivided, shows the great man (producing his changes) as the tiger (does when he) changes (his stripes). Even before asking, it will be believed in.",
+      "explain": "Vị vua, thay đổi mạnh mẽ, người lớn làm đúng — mọi người tin ngay, không cần hỏi.",
+      "itExample": "CEO cạnh tranh của Apple dùng innovative approach hoàn toàn mới — market tin ngay, không cần proof.",
+      "lifeExample": "Người có năng lực thực sự, thay đổi lớn sẽ được mọi người tin tưởng tức thì."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "君子豹變，小人革面，征凶，居貞吉。",
+      "hanviet": "Thượng Lục: Quân tử báo biến, tiểu nhân cách diện, chinh hung, cư trinh cát.",
+      "translation": "Người quân tử thay đổi như báo (tế nhị), người thường dân thay đổi mặt thôi, tiến tới xấu, ở lại giữ đúng tốt.",
+      "english": "The superior man producing his changes as the leopard (does when he) changes (his spots)... To go forward (now) would lead to evil, but there will be good fortune in abiding firm and correct.",
+      "explain": "Hào cuối, cách mạng hoàn tất — quân tử thay đổi sâu (tế nhị), tiểu nhân thay đổi bề ngoài thôi; không nên tiến tới nữa, chỉ cần giữ vững.",
+      "itExample": "Refactor xong, codebase hoàn toàn khác, team thay đổi cách làm việc; không nên thêm feature mới, chỉ cần giữ stability.",
+      "lifeExample": "Đã hoàn thành cách mạng lớn, mọi người đều thay đổi — không nên tiếp tục thay đổi nữa, chỉ cần giữ vững thành quả."
+    }
+  ],
+
+  "keywords": ["Cách", "革", "Cách mạng", "Thay đổi", "Trạch Hỏa Cách", "Quyết tâm"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/ge", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Cách (Thoán từ, Hào từ)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/革", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E9%9D%A9", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/49", "label": "64 Quẻ — Quẻ 49: Trạch Hỏa Cách" }
+  ]
+}

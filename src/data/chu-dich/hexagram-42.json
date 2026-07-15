@@ -1,0 +1,158 @@
+{
+  "id": 42,
+  "hanzi": "益",
+  "pinyin": "Yì",
+  "hanviet": "Ích",
+  "english": "Increase",
+  "upperTrigram": "xun",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "益：利有攸往，利涉大川。",
+    "hanviet": "Ích: Lợi hữu du vãng, lợi thiệp đại xuyên.",
+    "translation": "Ích (Gia tăng): thuận lợi khi có nơi để tiến tới, thuận lợi khi vượt qua sông lớn.",
+    "english": "Yi indicates that (in the state which it denotes) there will be advantage in every movement which shall be undertaken, that it will be advantageous (even) to cross the great stream."
+  },
+
+  "daTuong": {
+    "hanzi": "風雷，益；君子以見善則遷，有過則改。",
+    "hanviet": "Phong lôi, ích; quân tử dĩ kiến thiện tắc thiên, hữu quá tắc cải.",
+    "translation": "Gió và sấm hợp lại thành quẻ Ích; người quân tử noi theo đó mà thấy điều thiện thì lập tức noi theo, có lỗi thì lập tức sửa đổi.",
+    "english": "The trigrams representing wind and thunder form Yi. The superior man, in accordance with this, when he sees what is good, moves towards it; and when he sees his errors, he turns from them.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Ích ghép từ Chấn (Sấm) ở dưới, Tốn (Gió) ở trên — sấm động gió thổi hỗ trợ lẫn nhau nên gọi là 'gia tăng, lợi ích'. Về mặt cấu trúc, một hào dương từ quái trên 'giáng' xuống làm hào dưới của quái dưới mạnh lên — hình ảnh 'bớt trên bù dưới', cấp trên san sẻ lợi ích cho cấp dưới. Sáu hào kể câu chuyện: được san sẻ nguồn lực lớn ngay từ đầu, dùng đúng lúc khó khăn, được tin dùng để thay đổi lớn, cho đến bài học cuối cùng — lợi ích không tự duy trì nếu thiếu lòng thành liên tục, hễ chỉ nhận mà không cho đi sẽ mất hết sự ủng hộ.",
+
+  "computer_science": "Ích giống một cơ chế 'resource rebalancing' — dồn tài nguyên dư thừa ở lớp trên (upper layer, ví dụ ngân sách/quyền hạn quản lý) xuống lớp dưới (hot path, service chịu tải chính) để tăng hiệu năng tổng thể; đồng thời Đại Tượng gợi một continuous-improvement loop: thấy pattern tốt thì adopt ngay, thấy bug thì fix ngay, không để nợ kỹ thuật tích tụ.",
+
+  "life": "San sẻ đúng lúc, đúng chỗ tạo ra giá trị lớn hơn giữ khư khư cho riêng mình; đồng thời phải liên tục tự sửa mình — thấy điều hay thì học theo, thấy mình sai thì sửa ngay, đừng chờ đợi.",
+
+  "programming": "Một senior engineer chủ động dồn thời gian và ảnh hưởng của mình (resource ở 'layer trên') xuống hỗ trợ junior hoặc service đang chịu tải ('layer dưới') để tăng năng suất chung; đồng thời áp dụng code review liên tục — thấy pattern tốt thì refactor áp dụng ngay, thấy bug thì fix ngay, không để tồn đọng thành nợ kỹ thuật.",
+
+  "characters": [
+    {
+      "hanzi": "益",
+      "pinyin": "yì",
+      "hanviet": "ích",
+      "meaning": "Gia tăng, thêm vào, lợi ích.",
+      "origin": "Trong giáp cốt văn/kim văn, chữ vẽ hình nước tràn khỏi miệng bát (皿 cái bát + hình nước lệch phía trên) — nghĩa gốc 'nước tràn ra, dư thừa', mở rộng thành 'tăng thêm, lợi ích'.",
+      "example": "利益 (lợi ích); 增益 (tăng ích) = tăng thêm.",
+      "cs": "Resource Increase",
+      "csExplain": "Trạng thái hệ thống nhận thêm tài nguyên hoặc được tối ưu khiến throughput tăng lên, giống nước tràn thêm vào bát."
+    },
+    {
+      "hanzi": "利",
+      "pinyin": "lì",
+      "hanviet": "lợi",
+      "meaning": "Lợi ích, thuận lợi, sắc bén.",
+      "origin": "Chữ ghép từ 禾 (hòa, cây lúa) + 刀 (đao, con dao) — hình ảnh dùng dao gặt lúa, nghĩa gốc 'cắt gặt, thu hoạch', mở rộng thành 'lợi ích, thuận lợi'.",
+      "example": "利益 (lợi ích), 利用 (lợi dụng) = tận dụng.",
+      "cs": "Positive ROI",
+      "csExplain": "Chỉ dấu một hành động hay khoản đầu tư mang lại giá trị ròng dương cho hệ thống."
+    },
+    {
+      "hanzi": "遷",
+      "pinyin": "qiān",
+      "hanviet": "thiên",
+      "meaning": "Dời đổi, di chuyển, chuyển sang.",
+      "origin": "Bộ 辵 (đi) kết hợp phần biểu âm liên quan tới 'dời chỗ' — nghĩa gốc 'di chuyển nơi ở/vị trí', mở rộng thành 'thay đổi theo hướng tốt hơn khi thấy điều thiện'.",
+      "example": "遷都 (thiên đô) = dời đô; 變遷 (biến thiên) = biến đổi.",
+      "cs": "Adopt Best Practice",
+      "csExplain": "Hành động chủ động chuyển sang cách làm tốt hơn ngay khi nhận ra, giống việc migrate code sang pattern mới tốt hơn."
+    },
+    {
+      "hanzi": "改",
+      "pinyin": "gǎi",
+      "hanviet": "cải",
+      "meaning": "Sửa đổi, sửa chữa, cải chính.",
+      "origin": "Chữ ghép từ 己 (kỷ, bản thân) + 攴 (phốc, hành động gõ nhẹ) — nghĩa gốc 'uốn nắn, chỉnh sửa', mở rộng thành 'sửa lỗi, thay đổi cho đúng'.",
+      "example": "改正 (cải chính); 改革 (cải cách).",
+      "cs": "Hotfix",
+      "csExplain": "Hành động sửa lỗi ngay khi phát hiện, thay vì để tồn đọng thành nợ kỹ thuật."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：利用為大作，元吉，无咎。",
+      "hanviet": "Sơ Cửu: Lợi dụng vi đại tác, nguyên cát, vô cữu.",
+      "translation": "Thuận lợi để thực hiện việc lớn, đại cát tường, không có lỗi.",
+      "english": "It will be advantageous for its subject in his position to make a great movement. If it be greatly fortunate, no blame will be imputed to him.",
+      "explain": "Ở vị trí thấp nhất nhưng được tăng lực (ích) mạnh nhất — đây là thời điểm thuận lợi để bắt tay vào việc lớn, miễn là làm thật tốt.",
+      "itExample": "Được cấp thêm ngân sách/nhân lực ngay từ đầu dự án (seed funding tốt) — đây là lúc dồn hết vào việc quan trọng nhất, làm tốt sẽ không ai trách cứ dù rủi ro.",
+      "lifeExample": "Mới bắt đầu một việc nhưng được hỗ trợ tối đa từ người khác — nên tận dụng để làm việc lớn ngay, đừng phí nguồn lực này vào việc nhỏ."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：或益之，十朋之龜弗克違，永貞吉。王用享于帝，吉。",
+      "hanviet": "Lục Nhị: Hoặc ích chi, thập bằng chi quy phất khắc vi, vĩnh trinh cát. Vương dụng hưởng vu đế, cát.",
+      "translation": "Có người thêm lợi cho, như con rùa quý giá mười cặp không thể từ chối; giữ bền chính đạo lâu dài thì tốt. Vua dùng đó để tế trời, tốt lành.",
+      "english": "Parties add to the stores of its subject ten pairs of tortoise shells whose oracles cannot be opposed. Let him persevere in being firm and correct, and there will be good fortune. The king (also) uses (such offerings) in presenting his offerings to God. There will be good fortune.",
+      "explain": "Nhận được sự hỗ trợ lớn, đáng tin cậy — nhưng phải giữ đúng đắn lâu dài, đồng thời biết dùng phần nhận được để phụng sự mục đích cao hơn, không chỉ hưởng riêng.",
+      "itExample": "Được cấp một khoản đầu tư/tài nguyên lớn đáng tin cậy (như grant, sponsorship) — cần duy trì kỷ luật sử dụng đúng mục đích, báo cáo minh bạch cho stakeholder cấp cao thay vì tiêu xài tùy tiện.",
+      "lifeExample": "Nhận được sự giúp đỡ quý giá từ người khác — nên dùng nó phục vụ mục đích lớn hơn (gia đình, cộng đồng) và giữ lòng chính trực lâu dài để xứng đáng với sự tin tưởng đó."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：益之用凶事，无咎。有孚中行，告公用圭。",
+      "hanviet": "Lục Tam: Ích chi dụng hung sự, vô cữu. Hữu phu trung hành, cáo công dụng khuê.",
+      "translation": "Được tăng thêm lợi để đối phó việc hung hiểm, không có lỗi. Có lòng thành, giữ đạo trung, báo cáo với người trên bằng vật tin (ngọc khuê).",
+      "english": "Increase given to its subject by means of what is evil (that he has to encounter), yet he will be free from error, if he has sincerity and observes the path of the Mean; and if he further testify (his sincerity), as if by presenting his mace of appointment to some prince.",
+      "explain": "Vị trí bấp bênh giữa quái dưới — nguồn lực thêm vào không phải để hưởng thụ mà để chống đỡ khủng hoảng; miễn giữ lòng thành và báo cáo minh bạch, không có lỗi.",
+      "itExample": "Ngân sách khẩn cấp được duyệt để xử lý sự cố lớn (outage) — dùng đúng mục đích và báo cáo rõ ràng lên quản lý (post-mortem có xác nhận) thì không bị quy trách nhiệm.",
+      "lifeExample": "Nhận hỗ trợ tài chính/tinh thần lúc gặp biến cố — miễn dùng đúng vào việc cần thiết và giữ sự minh bạch, chân thành với người giúp mình."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：中行，告公從。利用為依遷國。",
+      "hanviet": "Lục Tứ: Trung hành, cáo công tòng. Lợi dụng vi y thiên quốc.",
+      "translation": "Giữ đạo trung, báo cáo lên người trên và được nghe theo. Thuận lợi để dựa vào đó mà dời đô, chuyển quốc.",
+      "english": "His advice to his prince is followed. He can with advantage be relied on in such a movement as that of removing the capital.",
+      "explain": "Ở vị trí gần vua, được tin dùng — đủ uy tín để đề xuất và thực hiện một thay đổi lớn mang tính nền tảng.",
+      "itExample": "Kiến trúc sư được ban lãnh đạo tin tưởng, đề xuất migrate hệ thống sang nền tảng mới (đổi cloud provider, đổi database chính) và được thông qua — vì đã chứng minh uy tín qua các đề xuất trung thực trước đó.",
+      "lifeExample": "Được người khác tin tưởng nghe theo lời khuyên — đây là lúc dùng uy tín đó để thúc đẩy một thay đổi lớn, nền tảng (chuyển nhà, đổi nghề) mà mình tin là đúng."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：有孚惠心，勿問元吉。有孚惠我德。",
+      "hanviet": "Cửu Ngũ: Hữu phu huệ tâm, vật vấn nguyên cát. Hữu phu huệ ngã đức.",
+      "translation": "Có lòng thành thật muốn làm lợi cho người khác, không cần hỏi cũng biết là đại cát. Người khác cũng lấy lòng thành đáp lại ơn đức của ta.",
+      "english": "With sincere heart seeking to benefit (all below). There need be no question about it; the result will be great good fortune. All will be sincerely grateful for his goodness.",
+      "explain": "Vị vua/lãnh đạo có lòng thành thật muốn làm lợi cho cấp dưới — đây là hào tốt nhất của quẻ, vì động cơ chân thành sẽ được đáp lại bằng lòng biết ơn thật sự.",
+      "itExample": "Người quản lý thực tâm đầu tư vào phát triển team (đào tạo, công cụ, cân bằng công việc) không vì PR — kết quả là team gắn bó và hiệu suất tăng tự nhiên, không cần ép buộc.",
+      "lifeExample": "Cho đi với động cơ trong sáng, không mong đáp trả — chính điều đó lại tạo ra sự tin tưởng và biết ơn bền vững nhất từ người xung quanh."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：莫益之，或擊之，立心勿恆，凶。",
+      "hanviet": "Thượng Cửu: Mạc ích chi, hoặc kích chi, lập tâm vật hằng, hung.",
+      "translation": "Không ai thêm lợi cho nữa, lại còn có kẻ công kích; lòng dạ không giữ vững, xấu.",
+      "english": "To whose increase none will contribute, while many will seek to assail him. He does not lay it down as a fixed rule for his heart (to benefit others). There will be evil.",
+      "explain": "Hào cuối, vị trí cao nhất mà thiếu lòng thành bền vững — cạn kiệt sự ủng hộ, thậm chí bị công kích. Bài học: lợi ích không tự duy trì nếu thiếu động cơ chân thành liên tục.",
+      "itExample": "Một nền tảng từng được cộng đồng ủng hộ nhưng ngừng đóng góp lại (chỉ khai thác giá trị, không tái đầu tư) — dần mất sự ủng hộ và bắt đầu bị chỉ trích, cạnh tranh gay gắt.",
+      "lifeExample": "Người chỉ nhận mà không còn cho đi, thiếu nhất quán trong thiện ý — cuối cùng mất đi sự ủng hộ của mọi người xung quanh, thậm chí bị phản ứng ngược."
+    }
+  ],
+
+  "keywords": ["Ích", "益", "Gia tăng", "San sẻ lợi ích", "Phong Lôi Ích", "Kiến thiện tắc thiên"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/yi1", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Ích (Thoán từ, Hào từ)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/益", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E7%9B%8A", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/42", "label": "64 Quẻ — Quẻ 42: Phong Lôi Ích" }
+  ]
+}

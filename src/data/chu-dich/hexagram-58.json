@@ -1,0 +1,159 @@
+{
+  "id": 58,
+  "hanzi": "兌",
+  "pinyin": "Duì",
+  "hanviet": "Đoài",
+  "english": "The Joyous (Lake)",
+  "upperTrigram": "dui",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "兌：亨，利貞。",
+    "hanviet": "Đoài: Hanh, lợi trinh.",
+    "translation": "Đoài (Đầm/Hồ, niềm vui): hanh thông, thuận lợi khi giữ chính đính.",
+    "english": "Dui intimates that (under its conditions) there will be progress and attainment. (But) it will be advantageous to be firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "麗澤，兌；君子以朋友講習。",
+    "hanviet": "Lệ trạch, Đoài; quân tử dĩ bằng hữu giảng tập.",
+    "translation": "Hai đầm nước nối liền nhau là tượng của quẻ Đoài; người quân tử noi theo đó mà cùng bạn bè giảng luận, ôn tập học vấn.",
+    "english": "(Two symbols representing) the waters of a marsh, one over the other, form Dui. The superior man, in accordance with this, (encourages) the conversation of friends and (the stimulus of) their (common) practice.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Đoài là quẻ thuần với 2 hào dương ở dưới đỡ 1 hào âm mềm mại ở trên — hình ảnh miệng đầm nước hở ra, tượng trưng cho niềm vui, sự giao tiếp cởi mở. Đây là 1 trong 2 quẻ 'kép' còn lại trong bộ 8 quẻ thuần (cùng Càn, Khôn, Chấn, Tốn, Khảm, Ly, Cấn). Cốt lõi của quẻ là phân biệt 2 loại niềm vui: niềm vui chân thành từ nội tâm (hòa, phu) thì tốt; niềm vui vì chủ động lôi kéo, mua chuộc từ bên ngoài (lai đoài) thì xấu. Sáu hào lần lượt kể câu chuyện: vui vì hòa hợp thật (Sơ Cửu) → vui vì lòng tin thật (Cửu Nhị) → vui vì chạy theo lôi kéo (Lục Tam, xấu) → đắn đo trước cám dỗ (Cửu Tứ) → tin nhầm người có thể hại mình dù đang ở đỉnh cao (Cửu Ngũ) → chủ động dẫn dắt người khác vào cuộc vui (Thượng Lục).",
+
+  "computer_science": "Đoài giống trải nghiệm giao tiếp/UX giữa các thành phần hệ thống — một API/protocol 'vui vẻ' (dễ dùng, phản hồi rõ ràng) tạo ra sự hợp tác thông suốt. Nhưng quẻ cảnh báo rõ: sự 'hài lòng' phải dựa trên handshake tin cậy thật (mutual trust, xác thực đúng), không phải dark pattern dụ dỗ người dùng bấm đồng ý — giao thức đẹp mã nhưng không minh bạch sớm muộn cũng gây hại.",
+
+  "life": "Niềm vui thật sự đến từ sự chân thành bên trong, không phải từ việc cố lấy lòng người khác hay chạy theo đám đông. Hãy phân biệt rõ ai đang thành tâm với mình và ai chỉ đang lợi dụng sự vui vẻ để trục lợi.",
+
+  "programming": "Developer experience tốt (tooling thân thiện, API dễ đoán, tài liệu rõ ràng) tạo ra sự hợp tác 'vui vẻ' bền vững trong team và cộng đồng — nhưng đừng nhầm giữa 'làm hài lòng mọi yêu cầu' (feature creep để chiều lòng số đông) với việc giữ vững định hướng sản phẩm đúng đắn.",
+
+  "characters": [
+    {
+      "hanzi": "兌",
+      "pinyin": "duì",
+      "hanviet": "đoài",
+      "meaning": "Vui vẻ, hồ/đầm nước, cửa miệng mở ra; tên một quẻ và một trong Bát Quái.",
+      "origin": "Chữ cổ vẽ hình một người với miệng mở rộng (phần trên gần giống 八 tách ra, dưới là 兄 — hình người đang nói) — nghĩa gốc liên quan tới 'mở miệng nói, trao đổi', về sau chữ 說/悅 (thuyết/duyệt) tách ra mang nghĩa 'nói' và 'vui', còn 兌 giữ nghĩa trigram 'đầm, hồ, niềm vui'.",
+      "example": "喜兌 (hỉ đoài, ít dùng) liên hệ 喜悅 (hỉ duyệt) = vui mừng; 兌換 (đoài hoán) = đổi (tiền, hàng) — nghĩa mở rộng từ 'trao đổi'.",
+      "cs": "Handshake / Protocol",
+      "csExplain": "Trạng thái giao tiếp cởi mở giữa hai thành phần hệ thống — như một handshake thành công mở ra kênh trao đổi thông suốt."
+    },
+    {
+      "hanzi": "亨",
+      "pinyin": "hēng",
+      "hanviet": "hanh",
+      "meaning": "Hanh thông, thông suốt, trôi chảy.",
+      "origin": "Nguyên là chữ tượng hình miếu thờ/lễ vật dâng cúng (cùng gốc với 享 - hưởng), nghĩa gốc 'dâng tế, được hưởng', về sau mượn nghĩa 'thông suốt, hanh thông'.",
+      "example": "亨通 (hanh thông) = mọi việc suôn sẻ.",
+      "cs": "Successful Response",
+      "csExplain": "Kết quả phản hồi thành công sau một lượt trao đổi/giao tiếp — request đi ra, response hợp lệ quay về."
+    },
+    {
+      "hanzi": "利",
+      "pinyin": "lì",
+      "hanviet": "lợi",
+      "meaning": "Lợi ích, thuận lợi, sắc bén.",
+      "origin": "Chữ ghép từ 禾 (hòa, cây lúa) + 刀 (đao, con dao) — hình ảnh dùng dao gặt lúa, nghĩa gốc 'cắt gặt, thu hoạch', mở rộng thành 'lợi ích, thuận lợi'.",
+      "example": "利益 (lợi ích), 利見大人 (lợi kiến đại nhân).",
+      "cs": "Advantageous Outcome",
+      "csExplain": "Kết quả có lợi thực chất thu được từ một tương tác — không chỉ 'thành công về mặt kỹ thuật' mà còn tạo ra giá trị thật."
+    },
+    {
+      "hanzi": "貞",
+      "pinyin": "zhēn",
+      "hanviet": "trinh",
+      "meaning": "Chính đính, ngay thẳng, kiên định, bền vững.",
+      "origin": "Chữ ghép từ 卜 (bốc, việc bói) + 貝/鼎 (bối/đỉnh, đồ tế khí) — nghĩa gốc liên quan tới việc bói hỏi để xác định điều chính đáng, mở rộng thành 'giữ vững chính đạo'.",
+      "example": "貞節 (trinh tiết), 貞固 (trinh cố) = kiên định.",
+      "cs": "Integrity Check",
+      "csExplain": "Cơ chế xác thực đảm bảo mọi tương tác 'vui vẻ' vẫn tuân thủ đúng nguyên tắc — không để sự dễ chịu đánh đổi lấy sự toàn vẹn."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：和兌，吉。",
+      "hanviet": "Sơ Cửu: Hòa đoài, cát.",
+      "translation": "Vui vẻ hòa nhã, chân thành từ trong lòng — tốt lành.",
+      "english": "The first NINE, undivided, shows the pleasure of (inward) harmony. There will be good fortune.",
+      "explain": "Hào đầu, thấp nhất, chưa bị tác động từ ngoài — niềm vui xuất phát từ nội tâm hài hòa, chưa pha tạp mưu tính, nên tốt.",
+      "itExample": "Team mới thành lập giao tiếp cởi mở, thẳng thắn ngay từ đầu (kickoff meeting chân thành, không political agenda) — nền tảng hợp tác tốt.",
+      "lifeExample": "Mối quan hệ mới bắt đầu bằng sự chân thành, vui vẻ tự nhiên, không toan tính — dễ bền lâu."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：孚兌，吉，悔亡。",
+      "hanviet": "Cửu Nhị: Phu đoài, cát, hối vong.",
+      "translation": "Vui vẻ vì có lòng thành tín, tốt lành, hối tiếc tiêu tan.",
+      "english": "The second NINE, undivided, shows the pleasure arising from (inward) sincerity. There will be good fortune. Occasion for repentance will disappear.",
+      "explain": "Gần hào Lục Tam âm nhu (dễ bị dụ dỗ) nhưng vẫn giữ được lòng tin thực làm gốc cho niềm vui, nên dù có nguy cơ vẫn tốt.",
+      "itExample": "Engineer giữ vững nguyên tắc kỹ thuật dù bị áp lực từ phía không đáng tin cậy xung quanh — kết quả review vẫn tích cực.",
+      "lifeExample": "Giữ lòng tin thật với người thân dù xung quanh có cám dỗ/thị phi — mối quan hệ vẫn bền, không phải hối tiếc."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：來兌，凶。",
+      "hanviet": "Lục Tam: Lai đoài, hung.",
+      "translation": "Vui vẻ vì chủ động lôi kéo, tìm đến từ bên ngoài để mua vui — xấu.",
+      "english": "The third SIX, divided, shows its subject bringing round himself whatever can give pleasure. There will be evil.",
+      "explain": "Hào âm nhu duy nhất ở vị trí không chính, chủ động chạy theo, lôi kéo niềm vui từ bên ngoài thay vì từ nội tâm — thiếu nguyên tắc, dẫn tới xấu.",
+      "itExample": "Sản phẩm chạy theo mọi xu hướng/feature request chỉ để làm hài lòng số đông, không có định hướng riêng — dễ mất phương hướng, chất lượng giảm.",
+      "lifeExample": "Cố lấy lòng người khác bằng mọi giá, đánh mất chính kiến — dẫn tới hậu quả không tốt."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：商兌，未寧，介疾有喜。",
+      "hanviet": "Cửu Tứ: Thương đoài, vị ninh, giới tật hữu hỷ.",
+      "translation": "Cân nhắc, đắn đo về điều gì đáng vui, chưa yên tâm; giữ ranh giới rõ với điều xấu thì sẽ có niềm vui thực.",
+      "english": "The fourth NINE, undivided, shows its subject deliberating about what to seek his pleasure in, and not at rest. He borders on what would be injurious, but there will be cause for joy.",
+      "explain": "Ở gần vị trí lãnh đạo nhưng cũng gần hào xấu Lục Tam — phải cân nhắc kỹ, giữ khoảng cách rõ ràng với ảnh hưởng tiêu cực mới đạt được niềm vui bền vững.",
+      "itExample": "Trước khi merge một dependency hấp dẫn nhưng chưa rõ nguồn gốc, cân nhắc kỹ rủi ro bảo mật, kiên quyết loại bỏ lựa chọn kém chất lượng — quyết định đúng mang lại lợi ích lâu dài.",
+      "lifeExample": "Đắn đo giữa hai lựa chọn hấp dẫn nhưng biết rạch ròi tránh xa lựa chọn có hại — cuối cùng chọn đúng sẽ vui thật sự."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：孚于剝，有厲。",
+      "hanviet": "Cửu Ngũ: Phu vu bác, hữu lệ.",
+      "translation": "Đặt lòng tin vào kẻ đang gặm nhấm, bào mòn mình — có nguy hiểm.",
+      "english": "The fifth NINE, undivided, shows its subject trusting in one who would injure him. The situation is perilous.",
+      "explain": "Vị trí lãnh đạo trung chính nhưng ở sát hào Thượng Lục âm nhu có thể dẫn dụ — cảnh báo: người ở đỉnh cao dễ bị kẻ xu nịnh bên cạnh làm lung lay.",
+      "itExample": "Leader tin tưởng cấp quyền truy cập cao cho một thành viên/đối tác chưa được kiểm chứng đầy đủ — dù hệ thống đang ổn định, đây vẫn là lỗ hổng rủi ro cần giám sát.",
+      "lifeExample": "Người ở vị trí cao dễ bị vây quanh bởi những lời tâng bốc — cần tỉnh táo nhận ra ai thật lòng, ai đang lợi dụng."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：引兌。",
+      "hanviet": "Thượng Lục: Dẫn đoài.",
+      "translation": "Dẫn dắt, lôi kéo người khác vào cuộc vui.",
+      "english": "The topmost SIX, divided, shows the pleasure of its subject in leading and attracting others.",
+      "explain": "Hào cuối cùng, ở vị trí ngoài cùng — chủ động dẫn dắt, lan tỏa niềm vui ra bên ngoài; kết quả tốt hay xấu tùy vào động cơ dẫn dắt là chân thành hay chỉ để lôi kéo.",
+      "itExample": "Một senior/influencer trong cộng đồng dev chủ động lan tỏa một công nghệ/tư duy mới ra cộng đồng rộng — hiệu ứng tốt hay xấu tùy vào việc dẫn dắt có thực chất hay chỉ là hype.",
+      "lifeExample": "Một người có sức ảnh hưởng chủ động rủ rê, lôi kéo bạn bè tham gia hoạt động chung — kết quả tùy vào việc đó có ý nghĩa thật hay chỉ theo phong trào."
+    }
+  ],
+
+  "keywords": ["Đoài", "兌", "Hồ/Đầm", "niềm vui chân thành", "hòa duyệt", "giao tiếp", "Bát Thuần Đoài", "phu tín"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/dui", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Đoài (Judgment + 6 hào)." },
+    { "source": "Chinese Text Project — Book of Changes : Xiang Zhuan : Dui", "url": "https://ctext.org/book-of-changes/dui2", "note": "Nguồn Đại Tượng truyện (象曰) kèm dịch Anh ngữ James Legge." },
+    { "source": "維基文庫 Wikisource — 周易/兌", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%85%8C", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/58", "label": "64 Quẻ — Quẻ 58: Thuần Đoài" }
+  ]
+}

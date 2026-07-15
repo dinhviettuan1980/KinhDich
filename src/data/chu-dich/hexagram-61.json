@@ -1,0 +1,158 @@
+{
+  "id": 61,
+  "hanzi": "中孚",
+  "pinyin": "Zhōng Fú",
+  "hanviet": "Trung Phu",
+  "english": "Inner Truth (Wind over Lake)",
+  "upperTrigram": "xun",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "中孚：豚魚吉，利涉大川，利貞。",
+    "hanviet": "Trung Phu: Đồn ngư cát, lợi thiệp đại xuyên, lợi trinh.",
+    "translation": "Trung Phu (Lòng tin nội tâm): lòng tin thật làm cho cả heo lợn lẫn cá cũng tốt lành; thuận lợi khi vượt dòng nước lớn; thuận lợi khi giữ chính đính.",
+    "english": "In Zhong Fu we have the (two) weak lines in the innermost part (of the figure), and strong lines occupying the central places (in the trigrams)... Pigs and fish (are moved), and there will be good fortune. There will be advantage in crossing the great stream. There will be advantage in being firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "澤上有風，中孚；君子以議獄緩死。",
+    "hanviet": "Trạch thượng hữu phong, Trung Phu; quân tử dĩ nghị ngục hoãn tử.",
+    "translation": "Gió thổi trên mặt đầm là tượng của quẻ Trung Phu; người quân tử noi theo đó mà cân nhắc các vụ kiện tụng và trì hoãn việc thi hành tử hình.",
+    "english": "(The trigram representing the waters of) a marsh and that for wind above it form Zhong Fu. The superior man, in accordance with this, deliberates about cases of litigation and delays (the infliction of) death.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Trung Phu là hình ảnh của lòng tin thật từ trong bụng (trung = giữa/nội tâm, phu = vợ/cặp đôi nguyên thủy = trung thành/tín chuẩn). Đặc biệt ở chỗ 2 hào âm dứa ở giữa, bao quanh bởi 4 hào dương mạnh — tượng trưng cho cái mềm mại/ẩn kín nhưng chân thành ở trung tâm. Lòng tin thật sự mạnh đến nỗi 'cho cả heo lợn cá' (những con vật hạ đẳng nhất) cũng phải tuân theo — ý chỉ sức mạnh siêu nhiên của sự chân thành. Sáu hào kể câu chuyện: yên tâm từ trong lòng (Cửu Sơ) → kêu gọi với tâm thành (Cửu Nhị, giống tiếng hạc gọi con) → gặp được đối tác nhưng lại bất ổn định (Lục Tam) → khoảng cách khoa học (Lục Tứ, mặt trăng gần tròn, ngựa bị mất) → niềm tin tuyệt đối (Cửu Ngũ) → cảnh báo sai lệch (Thượng Cửu, tiếng gà trống bay lên trời, từ đó sai lệch).",
+
+  "computer_science": "Trung Phu giống internal API contract/invariant — một thỏa thuận mềm nhưng chân thành giữa các module/service. Không phải quy định cứng nhắc (contract test, type checking) mà là sự 'hiểu biết ngầm' lẫn nhau giữa các phần hệ thống. Khi hiểu biết này sâu sắc (genuine), hệ thống chạy mượt — ngay cả những 'heo lợn' (edge case, low-level component) cũng tự động align.",
+
+  "life": "Lòng tin thật từ trong bụng (không kịch tính, không giả tạo) có sức mạnh vô hình — người khác cảm nhận được, phản ứng lại. Ngược lại, lòng không thành lẫn sự giả vờ sớm muộn cũng bị lộ.",
+
+  "programming": "Codebase với 'thỏa thuận chân thành' giữa các module (documented, tested, evolved cùng nhau) sẽ mở rộng dễ hơn codebase với contract cứng nhắc nhưng bề ngoài. Người mới vào codebase nhanh chóng 'cảm nhận' được nếu đội đã xây dựng culture of genuine communication — từ đó onboarding nhanh gấp bội.",
+
+  "characters": [
+    {
+      "hanzi": "中",
+      "pinyin": "zhōng",
+      "hanviet": "trung",
+      "meaning": "Giữa, trung tâm, nước Trung Hoa.",
+      "origin": "Chữ cổ vẽ 1 cái cọc/trục dưới từ hình +, hình dạ parabol (phần trên) chỉ mục tiêu/trung tâm — nghĩa gốc 'cái giữa, trung tâm, thích hợp'.",
+      "example": "中間 (trung gian) = ở giữa; 中文 (trung văn) = tiếng Trung Hoa; 中心 (trung tâm) = tâm điểm.",
+      "cs": "Core / Interior",
+      "csExplain": "Cốt lõi bên trong, trái ngược với shell/interface bên ngoài — giống core business logic vs API."
+    },
+    {
+      "hanzi": "孚",
+      "pinyin": "fú",
+      "hanviet": "phu",
+      "meaning": "Lòng tin, sự trung thành, thành tín; chim nước (vịt/hạc) và chim con.",
+      "origin": "Chữ cổ vẽ 1 con chim (phần trên giống 爫 vuốt, dưới là 子 con vật) với ý nghĩa 'chim nước nuôi con' — hình ảnh của sự chân thành, tấm lòng bao gồm/bảo vệ — mở rộng thành 'tin, lòng tin, chân thành'.",
+      "example": "信孚 (tín phu) = lòng tin chân thành; 孚感 (phu cảm) = cảm ứng chân thật; 孚化 (phu hóa) = biến hóa bằng lòng tin.",
+      "cs": "Trust / Authenticity",
+      "csExplain": "Sự tin tưởng đơn giản — không phải cryptographic trust mà là implicit contract dựa trên lịch sử hành động chân thực."
+    },
+    {
+      "hanzi": "豚",
+      "pinyin": "tún",
+      "hanviet": "đồn",
+      "meaning": "Heo con, lợn; tên lợn, động vật hạ đẳng.",
+      "origin": "Chữ ghép từ 豕 (thỉ, lợn) + 囷 (khuôn, hộp) — hoặc chỉ đơn giản là chữ 豕 cộng thêm 才 — chỉ lợn con hoặc lợn nhỏ.",
+      "example": "豚子 (đồn tử) = lợn con; 豚肉 (đồn nhục) = thịt lợn; 豚窝 (đồn ổ) = chuồng lợn.",
+      "cs": "Base / Primitive",
+      "csExplain": "Mức độ thấp, cơ bản — chỉ những thứ không thường được xem là cao quý/đáng ghi nhận nhưng lại quan trọng."
+    },
+    {
+      "hanzi": "魚",
+      "pinyin": "yú",
+      "hanviet": "ngư",
+      "meaning": "Cá; tên cá, động vật nước; homophones với ngữ (nói).",
+      "origin": "Chữ tượng hình cá từ phía trên (đầu, vây, đuôi) — một trong những chữ cổ nhất, chỉ cá một cách trực quan.",
+      "example": "魚水 (ngư thủy) = cá nước, sự hòa hợp như cá trong nước; 魚書 (ngư thư) = thư tín (thư gửi qua cá, cổ tích); 魚躍龍門 (ngư nhảy long môn) = thành công bất ngờ.",
+      "cs": "Passive / Observable",
+      "csExplain": "Những thứ bị động, quan sát được dễ dàng — giống logs, metrics, user behavior."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Cửu Sơ",
+      "hanzi": "初九：虞吉，有它不燕。",
+      "hanviet": "Cửu Sơ: Ngu cát, hữu tha bất yên.",
+      "translation": "Yên tâm từ trong, tốt lành; nếu còn tham lam không yên.",
+      "english": "The first NINE, undivided, shows its subject resting (in himself). There will be good fortune. If he sought to any other, he would not find rest.",
+      "explain": "Hào dưới cùng, gốc của sự tin tưởng — yên tâm từ trong lòng chính mình, không tìm kiếm ở ngoài.",
+      "itExample": "Một engineer tự tin vào kiến thức/năng lực nội tại, không cần mưu mở ra bên ngoài — yên tâm, tập trung.",
+      "lifeExample": "Người có lòng tin thật đối với mục đích/con đường của mình, không dao động theo lời người khác — an tâm."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：鳴鶴在陰，其子和之，我有好爵，吾與爾靡之。",
+      "hanviet": "Cửu Nhị: Minh hạc tại âm, kỳ tử hòa chi, ngã hữu hảo tước, ngô dữ nhĩ mĩ chi.",
+      "translation": "Tiếng hạc kêu trong chỗ tối, con nó vang theo; tôi có rượu ngon, ta sẽ chia với ngươi.",
+      "english": "The second NINE, undivided, shows its subject (like) the crane crying out in her hidden retirement, and her young ones responding to her. (It is as if it were said), 'I have a cup of good spirits,' (and the response were), 'I will partake of it with you.'",
+      "explain": "Gọi ra từ tâm với lòng thành tín — những người khác tự động đáp lại (con hạc nghe tiếng mẹ), tạo thành cộng đồng tự phát.",
+      "itExample": "Một engineer chia sẻ ý tưởng/giải pháp chân thành trong team — người khác tự động chạm vào, cộng tác.",
+      "lifeExample": "Khi gọi ra từ lòng chân thành, mọi người tự động hưởng ứng — tạo nên dòng chảy tự nhiên."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：得敵，或鼓或罷，或泣或歌。",
+      "hanviet": "Lục Tam: Đắc địch, hoặc cổ hoặc bả, hoặc khí hoặc ca.",
+      "translation": "Gặp được đối tác, lúc rơi rơi vãi vãi (lúc đánh trống reo, lúc thôi chuyên dùng, lúc khóc, lúc hát).",
+      "english": "The third SIX, divided, shows its subject having met with his mate. Now he beats his drum, and now he leaves off. Now he weeps, and now he sings.",
+      "explain": "Gặp được đối tác nhưng vẫn có sự bất ổn định, dao động — tình cảm bất định giữa vui buồn.",
+      "itExample": "Partnership mới bắt đầu: năng lượng cao lúc, mệt mỏi lúc — qua giai đoạn adjustment.",
+      "lifeExample": "Mối quan hệ mới bắt đầu: hôm nay vui, hôm sau sợ, hôm khác lại bất an — chưa ổn định."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "九四：月幾望，馬匹亡，无咎。",
+      "hanviet": "Lục Tứ: Nguyệt cơ vọng, mã thích vong, vô cữu.",
+      "translation": "Mặt trăng gần tròn (chuẩn bị đầy đủ), ngựa bị mất (tách rời); không có lỗi.",
+      "english": "The fourth SIX, divided, shows its subject (like) the moon nearly full, and (like) a horse (in a chariot) whose fellow disappears. There will be no error.",
+      "explain": "Giai đoạn chuẩn bị trưởng thành, nhưng cần tách rời một số thứ cũ — không phải lỗi mà là thiên nhiên.",
+      "itExample": "Một project chuẩn bị mature: phải loại bỏ dependency cũ, tách rời legacy code — nó là bước thiên nhiên.",
+      "lifeExample": "Mối quan hệ trưởng thành: phải buông bỏ một số độc lập/kỳ vọng cũ — tách rời để gắn kết thật."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：有孚攣如，无咎。",
+      "hanviet": "Cửu Ngũ: Hữu phu luân như, vô cữu.",
+      "translation": "Có lòng tin chân thành, liên kết chặt chẽ — không có lỗi.",
+      "english": "The fifth NINE, undivided, shows its subject perfectly sincere, and linking (others) to him in closest union. There will be no error.",
+      "explain": "Vị trí lãnh đạo tối cao — lòng tin thật của người đứng đầu kết nối tất cả mọi thứ lại với nhau.",
+      "itExample": "CEO/leader thực sự tin vào tầm nhìn, team cảm nhận được và tự động align — không cần quản lý micro, tất cả tự chỉnh hướng.",
+      "lifeExample": "Một người lãnh đạo với lòng tin chân thành — những người xung quanh tự động tuân theo vì cảm nhận được sự thật."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "翰音登于天，貞凶。",
+      "hanviet": "Thượng Cửu: Hàn âm đăng vu thiên, trinh hung.",
+      "translation": "Tiếng gà trống bay lên trời — dù kiên định vẫn xấu.",
+      "english": "The topmost NINE, undivided, shows its subject in chanticleer (trying to) mount to heaven. Even with firm correctness there will be evil.",
+      "explain": "Hào cuối, quá mức — cố gắng 'bay lên trời' (vượt quá bản chất) — dù cố gắng, vẫn sẽ thất bại.",
+      "itExample": "Hệ thống quá confidence: overfit model, confidence quá cao → test không qua — sự chân thành bị lạc đường bởi kibitzer.",
+      "lifeExample": "Lòng tin quá cao (arrogance) — dù cố gắng, sẽ gặp thất bại vì vượt quá giới hạn hiện thực."
+    }
+  ],
+
+  "keywords": ["Trung Phu", "中孚", "lòng tin chân thành", "tâm giao", "hạc gọi", "豚魚", "nội tâm tin tưởng", "gió trên đầm"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/zhong-fu", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Trung Phu (Judgment + 6 hào)." },
+    { "source": "Chinese Text Project — Book of Changes : Xiang Zhuan : Zhong Fu", "url": "https://ctext.org/book-of-changes/zhong-fu2", "note": "Nguồn Đại Tượng truyện (象曰) kèm dịch Anh ngữ James Legge." },
+    { "source": "維基文庫 Wikisource — 周易/中孚", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E4%B8%AD%E5%AD%9A", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/61", "label": "64 Quẻ — Quẻ 61: Phong Trạch Trung Phu" }
+  ]
+}

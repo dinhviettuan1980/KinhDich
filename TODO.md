@@ -106,3 +106,55 @@ Quy ước kỹ thuật (theo conventions hiện có của repo, xem khảo sát
 - Chưa có unit test tự động cho các hàm sinh dữ liệu (generateHoaGiap, magicSquareSums...) — hiện chỉ verify thủ công + qua build
 
 **Trạng thái:** Cả 8 phase hoàn tất — Finger CPU Lab đã sẵn sàng dùng thử toàn bộ.
+
+=================================================
+
+# 📜 Chu Dịch Nguyên Tác — kế hoạch triển khai
+
+Module thứ 2, đặt sau Finger CPU Lab trong menu. Mục tiêu: giúp người học đọc được
+Chu Dịch nguyên bản (chữ Hán + phiên âm Hán Việt + dịch nghĩa) và hiểu vì sao người
+xưa viết như vậy — KHÔNG phải bói toán, KHÔNG cần biết chữ Hán trước.
+
+**Ràng buộc quan trọng khác hẳn Finger CPU Lab:** phần nguyên tác (卦辭/爻辭) không được
+tự sáng tác. Quy trình: dùng WebSearch/WebFetch tra cứu văn bản gốc từ nguồn học thuật
+công khai (ctext.org — Chinese Text Project, có bản dịch James Legge 1899 public domain;
+đối chiếu chéo với zh.wikisource.org) trước khi đưa vào data, ghi nguồn trong field
+`references` của từng quẻ. Với các quẻ về sau nếu độ tin cậy trí nhớ không đủ 100%,
+BẮT BUỘC phải tra cứu lại bằng WebFetch/WebSearch trước khi viết, không suy diễn.
+
+Quy ước kỹ thuật:
+- Route: `/chu-dich` (module home: lưới 64 quẻ + search + bookmark + daily quote),
+  `/chu-dich/que/:id` (chi tiết 1 quẻ — gồm đủ mọi mục trong "MỖI QUẺ PHẢI CÓ")
+- Data: `src/data/chu-dich/hexagram-01.json` .. `hexagram-64.json` (JSON thuần theo
+  đúng yêu cầu người dùng — khác Finger CPU Lab vì đây là nội dung tham khảo tĩnh,
+  không cần sinh bằng thuật toán) + `src/data/chu-dich/index.js` tổng hợp import + registry
+- Pages nằm phẳng trong `src/pages/`: `ChuDichIntroPage.jsx`, `ChuDichHexagramPage.jsx`
+- "Thoán Từ", "Hào Từ", "Thập Dực", "Giải mã chữ Hán", "So sánh bản dịch", "Ứng dụng
+  hiện đại" trong bản gốc yêu cầu đọc là các MỤC/TAB bên trong trang chi tiết 1 quẻ
+  (không phải 7 trang con riêng biệt — hợp lý hơn vì nội dung luôn gắn với 1 quẻ cụ thể)
+- Liên kết chéo: mỗi quẻ trỏ được sang bài học Finger CPU (Bát Quái/64 Quẻ) và trang
+  `/que/:so` (64 Quẻ hiện có) qua field `relatedLessons`
+
+## Phase 1 — Kiến trúc + Quẻ mẫu (Càn) — xong
+- [x] Tra cứu + đối chiếu chéo văn bản gốc Quẻ 1 Càn qua WebSearch/WebFetch (ctext.org + wikisource, khớp 100% với trí nhớ — độ tin cậy cao)
+- [x] Schema JSON cho 1 quẻ (`id, hanzi, pinyin, hanviet, english, judgment{}, daTuong{}, meaning, computer_science, life, programming, characters[], yao[], keywords[], references[], relatedLessons[]`)
+- [x] `hexagram-01.json` (Càn) — đầy đủ mọi mục theo yêu cầu
+- [x] `registry.js` — danh sách 64 quẻ (tái dùng `HEXAGRAMS` có sẵn cho id/tên, tránh trùng data)
+- [x] Component `HexagramCharacterCard`
+- [x] `ChuDichIntroPage.jsx` — giới thiệu + cam kết nguồn + lưới 64 quẻ
+- [x] `ChuDichHexagramPage.jsx` — đầy đủ Thoán Từ/Đại Tượng/giải thích/giải mã chữ/CS/đời sống/lập trình/từng hào/liên kết/nguồn tham khảo (thu gọn)
+- [x] Menu "📜 Chu Dịch Nguyên Tác" trong Navbar, sau "🖐️ Finger CPU Lab"
+- [x] Route trong `App.jsx`
+- [x] Build (140 module) + smoke test HTTP 200
+
+## Phase 2+ (chưa làm — sẽ báo cáo lại sau Phase 1 rồi tiếp tục)
+- [ ] Batch quẻ tiếp theo: 7 quẻ thuần còn lại (Khôn, Khảm, Ly, Chấn, Tốn, Cấn, Đoài) — tái dùng cấu trúc Càn, MỖI quẻ đều cần tra cứu WebFetch riêng, không suy ra từ Càn
+- [ ] Các batch 56 quẻ còn lại (chia nhóm 8, mỗi nhóm 1 phase — quy mô lớn, cần nhiều phase)
+- [ ] Mở rộng "Giải mã chữ Hán" ra ngoài phạm vi 4 chữ Nguyên/Hanh/Lợi/Trinh — về sau
+- [ ] "So sánh bản dịch" — cần tra cứu thêm ít nhất 1-2 nguồn dịch độc lập khác Legge trước khi làm (hiện mới có 1 nguồn đã verify)
+- [ ] Sơ đồ tư duy (mindmap), Dòng thời gian, "Bản gốc" (chế độ Dark/Sepia/Paper), Nghe (audio)
+- [ ] Quiz, Flashcard, Search, Bookmark, Học mỗi ngày (Daily Quote), Developer Mode, AI Explain, Animation highlight từng chữ/câu, Lịch sử — nhóm tính năng này giống hệt pattern Phase 6-8 của Finger CPU Lab, làm sau khi đủ data quẻ
+
+**Lưu ý quy mô:** làm đúng chuẩn cho cả 64 quẻ (mỗi quẻ ~6-7 hào + giải mã chữ Hán +
+đối chiếu nguồn) là khối lượng nội dung lớn hơn nhiều so với 25 bài Finger CPU Lab.
+Sẽ triển khai cuốn chiếu nhiều phase, báo cáo sau mỗi phase thay vì làm 1 lần.

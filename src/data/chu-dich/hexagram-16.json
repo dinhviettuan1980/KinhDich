@@ -1,0 +1,158 @@
+{
+  "id": 16,
+  "hanzi": "豫",
+  "pinyin": "Yù",
+  "hanviet": "Dự",
+  "english": "Enthusiasm",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "豫：利建侯行師。",
+    "hanviet": "Dự: Lợi kiến hầu hành sư.",
+    "translation": "Dự (Nhiệt tình, chuẩn bị): thuận lợi để lập công, biểu lập quân đội.",
+    "english": "Yü indicates that, in the state which it implies, feudal princes may be set up, and the hosts put in motion, with advantage."
+  },
+
+  "daTuong": {
+    "hanzi": "雷出地奮，豫。先王以作樂崇德，殷薦之上帝，以配祖考。",
+    "hanviet": "Lôi xuất địa phấn, Dự. Tiên vương dĩ tác nhạc sùng đức, ân tiến chi thượng đế, dĩ phối tổ khảo.",
+    "translation": "Sấm sét phát động từ lòng đất, rung chuyển — đó là quẻ Dự. Các vua xưa xem đó mà sáng tác nhạc, tôn trọng đức hạnh, cung kính cúng tế Thượng Đế, liên hệ với tổ tiên cha ông.",
+    "english": "Thunder issuing from the earth with its crashing noise forms Yü (Enthusiasm). The ancient kings, in accordance with this, composed their music and honoured virtue, presenting it especially and most grandly to God, when they associated with Him in the service of their highest ancestor and their father.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Dự (豫) ghép bởi Chấn (sấm sét) ở trên, Khôn (đất) ở dưới. Sấm sét bản thân là động năng mạnh mẽ; khi nó phát động từ lòng đất, toàn bộ vũ trụ rung chuyển, mọi vật thức tỉnh. Quẻ nói về sự nhiệt tình, hứng khởi, năng lượng tích cực bùng nổ. Tuy nhiên, Đại Tượng không nói 'hưởng thụ sự hứng khởi', mà nói 'sáng tác nhạc, tôn trọng đức hạnh' — tức là năng lượng này cần được hướng dẫn, chuyển hóa thành công. Sáu hào mô tả từ sự minh khai hứng khởi (hào 1) qua những bước để điều chỉnh năng lượng này (hào 2-5), đến sự đạt được hài hòa cuối cùng (hào 6). Điều chú ý: hào 1 'minh khai hứng khởi' được cảnh báo là xấu — vì năng lượng chưa được kiểm soát, chưa có hướng dẫn.",
+
+  "computer_science": "Dự giống như một innovation wave hoặc momentum trong engineering organization: toàn bộ team hứng khởi, muốn launch tính năng mới, refactor, đổi tech stack. Năng lượng này lúc đầu có vẻ tốt nhưng nếu không có hướng dẫn rõ ràng (strategy, OKR), sẽ biến thành chaos — mọi người làm cái họ thích thôi, không align. Đại Tượng 'sáng tác nhạc' tức là xây dựng culture, process, ritual chung (ceremonies, sprint rituals, all-hands) để chuyển hóa năng lượng này thành sức mạnh tập thể. Hào 1's warning: 'publicly proclaiming enthusiasm' không có quy hoạch trước = cục mịch sẽ xảy ra.",
+
+  "life": "Đây là giai đoạn năng lượng cao, hứng khởi với cuộc sống, sự việc, con người. Nhưng để tận dụng đúng, năng lượng này cần hướng dẫn, kỷ luật — không phải 'làm cái gì cũng được' mà 'làm điều đó theo cách có ý nghĩa'. Hăng say mà vô tổ chức dễ lãng phí. Hăng say được kết hợp với lập kế hoạch là sức mạnh.",
+
+  "programming": "Khi một team bắt đầu sprint hoặc giai đoạn mới với enthusiasm cao — đừng để nó biến thành 'let's try everything'. Có rõ OKR, có definition of done, có sprint ceremony để mọi người nó cùng nhịp. Hăng say của team là asset quý báu nhất; cách bạn channelize nó sẽ quyết định thành công hay wastage.",
+
+  "characters": [
+    {
+      "hanzi": "豫",
+      "pinyin": "yù",
+      "hanviet": "dự",
+      "meaning": "Chuẩn bị trước, sẵn sàng, thích chơi.",
+      "origin": "Chữ hình thanh với bộ 豕 (lợn, biểu tượng 'đầu đất' như quẻ Khôn) kết hợp phần khác — nghĩa gốc 'lợn hoang trên đất', mở rộng thành 'sẵn sàng, hứng khởi, thích thú'.",
+      "example": "豫備 (dự bị) = chuẩn bị sẵn sàng trước; 豫付 (dự phụ) = thanh toán trước.",
+      "cs": "Readiness / Momentum",
+      "csExplain": "Trạng thái team sẵn sàng phát động, energy cao — nhưng cần direction, không chỉ là raw momentum."
+    },
+    {
+      "hanzi": "雷",
+      "pinyin": "léi",
+      "hanviet": "lôi",
+      "meaning": "Sấm sét, tiếng nổ.",
+      "origin": "Giáp cốt văn vẽ hình mưa (雨) kết hợp với ký tự biểu âm — hình ảnh của sấm sét, động năng mạnh mẽ của thiên nhiên.",
+      "example": "雷電 (lôi điện) = sấm chớp, điện sét.",
+      "cs": "Disruption / Awakening",
+      "csExplain": "Sức mạnh phá vỡ tĩnh lặng — có thể tích cực (tỉnh thức, revival) hay tiêu cực (chaos) tùy hướng."
+    },
+    {
+      "hanzi": "樂",
+      "pinyin": "yuè / lè",
+      "hanviet": "nhạc",
+      "meaning": "Âm nhạc (yuè), thích vui (lè).",
+      "origin": "Giáp cốt văn vẽ hình nhạc cụ — gốc là 'âm nhạc', sau mở rộng thành 'vui thích' khi đọc là 'lè'.",
+      "example": "音樂 (âm nhạc) = âm nhạc; 快樂 (khoái lạc) = vui vẻ.",
+      "cs": "Culture / Harmony",
+      "csExplain": "Nhạc tượng trưng cho hài hòa, culture chung — giống cách xây dựng team culture để align năng lượng."
+    },
+    {
+      "hanzi": "先",
+      "pinyin": "xiān",
+      "hanviet": "tiên",
+      "meaning": "Trước, sớm, tiên phong.",
+      "origin": "Giáp cốt văn vẽ chân người (止) đi phía trước — hình ảnh của 'người đi trước'.",
+      "example": "先生 (tiên sinh) = ông/anh (cách gọi tôn trọng), 先祖 (tiên tổ) = tổ tiên.",
+      "cs": "Leadership / Precedent",
+      "csExplain": "Người tiên phong, đi trước — như những vị vua xưa kia lập ra ceremony, ritual để hướng dẫn."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：鳴豫，凶。",
+      "hanviet": "Sơ Lục: Minh dự, hung.",
+      "translation": "Minh khai hứng khởi ngay từ lúc đầu, xấu.",
+      "english": "The first line, divided, shows one who proclaims his pleasure and satisfaction. There will be evil.",
+      "explain": "Ngay từ hào đầu, công bố hứng khởi mà chưa có kế hoạch, chưa có direction — dẫn tới xấu. Cảnh báo: không phải tất cả hứng khởi đều tốt.",
+      "itExample": "Một startup announce product launch với fanfare to trước khi thực sự sẵn sàng, chỉ có MVP incomplete — hype sẽ không bù được product-market fit thiếu.",
+      "lifeExample": "Ai cũng hứng khởi với một dự định lớn và nói to về nó, nhưng chưa làm việc nặng công — hứng khởi này sẽ phai mau khi reality tới."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：介于石，不終日，貞吉。",
+      "hanviet": "Lục Nhị: Giới vu thạch, bất chung nhật, trinh cát.",
+      "translation": "Kiên định như cách, không chờ đến cuối ngày, giữ vững chính đạo thì tốt lành.",
+      "english": "The second line, divided, shows one who is firm as a rock. He sees a thing without waiting till it has come to pass; with his firm correctness there will be good fortune.",
+      "explain": "Chống lại cơn sóng hứng khởi bằng cách giữ vững nguyên tắc (như đá, cứng cỏi) — không đợi quá lâu mà sẽ nhìn rõ tình huống, kiên định đúng đạo.",
+      "itExample": "Khi cả team hớn hở muốn thêm tính năng mới, một tech lead nói 'chúng ta cần viết test trước', hold firm — điều này dừng chaos trước khi nó lớn ra.",
+      "lifeExample": "Khi mọi người phấn khích về một ý tưởng, bạn calmly nói 'chúng ta cần xem xét kỹ trước', giữ vững nguyên tắc — điều này ngăn cách sai lầm."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：盱豫，悔。遲有悔。",
+      "hanviet": "Lục Tam: Hu dự, hối. Trì hữu hối.",
+      "translation": "Nhìn xa-khoáng với niềm hứng khởi, có tiếc nuối; chậm trễ sẽ có tiếc nuối.",
+      "english": "The third line, divided, shows one looking up for favours, while indulging the pleasure and satisfaction within. If he would understand! If he be late in doing so, there will indeed be occasion for repentance.",
+      "explain": "Chỉ chờ đợi mà không hành động, hoặc hành động chậm chạp chỉ vì chờ cơ hội — sẽ có tiếc nuối.",
+      "itExample": "Một team hứng khởi với cơ hội partnership nhưng lại trì hoãn decision, chờ điều kiện hoàn hảo hơn — partnership đó sẽ đi tới người khác.",
+      "lifeExample": "Khi có cơ hội (công việc mới, mối quan hệ, dự án) nhưng chỉ hứng khởi rồi chờ chút đã — chậm trễ sẽ mất cơ hội."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：由豫，大有得。勿疑。朋盍簪。",
+      "hanviet": "Cửu Tứ: Do dự, đại hữu đắc. Vật nghi. Bằng hợp tâm.",
+      "translation": "Nhờ có sự hứng khởi được hướng dẫn mà đạt được lợi ích lớn. Đừng nghi ngờ. Những bạn đồng chí sẽ tập hợp lại.",
+      "english": "The fourth line, undivided, shows him from whom the harmony and satisfaction come. Great is the success which he obtains. Let him not allow suspicions to enter his mind, and thus friends will gather around him.",
+      "explain": "Ở vị trí chuyển tiếp, người này là người truyền cảm hứng cho các khác — khi hứng khởi được chuẩn hóa và truyền đi, mọi người cùng tập hợp.",
+      "itExample": "Một scrum master hoặc team lead biết cách truyền cảm hứng cho team, set clear goals, facilitate ceremony — kết quả là mọi người đồng lòng, friends và collaborators bốp đồn.",
+      "lifeExample": "Khi bạn là người truyền cảm hứng, người khác cảm nhận được sự chân thực của bạn — không cần nghi ngờ, người đó sẽ tự động tập hợp xung quanh bạn."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：貞疾，恆不死。",
+      "hanviet": "Lục Ngũ: Trinh tật, hằng bất tử.",
+      "translation": "Giữ vững chính đạo dù bị bệnh lành (mắc lầm), sẽ sống sót, không chết.",
+      "english": "The fifth line, divided, shows one with a chronic complaint, but who lives on without dying.",
+      "explain": "Ở ngôi vua, dù mắc phải một vấn đề lâu dài (tech debt, organizational dysfunction) nhưng vẫn giữ vững nguyên tắc cốt lõi — vẫn tồn tại, vẫn hoạt động.",
+      "itExample": "Một organization lâu năm có những vấn đề cấu trúc sâu xa, nhưng vì vẫn giữ vững quality, user focus, ethical practices — vẫn sống sót khi competitor tồi hơn sụp đổ.",
+      "lifeExample": "Dù cuộc sống hay sự nghiệp có những vấn đề lâu dài, miễn là bạn giữ vững integrity — bạn sẽ vượt qua."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：冥豫，成有渝，无咎。",
+      "hanviet": "Thượng Lục: Minh dự, thành hữu dư, vô cữu.",
+      "translation": "Hứng khởi đạt tới mức tối cao (mờ mịt), khi hoàn thành có thay đổi, không có lỗi.",
+      "english": "The sixth line, divided, shows its subject with darkened mind devoted to the pleasure and satisfaction of the time; but if he change his course even when (it may be considered as) completed, there will be no error.",
+      "explain": "Hào cuối cùng — sự hứng khởi đã đạt đến đỉnh điểm, nhưng khi cảm thấy cần thay đổi hướng (dù công việc dường như đã hoàn thành), vẫn không có lỗi — đó là sự linh hoạt của một người trí tuệ.",
+      "itExample": "Một successful product sau nhiều năm tăng trưởng nhận ra thị trường đã thay đổi, pivot strategy — dù có vẻ 'quay xe' nhưng đó là quyết định đúng không có lỗi.",
+      "lifeExample": "Sau khi hoàn thành một giai đoạn cuộc sống hay sự nghiệp lớn, bạn thấy cần thay đổi hướng — không phải thất bại, mà là sự thích ứng thông minh."
+    }
+  ],
+
+  "keywords": ["Dự", "豫", "hứng khởi", "năng lượng cao", "sấm sét", "nhạc", "Lôi Địa"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/豫", "url": "https://zh.wikisource.org/zh-hant/周易/豫", "note": "Nguyên văn chữ Hán: 卦辭, 彖曰, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 16", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_16", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 16 (mirror của bản dịch Legge)", "url": "https://jamesdekorne.com/GBCh/hex16.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/16", "label": "64 Quẻ — Quẻ 16: Lôi Địa Dự" }
+  ]
+}

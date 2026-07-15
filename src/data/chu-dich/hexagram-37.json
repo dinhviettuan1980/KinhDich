@@ -1,0 +1,149 @@
+{
+  "id": 37,
+  "hanzi": "家人",
+  "pinyin": "Jiā Rén",
+  "hanviet": "Gia Nhân",
+  "english": "The Family",
+  "upperTrigram": "xun",
+  "lowerTrigram": "li",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "家人：利女貞。",
+    "hanviet": "Gia Nhân: Lợi nữ trinh.",
+    "translation": "Gia Nhân (Gia đình): thuận lợi khi phụ nữ giữ vững chính đạo.",
+    "english": "For the realisation of what is taught in Jia Ren, or the regulation of the family, it is advantageous that the wife be firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "風自火出，家人；君子以言有物，而行有恆。",
+    "hanviet": "Phong tự hỏa xuất, Gia Nhân; quân tử dĩ ngôn hữu vật, nhi hành hữu hằng.",
+    "translation": "Gió thoát ra từ lửa — đó là tượng của Gia Nhân; người quân tử noi theo đó mà những lời nói phải có thực chất, những hành động phải có định hướng.",
+    "english": "The wind comes forth from fire: this is the image of the Family. The superior man, in accordance with this, arranges his words so that they have substance, and maintains his conduct so that it is uniformly consistent.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Gia Nhân nói về trật tự trong gia đình/tổ chức qua hình ảnh gió thoát ra từ lửa — mỗi thành viên có vai trò rõ ràng, mỗi hành động có mục đích nhất định. Một điều đặc biệt: quẻ này nhấn mạnh vai trò người phụ nữ/người vợ làm trụ cột nội bộ (hào 2 nói 'ở giữa bếp' — in the central place attending to the preparation of the food). Đây không phải chỉ gia đình hẹp mà bất kỳ tổ chức nào: công ty, team, project cũng cần sự sắp xếp rõ ràng vai vò, trách nhiệm. Những người ở vị trí lãnh đạo/quản lý cần thẳng thắn/nghiêm khắc khi cần (hào 3), những người có quyền lực cần biết dùng nó để 'làm giàu gia đình' chứ không phải để bức ép (hào 4 vs hào 6), và nhất là người lãnh đạo tối cao phải có uy tín kết hợp cử chỉ lịch sự.",
+
+  "computer_science": "Gia Nhân giống một tổ chức/team có cấu trúc rõ ràng — mỗi thành viên biết vai trò của mình, mỗi quy trình (process/procedure) có lý do và thứ tự rõ ràng. Người quản lý (lãnh đạo gia đình) phải biết cân bằng giữa kỷ luật (strict rules khi cần) và sự chăm sóc (nurturing environment). Nếu không có trật tự (mỗi người tự do làm gì thích), hệ thống sẽ hỗn loạn; nếu quá áp đặc, sẽ gây phản kháng (hào 3, 6 cảnh báo).",
+
+  "life": "Sự thành công của gia đình hay tổ chức không nằm ở sự giàu có hay quyền lực, mà ở sự rõ ràng trong vai trò, trách nhiệm và sự kiên định theo lối sống được lựa chọn. Người ở vị trí lãnh đạo cần kết hợp sự thẳng thắn/kỷ luật với sự tôn trọng, chứ không phải áp bức hay làm uy."
+
+  ,
+
+  "programming": "Một team hoạt động tốt cần org chart rõ ràng, RACI matrix (ai responsible, accountable, consulted, informed), on-call rotation công bằng. Không phải 'hoàn toàn tự do làm theo ý thích' cũng không phải 'micromanage từng dòng code'. Manager cần thẳng thắn về kỳ vọng, nhưng cũng cần show up ngay khi team gặp khó khăn (hào 5 — 'vua đến gia đình, đừng lo lắng, tốt lành'). Khi leader áp bức quá mức hay dùng quyền hạn để 'trừng phạt' thành viên thì sẽ suy yếu cả cấu trúc (hào 6 — 'có thể gây phản tác dụng').",
+
+  "characters": [
+    {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "hanviet": "gia",
+      "meaning": "Nhà, gia đình, tổ chức.",
+      "origin": "Chữ hội ý ghép từ 宀 (mái nhà) + 豕 (lợn, biểu tượng của sự có gia súc/tài sản trong nhà) — nghĩa gốc là 'nơi ở, gia đình, tổ chức có cấu trúc'.",
+      "example": "家庭 (gia đình); 國家 (quốc gia) = đất nước.",
+      "cs": "Organization",
+      "csExplain": "Một tổ chức (company, team, project) cần cấu trúc, quy tắc nội bộ, không phải nhóm người hoàn toàn tự do."
+    },
+    {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "hanviet": "nhân",
+      "meaning": "Người, con người, thành viên.",
+      "origin": "Chữ tượng hình hình ảnh 2 chân của người đứng — một trong những chữ cơ bản nhất của tiếng Hán.",
+      "example": "人們 (nhân dân); 人生 (nhân sinh) = cuộc đời người.",
+      "cs": "Agent / Actor",
+      "csExplain": "Mỗi thành viên trong tổ chức là một actor độc lập với vai trò/trách nhiệm riêng, không phải thay thế nhau được."
+    },
+    {
+      "hanzi": "恆",
+      "pinyin": "héng",
+      "hanviet": "hằng",
+      "meaning": "Luôn luôn, bền vững, định hướng.",
+      "origin": "Chữ ghép từ 忄 (tâm, trái tim) + 更 (canh, giai đoạn; biểu âm) — tâm không thay đổi, giữ định hướng duy nhất suốt đêm canh = sự kiên định.",
+      "example": "恆心 (hằng tâm) = lòng kiên định; 恆常 (hằng thường) = thông thường, bền vững.",
+      "cs": "Consistency",
+      "csExplain": "Hành động và quy trình được duy trì nhất quán theo thời gian, không thay đổi thất thường — điều kiện quan trọng cho tổ chức bền vững."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：閑有家，悔亡。",
+      "hanviet": "Sơ Cửu:한hữu gia, hối vong.",
+      "translation": "Thiết lập các quy tắc hạn chế trong gia đình; hối tiếc sẽ tiêu tan.",
+      "english": "Establishing restrictive regulations in his household; (if he does this before there is need to do so), there will be occasion for repentance to disappear.",
+      "explain": "Giai đoạn ban đầu cần thiết lập rõ ràng quy tắc, ranh giới — đặt nền móng đúng từ lúc đầu sẽ tránh được rắc rối sau này.",
+      "itExample": "Team mới thành lập cần sớm định nghĩa rõ ràng: coding standard nào, review process thế nào, on-call rotation như thế nào — không nên chờ xảy ra conflict mới sửa, sửa sớm tránh được hối hận.",
+      "lifeExample": "Gia đình mới lập cần sớm thống nhất quy tắc (tiền bạc, trách nhiệm nhà cửa, kỳ vọng lẫn nhau) thay vì để mặc cho sự hiểu lầm tích tụ."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：无攸遂，在中饋，貞吉。",
+      "hanviet": "Lục Nhị: Vô du toại, tại trung quỹ, trinh cát.",
+      "translation": "Không cần phải đi nơi khác, ở lại giữa bếp (nội bộ) mà giữ vững chính đạo thì tốt lành.",
+      "english": "No occasion to go anywhere else, but remaining in the central place and attending to the preparation of the food: through her firm correctness there will be good fortune.",
+      "explain": "Hào này nói tới vai trò nội bộ — người này ở đúng vị trí giữa, chăm sóc những công việc căn bản của tổ chức, không cần 'khác biệt' hay 'nổi bật'; chỉ cần làm tốt vai trò của mình là đủ.",
+      "itExample": "Một kỹ sư không cần phải 'leader' hay 'architect'; nếu ở role IC (Individual Contributor) chính và làm tốt công việc kỹ thuật căn bản, support team tốt, code review cẩn thận — đó là sự góp phần đủ tuyệt vời.",
+      "lifeExample": "Không phải ai cũng cần phải là lãnh đạo hay nổi bật; có thể đóng góp lớn lao bằng cách làm tốt công việc căn bản của mình với tâm huyết."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：家人嗃嗃，悔厲吉；婦子嘻嘻，終吝。",
+      "hanviet": "Cửu Tam: Gia Nhân sườn sườn, hối lệ cát; phụ tử hi hi, chung lận.",
+      "translation": "Gia đình cau có, thở dài — dù có hối tiếc đi chăng nữa cũng may mắn; nhưng nếu vợ con cứ vui vẻ hơn thì cuối cùng sẽ thấy hạn chế.",
+      "english": "The members of the family are marked by a stern severity. There will be occasion for repentance, but there will be good fortune. When the women and children of the family are frivolous and silly, the end (of such a state) will be inauspicious.",
+      "explain": "Cách quản lý với sự nghiêm khắc khi cần có thể gây cảm giác không thoải mái, nhưng kết quả cuối cùng là tốt. Ngược lại, quá bao dung (để vợ con 'vui chơi') dẫn tới mất kỷ luật, không bền vững.",
+      "itExample": "Manager chặt chẽ yêu cầu code quality, deadline, accountability — có thể khiến team 'khó chịu' ngắn hạn, nhưng dài hạn tạo ra văn hóa kỷ luật. Ngược lại, manager quá 'vui vẻ' không có chuẩn mực gì sẽ dẫn tới suy thoái.",
+      "lifeExample": "Kỷ luật trong gia đình/đối với con em khi cần (chặt chẽ học hành, sức khỏe) dù gây cảm giác 'khắn', nhưng bền vững hơn là để tự do hơn dẫn tới lệch lạc."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：富家，大吉。",
+      "hanviet": "Lục Tứ: Phú gia, đại cát.",
+      "translation": "Làm giàu cho gia đình — điều tốt lành lớn.",
+      "english": "Wealth in the family is a cause of great fortune, (or prosperity).",
+      "explain": "Khi người ở vị trí quyền lực dùng nó để đưa tài nguyên vào cho gia đình/tổ chức chung (thay vì chiếm hữu cá nhân), đó là dấu hiệu của lãnh đạo tốt.",
+      "itExample": "Leader đi lobbying để xin thêm budget cho team, mua tools tốt cho team, invest trong training/growth của mọi người — dùng ảnh hưởng để làm giàu tổ chức chung, rất tốt.",
+      "lifeExample": "Người lãnh đạo gia đình dùng thu nhập/tài nguyên của mình để nâng cao chất lượng sống của cả gia đình (không chỉ tư túi cá nhân) — dấu hiệu của lãnh đạo tốt."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：王假有家，勿恤，往吉。",
+      "hanviet": "Cửu Ngũ: Vương giả hữu gia, vật tuất, vãng cát.",
+      "translation": "Vua đến với gia đình — đừng lo lắng, tiến tới thì tốt lành.",
+      "english": "The sovereign (in a family) in his position, — the wife and children stand in awe of him, and ultimately there is a feeling of propriety in the family.",
+      "explain": "Lãnh đạo tối cao xuất hiện và quan tâm tới gia đình/tổ chức (không phải thường xuyên nhưng đúng lúc) — điều này tạo ra sự an tâm, uy tín, không phải sợ hãi mà là sự tôn trọng.",
+      "itExample": "CEO hay top leader thỉnh thoảng 'show up' trong meeting team, hỏi thăm tiến độ, quan tâm đến đóng góp của thành viên — không phải spy mà là sự chú ý đúng lúc, tạo ra cảm giác được quan tâm.",
+      "lifeExample": "Cha mẹ tuy bận rộn, nhưng thỉnh thoảng chú ý tới con em, hỏi thăm, chia sẻ quan tâm — có sự hiện diện của lãnh đạo tạo ra an tâm."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：有孚威如，終吉。",
+      "hanviet": "Thượng Cửu: Hữu phu uy như, chung cát.",
+      "translation": "Có sự tin tưởng kết hợp với uy lực — cuối cùng tốt lành.",
+      "english": "There is sincerity and faith, and also a show of dignity and respect, — at last there will be good fortune.",
+      "explain": "Hào cuối của lãnh đạo gia đình: kết hợp hoàn hảo giữa 'có tâm' (sincerity, tin tưởng) và 'có uy' (authority, sự tôn trọng quy tắc) — đó là hình mẫu lãnh đạo lý tưởng.",
+      "itExample": "Một leader được nhân viên yêu mến vừa vì đó là người tốt bụng (sincerity) vừa vì có quy chuẩn rõ ràng, không bị 'điều hòa' (dignity) — kết hợp này tạo ra văn hóa tổ chức bền vững.",
+      "lifeExample": "Cha mẹ tốt là người có tâm thương con nhưng cũng giữ được uy tín, quy tắc — không phải bạn của con, mà là hình mẫu đáng tôn trọng."
+    }
+  ],
+
+  "keywords": ["Gia Nhân", "家人", "gia đình", "trật tự", "vai trò rõ ràng", "Phong Hỏa", "tổ chức"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/jia-ren", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Gia Nhân." },
+    { "source": "維基文庫 Wikisource — 周易/家人", "url": "https://zh.wikisource.org/zh-hant/周易/家人", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/37", "label": "64 Quẻ — Quẻ 37: Phong Hỏa Gia Nhân" }
+  ]
+}

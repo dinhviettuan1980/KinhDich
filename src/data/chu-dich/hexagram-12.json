@@ -1,0 +1,158 @@
+{
+  "id": 12,
+  "hanzi": "否",
+  "pinyin": "Pǐ",
+  "hanviet": "Bĩ",
+  "english": "Standstill (Stagnation)",
+  "upperTrigram": "qian",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "否之匪人，不利君子貞，大往小來。",
+    "hanviet": "Bĩ chi phỉ nhân, bất lợi quân tử trinh, đại vãng tiểu lai.",
+    "translation": "Bĩ (Bế tắc): thời không thuận cho con người, không có lợi cho sự chính bền của người quân tử; cái lớn đi, cái nhỏ đến.",
+    "english": "In Phî (Standstill) there is the want of good understanding between the (different classes of) men, and its indication is unfavourable to the firm and correct course of the superior man. We see in it the great gone and the little come."
+  },
+
+  "daTuong": {
+    "hanzi": "天地不交，否；君子以儉德辟難，不可榮以祿。",
+    "hanviet": "Thiên địa bất giao, Bĩ; quân tử dĩ kiệm đức tị nạn, bất khả vinh dĩ lộc.",
+    "translation": "Trời đất không giao hòa — đó là quẻ Bĩ. Người quân tử xem đó mà thu liễm đức độ, tránh hoạn nạn, không tìm vinh hoa bằng bổng lộc lúc này.",
+    "english": "Heaven and earth, not in intercommunication, form Phî (Standstill). The superior man, in accordance with this, restrains the manifestation of his virtue, and avoids the calamities (that threaten him). There is no opportunity for him to be honoured with emoluments.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Bĩ (否) là quẻ đối nghịch hoàn toàn với quẻ Thái liền trước: Càn (trời) ở trên, Khôn (đất) ở dưới — đúng vị trí tự nhiên theo hình thức, nhưng lại là bế tắc, vì khí trời (nhẹ, có xu hướng bốc lên) đã ở trên rồi nên tiếp tục đi lên, khí đất (nặng, có xu hướng chìm xuống) đã ở dưới rồi nên tiếp tục chìm xuống — hai bên càng lúc càng xa nhau, không giao thoa. Đây là bài học quan trọng: đúng hình thức/vị trí không đồng nghĩa với thông suốt; điều quyết định là có thực sự kết nối, trao đổi hay không. Sáu hào mô tả cách ứng xử đúng trong thời bế tắc: không cưỡng cầu, thu mình chờ thời (hào 1-3), rồi dần dần hóa giải (hào 4-6) khi thời cơ chuyển biến.",
+
+  "computer_science": "Bĩ là hình ảnh kinh điển của network partition hay deadlock trong hệ phân tán: các node/service vẫn 'đứng đúng vị trí' theo kiến trúc (đúng layer, đúng port) nhưng hoàn toàn không trao đổi được dữ liệu với nhau — mọi request timeout, không ai phản hồi ai. Chiến lược đúng theo Đại Tượng không phải là retry liên tục (sẽ làm cạn kiệt tài nguyên), mà là circuit breaker: chủ động ngắt kết nối, giảm tải, chờ hệ thống phục hồi thay vì cố gắng ép giao tiếp trong lúc kênh truyền đã đứt.",
+
+  "life": "Đây là giai đoạn mọi thứ không lưu thông — công việc, quan hệ, dự án đều tắc nghẽn dù bề ngoài có vẻ vẫn đúng vị trí, đúng vai trò. Đừng cố ép buộc mọi thứ thông suốt trở lại bằng vũ lực; hãy thu liễm bản thân, tránh phô trương, bảo toàn sức lực và chờ đợi thời cơ chuyển biến.",
+
+  "programming": "Khi sale pipeline đóng băng, team mất đồng bộ hoàn toàn, hay hệ thống bị lỗi tích hợp nghiêm trọng giữa các phần — đừng cố deploy thêm feature mới để 'chữa cháy'. Đây là lúc cần một sprint dọn dẹp, giảm phạm vi, tập trung khôi phục kết nối cơ bản giữa các thành phần trước khi mở rộng trở lại.",
+
+  "characters": [
+    {
+      "hanzi": "否",
+      "pinyin": "pǐ",
+      "hanviet": "bĩ",
+      "meaning": "Bế tắc, không thông (khi đọc 'phủ': phủ định, không).",
+      "origin": "Chữ hội ý gồm 不 (bất, phủ định) và 口 (khẩu, miệng) — nghĩa gốc 'không đồng ý, không thông', mở rộng thành 'bế tắc, ngăn trở' khi đọc là 'bĩ'.",
+      "example": "否塞 (bĩ tắc) = bế tắc, nghẽn hoàn toàn.",
+      "cs": "Deadlock / Network Partition",
+      "csExplain": "Trạng thái các thành phần hệ thống hoàn toàn mất kết nối với nhau — như network partition khiến các node không thể đồng bộ dữ liệu."
+    },
+    {
+      "hanzi": "交",
+      "pinyin": "jiāo",
+      "hanviet": "giao",
+      "meaning": "Giao nhau, kết nối, trao đổi.",
+      "origin": "Giáp cốt văn vẽ hình hai chân bắt chéo nhau — nghĩa gốc 'bắt chéo, giao nhau'. Quẻ Bĩ dùng chữ 不交 (bất giao) — đối lập trực tiếp với 交 (giao) trong Đại Tượng quẻ Thái liền trước.",
+      "example": "交流 (giao lưu) = trao đổi qua lại; 不交 (bất giao) = không trao đổi, mất kết nối.",
+      "cs": "Failed Handshake",
+      "csExplain": "Đối lập với handshake thành công ở quẻ Thái — đây là trạng thái hai bên cố gắng kết nối nhưng liên tục thất bại (connection refused/timeout)."
+    },
+    {
+      "hanzi": "儉",
+      "pinyin": "jiǎn",
+      "hanviet": "kiệm",
+      "meaning": "Tiết kiệm, thu liễm, không phô trương.",
+      "origin": "Chữ hình thanh: bộ 亻(nhân, người) kết hợp phần biểu âm 僉 (nghĩa gốc 'đều, tất cả') — nghĩa 'dè xẻn, giữ mình, không phô trương'.",
+      "example": "儉德 (kiệm đức) = giữ đức tính khiêm nhường, không phô trương — dùng ngay trong Đại Tượng quẻ Bĩ.",
+      "cs": "Graceful Degradation",
+      "csExplain": "Chủ động giảm tải, hạn chế phô bày tính năng khi hệ thống đang gặp sự cố — đúng tinh thần graceful degradation."
+    },
+    {
+      "hanzi": "辟",
+      "pinyin": "bì",
+      "hanviet": "tị",
+      "meaning": "Tránh né, lánh xa (thông với chữ 避).",
+      "origin": "Chữ cổ có nguồn gốc phức tạp (liên quan tới 尸 và 辛), ở đây dùng theo nghĩa giả tá là 'tránh, lánh' — cách dùng này còn gây tranh luận trong giới nghiên cứu văn tự học.",
+      "example": "辟難 (tị nạn) = tránh hiểm nguy — dùng ngay trong Đại Tượng quẻ Bĩ.",
+      "cs": "Circuit Breaker",
+      "csExplain": "Chủ động ngắt kết nối/tránh gọi tới dịch vụ đang lỗi thay vì cố retry liên tục — đúng tinh thần circuit breaker pattern."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：拔茅茹以其彙，貞吉。亨。",
+      "hanviet": "Sơ Lục: Bạt mao nhự dĩ kỳ vựng, trinh cát. Hanh.",
+      "translation": "Nhổ cỏ tranh, rễ nó kéo theo cả bụi cùng loại; giữ vững chính đạo thì tốt lành, hanh thông.",
+      "english": "The first line, divided, suggests the idea of grass pulled up, and bringing with it other stalks with whose roots it is connected. With firm correctness (on the part of its subject), there will be good fortune and progress.",
+      "explain": "Cùng hình ảnh 'nhổ cỏ liền rễ' như quẻ Thái, nhưng ở đây là ba hào Âm cùng chí hướng lùi lại — trong thời bế tắc, biết rút lui đúng lúc, giữ vững nguyên tắc mới là điều tốt.",
+      "itExample": "Khi dự án gặp bế tắc toàn diện, cả team đồng lòng tạm dừng, không cố gắng ép chạy demo lỗi — cùng nhau rút về vị trí an toàn để đánh giá lại là quyết định đúng.",
+      "lifeExample": "Khi một nhóm bạn/đồng đội nhận ra hoàn cảnh đang bế tắc, cùng nhau rút lui có tổ chức thay vì mỗi người một hướng — sự đồng lòng đó chính là điều giữ cho mọi người an toàn."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：包承，小人吉，大人否。亨。",
+      "hanviet": "Lục Nhị: Bao thừa, tiểu nhân cát, đại nhân bĩ. Hanh.",
+      "translation": "Bao dung, vâng thuận theo cấp trên; kẻ tiểu nhân thì tốt, nhưng bậc đại nhân phải chịu bế tắc — rồi mới hanh thông.",
+      "english": "The second line, divided, shows its subject patient and obedient. To the small man (comporting himself so) there will be good fortune. If the great man (comport himself) as the distress and obstruction require, he will have success.",
+      "explain": "Người có bản lĩnh (đại nhân) phải chủ động chấp nhận chịu thiệt, hành xử đúng với hoàn cảnh bế tắc — không phải cầu lợi trước mắt — mới có thể hanh thông về sau.",
+      "itExample": "Senior engineer chấp nhận lùi bước, không tranh công trong giai đoạn khủng hoảng của dự án, âm thầm xử lý vấn đề cốt lõi — về lâu dài mới tạo ra kết quả bền vững.",
+      "lifeExample": "Người có bản lĩnh chấp nhận thiệt thòi trước mắt trong giai đoạn khó khăn chung, không tranh giành lợi ích cá nhân — đó là cách hành xử đúng để vượt qua bế tắc."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：包羞。",
+      "hanviet": "Lục Tam: Bao tu.",
+      "translation": "Ôm lấy điều xấu hổ, nhục nhã trong lòng.",
+      "english": "The third line, divided, shows its subject ashamed of the purpose folded (in his breast).",
+      "explain": "Vị trí bất chính, ở đỉnh điểm bế tắc — nhận ra mưu tính hay hoàn cảnh của mình không chính đáng nhưng chưa thể thoát ra, đành ôm lấy sự xấu hổ.",
+      "itExample": "Nhận ra một quyết định kỹ thuật sai lầm đã ăn sâu vào hệ thống (tech debt nghiêm trọng) nhưng chưa đủ nguồn lực để sửa ngay — phải tạm sống chung với sự khó chịu đó.",
+      "lifeExample": "Nhận ra mình đang mắc kẹt trong một tình huống không chính đáng nhưng chưa đủ điều kiện thoát ra ngay — đây là giai đoạn khó chịu nhất của bế tắc, cần bình tĩnh tìm lối ra dần dần."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：有命，无咎，疇離祉。",
+      "hanviet": "Cửu Tứ: Hữu mệnh, vô cữu, trù ly chỉ.",
+      "translation": "Có mệnh lệnh (từ trên/từ đạo trời), không có lỗi; bạn đồng liêu cùng được hưởng phúc.",
+      "english": "The fourth line, undivided, shows its subject acting in accordance with the ordination (of Heaven), and committing no error. His companions will come and share in his happiness.",
+      "explain": "Bắt đầu bước sang quẻ trên, thời bế tắc bắt đầu có dấu hiệu chuyển biến — hành động đúng theo đạo lý, đúng thời điểm sẽ không gặp lỗi, và mang lại lợi ích cho cả tập thể.",
+      "itExample": "Khi có tín hiệu rõ ràng (chỉ đạo từ ban lãnh đạo, thay đổi chiến lược) cho phép khởi động lại dự án đang đình trệ, hành động đúng lúc theo tín hiệu đó sẽ mang lại lợi ích cho cả team.",
+      "lifeExample": "Khi có một cơ hội/tín hiệu rõ ràng cho phép bạn hành động để thoát khỏi bế tắc, hãy nắm bắt đúng lúc — thành quả sẽ không chỉ cho riêng bạn mà cho cả những người xung quanh."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：休否，大人吉。其亡其亡，繫于苞桑。",
+      "hanviet": "Cửu Ngũ: Hưu bĩ, đại nhân cát. Kỳ vong kỳ vong, hệ vu bao tang.",
+      "translation": "Chấm dứt bế tắc, bậc đại nhân được tốt lành. Luôn tự nhắc 'sẽ mất, sẽ mất!' như buộc chặt vào gốc cây dâu rậm rễ.",
+      "english": "In the fifth line, undivided, we see him who brings the distress and obstruction to a close,—the great man and fortunate. (But let him say), 'We may perish! We may perish!' (so shall the state of things become firm, as if) bound to a clump of bushy mulberry trees.",
+      "explain": "Ở ngôi vua, có đủ năng lực để chấm dứt bế tắc — nhưng câu nói nổi tiếng ở hào này là bài học lớn nhất: thành công phải luôn đi kèm cảnh giác thường trực ('sẽ mất, sẽ mất') mới bền vững lâu dài.",
+      "itExample": "Sau khi giải quyết xong sự cố hệ thống lớn, đội ngũ vẫn duy trì tâm thế cảnh giác cao độ (luôn giả định 'điều tệ có thể xảy ra lần nữa') thay vì chủ quan — đó là cách xây dựng hệ thống thực sự bền vững (resilience).",
+      "lifeExample": "Khi vượt qua được giai đoạn khó khăn lớn, đừng chủ quan ăn mừng quá mức — luôn giữ tâm thế cảnh giác 'thành quả này có thể mất đi bất cứ lúc nào' chính là cách giữ vững nó lâu dài."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：傾否，先否後喜。",
+      "hanviet": "Thượng Cửu: Khuynh bĩ, tiên bĩ hậu hỷ.",
+      "translation": "Lật đổ hoàn toàn thế bế tắc; trước bế tắc, sau vui mừng.",
+      "english": "The sixth line, undivided, shows the overthrow (and removal of) the condition of distress and obstruction. Before this there was that condition. Hereafter there will be joy.",
+      "explain": "Hào cuối cùng — bế tắc đã đến cực điểm và bắt đầu đảo chiều hoàn toàn thành thông suốt, đúng quy luật 'vật cực tất phản' của Kinh Dịch.",
+      "itExample": "Sau một thời gian dài hệ thống trì trệ, cuối cùng cuộc tái cấu trúc lớn (re-architecture) hoàn tất và mọi thứ vận hành trơn tru trở lại — giai đoạn khó khăn nhất đã qua.",
+      "lifeExample": "Sau một giai đoạn bế tắc kéo dài, mọi thứ cuối cùng cũng được khai thông hoàn toàn — đây là quy luật tự nhiên: cực khó sẽ chuyển thành thuận lợi nếu kiên trì đúng cách đến cùng."
+    }
+  ],
+
+  "keywords": ["Bĩ", "否", "bế tắc", "trời đất không giao", "kiệm đức tị nạn", "Thiên Địa"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/否", "url": "https://zh.wikisource.org/zh-hant/周易/否", "note": "Nguyên văn chữ Hán: 卦辭, 彖曰, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 12", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_12", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 12 (mirror của bản dịch Legge)", "url": "https://jamesdekorne.com/GBCh/hex12.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/12", "label": "64 Quẻ — Quẻ 12: Thiên Địa Bĩ" }
+  ]
+}

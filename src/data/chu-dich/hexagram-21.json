@@ -1,0 +1,148 @@
+{
+  "id": 21,
+  "hanzi": "噬嗑",
+  "pinyin": "Shì Hé",
+  "hanviet": "Phệ Hạp",
+  "english": "Biting Through",
+  "upperTrigram": "li",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "噬嗑：亨。利用獄。",
+    "hanviet": "Phệ Hạp: Hanh. Lợi dụng ngục.",
+    "translation": "Phệ Hạp (Cắn cho khép hợp): hanh thông. Thuận lợi khi dùng đến hình pháp, xét xử — loại bỏ vật cản để hàm khép lại.",
+    "english": "Shih Ho indicates successful progress (in the condition of things which it supposes). It will be advantageous to use legal constraints."
+  },
+
+  "daTuong": {
+    "hanzi": "雷電噬嗑；先王以明罰敕法。",
+    "hanviet": "Lôi điện Phệ Hạp; tiên vương dĩ minh phạt sắc pháp.",
+    "translation": "Sấm và chớp cùng xuất hiện, đó là hình tượng quẻ Phệ Hạp; các bậc vua xưa nhân đó mà làm sáng tỏ hình phạt, chỉnh đốn luật pháp.",
+    "english": "(The trigrams representing) thunder and lightning form Shih Ho. The ancient kings, in accordance with this, framed their penalties with intelligence, and promulgated their laws.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Chữ 噬嗑 nghĩa đen là 'cắn cho khép miệng lại' — hình ảnh cái miệng đang mở ra vì có vật cản kẹt giữa hai hàm, phải cắn nát vật cản đó thì miệng mới khép kín, thông suốt trở lại. Quẻ này nói về việc phải quyết đoán loại bỏ chướng ngại — bằng luật pháp, kỷ luật, hoặc hành động dứt khoát — để khôi phục trật tự và sự thông suốt.",
+
+  "computer_science": "Đây là ẩn dụ hoàn hảo cho việc dọn dẹp bắt buộc phải làm: gỡ bỏ một dependency hỏng, xóa dead code, hoặc chặn một request độc hại đang làm nghẽn pipeline. Hệ thống chỉ 'khép miệng' (hanh thông) trở lại khi vật cản bị loại bỏ dứt khoát bằng luật rõ ràng — validation rule, policy, rate-limit.",
+
+  "life": "Đôi khi sự thông suốt chỉ đến sau khi ta dứt khoát xử lý vật cản đang chắn giữa đường — dù việc đó khó chịu, càng né tránh chướng ngại càng kéo dài bế tắc.",
+
+  "programming": "Một API bị nghẽn vì có input độc hại làm tắc nghẽn pipeline — giải pháp là thêm validation hoặc rate-limit rõ ràng ('hình pháp minh bạch') để chặn từ gốc, thay vì patch vá tạm bợ từng lần.",
+
+  "characters": [
+    {
+      "hanzi": "噬",
+      "pinyin": "shì",
+      "hanviet": "phệ",
+      "meaning": "Cắn, ngoạm bằng răng.",
+      "origin": "Chữ hình thanh ghép từ 口 (khẩu, miệng) và 筮 (phệ, phần biểu âm — vốn liên quan tới việc bói bằng cỏ thi) — nghĩa là 'cắn, ngoạm' bằng miệng.",
+      "example": "噬臍莫及 (phệ tề mạc cập) = hối không kịp, như tự cắn rốn mình không tới.",
+      "cs": "Purge / force-delete",
+      "csExplain": "Hành động 'cắn đứt' dứt khoát một phần dữ liệu hoặc tiến trình đang gây tắc nghẽn hệ thống."
+    },
+    {
+      "hanzi": "嗑",
+      "pinyin": "hé",
+      "hanviet": "hạp",
+      "meaning": "Miệng khép lại, ngậm chặt, hợp lại.",
+      "origin": "Chữ hình thanh ghép từ 口 (khẩu, miệng) và 盍 (hạp, phần biểu âm — nghĩa gốc liên quan tới 'đậy nắp, khép lại') — nghĩa là 'miệng ngậm khép chặt lại'.",
+      "example": "嗑牙 (hạp nha) = cắn hạt, nghĩa bóng dân gian là tán gẫu.",
+      "cs": "Close / commit",
+      "csExplain": "Trạng thái 'đóng lại' thành công của một giao dịch sau khi vật cản (xung đột dữ liệu) đã được giải quyết."
+    },
+    {
+      "hanzi": "獄",
+      "pinyin": "yù",
+      "hanviet": "ngục",
+      "meaning": "Nhà tù, việc kiện tụng, xét xử.",
+      "origin": "Chữ hội ý ghép từ 犬 (khuyển, chó) ở hai bên và 言 (ngôn, lời nói/tranh biện) ở giữa — hình ảnh hai con chó canh giữ hai bên nơi tranh tụng, mở rộng thành 'nhà ngục, việc xét xử'.",
+      "example": "監獄 (giám ngục) = nhà tù; 訴訟 (tố tụng) = kiện tụng, khái niệm liên quan.",
+      "cs": "Sandbox / access control",
+      "csExplain": "Cơ chế cách ly tiến trình hoặc dữ liệu nguy hiểm để kiểm tra kỹ trước khi cho phép quay lại hệ thống chính."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：屨校滅趾，无咎。",
+      "hanviet": "Sơ Cửu: Cụ giáo diệt chỉ, vô cữu.",
+      "translation": "Mang cùm gỗ ở chân làm khuất mất ngón chân — bị trừng phạt nhẹ ngay từ đầu, không có lỗi vì ngăn chặn được cái sai từ khi còn nhỏ.",
+      "english": "The first NINE, undivided, shows one with his feet in the stocks and deprived of his toes. There will be no error.",
+      "explain": "Trừng phạt nhỏ ngay từ lỗi đầu tiên, dù khó chịu nhưng ngăn chặn được việc lớn hơn về sau — không đáng trách.",
+      "itExample": "Linter hoặc CI chặn ngay một commit vi phạm coding convention nhỏ ngay từ đầu — gây khó chịu tức thời nhưng ngăn được lỗi lớn tích lũy sau này.",
+      "lifeExample": "Bị nhắc nhở hoặc phạt nhẹ ngay từ lỗi nhỏ đầu đời giúp tránh được sai lầm nghiêm trọng hơn về sau."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：噬膚滅鼻，无咎。",
+      "hanviet": "Lục Nhị: Phệ phu diệt tị, vô cữu.",
+      "translation": "Cắn vào phần thịt mềm ngập đến cả mũi — xử lý vật cản dễ dàng, dứt khoát, không có lỗi.",
+      "english": "The second SIX, divided, shows one biting through the soft flesh, and (going on to) bite off the nose. There will be no error.",
+      "explain": "Xử lý vấn đề còn dễ (thịt mềm) một cách quyết liệt, dứt khoát — hiệu quả và không sai.",
+      "itExample": "Xử lý dứt điểm một bug đơn giản, rõ ràng nguyên nhân — hành động nhanh gọn, không chần chừ, kết quả tốt.",
+      "lifeExample": "Giải quyết dứt khoát một vấn đề nhỏ, rõ ràng ngay khi phát hiện — không để dây dưa."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：噬臘肉，遇毒；小吝，无咎。",
+      "hanviet": "Lục Tam: Phệ tịch nhục, ngộ độc; tiểu lận, vô cữu.",
+      "translation": "Cắn phải miếng thịt khô, gặp phải chất khó chịu; có chút đáng tiếc nhỏ, nhưng không lỗi lớn.",
+      "english": "The third SIX, divided, shows one gnawing dried flesh, and meeting with what is disagreeable. There will be occasion for some small regret, but no (great) error.",
+      "explain": "Vấn đề gặp phải khó xử lý hơn dự kiến — có chút khó chịu hoặc thiệt hại nhỏ nhưng không nghiêm trọng.",
+      "itExample": "Xử lý một bug tưởng đơn giản nhưng hóa ra liên quan tới hệ thống cũ khó đụng vào — mất thêm thời gian, hơi khó chịu nhưng không gây hậu quả lớn.",
+      "lifeExample": "Giải quyết một vấn đề tưởng nhỏ nhưng hóa ra phức tạp, gây chút phiền toái — chấp nhận và xử lý tiếp, không đáng lo ngại."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：噬乾胏，得金矢，利艱貞，吉。",
+      "hanviet": "Cửu Tứ: Phệ can tí, đắc kim thỉ, lợi gian trinh, cát.",
+      "translation": "Cắn miếng thịt khô còn dính xương, tìm thấy mũi tên đồng bên trong; thuận lợi khi giữ vững chính đính giữa gian khó, tốt lành.",
+      "english": "The fourth NINE, undivided, shows one gnawing the flesh dried on the bone, and getting the pledges of money and arrows. It will be advantageous to him to realise the difficulty of his task and be firm,—in which case there will be good fortune.",
+      "explain": "Việc khó khăn hơn nhưng nếu kiên trì, cẩn trọng sẽ tìm ra bằng chứng cốt lõi và đạt kết quả tốt.",
+      "itExample": "Debug một lỗi hệ thống phức tạp, khó truy vết — nếu kiên trì đào sâu, cuối cùng cũng tìm ra nguyên nhân gốc rễ chính xác.",
+      "lifeExample": "Đối mặt với thử thách lớn, cần sự kiên trì và chính trực để vượt qua — khi tìm ra được giải pháp đúng, kết quả sẽ tốt."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：噬乾肉，得黃金，貞厲，无咎。",
+      "hanviet": "Lục Ngũ: Phệ can nhục, đắc hoàng kim, trinh lệ, vô cữu.",
+      "translation": "Cắn miếng thịt khô, tìm được vàng ròng bên trong; giữ chính đính dù biết nguy hiểm, không có lỗi.",
+      "english": "The fifth SIX, divided, shows one gnawing at dried flesh, and finding the yellow gold. Let him be firm and correct, realising the peril (of his position). There will be no error.",
+      "explain": "Ở vị trí lãnh đạo xử lý việc khó (xét xử, kỷ luật), nếu giữ vững nguyên tắc dù biết có rủi ro thì vẫn không sai.",
+      "itExample": "Lãnh đạo phải đưa ra quyết định kỷ luật khó khăn — biết có rủi ro về quan hệ nhưng vẫn giữ nguyên tắc công bằng, kết quả là đúng đắn.",
+      "lifeExample": "Đưa ra quyết định khó khăn nhưng đúng đắn, dù biết sẽ có phản ứng trái chiều — giữ vững lập trường công tâm sẽ không có gì sai."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：何校滅耳，凶。",
+      "hanviet": "Thượng Cửu: Hà giáo diệt nhĩ, hung.",
+      "translation": "Đeo gông nặng ở cổ đến che khuất cả tai — hình phạt nặng vì sai lầm đã tích tụ quá lâu, xấu.",
+      "english": "The sixth NINE, undivided, shows one wearing the cangue, and deprived of his ears. There will be evil.",
+      "explain": "Hào cuối, sai lầm đã tích tụ quá lâu không được sửa từ đầu — khác với Sơ Cửu chỉ bị phạt nhẹ, nay phải chịu hình phạt nặng.",
+      "itExample": "Nợ kỹ thuật hoặc lỗ hổng bảo mật bị phớt lờ quá lâu, đến khi bị khai thác gây sự cố nghiêm trọng — hậu quả nặng nề vì không xử lý từ sớm.",
+      "lifeExample": "Sai lầm nhỏ bị phớt lờ nhiều lần, không sửa từ đầu, cuối cùng dẫn đến hậu quả nghiêm trọng, khó cứu vãn."
+    }
+  ],
+
+  "keywords": ["Phệ Hạp", "噬嗑", "cắn cho hợp", "xét xử", "loại bỏ chướng ngại", "sấm chớp", "hình pháp minh bạch"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/100101.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Phệ Hạp, đối chiếu từng hào." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/shi-ke", "note": "Nguồn học thuật công khai; truy cập qua proxy do trang chặn truy cập tự động, đối chiếu nguyên văn chữ Hán khớp với Wikisource." },
+    { "source": "維基文庫 Wikisource — 周易/噬嗑", "url": "https://zh.wikisource.org/zh-hant/周易/噬嗑", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/21", "label": "64 Quẻ — Quẻ 21: Hỏa Lôi Phệ Hạp" }
+  ]
+}

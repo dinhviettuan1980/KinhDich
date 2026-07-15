@@ -1,0 +1,148 @@
+{
+  "id": 44,
+  "hanzi": "姤",
+  "pinyin": "Gòu",
+  "hanviet": "Cấu",
+  "english": "Encountering",
+  "upperTrigram": "qian",
+  "lowerTrigram": "xun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "姤：女壯，勿用取女。",
+    "hanviet": "Cấu: Nữ tráng, vật dụng thủ nữ.",
+    "translation": "Cấu (Gặp gỡ): nữ tính được tăng cường, không nên lấy nàng gái làm vợ.",
+    "english": "Gou shows a female who is bold and strong. It will not be good to marry (such) a female."
+  },
+
+  "daTuong": {
+    "hanzi": "天下有風，姤；后以施命誥四方。",
+    "hanviet": "Thiên hạ hữu phong, cấu; hậu dĩ thi mệnh cáo tứ phương.",
+    "translation": "Trời dưới có gió, tạo nên quẻ Cấu; vua nước nước nước nước dùng đó để ban phát chỉ thị, cáo thị bốn phương.",
+    "english": "The trigram representing wind and that for the sky above it form Gou. The sovereign, in accordance with this, delivers his charges, and promulgates his announcements throughout the four quarters (of the kingdom).",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Cấu ghép từ Xun (Gió) ở dưới, Qian (Trời) ở trên — gió thổi lên trời, dâng tươi không độ; hình ảnh của sự gặp gỡ bất ngờ mà không lường trước. Một hào âm (nữ, yếu) từ dưới dâng lên chạm trời (mạnh) — nó là 'cơ hội' nhưng không phải hôn nhân tốt (nữ tính không hòa hợp). Sáu hào kể câu chuyện: cứ buộc chặt cái được gặp, có tìm được cái tốt, nhưng công việc có khó khăn, tìm không ra gì tốt, tìm được cái quý giá được trời ban, cuối cùng thế lực cao sẽ mệt nhoài.",
+
+  "computer_science": "Gòu là 'serendipitous encounter' hoặc 'unexpected input' — gió (mềm, dữ liệu) thổi lên trời (quy tắc cứng) không chắc chắn hợp nhất; giống khi API nhận được dữ liệu schema lạ, hoặc team gặp startup mới có product khác hưởng — phải cảnh báo, không nên 'lấy làm vợ' (long-term commit) ngay.",
+
+  "life": "Gặp được điều gì mới, hấp dẫn không phải lúc nào cũng tốt — cần quan sát kỹ trước khi cam kết lâu dài; có thể kết nối tạm thời để hiểu rõ hơn, nhưng đừng vội lấy làm chính.",
+
+  "programming": "Khi gặp tech/tool/vendor mới (cloud provider mới, framework hót), cảnh báo: đừng 'lấy làm vợ' ngay; hãy POC trước, evaluate kỹ, cảnh báo team về vendor lock-in risk, rồi mới quyết định commit.",
+
+  "characters": [
+    {
+      "hanzi": "姤",
+      "pinyin": "gòu",
+      "hanviet": "cấu",
+      "meaning": "Gặp gỡ, tình cờ gặp, chạm trán.",
+      "origin": "Bộ 女 (nữ, phụ nữ, yếu ớt) — hình ảnh nữ tính đột nhiên xuất hiện chạm trán với quy tắc cứng, mở rộng thành 'gặp bất ngờ, chạm trán không lường'.",
+      "example": "相姤 (tương cấu) = gặp nhau; 不姤 (bất cấu) = không gặp.",
+      "cs": "Unexpected Encounter",
+      "csExplain": "Dữ liệu/input/event không lường trước đột nhiên xuất hiện, cần phải handle cẩn thận."
+    },
+    {
+      "hanzi": "風",
+      "pinyin": "fēng",
+      "hanviet": "phong",
+      "meaning": "Gió, thổi, lan truyền.",
+      "origin": "Bộ 风 trong giáp cốt — hình ảnh gió thổi, không cụ thể, lan tỏa — mở rộng thành 'lan truyền, ảnh hưởng mềm'.",
+      "example": "風吹 (phong xuy) = gió thổi; 風味 (phong vị) = hương vị.",
+      "cs": "Soft Signal",
+      "csExplain": "Tín hiệu yếu, mềm, không lực, nhưng lan truyền rộng như gió."
+    },
+    {
+      "hanzi": "施",
+      "pinyin": "shī",
+      "hanviet": "thi",
+      "meaning": "Ban phát, triển khai, áp dụng.",
+      "origin": "Bộ 方 (phương, cách) + phần biểu âm — hình ảnh áp dụng cách gì đó, ban phát tới mọi nơi.",
+      "example": "實施 (thực thi); 施行 (thi hành).",
+      "cs": "Deployment",
+      "csExplain": "Hành động triển khai, áp dụng rộng rãi một cái gì đó tới nhiều nơi."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：繫于金柅，貞吉，有攸往，見凶，羸豕孚蹢躅。",
+      "hanviet": "Sơ Lục: Hệ vu kim chi, trinh cát, hữu du vãng, kiến hung, luy thử phu đích tục.",
+      "translation": "Buộc chặt vào kim loại phanh xe, giữ bền là tốt, có nơi để tiến nhưng thấy liền thì xấu; như lợn gầy, tin chắc sẽ dùi dụi không dừng.",
+      "english": "Subject should be kept (like a carriage) tied and fastened to a metal drag for good fortune. Moving brings evil; he resembles a lean pig, which is sure to keep jumping about.",
+      "explain": "Vị trí thấp nhất, được gặp bất ngờ — nên giữ chặt bản thân bằng kỷ luật, đừng chạy theo điều mới gặp ngay.",
+      "itExample": "Gặp được startup/tool mới hấp dẫn — team muốn thử ngay, nhưng cần 'buộc chặt' quyết định, giữ vững strategy cũ trước khi POC xong.",
+      "lifeExample": "Gặp được người mới hấp dẫn — nên giữ bình tĩnh, buộc chặt cảm xúc, không vội bay lắc ngay."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：包有魚，无咎，不利賓。",
+      "hanviet": "Cửu Nhị: Bao hữu ngư, vô cữu, bất lợi tân.",
+      "translation": "Túi có cá trong, không có lỗi, nhưng không thuận lợi để tiếp khách mới.",
+      "english": "He has a wallet of fish. There will be no error. But it will not be well to let (the subject of the first line) go forward to the guests.",
+      "explain": "Có kho tàng riêng, không lỗi — nhưng không nên chia sẻ hay chiêu đãi khách mới, đừng để nó thành tài sản công khai.",
+      "itExample": "Team có một tool/codebase nội bộ tốt nhưng không nên open source hay share với đối tác mới; giữ kín là an toàn hơn.",
+      "lifeExample": "Có một bí quyết/tài năng riêng, không nên chia sẻ với người mới gặp — giữ kín để tự bảo vệ."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：臀无膚，其行次且，厲，无大咎。",
+      "hanviet": "Cửu Tam: Độn vô phù, kỳ hành thứ thả, lệ, vô đại cữu.",
+      "translation": "Mông không da, bước đi từng chút khó khăn, nguy hiểm, nhưng không có lỗi lớn.",
+      "english": "One from whose buttocks the skin has been stripped walks with difficulty. The position is perilous, but there will be no great error.",
+      "explain": "Tổn thương từ lần gặp gỡ — bước đi khó khăn, nguy hiểm, nhưng vẫn có thể vượt qua nếu cảnh báo cao độ.",
+      "itExample": "Integrate với API mới, gặp khó khăn không lường (performance issue, security hole) — bị tổn thương nhưng nếu nhận ra sớm, fix nhanh thì không thành vấn đề lớn.",
+      "lifeExample": "Gặp người mới có sự cố nho nhỏ — bị tổn thương, nhưng nếu lý trí cảnh báo, không đi sâu vào thì không bị tổn hại lớn."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：包无魚，起凶。",
+      "hanviet": "Cửu Tứ: Bao vô ngư, khởi hung.",
+      "translation": "Túi không có gì, liền xảy ra xấu.",
+      "english": "Subject carries a wallet, but no fish in it. This will give rise to evil.",
+      "explain": "Cố gắng kết nối mà không có gì để đáp lại — đó là lỗi, sẽ tạo ra xung đột.",
+      "itExample": "Đi partnership mà team không có gì tốt để mang ra trao đổi — đối tác sẽ thất vọng, xảy ra xung đột.",
+      "lifeExample": "Gặp người mới, cố tỏ ra thân thiện nhưng không có gì chân thực để cho — sẽ bị coi là giả tạo, xảy ra hiểu lầm."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：以杞包瓜，含章，有隕自天。",
+      "hanviet": "Cửu Ngũ: Dĩ kỳ bao qua, hàm chương, hữu vận tự thiên.",
+      "translation": "Dùng cây kỳ qua bao bọc trái dưa, giữ kín sáng suốt, có điều tốt lành rơi xuống từ trời.",
+      "english": "A medlar tree overspreading the gourd beneath it. If he keep his brilliant qualities concealed, (a good issue) will descend (as) from Heaven.",
+      "explain": "Vị trí vua, gặp được cái quý tuy khó, nhưng giữ kín sáng suốt của mình — thiên lời sẽ ban phát.",
+      "itExample": "Leader gặp được acquisition offer hoặc partnership lớn, nhưng giữ kín chiến lược riêng, không vội tỏ lộ mục tiêu — kết quả tốt lành sẽ đến từ trên cao (board, investor).",
+      "lifeExample": "Gặp được cơ hội tốt, nhưng giữ bình tĩnh, không khoe khoang — kết quả may mắn sẽ tự đến từ trời."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：姤其角，吝，无咎。",
+      "hanviet": "Thượng Cửu: Cấu kỳ giác, lạp, vô cữu.",
+      "translation": "Gặp bằng sừng, có chút xấu hổ, nhưng không có lỗi.",
+      "english": "Receiving others on his horns. There will be occasion for regret, but there will be no error.",
+      "explain": "Hào cuối, cao quá, gặp từ trên xuống — hơi xấu hổ, nhưng nếu vẫn giữ được nguyên tắc thì không sai.",
+      "itExample": "VIP customer gặp tại hội nghị lớn, nhưng kỳ vọng cao — có chút xấu hổ nếu không meet expectations, nhưng nếu giữ vững value proposition thì không bị chỉ trích.",
+      "lifeExample": "Gặp được người lớn hay có uy tín — có chút lo sợ bị nhìn thấp, nhưng nếu giữ vững bản thân thì không có lỗi."
+    }
+  ],
+
+  "keywords": ["Cấu", "姤", "Gặp gỡ", "Bất ngờ", "Thiên Phong Cấu", "Cảnh báo"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/gou", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Cấu (Thoán từ, Hào từ)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/姤", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%A7%A4", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/44", "label": "64 Quẻ — Quẻ 44: Thiên Phong Cấu" }
+  ]
+}

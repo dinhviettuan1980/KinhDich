@@ -1,0 +1,147 @@
+{
+  "id": 38,
+  "hanzi": "睽",
+  "pinyin": "Kuì",
+  "hanviet": "Khuê",
+  "english": "Opposition",
+  "upperTrigram": "li",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "睽：小事吉。",
+    "hanviet": "Khuê: Tiểu sự cát.",
+    "translation": "Khuê (Bất hòa): chỉ trong những sự nhỏ mới tốt lành.",
+    "english": "Kui indicates that, notwithstanding the condition of things which it denotes, in small matters there will still be good success."
+  },
+
+  "daTuong": {
+    "hanzi": "上火下澤，睽；君子以同而異。",
+    "hanviet": "Thượng hỏa hạ trạch, Khuê; quân tử dĩ đồng nhi dị.",
+    "translation": "Lửa trên, hồ nước dưới — đó là tượng của Khuê; người quân tử noi theo đó mà tuy có điểm chung nhưng vẫn công nhận sự khác biệt.",
+    "english": "Fire above and a lake below form the image of Kui. The superior man, in accordance with this, finds unity with others in matters of diversity.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Khuê là quẻ chỉ tình trạng 'bất đồng quan điểm' — lửa (Ly) giữ nóng lên, nước (Đoài) giữ lạnh xuống, tự nhiên đối lập. Nhưng bài học của Khuê không phải 'xung đột này là xấu', mà là 'hai cái khác biệt có thể cùng tồn tại miễn sao được quản lý tốt'. Hành động 'nhỏ' (small matters) như thất lạc đồ vật, mâu thuẫn nhỏ, sự hiểu lầm có thể giải quyết; nhưng nếu cố chấp xung đột lớn (thế lực đối địch) thì dễ rơi vào thảm họa. Quẻ này dạy cách sống chung với người khác khi biết rõ không hoàn toàn đồng ý — là nhu cầu sống thực tế của mỗi tổ chức/xã hội.",
+
+  "computer_science": "Khuê giống một hệ thống microservices hoặc cross-functional team nơi backend và frontend, hoặc product và engineering, có prioritize khác nhau (lửa vs nước, tính nóng vs lạnh). Cách quản lý là công nhận sự khác biệt này (align on core metrics, không bắt cả đội phải 'yêu nhau'), nhưng tìm điểm chung trên các mục tiêu lớn (ship features, deliver value, reduce churn). Conflict là tự nhiên; quan trọng là resolution process rõ ràng.",
+
+  "life": "Xung đột ý kiến trong gia đình, công việc, quan hệ xã hội là tự nhiên — không phải dấu hiệu tổ chức đang hỏng. Người khôn ngoan công nhận sự khác biệt này và tìm cách sống chung một cách hòa bình, chứ không cố loại bỏ hoàn toàn ý kiến khác hay thắng cuộc đàm phán dù giá là mối quan hệ.",
+
+  "programming": "Frontend muốn responsive design liền, backend muốn optimize query trước — khác nhau. Product muốn nhiều feature, engineering muốn technical debt thấp — khác nhau. Thay vì bắc cầu hoàn toàn (đưa ra quyết định cuối cùng áp đặc), tìm cách để cả đội hiểu lập trường của nhau, lấy ra điểm chung (launch product tốt, bền vững), và chấp nhận 'compromise' chứ không phải 'tuyệt đối chiến thắng' cho một bên.",
+
+  "characters": [
+    {
+      "hanzi": "睽",
+      "pinyin": "kuì",
+      "hanviet": "khuê",
+      "meaning": "Tách rời, bất đồng, mắt nhìn không thẳng (ngoác mắt).",
+      "origin": "Chữ hình thanh gồm 目 (mắt) + 癸 (quỷ, biểu âm). Nguyên nghĩa: mắt ngoác (khi không nhìn thẳng) — mở rộng thành 'tách rời, bất đồng'.",
+      "example": "睽違 (khuê vi) = lâu không gặp, tách biệt lâu.",
+      "cs": "Divergence",
+      "csExplain": "Tình trạng hai hướng đi, hai tiêu chí, hai component hoạt động theo logic khác nhau — không tự động là xấu, cần biết cân bằng."
+    },
+    {
+      "hanzi": "火",
+      "pinyin": "huǒ",
+      "hanviet": "hỏa",
+      "meaning": "Lửa, nhiệt.",
+      "origin": "Chữ tượng hình, vẽ hình ngọn lửa với các thớ bay lên.",
+      "example": "火災 (hỏa tai) = cháy; 火熱 (hỏa nhiệt) = nóng bức.",
+      "cs": "Heat / Passion",
+      "csExplain": "Năng lượng, tâm huyết, sự sôi nổi — trong team, đó là development velocity, creativity; nhưng cũng dễ gây lãng phí nếu không có nước để kiểm soát."
+    },
+    {
+      "hanzi": "澤",
+      "pinyin": "zé",
+      "hanviet": "trạch",
+      "meaning": "Hồ, nước ngắn nước, lợi ích, ơn huệ.",
+      "origin": "Chữ hình thanh gồm 水 (nước) + 釋 (biểu âm); trong lịch sử cũng ghi là hồ/vũng nước tạo lợi ích cho cứu cấp.",
+      "example": "澤地 (trạch địa); 恩澤 (ân trạch) = ơn huệ.",
+      "cs": "Cooling / Constraint",
+      "csExplain": "Sự kiểm soát, ràng buộc, quy tắc — như nước tắm lửa — cần để cân bằng năng lượng và tránh lãng phí."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：悔亡，喪馬勿逐，自復；見惡人无咎。",
+      "hanviet": "Sơ Cửu: Hối vong, táng mã vật trục, tự phục; kiến ác nhân vô cữu.",
+      "translation": "Hối tiếc biến mất; ngựa bị mất thì đừng đuổi theo, nó sẽ tự quay về; gặp kẻ xấu cũng không lỗi.",
+      "english": "The first line, undivided, shows its subject remorseful for the occasion of repentance. He has lost his horses, but let him not seek for them — they will return of themselves. If he see bad men, he will commit no error.",
+      "explain": "Trong tình huống xung đột mới bắt đầu, những thứ bị mất (tin tưởng, tài nguyên) sẽ tự quay lại nếu không vội vàng — điều quan trọng là giữ bình tĩnh, không cố đấu tranh để lấy lại ngay.",
+      "itExample": "Một cross-team conflict mới phát sinh, mất đi 1 resource/buy-in từ team khác — thay vì cố force lại ngay (gây thêm xung đột), để yên nó, tập trung vào hợp tác nhỏ, nó sẽ tự trở lại.",
+      "lifeExample": "Sau một cự cãi với ai đó, mất đi một số lợi ích tạm thời — thay vì cố chấp tranh cãi lâu, buông bỏ, lại tập trung vào điểm chung, khi cảm xúc hạ nhiệt, điều bị mất sẽ tự quay lại."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：遇主于巷，无咎。",
+      "hanviet": "Cửu Nhị: Ngộ chủ vu hàng, vô cữu.",
+      "translation": "Gặp được người chủ ở một chiếc hẻm — không lỗi.",
+      "english": "He happens to meet with his lord in a bye-passage. There will be no error.",
+      "explain": "Không phải gặp công khai trong lễ nghi hay chính thức, mà gặp ngẫu nhiên, bất ngờ — loại gặp gỡ này dù ở hoàn cảnh không 'lý tưởng' nhưng lại hiệu quả, khôi phục được mối quan hệ.",
+      "itExample": "Trong một conference, bộ product và engineering gặp nhau tại khu breaks (informal) và thoải mái nói chuyện, thấu hiểu lẫn nhau — kết quả tốt hơn formal meeting chính thức nơi mỗi bên bảo vệ turf của mình.",
+      "lifeExample": "Hai người từng cãi lệch lạc gặp nhau tình cờ ở nơi không chính thức, nói chuyện thoải mái — kết quả là hòa giải dễ hơn."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：見輿曳，其牛掣，其人天且劓，无初有終。",
+      "hanviet": "Lục Tam: Kiến dư duệ, kỳ ngưu xiết, kỳ nhân thiên tả nại, vô sơ hữu chung.",
+      "translation": "Thấy xe bị kéo lê, con bò bị lôi, người chủ bị cắt tai và mũi; mặc dù khởi đầu xấu nhưng có cái kết tốt.",
+      "english": "One whose carriage is dragged back, while the oxen in it are pushed back, and he himself is subjected to the shaving of his head and cutting off of his nose, — there is no opportunity for him to do anything. (Yet) there will be a good ending.",
+      "explain": "Bị đối phương 'giẫm đạp' hoàn toàn (xe bị lôi, bò bị kéo, người bị hạ nhục) — nhưng hào này nói điều kỳ lạ: mặc dù khởi đầu tệ hại nhưng cuối cùng lại tốt. Bài học là chính xác những gì bạn không thể kiểm soát được, chỉ cần chờ khoảnh khắc nó quay lại tốt.",
+      "itExample": "Một project bị cắt budget, mất senior engineer quan trọng, bị downgrade priority — hoàn cảnh khó nhất — nhưng đôi khi chính sự 'ép buộc này khiến team phải sáng tạo, code tốt hơn, học được những điều quý báu, sau đó project lại được kỳ vọng cao.",
+      "lifeExample": "Bị mất việc, bị từ chối, bị hạ nhục — ngắn hạn tệ hại nhưng chính những trải nghiệm này khiến ta học hỏi, lớn lên, sau đó mọi thứ tốt lên."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：睽孤，遇元夫，交孚，厲无咎。",
+      "hanviet": "Cửu Tứ: Khuê cô, ngộ nguyên phu, giao phu, lệ vô cữu.",
+      "translation": "Một mình cô lập giữa bất đồng; bất ngờ gặp được người tốt; nếu kết nối chân thành thì dù nguy hiểm cũng không lỗi.",
+      "english": "Solitary amid the general discord, he meets the good man. If they become associated with sincere purpose, peril will not be an error.",
+      "explain": "Khi cảm thấy hoàn toàn cô lập vì bất đồng với đa số, tìm được người cùng tâm — sự kết nối này dù tiềm ẩn rủi ro (có thể bị cô lập thêm) nhưng nếu có sự chân thành sẽ không thành lỗi lầm.",
+      "itExample": "Trong một org/team có văn hóa làm việc xấu, một người thấy điều này và tìm được một đồng minh có cùng giá trị — nếu họ hợp tác chân thành để thay đổi, mặc dù cay đắng nhưng sẽ tạo ra sự cải thiện.",
+      "lifeExample": "Trong một tập thể có những người xấu xa, ta gặp được một người cùng chí hướng — kết nối này tạo ra sức mạnh để chống lại hoàn cảnh xấu."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：悔亡，厥宗噬膚，往何咎。",
+      "hanviet": "Lục Ngũ: Hối vong, quyết tông thiết phúc, vãng hà cữu.",
+      "translation": "Hối tiếc tiêu tan; người họ hàng của anh ta bắt người khác (giết), đi tới không sao.",
+      "english": "Occasion for repentance disappears. With his relative he unites as if biting through skin. Going forward, what error?",
+      "explain": "Khi quyết định quay lại với người thân/đồng minh, thậm chí phải 'cắn qua da' (hy sinh/gặp khó khăn) — điều này không chỉ giải quyết xung đột mà còn tạo ra hiểu biết sâu sắc.",
+      "itExample": "Hai team từng xung đột quyết định hợp tác sâu, thậm chí chia sẻ người, cùng nhau xử lý vấn đề khó — sự kết nối sâu này dù khó nhưng giải quyết được căn nguyên.",
+      "lifeExample": "Bạn bè từng cãi lệch quyết định trò chuyện sâu, thậm chí phải tự chỉ trích bản thân — sự kết nối chân thực này hơn bất kỳ lời xin lỗi hình thức nào."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：睽孤，見豕負塗，載鬼一車，先張之弧，後說之弧，匪寇婚媾，往遇雨則吉。",
+      "hanviet": "Thượng Cửu: Khuê cô, kiến thử phụ đồ, tái quỷ nhất xa, tiên trương chi hồ, hậu thuyết chi hồ, phỉ khẩu hôn cấu, vãng ngộ vũ tắc cát.",
+      "translation": "Một mình cô lập; thấy con lợn dính bùn, thấy xe chứa quỷ; lúc đầu giương cung bắn, sau lại gỡ cung xuống; không phải kẻ cướp mà là người muốn kết hôn; đi gặp mưa thì tốt lành.",
+      "english": "Solitary amidst the general discord; he sees a pig bearing mud; a carriage full of ghosts; first bending his bow, then unbending it; discovering not an assailant but a near relative; going forward, meeting genial rain brings good fortune.",
+      "explain": "Ảo tưởng, sợ hãi dẫn tới những hành động quá phản ứng (giương cung bắn vào thứ không phải kẻ địch) — nhưng khi ngã tư ngờ lẫn nhau được hóa giải (mưa), người xưa là 'thù địch' lại thành 'người thân'.",
+      "itExample": "Một conflict kéo dài vì cả hai bên sợ và giả thuyết xấu về ý định của nhau (cung bắn vào ảo tưởng) — khi có một sự kiện bên ngoài khiến cả bên phải cùng hợp tác (như common enemy, urgent deadline), cảm thấy sợ hãi biến mất, lại thấy nhau là đồng minh.",
+      "lifeExample": "Hai người cậu/cái lạnh nhạt vì mâu thuẫn cũ, sợ nhau, giả thuyết xấu về lẫn nhau — cho tới khi phải đương đầu với khó khăn chung (bệnh bà, khó khăn gia đình), mới thấy nhau là gia đình thay vì 'quỷ'."
+    }
+  ],
+
+  "keywords": ["Khuê", "睽", "bất đồng", "xung đột", "lửa và nước", "Hỏa Trạch", "sống cùng với khác biệt"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/kui", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Khuê." },
+    { "source": "維基文庫 Wikisource — 周易/睽", "url": "https://zh.wikisource.org/zh-hant/周易/睽", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/38", "label": "64 Quẻ — Quẻ 38: Hỏa Trạch Khuê" }
+  ]
+}

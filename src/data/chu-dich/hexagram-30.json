@@ -1,0 +1,159 @@
+{
+  "id": 30,
+  "hanzi": "離",
+  "pinyin": "Lí",
+  "hanviet": "Ly",
+  "english": "The Clinging (Fire)",
+  "upperTrigram": "li",
+  "lowerTrigram": "li",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "離：利貞。亨。畜牝牛，吉。",
+    "hanviet": "Ly: Lợi trinh. Hanh. Súc tẫn ngưu, cát.",
+    "translation": "Ly (bám vào/lửa): thuận lợi khi giữ chính đính. Hanh thông. Nuôi dưỡng đức tính hiền thuận như con bò cái thì tốt lành.",
+    "english": "Lî indicates that, (in regard to what it denotes), it will be advantageous to be firm and correct, and that thus there will be free course and success. Let (its subject) also nourish (a docility like that of) the cow, and there will be good fortune."
+  },
+
+  "daTuong": {
+    "hanzi": "明兩作離，大人以繼明照于四方。",
+    "hanviet": "Minh lưỡng tác Ly, đại nhân dĩ kế minh chiếu vu tứ phương.",
+    "translation": "Ánh sáng nối tiếp ánh sáng tạo thành Ly; bậc đại nhân noi theo đó mà nối tiếp ánh sáng đức độ của mình chiếu rọi khắp bốn phương.",
+    "english": "(The trigram for) brightness, repeated, forms Lî. The great man, in accordance with this, cultivates more and more his brilliant (virtue), and diffuses its brightness over the four quarters (of the land).",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Ly là quẻ thuần thứ hai trong nhóm này — 2 quái Ly (lửa/ánh sáng) chồng lên nhau, biểu tượng cho ánh sáng nối tiếp ánh sáng, như mặt trời và mặt trăng thay nhau chiếu sáng bầu trời. Điểm đặc biệt: lửa (và ánh sáng) không tự tồn tại độc lập — nó luôn cần 'bám vào' (nghĩa gốc của chữ Ly) một vật gì đó để cháy, giống như mặt trời/mặt trăng bám vào bầu trời, cây cỏ bám vào đất. Vì vậy quẻ khuyên nên nuôi dưỡng đức tính hiền thuận, mềm mỏng như bò cái (thay vì cương liệt như lửa cháy hoang) để ánh sáng/năng lực của mình có chỗ bám víu bền vững, không tự thiêu rụi chính mình.",
+
+  "computer_science": "Ly giống hệt nguyên tắc observability trong hệ thống: bản thân 'ánh sáng' (metrics, logs, insight) không tự nhiên xuất hiện — nó phải được 'gắn vào' (attach/instrument) từng thành phần cụ thể của hệ thống mới tạo ra visibility. Một dashboard đẹp mà không có gì để đo thì cũng vô nghĩa, giống như lửa không có vật để bám thì tắt ngay. Hào 4 ('đến đột ngột như lửa, như chết, như bị vứt bỏ') là lời cảnh báo kinh điển về alert storm không kiểm soát — bùng lên dữ dội nhưng thiếu cấu trúc sẽ nhanh chóng bị loại bỏ vì vô dụng.",
+
+  "life": "Sự tỏa sáng thật sự luôn cần một điểm tựa để bám vào — kiến thức cần được áp dụng vào vấn đề cụ thể, tài năng cần một môi trường phù hợp để phát huy. Nuôi dưỡng sự mềm mỏng, hiền thuận (như bò cái) giúp ánh sáng của bạn bền vững hơn là bùng cháy dữ dội rồi tắt lịm.",
+
+  "programming": "Đầu tư vào observability (logging, metrics, tracing) chính là cách 'nuôi dưỡng ánh sáng' cho hệ thống — không có nó, dù hệ thống có mạnh đến đâu cũng như đang vận hành trong bóng tối. Nhưng ánh sáng cần gắn đúng chỗ và có kỷ luật (hào 2 'ở đúng vị trí màu vàng — đại cát'), tránh tình trạng bung nổ cảnh báo hỗn loạn không ai xử lý kịp (hào 4).",
+
+  "characters": [
+    {
+      "hanzi": "離",
+      "pinyin": "lí",
+      "hanviet": "ly",
+      "meaning": "Rời khỏi, bám vào, lửa (nghĩa tượng trưng trong Bát Quái).",
+      "origin": "Chữ vốn mang 2 nghĩa gần như trái ngược — vừa là 'chim rời tổ/tách rời' vừa là 'bám dính, phụ thuộc vào'; trong Kinh Dịch nghĩa 'bám vào, gắn với' được dùng làm chủ đạo (giống lửa phải bám vào vật cháy). Chữ gồm bộ 隹 (chuy, chim đuôi ngắn) + phần biểu âm liên quan tới lưới bẫy chim thời cổ.",
+      "example": "離開 (ly khai) = rời đi; 附離 (phụ ly, cổ văn) = bám dựa vào.",
+      "cs": "Attachment / Dependency",
+      "csExplain": "Ánh sáng (giá trị quan sát được) chỉ tồn tại khi 'gắn vào' 1 điểm cụ thể — giống một dependency hoặc hook gắn logging vào từng module."
+    },
+    {
+      "hanzi": "貞",
+      "pinyin": "zhēn",
+      "hanviet": "trinh",
+      "meaning": "Chính đính, ngay thẳng, kiên định, bền vững.",
+      "origin": "Chữ ghép từ 卜 (bốc, việc bói) + 貝/鼎 (bối/đỉnh, đồ tế khí) — nghĩa gốc liên quan tới việc bói hỏi để xác định điều chính đáng, mở rộng thành 'giữ vững chính đạo, kiên định'.",
+      "example": "貞固 (trinh cố) = kiên định.",
+      "cs": "Correctness invariant",
+      "csExplain": "Điều kiện đúng đắn cần giữ vững trong suốt vòng đời hệ thống quan sát được."
+    },
+    {
+      "hanzi": "畜",
+      "pinyin": "xù",
+      "hanviet": "súc",
+      "meaning": "Nuôi dưỡng, tích chứa.",
+      "origin": "Chữ liên quan tới hình ảnh ruộng (田) phía trên và bộ con vật nuôi phía dưới, biểu thị việc nuôi súc vật/tích trữ; nguồn gốc cụ thể còn có nhiều thuyết khác nhau.",
+      "example": "畜牧 (súc mục) = chăn nuôi.",
+      "cs": "Cultivate / Maintain state",
+      "csExplain": "Nuôi dưỡng 1 trạng thái/đức tính lâu dài — giống việc duy trì (maintain) một service ổn định theo thời gian thay vì chỉ chạy 1 lần."
+    },
+    {
+      "hanzi": "牝",
+      "pinyin": "pìn",
+      "hanviet": "tẫn",
+      "meaning": "Giống cái (động vật).",
+      "origin": "Chữ ghép bộ 牛 (ngưu, bò/trâu — đại diện chung cho gia súc) + 匕 (chuỷ, biểu thị giống cái) — nghĩa gốc 'con vật giống cái'.",
+      "example": "牝牡 (tẫn mẫu) = trống mái, đực cái.",
+      "cs": "Passive / receptive role",
+      "csExplain": "Vai trò tiếp nhận, mềm dẻo — giống 1 service đóng vai trò receiver/consumer ổn định thay vì aggressive producer, giúp hệ thống cân bằng."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：履錯然，敬之无咎。",
+      "hanviet": "Sơ Cửu: Lý thác nhiên, kính chi vô cữu.",
+      "translation": "Bước đi có vẻ rối loạn, vội vã; nhưng biết thận trọng cung kính thì không có lỗi.",
+      "english": "The first NINE, undivided, shows one ready to move with confused steps. But he treads at the same time reverently, and there will be no mistake.",
+      "explain": "Khởi đầu ngày mới (ánh sáng vừa lên) dễ vội vàng, lộn xộn — nhưng nếu giữ được sự cẩn trọng, tôn trọng quy trình thì vẫn tránh được sai lầm.",
+      "itExample": "Buổi sáng đầu ca trực, nhiều việc dồn dập dễ khiến thao tác luống cuống — nhưng nếu tuân thủ đúng checklist/runbook (thái độ cung kính với quy trình) thì vẫn tránh được sai sót.",
+      "lifeExample": "Ngày đầu nhận việc mới, dù bỡ ngỡ vội vàng nhưng giữ thái độ cẩn trọng, tôn trọng quy tắc sẽ giúp bạn không mắc sai lầm đáng tiếc."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：黃離，元吉。",
+      "hanviet": "Lục Nhị: Hoàng ly, nguyên cát.",
+      "translation": "Ánh sáng màu vàng (bám đúng vị trí trung chính) — rất tốt lành.",
+      "english": "The second SIX, divided, shows its subject in his place in yellow. There will be great good fortune.",
+      "explain": "Hào đẹp nhất của quẻ — vị trí trung chính (màu vàng tượng trưng cho trung đạo), ánh sáng ở đúng chỗ của nó, ổn định và bền vững nhất.",
+      "itExample": "Một dashboard/metric hệ thống hiển thị đúng chỉ số cốt lõi, đúng ngưỡng cảnh báo hợp lý (không quá nhạy, không quá chậm) — đây là trạng thái observability lý tưởng.",
+      "lifeExample": "Tìm được đúng vị trí, đúng vai trò phù hợp với năng lực và tính cách của mình — đây là trạng thái ổn định và tốt đẹp nhất trong sự nghiệp."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：日昃之離，不鼓缶而歌，則大耋之嗟，凶。",
+      "hanviet": "Cửu Tam: Nhật trắc chi ly, bất cổ phẫu nhi ca, tắc đại điệt chi ta, hung.",
+      "translation": "Ánh sáng như mặt trời xế chiều; nếu không gõ nhịp mà ca hát (không biết tận hưởng đúng lúc), thì đến già sẽ than thở tiếc nuối — xấu.",
+      "english": "The third NINE, undivided, shows its subject in a position like that of the declining sun. Instead of playing on his instrument of earthenware, and singing to it, he utters the groans of an old man of eighty. There will be evil.",
+      "explain": "Ánh sáng đã qua đỉnh, đang xế bóng — nếu không chấp nhận được quy luật tự nhiên này (biết tận hưởng giai đoạn cuối một cách bình thản) mà chỉ than vãn tiếc nuối, kết quả sẽ xấu.",
+      "itExample": "Một hệ thống/công nghệ đã qua thời hoàng kim (legacy nhưng vẫn còn dùng được) — nếu team không chấp nhận thực tế mà cứ than vãn, không lên kế hoạch sunset hợp lý, sẽ chỉ tạo thêm rắc rối.",
+      "lifeExample": "Ở giai đoạn cuối sự nghiệp hay 1 giai đoạn cuộc đời, chấp nhận quy luật tự nhiên và tìm niềm vui phù hợp tốt hơn nhiều so với than vãn tiếc nuối thời hoàng kim đã qua."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：突如其來如，焚如，死如，棄如。",
+      "hanviet": "Cửu Tứ: Đột như kỳ lai như, phần như, tử như, khí như.",
+      "translation": "Đến một cách đột ngột, bùng cháy dữ dội, như chết, như bị vứt bỏ.",
+      "english": "The fourth NINE, undivided, shows the manner of its subject's coming. How abrupt it is, as with fire, with death, to be rejected (by all)!",
+      "explain": "Hào cảnh báo mạnh nhất trong quẻ — ánh sáng/năng lượng bùng lên đột ngột, dữ dội, thiếu kiểm soát và thiếu nền tảng sẽ nhanh chóng tự hủy và bị loại bỏ.",
+      "itExample": "Một chiến dịch viral marketing hoặc traffic spike đột ngột không có hạ tầng chuẩn bị trước — bùng nổ dữ dội rồi sập hệ thống, cuối cùng bị người dùng quay lưng hoàn toàn.",
+      "lifeExample": "Thành công đến quá đột ngột, quá nhanh mà không có nền tảng vững chắc thường tàn lụi nhanh chóng và để lại hậu quả nặng nề."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：出涕沱若，戚嗟若，吉。",
+      "hanviet": "Lục Ngũ: Xuất thế đà nhược, thích ta nhược, cát.",
+      "translation": "Nước mắt tuôn trào như suối, than thở buồn rầu — (nhưng) tốt lành.",
+      "english": "The fifth SIX, divided, shows its subject as one with tears flowing in torrents, and groaning in sorrow. There will be good fortune.",
+      "explain": "Vị trí lãnh đạo nhưng âm nhu, ý thức được trách nhiệm nặng nề và hiểm nguy xung quanh nên lo lắng, thậm chí đau buồn — chính sự ý thức và cẩn trọng này (không chủ quan) lại dẫn tới kết quả tốt.",
+      "itExample": "Một người quản lý ý thức sâu sắc và lo lắng thực sự về rủi ro hệ thống (không xem nhẹ), từ đó thúc đẩy đầu tư đúng mức vào giám sát và phòng ngừa — sự lo lắng có cơ sở này giúp tránh được thảm họa.",
+      "lifeExample": "Sự lo lắng, trăn trở chân thành về trách nhiệm mình gánh vác — dù mang lại cảm giác nặng nề — thường dẫn tới hành động cẩn trọng và kết quả tốt hơn sự chủ quan."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：王用出征，有嘉折首，獲匪其醜，无咎。",
+      "hanviet": "Thượng Cửu: Vương dụng xuất chinh, hữu gia chiết thủ, hoạch phi kỳ xú, vô cữu.",
+      "translation": "Vua dùng ánh sáng ấy để đi chinh phạt, có công lớn khi trừ được kẻ đầu sỏ, không bắt giết tràn lan những kẻ a dua — không có lỗi.",
+      "english": "The topmost NINE, undivided, shows the king employing its subject in his punitive expeditions. In such a case what is most admirable is the cutting off the chief evildoers, and making captives of their followers is not an evil. There will be no error.",
+      "explain": "Hào cuối, ánh sáng đã đạt độ chín muồi, đủ sức phán đoán chính xác để xử lý vấn đề đúng trọng tâm — nhắm đúng gốc rễ (kẻ đầu sỏ) và khoan dung với phần còn lại, đây là cách dùng sức mạnh sáng suốt nhất.",
+      "itExample": "Khi xử lý một vấn đề hệ thống nghiêm trọng (ví dụ security breach), nhắm chính xác vào root cause thay vì phản ứng thái quá, ảnh hưởng tới toàn bộ users/services không liên quan — độ chính xác này thể hiện sự trưởng thành trong xử lý sự cố.",
+      "lifeExample": "Khi cần đối mặt và giải quyết một vấn đề nghiêm trọng, tập trung đúng vào cốt lõi vấn đề và khoan dung với những gì không thực sự đáng trách — đây là sự sáng suốt trưởng thành."
+    }
+  ],
+
+  "keywords": ["Ly", "離", "ánh sáng", "lửa", "bám vào", "observability", "mặt trời mặt trăng"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/離", "url": "https://zh.wikisource.org/zh-hant/周易/離", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 30 (bản mirror)", "url": "https://baharna.com/iching/legge/101101.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Trang mục lục nguồn học thuật công khai lưu trữ Chu Dịch; trang riêng của quẻ 離 không truy cập trực tiếp được trong phiên này nên đối chiếu qua Wikisource + baharna.com." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/30", "label": "64 Quẻ — Quẻ 30: Thuần Ly" }
+  ]
+}

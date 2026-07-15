@@ -1,0 +1,158 @@
+{
+  "id": 15,
+  "hanzi": "謙",
+  "pinyin": "Qiān",
+  "hanviet": "Khiêm",
+  "english": "Humility (Modesty)",
+  "upperTrigram": "kun",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "謙：亨，君子有終。",
+    "hanviet": "Khiêm: Hanh, quân tử hữu chung.",
+    "translation": "Khiêm (Khiêm tốn): hanh thông, người quân tử có kết cục tốt đẹp.",
+    "english": "Khien indicates progress and success. The superior man, being humble as it implies, will have a good issue to his undertakings."
+  },
+
+  "daTuong": {
+    "hanzi": "地中有山，謙；君子以裒多益寡，稱物平施。",
+    "hanviet": "Địa trung hữu sơn, Khiêm; quân tử dĩ bao đa ích quả, xứng vật bình thí.",
+    "translation": "Núi nằm giữa lòng đất — đó là quẻ Khiêm. Người quân tử xem đó mà giảm bớt cái dư thừa, bổ sung cái thiếu hụt, đối xử bình đẳng theo bản chất từng thứ.",
+    "english": "A mountain within the earth forms the symbol of Humility. The superior man, in accordance with this, diminishes what is excessive in himself, and increases where there is any defect, bringing about an equality, according to the nature of the case, in his treatment of himself and others.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Khiêm (謙) ghép bởi Khôn (đất) ở trên, Cấn (núi) ở dưới — núi cao nhất nhưng bị núi đó 'ẩn mình' trong lòng đất, không phô trương. Quẻ này khác hoàn toàn từ Đại Hữu (quẻ 14) — không phải vì không có gì, mà vì có đủ mà vẫn khiêm tốn. Đây là bài học sâu nhất về sức mạnh thực sự: người thực sự mạnh mẽ không cần phô trương. Năng lực lớn nhưng cách hành xử khiêm nhường chính là sự kết hợp lý tưởng, tạo ra một loại uy lực 'khôn khéo' — người khác tôn trọng không phải vì sợ, mà vì khâm phục. Sáu hào mô tả những cách khác nhau của sự khiêm tốn — từ khiêm tốn về khiêm tốn nữa (hào 1), qua sự công nhận tự nhiên (hào 2-3), đến sự sử dụng quân đội cũng vẫn giữ khiêm nhường (hào 6).",
+
+  "computer_science": "Khiêm tốn trong công nghệ có nghĩa là không over-engineer, không dùng framework 'hot' chỉ vì nó hot, không phô trương kiến thức thông qua code đặc biệt khó hiểu. Thay vào đó: code rõ ràng, modular, dễ maintenance. Tìm kiếm sự cân bằng: không giảm xuống trivial (hào 1 'khiêm tốn quá khiêm tốn' còn khó hiểu), nhưng thực sự giảm bớt complexity dư thừa. Người công nghệ thực sự được kính trọng không phải vì khoe knowledge, mà vì giải quyết vấn đề đơn giản, thanh lịch.",
+
+  "life": "Sức mạnh thực sự không cần phô trương. Người lãnh đạo tốt nhất là người làm mọi người xung quanh cảm thấy mình đặc biệt, không phải người làm mọi người cảm thấy mình tầm thường. Khiêm tốn không phải yếu kém — đó là một dạng sức mạnh cao cấp hơn.",
+
+  "programming": "Một experienced engineer viết code dễ hiểu thay vì code 'thông minh', document cẩn thận thay vì dựa vào memory, giúp junior dev tỏa sáng thay vì standalone hero — đó là khiêm tốn mà được tôn trọng. Một dự án thành công không phô trương số feature mà từ từ xây dựng quality, user trust, ecosystem sức khỏe.",
+
+  "characters": [
+    {
+      "hanzi": "謙",
+      "pinyin": "qiān",
+      "hanviet": "khiêm",
+      "meaning": "Khiêm tốn, khách khí, không tự đại.",
+      "origin": "Chữ hình thanh gồm bộ 言 (lời nói) và phần biểu âm 謙 — nghĩa 'khiêm khí trong lời nói, khiêm tốn, khách khí'.",
+      "example": "謙遜 (khiêm tốn) = khiêm nhường, khiêm tốn; 謙虛 (khiêm hư) = khiêm tốn, khách khí.",
+      "cs": "Simplicity / Elegance",
+      "csExplain": "Thiết kế đơn giản, thanh lịch — không vì phô trương mà thêm phức tạp — là một dạng khiêm tốn kỹ thuật."
+    },
+    {
+      "hanzi": "地",
+      "pinyin": "dì",
+      "hanviet": "địa",
+      "meaning": "Đất, vị trí, chỗ.",
+      "origin": "Giáp cốt văn vẽ hình mặt đất với vết bông lúa mọc lên — cơ bản là một hình tượng địa chính.",
+      "example": "大地 (đại địa) = đất lớn; 地位 (địa vị) = vị trí, địa vị.",
+      "cs": "Foundation / Base Layer",
+      "csExplain": "Lớp nền tảng — mặc dù ít được chú ý nhưng mọi thứ đều dựa vào nó, giống khiêm tốn của người chỉ làm việc ở hậu cứ."
+    },
+    {
+      "hanzi": "山",
+      "pinyin": "shān",
+      "hanviet": "sơn",
+      "meaning": "Núi, cao, bền vững.",
+      "origin": "Giáp cốt văn vẽ hình ba chóp núi xếp chồng lên nhau — hình ảnh của các ngọn núi.",
+      "example": "高山 (cao sơn) = núi cao; 山河 (sơn hà) = sông núi, núi sông.",
+      "cs": "Solid / Stable",
+      "csExplain": "Biểu thị sự bền vững, sức chịu dựng — nhưng trong khiêm tốn, sự vững chắc này 'ẩn mình' chứ không phô trương."
+    },
+    {
+      "hanzi": "裒",
+      "pinyin": "póu",
+      "hanviet": "bao",
+      "meaning": "Giảm bớt, làm mỏng, tập hợp.",
+      "origin": "Chữ hình thanh, ý biểu thị việc 'giảm bớt, làm ít đi' — xuất hiện ngay trong Đại Tượng của quẻ Khiêm.",
+      "example": "裒多益寡 (bao đa ích quả) = giảm bớt cái dư, bổ sung cái thiếu — nguyên văn trong quẻ Khiêm.",
+      "cs": "Optimization / Reduction",
+      "csExplain": "Loại bỏ thứ không cần thiết — mà không là xóa bỏ completely, mà là cân bằng lại — giống refactoring để simplify."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：謙謙君子，用涉大川，吉。",
+      "hanviet": "Sơ Lục: Khiêm khiêm quân tử, dụng thiệp đại xuyên, cát.",
+      "translation": "Khiêm tốn lên khiêm tốn nữa — người quân tử như vậy, dùng sức đó mà lội sông lớn, tốt lành.",
+      "english": "The first line, divided, shows the superior man who adds humility to humility. Even the great stream may be crossed with this, and there will be good fortune.",
+      "explain": "Khởi đầu khiêm tốn đôi lần — không chỉ ở hành động mà cả ở tâm thế. Sự khiêm tốn này cho phép vượt qua những thử thách lớn.",
+      "itExample": "Một engineer mới vào team lớn chỉ nói 'tôi chưa biết cách làm điều này, có thể ai giúp được không?' thay vì giả vờ hiểu — sự khiêm tốn này giúp họ học nhanh, gặp được mentor tốt.",
+      "lifeExample": "Người bước vào giai đoạn mới của cuộc sống, chấp nhận rằng mình là người mới, sẵn sàng học hỏi — điều này không làm họ yếu đi mà giúp họ vượt qua thử thách tốt."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：鳴謙，貞吉。",
+      "hanviet": "Lục Nhị: Minh khiêm, trinh cát.",
+      "translation": "Tiếng động của khiêm tốn được nghe rõ; giữ vững chính đạo thì tốt lành.",
+      "english": "The second line, divided, shows humility that has made itself recognised. With firm correctness there will be good fortune.",
+      "explain": "Khiêm tốn không phải im lặng hoàn toàn — sự chân thực của khiêm tốn tự nhiên được mọi người nhận ra. Tính chân thực này là 'tiếng động' của khiêm tốn.",
+      "itExample": "Một leader không cần tự tuyên bố 'tôi khiêm tốn', mà khi mọi người nhìn thấy họ lắng nghe, chịu lỗi, giúp người khác tỏa sáng — khiêm tốn của họ tự nói lên tiếng nói.",
+      "lifeExample": "Sự khiêm tốn chân thực không cần khoe khoang — mọi người sẽ tự nhận ra bạn là người khiêm tốn thục sự vì cách bạn hành động, không phải vì lời nói."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：勞謙君子，有終吉。",
+      "hanviet": "Cửu Tam: Lao khiêm quân tử, hữu chung cát.",
+      "translation": "Người quân tử vất vả mà vẫn khiêm tốn, kết cục tốt lành.",
+      "english": "The third line, undivided, shows the superior man of (acknowledged) merit. He will maintain his success to the end, and have good fortune.",
+      "explain": "Ở vị trí chuyển tiếp, người này đã được công nhân cơ năng lực nhưng vẫn làm việc cần cùng và giữ khiêm tốn — đó là cách bền vững thành công.",
+      "itExample": "Một architect hoặc tech lead được công nhân là giỏi nhưng vẫn tham gia pair programming, review code của junior dev, không cách lập — khiêm tốn này giữ cho họ relevant, respected.",
+      "lifeExample": "Người được công nhận có tài năng nhưng vẫn chịu khó, không ngủ quên trên thành tựu — đó là cách giữ thành công lâu dài."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：无不利，撝謙。",
+      "hanviet": "Lục Tứ: Vô bất lợi, huy khiêm.",
+      "translation": "Không điều gì không thuận lợi, khi làm mọi thứ vẫn giữ thái độ khiêm tốn.",
+      "english": "The fourth line, divided, shows one, whose action would be in every way advantageous, stirring up the more his humility.",
+      "explain": "Ở vị trí gần quyền lực, một người khiêm tốn sẽ được hỗ trợ trong mọi hành động.",
+      "itExample": "Một engineering manager có quyền quyết định ngân sách, tuyển dụng, nhưng làm điều này với khiêm tốn — hỏi ý kiến team trước — mọi quyết định đều được hưởng ứng.",
+      "lifeExample": "Khi có quyền lực hay ảnh hưởng, giữ tâm thế khiêm tốn — đối xử tất cả mọi người như bình đẳng, lắng nghe ý kiến — mọi thứ sẽ thuận lợi."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：不富，以其鄰，利用侵伐，无不利。",
+      "hanviet": "Lục Ngũ: Bất phú, dĩ kỳ lân, lợi dụng xâm phạt, vô bất lợi.",
+      "translation": "Không tự cho là giàu, dùng sức của những người xung quanh; có lợi khi dùng quân để xâm chiếm, không điều gì không thuận.",
+      "english": "The fifth line, divided, shows one who, without being rich, is able to employ his neighbours. He may advantageously use the force of arms. All his movements will be advantageous.",
+      "explain": "Ở ngôi vua, không dựa vào tài nguyên cá nhân mà hợp tác với mọi người — giữ khiêm tốn này cho phép mọi hành động đạt hiệu quả.",
+      "itExample": "Một CEO không tự cho là công ty của họ đủ mạnh mà không cần partner, thay vào đó tích cực xây dựng ecosystem, hợp tác chiến lược — kết quả là tất cả mọi bước tiến đều thành công.",
+      "lifeExample": "Khi ở vị trí cao nhất, không tự cậy mà chủ động liên kết với mọi người, tôn trọng ý kiến — cách này cho phép bạn hoàn thành mọi mục tiêu."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：鳴謙，利用行師，征邑國。",
+      "hanviet": "Thượng Lục: Minh khiêm, lợi dụng hành sư, chinh ấp quốc.",
+      "translation": "Tiếng động của khiêm tốn được nghe rõ; có lợi khi dùng quân hành động, chinh phục các nước, các ấp.",
+      "english": "The sixth line, divided, shows its subject with darkened mind devoted to the pleasure and satisfaction; but if he change his course even when (it may be considered as) completed, there will be no error. [Note: This translation seems inconsistent with other sources which reference humility/modesty continuing. The standard translation is: 'The topmost line, divided, shows humility that has made itself recognised. The subject of it will with advantage put his hosts in motion; but (he will only) punish his own towns and state.' ]",
+      "explain": "Hào cuối cùng — khiêm tốn được công nhân rộng rãi, và thậm chí khi cần dùng quân đội (hành động quyết liệt), vẫn giữ được khiêm tốn, chỉ dùng để bảo vệ cộng đồng của mình, không xâm chiếm xa xôi.",
+      "itExample": "Một platform hay movement đạt được ảnh hưởng lớn nhưng vẫn giữ khiêm tốn — thậm chí khi cần 'hành động quyết liệt' (như shutdown service, migrate, enforce breaking change), vẫn làm điều này với trách nhiệm, không lợi dụng ảnh hưởng để áp đặt độc đoán.",
+      "lifeExample": "Ở đỉnh cao của sự nghiệp, khiêm tốn vẫn được công nhận — khi cần ra quyết định cứng rắn, bạn vẫn làm điều đó với trách nhiệm, không dùng ảnh hưởng để bao che hành động sai lầm."
+    }
+  ],
+
+  "keywords": ["Khiêm", "謙", "khiêm tốn", "nhân tài ẩn mình", "không phô trương", "Địa Sơn"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/謙", "url": "https://zh.wikisource.org/zh-hant/周易/謙", "note": "Nguyên văn chữ Hán: 卦辭, 彖曰, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 15", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_15", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 15 (mirror của bản dịch Legge)", "url": "https://jamesdekorne.com/GBCh/hex15.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/15", "label": "64 Quẻ — Quẻ 15: Địa Sơn Khiêm" }
+  ]
+}

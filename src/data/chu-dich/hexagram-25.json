@@ -1,0 +1,148 @@
+{
+  "id": 25,
+  "hanzi": "無妄",
+  "pinyin": "Wú Wàng",
+  "hanviet": "Vô Vọng",
+  "english": "Innocence",
+  "upperTrigram": "qian",
+  "lowerTrigram": "zhen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "無妄：元亨。利貞。其匪正有眚，不利有攸往。",
+    "hanviet": "Vô Vọng: Nguyên hanh. Lợi trinh. Kỳ phỉ chính hữu sao, bất lợi hữu du vãng.",
+    "translation": "Vô Vọng (Chân thực, không toan tính): hanh thông lớn, thuận lợi khi giữ chính đính. Nếu hành động không đúng chính đạo sẽ gặp tai họa, khi đó không thuận lợi khi tiến tới.",
+    "english": "Wu Wang indicates great progress and success, while there will be advantage in being firm and correct. If (its subject and his action) be not correct, he will fall into errors, and it will not be advantageous for him to move in any direction."
+  },
+
+  "daTuong": {
+    "hanzi": "天下雷行，物與無妄；先王以茂對時，育萬物。",
+    "hanviet": "Thiên hạ lôi hành, vật dữ vô vọng; tiên vương dĩ mậu đối thời, dục vạn vật.",
+    "translation": "Sấm chạy khắp dưới trời, tất cả sinh vật hành động theo bản tính tự nhiên của chúng, không có toan tính hay giả dối — đó là hình tượng quẻ Vô Vọng. Các bậc vua xưa nhân đó mà theo đúng lúc mùa, quy tắc tự nhiên để bồi dưỡng vạn vật.",
+    "english": "The thunder rolls all under the sky, and to (every)thing there is given (its nature), free from all insincerity. The ancient kings, in accordance with this, (made their regulations) in complete accordance with the seasons, thereby nourishing all things.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Vô Vọng có ba ý chính: (1) Chân thực, không toan tính, không giả dối; (2) Tự nhiên, không ép buộc; (3) Phiền toái bắt nguồn từ toan tính dư thừa của chính ta. Sấm là hành động tự nhiên, thẳng thắn — không cần toan tính mà mọi việc vẫn hành động đúng. Quẻ này nhắc rằng thành công lớn nhất đến từ sự chân thực, không phải từ kế hoạch tinh tế hay toan tính đầu đủ.",
+
+  "computer_science": "Vô Vọng như triết học của KISS (Keep It Simple, Stupid) hay YAGNI (You Aren't Gonna Need It): đừng over-engineer, đừng thêm abstraction không cần thiết, đừng dự đoán cấu trúc tương lai — cứ giải quyết bài toán hiện tại một cách thẳng thắn, tự nhiên, chân thực. Thường những giải pháp đơn giản này lại hiệu quả hơn những kế hoạch toan tính phức tạp.",
+
+  "life": "Đừng quá toan tính, quá lo lắng về những điều chưa xảy ra — hãy hành động theo bản tính, chân thực với chính mình. Đôi khi sự chân thực và đơn giản hơn là sự toan tính phức tạp.",
+
+  "programming": "Code đơn giản, rõ ràng, không dự đoán cấu trúc trong tương lai, không thêm pattern, abstraction không cần thiết ngay bây giờ — thường chạy tốt hơn và dễ maintain hơn. Nếu requirement thay đổi, refactor đơn giản hơn là phải nợ kỹ thuật vì over-engineering từ lúc đầu.",
+
+  "characters": [
+    {
+      "hanzi": "無",
+      "pinyin": "wú",
+      "hanviet": "vô",
+      "meaning": "Không có, vô, trống rỗng.",
+      "origin": "Chữ tượng hình cổ vẽ hình một người đứng (大 hoặc人) mà không có gì trong tay — nghĩa gốc là 'không có, trống không', cũng dùng để nêu từ phủ định 'không phải'.",
+      "example": "無所謂 (vô sở vị) = không có ý kiến gì; 無常 (vô thường) = không bất biến.",
+      "cs": "Absence / null",
+      "csExplain": "Trạng thái không có gì, null, absence — trong logic Boolean, vô = false, không tồn tại."
+    },
+    {
+      "hanzi": "妄",
+      "pinyin": "wàng",
+      "hanviet": "vọng",
+      "meaning": "Toan tính, giả dối, sai lầm, reckless, rồi rủi mù quáng.",
+      "origin": "Chữ hội ý ghép từ 女 (nữ, phụ nữ) và 亡 (vong, biến mất, chết) — theo một cách giải, đó là hình ảnh của sự liều lĩnh, toan tính dẫn tới thất bại hoặc mất mát; hoặc từ 女 (tâm hồn nữ tính, tức cảm xúc) + 亡 (những toan tính hư hao không có cơ sở thật) — nghĩa là 'toan tính không có cơ sở, sự giả dối, reckless'.",
+      "example": "妄想 (vọng tưởng) = tưởng tượng vô căn cứ; 荒唐無妄 (hoang đường vô vọng) = hoàn toàn phi lý.",
+      "cs": "Speculation / over-assumption",
+      "csExplain": "Giả định quá nhiều về tương lai, dự đoán cấu trúc không cần thiết ngay bây giờ — 'toan tính' trong code."
+    },
+    {
+      "hanzi": "雷",
+      "pinyin": "léi",
+      "hanviet": "lôi",
+      "meaning": "Sấm, tiếng sấm, bạo động tự nhiên, hành động mạnh mẽ.",
+      "origin": "Chữ tượng hình cổ vẽ hình tiếng nổ (口 như vòng tròn âm thanh) từ trên trời (由 như từ từ trên xuống) — nghĩa gốc là 'tiếng sấm, sấm vang', mở rộng thành 'bạo động, hành động mạnh mẽ, tức thời'.",
+      "example": "雷鳴 (lôi minh) = tiếng sấm; 雷厲風行 (lôi lệ phong hành) = hành động mạnh mẽ, tức thời như sấm và gió.",
+      "cs": "Action / trigger",
+      "csExplain": "Hành động trực tiếp, tự nhiên, không cần toan tính — giống sấm chạy khắp trời, mọi việc tự diễn ra theo quy luật tự nhiên."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：無妄，往吉。",
+      "hanviet": "Sơ Cửu: Vô vọng, vãng cát.",
+      "translation": "Chân thực, không toan tính; bước tới sẽ tốt lành.",
+      "english": "The first NINE, undivided, shows its subject free from all insincerity. His advance will be accompanied with good fortune.",
+      "explain": "Ở vị trí thấp nhất nhưng có tâm thực chân thành — bước tới không do toan tính mà do bản tính tự nhiên, nên tốt lành.",
+      "itExample": "Dev mới join project, không biết 'xã hội đen', viết code thẳng thắn theo best practice mà không cân nhắc xã giao nội bộ — kết quả code thường sạch lắm và được senior khen.",
+      "lifeExample": "Người trẻ chân thực, không toan tính, hành động theo bản tính tốt — được mọi người yêu mến dù chưa có kinh nghiệm."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：不耕穫，不菑畬，則利有攸往。",
+      "hanviet": "Lục Nhị: Bất cơm hoạch, bất tự thô, tắc lợi hữu du vãng.",
+      "translation": "Không cần chuẩn bị trước (không cày không gặt), không cần san ủi đất từ trước — khi đó hành động sẽ thuận lợi.",
+      "english": "The second SIX, divided, shows one who reaps without having ploughed (that he might reap), and gathers the produce of his third year's fields without having cultivated them the first year for that end. To such a one there will be advantage in whatever direction he may move.",
+      "explain": "Không lên kế hoạch quá trước, cứ hành động tự nhiên, tình huống sẽ tự phát triển theo hướng thuận lợi.",
+      "itExample": "Không lên kế hoạch chi tiết từ lúc còn non nớt, cứ bắt tay vào dự án mà học hỏi từng bước — thường sẽ đạt kết quả tốt vì cải thích được theo tình huống thực tế.",
+      "lifeExample": "Đừng quá lên kế hoạch chi tiết cho tương lai xa xôi — hãy bắt tay vào việc, học hỏi từng ngày, tự nhiên sẽ đi tới thành công."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：無妄之災，或繫之牛，行人之得，邑人之災。",
+      "hanviet": "Lục Tam: Vô vọng chi tai, hoặc hệ chi ngưu, hành nhân chi đắc, ích nhân chi tai.",
+      "translation": "Tai họa của sự vô vọng: con trâu bị buộc cơ duyên trở thành của người đi đường nhưng lại trở thành tai họa cho người dân trong thị trấn — một sự kiện đột ngột, không ai toan tính được.",
+      "english": "The third SIX, divided, shows calamity happening to one who is free from insincerity;—as in the case of an ox that has been tied up. A passer by finds it (and carries it off), while the people in the neighbourhood have the calamity (of being accused and apprehended).",
+      "explain": "Dù chân thực nhưng vẫn gặp tai họa từ bên ngoài, không phải do lỗi của chính mình — bộc lộ rằng 'vô vọng' không bảo vệ trước mọi rủi ro từ ngoài.",
+      "itExample": "Dù code của bạn viết rất sạch, chân thực, lỗi lại xảy ra do dependency bên ngoài hoặc infrastructure có vấn đề — không phải lỗi của bạn nhưng vẫn cần fix.",
+      "lifeExample": "Dù hành động chân thực, không toan tính, vẫn có lúc gặp tai họa từ bên ngoài do hoàn cảnh — không phải lỗi của mình nhưng vẫn phải chịu hậu quả."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：可貞，無咎。",
+      "hanviet": "Cửu Tứ: Khả trinh, vô cữu.",
+      "translation": "Có thể giữ chính đạo chân thực — không có lỗi.",
+      "english": "The fourth NINE, undivided, shows (a case) in which, if its subject can remain firm and correct, there will be no error.",
+      "explain": "Ở vị trí gần trung tâm, cần chủ động duy trì sự chân thực, không bị chi phối bởi toan tính bên ngoài.",
+      "itExample": "Quản lý vẫn giữ được tiêu chuẩn chân thực, đơn giản trong kiến trúc dù bị áp lực từ bên ngoài để add tính năng phức tạp — chủ động bảo vệ cái đơn giản, chân thực.",
+      "lifeExample": "Giữa áp lực xã hội, vẫn kiên định với giá trị chân thực của riêng mình — không bị cuốn theo toan tính của đám đông."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：無妄之疾，勿藥有喜。",
+      "hanviet": "Cửu Ngũ: Vô vọng chi tật, vật dược hữu hỷ.",
+      "translation": "Bệnh của sự vô vọng (không phải do toan tính mà do bản tính tự nhiên) — đừng dùng thuốc, chỉ cần tự nhiên yên tĩnh, sẽ hết bệnh.",
+      "english": "The fifth NINE, undivided, shows one who is free from insincerity, and yet has fallen ill. Let him not use medicine, and he will have occasion for joy (in his recovery).",
+      "explain": "Bệnh bắt nguồn từ sự vô vọng — tức là sự đơn giản quá, không thích ứng được với phức tạp — không nên 'chữa' bằng cách thêm phức tạp vào, chỉ cần yên tĩnh để cơ thể tự phục hồi.",
+      "itExample": "Hệ thống gặp vấn đề hiệu năng do quá đơn giản — đừng vội patch hay add tính năng phức tạp, chỉ cần để nó yên tĩnh, monitoring, tự nhiên sẽ tìm ra nguyên nhân đơn giản.",
+      "lifeExample": "Người hoàn toàn chân thực, đơn giản nhưng gặp áp lực từ xã hội phức tạp — đừng cố 'chữa' bằng trở nên giả tạo hoặc phức tạp, chỉ cần yên tĩnh, sự chân thực sẽ hồi phục."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：無妄，行有眚，無攸利。",
+      "hanviet": "Thượng Cửu: Vô vọng, hành hữu sao, vô du lợi.",
+      "translation": "Vô vọng nhưng nếu cứ hành động rồi sẽ gặp tai họa — khi đó không gì có lợi.",
+      "english": "The topmost NINE, undivided, shows its subject free from insincerity, yet sure to fall into error, if he take action. (His action) will not be advantageous in any way.",
+      "explain": "Hào cuối, đã ở đỉnh, dù chân thực nhưng nếu cứ hành động thêm sẽ đi quá giới hạn, gặp phản phục — cần dừng lại, không hành động thêm.",
+      "itExample": "System đã ổn định, chạy với kiến trúc đơn giản, chân thực — nếu cứ thêm feature hay refactor không cần thiết sẽ phá vỡ sự ổn định mà không mang lại lợi ích.",
+      "lifeExample": "Đã đạt được trạng thái tốt thông qua sự chân thực — nhưng nếu cứ kiếm cách 'tối ưu' hay 'hoàn hảo' hơn sẽ phá hỏng sự tốt lành hiện tại."
+    }
+  ],
+
+  "keywords": ["Vô Vọng", "無妄", "chân thực", "không toan tính", "sấm dưới trời", "tự nhiên", "đơn giản"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/100111.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Vô Vọng, đối chiếu từng hào." },
+    { "source": "維基文庫 Wikisource — 周易/無妄", "url": "https://zh.wikisource.org/zh-hant/周易/無妄", "note": "Nguồn nguyên văn chữ Hán (卦辭, 爻辭, 象曰), đối chiếu nội dung khớp với bản dịch Legge." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/wu-wang", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn; truy cập qua r.jina.ai proxy để vượt qua trang chặn truy cập tự động." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/25", "label": "64 Quẻ — Quẻ 25: Thiên Lôi Vô Vọng" }
+  ]
+}

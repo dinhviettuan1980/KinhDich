@@ -1,0 +1,138 @@
+{
+  "id": 63,
+  "hanzi": "既濟",
+  "pinyin": "Jì Jì",
+  "hanviet": "Ký Tế",
+  "english": "Already Fulfilled (Water over Fire)",
+  "upperTrigram": "kan",
+  "lowerTrigram": "li",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "既濟：亨，小利貞，初吉終亂。",
+    "hanviet": "Ký Tế: Hanh, tiểu lợi trinh, sơ cát chung loạn.",
+    "translation": "Ký Tế (Đã qua được, hoàn thành): hanh thông; những việc nhỏ lợi khi chính đính; ban đầu tốt lành, cuối cùng lại rối loạn.",
+    "english": "Ji Ji intimates progress and success in small matters. There will be advantage in being firm and correct. There has been good fortune in the beginning; there may be disorder in the end."
+  },
+
+  "daTuong": {
+    "hanzi": "水在火上，既濟；君子以思患而預防之。",
+    "hanviet": "Thủy tại hỏa thượng, Ký Tế; quân tử dĩ tư hoạn nhi dự phòng chi.",
+    "translation": "Nước ở phía trên lửa là tượng của quẻ Ký Tế; người quân tử noi theo đó mà suy nghĩ trước điều tai họa, chuẩn bị phòng vệ trước.",
+    "english": "(The trigram representing) fire and that for water above it form Ji Ji. The superior man, in accordance with this, thinks of evil (that may come), and beforehand guards against it.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Ký Tế là hình ảnh của việc đã 'qua được' — nước trên lửa (nước làm lửa tắt, lửa làm nước nóng) chỉ một trạng thái cân bằng tạm thời. Nhưng cảnh báo rõ: 'ban đầu tốt, cuối cùng lại loạn' — đây là lệnh cảnh báo kinh điển của quẻ cuối cùng thứ 63 trong 64 quẻ. Vì sao? Vì mọi thứ 'xong rồi' dễ làm người sơ suất, buông lỏng cảnh báo. Sáu hào kể: kéo lại bánh xe/bị ướt đuôi, an toàn (Cửu Sơ) → vợ mất cái tranh gối, không cần đuổi, 7 ngày tìm được (Lục Nhị, những thứ mất sẽ quay lại) → Cao Tông đánh bại vùng quỷ, 3 năm chinh phục, không dùng người nhỏ (Cửu Tam, chiến thắng lớn cần tự chế) → áo quần có lỗ, cảnh báo suốt ngày (Lục Tứ) → láng giềng phía đông giết bò lễ tế, không bằng láng giềng phía tây dâng lễ, thực sự được phúc (Cửu Ngũ) → nhúng cả đầu vào (Thượng Lục, tham lam hết).",
+
+  "computer_science": "Ký Tế giống khi 1 project đã ship/launch — team dễ slack off, CI/CD dễ bị ngó lơ, monitoring dễ bị quên. Nhưng quẻ nhắc: 'sau khi qua được, phải chuẩn bị trước cho tai họa kế tiếp' — tức là phải tối ưu observability, incident response, chaos engineering. Hệ thống sống được chỉ vì team không xem mục đích là 'ship' mà là 'vận hành bền vững'.",
+
+  "life": "Khi đã đạt được mục tiêu, đó chỉ là lúc bắt đầu khác chứ không phải kết thúc — cần tỉnh táo, chuẩn bị trước cho những thử thách mới, không được thấm lắm.",
+
+  "programming": "Launch product là milestone, nhưng không phải end — từ đó monitoring, incident response, gradual rollout feature mới, security patches, performance optimization. Nếu coi 'ship' là xong, 1 tuần sau sẽ production incident.",
+
+  "characters": [
+    {
+      "hanzi": "既",
+      "pinyin": "jì",
+      "hanviet": "ký",
+      "meaning": "Đã, rồi; xong; cũng.",
+      "origin": "Chữ cổ vẽ hình một người đã ăn xong (phần trên là 旡 hình miệng, dưới là 隻 hình chân, tay) — ý chỉ 'đã xong, rồi'.",
+      "example": "既然 (ký nhiên) = đã rồi, vì vậy; 既往 (ký vãng) = quá khứ, những điều đã qua; 既有 (ký hữu) = đã có, hiện có.",
+      "cs": "Already / Done State",
+      "csExplain": "Trạng thái đã hoàn tất, đã vượt qua milestone — nhưng không phải 'finished forever', chỉ là 'xong giai đoạn này'."
+    },
+    {
+      "hanzi": "濟",
+      "pinyin": "jì",
+      "hanviet": "tế",
+      "meaning": "Vượt qua, qua được; giúp đỡ, cứu tế; xong, hoàn thành.",
+      "origin": "Chữ ghép từ 水 (thủy, nước) + 齊 (tề, thẳng/gọn gàng) — hình ảnh 'qua được dòng nước' bằng cách sắp xếp gọn gàng/đúng cách — mở rộng thành 'giúp đỡ, cứu tế, hoàn thành'.",
+      "example": "濟世 (tế thế) = cứu thế, giúp đỡ thế gian; 濟難 (tế nạn) = cứu khó; 共濟 (cộng tế) = cùng qua được, hợp tác.",
+      "cs": "Traverse / Accomplish",
+      "csExplain": "Vượt qua rào cản, hoàn thành milestone — từ một bên sang bên kia, từ trước đến sau."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Cửu Sơ",
+      "hanzi": "初九：曳其輪，濡其尾，无咎。",
+      "hanviet": "Cửu Sơ: Duệ kỳ luân, nhuận kỳ vĩ, vô cữu.",
+      "translation": "Kéo lại bánh xe (để kiểm soát), vùi hẹp đuôi nước — không có lỗi.",
+      "english": "The first NINE, undivided, (shows its subject as a driver) who drags back his wheel, (or as a fox) which has wet his tail. There will be no error.",
+      "explain": "Bước đầu sau khi qua được — cần kiểm soát lại, không vội chạy nhanh, những gì 'ướt' (còn yếu) phải chặn lại.",
+      "itExample": "Sau launch: monitoring chặt, feature flag ready, rollback plan sẵn sàng — không vội scale mà kiểm soát trước.",
+      "lifeExample": "Sau khi đạt được 1 mục tiêu, không vội tiến tới mục tiêu kế tiếp mà dừng kiểm soát, ổn định trước."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：婦喪其茀，勿逐，七日得。",
+      "hanviet": "Lục Nhị: Phụ tang kỳ phất, vật trục, thất nhật đắc.",
+      "translation": "Vợ mất chiếc tranh gối (screen), đừng đuổi theo, 7 ngày sẽ tìm được.",
+      "english": "The second SIX, divided, (shows its subject as) a wife who has lost her (carriage-)screen. There is no occasion to go in pursuit of it. In seven days she will find it.",
+      "explain": "Những thứ đã mất trong quá trình sẽ tự quay lại — đừng áp lực, chỉ cần chờ đợi có kiên nhẫn.",
+      "itExample": "Data thất lạc tạm thời: không cần rollback ngay, chỉ cần monitor, 1 vài ngày self-heal (cache rebuild, sync lại)",
+      "lifeExample": "Mất mát tạm thời sau thành công: không cần vội vàng nhưng nhạy cảm, tự nhiên quay lại."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：高宗伐鬼方，三年克之，小人勿用。",
+      "hanviet": "Cửu Tam: Cao Tông phạt quỷ phương, tam niên khắc chi, tiểu nhân vật dụng.",
+      "translation": "Cao Tông (vua xưa) đánh bại vùng quỷ, 3 năm mới chinh phục, đừng dùng người tiểu nhân.",
+      "english": "The third NINE, undivided, (suggests the case of) Kao Tsung, who attacked the Demon region, but was three years in subduing it. Small men should not be employed (in such enterprises).",
+      "explain": "Chiến thắng lớn sau khi qua được cần chuẩn bị dài hạn, cần người giỏi, không dùng người sơ sài.",
+      "itExample": "Mở rộng platform sang region mới: cần 3-5 năm setup, cần kiến trúc giỏi, không dùng junior dev vô kinh nghiệm.",
+      "lifeExample": "Có thành công nhỏ, muốn mở rộng: cần người giỏi, preparation dài, không vội vàng với lao động có ít kinh nghiệm."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：繻有衣袽，終日戒。",
+      "hanviet": "Lục Tứ: Thư hữu y nhâm, chung nhật giới.",
+      "translation": "Có mảnh vải để vá lỗ rò nước, cảnh báo suốt ngày.",
+      "english": "The fourth SIX, divided, shows its subject with rags provided against any leak (in his boat), and on his guard all day long.",
+      "explain": "Dù đã qua được, vẫn phải chuẩn bị sẵn để vá những lỗ rò, luôn cảnh báo.",
+      "itExample": "Dù hệ thống production chạy ổn, vẫn phải có runbook cho incident, PagerDuty sẵn sàng, on-call liên tục.",
+      "lifeExample": "Dù công sự ổn định, vẫn phải sẵn sàng cho unexpected, luôn tỉnh táo."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：東鄰殺牛，不如西鄰之禴祭，實受其福。",
+      "hanviet": "Cửu Ngũ: Đông lân sát ngưu, bất như tây lân chi tích tế, thực thụ kỳ phúc.",
+      "translation": "Láng giềng phía đông giết bò để lễ tế lớn, không bằng láng giềng phía tây dâng lễ tế nhỏ chân thành, thực sự cái nào nhận được phúc lành.",
+      "english": "The fifth NINE, undivided, shows its subject (as) the neighbour in the east who slaughters an ox (for his sacrifice); but this is not equal to the (small) spring sacrifice of the neighbour in the west, whose sincerity receives the blessing.",
+      "explain": "Không phải lớn/nhiều mới tốt — lòng chân thành mới được phúc, dù cái nhỏ.",
+      "itExample": "Một team nhỏ viết minimal viable monitoring nhưng chân thành, hơn team lớn có complex monitoring nhưng không dùng.",
+      "lifeExample": "Nước rút, focused vào những gì thực sự cần thiết + chân thành, hơn hơn việc làm lớn nhưng không chân thành."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：濡其首，厲。",
+      "hanviet": "Thượng Lục: Nhuận kỳ thủ, lệ.",
+      "translation": "Nhúng cả đầu vào, nguy hiểm.",
+      "english": "The topmost SIX, divided, shows its subject with (even) his head immersed. The position is perilous.",
+      "explain": "Vượt quá, tham lam hết — đầu cũng bị nhúng, ở vị trí cực kỳ nguy hiểm.",
+      "itExample": "Đạt được thành công, cố tham thêm sự vụ ngoài scope -> overwhelm team -> chaos.",
+      "lifeExample": "Sau thành công, cố gắng mở rộng quá mức năng lực -> cuối cùng thất bại cảm tượng thành công."
+    }
+  ],
+
+  "keywords": ["Ký Tế", "既濟", "đã qua được", "hoàn thành", "cảnh báo", "nước lửa", "ban đầu tốt cuối rối loạn", "qua được dòng"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/ji-ji", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Ký Tế (Judgment + 6 hào)." },
+    { "source": "Chinese Text Project — Book of Changes : Xiang Zhuan : Ji Ji", "url": "https://ctext.org/book-of-changes/ji-ji2", "note": "Nguồn Đại Tượng truyện (象曰) kèm dịch Anh ngữ James Legge." },
+    { "source": "維基文庫 Wikisource — 周易/既濟", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E6%97%A2%E6%BF%9F", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/63", "label": "64 Quẻ — Quẻ 63: Thủy Hỏa Ký Tế" }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "id": 7,
+  "hanzi": "師",
+  "pinyin": "Shī",
+  "hanviet": "Sư",
+  "english": "The Army",
+  "upperTrigram": "kun",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "師：貞丈人吉，无咎。",
+    "hanviet": "Sư: Trinh trượng nhân cát, vô cữu.",
+    "translation": "Sư (Quân đội, đám đông có tổ chức): giữ chính đạo, có người chỉ huy từng trải (trượng nhân) thì tốt lành, không có lỗi.",
+    "english": "Sze indicates how, in the case which it supposes, with firmness and correctness, and (a leader of) age and experience, there will be good fortune and no error."
+  },
+
+  "daTuong": {
+    "hanzi": "地中有水，師；君子以容民畜衆。",
+    "hanviet": "Địa trung hữu thủy, Sư; quân tử dĩ dung dân súc chúng.",
+    "translation": "Trong lòng đất chứa nước ngầm, ẩn tàng, nuôi dưỡng — là tượng của Sư; người quân tử noi theo đó mà bao dung dân chúng, nuôi dưỡng và tổ chức đám đông thành lực lượng.",
+    "english": "(The trigram representing) the earth and in the midst of it that representing water, form Sze. The superior man, in accordance with this, nourishes and educates the people, and collects (from among them) the multitudes (of the hosts).",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Sư nói về việc tổ chức, huy động đám đông — quân đội chỉ là một ứng dụng cụ thể của nguyên lý này. Hình tượng nước ngầm ẩn chứa trong lòng đất: sức mạnh tập thể tiềm tàng cần được nuôi dưỡng và tổ chức đúng cách mới phát huy tác dụng, giống như đất chứa nước ngầm nuôi sống vạn vật mà không phô trương. Điều kiện tiên quyết để dùng 'Sư' thành công là có kỷ luật (chính đạo) và người chỉ huy đủ kinh nghiệm (trượng nhân), không phải sức mạnh đơn thuần. Sáu hào mô tả các khía cạnh của tổ chức tập thể: kỷ luật ngay từ đầu (Sơ Lục) → người chỉ huy ở đúng vị trí, được tin cậy (Cửu Nhị) → hậu quả của việc chỉ huy sai người (Lục Tam) → biết rút lui đúng lúc không phải là lỗi (Lục Tứ) → chỉ nên dùng vũ lực khi thực sự chính đáng, dùng đúng người (Lục Ngũ) → và luận công ban thưởng công bằng sau khi hoàn thành (Thượng Lục).",
+
+  "computer_science": "Sư giống hệt bài học về quản lý một team lớn hoặc orchestration của một hệ phân tán: sức mạnh không đến từ số lượng node/thành viên đơn thuần mà từ TỔ CHỨC đúng cách — cần một 'orchestrator'/leader đủ kinh nghiệm (trượng nhân ~ senior/tech lead) và discipline rõ ràng (rules of engagement ~ coding standard, incident playbook) để đám đông (fleet of workers/microservices) không biến thành hỗn loạn.",
+
+  "life": "Sức mạnh của một tập thể không đến từ số đông, mà từ kỷ luật và người dẫn dắt có kinh nghiệm, tầm nhìn đúng đắn — thiếu một trong hai điều này, đám đông dễ biến thành hỗn loạn.",
+
+  "programming": "Team lớn/hệ thống phân tán cần engineering manager có kinh nghiệm (trượng nhân) thiết lập coding standard, sprint ritual, incident response playbook rõ ràng (dung dân súc chúng ~ nuôi dưỡng, tổ chức đội ngũ) — giao việc chỉ huy cho người thiếu kinh nghiệm (Lục Tam, 'sư hoặc dư thi' = nhiều đầu mối chỉ huy lộn xộn) sẽ dẫn tới thất bại.",
+
+  "characters": [
+    {
+      "hanzi": "師",
+      "pinyin": "shī",
+      "hanviet": "sư",
+      "meaning": "Quân đội, đám đông có tổ chức; thầy.",
+      "origin": "Gồm bộ 𠂤 (nguyên là hình đống đất/gò nhỏ nơi đóng quân) + 帀 (táp, bao quanh). Thuyết Văn giải 'sư, nhị thiên ngũ bách nhân vi sư' (2500 người là một 'sư' — đơn vị quân đội cổ), nghĩa gốc là đơn vị quân đội đóng quanh một gò đất, mở rộng thành 'đám đông có tổ chức', sau này còn mang nghĩa 'thầy/người dẫn dắt' vì thầy dẫn dắt đám đông học trò.",
+      "example": "師傅 (sư phó, thầy dạy nghề); 軍師 (quân sư).",
+      "cs": "Orchestrator / Fleet of Workers",
+      "csExplain": "Tập hợp nhiều tiến trình/worker được tổ chức và điều phối bởi một orchestrator — sức mạnh đến từ tổ chức, không phải số lượng đơn thuần."
+    },
+    {
+      "hanzi": "丈",
+      "pinyin": "zhàng",
+      "hanviet": "trượng",
+      "meaning": "Đơn vị đo chiều dài; người lớn tuổi, đáng kính (trượng nhân).",
+      "origin": "Giáp cốt văn vẽ hình bàn tay cầm một cây gậy/thước đo — nghĩa gốc 'cây gậy đo lường, hoặc gậy chống của người già', mở rộng thành đơn vị đo và xưng hô kính trọng người lớn tuổi.",
+      "example": "丈夫 (trượng phu, người đàn ông trưởng thành đáng kính); 老丈人 (lão trượng nhân, bậc cao niên).",
+      "cs": "Experienced Lead / Senior Role",
+      "csExplain": "Vai trò người có kinh nghiệm dày dặn, đủ 'thước đo' để đánh giá và dẫn dắt quyết định đúng đắn cho cả đội ngũ."
+    },
+    {
+      "hanzi": "律",
+      "pinyin": "lǜ",
+      "hanviet": "luật",
+      "meaning": "Quy tắc, kỷ luật, luật lệ.",
+      "origin": "Bộ 彳 (xích, bước đi nhỏ) + 聿 (duật, cây bút) — nghĩa gốc liên quan tới việc 'ban hành, viết ra các quy tắc để mọi người cùng tuân theo khi hành quân/hành động', mở rộng thành 'luật lệ, kỷ luật' nói chung.",
+      "example": "紀律 (kỷ luật); 法律 (pháp luật).",
+      "cs": "Protocol / Rules of Engagement",
+      "csExplain": "Bộ quy tắc thống nhất mà mọi thành phần trong hệ thống/đội ngũ phải tuân theo — thiếu nó, hành động tập thể dễ dẫn tới hỗn loạn, xung đột."
+    },
+    {
+      "hanzi": "畜",
+      "pinyin": "xù",
+      "hanviet": "súc",
+      "meaning": "Nuôi dưỡng, tích lũy (đọc xù); gia súc (đọc chù).",
+      "origin": "Hình tượng liên quan tới ruộng đất (田) và việc tích trữ/nuôi dưỡng lâu dài. Thuyết Văn xếp vào nghĩa 'điền sở súc dã' — điều được nuôi dưỡng, tích trữ trên ruộng.",
+      "example": "畜牧 (súc mục, chăn nuôi); 積畜/積蓄 (tích súc, tích lũy).",
+      "cs": "Resource Pooling / Capacity Building",
+      "csExplain": "Việc tích lũy, nuôi dưỡng nguồn lực (nhân sự, dữ liệu, hạ tầng) theo thời gian để khi cần có đủ 'quân số' huy động — giống capacity planning trước khi scale."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：師出以律，否臧，凶。",
+      "hanviet": "Sơ Lục: Sư xuất dĩ luật, phủ tang, hung.",
+      "translation": "Xuất quân phải có kỷ luật rõ ràng; nếu kỷ luật không tốt, sẽ xấu.",
+      "english": "The first line, divided, shows the host going forth according to the rules (for such a movement). If these be not good, there will be evil.",
+      "explain": "Bước khởi đầu của bất kỳ hành động tập thể nào — kỷ luật/quy tắc phải được thiết lập rõ ràng ngay từ đầu, thiếu điều này thì hậu quả xấu gần như chắc chắn.",
+      "itExample": "Trước khi bắt đầu một dự án lớn nhiều team tham gia, cần thiết lập rõ coding convention, quy trình review, git workflow ngay từ commit đầu tiên — thiếu kỷ luật ban đầu sẽ dẫn tới hỗn loạn về sau.",
+      "lifeExample": "Bắt đầu bất kỳ công việc tập thể nào (dự án nhóm, gia đình mới) đều cần thống nhất quy tắc rõ ràng ngay từ đầu — thiếu điều này dễ dẫn tới xung đột, thất bại sau này."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：在師中吉，无咎；王三錫命。",
+      "hanviet": "Cửu Nhị: Tại sư trung cát, vô cữu; vương tam tích mệnh.",
+      "translation": "Ở vị trí chỉ huy giữa quân đội thì tốt lành, không có lỗi; nhà vua ba lần ban lệnh tin cậy giao phó.",
+      "english": "The second line, undivided, shows (the leader) in the midst of the host. There will be good fortune and no error. The king has thrice conveyed to him the orders (of his favour).",
+      "explain": "Vị trí người chỉ huy trực tiếp, được cấp trên tin tưởng giao trọng trách nhiều lần — đây là hào tốt nhất của quẻ Sư, biểu thị sự tin cậy hai chiều giữa lãnh đạo cấp cao và người thực thi.",
+      "itExample": "Một tech lead trực tiếp dẫn dắt team, liên tục được ban lãnh đạo tin tưởng giao thêm trách nhiệm quan trọng — mối quan hệ tin cậy hai chiều này là nền tảng cho một team vận hành tốt.",
+      "lifeExample": "Người trực tiếp lãnh đạo, gần gũi với đội ngũ của mình và được cấp trên liên tục tin tưởng giao phó trọng trách — đây là vị trí lý tưởng để phát huy năng lực."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：師或輿尸，凶。",
+      "hanviet": "Lục Tam: Sư hoặc dư thi, hung.",
+      "translation": "Quân đội có khi chở đầy xác chết trên xe, chỉ huy thất bại hoặc nhiều đầu mối tranh quyền, xấu.",
+      "english": "The third line, divided, shows how the host may, possibly, have many inefficient leaders. There will be evil.",
+      "explain": "Vị trí bất chính, thiếu năng lực nhưng lại nắm quyền chỉ huy, hoặc quyền chỉ huy bị chia năm xẻ bảy — hậu quả là thất bại thảm hại, tổn thất nặng nề.",
+      "itExample": "Một dự án có quá nhiều 'leader' tranh nhau quyết định, không rõ ai chịu trách nhiệm cuối cùng, dẫn tới quyết định mâu thuẫn nhau, dự án thất bại nặng nề — bài học về single point of accountability.",
+      "lifeExample": "Một tập thể có quá nhiều người tranh giành quyền lãnh đạo mà không ai đủ năng lực thực sự — kết cục thường là thất bại nặng nề, tổn thất lớn cho tất cả."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：師左次，无咎。",
+      "hanviet": "Lục Tứ: Sư tả thứ, vô cữu.",
+      "translation": "Quân đội lui về đóng ở bên trái, rút lui chiến thuật, không có lỗi.",
+      "english": "The fourth line, divided, shows the host in retreat. There is no error.",
+      "explain": "Biết đánh giá đúng tình hình và chủ động rút lui khi cần thiết — đây không phải là thất bại hay yếu đuối, mà là quyết định đúng đắn, không có gì đáng trách.",
+      "itExample": "Team chủ động rollback một tính năng lớn khi phát hiện rủi ro nghiêm trọng trong lúc rollout — đây là quyết định đúng đắn, không phải thất bại, dù trông có vẻ như 'lùi bước'.",
+      "lifeExample": "Biết rút lui đúng lúc khỏi một kế hoạch/khoản đầu tư khi nhận ra rủi ro tăng cao — đây là sự khôn ngoan, không phải là thất bại hay yếu đuối."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：田有禽，利執言，无咎。長子帥師，弟子輿尸，貞凶。",
+      "hanviet": "Lục Ngũ: Điền hữu cầm, lợi chấp ngôn, vô cữu. Trưởng tử suất sư, đệ tử dư thi, trinh hung.",
+      "translation": "Ngoài đồng có chim thú phá hoại, có lý do chính đáng để hành động; bắt giữ và tuyên cáo rõ ràng thì không có lỗi. Nếu để con trưởng có năng lực chỉ huy quân, mà để bọn trẻ thiếu kinh nghiệm cùng tham gia chỉ huy thì dù có giữ chính đạo cũng xấu.",
+      "english": "The fifth line, divided, shows birds in the fields, which it will be advantageous to seize (and destroy). In that case there will be no error. If the oldest son leads the host, and younger men (idly occupy offices assigned to them), however firm and correct he may be, there will be evil.",
+      "explain": "Chỉ nên dùng vũ lực/hành động mạnh khi có lý do chính đáng rõ ràng, và tuyệt đối phải giao quyền chỉ huy cho đúng người có năng lực — dùng sai người dù ý định tốt vẫn dẫn tới hậu quả xấu.",
+      "itExample": "Chỉ nên triển khai biện pháp mạnh (revoke quyền, force rollback) khi có lý do rõ ràng, chính đáng; và quan trọng nhất là giao quyền quyết định cho đúng người có kinh nghiệm, không giao ngang hàng cho người thiếu kinh nghiệm cùng quyết định — dễ gây xung đột quyết định.",
+      "lifeExample": "Hành động cứng rắn chỉ nên thực hiện khi có lý do chính đáng rõ ràng, và việc giao quyền quyết định luôn cần trao đúng cho người có đủ năng lực, kinh nghiệm — giao nhầm người dù ý tốt vẫn dẫn tới hậu quả xấu."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：大君有命，開國承家，小人勿用。",
+      "hanviet": "Thượng Lục: Đại quân hữu mệnh, khai quốc thừa gia, tiểu nhân vật dụng.",
+      "translation": "Bậc quân vương ban lệnh, phong đất lập nước, giao dòng họ kế thừa cơ nghiệp — nhưng kẻ tiểu nhân thiếu đức thì không nên trọng dụng.",
+      "english": "The topmost line, divided, shows the great ruler delivering his charges, (appointing some) to be rulers of states, and others to undertake the headship of clans; but small men should not be employed (in such positions).",
+      "explain": "Hào cuối, thời điểm luận công ban thưởng sau khi hoàn thành nhiệm vụ tập thể — bài học quan trọng: ban thưởng đúng người, đúng đức, đúng năng lực; tuyệt đối không giao trọng trách lâu dài cho kẻ thiếu phẩm chất dù họ có công trạng nhất thời.",
+      "itExample": "Sau khi dự án lớn thành công, việc thăng chức/giao trọng trách lâu dài cần dựa trên phẩm chất và năng lực lâu dài, không chỉ dựa vào một lần đóng góp nổi bật mang tính cơ hội.",
+      "lifeExample": "Khi luận công, khen thưởng sau một thành công tập thể, cần trao vị trí lâu dài cho người thực sự xứng đáng về nhân cách lẫn năng lực, không chỉ vì họ từng có đóng góp nổi bật nhất thời."
+    }
+  ],
+
+  "keywords": ["Sư", "師", "quân đội", "tổ chức tập thể", "kỷ luật", "trượng nhân", "nước ngầm trong đất"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (bản số hóa tại baharna.com)", "url": "https://baharna.com/iching/legge/010000.htm", "note": "Bản dịch tiếng Anh public domain của Thoán từ, 6 hào từ, và Đại Tượng truyện (Great Symbolism)." },
+    { "source": "維基文庫 Wikisource — 周易/師", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%B8%AB", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 彖傳, 象傳)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn, dùng để đối chiếu cấu trúc chung." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/7", "label": "64 Quẻ — Quẻ 7: Địa Thủy Sư" }
+  ]
+}

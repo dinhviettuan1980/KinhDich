@@ -1,0 +1,158 @@
+{
+  "id": 9,
+  "hanzi": "小畜",
+  "pinyin": "Xiǎo Xù",
+  "hanviet": "Tiểu Súc",
+  "english": "The Taming Power of the Small",
+  "upperTrigram": "xun",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "小畜：亨。密雲不雨，自我西郊。",
+    "hanviet": "Tiểu Súc: Hanh. Mật vân bất vũ, tự ngã Tây giao.",
+    "translation": "Tiểu Súc (Tích lũy nhỏ): hanh thông. Mây dày đặc nhưng chưa mưa, mây kéo đến từ vùng ngoại ô phía Tây của ta.",
+    "english": "Hsiâo Khû indicates that (under its conditions) there will be progress and success. (We see) dense clouds, but no rain coming from our borders in the west."
+  },
+
+  "daTuong": {
+    "hanzi": "風行天上，小畜，君子以懿文德。",
+    "hanviet": "Phong hành thiên thượng, Tiểu Súc; quân tử dĩ ý văn đức.",
+    "translation": "Gió thổi trên trời, có chuyển động nhưng chưa gom đủ thành sức mạnh lớn, là tượng của Tiểu Súc; người quân tử noi theo đó mà trau dồi, làm đẹp thêm văn đức của mình, tích lũy từ những điều nhỏ.",
+    "english": "(The trigram representing) the sky, and that representing wind moving above it, form Hsiao Khû. The superior man, in accordance with this, adorns the outward manifestation of his virtue.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Tiểu Súc nói về sự tích lũy nhỏ, dần dần — hình tượng gió thổi trên trời: có chuyển động, có tiềm năng nhưng CHƯA đủ lớn để tạo thành mưa (kết quả cụ thể). Đây là quẻ về giai đoạn 'gần thành công nhưng chưa tới', cần kiên nhẫn tích lũy từng chút một (như trau dồi văn đức) thay vì nóng vội đòi kết quả lớn ngay. Sáu hào mô tả các mức độ trong quá trình tích lũy: quay lại đúng đường của mình (Sơ Cửu) → được dẫn dắt quay lại đúng hướng (Cửu Nhị) → xung đột nội bộ khi bị cản trở (Cửu Tam) → vượt qua nguy hiểm nhờ thành tín (Lục Tứ) → giàu có nhờ chia sẻ với láng giềng, không giữ riêng (Cửu Ngũ) → và cảnh báo: tích lũy đã đủ đầy mà còn cố tiến thêm sẽ gặp nguy (Thượng Cửu).",
+
+  "computer_science": "Tiểu Súc giống hệt giai đoạn MVP/pilot/feature-flag rollout: hệ thống đã có đủ tín hiệu tích cực (mây dày đặc = traction ban đầu) nhưng CHƯA đủ dữ liệu/quy mô để 'mưa' xuống, tức chưa đủ điều kiện scale toàn diện — chiến lược đúng là tiếp tục tích lũy từng cải tiến nhỏ (A/B test, canary release) thay vì big-bang launch khi chưa đủ chín muồi.",
+
+  "life": "Không phải lúc nào cũng cần bước nhảy vọt lớn — những tiến bộ nhỏ, đều đặn mỗi ngày là nền tảng thực sự cho thành công lớn sau này, dù đôi khi cảm giác 'sắp mưa mà chưa mưa' rất sốt ruột.",
+
+  "programming": "Giai đoạn thử nghiệm tính năng qua feature flag/A-B test/canary deployment cho một nhóm nhỏ user trước khi rollout toàn bộ (mật vân bất vũ = đã có tín hiệu tốt nhưng chưa đủ để full launch) — việc đúng đắn là tiếp tục tích lũy dữ liệu, cải tiến từng bước nhỏ thay vì vội vàng ép 'mưa' (full rollout) khi chưa đủ điều kiện.",
+
+  "characters": [
+    {
+      "hanzi": "畜",
+      "pinyin": "xù",
+      "hanviet": "súc",
+      "meaning": "Tích lũy, nuôi dưỡng, kiềm chế (trong tên quẻ đọc theo nghĩa 'tích lũy nhỏ').",
+      "origin": "Hình tượng liên quan tới ruộng đất (田) và việc tích trữ, nuôi dưỡng lâu dài; trong tên quẻ '小畜' nghĩa được dùng theo hướng 'tích lũy nhỏ, chứa giữ lại chưa phóng thích'.",
+      "example": "畜積 (súc tích, tích lũy); 畜牧 (chăn nuôi).",
+      "cs": "Incremental Accumulation",
+      "csExplain": "Tích lũy dữ liệu/tính năng từng bước nhỏ trước khi triển khai quy mô lớn — giống việc gom đủ 'mây' trước khi 'đổ mưa' (full release)."
+    },
+    {
+      "hanzi": "密",
+      "pinyin": "mì",
+      "hanviet": "mật",
+      "meaning": "Dày đặc, kín đáo, bí mật.",
+      "origin": "Bộ 山 (sơn, núi) + 宓 (mật, biểu âm, gốc nghĩa 'yên tĩnh, kín đáo trong nhà') — nghĩa gốc liên quan tới núi non hiểm trở, um tùm rậm rạp, mở rộng thành 'dày đặc, bí mật'.",
+      "example": "密雲 (mật vân, mây dày đặc); 秘密 (bí mật).",
+      "cs": "High Signal Density / Near-Threshold State",
+      "csExplain": "Trạng thái tín hiệu/dữ liệu đã tích tụ dày đặc, gần chạm ngưỡng kích hoạt — giống buffer gần đầy, chuẩn bị flush nhưng chưa tới điều kiện trigger."
+    },
+    {
+      "hanzi": "郊",
+      "pinyin": "jiāo",
+      "hanviet": "giao",
+      "meaning": "Vùng ngoại ô, ngoài thành.",
+      "origin": "Bộ 邑/阝 (ấp, thành ấp) + 交 (giao, biểu âm, cũng mang nghĩa 'giao nhau, ranh giới') — nghĩa gốc chỉ vùng đất nằm giữa ranh giới thành đô và vùng hoang dã, tức ngoại ô.",
+      "example": "郊外 (giao ngoại, vùng ngoại thành); 郊區 (giao khu).",
+      "cs": "Edge / Boundary Zone",
+      "csExplain": "Vùng biên giữa hai trạng thái/hệ thống — giống edge node hoặc staging environment, nơi thay đổi được thử nghiệm trước khi vào 'trung tâm' (production)."
+    },
+    {
+      "hanzi": "懿",
+      "pinyin": "yì",
+      "hanviet": "ý",
+      "meaning": "Đẹp đẽ, tốt lành (thường dùng cho đức hạnh).",
+      "origin": "Chữ phức hợp cổ, xếp vào nhóm nghĩa 'đẹp, tốt, sâu sắc'; là chữ hiếm chuyên dùng để ca ngợi đức hạnh cao đẹp, ít dùng trong văn nói thường ngày.",
+      "example": "懿德 (ý đức, đức hạnh tốt đẹp — chính là cụm dùng trong Đại Tượng quẻ Tiểu Súc '懿文德'); 懿旨 (ý chỉ, chỉ dụ của hoàng hậu/thái hậu).",
+      "cs": "Polish / Refinement Pass",
+      "csExplain": "Bước trau chuốt, làm đẹp/tối ưu chất lượng sau khi chức năng cốt lõi đã chạy được — giống một vòng polish UI/UX hoặc code cleanup sau MVP."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：復自道，何其咎，吉。",
+      "hanviet": "Sơ Cửu: Phục tự đạo, hà kỳ cữu, cát.",
+      "translation": "Quay trở lại đúng con đường của mình, có lỗi gì đâu, tốt lành.",
+      "english": "The first line, undivided, shows its subject returning and pursuing his own course. What mistake should he fall into? There will be good fortune.",
+      "explain": "Bước đầu tích lũy — biết quay về đúng con đường, đúng bản chất của mình thay vì chạy theo cản trở bên ngoài, đây là khởi đầu tốt đẹp và tự nhiên nhất.",
+      "itExample": "Sau khi thử vài hướng đi sai (dùng sai công nghệ, sai kiến trúc), team quay lại đúng nguyên tắc thiết kế ban đầu vốn phù hợp với bài toán — không có gì sai khi 'quay lại điểm xuất phát đúng đắn'.",
+      "lifeExample": "Quay trở lại con đường/nguyên tắc sống phù hợp với bản thân sau một thời gian lạc hướng — đây không phải thất bại mà là bước khởi đầu tốt đẹp."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：牽復，吉。",
+      "hanviet": "Cửu Nhị: Khiên phục, cát.",
+      "translation": "Được dẫn dắt, kéo lại mà quay về đúng đường, tốt lành.",
+      "english": "The second line, undivided, shows its subject, by the attraction (of the former line), returning (to the proper course). There will be good fortune.",
+      "explain": "Không tự mình nhận ra ngay mà nhờ có sự dẫn dắt/ảnh hưởng tích cực từ đồng đội (Sơ Cửu) mà quay lại đúng hướng — bài học về giá trị của tập thể trong quá trình tích lũy đúng đắn.",
+      "itExample": "Một dev lạc hướng trong cách tiếp cận, nhờ pair programming với đồng nghiệp mà được 'kéo' trở lại đúng best practice — sức mạnh của việc học hỏi lẫn nhau trong team.",
+      "lifeExample": "Đôi khi tự mình khó nhận ra sai lầm, nhưng nhờ ảnh hưởng tích cực từ bạn bè/đồng nghiệp tốt mà quay lại đúng hướng đi — đây là giá trị của việc ở gần người tốt."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：輿說輻，夫妻反目。",
+      "hanviet": "Cửu Tam: Dư thoát bức, phu thê phản mục.",
+      "translation": "Bánh xe tuột khỏi trục xe, chuyển động bị cản trở nghiêm trọng; vợ chồng trở mặt nhìn nhau.",
+      "english": "The third line, undivided, suggests the idea of a carriage, the strap beneath which has been removed, or of a husband and wife looking on each other with averted eyes.",
+      "explain": "Hào bị cản trở trực tiếp bởi lực tích lũy từ hào Lục Tứ phía trên — xung đột nội bộ nổ ra khi hai bên vốn phải hợp tác (như vợ chồng) lại bất hòa, tiến trình bị đình trệ.",
+      "itExample": "Hai module vốn phải phối hợp chặt chẽ (frontend-backend) đột nhiên xung đột nghiêm trọng về interface/contract do một thay đổi nhỏ — cả hệ thống bị đình trệ vì mất đồng bộ.",
+      "lifeExample": "Một mâu thuẫn nhỏ nhưng để tích tụ có thể khiến hai người vốn thân thiết đột nhiên bất hòa nghiêm trọng — cần giải quyết gốc rễ trước khi nó làm gián đoạn mọi thứ."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：有孚，血去惕出，无咎。",
+      "hanviet": "Lục Tứ: Hữu phu, huyết khứ dịch xuất, vô cữu.",
+      "translation": "Có lòng thành tín, nỗi lo về tổn thương được xua tan, sự sợ hãi cũng tan biến, không có lỗi.",
+      "english": "The fourth line, divided, shows its subject possessed of sincerity. The danger of bloodshed is thereby averted, and his (ground for) apprehension dismissed. There will be no mistake.",
+      "explain": "Vị trí duy nhất là Âm trong quẻ, đóng vai trò 'cản trở' cả nhóm hào Dương nhưng nhờ giữ được lòng thành tín mà hóa giải được nguy hiểm, xung đột dịu đi.",
+      "itExample": "Một blocker/feature flag tưởng như cản trở cả team hóa ra lại là bước cần thiết, đúng đắn — nhờ giao tiếp minh bạch, thành thật về lý do, team hiểu và xung đột được hóa giải.",
+      "lifeExample": "Một quyết định gây tranh cãi ban đầu nhưng nhờ sự chân thành, minh bạch trong giải thích lý do mà mọi hiểu lầm, lo lắng đều được hóa giải."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：有孚攣如，富以其鄰。",
+      "hanviet": "Cửu Ngũ: Hữu phu luyến như, phú dĩ kỳ lân.",
+      "translation": "Có lòng thành tín gắn kết bền chặt với nhau, giàu có mà biết chia sẻ cùng láng giềng.",
+      "english": "The fifth line, undivided, shows its subject possessed of sincerity, and drawing others to unite with him. Rich in resources, he employs his neighbours (in the same cause with himself).",
+      "explain": "Vị trí trung chính tôn quý — sự tích lũy tốt đẹp nhất không phải là giữ riêng cho mình mà là chia sẻ nguồn lực dồi dào với những người xung quanh, tạo nên sự gắn kết bền vững.",
+      "itExample": "Một công ty/team có nguồn lực dồi dào (kiến thức, công cụ tốt) chủ động chia sẻ, mở nguồn cho cộng đồng xung quanh thay vì giữ riêng — sự chia sẻ này tạo ra hệ sinh thái bền vững, cùng thắng.",
+      "lifeExample": "Khi có nguồn lực dư dả (kiến thức, tài chính), chia sẻ với những người xung quanh thay vì giữ riêng cho mình sẽ tạo nên những mối quan hệ và giá trị bền vững hơn."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：既雨既處，尚德載，婦貞厲，月幾望，君子征凶。",
+      "hanviet": "Thượng Cửu: Ký vũ ký xử, thượng đức tái, phụ trinh lệ, nguyệt cơ vọng, quân tử chinh hung.",
+      "translation": "Mưa đã đổ xuống, mọi sự đã dừng lại yên ổn, đức đã tích lũy đủ đầy. Nhưng nếu cứ giữ mãi thế kiềm chế này sẽ nguy hiểm, như trăng đã gần tròn, sắp đầy tới mức tràn; người quân tử nếu còn cố tiến thêm nữa sẽ gặp xấu.",
+      "english": "The topmost line, undivided, shows how the rain has fallen, and the (onward progress) is stayed;—(so) must we value the full accumulation of the virtue (represented by the upper trigram). But a wife (exercising restraint), however firm and correct she may be, is in a position of peril, (and like) the moon approaching to the full. If the superior man prosecute his measures (in such circumstances), there will be evil.",
+      "explain": "Hào cuối, mưa cuối cùng đã đổ — quá trình tích lũy đã hoàn tất, đạt đỉnh điểm. Lời cảnh báo kinh điển của quẻ Tiểu Súc: khi đã tích lũy đủ đầy (trăng gần tròn), cố gắng tiến thêm/mở rộng thêm nữa sẽ phá vỡ sự cân bằng và gặp nguy hiểm.",
+      "itExample": "Sau khi feature/pilot đã đạt kết quả tốt và ổn định, nếu team cố nhồi nhét thêm nhiều thay đổi lớn ngay lúc hệ thống đang ở đỉnh ổn định sẽ phá vỡ sự cân bằng vừa đạt được — biết dừng đúng lúc quan trọng hơn tham lam mở rộng thêm.",
+      "lifeExample": "Khi một giai đoạn tích lũy, cố gắng đã đạt kết quả viên mãn, cố gắng đẩy xa hơn nữa thường phá vỡ sự cân bằng tốt đẹp vừa đạt được — biết dừng lại đúng lúc là trí tuệ."
+    }
+  ],
+
+  "keywords": ["Tiểu Súc", "小畜", "tích lũy nhỏ", "gió trên trời", "mây chưa mưa", "văn đức", "kiên nhẫn"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (bản số hóa tại baharna.com)", "url": "https://baharna.com/iching/legge/111011.htm", "note": "Bản dịch tiếng Anh public domain của Thoán từ, 6 hào từ, và Đại Tượng truyện (Great Symbolism)." },
+    { "source": "維基文庫 Wikisource — 周易/小畜", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%B0%8F%E7%95%9C", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn, dùng để đối chiếu cấu trúc chung." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/9", "label": "64 Quẻ — Quẻ 9: Phong Thiên Tiểu Súc" }
+  ]
+}

@@ -29,6 +29,8 @@ import FingerCpuGameMemoryPage from './pages/FingerCpuGameMemoryPage'
 import FingerCpuGameSpeedPage from './pages/FingerCpuGameSpeedPage'
 import FingerCpuGameHexagramBuilderPage from './pages/FingerCpuGameHexagramBuilderPage'
 import FingerCpuGameBinaryModePage from './pages/FingerCpuGameBinaryModePage'
+import ChuDichIntroPage from './pages/ChuDichIntroPage'
+import ChuDichHexagramPage from './pages/ChuDichHexagramPage'
 import { useStore } from './store'
 import { getMe } from './api'
 
@@ -87,6 +89,8 @@ export default function App() {
             <Route path="/finger-cpu/game/toc-do" element={<FingerCpuGameSpeedPage />} />
             <Route path="/finger-cpu/game/hexagram-builder" element={<FingerCpuGameHexagramBuilderPage />} />
             <Route path="/finger-cpu/game/binary-mode" element={<FingerCpuGameBinaryModePage />} />
+            <Route path="/chu-dich" element={<ChuDichIntroPage />} />
+            <Route path="/chu-dich/que/:id" element={<ChuDichHexagramPage />} />
             <Route path="/additional/chinese/:id" element={<ChineseCharPage />} />
           </Routes>
         </main>

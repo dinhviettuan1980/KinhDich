@@ -1,0 +1,148 @@
+{
+  "id": 18,
+  "hanzi": "蠱",
+  "pinyin": "Gǔ",
+  "hanviet": "Cổ",
+  "english": "Decay (Work on What Has Been Spoiled)",
+  "upperTrigram": "gen",
+  "lowerTrigram": "xun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "蠱：元亨，利涉大川。先甲三日，後甲三日。",
+    "hanviet": "Cổ: Nguyên hanh. Lợi thiệp đại xuyên. Tiên giáp tam nhật, hậu giáp tam nhật.",
+    "translation": "Cổ (Sửa chữa điều hư hỏng): hanh thông lớn. Thuận lợi khi vượt sông lớn (dấn thân xử lý việc khó). Trước ngày Giáp ba ngày, sau ngày Giáp ba ngày — phải xét kỹ nguyên nhân trước khi sửa và theo dõi kết quả sau khi sửa.",
+    "english": "Gu indicates great progress and success (to him who deals properly with the condition represented by it). There will be advantage in (efforts like that of) crossing the great stream. (He should weigh well, however, the events of) three days before the turning point, and those (to be done) three days after it."
+  },
+
+  "daTuong": {
+    "hanzi": "山下有風，蠱；君子以振民育德。",
+    "hanviet": "Sơn hạ hữu phong, Cổ; quân tử dĩ chấn dân dục đức.",
+    "translation": "Dưới núi có gió — gió bị núi chặn lại, ứ đọng không lưu thông sinh ra hư hỏng; người quân tử nhân đó mà chấn hưng dân chúng, bồi dưỡng đức hạnh cho bản thân.",
+    "english": "(The trigram for) a mountain, and below it that for wind, form Ku. The superior man, in accordance with this, (addresses himself to) help the people and nourish his own virtue.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Chữ 蠱 vốn vẽ hình ba con trùng trong một cái bát — đồ vật để lâu không đụng tới sẽ sinh sâu mọt, hư hỏng. Quẻ Cổ nói về sự trì trệ kéo dài sinh ra mục nát (gió bị núi chặn đứng không lưu thông) và về việc con người phải dấn thân sửa chữa nó. Đây không phải việc dễ chịu — nhưng quẻ khẳng định hanh thông lớn nếu làm đúng cách: hiểu rõ nguyên nhân trước khi ra tay (tiên giáp tam nhật) và theo dõi kết quả sau khi sửa (hậu giáp tam nhật).",
+
+  "computer_science": "蠱 giống hệt khái niệm technical debt: hệ thống mục nát dần vì bị bỏ mặc, không refactor, không cập nhật — không có lỗi rõ ràng ngay lập tức nhưng sức khỏe hệ thống suy giảm âm thầm. 'Tiên giáp tam nhật, hậu giáp tam nhật' chính là quy trình chuẩn: root-cause analysis trước khi patch, và regression monitoring sau khi patch — không sửa ẩu theo cảm tính.",
+
+  "life": "Việc gì để lâu không xử lý cũng sẽ hư hỏng dần — từ mối quan hệ, sức khỏe, đến công việc tồn đọng. Quẻ Cổ khuyên đừng ngại đối mặt và sửa chữa, nhưng hãy tìm hiểu kỹ nguyên nhân đã gây ra hư hỏng trước khi ra tay, và tiếp tục theo dõi kết quả sau khi sửa.",
+
+  "programming": "Bài học kinh điển về dọn nợ kỹ thuật: trước khi refactor một module mục nát lâu năm, hãy dành thời gian hiểu rõ tại sao nó hư (root cause, không đổ lỗi người viết trước), rồi sau khi sửa xong tiếp tục theo dõi (regression test, monitoring) để chắc chắn không phát sinh lỗi mới. Sửa vội mà không hiểu nguyên nhân thường tạo ra hư hỏng kiểu khác.",
+
+  "characters": [
+    {
+      "hanzi": "蠱",
+      "pinyin": "gǔ",
+      "hanviet": "cổ",
+      "meaning": "Hư hỏng, mục nát, độc hại tích tụ; việc phải sửa chữa.",
+      "origin": "Chữ hội ý cổ vẽ hình một cái bát/mâm (皿) với ba con trùng (蟲/虫) ở phía trên — nghĩa gốc là sâu bọ sinh ra trong đồ ăn để lâu, mở rộng thành 'độc hại ẩn giấu, sự hư hỏng tích tụ do trì trệ'.",
+      "example": "蠱惑 (cổ hoặc) = mê hoặc, dẫn dụ sai đường; 蠱毒 (cổ độc) = chất độc từ sâu bọ tích tụ.",
+      "cs": "Technical Debt",
+      "csExplain": "Sự mục nát tích tụ trong hệ thống ('cái bát') khi không được dọn dẹp định kỳ, giống sâu bọ sinh sôi trong đồ để lâu."
+    },
+    {
+      "hanzi": "甲",
+      "pinyin": "jiǎ",
+      "hanviet": "giáp",
+      "meaning": "Can đầu tiên trong Thập Can; vỏ bọc, mốc khởi đầu chu kỳ.",
+      "origin": "Giáp cốt văn có nhiều cách giải: một số cho là hình vết nứt trên mai rùa dùng để bói; số khác cho là hình hạt giống với lớp vỏ ngoài đang nứt ra để nảy mầm. Là chữ số 1 trong hệ đếm ngày Can Chi (Giáp, Ất, Bính...).",
+      "example": "甲子 (giáp tý) = đơn vị đầu tiên trong chu kỳ 60 năm Can Chi.",
+      "cs": "Checkpoint / Epoch marker",
+      "csExplain": "Mốc đánh dấu để tính thời gian trước/sau khi thực hiện thay đổi — giống việc dùng ngày Giáp làm điểm mốc để soát trước và theo dõi sau."
+    },
+    {
+      "hanzi": "涉",
+      "pinyin": "shè",
+      "hanviet": "thiệp",
+      "meaning": "Lội qua sông, vượt qua khó khăn, dấn thân.",
+      "origin": "Chữ hội ý ghép từ 水 (thủy, nước) và 步 (bộ, hai bàn chân bước) — hình ảnh hai bàn chân lội qua dòng nước, nghĩa gốc là 'lội qua sông', mở rộng thành 'trải qua, dấn thân, liên quan tới'.",
+      "example": "涉水 (thiệp thủy) = lội nước; 干涉 (can thiệp) = xen vào việc gì.",
+      "cs": "Migration",
+      "csExplain": "Ẩn dụ cho việc dấn thân thực hiện một thay đổi lớn, biết có rủi ro (như lội qua sông) nhưng cần thiết để giải quyết hư hỏng đã tích tụ."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：幹父之蠱，有子考，无咎，厲終吉。",
+      "hanviet": "Sơ Lục: Cán phụ chi cổ, hữu tử khảo, vô cữu, lệ chung cát.",
+      "translation": "Con nối nghiệp sửa chữa việc hư hỏng của cha; nếu có người con đảm đang, thì cha (đã khuất) không mang tiếng lỗi lầm; tuy nguy hiểm nhưng cuối cùng tốt lành.",
+      "english": "The first SIX, divided, shows (a son) dealing with the troubles caused by his father. If he be an (able) son, the father will escape the blame of having erred. The position is perilous, but there will be good fortune in the end.",
+      "explain": "Hào đầu, vị trí thấp nhưng có chí — bắt tay sửa chữa lỗi lầm cũ do người đi trước để lại, cần bản lĩnh vì dễ đụng chạm nhưng làm tốt sẽ tốt lành.",
+      "itExample": "Dev mới join, được giao dọn dẹp legacy code do người tiền nhiệm để lại — nếu làm tốt, người tiền nhiệm không bị đổ lỗi ngược, dù rủi ro và áp lực ban đầu cao.",
+      "lifeExample": "Con cái tiếp quản và sửa chữa sai lầm, di sản dở dang cha mẹ để lại — làm tốt thì danh dự gia đình được giữ vững."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：幹母之蠱，不可貞。",
+      "hanviet": "Cửu Nhị: Cán mẫu chi cổ, bất khả trinh.",
+      "translation": "Sửa chữa việc hư hỏng do mẹ gây ra, không nên quá cứng nhắc, áp đặt nguyên tắc.",
+      "english": "The second NINE, undivided, shows (a son) dealing with the troubles caused by his mother. He should not (carry) his firm correctness (to the utmost).",
+      "explain": "Sửa lỗi liên quan tới người thân gần gũi cần mềm mỏng, khéo léo hơn là áp đặt nguyên tắc cứng nhắc như với người ngoài.",
+      "itExample": "Sửa lỗi trong code của đồng nghiệp thân thiết hoặc cấp trên — cần góp ý tế nhị, không nên chỉ trích thẳng thừng dù mình đúng về kỹ thuật.",
+      "lifeExample": "Góp ý sửa sai cho người thân trong gia đình cần sự mềm mỏng, không thể áp dụng nguyên tắc cứng nhắc như với người ngoài."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：幹父之蠱，小有悔，无大咎。",
+      "hanviet": "Cửu Tam: Cán phụ chi cổ, tiểu hữu hối, vô đại cữu.",
+      "translation": "Sửa chữa việc hư hỏng của cha, có chút hối tiếc nhỏ, nhưng không phạm lỗi lớn.",
+      "english": "The third NINE, undivided, shows (a son) dealing with the troubles caused by his father. There may be some small occasion for repentance, but there will not be any great error.",
+      "explain": "Có phần nóng vội, cách làm chưa hoàn hảo nên có chút tiếc nuối nhỏ, nhưng về đại thể không sai.",
+      "itExample": "Refactor gấp một phần hệ thống, cách làm chưa tối ưu hoàn toàn gây vài phàn nàn nhỏ, nhưng tổng thể không gây sự cố nghiêm trọng.",
+      "lifeExample": "Sửa sai lầm cũ nhưng cách thực hiện còn vài điểm chưa khéo — chấp nhận sai sót nhỏ đó, quan trọng là không gây hậu quả lớn."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：裕父之蠱，往見吝。",
+      "hanviet": "Lục Tứ: Dụ phụ chi cổ, vãng kiến lận.",
+      "translation": "Khoan dung, chần chừ với việc hư hỏng của cha; nếu cứ tiếp tục như vậy sẽ gặp điều đáng tiếc.",
+      "english": "The fourth SIX, divided, shows (a son) viewing indulgently the troubles caused by his father. If he go forward, he will find cause to regret it.",
+      "explain": "Thái độ dễ dãi, trì hoãn không quyết đoán sửa chữa hư hỏng — nếu cứ giữ cách này sẽ gặp rắc rối lớn hơn.",
+      "itExample": "Biết rõ có bug hoặc nợ kỹ thuật nghiêm trọng nhưng cứ để đó 'để sau tính' — càng trì hoãn xử lý càng khó kiểm soát hậu quả.",
+      "lifeExample": "Biết vấn đề gia đình hoặc tài chính đang xấu đi nhưng chọn né tránh, không đối mặt — sẽ càng khó xử lý về sau."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：幹父之蠱，用譽。",
+      "hanviet": "Lục Ngũ: Cán phụ chi cổ, dụng dự.",
+      "translation": "Sửa chữa việc hư hỏng của cha, đạt được sự khen ngợi.",
+      "english": "The fifth SIX, divided, shows (a son) dealing with the troubles caused by his father. He obtains the praise of using (the fit instrument for his work).",
+      "explain": "Ở vị trí cao, biết dùng đúng người đúng cách để sửa chữa hư hỏng cũ, nên đạt kết quả tốt và được ghi nhận.",
+      "itExample": "Tech lead biết phân công đúng người xử lý đúng mảng nợ kỹ thuật, phối hợp khéo léo — dự án cải tổ thành công và được cấp trên ghi nhận.",
+      "lifeExample": "Người kế thừa biết khéo léo huy động đúng người, đúng nguồn lực để giải quyết vấn đề tồn đọng của gia đình hay tổ chức, được mọi người khen ngợi."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：不事王侯，高尚其事。",
+      "hanviet": "Thượng Cửu: Bất sự vương hầu, cao thượng kỳ sự.",
+      "translation": "Không phục vụ vua chúa hay chư hầu, giữ khí tiết cao khiết, theo đuổi việc riêng của mình.",
+      "english": "The sixth NINE, undivided, shows us one who does not serve either king or feudal lord, but in a lofty spirit prefers (to attend to) his own affairs.",
+      "explain": "Hào cuối, đã ra ngoài vòng xoáy sửa chữa và quyền lực — chọn đứng ngoài hệ thống, giữ nguyên tắc và giá trị cá nhân thay vì tham gia guồng máy.",
+      "itExample": "Senior engineer rời công ty để làm việc độc lập hoặc đóng góp mã nguồn mở theo giá trị riêng, không còn muốn 'sửa lại hệ thống của người khác' trong một tổ chức nữa.",
+      "lifeExample": "Người chọn sống theo lý tưởng cá nhân, không mưu cầu chức vụ hay phục vụ quyền lực — giữ được sự thanh cao, độc lập."
+    }
+  ],
+
+  "keywords": ["Cổ", "蠱", "sửa chữa hư hỏng", "kế thừa", "tiên giáp hậu giáp", "technical debt", "gió dưới núi"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/011001.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Cổ, đối chiếu từng hào." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/gu", "note": "Nguồn học thuật công khai; truy cập qua proxy do trang chặn truy cập tự động, đối chiếu nguyên văn chữ Hán khớp với Wikisource." },
+    { "source": "維基文庫 Wikisource — 周易/蠱", "url": "https://zh.wikisource.org/zh-hant/周易/蠱", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/18", "label": "64 Quẻ — Quẻ 18: Sơn Phong Cổ" }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "id": 19,
+  "hanzi": "臨",
+  "pinyin": "Lín",
+  "hanviet": "Lâm",
+  "english": "Approach",
+  "upperTrigram": "kun",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "臨：元亨。利貞。至于八月有凶。",
+    "hanviet": "Lâm: Nguyên hanh. Lợi trinh. Chí vu bát nguyệt hữu hung.",
+    "translation": "Lâm (Tới gần, giám sát): hanh thông lớn, thuận lợi khi giữ chính đính. Đến tháng thứ tám sẽ có điều xấu — nhắc rằng thế đang lên rồi cũng sẽ suy.",
+    "english": "Lin (indicates that under the conditions supposed in it) there will be great progress and success, while it will be advantageous to be firmly correct. In the eighth month there will be evil."
+  },
+
+  "daTuong": {
+    "hanzi": "澤上有地，臨；君子以教思无窮，容保民无疆。",
+    "hanviet": "Trạch thượng hữu địa, Lâm; quân tử dĩ giáo tư vô cùng, dung bảo dân vô cương.",
+    "translation": "Trên đầm có đất — đất áp sát gần mặt nước; người quân tử nhân đó mà nghĩ cách dạy dỗ không ngừng nghỉ, bao dung và che chở dân không giới hạn.",
+    "english": "(The trigram for) the waters of a marsh and that for the earth above it form Lin. The superior man, in accordance with this, has his purposes of instruction that are inexhaustible, and nourishes and supports the people without limit.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Lâm nói về sự tiếp cận, giám sát, dẫn dắt từ vị trí gần gũi — như đất áp sát mặt hồ. Đây là thời điểm hai hào Dương đang lớn dần từ dưới lên (thế lực đang lên), nên rất thuận lợi và hanh thông — nhưng lời cảnh báo 'đến tháng 8 có hung' nhắc rằng thịnh và suy luôn nối tiếp nhau, đừng chủ quan khi đang ở thế thuận.",
+
+  "computer_science": "臨 giống việc mở rộng quan sát và giám sát (observability) khi hệ thống đang tăng trưởng — càng gần dữ liệu thực tế và người dùng thật càng dễ ra quyết định đúng. Nhưng cần có cảnh báo sớm (early-warning threshold) cho giai đoạn tăng trưởng chững lại, giống mốc 'tháng 8' được cài sẵn như một cảnh báo chu kỳ.",
+
+  "life": "Đây là giai đoạn thuận lợi để tiếp cận gần hơn với người khác, dẫn dắt hoặc mở rộng ảnh hưởng — nhưng đừng quên rằng thời thế luôn đổi thay, cần chuẩn bị tinh thần cho giai đoạn khó khăn có thể đến sau này.",
+
+  "programming": "Giai đoạn sản phẩm hoặc tính năng đang được đón nhận tốt (user growth, momentum) là lúc nên đầu tư mạnh vào observability và feedback loop gần với người dùng thật, đồng thời chuẩn bị kế hoạch cho lúc momentum chững lại — không ảo tưởng tăng trưởng sẽ kéo dài mãi mãi.",
+
+  "characters": [
+    {
+      "hanzi": "臨",
+      "pinyin": "lín",
+      "hanviet": "lâm",
+      "meaning": "Đến gần, giám sát từ trên xuống, cai quản.",
+      "origin": "Kim văn vẽ hình chữ 臣 (thần, con mắt to cúi nhìn xuống — biểu tượng người bề tôi cúi đầu) cùng 人 (người) đang cúi mình nhìn xuống các đồ vật bên dưới (品) — nghĩa gốc là 'cúi xuống nhìn sát, đến gần để xem xét', mở rộng thành 'giám sát, cai quản'.",
+      "example": "臨時 (lâm thời) = tạm thời, ngay lúc đó; 光臨 (quang lâm) = kính từ chỉ việc ghé thăm.",
+      "cs": "Observability drill-down",
+      "csExplain": "Giống việc 'zoom in' từ tầng cao (dashboard tổng quan) xuống chi tiết cụ thể (logs, traces) để giám sát sát sao."
+    },
+    {
+      "hanzi": "凶",
+      "pinyin": "xiōng",
+      "hanviet": "hung",
+      "meaning": "Xấu, dữ, tai họa — đối lập với 吉 (cát, tốt lành).",
+      "origin": "Chữ tượng hình cổ vẽ một cái hố/hầm bẫy (凵) có vật hoặc dấu hiệu nguy hiểm bên trong (⚔ dạng chéo) — nghĩa gốc là 'hố nguy hiểm, tai họa rình rập'.",
+      "example": "凶險 (hung hiểm) = nguy hiểm; 吉凶 (cát hung) = tốt xấu.",
+      "cs": "Failure state / red alert",
+      "csExplain": "Trạng thái lỗi nghiêm trọng trong một finite-state machine, đối lập với trạng thái 'cát' (thành công) — dùng để đánh dấu điều kiện cần tránh."
+    },
+    {
+      "hanzi": "教",
+      "pinyin": "jiào",
+      "hanviet": "giáo",
+      "meaning": "Dạy dỗ, giáo hóa, rèn luyện.",
+      "origin": "Chữ hội ý ghép từ 爻 (hào, hình chéo tượng trưng roi/vạch dạy) + 子 (tử, đứa trẻ) + 攴/攵 (phộc, bàn tay cầm roi gõ nhẹ) — nghĩa gốc là 'dùng roi/khuôn phép rèn luyện, uốn nắn trẻ nhỏ'.",
+      "example": "教育 (giáo dục); 教學 (giáo học) = dạy học.",
+      "cs": "Documentation / Onboarding",
+      "csExplain": "Đầu tư viết tài liệu, hướng dẫn để 'dạy' người dùng hoặc dev mới cách sử dụng hệ thống, giống việc quân tử 'giáo tư vô cùng'."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：咸臨，貞吉。",
+      "hanviet": "Sơ Cửu: Hàm lâm, trinh cát.",
+      "translation": "Cùng nhau cảm ứng mà tiến đến gần; giữ chính đính thì tốt lành.",
+      "english": "The first NINE, undivided, shows its subject advancing in company (with the subject of the second line). Through his firm correctness there will be good fortune.",
+      "explain": "Hào đầu trong hai hào Dương đang lên, được hào 2 hỗ trợ cùng tiến — nếu giữ đúng nguyên tắc sẽ tốt lành.",
+      "itExample": "Hai thành viên mới cùng dẫn dắt một sáng kiến mới trong công ty, hỗ trợ lẫn nhau và tuân thủ đúng quy trình — kết quả thuận lợi.",
+      "lifeExample": "Bắt đầu một mối hợp tác mới với người cùng chí hướng, cùng tiến bước và giữ đúng cam kết ban đầu sẽ mang lại kết quả tốt."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：咸臨，吉无不利。",
+      "hanviet": "Cửu Nhị: Hàm lâm, cát vô bất lợi.",
+      "translation": "Cùng nhau cảm ứng mà tiến đến gần, tốt lành, không gì bất lợi.",
+      "english": "The second NINE, undivided, shows its subject advancing in company (with the subject of the first line). There will be good fortune; (advancing) will be in every way advantageous.",
+      "explain": "Được hào 5 (vị vua) ứng hợp, tiến lên thuận lợi mọi mặt.",
+      "itExample": "Một tính năng được cả đội kỹ thuật lẫn ban lãnh đạo đồng thuận ủng hộ — triển khai thuận lợi ở mọi khía cạnh.",
+      "lifeExample": "Khi cả hai phía — bản thân và người dẫn dắt — đều đồng lòng, con đường tiến tới gần như không gặp trở ngại."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：甘臨，无攸利。既憂之，无咎。",
+      "hanviet": "Lục Tam: Cam lâm, vô du lợi. Ký ưu chi, vô cữu.",
+      "translation": "Lấy lời ngọt ngào để tiếp cận, không mang lại lợi ích gì; nhưng nếu biết lo lắng mà sửa đổi thì không có lỗi.",
+      "english": "The third SIX, divided, shows one well pleased (indeed) to advance, (but whose action) will be in no way advantageous. If he become anxious about it (however), there will be no error.",
+      "explain": "Tiếp cận bằng cách lấy lòng, nịnh hót thì không mang lại giá trị thật — nhưng nếu tự nhận ra và lo sửa thì vẫn tránh được lỗi.",
+      "itExample": "Quản lý chỉ nói lời hoa mỹ với đội nhóm mà không hành động thực chất sẽ không hiệu quả — nhưng nếu kịp nhận ra và điều chỉnh cách quản lý thì vẫn cứu vãn được.",
+      "lifeExample": "Chỉ lấy lòng người khác bằng lời nói ngọt ngào mà không có hành động thực chất sẽ không bền — cần tự nhận thức và thay đổi."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：至臨，无咎。",
+      "hanviet": "Lục Tứ: Chí lâm, vô cữu.",
+      "translation": "Tiếp cận đến nơi đến chốn, hết lòng sát sao, không có lỗi.",
+      "english": "The fourth SIX, divided, shows one advancing in the highest mode. There will be no error.",
+      "explain": "Ở vị trí gần hào 5 (vua), biết tận tâm hết mức trong việc tiếp cận và hỗ trợ, nên không mắc lỗi.",
+      "itExample": "Quản lý cấp trung sát sao hỗ trợ đội ngũ, hết lòng vì công việc và cấp trên — không phát sinh sai sót lớn.",
+      "lifeExample": "Hết lòng, tận tâm chăm sóc và tiếp cận người thân hay cấp trên đúng cách sẽ không có gì đáng trách."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：知臨，大君之宜，吉。",
+      "hanviet": "Lục Ngũ: Tri lâm, đại quân chi nghi, cát.",
+      "translation": "Dùng trí tuệ để tiếp cận và giám sát, đúng đạo của bậc vua lớn, tốt lành.",
+      "english": "The fifth SIX, divided, shows the advance of wisdom, such as befits the great ruler. There will be good fortune.",
+      "explain": "Vị trí lãnh đạo, biết dùng người hiền tài, dùng trí tuệ để quản lý thay vì tự mình ôm hết — đây là đạo lãnh đạo đúng đắn.",
+      "itExample": "CTO biết giao quyền cho đúng người giỏi, dùng dữ liệu và trí tuệ tập thể để ra quyết định thay vì vi mô hóa mọi thứ — đội ngũ vận hành trơn tru.",
+      "lifeExample": "Người lãnh đạo giỏi biết lắng nghe, dùng trí tuệ và tin tưởng người dưới thay vì ôm đồm — đó là đạo lãnh đạo đúng đắn."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：敦臨，吉无咎。",
+      "hanviet": "Thượng Lục: Đôn lâm, cát vô cữu.",
+      "translation": "Lấy lòng thành hậu, chân thật để tiếp cận, tốt lành, không có lỗi.",
+      "english": "The sixth SIX, divided, shows the advance of honesty and generosity. There will be good fortune, and no error.",
+      "explain": "Hào cuối, dù ở xa nhất nhưng vẫn giữ được tấm lòng chân thành, hậu hĩnh khi tiếp cận người khác — kết quả vẫn tốt lành.",
+      "itExample": "Người cố vấn dày dạn kinh nghiệm vẫn hết lòng, chân thành hỗ trợ đội ngũ dù không còn ở vị trí trung tâm — luôn được tin tưởng.",
+      "lifeExample": "Dù ở xa hay đã lớn tuổi, vẫn giữ được tấm lòng chân thành, hậu đãi với người xung quanh — luôn được quý mến."
+    }
+  ],
+
+  "keywords": ["Lâm", "臨", "tiếp cận", "giám sát", "quan sát gần", "thịnh suy", "hai hào dương lên"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/110000.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Lâm, đối chiếu từng hào." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/lin", "note": "Nguồn học thuật công khai; truy cập qua proxy do trang chặn truy cập tự động, đối chiếu nguyên văn chữ Hán khớp với Wikisource." },
+    { "source": "維基文庫 Wikisource — 周易/臨", "url": "https://zh.wikisource.org/zh-hant/周易/臨", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/19", "label": "64 Quẻ — Quẻ 19: Địa Trạch Lâm" }
+  ]
+}

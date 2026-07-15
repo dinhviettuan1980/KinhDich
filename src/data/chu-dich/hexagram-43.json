@@ -1,0 +1,148 @@
+{
+  "id": 43,
+  "hanzi": "夬",
+  "pinyin": "Guài",
+  "hanviet": "Quải",
+  "english": "Breakthrough",
+  "upperTrigram": "dui",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "夬：揚于王庭，孚號，有厲，告自邑，不利即戎，利有攸往。",
+    "hanviet": "Quải: Dương vu vương đình, phu hào, hữu lệ, cáo tự ấp, bất lợi tức quân, lợi hữu du vãng.",
+    "translation": "Quải (Quyết phá): công khai tại tòa vua, kêu gọi chân thật, ý thức nguy hiểm, thông báo cho thị dân, không nên dùng vũ lực liều lĩnh, thuận lợi khi có nơi để tiến tới.",
+    "english": "Guai requires (in him who would fulfil its meaning) the exhibition (of the culprit's guilt) in the royal court, and a sincere and earnest appeal (for sympathy and support), with a consciousness of the peril (involved in cutting off the criminal). He should announce in his city and avoid hasty recourse to arms, thereby gaining advantage in his endeavors."
+  },
+
+  "daTuong": {
+    "hanzi": "澤上于天，夬；君子以施祿及下，居德則忌。",
+    "hanviet": "Trạch thượng vu thiên, quải; quân tử dĩ thi lộc cập hạ, cư đức tắc kỵ.",
+    "translation": "Hồ nước dâng lên trên trời, tạo nên quẻ Quải; người quân tử noi theo đó mà ban phát lợi ích tới cấp dưới, chủ động không cho nợ tích tụ ở mình.",
+    "english": "The trigram representing heaven and that for the waters of a marsh mounting above it form Guai. The superior man, in accordance with this, bestows emolument on those below him, and dislikes allowing his gifts to accumulate (undispensed).",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Quải ghép từ Qian (Trời) ở dưới, Dui (Hồ) ở trên — hồ nước dâng cao sắp tràn, hình ảnh của sức mạnh dương đã chiếm ưu thế, chuẩn bị 'quyết phá' cái mềm yếu. Tuy nhiên 'quyết phá' không phải dùng võ lực bừa bãi — mà phải công khai, kêu gọi sự ủng hộ, không để lây lan thành xung đột chung. Sáu hào kể câu chuyện: cố gắng nhưng có khiếm khuyết, kiên định dù sợ hãi, vạch mặt được rồi cảnh báo rõ, bị chỉ trích nhưng vẫn bình tĩnh, xử rí quyết liệt ở tầm trung, cuối cùng bất lực nếu thiếu ủng hộ.",
+
+  "computer_science": "Quải giống một 'breaking change' hoặc 'major refactor' trong codebase — phải công khai thông báo cho tất cả user/downstream, giải thích lý do (không phải chỉ vẽ đẹp), chuẩn bị migration path, và tránh áp dụng quá nhanh gây shock cho hệ thống. Lực mạnh (dương) chiếm ưu thế nhưng không dùng vũ lực mà dùng minh bạch, thuyết phục, hỗ trợ.",
+
+  "life": "Khi phát hiện cái sai, cái xấu không nên im lặng — nhưng cũng đừng đốn ngã người khác bằng cách bất ngờ; phải nói ra công khai, giải thích lý do, cho họ cơ hội điều chỉnh, tránh để nó lây lan thành xung đột lớn.",
+
+  "programming": "Khi bắt buộc phải breaking change (deprecate API, thay đổi database schema lớn), cần minh bạch: thông báo sớm, giải thích tại sao cần, cung cấp deprecation notice dài hạn, chuẩn bị migration guide chi tiết, và không 'quét qua' đối tượng không sẵn sàng — đó mới là cách 'quyết phá' chuyên nghiệp.",
+
+  "characters": [
+    {
+      "hanzi": "夬",
+      "pinyin": "guài",
+      "hanviet": "quải",
+      "meaning": "Quyết phá, cắt đứt, quyết đoán.",
+      "origin": "Chữ ghép từ 大 (đại, lớn, dương) + 人 (nhân, người) — hình ảnh người to lớn mạnh mẽ sẽ cắt đứt được, mở rộng thành 'quyết phá cách mạnh mẽ'.",
+      "example": "決夬 (quyết quải) = quyết phá; 夬然 (quải nhiên) = quyết liệt.",
+      "cs": "Breaking Change",
+      "csExplain": "Một sự thay đổi mạnh mẽ buộc phải thực hiện, cần công khai rõ ràng để không gây shock."
+    },
+    {
+      "hanzi": "揚",
+      "pinyin": "yáng",
+      "hanviet": "dương",
+      "meaning": "Nâng cao, phô diễn, công khai.",
+      "origin": "Bộ 手 (tay) + phần biểu âm 羊 (dương, chiều) — hình ảnh nâng tay lên, phô trương ra công khai.",
+      "example": "揚名 (dương danh) = nổi danh; 表揚 (biểu dương) = khen ngợi công khai.",
+      "cs": "Public Announcement",
+      "csExplain": "Hành động công bố rõ ràng cho tất cả mọi người biết, không che giấu."
+    },
+    {
+      "hanzi": "厲",
+      "pinyin": "lì",
+      "hanviet": "lệ",
+      "meaning": "Nguy hiểm, khó khăn, sắc bén.",
+      "origin": "Bộ 厂 (vách đá) + phần biểu âm — hình ảnh tình huống nguy nan, vách đá chắp chơ.",
+      "example": "危厲 (nguy lệ); 歷厲 (lịch lệ) = khó khăn.",
+      "cs": "High Risk",
+      "csExplain": "Tình trạng chứa đầy rủi ro, cần ý thức rõ để tránh sai lầm."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：壯于前趾，往不勝為咎。",
+      "hanviet": "Sơ Cửu: Tráng vu tiền chỉ, vãng bất thắng vi cữu.",
+      "translation": "Mạnh mẽ từ các ngón chân trước, tiến tới nhưng không thắng — đó là lỗi.",
+      "english": "The subject shows strength in his toes advancing forward but cannot succeed, resulting in blame.",
+      "explain": "Vị trí thấp nhất mà sức mạnh dương tập trung — hãy tiến tới nhưng sẽ bất lực nếu chỉ dựa vào sức lực sơ bộ, phải có chuẩn bị kỹ.",
+      "itExample": "Bắt đầu thực hiện một breaking change mà chỉ có team core, chưa có ủng hộ rộng từ stakeholder — sẽ bị chống lại, không tấn công được.",
+      "lifeExample": "Muốn cải cách một thứ gì đó trong gia đình mà chỉ có mình ưỡng ào — sẽ bị phản kháng từ những người khác."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：惕號，莫夜有戎，勿恤。",
+      "hanviet": "Cửu Nhị: Dịch hào, mạc dạ hữu quân, vật hưởng.",
+      "translation": "Sợ hãi kêu gọi cảnh báo, đêm tối có người công kích, đừng lo.",
+      "english": "Full of apprehension and calling for help, hostile measures may come at night, yet he need not worry.",
+      "explain": "Ở vị trí thực thi — sợ sự kháng cự từ cấp dưới, kêu gọi sự hỗ trợ từ trên; có áp lực đêm tối nhưng đừng hoảng — tin vào sự hỗ trợ sẽ vượt qua.",
+      "itExample": "Công bố breaking change API, có sợ nguy hiểm từ angry users rồi — nhưng vẫn giữ bình tĩnh, gọi support/PM để giải đáp concern, cuối cùng sẽ ổn.",
+      "lifeExample": "Dám nói chuyện khó khăn với gia đình, sợ bị phản ứng xấu, nhưng kêu gọi sự hỗ trợ từ người khác, cuối cùng mọi thứ sẽ sáng tỏ."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：壯于頄，有凶。君子夬夬，獨行，遇雨，若濡，有慍，无咎。",
+      "hanviet": "Cửu Tam: Tráng vu quai, hữu hung. Quân tử quải quải, độc hành, ngộ vũ, nhược nhũ, hữu uất, vô cữu.",
+      "translation": "Mạnh mẽ từ gương mặt, có nguy hiểm. Người quân tử quyết liệt, đi một mình, gặp mưa, ướt thẫm, có chút khó chịu, nhưng không có lỗi.",
+      "english": "Strong appearance brings danger, but the superior man walking alone in resolute determination encounters rejection yet incurs no ultimate blame.",
+      "explain": "Gương mặt quyết liệt có thể khiến người khác cảm thấy bị dọa — nhưng nếu giữ vững nguyên tắc, đi riêng lẻ trong mưa ướt, vẫn đúng dù bị chỉ trích.",
+      "itExample": "Breaking change được announce rõ ràng, chính trực — nhưng một số user vẫn phản ứng giận dữ, cảm thấy bị đối xử bất công; vẫn không có lỗi nếu bạn làm đúng theo quy trình.",
+      "lifeExample": "Nói thẳng về lỗi của người khác, mặc dù sợ bị chỉ trích là gay gắt — nhưng giữ bình tĩnh, đi riêng theo nguyên tắc của mình, cuối cùng sẽ được hiểu."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：臀无膚，其行次且。牽羊悔亡，聞言不信。",
+      "hanviet": "Cửu Tứ: Độn vô phù, kỳ hành thứ thả. Khiên dương hối vong, văn ngôn bất tín.",
+      "translation": "Mông không da, đi từng bước khó khăn. Được dẫn theo như cừu, hối tiếc sẽ mất, nhưng nghe lời người ta không tin.",
+      "english": "His condition causes him to walk with difficulty; following guidance would eliminate regret, yet he refuses to believe such counsel.",
+      "explain": "Ở vị trí dễ bị tổn thương, bước đi cẩn thận — muốn mạo hiểm theo đuôi người khác thì hối tiếc biến mất, nhưng kiêu ngạo không nghe lời khác.",
+      "itExample": "Trong quá trình breaking change, team bị pressure lớn, cần người hướng dẫn; nếu tin lời expert sẽ ổn, nhưng nếu kiên quyết không nghe sẽ bị đau đầu.",
+      "lifeExample": "Khi gặp khó khăn, có người tốt bụng muốn giúp — nếu chịu nghe lời sẽ tránh được hối tiếc, nhưng kiêu ngạo không nghe sẽ phải chịu cơn đau."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：莧陸夬夬，中行无咎。",
+      "hanviet": "Cửu Ngũ: Hiếm lục quải quải, trung hành vô cữu.",
+      "translation": "Cỏ ráy gạo dứt rứt quyết liệt, giữ đạo trung là không có lỗi.",
+      "english": "The subject of the line having such determination, his action, in harmony with his central position, will lead to no error or blame.",
+      "explain": "Vị trí vua, quyết liệt nhưng giữ đạo trung — không lệch lạc, quyết phá là chính đạo, không có lỗi.",
+      "itExample": "Người lãnh đạo quyết định breaking change, làm một cách quyết liệt mà vẫn giữ nguyên tắc chính (user welfare, testing, documentation) — đó là cách tốt.",
+      "lifeExample": "Người lớn trong gia đình quyết định thay đổi quy tắc, làm một cách rõ ràng, chính trực, không lệch lạc — mọi thứ sẽ ổn."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：无號，終有凶。",
+      "hanviet": "Thượng Cửu: Vô hào, chung hữu hung.",
+      "translation": "Không có ai kêu gọi ủng hộ, cuối cùng xấu.",
+      "english": "Without allies to call upon, his ultimate outcome will be unfortunate and unsustainable.",
+      "explain": "Hào cuối, quá cao so với người khác, cô lập, không ai ủng hộ — kết thúc tệ. Bài học: quyết phá mạnh mẽ mà thiếu ủng hộ sẽ bất lợi.",
+      "itExample": "Breaking change được áp dụng một cách quá gắt gao, không lắng nghe feedback, cô lập đối tác — cuối cùng sẽ bị ecosystem phản kháng.",
+      "lifeExample": "Áp lực thay đổi mạnh mẽ mà không có bất kỳ sự hỗ trợ từ ai — sẽ bị cô lập, công cuộc sẽ thất bại."
+    }
+  ],
+
+  "keywords": ["Quải", "夬", "Quyết phá", "Breaking change", "Trạch Thiên Quải", "Minh bạch"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/guai", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Quải (Thoán từ, Hào từ)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/夬", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%A4%AC", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/43", "label": "64 Quẻ — Quẻ 43: Trạch Thiên Quải" }
+  ]
+}

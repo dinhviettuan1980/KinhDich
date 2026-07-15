@@ -1,0 +1,180 @@
+{
+  "id": 2,
+  "hanzi": "坤",
+  "pinyin": "Kūn",
+  "hanviet": "Khôn",
+  "english": "The Receptive",
+  "upperTrigram": "kun",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "坤：元亨。利牝馬之貞。君子有攸往，先迷後得主。利西南得朋，東北喪朋。安貞，吉。",
+    "hanviet": "Khôn: Nguyên hanh. Lợi tẫn mã chi trinh. Quân tử hữu du vãng, tiên mê hậu đắc chủ. Lợi Tây Nam đắc bằng, Đông Bắc táng bằng. An trinh, cát.",
+    "translation": "Khôn (Đất): mở đầu lớn lao, hanh thông. Thuận lợi khi giữ vững đức kiên trinh như ngựa cái. Người quân tử có việc phải đi: nếu tranh đi trước sẽ lạc đường, nếu theo sau sẽ tìm được người dẫn dắt. Đi về hướng Tây Nam thì được bạn, đi về hướng Đông Bắc thì mất bạn. Yên ổn giữ chính đạo thì tốt lành.",
+    "english": "Khwăn (represents) what is great and originating, penetrating, advantageous, correct and having the firmness of a mare. When the superior man (here intended) has to make any movement, if he take the initiative, he will go astray; if he follow, he will find his (proper) lord. The advantageousness will be seen in his getting friends in the south-west, and losing friends in the north-east. If he rest in correctness and firmness, there will be good fortune."
+  },
+
+  "daTuong": {
+    "hanzi": "地勢坤，君子以厚德載物。",
+    "hanviet": "Địa thế Khôn, quân tử dĩ hậu đức tải vật.",
+    "translation": "Thế đất là sự mềm mại, bao dung (Khôn); người quân tử noi theo đó mà tu dưỡng đức dày để chở nâng vạn vật.",
+    "english": "The (capacity and sustaining) power of the earth is what is denoted by Khwăn. The superior man, in accordance with this, with his large virtue supports (men and) things.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Khôn là quẻ thuần Âm duy nhất trong 64 quẻ — 6 hào đều là vạch đứt, biểu tượng cho Đất và đức tính tiếp nhận, nuôi dưỡng, đối lập bổ sung cho Càn. Bài học cốt lõi không phải là yếu đuối mà là biết vai trò của mình: không tranh đi trước mà thuận theo, không giành công mà âm thầm hoàn thành. Sáu hào kể câu chuyện từ dấu hiệu nhỏ đến hậu quả lớn: giẫm sương biết băng sắp tới (Sơ Lục) → chính trực tự nhiên (Lục Nhị) → giữ tài năng kín đáo (Lục Tam) → thận trọng cực độ giữa nguy hiểm (Lục Tứ) → địa vị cao mà vẫn khiêm nhường (Lục Ngũ) → và bài học quan trọng nhất: khi Âm tranh với Dương đến cùng cực, cả hai đều tổn thương (Thượng Lục).",
+
+  "computer_science": "Nếu Càn là compute layer chủ động khởi tạo tiến trình, thì Khôn giống hệt storage/infrastructure layer: không tự ý sinh ra request nhưng đảm nhiệm việc lưu trữ, phục vụ đáng tin cậy mọi request gửi tới. 6 hào là vòng đời của một 'follower node' trong hệ phân tán: phát hiện tín hiệu bất ổn sớm (Sơ Lục, giống early warning) → vận hành đúng chuẩn, ổn định (Lục Nhị) → chỉ replicate, không tự quyết (Lục Tam, giống read-replica) → lockdown khi nhạy cảm (Lục Tứ, giống circuit breaker) → đạt trạng thái golden state (Lục Ngũ) → và cảnh báo kinh điển: nếu follower cố tranh vai trò leader sẽ gây xung đột dữ liệu kiểu split-brain (Thượng Lục, 'rồng đánh nhau').",
+
+  "life": "Bài học của sự tiếp nhận: thành công không phải luôn phải dẫn đầu, mà biết khi nào nên theo, hỗ trợ, và giữ chính đạo bền bỉ. Tranh giành vị trí đứng đầu khi thực chất mình đang ở vai phụ sẽ dẫn tới xung đột tổn thương cả đôi bên.",
+
+  "programming": "Vai trò support/infra/ops trong một team: không phải lúc nào cũng cần dẫn đầu bằng tính năng mới nổi bật, thành viên giỏi nhất đôi khi là người đảm bảo hệ thống nền tảng vận hành trơn tru, xử lý sự cố kín đáo mà không cần nhận công (Lục Tam). Bài học Thượng Lục: khi một thành viên 'support' cố chiếm vai trò lead mà chưa đủ vai trò/tương thích rõ ràng sẽ gây ra conflict lớn, giống hai nguồn dữ liệu tranh nhau làm source of truth.",
+
+  "characters": [
+    {
+      "hanzi": "坤",
+      "pinyin": "kūn",
+      "hanviet": "khôn",
+      "meaning": "Đất, thuận, tiếp nhận, nuôi dưỡng.",
+      "origin": "Chữ ghép từ 土 (thổ, đất) + 申 (thân, duỗi ra/trải rộng). Thuyết Văn Giải Tự giải 'khôn, địa dã' (là đất vậy) — chữ hình thanh, 申 vừa biểu âm vừa gợi ý nghĩa 'trải rộng' của mặt đất.",
+      "example": "乾坤 (càn khôn, trời đất); 坤輿 (khôn dư, cách gọi cổ chỉ trái đất).",
+      "cs": "Storage / Infrastructure Layer",
+      "csExplain": "Tầng hạ tầng lưu trữ, phục vụ bên dưới — không tự sinh ra nghiệp vụ mà nâng đỡ, duy trì mọi thứ chạy bên trên."
+    },
+    {
+      "hanzi": "牝",
+      "pinyin": "pìn",
+      "hanviet": "tẫn",
+      "meaning": "Con cái/giống mái (ở loài thú).",
+      "origin": "Chữ ghép từ 牛 (ngưu, thú lớn nói chung) + 匕 (chuỷ, ký hiệu chỉ giống cái, đối lập với 士/牡 chỉ giống đực). Thuyết Văn xếp vào bộ 牛, nghĩa gốc 'con thú cái'.",
+      "example": "牝馬 (tẫn mã, ngựa cái) — hình ảnh trong hào từ Khôn tượng trưng sức mạnh mềm mại nhưng bền bỉ, biết theo.",
+      "cs": "Passive / Follower Role",
+      "csExplain": "Vai trò 'theo sau, phục vụ' trong hệ thống — không chủ động khởi phát nhưng bền bỉ, đáng tin cậy như một follower node."
+    },
+    {
+      "hanzi": "迷",
+      "pinyin": "mí",
+      "hanviet": "mê",
+      "meaning": "Lạc đường, mê muội.",
+      "origin": "Bộ 辵/辶 (sước, đi/chuyển động) + 米 (mễ, biểu âm) — nghĩa gốc 'đi mà không tìm được đường'.",
+      "example": "迷路 (mê lộ, lạc đường); 昏迷 (hôn mê).",
+      "cs": "Wrong Entry Point",
+      "csExplain": "Khi một tiến trình tự ý 'đi trước' mà chưa có đúng quyền/ngữ cảnh, dễ dẫn tới trạng thái sai lệch, giống chạy nhầm luồng chính trước khi dependency sẵn sàng."
+    },
+    {
+      "hanzi": "朋",
+      "pinyin": "péng",
+      "hanviet": "bằng",
+      "meaning": "Bạn bè, đồng minh, cùng loại.",
+      "origin": "Hình tượng hai xâu vỏ sò/ngọc bối (貝) buộc chung — thời cổ vỏ sò dùng làm tiền tệ, 'hai xâu đi cùng nhau' biểu thị 'cùng loại, đồng bọn', về sau mở rộng thành 'bạn bè'.",
+      "example": "朋友 (bằng hữu, bạn bè); 朋黨 (bằng đảng).",
+      "cs": "Peer Nodes / Allied Services",
+      "csExplain": "Các node/service ngang hàng, tin cậy lẫn nhau — kết nối đúng hướng (đúng protocol/network) mới tạo thành hệ sinh thái ổn định."
+    },
+    {
+      "hanzi": "厚",
+      "pinyin": "hòu",
+      "hanviet": "hậu",
+      "meaning": "Dày, hậu hĩnh, sâu dày (về đức).",
+      "origin": "Bộ 厂 (hán, vách đá) kết hợp phần biểu thị đồ đựng dày. Thuyết Văn giải liên quan tới 'núi gò dày' — nghĩa gốc chỉ độ dày vật chất, mở rộng thành 'hậu hĩnh, sâu dày về đức'.",
+      "example": "厚德 (hậu đức, đức dày); 厚道 (hậu đạo, đôn hậu).",
+      "cs": "Redundancy / Fault-Tolerance Depth",
+      "csExplain": "Độ 'dày' của hệ thống dự phòng — càng nhiều lớp chịu lỗi/backup càng chở nâng được nhiều tải mà không sập."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：履霜，堅冰至。",
+      "hanviet": "Sơ Lục: Lý sương, kiên băng chí.",
+      "translation": "Giẫm lên sương mỏng, biết rằng băng dày sắp đến.",
+      "english": "In the first line, divided, (we see its subject) treading on hoarfrost. The strong ice will come (by and by).",
+      "explain": "Hào thấp nhất — dấu hiệu nhỏ báo trước hậu quả lớn; nhìn thấy sương giá đầu mùa phải biết mùa đông băng giá sắp tới, đây là bài học về nhận diện tín hiệu sớm.",
+      "itExample": "Log xuất hiện vài warning nhỏ, latency tăng nhẹ chưa gây sự cố — nếu bỏ qua, tín hiệu nhỏ này sẽ tích tụ thành outage lớn; monitoring tốt phải cảnh báo từ 'sương' chứ không đợi tới 'băng'.",
+      "lifeExample": "Những dấu hiệu nhỏ trong một mối quan hệ hay sức khỏe, nếu bị phớt lờ, sẽ tích tụ thành vấn đề nghiêm trọng — nhạy bén với dấu hiệu đầu tiên là khôn ngoan."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：直方大，不習无不利。",
+      "hanviet": "Lục Nhị: Trực phương đại, bất tập vô bất lợi.",
+      "translation": "Ngay thẳng, vuông vắn, rộng lớn; không cần luyện tập vẫn không gì bất lợi.",
+      "english": "The second line, divided, (shows the attribute of) being straight, square, and great. (Its operation), without repeated efforts, will be in every respect advantageous.",
+      "explain": "Vị trí trung chính của quẻ Khôn — đức tính tự nhiên ngay thẳng, quy củ, rộng lớn như chính đất; không cần gắng sức giả tạo, cứ thuận theo bản chất là tốt.",
+      "itExample": "Một module thiết kế đúng nguyên lý (single responsibility, interface rõ ràng) hoạt động trơn tru mà không cần workaround liên tục — kiến trúc tốt tự nó đã 'không cần luyện tập vẫn lợi'.",
+      "lifeExample": "Người có nền tảng đạo đức, nguyên tắc sống ngay thẳng từ nhỏ thường không cần gồng mình 'diễn' đúng mực — sự chính trực tự nhiên toát ra và luôn thuận lợi."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：含章，可貞。或從王事，无成有終。",
+      "hanviet": "Lục Tam: Hàm chương, khả trinh. Hoặc tòng vương sự, vô thành hữu chung.",
+      "translation": "Giữ vẻ đẹp/tài năng bên trong, có thể giữ vững chính đạo. Nếu có tham gia việc của vua, tuy không nhận về mình thành tích nhưng vẫn có kết quả tốt đẹp.",
+      "english": "The third line, divided, (shows its subject) keeping his excellence under restraint, but firmly maintaining it. If he should have occasion to engage in the king's service, though he will not claim the success (for himself), he will bring affairs to a good issue.",
+      "explain": "Vị trí chuyển tiếp, dễ bất ổn — bài học về sự khiêm nhường có tính toán: có năng lực nhưng không phô trương, hoàn thành việc chung mà không giành công.",
+      "itExample": "Một kỹ sư giỏi âm thầm fix bug nền tảng, review giúp đồng nghiệp mà không đứng tên PR chính — không cần credit ngay, hệ thống vẫn tốt lên và uy tín tích lũy dần.",
+      "lifeExample": "Đóng góp thầm lặng trong một dự án nhóm, không tranh công khi thành công, nhưng vẫn đảm bảo công việc hoàn tất tốt đẹp — bản lĩnh thật sự không cần phô diễn."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：括囊，无咎无譽。",
+      "hanviet": "Lục Tứ: Quát nang, vô cữu vô dự.",
+      "translation": "Buộc chặt miệng túi lại; không có lỗi mà cũng chẳng có tiếng khen.",
+      "english": "The fourth line, divided, (shows the symbol of) a sack tied up. There will be no ground for blame or for praise.",
+      "explain": "Vị trí gần ngôi vua nhưng nhiều hiềm nghi, nguy hiểm — bài học về sự thận trọng tối đa: giữ kín, không phát biểu thừa để tránh tai vạ trong lúc nhạy cảm, dù không được khen nhưng an toàn.",
+      "itExample": "Giai đoạn tổ chức tái cấu trúc, nhạy cảm nội bộ — im lặng, không commit code rủi ro, không phát ngôn thừa, chỉ đảm bảo hệ thống chạy ổn định là chiến lược an toàn nhất.",
+      "lifeExample": "Trong giai đoạn xung đột gia đình/công ty nhạy cảm, đôi khi im lặng và không đứng về phía nào là cách bảo toàn bản thân tốt hơn lên tiếng."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：黃裳，元吉。",
+      "hanviet": "Lục Ngũ: Hoàng thường, nguyên cát.",
+      "translation": "Xiêm y màu vàng, tốt lành lớn.",
+      "english": "The fifth line, divided, (shows) the yellow lower garment. There will be great good fortune.",
+      "explain": "Vị trí tôn quý nhất nhưng vẫn là hào Âm — màu vàng là màu trung chính, 'thường' là xiêm dưới chứ không phải áo trên: dù ở địa vị cao vẫn giữ đức khiêm nhường, đúng vai trò phụ trợ. Đây là hào tốt đẹp nhất của quẻ Khôn.",
+      "itExample": "Một tech lead ở vị trí cao vẫn đóng vai trò 'enabler' — dọn đường, support cho team thay vì áp đặt; quyền lực đi kèm khiêm tốn tạo ra kết quả tốt nhất cho cả hệ thống.",
+      "lifeExample": "Người ở vị trí lãnh đạo cao nhưng vẫn giữ sự khiêm tốn, đúng vai trò, không lấn át người khác — đây là hình mẫu lãnh đạo được kính trọng nhất."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：龍戰于野，其血玄黃。",
+      "hanviet": "Thượng Lục: Long chiến vu dã, kỳ huyết huyền hoàng.",
+      "translation": "Rồng đánh nhau ngoài đồng, máu chảy ra màu đen lẫn vàng.",
+      "english": "The sixth line, divided, (shows) dragons fighting in the wild. Their blood is purple and yellow.",
+      "explain": "Âm đến cực điểm sẽ tranh với Dương — khi vai trò 'theo sau, tiếp nhận' bị đẩy lên tột cùng và cố tranh giành vị trí dẫn đầu, xung đột nổ ra, cả hai bên đều tổn thương.",
+      "itExample": "Hai service/node cùng cố giành quyền 'làm leader' (ví dụ 2 node cùng nhận mình là primary trong hệ phân tán) — xung đột kiểu split-brain, cả hai phía đều bị hỏng dữ liệu.",
+      "lifeExample": "Khi cả hai bên trong một mối quan hệ/tổ chức đều cố tranh giành quyền kiểm soát tuyệt đối mà không ai chịu nhường, kết quả thường là cả hai cùng tổn thương."
+    },
+    {
+      "id": 7,
+      "name": "Dụng Lục",
+      "hanzi": "用六：利永貞。",
+      "hanviet": "Dụng Lục: Lợi vĩnh trinh.",
+      "translation": "Thuận lợi khi giữ vững chính đạo mãi mãi.",
+      "english": "(The lines of this hexagram are all weak and divided, as appears from) the use of the number six. If those (who are thus represented) be perpetually correct and firm, advantage will arise.",
+      "explain": "Hào đặc biệt song song với Dụng Cửu của quẻ Càn — chỉ xuất hiện khi cả 6 hào đều động. Bài học: sức mềm dẻo, tiếp nhận chỉ thật sự bền vững và có lợi khi đi kèm sự kiên định lâu dài, không dao động.",
+      "itExample": "Một hệ thống follower/replica đáng tin cậy nhất là hệ thống giữ vững tính nhất quán lâu dài, không đột ngột đổi hành vi — độ tin cậy đến từ sự ổn định bền bỉ, không phải sự linh hoạt tùy tiện.",
+      "lifeExample": "Đức tính mềm mỏng, biết lắng nghe chỉ thực sự đáng quý khi đi kèm sự kiên định về nguyên tắc sống lâu dài — mềm mỏng không có nghĩa là dễ dao động."
+    }
+  ],
+
+  "keywords": ["Khôn", "坤", "Đất", "thuần Âm", "ngựa cái", "hậu đức tải vật", "Long chiến vu dã", "Dụng Lục"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_2", "note": "Bản dịch tiếng Anh public domain của Thoán từ và 6 hào từ (+ Dụng Lục)." },
+    { "source": "維基文庫 Wikisource — 周易/坤", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E5%9D%A4", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳từng hào)." },
+    { "source": "James Legge, Appendix II — The Great Symbolism (Da Xiang)", "url": "https://sacred-texts.com/ich/icap2-1.htm", "note": "Nguồn bản dịch Đại Tượng truyện của Legge, đối chiếu qua bản số hóa tại baharna.com/iching/legge/000000.htm." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/2", "label": "64 Quẻ — Quẻ 2: Thuần Khôn" }
+  ]
+}

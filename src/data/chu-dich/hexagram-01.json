@@ -1,0 +1,171 @@
+{
+  "id": 1,
+  "hanzi": "乾",
+  "pinyin": "Qián",
+  "hanviet": "Càn",
+  "english": "The Creative",
+  "upperTrigram": "qian",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "乾：元亨，利貞。",
+    "hanviet": "Càn: Nguyên, hanh, lợi, trinh.",
+    "translation": "Càn (Trời): mở đầu lớn lao, hanh thông, thuận lợi, chính bền.",
+    "english": "Qian represents what is great and originating, penetrating, advantageous, correct and firm."
+  },
+
+  "daTuong": {
+    "hanzi": "天行健，君子以自強不息。",
+    "hanviet": "Thiên hành kiện, quân tử dĩ tự cường bất tức.",
+    "translation": "Trời vận hành mạnh mẽ, không ngừng nghỉ; người quân tử noi theo đó mà tự rèn luyện không thôi.",
+    "english": "Heaven, in its motion, (gives the idea of) strength. The superior man, in accordance with this, nerves himself to ceaseless activity.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Càn là quẻ thuần Dương duy nhất trong 64 quẻ — 6 hào đều là vạch liền, biểu tượng cho Trời và sức mạnh sáng tạo thuần túy. Bốn chữ Nguyên-Hanh-Lợi-Trinh mô tả trọn vẹn 1 chu trình: khởi đầu lớn lao (Nguyên) → vận hành thông suốt (Hanh) → sinh lợi ích cụ thể (Lợi) → giữ vững đến cùng (Trinh). Sáu hào kể câu chuyện 1 con rồng: ẩn mình chờ thời (Sơ Cửu) → xuất hiện học hỏi (Cửu Nhị) → nỗ lực thận trọng (Cửu Tam) → thử sức có tính toán (Cửu Tứ) → đạt đỉnh cao (Cửu Ngũ) → và bài học quan trọng nhất: đi quá xa sẽ hối tiếc (Thượng Cửu). Đây không phải chuyện huyền bí — đây là 1 mô hình về nhịp độ phát triển đúng đắn của bất kỳ việc gì.",
+
+  "computer_science": "元亨利貞 đọc như 1 vòng đời hệ thống 4 giai đoạn: 元 Initialization (khởi tạo) → 亨 Execution Flow (luồng thực thi thông suốt) → 利 Optimization (tối ưu, sinh giá trị) → 貞 System Integrity (giữ tính toàn vẹn lâu dài). 6 hào là 1 Finite State Machine tuyến tính đúng 6 trạng thái, đi từ 'chưa deploy' (Sơ Cửu) tới 'production ổn định' (Cửu Ngũ) và cảnh báo rõ trạng thái lỗi cuối cùng nếu không dừng đúng lúc: scale-creep / over-engineering (Thượng Cửu, 'Kháng Long Hữu Hối').",
+
+  "life": "Bài học thời điểm: đừng hành động khi còn 'Tiềm Long' (chưa đủ điều kiện), nhưng cũng đừng cố đẩy xa hơn giới hạn khi đã ở đỉnh cao ('Kháng Long' — rồng bay quá cao sẽ hối tiếc). Thành công bền vững đến từ việc nhận biết đúng giai đoạn mình đang ở, không phải cố sức liên tục.",
+
+  "programming": "Một project lifecycle kinh điển: đừng ship khi chưa sẵn sàng (Sơ Cửu — 'chưa nên hành động'), học hỏi/pair với người giỏi hơn khi mới bắt đầu lộ diện (Cửu Nhị), làm việc cẩn trọng suốt giai đoạn phát triển (Cửu Tam), thử nghiệm có tính toán trước khi launch chính thức (Cửu Tứ, 'nhảy nhưng vẫn ở vực' ≈ canary release), đạt trạng thái ổn định (Cửu Ngũ). Thượng Cửu là lời cảnh báo kinh điển về over-engineering / feature creep — mở rộng quá đà sau khi đã ổn định sẽ tạo ra nợ kỹ thuật, không phải giá trị mới.",
+
+  "characters": [
+    {
+      "hanzi": "元",
+      "pinyin": "yuán",
+      "hanviet": "nguyên",
+      "meaning": "Gốc, đầu tiên, lớn lao, khởi nguyên.",
+      "origin": "Trong giáp cốt văn/kim văn, chữ 元 vẽ hình đầu người (phần trên của chữ 兀/人) — nghĩa gốc là 'cái đầu', mở rộng thành 'khởi đầu, cái căn bản, cái đứng đầu'.",
+      "example": "元旦 (nguyên đán) = ngày đầu năm; 元气 (nguyên khí) = sinh khí gốc.",
+      "cs": "Initialization",
+      "csExplain": "Bước khởi tạo hệ thống — cấp phát tài nguyên gốc trước khi bất kỳ luồng xử lý nào chạy được."
+    },
+    {
+      "hanzi": "亨",
+      "pinyin": "hēng",
+      "hanviet": "hanh",
+      "meaning": "Hanh thông, thông suốt, trôi chảy.",
+      "origin": "Nguyên là chữ tượng hình miếu thờ/lễ vật dâng cúng (cùng gốc với 享 - hưởng), nghĩa gốc 'dâng tế, được hưởng', về sau mượn nghĩa 'thông suốt, hanh thông' vì lễ tế được ứng nghiệm thì mọi việc trôi chảy.",
+      "example": "亨通 (hanh thông) = mọi việc suôn sẻ.",
+      "cs": "Execution Flow",
+      "csExplain": "Luồng xử lý chạy thông suốt sau khi khởi tạo — không bị block, không deadlock, dữ liệu chảy đúng pipeline."
+    },
+    {
+      "hanzi": "利",
+      "pinyin": "lì",
+      "hanviet": "lợi",
+      "meaning": "Lợi ích, thuận lợi, sắc bén.",
+      "origin": "Chữ ghép từ 禾 (hòa, cây lúa) + 刀 (đao, con dao) — hình ảnh dùng dao gặt lúa, nghĩa gốc 'cắt gặt, thu hoạch', mở rộng thành 'lợi ích, thuận lợi'.",
+      "example": "利益 (lợi ích), 利見大人 (lợi kiến đại nhân) = thuận lợi khi gặp bậc hiền tài.",
+      "cs": "Optimization",
+      "csExplain": "Giai đoạn sinh ra giá trị thực — tối ưu để 'thu hoạch' kết quả từ luồng xử lý đã thông suốt, giống thu hoạch mùa màng."
+    },
+    {
+      "hanzi": "貞",
+      "pinyin": "zhēn",
+      "hanviet": "trinh",
+      "meaning": "Chính đính, ngay thẳng, kiên định, bền vững.",
+      "origin": "Chữ ghép từ 卜 (bốc, việc bói) + 貝/鼎 (bối/đỉnh, đồ tế khí) — nghĩa gốc liên quan tới việc bói hỏi để xác định điều chính đáng, mở rộng thành 'giữ vững chính đạo, kiên định'.",
+      "example": "貞節 (trinh tiết), 貞固 (trinh cố) = giữ vững, kiên định.",
+      "cs": "System Integrity",
+      "csExplain": "Tính toàn vẹn hệ thống được duy trì lâu dài — sau khi tối ưu, hệ thống phải giữ đúng bất biến (invariant), không suy thoái theo thời gian."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：潛龍勿用。",
+      "hanviet": "Sơ Cửu: Tiềm long vật dụng.",
+      "translation": "Rồng còn ẩn náu, chưa nên hành động.",
+      "english": "The dragon lying hid in the deep. It is not the time for active doing.",
+      "explain": "Vị trí thấp nhất, nội lực còn non — đây là giai đoạn tích luỹ âm thầm, chưa đủ điều kiện để lộ diện hay hành động lớn.",
+      "itExample": "Sprint 0 / giai đoạn thiết kế: chưa có dòng code nào chạy production, mọi thứ còn ở bản nháp — chưa nên demo hay commit ra roadmap công khai.",
+      "lifeExample": "Người mới ra trường, còn đang học nghề — chưa nên vội nhận dự án lớn hay khẳng định bản thân trước đám đông."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：見龍在田，利見大人。",
+      "hanviet": "Cửu Nhị: Kiến long tại điền, lợi kiến đại nhân.",
+      "translation": "Rồng đã hiện ra trên ruộng, thuận lợi khi gặp được bậc đại nhân.",
+      "english": "The dragon appearing in the field. It will be advantageous to meet with the great man.",
+      "explain": "Đã bắt đầu lộ diện, có năng lực thấy được — đây là lúc nên tìm thầy giỏi, tìm mentor để dẫn dắt thay vì tự mày mò.",
+      "itExample": "Đã có MVP chạy được, đây là lúc tìm senior/mentor review kiến trúc trước khi đi xa hơn — feedback sớm rẻ hơn refactor muộn.",
+      "lifeExample": "Đã có chút kinh nghiệm, năng lực bắt đầu được công nhận — chủ động tìm người giỏi hơn để học hỏi sẽ tiến nhanh hơn tự thân vận động."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：君子終日乾乾，夕惕若，厲，无咎。",
+      "hanviet": "Cửu Tam: Quân tử chung nhật càn càn, tịch dịch nhược, lệ, vô cữu.",
+      "translation": "Người quân tử suốt ngày miệt mài, đến tối vẫn còn thận trọng lo lắng; dù ở thế nguy hiểm, không có lỗi.",
+      "english": "The superior man is active and vigilant all the day, and in the evening he still maintains his careful apprehensiveness. The position is dangerous, but there will be no mistake.",
+      "explain": "Vị trí chuyển tiếp, chông chênh nhất trong 6 hào — chỉ có nỗ lực liên tục kèm sự thận trọng mới giữ được an toàn.",
+      "itExample": "Giai đoạn scale-up: tăng trưởng nhanh nhưng hệ thống chưa ổn định hẳn. Deploy nhiều, monitor kỹ, on-call sát sao — chủ quan lúc này rất dễ gây outage lớn.",
+      "lifeExample": "Giai đoạn giữa sự nghiệp, gánh trách nhiệm lớn hơn nhưng chưa hoàn toàn vững vàng — cần vừa nỗ lực vừa tự kiểm soát rủi ro, không được chủ quan."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：或躍在淵，无咎。",
+      "hanviet": "Cửu Tứ: Hoặc dược tại uyên, vô cữu.",
+      "translation": "Như con rồng chao lượn trên vực sâu, không có lỗi.",
+      "english": "The dragon looking as if he were leaping up, but still in the deep. There will be no mistake.",
+      "explain": "Đã đủ sức để 'nhảy' nhưng vẫn giữ được đường lui — thử sức có tính toán, không liều lĩnh mù quáng.",
+      "itExample": "Canary release / feature flag: bung tính năng mới cho 1 nhóm nhỏ user trước, sẵn sàng rollback — thử nghiệm táo bạo nhưng có lưới an toàn.",
+      "lifeExample": "Cân nhắc bước ngoặt lớn (đổi nghề, khởi nghiệp) nhưng vẫn giữ phương án dự phòng — dám thử nhưng không đốt hết đường lui."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：飛龍在天，利見大人。",
+      "hanviet": "Cửu Ngũ: Phi long tại thiên, lợi kiến đại nhân.",
+      "translation": "Rồng bay trên trời, thuận lợi khi gặp được bậc đại nhân.",
+      "english": "The dragon on the wing in the sky. It will be advantageous to meet with the great man.",
+      "explain": "Đỉnh cao của quẻ — vị trí vua/lãnh đạo, năng lực và vị thế đều đã chín muồi. Đây là hào tốt nhất trong 6 hào.",
+      "itExample": "Hệ thống ở trạng thái production ổn định, được tin dùng rộng rãi, trở thành nền tảng cho người khác xây dựng lên — đúng nghĩa 'platform trưởng thành'.",
+      "lifeExample": "Sự nghiệp ở đỉnh cao, có ảnh hưởng thật sự — lúc này càng cần tìm người đồng cấp/cố vấn giỏi để giữ tỉnh táo, tránh ảo tưởng quyền lực."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：亢龍有悔。",
+      "hanviet": "Thượng Cửu: Kháng long hữu hối.",
+      "translation": "Rồng bay quá cao, ắt có điều hối tiếc.",
+      "english": "The dragon exceeding the proper limits. There will be occasion for repentance.",
+      "explain": "Hào cuối cùng, vượt quá đỉnh — cảnh báo kinh điển của cả quẻ Càn: mọi thứ lên đến cực điểm mà không dừng lại sẽ đảo chiều thành hối tiếc.",
+      "itExample": "Over-engineering sau khi đã ổn định: thêm quá nhiều abstraction, microservice hoá quá mức cần thiết — biến hệ thống đơn giản thành phức tạp không cần thiết, tạo nợ kỹ thuật mới.",
+      "lifeExample": "Cố giữ quyền lực/vị trí quá lâu, không chịu nhường lại hay lùi bước đúng lúc — thành công kéo dài quá giới hạn tự nhiên thường kết thúc trong tiếc nuối."
+    },
+    {
+      "id": 7,
+      "name": "Dụng Cửu",
+      "hanzi": "用九：見群龍无首，吉。",
+      "hanviet": "Dụng Cửu: Kiến quần long vô thủ, cát.",
+      "translation": "Thấy bầy rồng không tranh làm đầu, tốt lành.",
+      "english": "The lines of this hexagram are all strong and undivided — a flight of dragons without heads (displayed): there will be good fortune.",
+      "explain": "Hào đặc biệt chỉ Càn và Khôn mới có — chỉ xuất hiện khi cả 6 hào đều động (biến hết thành Âm). Ý nghĩa: sức mạnh tột đỉnh mà không tranh giành ngôi vị đứng đầu mới là cát tường thật sự — bài học về khiêm nhường ở đỉnh cao.",
+      "itExample": "Kiến trúc microservice/team tự trị thật sự tốt: không service/thành viên nào 'làm bá chủ' hệ thống, mọi thành phần hợp tác ngang hàng — decentralized nhưng vẫn vận hành trơn tru.",
+      "lifeExample": "Một tập thể mạnh mà không ai tranh làm 'người đứng đầu' — mỗi người đóng góp đúng vai trò, đó là trạng thái lý tưởng của 1 đội ngũ giỏi."
+    }
+  ],
+
+  "keywords": ["Càn", "乾", "Trời", "thuần Dương", "rồng", "Nguyên Hanh Lợi Trinh", "Kháng Long Hữu Hối", "Dụng Cửu"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/qian", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán từng hào." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/乾", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E4%B9%BE", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/21", "label": "Finger CPU Lab — Bài 21: CPU vs Người xưa" },
+    { "module": "que", "path": "/que/1", "label": "64 Quẻ — Quẻ 1: Thuần Càn" }
+  ]
+}

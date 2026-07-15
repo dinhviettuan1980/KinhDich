@@ -1,0 +1,158 @@
+{
+  "id": 4,
+  "hanzi": "蒙",
+  "pinyin": "Méng",
+  "hanviet": "Mông",
+  "english": "Youthful Folly",
+  "upperTrigram": "gen",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "蒙：亨。匪我求童蒙，童蒙求我。初筮告，再三瀆，瀆則不告。利貞。",
+    "hanviet": "Mông: Hanh. Phỉ ngã cầu đồng mông, đồng mông cầu ngã. Sơ phệ cốc, tái tam độc, độc tắc bất cốc. Lợi trinh.",
+    "translation": "Mông (Mờ mịt, ấu trĩ): hanh thông. Không phải ta đi cầu đứa trẻ ngu muội, mà đứa trẻ ngu muội tìm đến cầu ta. Hỏi lần đầu thì ta bảo cho, hỏi lại lần hai lần ba là khinh nhờn, khinh nhờn thì không bảo nữa. Thuận lợi khi giữ vững chính đạo.",
+    "english": "Măng (indicates that in the case which it presupposes) there will be progress and success. I do not (go and) seek the youthful and inexperienced, but he comes and seeks me. When he shows (the sincerity that marks) the first recourse to divination, I instruct him. If he apply a second and third time, that is troublesome; and I do not instruct the troublesome. There will be advantage in being firm and correct."
+  },
+
+  "daTuong": {
+    "hanzi": "山下出泉，蒙；君子以果行育德。",
+    "hanviet": "Sơn hạ xuất tuyền, Mông; quân tử dĩ quả hành dục đức.",
+    "translation": "Suối nước vừa chảy ra từ chân núi, chưa thành sông lớn, là tượng của Mông; người quân tử noi theo đó mà quyết đoán trong hành động để bồi dưỡng đức hạnh.",
+    "english": "(The trigram representing) a mountain, and beneath it that for a spring issuing forth form Mang. The superior man, in accordance with this, strives to be resolute in his conduct and nourishes his virtue.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Mông tiếp sau Truân — sau giai đoạn phôi thai gian nan là giai đoạn ấu trĩ, mờ mịt, cần được khai mở. Đây không phải là quẻ nói về sự ngu dốt đáng chê, mà về TRẠNG THÁI TỰ NHIÊN của người mới học: chưa biết thì cần hỏi, và người dạy chỉ nên đáp ứng khi người học thực sự có thành ý cầu học, chứ không phải giáo viên đi năn nỉ học trò. Sáu hào là hành trình giáo dục: cần kỷ luật để mở đầu (Sơ Lục) → bao dung độ lượng dạy dỗ (Cửu Nhị) → cảnh giác trước cám dỗ hời hợt (Lục Tam) → hậu quả của việc cô lập, không chịu học (Lục Tứ) → sự ngây thơ đúng chỗ là điều tốt (Lục Ngũ) → và cách 'đánh thức' người học đúng mực, không bạo lực (Thượng Cửu).",
+
+  "computer_science": "Mông giống hệt giai đoạn 'onboarding' một dev mới hoặc 'cold start' của một hệ thống recommendation: hệ thống/người mới chưa có đủ dữ liệu, kinh nghiệm để tự vận hành đúng, cần input hướng dẫn từ bên ngoài — nhưng chỉ hiệu quả khi bên nhận chủ động 'query' đúng lúc, thành tâm. Giống rate-limiting một API tư vấn: hỏi một lần nghiêm túc được trả lời kỹ, hỏi dồn dập lặp lại thì bị bỏ qua.",
+
+  "life": "Không biết không phải là xấu — cách bạn học mới quan trọng: chủ động tìm thầy đúng cách, thành tâm cầu học, chứ không ép người khác dạy khi bản thân chưa sẵn sàng lắng nghe.",
+
+  "programming": "Documentation/mentorship tốt hoạt động theo nguyên tắc 'pull, not push': junior chủ động đặt câu hỏi cụ thể (hỏi lần đầu nghiêm túc) sẽ được trả lời kỹ, nhưng hỏi lặp đi lặp lại cùng một câu mà không tự tìm hiểu trước sẽ khiến senior/docs 'không đáp' — đây là lý do 'đọc docs trước khi hỏi' luôn được khuyến khích.",
+
+  "characters": [
+    {
+      "hanzi": "蒙",
+      "pinyin": "méng",
+      "hanviet": "mông",
+      "meaning": "Mờ mịt, ấu trĩ, che phủ.",
+      "origin": "Bộ 艹 (thảo, cỏ) kết hợp phần biểu thị sự che phủ/trùm kín. Thuyết Văn giải 'mông' vốn là tên một loại dây leo (tầm gửi) phủ trùm lên cây khác — mượn nghĩa 'che lấp, mờ mịt', từ đó chỉ trạng thái non nớt, chưa khai mở.",
+      "example": "啟蒙 (khải mông, khai mở sự mờ mịt = giáo dục vỡ lòng); 蒙昧 (mông muội, tối tăm ngu dốt).",
+      "cs": "Cold Start Problem",
+      "csExplain": "Trạng thái hệ thống/người mới chưa có đủ dữ liệu, kinh nghiệm để tự vận hành chính xác — cần input/huấn luyện ban đầu từ bên ngoài."
+    },
+    {
+      "hanzi": "童",
+      "pinyin": "tóng",
+      "hanviet": "đồng",
+      "meaning": "Trẻ nhỏ, chưa trưởng thành.",
+      "origin": "Giáp cốt văn vẽ hình người trẻ tuổi mang dụng cụ/hình xăm trên đầu, nguyên liên quan tới nô bộc trẻ tuổi — nghĩa gốc chỉ trẻ tôi tớ, về sau mở rộng thành 'trẻ con' nói chung.",
+      "example": "童蒙 (đồng mông, trẻ ấu trĩ cần dạy dỗ); 兒童 (nhi đồng).",
+      "cs": "Junior / New Node",
+      "csExplain": "Thành viên/thực thể mới gia nhập hệ thống, chưa có đủ kinh nghiệm/dữ liệu — cần onboarding trước khi tự vận hành độc lập."
+    },
+    {
+      "hanzi": "筮",
+      "pinyin": "shì",
+      "hanviet": "phệ",
+      "meaning": "Bói bằng cỏ thi (phương pháp bói cổ, tiền thân cách lập quẻ Kinh Dịch).",
+      "origin": "Bộ 竹 (trúc) + 巫 (vu, thầy cúng) — nghĩa gốc 'dùng cỏ thi hoặc thẻ trúc để bói', công cụ của người làm nghề bói toán.",
+      "example": "卜筮 (bốc phệ, việc bói toán nói chung).",
+      "cs": "Query / Ask for Guidance",
+      "csExplain": "Hành động chủ động 'truy vấn' hệ thống/chuyên gia để lấy hướng dẫn — chỉ nên gọi khi cần, không nên gọi lặp lại vô ích."
+    },
+    {
+      "hanzi": "瀆",
+      "pinyin": "dú",
+      "hanviet": "độc",
+      "meaning": "Khinh nhờn, quấy nhiễu (nghĩa gốc: sông/mương nhỏ).",
+      "origin": "Bộ 氵 (thủy, nước) + 賣 (mại, biểu âm) — nghĩa gốc chỉ một con sông/mương nhỏ (như trong '四瀆' bốn con sông lớn cổ đại), mượn âm/nghĩa mở rộng thành 'quấy rầy, khinh nhờn'.",
+      "example": "褻瀆 (tiết độc, xúc phạm, khinh nhờn).",
+      "cs": "Redundant / Spammy Request",
+      "csExplain": "Truy vấn lặp lại thiếu thành ý, không mang thêm thông tin mới — hệ thống/rate-limiter có quyền từ chối phục vụ loại request này."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：發蒙，利用刑人，用說桎梏，以往吝。",
+      "hanviet": "Sơ Lục: Phát mông, lợi dụng hình nhân, dụng thoát chất cốc, dĩ vãng lận.",
+      "translation": "Khai mở sự mờ mịt (dạy dỗ ban đầu); nên dùng kỷ luật để răn, rồi cởi bỏ gông cùm; nếu cứ áp dụng hình phạt mãi sẽ hối tiếc.",
+      "english": "The first line, divided, (has respect to) the dispelling of ignorance. It will be advantageous to use punishment (for that purpose), and to remove the shackles (from the mind). But going on in that way (of punishment) will give occasion for regret.",
+      "explain": "Bước đầu giáo dục cần có kỷ luật rõ ràng để định hình nề nếp, nhưng kỷ luật chỉ là công cụ khởi đầu — nếu lạm dụng trừng phạt kéo dài sẽ phản tác dụng.",
+      "itExample": "Coding convention/lint rules nghiêm ngặt cần thiết cho dev mới để hình thành thói quen tốt ngay từ đầu — nhưng nếu mãi chỉ chặn PR bằng rule cứng mà không hướng dẫn tư duy, dev sẽ chán nản, phản tác dụng.",
+      "lifeExample": "Kỷ luật cần thiết để rèn thói quen ban đầu cho trẻ nhỏ, nhưng áp dụng hình phạt kéo dài không kèm giải thích sẽ gây tác dụng ngược, khiến trẻ sợ hãi thay vì hiểu."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：包蒙吉，納婦吉，子克家。",
+      "hanviet": "Cửu Nhị: Bao mông cát, nạp phụ cát, tử khắc gia.",
+      "translation": "Bao dung độ lượng với sự ấu trĩ thì tốt; như cưới được vợ hiền thì tốt; như con biết gánh vác việc nhà.",
+      "english": "The second line, undivided, (shows its subject) exercising forbearance with the ignorant, in which there will be good fortune; he will act too as if he were receiving a wife into his family. There will be good fortune, and the son will (be able to) sustain (the work of) his father.",
+      "explain": "Người thầy/người dẫn dắt giỏi biết bao dung, kiên nhẫn với người còn non nớt — sự bao dung đúng mực giúp người học trưởng thành, gánh vác được trách nhiệm.",
+      "itExample": "Senior dev bao dung với lỗi của junior trong review, kiên nhẫn giải thích thay vì chỉ trích gay gắt — junior dần trưởng thành và có thể tự đảm nhận module quan trọng.",
+      "lifeExample": "Người thầy/người quản lý bao dung, kiên nhẫn với người mới học việc thường giúp họ trưởng thành nhanh hơn, dần gánh vác được trách nhiệm lớn."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：勿用取女，見金夫，不有躬，无攸利。",
+      "hanviet": "Lục Tam: Vật dụng thủ nữ, kiến kim phu, bất hữu cung, vô du lợi.",
+      "translation": "Chớ nên cưới người con gái này: thấy người đàn ông giàu có là mất hết tự chủ bản thân — không có gì lợi.",
+      "english": "The third line, divided, (seems to say) that one should not marry a woman whose emblem it might be, for that, when she sees a man of wealth, she will not keep her person from him, and in no wise will advantage come from her.",
+      "explain": "Cảnh báo về sự thiếu vững vàng trước cám dỗ hời hợt — người học ở giai đoạn ấu trĩ dễ bị cuốn theo cái lợi trước mắt mà đánh mất nguyên tắc, cần tránh xa kiểu học/kiểu hợp tác thiếu kiên định này.",
+      "itExample": "Đừng vội áp dụng một tool/thư viện 'hot trend' chỉ vì nó nổi tiếng mà bỏ qua việc đánh giá kỹ có phù hợp với hệ thống hay không — thiếu nguyên tắc lựa chọn công nghệ sẽ gây hại về sau.",
+      "lifeExample": "Đừng vội bị cuốn theo lời khuyên/xu hướng chỉ vì nó hào nhoáng trước mắt mà bỏ qua nguyên tắc và giá trị cốt lõi của bản thân."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：困蒙，吝。",
+      "hanviet": "Lục Tứ: Khốn mông, lận.",
+      "translation": "Bị vây khốn trong sự mờ mịt (ấu trĩ), đáng tiếc.",
+      "english": "The fourth line, divided, shows its subject as if bound in chains of ignorance. There will be occasion for regret.",
+      "explain": "Vị trí xa cách người dẫn dắt, không có hào dương gần kề hỗ trợ — bị cô lập trong sự thiếu hiểu biết mà không có ai giúp đỡ, đây là hoàn cảnh đáng tiếc nhất trong quẻ Mông.",
+      "itExample": "Một dev làm việc độc lập, không có mentor, không có tài liệu, không dám hỏi ai — mắc kẹt trong việc tự mò mẫm sai lầm lặp lại mà không ai chỉ ra, năng suất đình trệ.",
+      "lifeExample": "Người rơi vào hoàn cảnh cô lập, không có ai hướng dẫn hay chia sẻ kinh nghiệm — dễ mắc kẹt trong sai lầm lặp đi lặp lại mà không tự nhận ra."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：童蒙，吉。",
+      "hanviet": "Lục Ngũ: Đồng mông, cát.",
+      "translation": "Ngây thơ như trẻ nhỏ, biết mình còn phải học, tốt lành.",
+      "english": "The fifth line, divided, shows its subject as a simple lad without experience. There will be good fortune.",
+      "explain": "Ở vị trí cao (vua) nhưng vẫn giữ tâm thế khiêm tốn như trẻ nhỏ, biết mình cần học hỏi, sẵn lòng nghe người tài giỏi hơn — đây là thái độ lý tưởng của người lãnh đạo trong giai đoạn còn non kinh nghiệm.",
+      "itExample": "Một CEO/CTO mới dù ở vị trí cao vẫn khiêm tốn nhận mình chưa rành một mảng kỹ thuật cụ thể, chủ động lắng nghe đội ngũ chuyên môn — thái độ này giúp ra quyết định đúng đắn hơn.",
+      "lifeExample": "Người ở vị trí cao nhưng vẫn giữ tâm thế cầu học như người mới bắt đầu, sẵn sàng lắng nghe người có kinh nghiệm hơn — đây là phẩm chất đáng quý của người lãnh đạo giỏi."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：擊蒙，不利為寇，利禦寇。",
+      "hanviet": "Thượng Cửu: Kích mông, bất lợi vi khấu, lợi ngự khấu.",
+      "translation": "Đánh thức sự ấu trĩ bằng biện pháp mạnh; không nên hành xử như giặc cướp (bạo lực quá đà), chỉ nên dùng để ngăn chặn cái xấu như phòng giặc.",
+      "english": "In the topmost line, undivided, we see one smiting the ignorant (youth). But no advantage will come from doing him an injury. Advantage would come from warding off injury from him.",
+      "explain": "Hào cuối, biện pháp mạnh cần thiết để chấm dứt hẳn sự ấu trĩ kéo dài — nhưng ranh giới quan trọng: dùng sức mạnh để BẢO VỆ, ngăn cái xấu xâm nhập, không phải để tấn công/trừng phạt hả hê.",
+      "itExample": "Đôi khi cần biện pháp mạnh (revoke access, block deploy) để chấm dứt hẳn một thói quen xấu gây hại hệ thống — nhưng mục đích là bảo vệ hệ thống khỏi rủi ro, không phải để trừng phạt cá nhân.",
+      "lifeExample": "Đôi khi cần cứng rắn dứt khoát để chấm dứt một thói quen xấu kéo dài của người thân/đồng nghiệp — nhưng mục đích phải là bảo vệ họ khỏi hậu quả xấu, không phải để trừng phạt."
+    }
+  ],
+
+  "keywords": ["Mông", "蒙", "khai mông", "đồng mông", "học hỏi", "suối núi", "giáo dục"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_4", "note": "Bản dịch tiếng Anh public domain của Thoán từ và 6 hào từ." },
+    { "source": "維基文庫 Wikisource — 周易/蒙", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E8%92%99", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." },
+    { "source": "James Legge, Appendix II — The Great Symbolism (Da Xiang)", "url": "https://baharna.com/iching/legge/010001.htm", "note": "Bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/4", "label": "64 Quẻ — Quẻ 4: Sơn Thủy Mông" }
+  ]
+}

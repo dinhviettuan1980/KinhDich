@@ -1,0 +1,147 @@
+{
+  "id": 41,
+  "hanzi": "損",
+  "pinyin": "Sǔn",
+  "hanviet": "Tổn",
+  "english": "Decrease",
+  "upperTrigram": "gen",
+  "lowerTrigram": "dui",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "損：有孚，元吉。无咎，可貞，利有攸往。曷之用？二簋可用享。",
+    "hanviet": "Tổn: Hữu phu, nguyên cát. Vô cữu, khả trinh, lợi hữu du vãng. Hạp chi dụng? Nhị quỹ khả dụng hưởng.",
+    "translation": "Tổn (Giảm bớt): có sự tin tưởng, rất tốt lành. Không lỗi, có thể giữ chính đạo, thuận lợi có việc cần đi. Dùng cái gì? Dùng hai chiếc bát có thể tế lễ.",
+    "english": "In Sun, if there be sincerity (in him who employs it), there will be great good fortune. Freedom from error; Firmness and correctness that can be maintained; and advantage in every movement that shall be made. What is the use of this (hexagram)? By it are small sacrificial vessels, (which, when broken), can be made whole again. To all (such) use it is advantageous."
+  },
+
+  "daTuong": {
+    "hanzi": "山下有澤，損；君子以懲忿窒慾。",
+    "hanviet": "Sơn hạ hữu trạch, Tổn; quân tử dĩ trừng phẫn tắc dục.",
+    "translation": "Núi dưới, hồ nước trên — đó là tượng của Tổn; người quân tử noi theo đó mà kềm chế sơn tính, chặn lại dục vọng.",
+    "english": "A lake at the foot of a mountain forms the image of Decrease. The superior man, in accordance with this, restrains his wrath and represses his desires.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Tổn nói về 'giảm bớt để lợi lớn hơn' — hồ nước tích ở chân núi chứ không chảy xuống hết (giảm bớt sử dụng nước tại đỉnh để có nước ở chân). Đây không phải một quẻ 'xấu' mà là quẻ nói về sự cân bằng chiến lược: không phải 'tăng thêm' luôn là tốt, có lúc 'giảm bớt' mới là giải pháp. Xây dựng hoàn toàn từ 'hai chiếc bát' (simple) thay vì many fancy offerings — đó là hiểu biết về cơ bản. Bài học lớn nhất: 'kềm chế sơn tính, chặn lại dục vọng' — tức là sự tu dưỡng từ phía trong không phải qua 'tích lũy thêm' mà qua 'loại bỏ những gì không cần'.",
+
+  "computer_science": "Tổn giống các quyết định 'deprecate' feature, 'sundown' service, hoặc 'remove dead code' — những thứ nghe có vẻ 'mất mát' nhưng thực chất là giảm complexity, độ bảo trì, attack surface. Một codebase nhỏ mạnh hơn codebase lớn có nhiều code chết. Cách 'tế lễ với hai bát' = thiết kế từ đầu với core components essential chứ không tích tụ technical debt.",
+
+  "life": "Bài học về sự thanh lọc, đơn giản hóa: bỏ đi những thứ không thiết yếu, kỷ luật trong dục vọng (không vì muốn thêm mà cứ lên kế hoạch thêm), cuối cùng sẽ có sức bền vững hơn. Đó cũng là bài học về 'tái sinh' — những thứ cũ (chiếc bát vỡ) có thể được làm lại nếu nền tảng còn vững.",
+
+  "programming": "Refactor lớn mà chỉ tập trung vào 'rip out deprecated features/libraries' chứ không add feature mới — nhìn như 'tổn' (loss) nhưng kết quả là codebase tốt hơn. CI/CD pipeline đơn giản hơn > pipeline phức tạp. API surface nhỏ > API lớn với 80% user không dùng. Biết từ chối feature request có thể nghe khó, nhưng nó là 'tổn' có lợi — giảm bớt support burden, maintain burden.",
+
+  "characters": [
+    {
+      "hanzi": "損",
+      "pinyin": "sǔn",
+      "hanviet": "tổn",
+      "meaning": "Giảm, mất, tổn hại, hủy.",
+      "origin": "Chữ hình thanh ghép 手 (tay) + 員 (người/đơn vị, biểu âm) — hình ảnh tay lấy đi, làm mất — nguyên nghĩa 'bớt, giảm'.",
+      "example": "損失 (tổn thất) = mất mát; 損壞 (tổn hoại) = hư hỏng.",
+      "cs": "Pruning / Deprecation",
+      "csExplain": "Loại bỏ chi phí, tính năng, code không cần thiết — giống cắt cành cây chết để cây sống tốt hơn."
+    },
+    {
+      "hanzi": "澤",
+      "pinyin": "zé",
+      "hanviet": "trạch",
+      "meaning": "Hồ, nước, lợi ích.",
+      "origin": "Chữ hình thanh gồm 水 (nước) + 釋 (biểu âm); chỉ hồ/vũng nước.",
+      "example": "澤地 (trạch địa); 恩澤 (ân trạch) = ơn huệ.",
+      "cs": "Resource Pool",
+      "csExplain": "Hồ nước tích ở chân núi = resources tích lũy cẩn thận, không lãng phí."
+    },
+    {
+      "hanzi": "忿",
+      "pinyin": "fèn",
+      "hanviet": "phẫn",
+      "meaning": "Tức giận, sơn tính, nóng giận.",
+      "origin": "Chữ hình thanh gồm 忄 (tâm) + 分 (phân chia, biểu âm) — tâm chia rẻ, mất bình tĩnh = tức giận.",
+      "example": "忿怒 (phẫn nộ) = nóng giận; 忿然 (phẫn nhiên) = giận dữ.",
+      "cs": "Impulsive Reaction",
+      "csExplain": "Hành động nóng vội không suy nghĩ — cần bị kềm chế bằng kỷ luật và chiến lược."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：已事遄往，无咎，酌損之。",
+      "hanviet": "Sơ Cửu: Dĩ sự duân vãng, vô cữu, tước tổn chi.",
+      "translation": "Công việc cũ xong rồi, hãy vội đi; không lỗi, cân nhắc giảm bớt (chi phí/effort) đi.",
+      "english": "If one is quick to take action, as soon as his work is done, there will be no error. Let him consider how far he should diminish (his contributions).",
+      "explain": "Vị trí đầu tiên — nhanh chóng hoàn thành công việc hiện tại rồi tiến tới (không lần lượa), cân nhắc cắt bớt những gì không cần thiết.",
+      "itExample": "Khi một sprint kết thúc, ngay lập tức move vào sprint tiếp, cân nhắc xóa test cases không còn relevant, deprecate API endpoint ít dùng — không delay, cắt bớt ngay.",
+      "lifeExample": "Khi kết thúc một project/giai đoạn, ngay lập tức move on, và cân nhắc xóa những tập quán cũ, chi phí cũ không còn cần thiết."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：利貞，征凶，弗損益之。",
+      "hanviet": "Cửu Nhị: Lợi trinh, chinh hung, phất tổn ích chi.",
+      "translation": "Giữ chính đạo có lợi; muốn hành động (tấn công) sẽ hung; không giảm bớt mà tăng lên sẽ lợi.",
+      "english": "It will be advantageous to maintain firm correctness. To go forward will be evil. By this decrease, (however), without (him) adding to himself, (his happiness) will be increased.",
+      "explain": "Ở vị trí giữa của quẻ Tổn — không nên sáng suốt, không nên nổi loạn; giảm bớt (của mình) để tăng lên (của người khác/tổ chức) sẽ có lợi ích thực sự hơn.",
+      "itExample": "Một senior engineer giảm bớt số features deliver để mentoring junior dev nhiều hơn; không phải 'mất' productivity, thực chất cả team giỏi lên, value tăng.",
+      "lifeExample": "Bố mẹ giảm bớt công việc cá nhân để có thời gian dạy dỗ con — là giảm bớt cá nhân nhưng gia đình được lợi nhiều hơn."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：三人行，則損一人；一人行，則得其友。",
+      "hanviet": "Lục Tam: Tam nhân hành, tắc tổn nhất nhân; nhất nhân hành, tắc đắc kỳ hữu.",
+      "translation": "Ba người đi, sẽ mất mát một người; một mình đi, sẽ kiếm được bạn.",
+      "english": "If three men journey together, they will lose one of their number; if two men journey together, they will gain a friend. It is advantageous (for a man) to be alone.",
+      "explain": "Một hào nói về group dynamics — ba người (lẻ loi, cân bằng không tốt) sẽ có xung đột, mất đi một; hai người hoặc một mình sẽ ổn định hơn. Bài học: đôi khi nhỏ hơn là tốt hơn.",
+      "itExample": "Team 3 person quá khó quản lý động lực (2 vs 1, ai quyết định?); split thành 2 team nhỏ hoặc 1 person + contractor; kết quả hiệu quả hơn.",
+      "lifeExample": "Ba người đi du lịch sẽ gây xung đột về kế hoạch; hai người (hoặc một mình) sẽ ổn định hơn."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：損其疾，使遄有喜，无咎。",
+      "hanviet": "Lục Tứ: Tổn kỳ tật, sủy duân hữu hi, vô cữu.",
+      "translation": "Giảm bớt bệnh tật (điểm yếu), nhanh chóng tạo ra niềm vui, không lỗi.",
+      "english": "If one diminishes his ailment, (the subject of the condition) hastening (to act) will produce happiness. There will be no error.",
+      "explain": "Giảm bớt những gì làm bệnh (technical debt, bad habits) mặc dù là 'tổn', nhưng nhanh chóng dẫn đến sự bình lạc.",
+      "itExample": "Refactor 1 khó khăn, cutting scope thay vì delay further — nhanh chóng deliver quality baseline, team happy, không phải cố kéo dài.",
+      "lifeExample": "Cắt bỏ thói quen xấu (dù khó) — nhanh chóng cảm thấy đã khỏe hơn, không hối tiếc."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：或益之，十朋之龜弗克違，元吉。",
+      "hanviet": "Lục Ngũ: Hoặc ích chi, thập pêng chi quy phất khả vi, nguyên cát.",
+      "translation": "Ai đó (người khác) tăng/bổ sung cho (một mình tổn bớt), mười người bạn (ten yoked) của rùa (priceless) không thể từ chối — rất tốt lành.",
+      "english": "Adding to (the stores of) its subject ten pairs of tortoise shells, and not opposing (his) sincerity, — (there will be) great good fortune.",
+      "explain": "Hào này nói về sự đội thưởng từ người khác (vì chính trực của mình). Khi bạn 'tổn' bớt cái của mình để cho người khác lợi ích, Universe/karma sẽ bù đắp lại gấp bội.",
+      "itExample": "Một engineer mentoring thực tập sinh (tổn bớt time của mình), sau đó được promote/award vì sự đóng góp vào culture — khi 'tổn' từ sự chân thành, lợi ích quay lại.",
+      "lifeExample": "Cha mẹ giảm bớt cho con học (tổn), con học giỏi ra, khi con lớn, con báo đáp lại (益 bù lại) gấp bội."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：弗損益之，无咎，貞吉，有攸往，得臣无家。",
+      "hanviet": "Thượng Cửu: Phất tổn ích chi, vô cữu, trinh cát, hữu du vãng, đắc thần vô gia.",
+      "translation": "Không giảm bớt (mà giảm bớt người khác) lại tăng lên (tăng lên cho người khác), không lỗi, giữ chính đạo tốt lành, có việc cần đi, được tuyệt vời là không cần 'nhà' (cơ quan/quy tắc).",
+      "english": "Adding to (what) he (should) not add to, (the subject of this) without (him) diminishing (what he should), (there will be) no error. With firm correctness there will be good fortune. There will be advantage in every movement that shall be made. He gets (this accomplishment) without (relying on) his country.",
+      "explain": "Hào cuối cùng — mặc dù là 'tổn', nhưng khi giảm bớt của mình (tổn) để tăng lên cho tổ chức/đất nước (ích), kết quả là 'không cần nhà' (không dựa vào quyền lực, tự lực) nhưng vẫn được công nhận.",
+      "itExample": "Một leader giảm bớt control trực tiếp (tổn) nhưng empower team autonomy (ích) — kết quả là team tự chạy, leader không phải 'ôm hết công việc' mà vẫn được ghi công.",
+      "lifeExample": "Cha mẹ từ bỏ control quá mức (tổn) nhưng trao quyền cho con (ích) — con tự lập, không cần người lớn 'quản' mà vẫn sâu sắc hơn."
+    }
+  ],
+
+  "keywords": ["Tổn", "損", "giảm bớt", "đơn giản hóa", "sơn tính", "Sơn Trạch", "loại bỏ không cần"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/sun", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Tổn." },
+    { "source": "維基文庫 Wikisource — 周易/損", "url": "https://zh.wikisource.org/zh-hant/周易/損", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/41", "label": "64 Quẻ — Quẻ 41: Sơn Trạch Tổn" }
+  ]
+}

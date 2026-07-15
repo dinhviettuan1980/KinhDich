@@ -1,0 +1,158 @@
+{
+  "id": 11,
+  "hanzi": "泰",
+  "pinyin": "Tài",
+  "hanviet": "Thái",
+  "english": "Peace",
+  "upperTrigram": "kun",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "泰：小往大來，吉亨。",
+    "hanviet": "Thái: Tiểu vãng đại lai, cát hanh.",
+    "translation": "Thái (Yên ổn, thông thái): cái nhỏ đi, cái lớn đến — tốt lành, hanh thông.",
+    "english": "In Thâi (Peace) we see the little gone and the great come. There will be good fortune, with progress and success."
+  },
+
+  "daTuong": {
+    "hanzi": "天地交，泰；後以財成天地之道，輔相天地之宜，以左右民。",
+    "hanviet": "Thiên địa giao, Thái; hậu dĩ tài thành thiên địa chi đạo, phụ tướng thiên địa chi nghi, dĩ tả hữu dân.",
+    "translation": "Trời đất giao hòa — đó là quẻ Thái. Bậc vua chúa xem đó mà tài bồi, hoàn thành đạo trời đất, giúp đỡ điều thích nghi của trời đất, để dẫn dắt dân chúng.",
+    "english": "Heaven and earth in communication together form Thâi (Peace). The (sage) sovereign, in harmony with this, fashions and completes his regulations after the courses of heaven and earth, and assists the application of the adaptations furnished by them, in order to benefit the people.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Thái (泰) gồm Khôn (đất) ở trên, Càn (trời) ở dưới — nghịch với vị trí tự nhiên (trời trên đất dưới), nhưng chính sự 'đảo ngược' này lại tạo ra giao hòa: khí trời (nhẹ, có xu hướng bốc lên) nằm dưới nên bốc lên gặp khí đất (nặng, có xu hướng chìm xuống) nằm trên nên chìm xuống — hai luồng khí giao thoa, vạn vật thông suốt. Đây là hình ảnh kinh điển của sự thịnh vượng: khi các thành phần khác biệt thực sự 'nói chuyện' được với nhau thay vì đứng yên đúng vị trí hình thức của mình. Sáu hào kể một chu trình thịnh trị: từ lúc mọi người cùng nhau tiến lên (hào 1-2), qua giai đoạn cảnh giác vì thịnh không mãi mãi (hào 3), đến đỉnh cao khiêm nhường (hào 4-5), và hào cuối cảnh báo: hòa bình không giữ mãi nếu không chủ động duy trì.",
+
+  "computer_science": "Thái là trạng thái hệ thống lý tưởng: mọi tầng (frontend, backend, hạ tầng) thực sự 'giao tiếp' được với nhau — không phải chỉ đứng đúng layer của mình mà không trao đổi dữ liệu. Giống một distributed system có network throughput cao, latency thấp, mọi node handshake thành công — dashboard 'toàn xanh'. Nhưng đây là quẻ dạy về entropy: trạng thái hài hòa này không tự nhiên tồn tại mãi (xem quẻ 12 Bĩ ngay sau nó) — cần bảo trì chủ động (monitoring, chăm sóc liên tục) để không suy thoái ngược lại thành bế tắc.",
+
+  "life": "Đây là thời điểm thuận lợi để hành động, kết nối, mở rộng quan hệ — năng lượng đang ủng hộ bạn. Nhưng đừng ảo tưởng rằng trạng thái tốt đẹp này là vĩnh viễn; hãy chủ động vun đắp nó thay vì mặc nhiên hưởng thụ.",
+
+  "programming": "Giai đoạn team productive, technical debt thấp, CI/CD chạy trơn tru, mọi service giao tiếp ổn định — đây là lúc tận dụng để ship tính năng, không phải lúc lơ là. Sự ổn định hôm nay là kết quả của việc bảo trì hôm qua, và cần tiếp tục bảo trì để không trượt vào trạng thái bế tắc (quẻ Bĩ) sau này.",
+
+  "characters": [
+    {
+      "hanzi": "泰",
+      "pinyin": "tài",
+      "hanviet": "thái",
+      "meaning": "Yên ổn, to lớn, hanh thông, thái bình.",
+      "origin": "Chữ hội ý cổ liên quan tới hình hai tay nâng đỡ cùng bộ thủy (水) — nghĩa gốc gợi sự trơn tru, trôi chảy, mở rộng thành 'an thái, thông suốt, thịnh vượng'.",
+      "example": "泰然 (thái nhiên) = bình thản, yên ổn trong lòng.",
+      "cs": "Healthy System State",
+      "csExplain": "Trạng thái hệ thống lý tưởng — mọi service kết nối thông suốt, latency thấp, giống một dashboard hiển thị toàn màu xanh."
+    },
+    {
+      "hanzi": "交",
+      "pinyin": "jiāo",
+      "hanviet": "giao",
+      "meaning": "Giao nhau, kết nối, trao đổi.",
+      "origin": "Giáp cốt văn vẽ hình hai chân bắt chéo nhau — nghĩa gốc 'bắt chéo, giao nhau', mở rộng thành 'giao tiếp, kết giao, trao đổi'.",
+      "example": "交流 (giao lưu) = trao đổi qua lại.",
+      "cs": "Network Handshake",
+      "csExplain": "Biểu thị việc hai thành phần hệ thống 'bắt tay' trao đổi dữ liệu thành công — như handshake giữa client và server."
+    },
+    {
+      "hanzi": "往",
+      "pinyin": "wǎng",
+      "hanviet": "vãng",
+      "meaning": "Đi, hướng tới, đi qua.",
+      "origin": "Chữ hình thanh gồm bộ 彳 (bước chân nhỏ) kết hợp phần biểu âm — nghĩa 'đi tới, tiến về phía trước'.",
+      "example": "往來 (vãng lai) = qua lại, đi đi về về.",
+      "cs": "Outbound Flow",
+      "csExplain": "Chỉ luồng dữ liệu/tài nguyên đi ra — như request gửi đi trong một giao dịch hai chiều."
+    },
+    {
+      "hanzi": "來",
+      "pinyin": "lái",
+      "hanviet": "lai",
+      "meaning": "Đến, tới.",
+      "origin": "Giáp cốt văn nguyên là hình cây lúa mì (biểu tượng mùa màng về), sau được mượn âm để chỉ nghĩa 'đến, tới'.",
+      "example": "未來 (vị lai) = tương lai, điều chưa đến.",
+      "cs": "Inbound Flow",
+      "csExplain": "Chỉ luồng dữ liệu/giá trị trả về — kết hợp với 往 tạo thành một round-trip hoàn chỉnh của giao dịch/network call."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：拔茅茹以其彙，征吉。",
+      "hanviet": "Sơ Cửu: Bạt mao nhự dĩ kỳ vựng, chinh cát.",
+      "translation": "Nhổ cỏ tranh, rễ nó kéo theo cả bụi cùng loại; tiến lên thì tốt lành.",
+      "english": "The first line, undivided, suggests the idea of grass pulled up, and bringing with it other stalks with whose roots it is connected. Advance (on the part of its subject) will be fortunate.",
+      "explain": "Ba hào dương ở dưới cùng một chí hướng, gắn kết như rễ cỏ liền nhau — khởi đầu thời thịnh, tiến lên cùng đồng đội thì tốt.",
+      "itExample": "Khi team bắt đầu một sprint thuận lợi, mọi thành viên cùng chung mục tiêu và hỗ trợ nhau — chỉ cần bắt đầu hành động, cả nhóm sẽ cùng tiến.",
+      "lifeExample": "Khi có một nhóm bạn/đồng nghiệp cùng chí hướng, hãy mạnh dạn rủ nhau cùng hành động — sức mạnh tập thể kéo theo nhau tiến lên."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：包荒，用馮河，不遐遺；朋亡。得尚于中行。",
+      "hanviet": "Cửu Nhị: Bao hoang, dụng bằng hà, bất hà di; bằng vong. Đắc thượng vu trung hành.",
+      "translation": "Bao dung được cả những điều thô lậu, dám lội qua sông lớn không cần thuyền, không bỏ quên kẻ ở xa; không thiên vị bè bạn riêng — như vậy mới hợp với đạo Trung.",
+      "english": "The second line, undivided, shows one who can bear with the uncultivated, will cross the Ho without a boat, does not forget the distant, and has no (selfish) friendships.",
+      "explain": "Ở vị trí trung tâm của quẻ dưới, người này có đủ độ lượng để bao dung, đủ can đảm để hành động quyết liệt khi cần, và đủ công bằng để không thiên vị.",
+      "itExample": "Tech lead giỏi chấp nhận cả code chưa hoàn hảo của người mới (bao dung), dám đưa ra quyết định táo bạo khi cần (lội sông không thuyền), và đối xử công bằng với mọi thành viên, không chỉ ưu ái nhóm thân cận.",
+      "lifeExample": "Người lãnh đạo tốt biết bao dung với khiếm khuyết của người khác, dám hành động quyết đoán khi cần, và đối xử công bằng, không chỉ thiên vị người quen biết."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：无平不陂，无往不復，艱貞无咎。勿恤其孚，于食有福。",
+      "hanviet": "Cửu Tam: Vô bình bất pha, vô vãng bất phục, gian trinh vô cữu. Vật tuất kỳ phu, vu thực hữu phúc.",
+      "translation": "Không có gì bằng phẳng mãi mà không nghiêng lệch, không có gì đi mãi mà không quay về; giữ vững chính đạo trong gian nan thì không lỗi. Đừng lo lắng về lòng thành của mình, cứ an nhiên mà hưởng phúc hiện tại.",
+      "english": "The third line, undivided, shows that, while there is no state of peace that is not liable to be disturbed, and no departure (of evil men) so that they shall not return, yet when one is firm and correct, as he realises the distresses that may arise, he will commit no error.",
+      "explain": "Cuối quẻ dưới, cảnh báo quy luật tuần hoàn: thịnh rồi sẽ có lúc khó khăn xen vào. Biết trước điều này và giữ vững chính đạo thì không gặp lỗi.",
+      "itExample": "Hệ thống đang chạy ổn định (peace) không có nghĩa sẽ ổn định mãi — luôn có lúc traffic tăng đột biến hay bug xuất hiện; chuẩn bị tinh thần và quy trình ứng phó trước thì không bị động.",
+      "lifeExample": "Giai đoạn thuận lợi trong sự nghiệp hay cuộc sống không kéo dài vĩnh viễn — hiểu quy luật lên xuống và giữ vững nguyên tắc sống sẽ giúp bạn vượt qua khi khó khăn quay lại."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：翩翩，不富以其鄰；不戒以孚。",
+      "hanviet": "Lục Tứ: Phiên phiên, bất phú dĩ kỳ lân; bất giới dĩ phu.",
+      "translation": "Nhẹ nhàng bay xuống, không cậy vào sự giàu có của mình mà gọi láng giềng cùng chung; không cần răn đe mà vẫn có được lòng tin.",
+      "english": "The fourth line, divided, shows its subject fluttering (down);—not relying on his own rich resources, but calling in his neighbours.",
+      "explain": "Bước sang quẻ trên (Khôn), hào Âm này khiêm nhường, không cậy vào ưu thế sẵn có mà chủ động liên kết với người xung quanh bằng sự chân thành.",
+      "itExample": "Team lead có nhiều tài nguyên (ngân sách, nhân lực) nhưng không dùng quyền lực áp đặt, mà chủ động mời các team khác cùng hợp tác — xây dựng lòng tin tự nhiên, không cần ép buộc.",
+      "lifeExample": "Người có điều kiện tốt hơn nhưng không phô trương, mà chủ động chia sẻ, kết nối chân thành với người xung quanh — được quý mến mà không cần răn đe hay áp đặt."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：帝乙歸妹，以祉，元吉。",
+      "hanviet": "Lục Ngũ: Đế Ất quy muội, dĩ chỉ, nguyên cát.",
+      "translation": "Vua Đế Ất gả em gái đi lấy chồng, nhờ đó mà được phúc lành, tốt đẹp lớn lao.",
+      "english": "The fifth line, divided, reminds us of (king) Tî-yî's (rule about the) marriage of his younger sister. By such a course there is happiness and there will be great good fortune.",
+      "explain": "Ở ngôi cao nhưng là hào Âm (mềm), người lãnh đạo hạ mình, gả gắm/kết hợp với người dưới bằng sự khiêm nhường chân thành thay vì áp đặt địa vị — đây là cách trị vì tốt nhất trong thời thịnh.",
+      "itExample": "Lãnh đạo cấp cao chủ động xuống làm việc trực tiếp với đội ngũ kỹ thuật, lắng nghe thay vì chỉ ra lệnh từ xa — sự khiêm nhường của người ở vị trí cao tạo ra kết quả tốt đẹp cho cả tổ chức.",
+      "lifeExample": "Người có địa vị cao nhưng biết hạ mình, kết giao chân thành với người ở vị trí thấp hơn mà không phân biệt đẳng cấp — đây là phẩm chất tạo nên phúc lành lâu dài."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：城復于隍，勿用師，自邑告命，貞吝。",
+      "hanviet": "Thượng Lục: Thành phục vu hoàng, vật dụng sư, tự ấp cáo mệnh, trinh lận.",
+      "translation": "Tường thành đổ sụp trở lại thành hào nước; đừng dùng quân đội, chỉ nên ban lệnh trong phạm vi ấp mình; dù giữ đúng cũng có điều đáng tiếc.",
+      "english": "The sixth line, divided, shows us the city wall returned into the moat. It is not the time to use the army.",
+      "explain": "Hào cuối cùng của quẻ Thái — thời thịnh đã đến giới hạn, bắt đầu đảo chiều (báo hiệu quẻ Bĩ kế tiếp). Đây không phải lúc để mở rộng hay dùng vũ lực, chỉ nên thu mình lại và quản lý phạm vi nhỏ trước mắt.",
+      "itExample": "Khi hệ thống bắt đầu có dấu hiệu quá tải sau thời gian dài tăng trưởng, đây không phải lúc mở rộng thêm tính năng mới (dùng quân đội), mà nên tập trung ổn định lại phạm vi hiện tại trước.",
+      "lifeExample": "Khi một giai đoạn thuận lợi bắt đầu có dấu hiệu chững lại, đừng cố mở rộng thêm hay tranh đấu — hãy thu hẹp phạm vi, củng cố những gì đang có, chấp nhận có chút tiếc nuối để chuẩn bị cho chu kỳ mới."
+    }
+  ],
+
+  "keywords": ["Thái", "泰", "trời đất giao hòa", "thịnh vượng", "hài hòa", "Địa Thiên"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/泰", "url": "https://zh.wikisource.org/zh-hant/周易/泰", "note": "Nguyên văn chữ Hán: 卦辭, 彖曰, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 11", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_11", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 11 (mirror của bản dịch Legge)", "url": "https://www.jamesdekorne.com/GBCh/hex11.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/11", "label": "64 Quẻ — Quẻ 11: Địa Thiên Thái" }
+  ]
+}

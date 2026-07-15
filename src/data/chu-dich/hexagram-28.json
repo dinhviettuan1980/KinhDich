@@ -1,0 +1,158 @@
+{
+  "id": 28,
+  "hanzi": "大過",
+  "pinyin": "Dà Guò",
+  "hanviet": "Đại Quá",
+  "english": "Preponderance of the Great",
+  "upperTrigram": "dui",
+  "lowerTrigram": "xun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "大過：棟橈，利有攸往，亨。",
+    "hanviet": "Đại Quá: Đống nạo, lợi hữu du vãng, hanh.",
+    "translation": "Đại Quá (quá độ lớn): cột rường (xà nhà chính) bị cong võng; thuận lợi khi tiến tới hành động, hanh thông.",
+    "english": "Tâ Kwo suggests to us a beam that is weak. There will be advantage in moving (under its conditions) in any direction whatever; there will be success."
+  },
+
+  "daTuong": {
+    "hanzi": "澤滅木，大過。君子以獨立不懼，遯世无悶。",
+    "hanviet": "Trạch diệt mộc, Đại Quá; quân tử dĩ độc lập bất cụ, độn thế vô muộn.",
+    "translation": "Nước hồ dâng ngập cây, đó là tượng Đại Quá; người quân tử noi theo đó mà đứng vững một mình không sợ hãi, dù phải lánh đời cũng không buồn phiền.",
+    "english": "(The trigram representing) trees hidden beneath that for the waters of a marsh forms Tâ Kwo. The superior man, in accordance with this, stands up alone and has no fear, and keeps retired from the world without regret.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Đại Quá nghĩa là 'quá độ lớn' — hình ảnh cột xà nhà chính bị võng cong vì chịu tải quá mức, biểu thị tình huống bất thường, vượt khỏi trạng thái cân bằng thông thường. Cấu trúc quẻ: 4 hào Dương mạnh mẽ ở giữa nhưng chỉ được đỡ bởi 2 hào Âm yếu ở hai đầu — giống một cấu trúc quá tải, gốc rễ không đủ vững để chống đỡ phần giữa quá mạnh. Đây là quẻ nói về tình huống khủng hoảng đòi hỏi hành động phi thường, không phải điều chỉnh nhỏ — kèm theo lời cảnh báo: nếu không xử lý đúng cách, việc quá tải có thể sụp đổ (hào 3 'cột nhà võng, xấu') hoặc được cứu vãn nếu biết gia cố kịp thời (hào 4 'cột nhà vồng lên, tốt').",
+
+  "computer_science": "Đại Quá giống hệt một hệ thống bị overload nghiêm trọng: phần lõi (4 hào Dương giữa — core logic/traffic) quá tải so với hạ tầng nền (2 hào Âm ở 2 đầu — infra gốc) đang gánh đỡ. 'Cột rường võng' là dấu hiệu kinh điển của một bottleneck sắp gãy — lúc này vá lỗi nhỏ (optimize) không đủ, cần hành động phi thường: re-architecture hoặc scale-out triệt để, không phải patch.",
+
+  "life": "Có những tình huống trong đời vượt khỏi khuôn khổ bình thường (khủng hoảng lớn, quyết định bước ngoặt) — không thể giải quyết bằng cách làm quen thuộc, cần dũng khí đứng vững một mình và hành động khác thường. Nhưng cũng cần biết gia cố đúng chỗ (như bò già lấy vợ trẻ, cây khô nảy chồi — tận dụng nguồn lực tưởng chừng đã cạn) thay vì để mọi thứ sụp đổ.",
+
+  "programming": "Khi hệ thống hiện tại không thể gánh nổi tải trọng nữa (bottleneck rõ ràng, latency tăng vọt), giải pháp đúng là re-architecture chứ không phải thêm patch nhỏ liên tục — giống việc thay cả bộ khung chịu lực (kiến trúc) thay vì gia cố từng chỗ nứt. Táo bạo hành động (hào Sơ 'lót cỏ tranh trắng dưới đồ vật' — chuẩn bị kỹ nền tảng mới) trước khi tình huống vượt quá tầm kiểm soát (hào Thượng 'lội qua đầu, hung').",
+
+  "characters": [
+    {
+      "hanzi": "過",
+      "pinyin": "guò",
+      "hanviet": "quá",
+      "meaning": "Vượt qua, quá mức, lỗi lầm.",
+      "origin": "Chữ ghép bộ 辵/辶 (sước, đi/bước) + 咼 (qua, âm — hình miệng méo) — nghĩa gốc 'đi qua, vượt qua', mở rộng thành 'quá mức' và 'lỗi lầm' (vượt quá chuẩn mực).",
+      "example": "過度 (quá độ) = quá mức, 過錯 (quá thác) = lỗi lầm.",
+      "cs": "Overflow / Exceeding threshold",
+      "csExplain": "Vượt quá ngưỡng chịu tải bình thường của hệ thống — giống buffer overflow hoặc rate limit bị vượt."
+    },
+    {
+      "hanzi": "棟",
+      "pinyin": "dòng",
+      "hanviet": "đống",
+      "meaning": "Cột/xà nhà chính, rường cột.",
+      "origin": "Chữ ghép bộ 木 (mộc, gỗ) + 東 (đông, âm) — chỉ thanh gỗ chính chịu lực chạy dọc nóc nhà, bộ phận quan trọng nhất của kết cấu mái.",
+      "example": "棟樑 (đống lương) = rường cột, ẩn dụ nhân tài trụ cột.",
+      "cs": "Load-bearing component",
+      "csExplain": "Thành phần chịu tải chính của hệ thống — giống database chính hoặc service core mà mọi thứ khác phụ thuộc vào."
+    },
+    {
+      "hanzi": "橈",
+      "pinyin": "náo",
+      "hanviet": "nạo",
+      "meaning": "Cong, võng, yếu đi vì chịu lực quá mức.",
+      "origin": "Chữ ghép bộ 木 (mộc, gỗ) + 堯 (Nghiêu, âm) — nghĩa gốc chỉ gỗ bị uốn cong, mở rộng thành 'suy yếu, chùn bước'.",
+      "example": "撓曲 (nạo khúc) = uốn cong.",
+      "cs": "Degradation under load",
+      "csExplain": "Hiệu năng suy giảm/uốn cong dưới áp lực tải — dấu hiệu cảnh báo hệ thống sắp gãy nếu không can thiệp."
+    },
+    {
+      "hanzi": "往",
+      "pinyin": "wǎng",
+      "hanviet": "vãng",
+      "meaning": "Đi, tiến tới, hướng về.",
+      "origin": "Chữ ghép bộ 彳 (xích, bước chân trái/đi) + thành phần biểu âm liên quan tới 王 — một trong những chữ chỉ phương hướng hành động cơ bản trong Kinh Dịch.",
+      "example": "往來 (vãng lai) = qua lại, 前往 (tiền vãng) = đi tới.",
+      "cs": "Forward action / Deploy",
+      "csExplain": "Hành động tiến tới xử lý vấn đề — giống việc chủ động deploy giải pháp thay vì đứng yên chờ hệ thống tự sập."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：藉用白茅，无咎。",
+      "hanviet": "Sơ Lục: Tạ dụng bạch mao, vô cữu.",
+      "translation": "Lót cỏ tranh trắng bên dưới đồ vật đặt trên đất — không có lỗi.",
+      "english": "The first SIX, divided, shows one placing mats of the white mao grass under things set on the ground. There will be no error.",
+      "explain": "Hào đầu, âm nhu, biết thận trọng chuẩn bị kỹ nền tảng (lót đệm) trước khi đặt vật nặng lên — sự cẩn trọng ban đầu này giúp tránh sai lầm dù tình huống chung của quẻ là quá tải.",
+      "itExample": "Trước khi launch 1 tính năng có thể gây tải lớn, chuẩn bị kỹ lưỡng: caching layer, rate limiting, rollback plan — 'lót đệm' cẩn thận trước khi đặt tải lên hệ thống.",
+      "lifeExample": "Trước một quyết định lớn, chuẩn bị kỹ lưỡng từng bước nhỏ (tài chính dự phòng, kế hoạch B) — sự cẩn trọng ban đầu giúp tránh rủi ro khi tình huống trở nên quá sức."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：枯楊生稊，老夫得其女妻，无不利。",
+      "hanviet": "Cửu Nhị: Khô dương sinh đề, lão phu đắc kỳ nữ thê, vô bất lợi.",
+      "translation": "Cây dương liễu khô nảy chồi non; ông già lấy được vợ trẻ — không gì bất lợi.",
+      "english": "The second NINE, undivided, shows a decayed willow producing shoots, or an old husband in possession of his young wife. There will be advantage in every way.",
+      "explain": "Kết hợp giữa cái cũ/suy yếu (cây khô, ông già) với nguồn sinh khí mới (chồi non, vợ trẻ) tạo ra sự cân bằng bất ngờ giữa dư thừa và thiếu hụt — đây là cách xử lý khôn ngoan tình huống mất cân đối.",
+      "itExample": "Kết hợp 1 legacy system cũ (đã 'khô') với 1 module mới nhỏ gọn, linh hoạt — tận dụng cái cũ ổn định kết hợp sinh khí mới thay vì bỏ hẳn hoặc giữ nguyên toàn bộ.",
+      "lifeExample": "Người lớn tuổi giàu kinh nghiệm hợp tác với người trẻ nhiều năng lượng mới — sự kết hợp bù trừ này thường mang lại kết quả tốt hơn cả hai đi riêng."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：棟橈，凶。",
+      "hanviet": "Cửu Tam: Đống nạo, hung.",
+      "translation": "Cột rường bị võng cong — xấu.",
+      "english": "The third NINE, undivided, shows a beam that is weak. There will be evil.",
+      "explain": "Ở giữa quẻ, dương cương nhưng quá cứng nhắc, không chịu nhận trợ giúp từ hào âm bên dưới — sức mạnh không được nâng đỡ đúng cách sẽ dẫn tới gãy đổ.",
+      "itExample": "Một service quá tải nhưng team cứ cố gánh một mình, không chịu chia sẻ tải qua horizontal scaling hay nhờ team khác hỗ trợ — cứng nhắc dẫn tới sụp đổ (outage).",
+      "lifeExample": "Cố gánh vác mọi việc một mình, không chịu nhờ ai giúp đỡ dù đang quá sức — sự cứng nhắc này dễ dẫn tới kiệt sức hoặc sai lầm nghiêm trọng."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：棟隆，吉。有它吝。",
+      "hanviet": "Cửu Tứ: Đống long, cát. Hữu tha lận.",
+      "translation": "Cột rường được nâng vồng lên — tốt lành. Nhưng nếu còn vướng bận việc khác thì đáng tiếc.",
+      "english": "The fourth NINE, undivided, shows a beam curving upwards. There will be good fortune. If (the subject of it) looks for other (help but that of line one), there will be cause for regret.",
+      "explain": "Cùng đối mặt tình huống quá tải như hào 3, nhưng hào này biết dựa vào sự hỗ trợ đúng chỗ (hào Sơ) nên cột được nâng đỡ vững — bài học về việc chấp nhận giúp đỡ từ đúng nguồn, không lan man tìm kiếm nơi khác.",
+      "itExample": "Khi hệ thống quá tải, tech lead biết tận dụng đúng resource sẵn có (team đã quen việc) để gia cố kịp thời thay vì phân tán sang tìm giải pháp không liên quan — tập trung đúng chỗ mới cứu được tình thế.",
+      "lifeExample": "Khi gặp khó khăn lớn, chấp nhận sự giúp đỡ từ đúng người thân cận thay vì phân tán tìm kiếm ở nhiều nơi không đáng tin cậy."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：枯楊生華，老婦得其士夫，无咎无譽。",
+      "hanviet": "Cửu Ngũ: Khô dương sinh hoa, lão phụ đắc kỳ sĩ phu, vô cữu vô dự.",
+      "translation": "Cây dương liễu khô nở hoa; bà già lấy được chồng trẻ — không lỗi mà cũng không đáng khen.",
+      "english": "The fifth NINE, undivided, shows a decayed willow producing flowers, or an old wife in possession of her young husband. There will be occasion neither for blame nor for praise.",
+      "explain": "Hoa nở trên cây khô đẹp nhưng không bền — khác với chồi non ở hào 2 (còn khả năng phát triển lâu dài), đây là sự khởi sắc tạm thời, không tạo ra giá trị bền vững thực sự.",
+      "itExample": "Một tính năng 'làm đẹp' vội vàng thêm vào hệ thống cũ để trông có vẻ hiện đại, nhưng không giải quyết vấn đề cốt lõi — trông ổn nhất thời nhưng không tạo giá trị lâu dài.",
+      "lifeExample": "Một mối quan hệ hay dự án tạo ấn tượng đẹp ban đầu nhưng thiếu nền tảng bền vững — cần tỉnh táo phân biệt vẻ ngoài khởi sắc với giá trị thực sự lâu dài."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：過涉滅頂，凶，无咎。",
+      "hanviet": "Thượng Lục: Quá thiệp diệt đính, hung, vô cữu.",
+      "translation": "Lội qua sông đến ngập cả đỉnh đầu — xấu, nhưng không đáng trách.",
+      "english": "The topmost SIX, divided, shows its subject with extraordinary (boldness) wading through a stream, till the water hides the crown of his head. There will be evil, but no ground for blame.",
+      "explain": "Hào cuối cùng, đẩy tình huống 'quá độ' tới cực điểm — thất bại gần như chắc chắn, nhưng vì đã dám hành động vì nghĩa lớn (không phải vì liều lĩnh vô nghĩa) nên không đáng bị trách cứ.",
+      "itExample": "Một quyết định táo bạo cuối cùng để cứu dự án (ví dụ rewrite toàn bộ hệ thống trong thời gian gấp) có thể thất bại, nhưng nếu đã cân nhắc kỹ và hành động vì lý do chính đáng thì thất bại đó không đáng bị đổ lỗi.",
+      "lifeExample": "Đôi khi bạn chấp nhận rủi ro lớn, biết có thể thất bại, nhưng vì đó là điều đúng đắn cần làm — dù kết quả không như ý, hành động vì lẽ phải đó vẫn đáng được tôn trọng."
+    }
+  ],
+
+  "keywords": ["Đại Quá", "大過", "quá tải", "cột rường võng", "khủng hoảng", "hành động phi thường", "system overload"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/大過", "url": "https://zh.wikisource.org/zh-hant/周易/大過", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 28 (bản mirror)", "url": "https://baharna.com/iching/legge/011110.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes : Da Guo", "url": "https://ctext.org/book-of-changes/da-guo/zh", "note": "Nguồn học thuật công khai, xác nhận tên/slug quẻ 大過 Da Guo." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/28", "label": "64 Quẻ — Quẻ 28: Trạch Phong Đại Quá" }
+  ]
+}

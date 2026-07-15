@@ -1,0 +1,149 @@
+{
+  "id": 40,
+  "hanzi": "解",
+  "pinyin": "Jiě",
+  "hanviet": "Giải",
+  "english": "Deliverance",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "解：利西南，无所往，其來復吉。有攸往，夙吉。",
+    "hanviet": "Giải: Lợi tây nam, vô sở vãng, kỳ lai phục cát. Hữu du vãng, tốc cát.",
+    "translation": "Giải (Tháo gỡ): thuận lợi hướng tây nam; nếu không cần đi đâu, quay lại sẽ tốt lành. Nếu có chuyện cần đi, sớm đi sẽ tốt lành.",
+    "english": "In Jie advantage will be found in the south-west. If no operations be called for, there will be good fortune in coming back to the old conditions. If some operations be called for, there will be good fortune in the early conducting of them."
+  },
+
+  "daTuong": {
+    "hanzi": "雷雨作，解；君子以赦過宥罪。",
+    "hanviet": "Lôi vũ tác, Giải; quân tử dĩ xá quá yós tội.",
+    "translation": "Sấm và mưa xuất hiện — đó là tượng của Giải; người quân tử noi theo đó mà tha thứ lỗi lầm, khoan hồng các tội lỗi.",
+    "english": "Thunder and rain are falling together: this is the image of Deliverance. The superior man, in accordance with this, forgives errors and deals gently with crimes.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Giải ngược lại với Kiển (quẻ trước) — nếu Kiển là trở ngại tích tụ, Giải là phá vỡ được tình thế tức thì. Sấm (Chấn, chuyển động) gặp nước (Khảm, khó khăn) sẽ sinh ra mưa gây giải thoát (mưa chữa cạn hạn, tạo sông chảy, nước không ứ đọng). Quẻ này nói về cách 'tháo gỡ' một tình huống vướng mắc thông qua: (1) hướng tây nam = chọn con đường đúng; (2) quay về cái cũ = chỉnh sửa quy trình/cách làm cũ; (3) nếu cần hành động thì sớm = không đợi cho vấn đề tôi hơn mới xử lý. Và bài học quan trọng của Da Xiang: 'tha thứ' — tức là sau khi vệ sinh xong, không nên giữ thù oán hay trách cứ ai mà hãy bắt đầu lại.",
+
+  "computer_science": "Giải giống một incident resolution hoặc tech debt cleanup: thunderstorm (sự xáo trộn/crisis) dẫn tới mưa (release pressure) và thoát khỏi tình trạng ứ đọng. Cách làm tốt là: (1) không tái lạp lỗi cũ (quay về quy trình cũ nhưng đã học được gì); (2) nếu cần refactor thì nhanh chóng (early action); (3) sau khi fix, không viết guilt-laden postmortem mà là 'bài học ích lợi' (forgiving) để team không spiral.",
+
+  "life": "Sau cùng thoát khỏi một tình huống khó khăn — thường đó là lúc tốt để bình yên lại, quay về cách sống bình thường, hoặc sớm xử lý lần sau nếu cần. Và quan trọng: đừng giữ lâu những rằc rối hay trách cứ — tha thứ để bắt đầu lại.",
+
+  "programming": "Incident critical được resolve, lộ trình release blocked đột ngột được unblock, hoặc refactor khoảng khó nhất cuối cùng xong — đây là lúc: (1) pull back, không vội commit thêm feature mới; (2) document root cause + learning (không phải blaming); (3) nếu cần prevention mechanism thì implement sớm; (4) khôi phục confidence trong team (forgiving tone) thay vì blame culture."
+
+  ,
+
+  "characters": [
+    {
+      "hanzi": "解",
+      "pinyin": "jiě",
+      "hanviet": "giải",
+      "meaning": "Tháo gỡ, thoát khỏi, giải thích, hiểu.",
+      "origin": "Chữ ghép từ 刀 (dao) + 懈 (tired, biểu âm) — hình ảnh dùng dao cắt đứt dây buộc để thoát khỏi — nguyên nghĩa 'cắt đứt, tháo gỡ', mở rộng thành 'hiểu, giải thích'.",
+      "example": "解釋 (giải thích); 解放 (giải phóng).",
+      "cs": "Resolution / Unblock",
+      "csExplain": "Trạng thái một vấn đề/dependency được tháo gỡ, blocker được xóa, sức căng được giải phóng."
+    },
+    {
+      "hanzi": "雷",
+      "pinyin": "léi",
+      "hanviet": "lôi",
+      "meaning": "Sấm, tiếng sấm, công kích nhanh.",
+      "origin": "Chữ tượng hình hoặc hình thanh, liên quan đến hình ảnh sấm sét — sự kiện bất ngờ có sức mạnh lớn.",
+      "example": "雷鳴 (lôi minh) = tiếng sấm; 雷擊 (lôi kích) = bị sấm đánh.",
+      "cs": "Sudden Action / Shock",
+      "csExplain": "Một động thái bất ngờ, có sức tác động mạnh — thường cần thiết để phá vỡ bế tắc lâu."
+    },
+    {
+      "hanzi": "雨",
+      "pinyin": "yǔ",
+      "hanviet": "vũ",
+      "meaning": "Mưa, nước từ trên trời rơi xuống.",
+      "origin": "Chữ tượng hình, vẽ hình mưa rơi từ mây xuống (mây ở trên, các giọt rơi xuống).",
+      "example": "下雨 (hạ vũ) = mưa; 雨季 (vũ quý) = mùa mưa.",
+      "cs": "Relief / Flow",
+      "csExplain": "Khi mưa rơi, nó làm cho nước chảy tự do (không ứ đọng), mang lại sự nhẹ nhõm."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：无咎。",
+      "hanviet": "Sơ Lục: Vô cữu.",
+      "translation": "Không có lỗi.",
+      "english": "The first line, divided, shows that its subject will commit no error.",
+      "explain": "Vị trí thấp nhất trong quẻ giải thoát — nếu không có hành động gì (vô=not having), không phải là sai lầm. Đôi khi dừng lại là đúng lựa chọn.",
+      "itExample": "Một incident nhỏ được phát hiện ngay sớm; nếu đơn giản có log, alert mà không phải restart toàn system, đó là no error — tức system đã recover gracefully.",
+      "lifeExample": "Một cuộc tranh chấp nhỏ được hóa giải bằng tĩnh lặng, không cần làm gì thêm — đó là giải quyết tốt nhất."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：田獲三狐，得黃矢，貞吉。",
+      "hanviet": "Cửu Nhị: Điền hoạch tam hồ, đắc hoàng tiễn, trinh cát.",
+      "translation": "Ở ngoài đồng, bắt được ba con cáo, được mũi tên vàng; giữ vững chính đạo thì tốt lành.",
+      "english": "The second line, undivided, shows its subject catch, in hunting, three foxes, and obtain the yellow (golden) arrows. With firm correctness there will be good fortune.",
+      "explain": "Con cáo biểu tượng cho những điều gây lừa dối/phiền toái ẩn giấu; 'bắt được ba con' = tìm ra ba vấn đề chính, 'mũi tên vàng' = công cụ/cách làm đúng. Giữ vững quy trình này sẽ tốt.",
+      "itExample": "Sau incident critical, post-mortem tìm được ba root cause chính (ba con cáo): incomplete test, missing monitoring, unclear ownership; sau đó implement ba biện pháp phòng ngừa (ba mũi tên vàng) — sẽ tránh được incident tương tự.",
+      "lifeExample": "Sau một khoảng khó khăn trong mối quan hệ, tìm ra ba vấn đề chính (hiểu lầm, kỳ vọng khác biệt, thiếu giao tiếp); giải quyết ba vấn đề này (không bao quát) sẽ lâu dài."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：負且乘，致寇至，貞吝。",
+      "hanviet": "Lục Tam: Phụ thả thừa, trí khẩu chí, trinh lận.",
+      "translation": "Vừa xách hàng vừa ngồi xe (quá tham lam) — sẽ dẫn đến kẻ cướp tới; dù giữ vững cũng đáng tiếc.",
+      "english": "One whose carriage is dragged back, while the oxen in it are pushed back, and he himself is subjected to the shaving of his head and cutting off of his nose. However firm and correct he may try to be, the position is perilous.",
+      "explain": "Tham lam vượt quá khả năng (vừa xách vừa ngồi) sẽ tự tạo ra vấn đề lớn. Bài học: khi tháo gỡ một vấn đề, đừng vội mở rộng quá mức.",
+      "itExample": "Sau khi fix bug serious, ngay lập tức team vội vàng add feature mới 'trong lúc vừa refactor' — kết quả là introduce thêm bug khác, phải rollback. Bài học: giữ focus khi đang recover từ incident.",
+      "lifeExample": "Sau khi vượt qua một cuộc khủng hoảng, vội vàng lấy quyết định lớn/thay đổi căn bản (vừa xách vừa ngồi) — sẽ tự tạo ra vấn đề mới."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：解而拇，朋至斯孚。",
+      "hanviet": "Cửu Tứ: Giải nhi mẫu, pêng chí tư phu.",
+      "translation": "Thoát khỏi điểm nguyên gốc (thoát khỏi chân/nền), bạn bè sẽ đến và tin tưởng.",
+      "english": "'Remove your toes.' Friends will come, between you and whom there will be mutual confidence.",
+      "explain": "Lúc đó không còn cách khác — phải cắt đứt hoàn toàn điều gây vấn đề (thoát khỏi chân) — khi làm như vậy, những người thực sự đồng minh sẽ xuất hiện và tin tưởng.",
+      "itExample": "Một vendor/dependency quá nhiều vấn đề; chỉ cách là viết code tương đương hoàn toàn replace nó (cắt đứt nền cũ) — đó là radical refactor; khi làm xong, team sẽ có niềm tin mới vào architecture.",
+      "lifeExample": "Một mối quan hệ độc hại không thể sửa được bằng cách khác — phải tách khỏi hoàn toàn — khi làm điều đó, những bạn thực sự sẽ ủng hộ."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：君子維有解，吉；有孚于小人。",
+      "hanviet": "Lục Ngũ: Quân tử duy hữu giải, cát; hữu phu vu tiểu nhân.",
+      "translation": "Người quân tử (lãnh đạo) phải biết cách tháo gỡ — tốt lành; sẽ có niềm tin từ dân thường.",
+      "english": "The superior man (in a similar case), executing his function of removing (whatever is injurious to the idea of the hexagram), in which case there will be good fortune, and confidence in him will be shown even by the small men.",
+      "explain": "Leader/người có quyền phải biết cách xử lý vấn đề phức tạp (tháo gỡ) — khi làm tốt, ngay cả những người không quyền lực cũng sẽ tin tưởng.",
+      "itExample": "VP Engineering quyết định tách microservice khổng lồ thành phần nhỏ hơn (radical refactor) để cải thiện tốc độ phát triển — khi decision này được execute tốt, ngay cả junior dev cũng thấy tốc độ deploy tăng, confidence tăng.",
+      "lifeExample": "Cha mẹ/người lãnh đạo gia đình quyết định giải quyết một vấn đề cơ bản (chia tài sản rõ ràng, quy tắc rõ) — khi làm tốt, cả gia đình sẽ tin tưởng họ hơn."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：公用射隼，于高墉之上，獲之，无不利。",
+      "hanviet": "Thượng Lục: Công dụng xạ thuyên, vu cao dung chi thượng, hoạch chi, vô bất lợi.",
+      "translation": "Công tử (lãnh đạo cao) dùng cung bắn chim (loại bỏ những kẻ gây rối từ vị trí cao) — bắt được, mọi thứ đều lợi.",
+      "english": "The sovereign with his bow shoots at a falcon on the top of a high wall, and hits it. (The effect of his action) will be in every way advantageous.",
+      "explain": "Hào cuối cùng — lãnh đạo tối cao tấn công trực tiếp những người gây rối ở vị trí cao (thay vì che giấu hoặc delegate). Kết quả là toàn bộ vấn đề được giải quyết triệt để.",
+      "itExample": "CTO/CEO nhận ra 1-2 senior engineer toxic đang poison culture từ vị trí cao; thay vì 'thương' họ, quyết định departure họ (射隼) — khi làm xong, cả org thở phào, mọi thứ cải thiện.",
+      "lifeExample": "Cha mẹ nhận ra người nào trong gia đình đang có hành vi độc hại; phải quyết định mạnh (cắt liên lạc hoặc discipline rõ ràng) thay vì tránh — sau đó, bình yên được tái lập."
+    }
+  ],
+
+  "keywords": ["Giải", "解", "tháo gỡ", "phá vỡ", "mưa sấm", "Lôi Thủy", "thoát khỏi vướng mắc"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/jie", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Giải." },
+    { "source": "維基文庫 Wikisource — 周易/解", "url": "https://zh.wikisource.org/zh-hant/周易/解", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/40", "label": "64 Quẻ — Quẻ 40: Lôi Thủy Giải" }
+  ]
+}

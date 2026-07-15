@@ -1,0 +1,158 @@
+{
+  "id": 32,
+  "hanzi": "恆",
+  "pinyin": "Héng",
+  "hanviet": "Hằng",
+  "english": "Duration",
+  "upperTrigram": "zhen",
+  "lowerTrigram": "xun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "恆：亨，无咎。利貞，利有攸往。",
+    "hanviet": "Hằng: Hanh, vô cữu. Lợi trinh, lợi hữu du vãng.",
+    "translation": "Hằng (lâu bền): hanh thông, không có lỗi. Thuận lợi khi giữ chính đính, thuận lợi khi tiến tới hành động.",
+    "english": "Hăng indicates successful progress and no error (in what it denotes). But the advantage will come from being firm and correct; and movement in any direction whatever will be advantageous."
+  },
+
+  "daTuong": {
+    "hanzi": "雷風，恆；君子以立不易方。",
+    "hanviet": "Lôi phong, Hằng; quân tử dĩ lập bất dịch phương.",
+    "translation": "Sấm và gió (cùng vận hành hỗ trợ nhau), đó là tượng của Hằng; người quân tử noi theo đó mà đứng vững, không đổi thay nguyên tắc, phương hướng của mình.",
+    "english": "(The trigram representing) thunder and that for wind form Hăng. The superior man, in accordance with this, stands firm, and does not change his method (of operation).",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Hằng nghĩa là 'lâu bền, kiên định' — quẻ ghép Sấm (Chấn) ở trên và Gió (Tốn) ở dưới, hai hiện tượng tự nhiên luôn đi kèm và hỗ trợ nhau, biểu tượng cho sự bền vững đến từ sự phối hợp nhất quán, không phải từ sức mạnh đơn lẻ. Bài học cốt lõi của quẻ: sự bền vững thực sự không đến từ việc gồng mình cố định một chỗ, mà từ việc duy trì đúng nguyên tắc/phương hướng trong khi vẫn có thể chuyển động linh hoạt (giống gió luôn di chuyển nhưng vẫn theo quy luật). Các hào cảnh báo về những cách hiểu sai về sự bền vững: đào sâu quá mức ngay từ đầu (hào 1, xấu), không giữ được đức tính nhất quán (hào 3), hay kích động thái quá để chứng tỏ sự lâu bền (hào 6, xấu) — đều không phải là 'Hằng' đích thực.",
+
+  "computer_science": "Hằng là bài học kinh điển về reliability engineering: uptime cao không đến từ 1 lần nỗ lực anh hùng (heroics) mà từ việc lặp lại đúng quy trình vận hành (on-call rotation, deployment cadence, monitoring routine) một cách nhất quán qua thời gian — giống nguyên tắc 'reliability is a habit, not an event'. Hào 4 ('ruộng không có thú săn') cảnh báo về việc duy trì đúng quy trình nhưng sai chỗ/sai mục tiêu thì dù kiên trì cũng không tạo ra giá trị.",
+
+  "life": "Sự bền vững thật sự trong cuộc sống — hôn nhân, sự nghiệp, thói quen tốt — không đến từ những nỗ lực bùng nổ nhất thời mà từ việc duy trì đúng nguyên tắc một cách đều đặn qua thời gian dài. Consistency (nhất quán) quan trọng hơn intensity (cường độ).",
+
+  "programming": "Một hệ thống đạt SLA cao không nhờ 1 lần fix lớn mà nhờ kỷ luật vận hành lặp lại: code review đều đặn, test coverage duy trì, deployment cadence ổn định. Nhưng cũng cần cảnh giác: duy trì đúng quy trình cho 1 sản phẩm/tính năng đã hết giá trị (hào 4 'ruộng không có thú săn') là lãng phí công sức, kiên trì cần đi cùng với đúng mục tiêu.",
+
+  "characters": [
+    {
+      "hanzi": "恆",
+      "pinyin": "héng",
+      "hanviet": "hằng",
+      "meaning": "Lâu dài, bền vững, không đổi.",
+      "origin": "Chữ ghép bộ 心 (tâm, trái tim/lòng dạ) + phần biểu thị hình ảnh vầng trăng giữa 2 đường (biểu thị chu kỳ trăng lặp lại đều đặn) — nghĩa gốc 'lòng dạ bền vững như chu kỳ trăng không đổi', mở rộng thành 'lâu bền, thường hằng'.",
+      "example": "恆心 (hằng tâm) = lòng kiên trì bền bỉ; 永恆 (vĩnh hằng) = mãi mãi.",
+      "cs": "Uptime / Reliability",
+      "csExplain": "Trạng thái ổn định, ít gián đoạn theo thời gian — giống chỉ số uptime/SLA của 1 hệ thống đáng tin cậy."
+    },
+    {
+      "hanzi": "无",
+      "pinyin": "wú",
+      "hanviet": "vô",
+      "meaning": "Không, không có.",
+      "origin": "Dị thể cổ của chữ 無, nguồn gốc liên quan tới hình ảnh người múa cầm vật trang trí (cùng gốc chữ 舞 múa) rồi mượn âm để biểu thị 'không có'; 无 là dạng đơn giản hóa xuất hiện sớm trong văn bản Kinh Dịch.",
+      "example": "无咎 (vô cữu) = không lỗi, cụm từ lặp lại nhiều lần trong Kinh Dịch.",
+      "cs": "Null / Zero-error state",
+      "csExplain": "Trạng thái không có lỗi — giống 1 test suite pass với 0 lỗi, hoặc null-safe state trong hệ thống."
+    },
+    {
+      "hanzi": "咎",
+      "pinyin": "jiù",
+      "hanviet": "cữu",
+      "meaning": "Lỗi, tội lỗi, điều đáng trách.",
+      "origin": "Chữ ghép phần trên liên quan tới người (人) + 各 (các, âm — nghĩa gốc liên quan tới bước chân đi ngược/đi trái) — nghĩa gốc liên quan tới hành vi sai trái của con người, dẫn tới hậu quả xấu.",
+      "example": "咎由自取 (cữu do tự thủ) = lỗi do mình tự gây ra.",
+      "cs": "Fault / Error",
+      "csExplain": "Một lỗi hoặc fault trong hệ thống — vô cữu (无咎) tương đương 'no fault detected'."
+    },
+    {
+      "hanzi": "往",
+      "pinyin": "wǎng",
+      "hanviet": "vãng",
+      "meaning": "Đi, tiến tới, hướng về.",
+      "origin": "Chữ ghép bộ 彳 (xích, bước chân trái/đi) + thành phần biểu âm liên quan tới 王 — một trong những chữ chỉ phương hướng hành động cơ bản trong Kinh Dịch.",
+      "example": "往來 (vãng lai) = qua lại, 前往 (tiền vãng) = đi tới.",
+      "cs": "Forward action",
+      "csExplain": "Hành động tiến về phía trước — duy trì đều đặn qua thời gian, không phải hành động 1 lần."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：浚恆，貞凶，无攸利。",
+      "hanviet": "Sơ Lục: Tuấn hằng, trinh hung, vô du lợi.",
+      "translation": "Đào sâu ngay từ đầu để cầu sự lâu bền; dù giữ vững cũng xấu, không có gì lợi.",
+      "english": "The first SIX, divided, shows its subject deeply (desirous) of long continuance. Even with firm correctness there will be evil; there will be no advantage in any way.",
+      "explain": "Ngay từ đầu đã đòi hỏi kết quả bền vững sâu sắc, quá nôn nóng — sự bền vững không thể ép buộc có ngay từ khởi điểm, cần thời gian tích lũy.",
+      "itExample": "Yêu cầu 1 hệ thống mới vừa launch phải đạt ngay SLA 99.99% từ ngày đầu tiên — kỳ vọng phi thực tế này thường dẫn tới quyết định sai lầm (over-engineering sớm) thay vì để hệ thống trưởng thành dần.",
+      "lifeExample": "Kỳ vọng một mối quan hệ hay sự nghiệp mới phải bền vững, sâu sắc ngay từ ban đầu — sự nôn nóng này thường phản tác dụng, sự bền vững cần thời gian để xây dựng."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：悔亡。",
+      "hanviet": "Cửu Nhị: Hối vong.",
+      "translation": "Hối tiếc tiêu tan.",
+      "english": "The second NINE, undivided, shows all occasion for repentance disappearing.",
+      "explain": "Ở vị trí trung, biết giữ đúng mức độ, không thái quá cũng không bất cập — nhờ vậy mọi hối tiếc tự nhiên biến mất.",
+      "itExample": "Duy trì đúng nhịp độ làm việc bền vững (không burnout vì làm quá sức, không trì trệ vì làm quá ít) — sự cân bằng này tự nhiên loại bỏ những sai lầm đáng tiếc.",
+      "lifeExample": "Giữ được sự cân bằng, chừng mực trong công việc và cuộc sống — không thái quá cũng không thiếu sót, nhờ vậy tránh được nhiều hối tiếc về sau."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：不恆其德，或承之羞，貞吝。",
+      "hanviet": "Cửu Tam: Bất hằng kỳ đức, hoặc thừa chi tu, trinh lận.",
+      "translation": "Không giữ được đức tính nhất quán, có khi phải chịu điều xấu hổ; dù giữ vững cũng đáng tiếc.",
+      "english": "The third NINE, undivided, shows one who does not continuously maintain his virtue. There are those who will impute this to him as a disgrace. However firm he may be, there will be ground for regret.",
+      "explain": "Vị trí chông chênh, thiếu tính nhất quán trong hành xử (lúc thế này lúc thế khác) — đây là nguyên nhân gốc rễ khiến người khác mất lòng tin, dù có cố gắng cũng khó tránh đáng tiếc.",
+      "itExample": "Một team liên tục đổi coding convention, đổi quy trình review mỗi vài tuần — sự thiếu nhất quán này khiến chất lượng code khó kiểm soát, dù mỗi thay đổi riêng lẻ đều có lý do hợp lý.",
+      "lifeExample": "Thay đổi nguyên tắc sống, cách cư xử liên tục theo tình huống khiến người xung quanh mất lòng tin — dù mỗi lần thay đổi đều có lý do, sự thiếu nhất quán vẫn gây tổn hại."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：田无禽。",
+      "hanviet": "Cửu Tứ: Điền vô cầm.",
+      "translation": "Ruộng săn không có chim thú.",
+      "english": "The fourth NINE, undivided, shows a field where there is no game.",
+      "explain": "Kiên trì đúng vị trí nhưng sai chỗ, sai đối tượng — dù nỗ lực đều đặn đến đâu cũng không thu được kết quả vì đã chọn sai 'mảnh ruộng' để gieo trồng công sức.",
+      "itExample": "Kiên trì duy trì và tối ưu 1 tính năng/sản phẩm không còn ai dùng — dù kỷ luật vận hành tốt đến đâu, công sức bỏ ra vào đúng quy trình sai mục tiêu vẫn không tạo ra giá trị.",
+      "lifeExample": "Kiên trì nỗ lực trong một lĩnh vực hay mối quan hệ không còn phù hợp — sự bền bỉ đúng cách nhưng sai chỗ vẫn sẽ không mang lại kết quả mong muốn."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：恆其德，貞，婦人吉，夫子凶。",
+      "hanviet": "Lục Ngũ: Hằng kỳ đức, trinh, phụ nhân cát, phu tử hung.",
+      "translation": "Giữ vững đức tính nhất quán, chính đính; với người vợ thì tốt, với người chồng (hay bậc trượng phu) thì xấu.",
+      "english": "The fifth SIX, divided, shows its subject continuously maintaining the virtue indicated by it. In a wife this will be fortunate; in a husband, evil.",
+      "explain": "Cùng là sự nhất quán, nhưng vai trò khác nhau cần cách ứng xử khác nhau — sự nhất quán thụ động, theo sau (như vai trò truyền thống của người vợ trong bối cảnh cổ) là tốt, nhưng người ở vai trò dẫn dắt (chồng/lãnh đạo) chỉ giữ nguyên trạng thái thụ động thì lại là điều xấu, vì họ cần chủ động thích ứng và quyết đoán.",
+      "itExample": "Một thành viên team ở vai trò support/vận hành giữ quy trình ổn định nhất quán là tốt; nhưng nếu người lãnh đạo/kiến trúc sư trưởng cũng chỉ 'giữ nguyên trạng' một cách thụ động, không chủ động thích ứng với thay đổi thị trường, đó lại là vấn đề.",
+      "lifeExample": "Vai trò hỗ trợ cần sự ổn định nhất quán; nhưng vai trò lãnh đạo/dẫn dắt cần biết chủ động thích ứng, không thể chỉ giữ nguyên trạng thái một cách thụ động."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：振恆，凶。",
+      "hanviet": "Thượng Lục: Chấn hằng, hung.",
+      "translation": "Rung động, xáo động dữ dội để cầu sự lâu bền — xấu.",
+      "english": "The topmost SIX, divided, shows its subject exciting himself to long continuance. There will be evil.",
+      "explain": "Hào cuối, cố kích động, phô trương để chứng tỏ sự bền vững — đây là nghịch lý: càng gắng sức thể hiện sự ổn định một cách gượng ép thì càng bất ổn, phản tác dụng hoàn toàn với ý nghĩa thật của 'Hằng'.",
+      "itExample": "Liên tục tổ chức các đợt 'cải tổ lớn' để chứng minh team đang cải tiến không ngừng — sự xáo động thái quá này lại phá vỡ chính sự ổn định mà team cần để vận hành tốt.",
+      "lifeExample": "Cố gắng thể hiện sự ổn định, bền vững bằng những hành động phô trương, xáo động — nghịch lý là chính điều này lại phá vỡ sự ổn định thật sự."
+    }
+  ],
+
+  "keywords": ["Hằng", "恆", "bền vững", "nhất quán", "sấm gió", "reliability", "consistency"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/恆", "url": "https://zh.wikisource.org/zh-hant/周易/恆", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 32 (bản mirror)", "url": "https://baharna.com/iching/legge/011100.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes : Heng", "url": "https://ctext.org/book-of-changes/heng", "note": "Nguồn học thuật công khai, xác nhận tên/slug quẻ 恆 Heng." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/32", "label": "64 Quẻ — Quẻ 32: Lôi Phong Hằng" }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "id": 45,
+  "hanzi": "萃",
+  "pinyin": "Cuì",
+  "hanviet": "Tụy",
+  "english": "Gathering",
+  "upperTrigram": "dui",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "萃：亨。王假有廟，利見大人，亨，利貞。用大牲吉，利有攸往。",
+    "hanviet": "Tụy: Hanh. Vương giả hữu miếu, lợi kiến đại nhân, hanh, lợi trinh. Dụng đại sinh cát, lợi hữu du vãng.",
+    "translation": "Tụy (Tập hợp): thông suốt. Vua đến miếu thờ, thuận lợi gặp người lớn, thông suốt, lợi giữ đúng. Dùng tế lễ lớn thì tốt, thuận lợi tiến tới nơi có ý định.",
+    "english": "In (the state denoted by) Cui, the king will repair to his ancestral temple. It will be advantageous (also) to meet with the great man; and then there will be progress and success, though the advantage must come through firm correctness. The use of great victims will conduce to good fortune; and in whatever direction movement is made, it will be advantageous."
+  },
+
+  "daTuong": {
+    "hanzi": "澤上於地，萃；君子以除戎器，戒不虞。",
+    "hanviet": "Trạch thượng vu địa, tụy; quân tử dĩ trừ quân khí, giới bất ngu.",
+    "translation": "Hồ nước tập hợp lên trên đất, tạo nên quẻ Tụy; người quân tử noi theo đó mà loại bỏ vũ khí chiến tranh, cảnh báo chống lại sự bất ngờ.",
+    "english": "The superior man, in accordance with this, has his weapons of war put in good repair, to be prepared against unforeseen contingencies.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Tụy ghép từ Kun (Đất) ở dưới, Dui (Hồ) ở trên — nước tập trung trên đất, hình ảnh mọi thứ kết tụ lại tại một nơi. Đó là thời điểm tốt cho những hành động lớn, lễ tế, gặp gỡ người khác; nhưng cũng là lúc nguy hiểm (nước tích tụ có thể lũ), nên phải chuẩn bị vũ khí để chống lại điều bất ngờ. Sáu hào kể câu chuyện: tâm không đủ thống nhất nên hỗn loạn, rồi kêu gọi được nghe theo, cố gắng kết tụ mà lo sợ, phát huy ảnh hưởng, cuối cùng khó khăn của sự tụ tập nhưng không có lỗi.",
+
+  "computer_science": "Tụy giống 'aggregation' hay 'gathering phase' — dồn resources lại từ nhiều source để làm một việc lớn (event, campaign, refactor). Nhưng phải chuẩn bị (除戎器) tức là chuẩn bị contingency plan, disaster recovery — vì tập trung lúc nào cũng chứa rủi ro.",
+
+  "life": "Thời điểm mọi người tập trung lại — là cơ hội tốt để làm điều lớn nhưng cũng là lúc dễ xảy ra xung đột; phải chuẩn bị kỹ, lắng nghe nhau, cảnh báo nhau về nguy hiểm tiềm ẩn.",
+
+  "programming": "Khi release lớn, tất cả team tập trung — cơ hội deploy vĩ đại nhưng cũng là lúc rủi ro cao; phải chuẩn bị kỹ backup plan, rollback strategy, monitoring kỹ, on-call team sẵn sàng.",
+
+  "characters": [
+    {
+      "hanzi": "萃",
+      "pinyin": "cuì",
+      "hanviet": "tụy",
+      "meaning": "Tập hợp, kết tụ, tú nhân tài.",
+      "origin": "Bộ 艹 (cỏ) + 卒 (kết thúc) — hình ảnh cỏ mọc nơi đông người tập trung, mở rộng thành 'kết tụ, tâu nhân tài'.",
+      "example": "人才薈萃 (nhân tài hoại tụy) = nhân tài tập trung; 萃點 (tụy điểm) = điểm kết tụ.",
+      "cs": "Aggregation",
+      "csExplain": "Sự kết hợp nhiều data/resource lại thành một điểm chính để xử lý chung."
+    },
+    {
+      "hanzi": "廟",
+      "pinyin": "miào",
+      "hanviet": "miếu",
+      "meaning": "Miếu thờ, nơi tôn vinh tổ tiên.",
+      "origin": "Bộ 广 (nhà) + 朝 (sáng, tôn thờ) — hình ảnh ngôi nhà thờ để tôn vinh, mở rộng thành 'miếu, nơi tập hợp tinh thần chung'.",
+      "example": "宗廟 (tông miếu) = miếu thờ tổ tiên; 廟會 (miếu hội) = lễ hội tại miếu.",
+      "cs": "Shared Space",
+      "csExplain": "Không gian tập trung chia sẻ giá trị chung, nơi mọi người tập hợp nhận diện bản sắc chung."
+    },
+    {
+      "hanzi": "牲",
+      "pinyin": "shēng",
+      "hanviet": "sinh",
+      "meaning": "Súc vật dùng để tế lễ, sinh vật.",
+      "origin": "Bộ 牛 (trâu, gia súc) + phần biểu âm — hình ảnh gia súc nuôi để dâng lễ, mở rộng thành 'tế vật, sống'.",
+      "example": "牲畜 (sinh súc) = gia súc; 用大牲 (dụng đại sinh) = dùng tế lễ lớn.",
+      "cs": "Sacrifice",
+      "csExplain": "Đem ra điều quan trọng (resource, time) để tế thần, tức là dành cho sự chung của cộng đồng."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：有孚不終，乃亂乃萃，若號一握為笑，勿恤，往无咎。",
+      "hanviet": "Sơ Lục: Hữu phu bất chung, nãi loạn nãi tụy, nhược hào nhất ác vi tiếu, vật hưởng, vãng vô cữu.",
+      "translation": "Có lòng thành nhưng không bền, nên hỗn loạn rồi tập hợp, như kêu gọi rồi bỗng cười, đừng lo, tiến tới không có lỗi.",
+      "english": "with a sincere desire (for union), but unable to carry it out, so that disorder is brought into the sphere of his union... there will be no error.",
+      "explain": "Vị trí thấp, lòng thành tập hợp nhưng không đủ mạnh — dẫn đến hỗn loạn nhưng cuối cùng lại tập hợp được; nếu không lo thì không có lỗi.",
+      "itExample": "Sprint planning ban đầu lộn xộn, sự rõ ràng thiếu — nhưng nếu team cứ kêu gọi, rồi bỗng dưng sync được (planning meeting nó kỳ quặc nhưng hiệu quả), không nên lo quá.",
+      "lifeExample": "Gia đình khi họp mặt lúc đầu hơi lộn xộn, có chút xích mích — nhưng nếu cứ tụi mình kêu gọi nhau, cuối cùng mọi thứ sẽ kết tụ lại tốt."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：引吉，无咎，孚乃利用禴。",
+      "hanviet": "Lục Nhị: Dẫn cát, vô cữu, phu nãi lợi dụng dược.",
+      "translation": "Được kéo theo là tốt, không có lỗi, lòng thành thì thuận dụng tế lễ nhỏ.",
+      "english": "led forward (by his correlate). There will be good fortune, and freedom from error... the small offerings of the vernal sacrifice are acceptable.",
+      "explain": "Vị trí thứ hai, được kéo theo từ trên — chỉ cần giữ lòng chân thật là được, thậm chí tế lễ nhỏ cũng được chấp nhận.",
+      "itExample": "Junior dev được senior kéo vào project lớn, kỳ vọng không quá cao, chỉ cần chân thật, đóng góp những gì nhỏ cũng được công nhận.",
+      "lifeExample": "Người trẻ được người lớn kéo vào công việc gia đình, không cần làm lớn, chỉ cần chân thật là được cảm ơn."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：萃如，嗟如，无攸利，往无咎，小吝。",
+      "hanviet": "Lục Tam: Tụy như, ta như, vô du lợi, vãng vô cữu, tiểu lạp.",
+      "translation": "Tập hợp hình như thở dài, không nơi nào thuận lợi, tiến tới không lỗi nhưng có chút tiếc.",
+      "english": "striving after union and seeming to sigh, yet nowhere finding any advantage. If he go forward, he will not err.",
+      "explain": "Cố tập hợp nhưng thở dài lo sợ, không tìm được lợi ích gì — tiến tới vẫn không lỗi nhưng có chút tiếc.",
+      "itExample": "Team tập hợp vội vã cho release, thở dài vì chưa ready tất cả, không có lợi ích ngay — nhưng nếu cứ push thì không sai, chỉ tiếc rằng có thể tốt hơn.",
+      "lifeExample": "Gia đình tập hợp cho sự kiện lớn, ai cũng thở dài vì áp lực — không có lợi ích rõ ràng, nhưng nếu vẫn tham gia thì không bị trách, chỉ tiếc rằng không vui hơn."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "六四：大吉，无咎。",
+      "hanviet": "Cửu Tứ: Đại cát, vô cữu.",
+      "translation": "Đại cát tường, không có lỗi.",
+      "english": "if he be greatly fortunate, he will receive no blame.",
+      "explain": "Vị trí gần vua, nếu tập hợp được thì đại cát — tất cả sẽ ổn.",
+      "itExample": "Leadership decide dồn resource tập trung cho một release lớn — nếu tập hợp được từ tất cả department thì sẽ đại cát, không ai bị chỉ trích.",
+      "lifeExample": "Gia đình quyết định dồn sức cho một sự kiện lớn, tất cả tập hợp — sẽ thành công tốt đẹp."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：萃有位，无咎。匪孚，元永貞，悔亡。",
+      "hanviet": "Cửu Ngũ: Tụy hữu vị, vô cữu. Phỉ phu, nguyên vĩnh trinh, hối vong.",
+      "translation": "Tập hợp với vị trí của nó, không có lỗi. Nếu không thành tín, giữ nguyên tắc vĩnh viễn, hối tiếc sẽ mất.",
+      "english": "the union (of all) under its subject in the place of dignity. There will be no error... all occasion for repentance will disappear.",
+      "explain": "Vị vua, tập hợp mọi thứ dưới sự chỉ huy của mình — không có lỗi nếu giữ đúng nguyên tắc lâu dài.",
+      "itExample": "CEO dồn tất cả team lại cho phát triển chiến lược chung — không sai nếu giữ vision rõ ràng và nhất quán lâu dài, hối tiếc sẽ mất.",
+      "lifeExample": "Người lớn trong gia đình tập hợp mọi người — không sai nếu giữ nguyên tắc công bằng, yêu thương lâu dài, sẽ không có hối tiếc."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：齎咨涕洟，无咎。",
+      "hanviet": "Thượng Lục: Tê tư thế đề, vô cữu.",
+      "translation": "Mang theo tiếng than vãi, nước mắt chảy, không có lỗi.",
+      "english": "sighing amidst bitter tears but there will be no error.",
+      "explain": "Hào cuối, tập hợp kết thúc bằng nước mắt, không có lỗi — chỉ là kết thúc buồn của một kỳ kết tụ.",
+      "itExample": "Release lớn kết thúc nhưng team mệt nhoài, ai cũng khóc mếu — không ai có lỗi, chỉ là cái giá của việc dồn sức.",
+      "lifeExample": "Sự kiện gia đình lớn kết thúc bằng nước mắt tiếc nuối — không ai bị trách, chỉ là nỗi tiếc rằng không kéo dài mãi được."
+    }
+  ],
+
+  "keywords": ["Tụy", "萃", "Kết tụ", "Tập hợp", "Trạch Địa Tụy", "Cảnh báo"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/cui", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Tụy (Thoán từ, Hào từ)." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn." },
+    { "source": "維基文庫 Wikisource — 周易/萃", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E8%90%83", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/45", "label": "64 Quẻ — Quẻ 45: Trạch Địa Tụy" }
+  ]
+}

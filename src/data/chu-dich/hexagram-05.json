@@ -1,0 +1,158 @@
+{
+  "id": 5,
+  "hanzi": "需",
+  "pinyin": "Xū",
+  "hanviet": "Nhu",
+  "english": "Waiting (Nourishment)",
+  "upperTrigram": "kan",
+  "lowerTrigram": "qian",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "需：有孚，光亨。貞吉，利涉大川。",
+    "hanviet": "Nhu: Hữu phu, quang hanh. Trinh cát, lợi thiệp đại xuyên.",
+    "translation": "Nhu (Chờ đợi): có lòng thành tín, sáng sủa hanh thông. Giữ vững chính đạo thì tốt lành, thuận lợi khi vượt sông lớn.",
+    "english": "Hsü intimates that, with the sincerity which is declared in it, there will be brilliant success. With firmness there will be good fortune; and it will be advantageous to cross the great stream."
+  },
+
+  "daTuong": {
+    "hanzi": "雲上於天，需；君子以飲食宴樂。",
+    "hanviet": "Vân thướng ư thiên, Nhu; quân tử dĩ ẩm thực yến lạc.",
+    "translation": "Mây bay lên trên trời, chưa thành mưa, là tượng của Nhu; người quân tử noi theo đó mà ăn uống, vui chơi thư thái trong lúc chờ đợi đúng thời.",
+    "english": "(The trigram for) clouds ascending over that for the sky forms Hsu. The superior man, in accordance with this, eats and drinks, feasts and enjoys himself (as if there were nothing else to employ him).",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Nhu tiếp sau Mông — đã được khai mở thì cần trưởng thành, tích lũy trước khi hành động. Hình tượng mây đã bốc lên tới trời nhưng CHƯA thành mưa: mọi điều kiện đã hội đủ nhưng cần đợi đúng thời điểm chín muồi. Đây không phải quẻ về sự thụ động, mà về 'chờ đợi chủ động': giữ lòng thành tín, bồi dưỡng bản thân, không manh động. Sáu hào mô tả các mức độ chờ đợi theo khoảng cách tới hiểm nguy: chờ ở vùng biên an toàn (Sơ Cửu) → chờ gần hơn, có chút lời ra tiếng vào nhưng vẫn ổn (Cửu Nhị) → chờ quá sát nguy hiểm, tự chuốc họa (Cửu Tam) → rơi vào hiểm cảnh nhưng biết thoát (Lục Tứ) → chờ đợi ở vị trí tốt nhất, ung dung như dự tiệc (Cửu Ngũ) → và tận dụng được sự giúp đỡ bất ngờ nếu biết đón nhận đúng cách (Thượng Lục).",
+
+  "computer_science": "Nhu giống hệt một 'backoff strategy' khi chờ một dependency/lock: điều kiện đã gần sẵn sàng (mây đã lên tới trời) nhưng chưa nên force-execute ngay — hệ thống tốt biết retry với backoff thay vì busy-wait tốn tài nguyên (giống quẻ dạy 'ăn uống yến lạc' = dùng thời gian chờ hiệu quả, không đứng im vô ích). 6 hào giống 6 mức khoảng cách an toàn khi retry gần một resource đang bị khóa: càng đứng gần vùng tranh chấp, rủi ro càng cao nếu hành động sai thời điểm.",
+
+  "life": "Kiên nhẫn không phải là ngồi yên bất động, mà là chuẩn bị tốt nhất có thể trong khi chờ đúng thời cơ — và biết giữ khoảng cách an toàn với rủi ro cho đến khi thực sự sẵn sàng hành động.",
+
+  "programming": "Feature đã code xong (mây đã lên trời) nhưng dependency/backend chưa deploy xong — đừng cố force release; hãy dùng thời gian chờ để viết test, refactor, chuẩn bị launch checklist thay vì ngồi không hoặc ép release ẩu gây lỗi (Cửu Tam, 'chờ trong bùn, tự chuốc họa').",
+
+  "characters": [
+    {
+      "hanzi": "需",
+      "pinyin": "xū",
+      "hanviet": "nhu",
+      "meaning": "Chờ đợi; cần thiết (nhu cầu).",
+      "origin": "Bộ 雨 (vũ, mưa) + 而 (nhi). Thuyết Văn giải 'nhu, tuẫn dã, ngộ vũ bất tiến chỉ tuẫn dã' — gặp mưa mà dừng lại chờ; nghĩa gốc 'đợi mưa tạnh mới đi tiếp', mở rộng thành 'chờ đợi' rồi 'cần, nhu cầu'.",
+      "example": "需要 (nhu yếu, cần thiết); 必需品 (tất nhu phẩm, đồ dùng thiết yếu).",
+      "cs": "Backoff / Wait State",
+      "csExplain": "Trạng thái tạm dừng có chủ đích khi điều kiện chưa chín muồi — giống retry-with-backoff thay vì cố gắng liên tục gây quá tải hệ thống."
+    },
+    {
+      "hanzi": "孚",
+      "pinyin": "fú",
+      "hanviet": "phu",
+      "meaning": "Tin cậy, thành tín.",
+      "origin": "Giáp cốt văn vẽ hình bàn tay (爪) nắm giữ đứa trẻ (子) — nghĩa gốc 'ấp trứng, nuôi dưỡng đáng tin cậy' (chim ấp trứng đúng kỳ ắt nở), mở rộng thành 'thành tín, đáng tin'.",
+      "example": "有孚 (hữu phu, có lòng thành) — cụm xuất hiện lặp lại nhiều lần trong Kinh Dịch.",
+      "cs": "Trust / Integrity Guarantee",
+      "csExplain": "Sự đảm bảo đáng tin cậy giữa các thành phần hệ thống — giống một handshake hoặc cam kết toàn vẹn dữ liệu được xác nhận trước khi tiếp tục xử lý."
+    },
+    {
+      "hanzi": "涉",
+      "pinyin": "shè",
+      "hanviet": "thiệp",
+      "meaning": "Lội qua sông, trải qua.",
+      "origin": "Bộ 水 (thủy) + 步 (bộ, hai bàn chân) — hình ảnh trực quan hai bàn chân lội qua dòng nước, nghĩa gốc 'lội qua sông', mở rộng thành 'trải qua, dính líu tới việc gì'.",
+      "example": "涉水 (thiệp thủy, lội nước); 涉及 (thiệp cập, liên quan tới).",
+      "cs": "Cross a Blocking Boundary",
+      "csExplain": "Hành động vượt qua một điểm rủi ro lớn ('đại xuyên' — sông lớn) — ẩn dụ cho việc go-live, deploy production, hay merge một thay đổi lớn có rủi ro cao."
+    },
+    {
+      "hanzi": "穴",
+      "pinyin": "xué",
+      "hanviet": "huyệt",
+      "meaning": "Hang, lỗ hổng, nơi trú ẩn.",
+      "origin": "Chữ tượng hình mái hang/nhà đào trong đất — nghĩa gốc 'hang ở, nơi trú ẩn đào trong đất', thời thượng cổ người ở hang trước khi có nhà.",
+      "example": "洞穴 (động huyệt, hang động); 穴居 (huyệt cư, ở hang).",
+      "cs": "Fallback / Safe State",
+      "csExplain": "Nơi trú ẩn an toàn khi gặp nguy hiểm — giống trạng thái fallback/rollback được thiết kế sẵn để hệ thống lui về khi gặp sự cố."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：需于郊，利用恆，无咎。",
+      "hanviet": "Sơ Cửu: Nhu vu giao, lợi dụng hằng, vô cữu.",
+      "translation": "Chờ đợi ở vùng ngoại ô, xa nguy hiểm; nên giữ sự thường hằng, không có lỗi.",
+      "english": "The first line, undivided, shows its subject waiting in the distant border. It will be well for him constantly to maintain (the purpose thus shown), in which case there will be no error.",
+      "explain": "Vị trí xa nhất khỏi hiểm nguy — chờ đợi trong an toàn, chỉ cần giữ vững thói quen tốt, kiên nhẫn, không vội vàng.",
+      "itExample": "Giai đoạn đầu chờ một dependency bên ngoài (API đối tác) hoàn thiện — hệ thống của mình còn cách xa điểm rủi ro, chỉ cần duy trì lịch trình retry đều đặn, chưa có gì đáng lo.",
+      "lifeExample": "Khi mục tiêu còn xa, cứ giữ thói quen tốt đều đặn mỗi ngày mà không cần vội vã — an toàn và bền vững."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：需于沙，小有言，終吉。",
+      "hanviet": "Cửu Nhị: Nhu vu sa, tiểu hữu ngôn, chung cát.",
+      "translation": "Chờ đợi trên bãi cát, gần nguy hiểm hơn; có chút lời ra tiếng vào nhỏ nhặt, nhưng cuối cùng tốt lành.",
+      "english": "The second line, undivided, shows its subject waiting on the sand (of the mountain stream). He will (suffer) the small (injury of) being spoken (against), but in the end there will be good fortune.",
+      "explain": "Tiến gần hơn tới vùng nguy hiểm, sẽ có lời đàm tiếu, phiền toái nhỏ, nhưng vì vẫn giữ đúng thái độ chờ đợi nên kết quả cuối cùng vẫn tốt.",
+      "itExample": "Khi dự án tiệm cận giai đoạn go-live, sẽ có vài ý kiến trái chiều/lo ngại nhỏ từ stakeholder — không đáng ngại nếu team vẫn kiên định đúng kế hoạch, kết quả cuối cùng vẫn tốt.",
+      "lifeExample": "Càng gần một quyết định lớn, càng dễ gặp lời ra tiếng vào từ xung quanh — không cần quá bận tâm nếu bản thân vẫn giữ vững hướng đi đúng."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：需于泥，致寇至。",
+      "hanviet": "Cửu Tam: Nhu vu nê, trí khấu chí.",
+      "translation": "Chờ đợi trong bùn lầy, quá sát nguy hiểm, tự chuốc lấy giặc cướp kéo đến.",
+      "english": "The third line, undivided, shows its subject in the mud (close by the stream). He thereby invites the approach of injury.",
+      "explain": "Đứng quá sát ranh giới nguy hiểm trong lúc chờ đợi — sự thiếu thận trọng này tự tạo ra rủi ro, mời gọi tai họa đến gần.",
+      "itExample": "Deploy code chưa test kỹ ngay sát deadline production, đứng quá gần rủi ro — dễ tự tạo ra sự cố mà lẽ ra có thể tránh nếu giữ khoảng cách an toàn hơn.",
+      "lifeExample": "Trì hoãn quyết định quan trọng đến sát giới hạn cuối cùng, tạo áp lực và rủi ro không cần thiết cho chính mình — lẽ ra nên hành động sớm hơn, giữ khoảng cách an toàn."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：需于血，出自穴。",
+      "hanviet": "Lục Tứ: Nhu vu huyết, xuất tự huyệt.",
+      "translation": "Chờ đợi trong vùng máu me (hiểm cảnh đã xảy ra), nhưng biết thoát ra khỏi hang.",
+      "english": "The fourth line, divided, shows its subject waiting in (the place of) blood. But he will get out of the cavern.",
+      "explain": "Đã lâm vào hiểm cảnh thực sự — nhưng nhờ biết mềm mỏng, thuận theo hoàn cảnh (hào Âm) nên vẫn tìm được đường thoát.",
+      "itExample": "Sự cố production đã thực sự xảy ra, không còn là nguy cơ — team bình tĩnh xử lý theo đúng quy trình incident response và thoát khỏi khủng hoảng thay vì hoảng loạn.",
+      "lifeExample": "Khi khủng hoảng thực sự đã xảy đến, việc giữ bình tĩnh và thuận theo diễn biến để tìm đường thoát quan trọng hơn là hoảng loạn chống cự."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：需于酒食，貞吉。",
+      "hanviet": "Cửu Ngũ: Nhu vu tửu thực, trinh cát.",
+      "translation": "Chờ đợi giữa tiệc rượu và thức ăn, ung dung đủ đầy; giữ chính đạo thì tốt lành.",
+      "english": "The fifth line, undivided, shows its subject waiting amidst the appliances of a feast. Through his firmness and correctness there will be good fortune.",
+      "explain": "Vị trí trung chính, tôn quý nhất — chờ đợi trong tư thế ung dung, đầy đủ, không lo lắng; đây là hình mẫu lý tưởng của sự chờ đợi chủ động, chuẩn bị sẵn sàng nguồn lực.",
+      "itExample": "Team đã chuẩn bị đầy đủ mọi thứ (infra, test, rollback plan) và chỉ còn chờ đúng thời điểm launch — tâm thế ung dung, tự tin vì đã chuẩn bị kỹ, không phải vội vã lo lắng.",
+      "lifeExample": "Chuẩn bị đầy đủ cho một sự kiện quan trọng đến mức có thể ung dung chờ đợi ngày diễn ra mà không hoảng loạn — đây là trạng thái chờ đợi lý tưởng."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：入于穴，有不速之客三人來，敬之終吉。",
+      "hanviet": "Thượng Lục: Nhập vu huyệt, hữu bất tốc chi khách tam nhân lai, kính chi chung cát.",
+      "translation": "Đi vào hang, nơi trú ẩn cuối; có ba vị khách không mời mà đến, đối đãi cung kính thì cuối cùng tốt lành.",
+      "english": "The topmost line, divided, shows its subject entered into the cavern. (But) there are three guests coming, without being urged, (to his help). If he receive them respectfully, there will be good fortune in the end.",
+      "explain": "Hào cuối, thời kỳ chờ đợi đã qua — sự giúp đỡ bất ngờ xuất hiện; thái độ đón nhận cởi mở, tôn trọng quyết định kết quả có tốt đẹp hay không.",
+      "itExample": "Sau thời gian dài chờ đợi, có ba bên đối tác/contributor bất ngờ đề nghị hỗ trợ dự án — biết đón nhận và hợp tác cởi mở thay vì nghi ngại, cố chấp làm một mình, sẽ mang lại kết quả tốt.",
+      "lifeExample": "Sự giúp đỡ bất ngờ từ người khác đôi khi đến đúng lúc mình cần nhất — biết đón nhận với lòng biết ơn, tôn trọng thay vì nghi ngờ, cảnh giác quá mức sẽ mang lại điều tốt đẹp."
+    }
+  ],
+
+  "keywords": ["Nhu", "需", "chờ đợi", "mây trên trời", "kiên nhẫn chủ động", "hữu phu", "yến lạc"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_5", "note": "Bản dịch tiếng Anh public domain của Thoán từ và 6 hào từ." },
+    { "source": "維基文庫 Wikisource — 周易/需", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E9%9C%80", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 彖傳, 象傳)." },
+    { "source": "James Legge, Appendix II — The Great Symbolism (Da Xiang)", "url": "https://baharna.com/iching/legge/111010.htm", "note": "Bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/5", "label": "64 Quẻ — Quẻ 5: Thủy Thiên Nhu" }
+  ]
+}

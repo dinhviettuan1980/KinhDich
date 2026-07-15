@@ -1,0 +1,138 @@
+{
+  "id": 64,
+  "hanzi": "未濟",
+  "pinyin": "Wèi Jì",
+  "hanviet": "Vị Tế",
+  "english": "Not Yet Fulfilled (Fire over Water)",
+  "upperTrigram": "li",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "未濟：亨。小狐汔濟，濡其尾，无攸利。",
+    "hanviet": "Vị Tế: Hanh. Tiểu hồ khí tế, nhuận kỳ vĩ, vô du lợi.",
+    "translation": "Vị Tế (Chưa qua được): hanh thông; con cáo nhỏ gần như qua được dòng, nhưng bị ướt đuôi — không có lợi gì.",
+    "english": "Wei Ji intimates progress and success (in the circumstances which it implies). (We see) a young fox that has nearly crossed (the stream), when its tail gets immersed. There will be no advantage in any way."
+  },
+
+  "daTuong": {
+    "hanzi": "火在水上，未濟；君子以慎辨物居方。",
+    "hanviet": "Hỏa tại thủy thượng, Vị Tế; quân tử dĩ thận biện vật cư phương.",
+    "translation": "Lửa nằm phía trên nước là tượng của quẻ Vị Tế; người quân tử noi theo đó mà thận trọng phân biệt bản chất của vật, từ đó xác định vị trí phù hợp cho mỗi thứ.",
+    "english": "(The trigram representing) water and that for fire above it form Wei Ji. The superior man, in accordance with this, carefully discriminates among (the qualities of) things, and the (different) positions they (naturally) occupy.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Vị Tế là quẻ cuối cùng thứ 64 — hình ảnh của việc 'chưa qua được', không 'phá' như Ký Tế mà 'đang tiến tới'. Lửa ở trên nước (lửa không thể sáp nhập nước) — không ổn định, chưa cân bằng. Cốt lõi: chuyến hành trình vẫn đang diễn ra, chưa kết thúc, và lẽ đó là điểm cuối cùng của bộ 64 quẻ — như thể nói rằng 'Zhouyi không bao giờ kết thúc, chỉ là chu kỳ, chuyến hành trình tiếp tục'. Sáu hào kể: ướt đuôi, hối tiếc (Sơ Lục) → kéo lại bánh xe, chính đính tốt (Cửu Nhị) → chưa qua được, chinh phạt hung, thuận lợi qua dòng lớn (Lục Tam) → chính đính tốt, hối tiếc mất, sử dụng sấm đánh bại quỷ phương (Cửu Tứ) → chính đính tốt, không hối tiếc, ánh sáng người quân tử, có lòng tin, tốt (Lục Ngũ) → có lòng tin trong uống rượu, không lỗi; nhúng cả đầu, lòng tin mất (Thượng Cửu).",
+
+  "computer_science": "Vị Tế giống một dự án vẫn đang iterating — không bao giờ hoàn toàn 'xong', chỉ là một loạt chu kỳ release/learn/improve không kết thúc. Hệ thống sống là hệ thống 'chưa qua được' — luôn có cải tiến phía trước, luôn có feature chưa ship, luôn có edge case chưa xử lý. Bài học: tỉnh táo, phân biệt rõ ràng — cái nào urgent, cái nào có thể chờ; cái nào critical, cái nào optional.",
+
+  "life": "Cuộc sống không bao giờ 'xong' — mỗi giai đoạn hoàn thành chỉ là khởi đầu cho giai đoạn kế tiếp. Không có 'hết cuộc', chỉ có 'vẫn đang chuyến hành trình'. Quan trọng là biết bạn ở đâu, muốn đi đâu, và bước tiếp theo là gì.",
+
+  "programming": "MVP shipped nhưng không 'done' — tìm user feedback, iterate, build v2, v3... Không bao giờ perfect release — chỉ có good enough release rồi improve. Thế nên cần culture của continuous learning, gradual rollout, user feedback loop.",
+
+  "characters": [
+    {
+      "hanzi": "未",
+      "pinyin": "wèi",
+      "hanviet": "vị",
+      "meaning": "Chưa, chưa có; con dê (Thiên can, chỉ 12 con giáp hay 10 can).",
+      "origin": "Chữ cổ vẽ hình con dê/nai với sừng (phần trên giống hình sừng, dưới là thân) — hoặc mượn từ chỉ vị trí con dê trong 12 con giáp, mở rộng thành 'chưa, chưa tới'.",
+      "example": "未來 (vị lai) = tương lai, chưa đến; 未必 (vị tất) = chưa chắc; 未有 (vị hữu) = chưa có.",
+      "cs": "Incomplete / In Progress",
+      "csExplain": "Trạng thái chưa hoàn tất, vẫn đang progress — không phải fail, chỉ là 'chưa đến'."
+    },
+    {
+      "hanzi": "濟",
+      "pinyin": "jì",
+      "hanviet": "tế",
+      "meaning": "Vượt qua, qua được; giúp đỡ, cứu tế; xong, hoàn thành.",
+      "origin": "Chữ ghép từ 水 (thủy, nước) + 齊 (tề) — hình ảnh 'qua được dòng nước'.",
+      "example": "度濟 (độ tế) = vượt qua; 濟世 (tế thế) = giúp đỡ thế gian.",
+      "cs": "Traverse / Cross",
+      "csExplain": "Vượt qua rào cản, từ này sang kia — nhưng vị Tế thì chưa qua, vẫn đang tiến tới."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：濡其尾，吝。",
+      "hanviet": "Sơ Lục: Nhuận kỳ vĩ, lận.",
+      "translation": "Ướt đuôi — tiếc nuối, tự hối.",
+      "english": "The first SIX, divided, shows its subject (like a fox) whose tail gets immersed. There will be occasion for regret.",
+      "explain": "Bước đầu chưa qua được — nước chưa qua mà đuôi đã ướt, còn phải đi xa, đó là tiếc nuối.",
+      "itExample": "MVP chưa launch, nhưng đã gặp bug — chưa qua finish line mà đã tổn thương.",
+      "lifeExample": "Bước vào dự án chưa sẵn sàng, gặp khó ngay — tiếc nuối vì khiêm tốn hơn."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "曳其輪，貞吉。",
+      "hanviet": "Cửu Nhị: Duệ kỳ luân, trinh cát.",
+      "translation": "Kéo lại bánh xe — chính đính tốt lành.",
+      "english": "The second NINE, undivided, shows its subject dragging back his (carriage-) wheel. With firmness and correctness there will be good fortune.",
+      "explain": "Nhận thấy chưa sẵn sàng, kéo lại làm lại — dù chậm nhưng kiên định sẽ tốt.",
+      "itExample": "Feature chưa ready, rollback, fix proper — dù delay deadline nhưng quality tốt, cuối cùng lucky.",
+      "lifeExample": "Khi thấy hướng sai, kéo lại, làm lại — dù tốn thời gian nhưng cuối cùng tốt."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：未濟，征凶，利涉大川。",
+      "hanviet": "Lục Tam: Vị tế, chinh hung, lợi thiệp đại xuyên.",
+      "translation": "Chưa qua được, tiến chiến xấu, nhưng thuận lợi qua dòng nước lớn.",
+      "english": "The third SIX, divided, shows its subject, with (the state of things) not yet remedied, advancing on; which will lead to evil. But there will be advantage in (trying to) cross the great stream.",
+      "explain": "Chưa xong mà cố tiến là xấu, nhưng có cơ hội lớn (qua dòng lớn) nên cũng có lợi.",
+      "itExample": "Hiện tại có bug nhưng cơ hội market lớn, phải quyết định: fix hoàn hảo hay launch với risk.",
+      "lifeExample": "Giai đoạn chưa hoàn toàn sẵn sàng nhưng cơ hội lớn đến — cần quyết định có dám bước vào risk."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：貞吉，悔亡，震用伐鬼方，三年有賞于大國。",
+      "hanviet": "Cửu Tứ: Trinh cát, hối vong, chấn dụng phạt quỷ phương, tam niên hữu thưởng vu đại quốc.",
+      "translation": "Chính đính tốt lành, hối tiếc tiêu tan; sử dụng sấm (quyết đoán) để đánh bại vùng quỷ, 3 năm được thưởng từ đại quốc.",
+      "english": "The fourth NINE, undivided, shows its subject by firm correctness obtaining good fortune, so that all occasion for repentance disappears.",
+      "explain": "Gần vị trí lãnh đạo — kiên định sẽ được thưởng sau 3 năm chờ đợi (công tác dài hạn).",
+      "itExample": "Long term project: discipline execution, kiên định theo kế hoạch 3 năm, cuối cùng success được công nhân.",
+      "lifeExample": "Career growth: kiên định, đúng hướng, 3-5 năm sẽ harvest kết quả."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：貞吉，无悔，君子之光，有孚，吉。",
+      "hanviet": "Lục Ngũ: Trinh cát, vô hối, quân tử chi quang, hữu phu, cát.",
+      "translation": "Chính đính tốt, không hối tiếc; ánh sáng của người quân tử, có lòng tin chân thành — tốt lành.",
+      "english": "The fifth SIX, divided, shows its subject by firm correctness obtaining good fortune, and having no occasion for repentance. (We see in him) the brightness of a superior man, and the possession of sincerity. There will be good fortune.",
+      "explain": "Vị trí lãnh đạo tối cao, chưa qua được nhưng vẫn tỏa sáng bằng chính trực, lòng tin — sẽ tốt.",
+      "itExample": "Leader vẫn đang journey, nhưng tỏa sáng qua integrity, transparency, user feedback loop — company vẫn grow.",
+      "lifeExample": "Sự nghiệp chưa 'arrived', nhưng tỏa sáng qua chính trực, tin tưởng — mọi người tin theo."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "有孚于飲酒，无咎，濡其首，有孚失是。",
+      "hanviet": "Thượng Cửu: Hữu phu vu uống tửu, vô cữu, nhuận kỳ thủ, hữu phu thất thị.",
+      "translation": "Có lòng tin trong việc uống rượu tươi vui, không lỗi; nhúng cả đầu (tham lam), lòng tin mất ý đó.",
+      "english": "The topmost NINE, undivided, shows its subject full of confidence and therefore feasting (quietly). There will be no error. (If he) cherish this confidence, till he (is like the fox who) gets his head immersed, it will fail of what is right.",
+      "explain": "Hào cuối, cảnh báo: dừng lại 'uống rượu tươi vui' (thoả mãn tiến độ hiện tại) là an toàn; tham lam thêm (nhúng cả đầu) sẽ mất lòng tin.",
+      "itExample": "MVP thành công, celebrate — đó là điểm kết thúc tốt. Cố tham thêm scale mà chưa ready → overwhelm → fail.",
+      "lifeExample": "Đạt được giai đoạn, dừng lại celebrate, học bài học, sẵn sàng giai đoạn kế tiếp — đó là khôn ngoan. Cố vội vàng tiếp tục → thất bại."
+    }
+  ],
+
+  "keywords": ["Vị Tế", "未濟", "chưa qua được", "vẫn tiến tới", "lửa nước", "hành trình không kết thúc", "tỉnh táo", "cáo ướt đuôi"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/wei-ji", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán quẻ Vị Tế (Judgment + 6 hào)." },
+    { "source": "Chinese Text Project — Book of Changes : Xiang Zhuan : Wei Ji", "url": "https://ctext.org/book-of-changes/wei-ji2", "note": "Nguồn Đại Tượng truyện (象曰) kèm dịch Anh ngữ James Legge." },
+    { "source": "維基文庫 Wikisource — 周易/未濟", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E6%9C%AA%E6%BF%9F", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/64", "label": "64 Quẻ — Quẻ 64: Hỏa Thủy Vị Tế" }
+  ]
+}

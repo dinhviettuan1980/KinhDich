@@ -1,0 +1,158 @@
+{
+  "id": 13,
+  "hanzi": "同人",
+  "pinyin": "Tóng Rén",
+  "hanviet": "Đồng Nhân",
+  "english": "Union of Men (Fellowship with Men)",
+  "upperTrigram": "qian",
+  "lowerTrigram": "li",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "同人于野，亨。利涉大川，利君子貞。",
+    "hanviet": "Đồng Nhân vu dã, hanh. Lợi thiệp đại xuyên, lợi quân tử trinh.",
+    "translation": "Đồng Nhân (Đoàn kết con người): kết hợp con người ở vùng hoang dã thì hanh thông. Thuận lợi lội sông lớn, thuận lợi cho sự chính bền của người quân tử.",
+    "english": "Thung Zăn (Fellowship with Men) appears here (as we find it) in the (remote districts of the) country, indicating progress and success. It will be advantageous to cross the great stream. It will be advantageous to maintain the firm correctness of a superior man."
+  },
+
+  "daTuong": {
+    "hanzi": "天與火，同人；君子以類族辨物。",
+    "hanviet": "Thiên dữ hỏa, Đồng Nhân; quân tử dĩ loại tộc biện vật.",
+    "translation": "Trời và lửa — đó là quẻ Đồng Nhân. Người quân tử xem đó mà phân loại theo tộc, phân biệt từng loại vật.",
+    "english": "Heaven and fire form the symbol of Union of Men (Fellowship). The superior man, in accordance with this, distinguishes things according to their kinds and classes.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Đồng Nhân (同人) ghép bởi Càn (trời, cương kiện) ở trên và Ly (lửa, sáng sủa) ở dưới. Lửa cò xu hướng bốc lên gặp trời, tạo ra một hình ảnh của sự rạng rỡ kết nối. Quẻ nói về sức mạnh của sự đoàn kết vì mục tiêu chung: không phải đoàn kết vì một chỗ (gia tộc hay địa vị), mà đoàn kết ở 'vùng hoang dã' — nơi không có ranh giới xã hội, nơi mọi người gặp nhau như những cá nhân bình đẳng. Sáu hào mô tả từ việc mở rộng vòng tròn liên kết (từng cổng, từng tộc) cho đến khi chuyển thành công động rộng lớn — cần nhận thức rõ ràng về độ khác biệt giữa loại người này với loại người khác (象曰chi tiết 'phân loại, phân biệt'), để kết nối đúng cách.",
+
+  "computer_science": "Đồng Nhân như một distributed ecosystem: mỗi service/team có chuyên môn khác nhau (phân loại theo 'tộc'), nhưng họ đều là một phần của cùng mục tiêu lớn (kết nối ở 'vùng hoang dã' — neutral ground). Sức mạnh của hệ thống không đến từ việc mỗi phần tử hoạt động mạnh độc lập, mà từ việc chúng 'nhìn ra được nhau', nhận thức được vai trò của nhau, và thực sự giao tiếp. Điểm mấu chốt là Đại Tượng: 'phân biệt từng loại' (類族辨物) — biết được ai là cái gì trong hệ thống, rồi mới có thể kết nối chặt chẽ mà không bị xung đột.",
+
+  "life": "Đây là giai đoạn để xây dựng cộng đồng vì một tầm nhìn chung. Nhưng liên kết chân thành đòi hỏi một điều: nhận thức rõ ràng về những khác biệt giữa mọi người. Đừng cố gắng xóa bỏ khác biệt để giả vờ là 'một'; hãy chấp nhận khác biệt đó (phân biệt từng loại), từ đó xây dựng sự liên kết sâu sắc hơn.",
+
+  "programming": "Building a community around a shared goal (open source, cross-company initiative, platform ecosystem): mỗi contributor có lĩnh vực chuyên môn khác nhau, không phải từ cùng một công ty hay nền tảng. Chìa khóa là RFC (Request for Comments) hay ADR (Architecture Decision Record) — tài liệu này chính là cách 'phân biệt từng loại vật', giúp mọi người hiểu vai trò của nhau trước khi hợp tác. Thành công phụ thuộc vào culture của transparency + respect for differences, không phải đồng nhất hóa.",
+
+  "characters": [
+    {
+      "hanzi": "同",
+      "pinyin": "tóng",
+      "hanviet": "đồng",
+      "meaning": "Cùng, giống nhau, hòa hợp.",
+      "origin": "Chữ hội ý cổ gồm 口 (khẩu, miệng/ranh giới) và phần biểu âm — nhiều nguồn sử dụng chữ 冂 (cùng một vùng kín) để biểu thị 'cùng', mở rộng thành 'hòa hợp, cùng chung'.",
+      "example": "同志 (đồng chí) = đồng chí, người cùng chí hướng; 同心 (đồng tâm) = cùng lòng, hòa hợp.",
+      "cs": "Consensus / Alignment",
+      "csExplain": "Trạng thái mọi bên cùng hướng tới một mục tiêu — giống distributed consensus khi tất cả node đều agree trên cùng một state."
+    },
+    {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "hanviet": "nhân",
+      "meaning": "Con người.",
+      "origin": "Giáp cốt văn vẽ hình một người đứng — chữ tượng hình cơ bản nhất, nguyên thủy ký tự cho 'nhân loại, con người'.",
+      "example": "人人 (nhân nhân) = mỗi người, ai ai; 他人 (tha nhân) = người khác.",
+      "cs": "Stakeholder / Actor",
+      "csExplain": "Chỉ từng cá nhân/bên liên quan trong hệ thống — quan trọng là nhận thức được mỗi 'nhân' có nhu cầu/vai trò riêng biệt."
+    },
+    {
+      "hanzi": "類",
+      "pinyin": "lèi",
+      "hanviet": "loại",
+      "meaning": "Loại, phân loại, hạng.",
+      "origin": "Chữ hình thanh gồm bộ 犭 (thú, thú vật) kết hợp phần biểu âm 頸 — nghĩa 'phân loại theo nhóm, hạng, loài' mở rộng thành 'loại, phân loại' trong mọi ngữ cảnh.",
+      "example": "類別 (loại biệt) = phân loại; 各類 (các loại) = nhiều loại khác nhau.",
+      "cs": "Type System / Classification",
+      "csExplain": "Phân loại các thành phần hệ thống theo chức năng/kiểu — giống type annotation trong ngôn ngữ lập trình, giúp hệ thống nhận thức được mỗi thứ là gì."
+    },
+    {
+      "hanzi": "辨",
+      "pinyin": "biàn",
+      "hanviet": "biện",
+      "meaning": "Phân biệt, phân định rạch ròi.",
+      "origin": "Chữ có bộ 刀/刂 (đao) nằm giữa hai chữ 辛 — nghĩa gốc liên quan tới việc dùng dao phân xử, tách bạch, mở rộng thành 'phân biệt rõ ràng'.",
+      "example": "辨別 (biện biệt) = phân biệt rõ ràng; 辨明 (biện minh) = làm sáng tỏ sự phân biệt.",
+      "cs": "Differentiation / Discrimination Logic",
+      "csExplain": "Khả năng hệ thống nhận diện và phản ứng khác nhau tùy thuộc vào loại input/actor — không one-size-fits-all, mà thông minh adapt."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Cửu",
+      "hanzi": "初九：同人于門，無咎。",
+      "hanviet": "Sơ Cửu: Đồng Nhân vu môn, vô cữu.",
+      "translation": "Kết hợp con người ở cổng (vị trí nhập cảnh), không có lỗi.",
+      "english": "The first line, undivided, shows its subject at the gate with the representatives of the union of men. There will be no error.",
+      "explain": "Khởi đầu, kết hợp ở cổng — nơi mở để mọi người có thể bước vào. Vị trí đúng để bắt đầu một liên minh, chưa có áp lực, chưa có lỗi.",
+      "itExample": "Khởi động một dự án mã nguồn mở hay công khai tuyên bố về hợp tác — mở rộng lời mời cho cộng đồng ở điểm bắt đầu, chưa quá phức tạp.",
+      "lifeExample": "Bắt đầu một nhóm bạn hay tổ chức tự nguyện ở giai đoạn sơ khai, cổng mở để mọi người tham gia — đây là cách xây dựng lâu dài đúng đắn."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：同人于宗，吝。",
+      "hanviet": "Lục Nhị: Đồng Nhân vu tông, lận.",
+      "translation": "Kết hợp con người ở trong gia tộc/thân tộc, bó hẹp.",
+      "english": "The second line, divided, shows one who seeks fellowship and union with the members of his family. There will be occasion for repentance.",
+      "explain": "Kết hợp nhưng chỉ giới hạn ở những người quen, một tộc — lúc này vòng tròn còn hẹp, bó buộc, dễ có tiếc nuối.",
+      "itExample": "Dự án chỉ cho phép thành viên nội bộ hoặc people you know tham gia — bộ lộc quá hẹp làm giới hạn tiềm năng tăng trưởng.",
+      "lifeExample": "Nhóm bạn chỉ tuyển người quen, bạn bè cũ của thành viên hiện tại — thiếu góc nhìn mới, dễ lạc hậu so với cộng đồng rộng lớn."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：伏戎于莽，升其高陵，三歲不興。",
+      "hanviet": "Cửu Tam: Phục quân vu mãng, thăng kỳ cao lăng, tam tuế bất hưng.",
+      "translation": "Ẩn giấu quân đội trong bụi rậm, leo lên đỉnh cao, ba năm không có động tĩnh gì.",
+      "english": "The third line, undivided, shows one hiding arms in the thick grass and staying at the top of a high mound. For three years he does not rise (to any action).",
+      "explain": "Chuẩn bị cho xung đột, mầm bất hòa đã ẩn tàng — kết hợp còn mỏng manh, chưa thực sự đoàn kết được, nên chỉ có thể chờ đợi.",
+      "itExample": "Hai nhóm trong cùng một dự án có khác biệt lớn về kỹ thuật hay tầm nhìn — tạm thời không ai chịu nhường, dự án đình trệ.",
+      "lifeExample": "Một nhóm có mâu thuẫn tiềm ẩn nhưng chưa bùng nổ — mọi người cảm thấy được sự căng thẳng nhưng chưa có cơ hội để hòa giải hay tách ra."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：乘其墉，弗克，攻吉。",
+      "hanviet": "Cửu Tứ: Thừa kỳ ứng, phất khắc, công cát.",
+      "translation": "Leo lên tường thành (để xâm chiếm), không thể vượt qua — nhưng hành động công thế là tốt lành.",
+      "english": "The fourth line, undivided, shows him standing on the city wall. But he does not proceed to make the attack. There will be good fortune.",
+      "explain": "Ở vị trí cao, có cơ hội tấn công nhưng không làm — nhận ra rằng hành động quân sự không giải quyết vấn đề, hòa bình mới là lối thoát.",
+      "itExample": "Nhận ra có điểm yếu trong dự án rival, nhưng thay vì công kích công khai, chọn cách cải thiện sản phẩm của mình — chiến thắng thông qua quality, không phải conflict.",
+      "lifeExample": "Có cơ hội để đánh bại đối thủ nhưng nhận ra không nên — chọn cách xây dựng lâu dài thay vì chiến thắng ngắn hạn qua tranh cãi."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：同人，先號啕而後笑。大師克相遇。",
+      "hanviet": "Cửu Ngũ: Đồng Nhân, tiên hao đào nhi hậu tiểu. Đại sư khắc tương ngộ.",
+      "translation": "Kết hợp con người ở ngôi vua: lúc đầu khóc thét rồi sau cười tươi — những quân lão thành gặp nhau một cách chiến thắng.",
+      "english": "The fifth line, undivided, shows the leaders of the union of men first weeping and then laughing. After great struggles the adherents of the union meet together.",
+      "explain": "Ở ngôi cao nhất, thực hiện sự kết hợp toàn bộ không phải dễ dàng — có giai đoạn khó khăn, nước mắt, tranh cãi, nhưng cuối cùng thành công.",
+      "itExample": "Merge hai codebase lớn hay hợp tác chiến lược giữa hai công ty — giai đoạn integration khó khăn, conflict, refactoring, nhưng khi hoàn thành là thắng lợi lớn.",
+      "lifeExample": "Khi chính thức bắt đầu một liên minh hoặc hôn nhân, giai đoạn đầu full conflict do phải thích ứng với nhau — nhưng nếu kiên trì qua, sẽ đạt được sự hòa hợp chân thành."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：同人于郊，無悔。",
+      "hanviet": "Thượng Cửu: Đồng Nhân vu ngoại, vô hối.",
+      "translation": "Kết hợp con người ở ngoại ô (vùng mở, không có biên giới), không có tiếc nuối.",
+      "english": "The topmost line, undivided, shows the union of men in the suburbs (beyond the city). There will be no occasion for repentance.",
+      "explain": "Cuối cùng, liên minh đã mở rộng ra ngoài thành phố, ra vùng ngoài có địa giới tự nhiên không. Đây là hình ảnh của sự kết hợp tối đa: không giới hạn bởi ranh giới nhân tạo.",
+      "itExample": "Một dự án hoặc platform đã trở thành ecosystem rộng mở, mọi người từ khắp nơi có thể tham gia, không có gate keeper — đây là mô hình bền vững nhất.",
+      "lifeExample": "Một liên minh hoặc cộng đồng đã phát triển tới mức mở rộng ra toàn thế giới, lớn hơn ranh giới quốc gia hay tôn giáo — sự kết hợp chân thành nhất."
+    }
+  ],
+
+  "keywords": ["Đồng Nhân", "同人", "đoàn kết", "mục tiêu chung", "phân loại", "vùng hoang dã", "Thiên Hỏa"],
+
+  "references": [
+    { "source": "維基文庫 Wikisource — 周易/同人", "url": "https://zh.wikisource.org/zh-hant/周易/同人", "note": "Nguyên văn chữ Hán: 卦辭, 彖曰, 象曰 (Đại Tượng), 六爻爻辭." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 13", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_13", "note": "Bản dịch tiếng Anh public domain, đối chiếu Thoán từ và 6 hào." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 13 (mirror của bản dịch Legge)", "url": "https://www.jamesdekorne.com/GBCh/hex13.htm", "note": "Đối chiếu chéo bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/13", "label": "64 Quẻ — Quẻ 13: Thiên Hỏa Đồng Nhân" }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "id": 6,
+  "hanzi": "訟",
+  "pinyin": "Sòng",
+  "hanviet": "Tụng",
+  "english": "Conflict",
+  "upperTrigram": "qian",
+  "lowerTrigram": "kan",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "訟：有孚，窒，惕，中吉，終凶。利見大人，不利涉大川。",
+    "hanviet": "Tụng: Hữu phu, trất, dịch, trung cát, chung hung. Lợi kiến đại nhân, bất lợi thiệp đại xuyên.",
+    "translation": "Tụng (Tranh chấp, kiện tụng): có lòng thành nhưng bị bế tắc, cần cảnh giác lo lắng; dừng lại giữa chừng thì tốt, theo đuổi đến cùng thì xấu. Thuận lợi khi gặp được bậc đại nhân phân xử công minh, không thuận lợi khi vượt sông lớn.",
+    "english": "Sung intimates how, though there is sincerity in one's contention, he will yet meet with opposition and obstruction; but if he cherish an apprehensive caution, there will be good fortune, while, if he must prosecute the contention to the (bitter) end, there will be evil. It will be advantageous to see the great man; it will not be advantageous to cross the great stream."
+  },
+
+  "daTuong": {
+    "hanzi": "天與水違行，訟；君子以作事謀始。",
+    "hanviet": "Thiên dữ thủy vi hành, Tụng; quân tử dĩ tác sự mưu thủy.",
+    "translation": "Trời và nước đi ngược chiều nhau là tượng của Tụng; người quân tử noi theo đó mà khi bắt đầu làm việc gì đều tính toán kỹ từ lúc khởi đầu, để tránh xung đột về sau.",
+    "english": "(The trigram representing) heaven and (that representing) water, moving away from each other, form Sung. The superior man, in accordance with this, in the transaction of affairs takes good counsel about his first steps.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Quẻ Tụng nói về xung đột, tranh chấp — hình tượng Trời (đi lên) và Nước (chảy xuống) di chuyển ngược hướng nhau, biểu thị hai bên bất đồng không thể hòa hợp tự nhiên. Bài học cốt lõi: dù mình có lý (hữu phu — có lòng thành/chính nghĩa), tranh chấp vẫn nên dừng đúng lúc — theo đuổi kiện tụng/xung đột đến cùng luôn mang lại kết quả xấu, kể cả khi thắng. Sáu hào mô tả các mức độ liên quan tới tranh chấp: dừng sớm là tốt nhất (Sơ Lục) → biết mình yếu thế thì lui về, tự bảo toàn (Cửu Nhị) → sống yên phận, không tranh giành công lao (Lục Tam) → quay lại chính đạo, buông bỏ tranh chấp (Cửu Tứ) → là người phân xử công minh mới thực sự tốt (Cửu Ngũ) → và thắng kiện bằng thủ đoạn thì vinh quang cũng chóng mất (Thượng Cửu).",
+
+  "computer_science": "Tụng giống hệt bài học về 'resource contention' / merge conflict trong hệ thống: khi hai tiến trình/team tranh giành cùng một tài nguyên (giống Trời và Nước đi ngược hướng), best practice không phải là 'đấu tranh đến cùng' — dễ dẫn tới deadlock hoặc cả hai cùng thua — mà là thiết kế trước để tránh race-condition (作事謀始 ~ design-first) và có một cơ chế trọng tài rõ ràng (đại nhân ~ arbiter/consensus) để phân xử nhanh, không để xung đột kéo dài.",
+
+  "life": "Đúng-sai trong một cuộc tranh cãi không quan trọng bằng việc biết dừng lại đúng lúc — thắng một cuộc cãi vã bằng mọi giá thường làm tổn hại mối quan hệ nhiều hơn là được lợi.",
+
+  "programming": "Merge conflict giữa hai nhánh code, hoặc bất đồng kiến trúc giữa hai team, nên được thiết kế phòng tránh từ đầu (rõ ràng ownership, interface contract) hơn là để xảy ra rồi tranh cãi kéo dài; khi bất đồng nổ ra, cần một người phân xử trung lập (tech lead/ADR — architecture decision record) thay vì để hai bên 'kiện' nhau đến cùng gây trễ deadline chung.",
+
+  "characters": [
+    {
+      "hanzi": "訟",
+      "pinyin": "sòng",
+      "hanviet": "tụng",
+      "meaning": "Kiện tụng, tranh cãi.",
+      "origin": "Bộ 言 (ngôn, lời nói) + 公 (công, công khai). Thuyết Văn giải 'tụng, tranh dã' — nghĩa gốc 'đưa lời ra tranh biện công khai trước người phân xử', tức kiện cáo.",
+      "example": "訴訟 (tố tụng); 爭訟 (tranh tụng).",
+      "cs": "Resource Contention / Conflict",
+      "csExplain": "Trạng thái hai tiến trình/thành phần cùng tranh giành một tài nguyên và cần được 'phân xử' — giống race condition cần trọng tài (lock/consensus) giải quyết."
+    },
+    {
+      "hanzi": "惕",
+      "pinyin": "tì",
+      "hanviet": "dịch",
+      "meaning": "Lo sợ, cảnh giác.",
+      "origin": "Bộ 心 (tâm) + 易 (dịch, biểu âm) — nghĩa gốc chỉ trạng thái tâm lý lo lắng, cảnh giác, thấp thỏm.",
+      "example": "警惕 (cảnh dịch, cảnh giác) — cùng gốc với 'tịch dịch nhược' trong hào Cửu Tam quẻ Càn.",
+      "cs": "Defensive Check / Alertness",
+      "csExplain": "Trạng thái 'phòng thủ' chủ động của hệ thống — luôn kiểm tra, cảnh giác trước khi xung đột/lỗi xảy ra, giống validation layer trước khi commit."
+    },
+    {
+      "hanzi": "窒",
+      "pinyin": "zhì",
+      "hanviet": "trất",
+      "meaning": "Nghẹt, bế tắc, ngăn trở.",
+      "origin": "Bộ 穴 (huyệt, hang/lỗ) + 至 (chí, đến/tới cùng) — nghĩa gốc 'bị bịt kín đến tận cùng lối ra', tức tắc nghẽn hoàn toàn.",
+      "example": "窒息 (trất tức, nghẹt thở); 窒礙 (trất ngại, vướng mắc).",
+      "cs": "Deadlock / Blocked State",
+      "csExplain": "Trạng thái tắc nghẽn hoàn toàn không thể tiến — giống deadlock giữa hai tiến trình cùng chờ tài nguyên của nhau."
+    },
+    {
+      "hanzi": "逋",
+      "pinyin": "bū",
+      "hanviet": "bô",
+      "meaning": "Trốn tránh, lẩn trốn.",
+      "origin": "Bộ 辵/辶 (sước, đi) + 甫 (phủ, biểu âm) — nghĩa gốc 'bỏ trốn, lẩn tránh trách nhiệm/truy nã'.",
+      "example": "逋逃 (bô đào, trốn chạy) — xuất hiện trong hào Cửu Nhị quẻ Tụng '歸而逋' (lui về ẩn náu).",
+      "cs": "Graceful Retreat / Circuit Breaker",
+      "csExplain": "Hành động chủ động rút lui khỏi một cuộc tranh chấp tài nguyên khi biết mình ở thế yếu — giống circuit breaker ngắt kết nối để tránh lỗi lan rộng, không cố 'đấu' đến cùng."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：不永所事，小有言，終吉。",
+      "hanviet": "Sơ Lục: Bất vĩnh sở sự, tiểu hữu ngôn, chung cát.",
+      "translation": "Không kéo dài việc tranh chấp; có chút lời qua tiếng lại nhỏ, nhưng cuối cùng tốt lành.",
+      "english": "The first line, divided, shows its subject not perpetuating the matter about which (the contention is). He will suffer the small (injury) of being spoken against, but the end will be fortunate.",
+      "explain": "Ngay từ đầu tranh chấp, biết dừng sớm, không kéo dài — đây là cách xử lý xung đột khôn ngoan nhất trong cả quẻ Tụng.",
+      "itExample": "Bất đồng nhỏ về code style giữa hai dev — dừng tranh luận sớm, chấp nhận convention chung thay vì kéo dài thành war ý kiến nhiều tuần trên PR.",
+      "lifeExample": "Một bất đồng nhỏ với đồng nghiệp/người thân — dừng lại sớm, không để nó kéo dài thành mâu thuẫn lớn, là cách xử lý khôn ngoan nhất."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：不克訟，歸而逋，其邑人三百戶无眚。",
+      "hanviet": "Cửu Nhị: Bất khắc tụng, quy nhi bô, kỳ ấp nhân tam bách hộ vô sảnh.",
+      "translation": "Không thắng nổi trong tranh chấp, lui về ẩn náu; dân trong ấp ba trăm hộ của mình không gặp tai vạ.",
+      "english": "The second line, undivided, shows its subject unequal to the contention. If he retire and keep concealed (where) the inhabitants of his city are (only) three hundred families, he will fall into no mistake.",
+      "explain": "Biết mình ở thế yếu (đối đầu hào Cửu Ngũ mạnh hơn) nên chủ động rút lui, bảo toàn phạm vi nhỏ của mình — khôn ngoan hơn cố đấu tranh vượt sức.",
+      "itExample": "Một startup nhỏ tránh đối đầu trực diện với đại gia công nghệ về một thị trường lớn, thay vào đó rút về giữ vững thị trường ngách của mình — chiến lược khôn ngoan hơn cạnh tranh vượt sức.",
+      "lifeExample": "Biết mình không đủ sức thắng trong một cuộc tranh chấp lớn, chủ động lui về giữ vững phạm vi nhỏ của bản thân thay vì cố gắng đến cùng — đây là sự khôn ngoan, không phải yếu đuối."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：食舊德，貞厲，終吉。或從王事，无成。",
+      "hanviet": "Lục Tam: Thực cựu đức, trinh lệ, chung cát. Hoặc tòng vương sự, vô thành.",
+      "translation": "Sống nhờ vào phúc đức cũ; giữ chính đạo dù nguy hiểm thì cuối cùng tốt. Nếu có theo việc vua thì cũng không nhận về mình thành tích.",
+      "english": "The third line, divided, shows its subject keeping in the old place assigned for his support, and firmly correct. Perilous as the position is, there will be good fortune in the end. Should he perchance engage in the king's service, he will not (claim the merit of) achievement.",
+      "explain": "An phận với những gì mình đang có, không tranh giành thêm, không nhận công về mình — thái độ khiêm nhường giúp tránh được rủi ro từ tranh chấp.",
+      "itExample": "Một thành viên team không tranh công dù đóng góp lớn vào một dự án chung, chỉ tập trung hoàn thành đúng phần việc được giao — tránh được các drama nội bộ tranh giành credit.",
+      "lifeExample": "An phận với vị trí, thành quả đang có, không tranh giành thêm dù có cơ hội, và không nhận công khi hợp tác — thái độ này giúp tránh được nhiều rắc rối không đáng có."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：不克訟，復即命渝，安貞吉。",
+      "hanviet": "Cửu Tứ: Bất khắc tụng, phục tức mệnh du, an trinh cát.",
+      "translation": "Không thắng nổi trong tranh chấp, quay về theo đúng đạo lý, thay đổi thái độ, yên ổn giữ chính đạo thì tốt lành.",
+      "english": "The fourth line, undivided, shows its subject unequal to the contention. He returns to (the study of Heaven's) ordinances, changes (his wish to contend), and rests in being firm and correct. There will be good fortune.",
+      "explain": "Chủ động từ bỏ ý định tranh chấp, quay về với nguyên tắc đúng đắn — đây là bước ngoặt tích cực: nhận ra sai lầm và sửa đổi kịp thời.",
+      "itExample": "Sau khi nhận ra cuộc tranh luận kiến trúc đang đi vào ngõ cụt, team chủ động dừng lại, quay về nguyên tắc thiết kế đã thống nhất trước đó thay vì cố bảo vệ quan điểm cá nhân — kết quả tốt hơn nhiều.",
+      "lifeExample": "Nhận ra mình đang sai trong một cuộc tranh cãi và chủ động thay đổi thái độ, quay về với lẽ phải — đây là dấu hiệu của sự trưởng thành, không phải yếu thế."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：訟，元吉。",
+      "hanviet": "Cửu Ngũ: Tụng, nguyên cát.",
+      "translation": "Đứng ra xét xử tranh chấp ở vị trí trọng tài công minh, tốt lành lớn.",
+      "english": "The fifth line, undivided, shows its subject contending;—and with great good fortune.",
+      "explain": "Vị trí trung chính, tôn quý nhất — đây là hào duy nhất mang ý nghĩa tốt hoàn toàn trong quẻ Tụng, vì ở vị trí người phân xử công minh chứ không phải bên tranh chấp.",
+      "itExample": "Vai trò một kiến trúc sư trưởng công tâm đứng ra phân xử bất đồng kỹ thuật giữa các team — vị trí này mang lại giá trị tốt nhất cho toàn hệ thống.",
+      "lifeExample": "Trở thành người phân xử công tâm, đáng tin cậy giữa các bên tranh chấp, thay vì là một bên trong đó — đây là vị trí mang lại giá trị và sự tôn trọng lớn nhất."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：或錫之鞶帶，終朝三褫之。",
+      "hanviet": "Thượng Cửu: Hoặc tích chi bàn đái, chung triêu tam sỉ chi.",
+      "translation": "Có khi được ban thưởng dây đai lớn (vinh dự nhờ thắng kiện), nhưng trong một buổi sáng bị tước đoạt lại đến ba lần.",
+      "english": "The topmost line, undivided, shows how its subject may have the leathern belt conferred on him (by the sovereign), and thrice it shall be taken from him in a morning.",
+      "explain": "Hào cuối, cảnh báo kinh điển của cả quẻ Tụng: thắng tranh chấp đến cùng bằng mọi giá có thể mang lại vinh dự nhất thời, nhưng thành quả đó không bền, sẽ nhanh chóng mất đi — đúng như lời quẻ dặn ngay từ đầu 'theo đuổi đến cùng thì xấu'.",
+      "itExample": "Thắng một cuộc tranh cãi kiến trúc bằng cách áp đặt quyền lực thay vì thuyết phục — 'chiến thắng' đó nhanh chóng bị đảo ngược khi team mất niềm tin và quyết định bị revert nhiều lần sau đó.",
+      "lifeExample": "Thắng một cuộc tranh chấp bằng mọi giá, kể cả gây tổn hại quan hệ — chiến thắng đó thường không bền, danh dự đạt được cũng nhanh chóng mất đi."
+    }
+  ],
+
+  "keywords": ["Tụng", "訟", "tranh chấp", "kiện tụng", "trời nước ngược chiều", "hòa giải", "dừng đúng lúc"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://en.wikisource.org/wiki/Sacred_Books_of_the_East/Volume_16/Hexagram_6", "note": "Bản dịch tiếng Anh public domain của Thoán từ và 6 hào từ." },
+    { "source": "維基文庫 Wikisource — 周易/訟", "url": "https://zh.wikisource.org/zh-hant/%E5%91%A8%E6%98%93/%E8%A8%9F", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象傳)." },
+    { "source": "James Legge, Appendix II — The Great Symbolism (Da Xiang)", "url": "https://baharna.com/iching/legge/010111.htm", "note": "Bản dịch Đại Tượng truyện của Legge." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/6", "label": "64 Quẻ — Quẻ 6: Thiên Thủy Tụng" }
+  ]
+}

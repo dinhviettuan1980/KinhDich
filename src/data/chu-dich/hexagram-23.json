@@ -1,0 +1,148 @@
+{
+  "id": 23,
+  "hanzi": "剝",
+  "pinyin": "Bō",
+  "hanviet": "Bác",
+  "english": "Splitting Apart",
+  "upperTrigram": "gen",
+  "lowerTrigram": "kun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "剝：不利有攸往。",
+    "hanviet": "Bác: Bất lợi hữu du vãng.",
+    "translation": "Bác (Lột bỏ, suy tàn): không có lợi khi tiến tới hành động — đây là lúc nên dừng lại, củng cố, không nên xông pha thêm.",
+    "english": "Po indicates that (in the state which it symbolises) it will not be advantageous to make a movement in any direction whatever."
+  },
+
+  "daTuong": {
+    "hanzi": "山附地上，剝；上以厚下，安宅。",
+    "hanviet": "Sơn phụ địa thượng, Bác; thượng dĩ hậu hạ, an trạch.",
+    "translation": "Núi bám sát trên mặt đất — núi dựa vào đất, nếu đất lở thì núi cũng sụp; đó là hình tượng quẻ Bác. Người ở trên nhân đó mà lo củng cố, hậu đãi người ở dưới, để giữ yên nền tảng của mình.",
+    "english": "(The trigrams representing) the earth, and (above it) that for a mountain, which adheres to the earth, form Po. Superiors, in accordance with this, seek to strengthen those below them, to secure the peace and stability of their own position.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Bác là quẻ chỉ sự suy tàn, lột dần, tróc dần — năm hào Âm liên tiếp đang gặm nhấm hào Dương duy nhất còn sót lại trên cùng, giống như một chiếc giường bị mục dần từ chân lên tới mặt. Đây là thời điểm không nên hành động, tiến tới, mà nên củng cố nền tảng và chờ đợi chu kỳ suy tàn kết thúc.",
+
+  "computer_science": "Đây là mô hình cascading failure hoặc erosion: lỗi hay nợ kỹ thuật ăn mòn hệ thống dần từ tầng thấp (data layer) lên tầng cao, giống năm hào Âm gặm dần lên hào Dương cuối cùng. Bài học: khi hệ thống đang trong pha suy thoái, không nên deploy tính năng mới mà nên gia cố nền tảng — infra, testing, backup — để chờ qua giai đoạn xấu.",
+
+  "life": "Khi mọi thứ đang xuống dốc, đừng cố gắng mở rộng hay xông pha thêm — hãy củng cố nền tảng, bảo vệ những gì còn lại, đặc biệt là người và giá trị cốt lõi, và chờ chu kỳ suy tàn qua đi.",
+
+  "programming": "Khi hệ thống liên tục gặp sự cố dạng cascading failure ăn mòn từ dưới lên, đây không phải lúc ship feature mới — ưu tiên hàng đầu là gia cố hạ tầng, sao lưu dữ liệu, bảo vệ phần lõi còn hoạt động tốt.",
+
+  "characters": [
+    {
+      "hanzi": "剝",
+      "pinyin": "bō",
+      "hanviet": "bác",
+      "meaning": "Lột, khoét, tróc dần, suy tàn.",
+      "origin": "Chữ hội ý ghép từ 刀/刂 (đao, dao) và phần bên trái liên quan tới việc khắc/lột — nghĩa gốc là 'lột da, khoét, tách rời bằng dao', mở rộng thành 'bóc lột, suy tàn, tróc dần'.",
+      "example": "剝削 (bác tước) = bóc lột; 剝落 (bác lạc) = tróc ra, rơi rụng.",
+      "cs": "Erosion / cascading failure",
+      "csExplain": "Quá trình hệ thống bị 'lột' dần từng lớp bảo vệ, giống cascading failure ăn mòn từ tầng dưới lên."
+    },
+    {
+      "hanzi": "附",
+      "pinyin": "fù",
+      "hanviet": "phụ",
+      "meaning": "Bám dính, gắn liền vào, phụ thuộc.",
+      "origin": "Chữ hình thanh ghép từ 阝(阜, phụ — gò đất, vách núi) và 付 (phó, phần biểu âm — nghĩa gốc là trao/gắn vào) — nghĩa gốc là 'bám dính, gắn liền vào', như núi bám vào đất.",
+      "example": "附近 (phụ cận) = gần đó; 依附 (y phụ) = nương tựa.",
+      "cs": "Dependency / tight coupling",
+      "csExplain": "Mối quan hệ phụ thuộc chặt giữa hai thành phần — núi 'phụ' vào đất, nếu đất lở núi cũng sụp, giống tight coupling giữa các tầng hệ thống."
+    },
+    {
+      "hanzi": "厚",
+      "pinyin": "hòu",
+      "hanviet": "hậu",
+      "meaning": "Dày, hậu hĩnh, đối xử tử tế và coi trọng.",
+      "origin": "Chữ tượng hình cổ mô tả một vách đá hoặc gò đất dày (厂/广) cùng biểu tượng chiều sâu bên trong — nghĩa gốc là 'dày', mở rộng thành 'đối xử tử tế, coi trọng, hậu hĩnh'.",
+      "example": "厚道 (hậu đạo) = tử tế, đôn hậu; 厚待 (hậu đãi).",
+      "cs": "Redundancy / safety margin",
+      "csExplain": "Lớp đệm hoặc dự phòng 'dày' được xây thêm ở tầng dưới để chống chịu khi tầng trên gặp sự cố."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：剝牀以足，蔑貞凶。",
+      "hanviet": "Sơ Lục: Bác sàng dĩ túc, miệt trinh hung.",
+      "translation": "Lột cái giường bắt đầu từ chân giường; coi thường chính đạo thì xấu.",
+      "english": "The first SIX, divided, shows one overturning the couch by injuring its legs. (The injury will go on to) the destruction of (all) firm correctness, and there will be evil.",
+      "explain": "Suy tàn bắt đầu từ nền tảng thấp nhất — nếu coi thường dấu hiệu ban đầu này, hậu quả sẽ xấu dần lên.",
+      "itExample": "Lỗi nhỏ ở tầng hạ tầng như database hay network bị bỏ qua ngay từ đầu — nếu không coi trọng, sẽ dẫn tới sự cố lớn dần lên các tầng trên.",
+      "lifeExample": "Nền tảng của một mối quan hệ hay sự nghiệp bắt đầu lung lay từ những dấu hiệu nhỏ bị xem nhẹ — nếu không chú ý sẽ dẫn tới hậu quả xấu."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：剝牀以辨，蔑貞凶。",
+      "hanviet": "Lục Nhị: Bác sàng dĩ biện, miệt trinh hung.",
+      "translation": "Lột cái giường lan tới phần khung, cạnh giường; coi thường chính đạo thì xấu.",
+      "english": "The second SIX, divided, shows one overthrowing the couch by injuring its frame. (The injury will go on to) the destruction of (all) firm correctness, and there will be evil.",
+      "explain": "Sự suy tàn đã lan rộng hơn, từ nền móng lên đến khung cấu trúc chính — mức độ nghiêm trọng tăng dần.",
+      "itExample": "Sự cố lan từ tầng hạ tầng lên tầng logic nghiệp vụ chính — cấu trúc hệ thống bắt đầu bị ảnh hưởng rõ rệt.",
+      "lifeExample": "Vấn đề ban đầu nhỏ nay đã ảnh hưởng tới cấu trúc chính của cuộc sống hay công việc — cần nhìn nhận nghiêm túc hơn."
+    },
+    {
+      "id": 3,
+      "name": "Lục Tam",
+      "hanzi": "六三：剝之，无咎。",
+      "hanviet": "Lục Tam: Bác chi, vô cữu.",
+      "translation": "Cũng ở trong cảnh suy tàn chung, nhưng không có lỗi.",
+      "english": "The third SIX, divided, shows its subject among the overthrowers; but there will be no error.",
+      "explain": "Dù ở giữa giai đoạn suy tàn chung, hào này biết hướng về phía chính đạo nên tránh được lỗi lầm — biết chọn đúng giá trị giữa khủng hoảng.",
+      "itExample": "Giữa lúc cả team đang mắc kẹt trong vòng xoáy trì trệ, một thành viên vẫn kiên định làm đúng theo best practice — không bị cuốn theo cái sai chung.",
+      "lifeExample": "Giữa hoàn cảnh chung đang xấu đi, vẫn giữ được lập trường và giá trị đúng đắn của riêng mình — không bị cuốn theo đám đông."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：剝牀以膚，凶。",
+      "hanviet": "Lục Tứ: Bác sàng dĩ phu, hung.",
+      "translation": "Lột giường đã lan tới tận làn da của người nằm trên giường — xấu, nguy hiểm trực tiếp.",
+      "english": "The fourth SIX, divided, shows its subject having overthrown the couch, and (going to injure) the skin (of him who lies on it). There will be evil.",
+      "explain": "Suy tàn đã chạm tới mức nguy hiểm trực tiếp, không còn là vấn đề cấu trúc mà đã ảnh hưởng tới giá trị cốt lõi — mức cảnh báo cao nhất.",
+      "itExample": "Sự cố hệ thống đã ảnh hưởng trực tiếp tới trải nghiệm và dữ liệu người dùng thật, không còn là vấn đề nội bộ — mức độ nghiêm trọng cao.",
+      "lifeExample": "Khủng hoảng đã ảnh hưởng trực tiếp đến bản thân hay gia đình, không còn là chuyện xa xôi — cần hành động khẩn cấp để bảo vệ."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：貫魚，以宮人寵，无不利。",
+      "hanviet": "Lục Ngũ: Quán ngư, dĩ cung nhân sủng, vô bất lợi.",
+      "translation": "Dẫn dắt các hào Âm khác như một xâu cá nối đuôi nhau có trật tự, được yêu quý như các cung nữ được vua sủng ái — không gì bất lợi.",
+      "english": "The fifth SIX, divided, shows (its subject leading on the others like) a string of fishes, and (obtaining for them) the favour that lights on the inmates of the palace. There will be advantage in every way.",
+      "explain": "Ở vị trí gần đỉnh, biết dẫn dắt tập thể dù đang suy đi theo trật tự, kỷ luật, hướng về phía chính đạo — nhờ đó chuyển nguy thành lợi.",
+      "itExample": "Trưởng nhóm giữa giai đoạn khủng hoảng vẫn tổ chức đội ngũ có kỷ luật, trật tự rõ ràng, giữ được lòng tin của cấp trên — biến nguy thành cơ hội.",
+      "lifeExample": "Giữa hoàn cảnh khó khăn, người biết tổ chức, dẫn dắt gia đình hay nhóm mình có trật tự, đoàn kết sẽ nhận được sự hỗ trợ, giúp đỡ."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：碩果不食，君子得輿，小人剝廬。",
+      "hanviet": "Thượng Cửu: Thạc quả bất thực, quân tử đắc dư, tiểu nhân bác lư.",
+      "translation": "Trái cây to còn sót lại không bị ăn mất; người quân tử giữ được nó sẽ có xe để đi, kẻ tiểu nhân phá hoại sẽ mất cả nhà.",
+      "english": "The topmost NINE, undivided, shows its subject (as) a great fruit which has not been eaten. The superior man finds (the people again) as a chariot carrying him. The small men (by their course) overthrow their own dwellings.",
+      "explain": "Hào Dương cuối cùng còn sót lại — như hạt giống sống sót qua mùa đông khắc nghiệt, là mầm mống cho chu kỳ mới. Ai biết giữ gìn giá trị cốt lõi này sẽ được nâng đỡ trở lại; ai tiếp tục phá hoại sẽ tự hủy hoại chính mình.",
+      "itExample": "Sau đợt cắt giảm hay khủng hoảng lớn, phần lõi hệ thống hoặc nhân sự chủ chốt còn sót lại chính là nền tảng để xây dựng lại — ai bảo vệ được nó sẽ phục hồi nhanh, ai tiếp tục phá sẽ mất tất cả.",
+      "lifeExample": "Sau khủng hoảng, điều cốt lõi còn sót lại — niềm tin, mối quan hệ, giá trị — chính là hạt giống cho sự hồi sinh; ai biết trân trọng và giữ gìn nó sẽ gây dựng lại được, ai tiếp tục phá hoại sẽ mất tất cả."
+    }
+  ],
+
+  "keywords": ["Bác", "剝", "suy tàn", "lột dần", "năm âm một dương", "an trạch", "thạc quả bất thực"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 (mirrored)", "url": "https://baharna.com/iching/legge/000001.htm", "note": "Bản dịch tiếng Anh public domain của Legge cho quẻ Bác, đối chiếu từng hào (bao gồm câu Thoán từ được xác nhận verbatim)." },
+    { "source": "維基文庫 Wikisource — 周易/剝", "url": "https://zh.wikisource.org/zh-hant/周易/剝", "note": "Nguồn nguyên văn chữ Hán (卦辭, 爻辭, 象曰), đối chiếu nội dung khớp với bản dịch Legge." },
+    { "source": "Chinese Text Project — 周易 Zhouyi / Book of Changes", "url": "https://ctext.org/book-of-changes/bo", "note": "Nguồn học thuật công khai lưu trữ Chu Dịch nguyên văn; trang chặn truy cập tự động (CAPTCHA) khi thử đối chiếu trực tiếp cho quẻ này." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/23", "label": "64 Quẻ — Quẻ 23: Sơn Địa Bác" }
+  ]
+}

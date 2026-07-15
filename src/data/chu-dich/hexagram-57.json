@@ -1,0 +1,149 @@
+{
+  "id": 57,
+  "hanzi": "巽",
+  "pinyin": "Xùn",
+  "hanviet": "Tốn",
+  "english": "The Gentle (Wind, Penetrating)",
+  "upperTrigram": "xun",
+  "lowerTrigram": "xun",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "巽：小亨。利有攸往。利見大人。",
+    "hanviet": "Tốn: Tiểu hanh. Lợi hữu du vãng. Lợi kiến đại nhân.",
+    "translation": "Tốn (gió, thấm nhuần, mềm mỏng): có lợi nhỏ. Có lợi khi có chỗ để đi tới. Có lợi khi gặp được bậc đại nhân.",
+    "english": "Penetration indicates modest success. See the great man and move in the direction that implies."
+  },
+
+  "daTuong": {
+    "hanzi": "隨風，巽；君子以申命行事。",
+    "hanviet": "Tùy phong, Tốn; quân tử dĩ thân mệnh hành sự.",
+    "translation": "Lặp lại gió (gió chồng lên gió) — đó là hình tượng quẻ Tốn. Người quân tử noi theo đó mà reiterate lại lệnh (để mọi người hiểu rõ) rồi thực thi công việc.",
+    "english": "Two wind trigrams following each other form Penetration. The superior man proclaims his commands and undertakes his work.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Tốn là quẻ Gió chồng lên Gió — trigram Tốn (巽, gió, con gái thứ) lặp lại 2 lần, tượng trưng cho sự thấm nhuần từ từ, mềm mỏi nhưng bền bỉ, ảnh hưởng sâu sắc. 'Gió lặp lại gió' không có thêm công tác (khác Chấn 'sấm lặp lại sấm' = chấn động lặp lại), mà là ảnh hưởng thầm lặng, từ từ xâm nhập. Confucius nói: 'Quan hệ giữa cấp trên và cấp dưới giống như gió và cỏ — cỏ phải cúi vào khi gió thổi', và Tốn dạy đúng điều này: không phải mệnh lệnh to tiếng hay cưỡng ép, mà là gió nhẹ nhàng thôi thúc. Sáu hào kể trọn vẹn: từ do dự (Sơ Lục) → thâm nhập dưới giường (Cửu Nhị) → cố gắng liên tục mà vất vả (Cửu Tam) → hối tác hay tiếc nuối biến mất (Lục Tứ) → quyết định đúng đắn ở vị trí cao (Cửu Ngũ) → xâm nhập tới cùng đáy mà rồi mất đi công cụ (Thượng Cửu) — bài học cuối: ảnh hưởng thấm nhuần lâu quá cũng có nguy hiểm, cần biết dừng.",
+
+  "computer_science": "Tốn là hình mẫu của soft power trong engineering culture: không phải top-down mandate ('bắt phải dùng framework X') mà là peer influence, code review tốt, pairing session, gradually shift culture làm sao mà mọi người tự mình adopt best practices. 'Gió nhẹ nhàng thôi thúc cỏ' giống CI culture na ná: không phải lệnh buộc, mà là friction quá thấp khiến mọi người muốn deploy mỗi ngày. Tốn không dạy 'hãy ép buộc', mà dạy 'hãy làm cho nó dễ dàng, tự nhiên, không cưỡng ép'.",
+
+  "life": "Bài học của Tốn: ảnh hưởng thành công không phải từ tiếng to hay sức mạnh, mà từ sự kiên trì, mềm mỏi, chạm đúng tâm huyết người khác. Giống như gió, không có thân hình nhưng có thể uốn cong cả cây lớn — nếu biết nơi và thời điểm.",
+
+  "programming": "Vòng đời của một best practice adoption trong team: từ một engineer mầm non chưa biết (Sơ Lục), đến việc thử test-driven development dưới giống (Cửu Nhị), cố gắng convince team adopt (Cửu Tam), thấy results tích cực (Lục Tứ), deploy production-wide (Cửu Ngũ), và khi quá lâu mà chẳng ai recall lý do ban đầu tại sao phải làm vậy (Thượng Cửu, mất công cụ). Quẻ dạy: culture shift chỉ hiệu quả khi từ từ, không ép buộc, và cần lặp lại thông điệp liên tục để không quên lý do ban đầu.",
+
+  "characters": [
+    {
+      "hanzi": "巽",
+      "pinyin": "xùn",
+      "hanviet": "tốn",
+      "meaning": "Gió, mềm mỏi, xâm nhập từ từ, thấm nhuần, tuân phục.",
+      "origin": "Chữ hình thanh-hội ý: 巛 (luân, hình vẽ dòng nước chảy) + 寸 (thốn, thanh phù + ý 'diện tích/phạm vi'). Vốn biểu thị 'nước chảy vào từng góc', về sau mở rộng thành trigram 巽 chỉ 'gió'.",
+      "example": "巽風 (tốn phong) = gió nhẹ; 順 (thuận) được mượn từ Tốn để biểu thị 'mềm mỏi, tuân phục'.",
+      "cs": "Gradual Adoption",
+      "csExplain": "Một thay đổi tốt không phải được tuyên bố từ trên, mà từ từ thấm nhuần vào cấp dưới — peer influence, cultural shift thông qua ví dụ."
+    },
+    {
+      "hanzi": "申",
+      "pinyin": "shēn",
+      "hanviet": "thân",
+      "meaning": "Reiterate, nhắc lại, stretech/mở rộng, tên của một vị trí thiên thể.",
+      "origin": "Chữ tượng hình: hình vẽ kiến trúc giãn ra/mở rộng (nguyên là 身 'thân', được giãn ra). Vốn biểu thị 'mở rộng, giãn ra', về sau có ý 'nhắc lại, reiterate' (vì giãn dài một ý = nhắc lại).",
+      "example": "申請 (thân thỉnh) = đơn xin; 申述 (thân thuật) = tóm tắt lại, nhắc lại.",
+      "cs": "Reinforce",
+      "csExplain": "Lặp lại một thông điệp/chỉ thị để đảm bảo nó thấm sâu, chứ không phải nói 1 lần rồi thôi."
+    },
+    {
+      "hanzi": "命",
+      "pinyin": "mìng",
+      "hanviet": "mệnh",
+      "meaning": "Lệnh, chỉ thị, số mệnh, sứ mệnh.",
+      "origin": "Chữ hình thanh-hội ý: 口 (khẩu, miệng) + 令 (lệnh, biểu thị 'hành động từ miệng'). Vốn biểu thị 'lệnh từ miệng', mở rộng thành 'số mệnh, sứ mệnh'.",
+      "example": "命令 (mệnh lệnh) = lệnh chỉ; 使命 (sứ mệnh) = sứ mệnh.",
+      "cs": "Directive",
+      "csExplain": "Một chỉ thị rõ ràng từ leadership — nhưng trong Tốn, nó không được tuyên bố cứng rắn mà được 'thân' (reiterate) mềm mỏi để mọi người hiểu từng bước."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：進退，利武人之貞。",
+      "hanviet": "Sơ Lục: Tiến tuế, lợi võ nhân chi trinh.",
+      "translation": "Tiến tiếp hay lùi lại (lưỡng lự) — có lợi khi người lính quân sự giữ vững chính đáng.",
+      "english": "The first line, magnetic, shows its subject now advancing, now retreating. It would be advantageous for her to have the firm correctness of a brave soldier.",
+      "explain": "Vị trí thấp nhất, chưa biết hướng đi — cần sự quyết đoán của người lính (một người có bản lĩnh).",
+      "itExample": "Team mới, chưa biết best practice — cần một tech lead/ architect quyết đoán, không phải yếu ớt lưỡng lự về direction.",
+      "lifeExample": "Khi còn trẻ, chưa biết đường đi — cần người mentor quyết đoán, có bản lĩnh hướng dẫn."
+    },
+    {
+      "id": 2,
+      "name": "Cửu Nhị",
+      "hanzi": "九二：巽在牀下，用史巫紛若，吉无咎。",
+      "hanviet": "Cửu Nhị: Tốn tại sàng hạ, dụng sử vu phân nhược, cát vô cữu.",
+      "translation": "Tốn (ảnh hưởng) xâm nhập dưới giường — dùng những người thấu hiểu (lịch sử, thần thánh, consultant) để thống nhất sự khác lạ — tốt lành không có lỗi.",
+      "english": "The second line, dynamic, shows penetration under a bed, and one employing diviners and exorcists in a way bordering on confusion. There will be good fortune and no error.",
+      "explain": "Ảnh hưởng thấm sâu vào từng chi tiết — cần những người chuyên môn để làm rõ (dù phức tạp, confusion).",
+      "itExample": "Áp dụng best practice vào từng góc codebase — cần code review kỹ, test cases chi tiết, documentation rõ — trông rối nhưng cuối cùng vẫn tốt.",
+      "lifeExample": "Thay đổi cách làm việc từng chi tiết nhỏ — cần hướng dẫn chi tiết, tưởng rối nhưng rồi nó sẽ thành thói quen tốt."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：頻巽，吝。",
+      "hanviet": "Cửu Tam: Tần tốn, lận.",
+      "translation": "Liên tục xâm nhập, liên tục ảnh hưởng — sẽ tạo ra tiếc nuối, mệt mỏi.",
+      "english": "The third line, dynamic, shows its subject penetrating only by violent and repeated efforts. There will be occasion for regret.",
+      "explain": "Ảnh hưởng quá liên tục, quá nhiều, quá mạnh — khiến người khác chán nản, mệt mỏi.",
+      "itExample": "Enforce best practice quá aggressively (mandatory code review trên tất cả PR, mandatory daily sync meetings) — team sẽ chán nản, productivity giảm.",
+      "lifeExample": "Nhắc nhở/hỏi thăm ai đó liên tục quá nhiều — sẽ khiến họ chán nản, mất đi tình cảm ban đầu."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：悔亡，田獲三品。",
+      "hanviet": "Lục Tứ: Hối vong, điền hoạch tam phẩm.",
+      "translation": "Sự hối tiếc tiêu tan — săn bắn được ba loại con vật (ba levels of attainment) — không có lỗi.",
+      "english": "The fourth line, magnetic, shows all occasion for repentance in its subject passed away. She takes game for its threefold use in her hunting.",
+      "explain": "Ảnh hưởng bắt đầu thấy kết quả — không còn hối tiếc (Lục Tứ = không còn nghi ngờ, có kết quả rõ ràng).",
+      "itExample": "Sau vài sprint của agile transformation, bắt đầu thấy improvement: fewer bugs (benefit 1), faster release (benefit 2), team morale up (benefit 3) — không còn nghi ngờ là chúng ta đi đúng hướng.",
+      "lifeExample": "Sau vài tuần thay đổi thói quen, bắt đầu thấy kết quả tích cực — không còn hối tiếc quyết định đó."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：貞吉悔亡，无不利。无初有終，先庚三日，後庚三日，吉。",
+      "hanviet": "Cửu Ngũ: Trinh cát hối vong, vô bất lợi. Vô sơ hữu chung, tiên canh tam nhật, hậu canh tam nhật, cát.",
+      "translation": "Giữ vững chính đáng — tốt lành, hối tiếc tiêu tan, không có gì không thuận lợi. Không có khởi đầu nhưng có kết thúc (tất cả đã sẵn sàng trong quá khứ, chỉ cần execute), ba ngày trước ngày Canh, ba ngày sau ngày Canh — tốt lành.",
+      "english": "The fifth line, dynamic, shows that with firm correctness there will be good fortune to its subject. All occasion for repentance will disappear, and all his movements will be advantageous.",
+      "explain": "Vị trí cao nhất của thành công — ảnh hưởng đã hoàn toàn thấm nhuần, mọi người tự mình tuân phục mà không cần ép buộc.",
+      "itExample": "Culture adoption đã hoàn toàn: không ai cần nhắc nhở, team tự mình ship quickly, tự mình test rigorously, tự mình review code của người khác — không còn lỗi tổ chức.",
+      "lifeExample": "Thay đổi thói quen đã hoàn toàn: nó trở thành tự động, không còn cần effort để maintain, toàn là lợi ích."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：巽在牀下，喪其資斧，貞凶。",
+      "hanviet": "Thượng Cửu: Tốn tại sàng hạ, táng kỳ tư toán, trinh hung.",
+      "translation": "Ảnh hưởng xâm nhập quá sâu (còn ở dưới giường) — mất đi công cụ, phương tiện để tự lập — ngay cả khi giữ vững chính đáng cũng xấu.",
+      "english": "The sixth line, dynamic, shows penetration beneath a bed, and its subject having lost the axe with which he executed his decisions. However firm and correct he may try to be, there will be evil.",
+      "explain": "Hào cuối cùng của Tốn — ảnh hưởng thấm sâu quá độ khiến lệch chuẩn, mất đi quyền tự chủ.",
+      "itExample": "Best practice được dogmatic tới mức đó là nguy hiểm: team không còn có flexibility để quyết định khi cần exception — mất đi 'cây rìu' (công cụ quyết định) của mình, chỉ còn tuân theo automation/lệnh.",
+      "lifeExample": "Bị chi phối quá nhiều bởi thói quen/quy chuẩn — không còn có độc lập, tự quyết, mất đi sự linh hoạt của bản thân."
+    }
+  ],
+
+  "keywords": ["Tốn", "巽", "Gió", "thuần Tốn", "ảnh hưởng từ từ", "mềm mỏi mà bền bỉ", "soft power", "culture shift"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/xun", "note": "Bản dịch tiếng Anh public domain." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 57", "url": "https://www.jamesdekorne.com/GBCh/hex57.htm", "note": "Trang tổng hợp Legge." },
+    { "source": "維基文庫 Wikisource — 周易/巽", "url": "https://zh.wikisource.org/zh-hant/周易/巽", "note": "Đối chiếu chéo." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/57", "label": "64 Quẻ — Quẻ 57: Thuần Tốn" }
+  ]
+}

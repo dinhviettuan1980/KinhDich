@@ -1,0 +1,148 @@
+{
+  "id": 53,
+  "hanzi": "漸",
+  "pinyin": "Jiàn",
+  "hanviet": "Tiệm",
+  "english": "Gradual Advance",
+  "upperTrigram": "xun",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "漸：女歸吉，利貞。",
+    "hanviet": "Tiệm: Nữ quy cát, lợi trinh.",
+    "translation": "Tiệm (tiến từng bước): nàng gái về nước cải tổ là tốt lành, có lợi khi giữ vững điều chính đáng.",
+    "english": "Gradual Progress shows the good fortune attending the marriage of a young lady. Firm correctness brings advantage."
+  },
+
+  "daTuong": {
+    "hanzi": "山上有木，漸；君子以居賢德，善俗。",
+    "hanviet": "Sơn thượng hữu mộc, Tiệm; quân tử dĩ cư hiền đức, thiện tục.",
+    "translation": "Trên núi có cây mọc — đó là hình tượng quẻ Tiệm. Người quân tử noi theo đó mà cư trú với đức hạnh cao thượng, và dần dần làm cho phong tục tốt đẹp lên.",
+    "english": "A tree on the mountain — the image of Gradual Progress. The superior man attains and nourishes his extraordinary virtue to improve the manners of the people.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Tiệm là quẻ về sự tiến bộ từng bước, không vội, không vấp. Hình tượng lõi là con ngỗng bay từ từ, lên từng bậc cao hơn mà không hề vội vàng hay bồn chồn. Lấy nàng gái về nước cải tổ làm ẩn dụ: không phải một đêm biến thành hoàn toàn người khác, mà là một quá trình chuyển hoá dần dần, từ bố mẹ sang chồng, từ một gia đình sang gia đình khác. Sáu hào kể trọn vẹn hành trình của con ngỗng: từ bờ nhỏ (Sơ Lục) → đá lớn yên tĩnh (Lục Nhị) → đất bằng phẳng (Cửu Tam) → cây cối (Lục Tứ) → đồi cao (Cửu Ngũ) → cao ngất ngưỡng (Thượng Cửu). Quẻ này dạy rằng sự thay đổi lâu dài, bền vững phải tuân theo nhịp độ tự nhiên của từng bước, không thể ép buộc hay bỏ qua bất kỳ giai đoạn nào.",
+
+  "computer_science": "Tiệm là hình mẫu của phased deployment hay canary release: không bao giờ big bang release toàn bộ tính năng mới cùng một lúc, mà phải từng bước từng giai đoạn — 1% users rồi 10% rồi 100%, giống con ngỗng bay từng bước lên cao. 'Gió trên núi' (Xun-Gen) cũng ẩn dụ: gió thôi thúc cây lên từ từ theo nhịp tự nhiên, không có cách nào để ép cây mọc nhanh hơn nếu muốn nó mạnh khỏe.",
+
+  "life": "Bài học của Tiệm là: không có bước nào là thừa hay không cần thiết trong một hành trình dài. Mỗi giai đoạn xây dựng nên giai đoạn sau — nếu bỏ qua giai đoạn nào thì toàn bộ tiến trình trở nên yếu ớt. Người kiên nhẫn qua từng bước sẽ vượt qua người vội vàng cố bỏ qua các giai đoạn trung gian.",
+
+  "programming": "Vòng đời một product: MVP nhỏ trên nhóm nội bộ (Sơ Lục), alpha test với một số beta users (Lục Nhị), mở rộng alpha + thu feedback kỹ lưỡng (Cửu Tam), beta release public (Lục Tứ), production general availability (Cửu Ngũ), trở thành platform chuẩn được nhiều nơi dùng (Thượng Cửu). Nếu bỏ qua giai đoạn beta thì tỷ lệ fail cao — không có shortcut thực sự trong phát triển sản phẩm chất lượng.",
+
+  "characters": [
+    {
+      "hanzi": "漸",
+      "pinyin": "jiàn",
+      "hanviet": "tiệm",
+      "meaning": "Từ từ, dần dần, từng bước; sự thấm nhuần từ từ.",
+      "origin": "Chữ hình thanh: 水 (thủy, nước) + 漸 (thanh phù 'tiệm', mô tả âm thanh nước chảy từ từ thấm nhuần). Hình ảnh gốc là nước thấm từ từ vào đất mà không có âm thanh lớn, biểu thị sự thay đổi âm thầm, từ từ mà hiệu quả lâu dài.",
+      "example": "漸進 (tiệm tiến) = tiến từng bước; 循序漸進 (tuần tự tiệm tiến) = theo thứ tự từng bước tiến lên.",
+      "cs": "Incremental Deployment",
+      "csExplain": "Chiến lược phát hành từng phần nhỏ, theo giai đoạn, thay vì release hết cả cùng một lúc — giảm rủi ro, cho phép rollback nếu gặp sự cố."
+    },
+    {
+      "hanzi": "女",
+      "pinyin": "nǚ",
+      "hanviet": "nữ",
+      "meaning": "Nàng gái, phụ nữ, con gái.",
+      "origin": "Chữ tượng hình vẽ hình người nữ giới uốn cong thân thể (người ngồi hoặc quỳ) — là một trong số rất ít chữ Hán giữ được hình dáng khác biệt giữa nam/nữ qua các thời kỳ.",
+      "example": "女人 (nữ nhân) = phụ nữ; 女兒 (nữ nhi) = con gái.",
+      "cs": "Subject/Agent",
+      "csExplain": "Chủ thể của hành động chuyển hoá — trong Kinh Dịch, dùng ẩn dụ 'nàng gái' để chỉ một thực thể phù động, linh hoạt, đang qua một quá trình chuyển biến."
+    },
+    {
+      "hanzi": "歸",
+      "pinyin": "guī",
+      "hanviet": "quy",
+      "meaning": "Về nhà, quay về, tẩm quất, trở lại; dâng hiến cho.",
+      "origin": "Chữ hình thanh-hội ý: 女 (nữ, phụ nữ) + 止 (chỉ, chân — biểu thị hành động bước đi, hoặc gốc từ 武 mô tả nàng gái bước về nhà). Nguyên ý là 'nàng gái bước về nhà', mở rộng thành 'về nhà, trở về, tẩm quất cho'.",
+      "example": "回歸 (hồi quy) = quay trở lại; 歸屬 (quy thuộc) = thuộc về.",
+      "cs": "State Transition",
+      "csExplain": "Hành động chuyển đổi trạng thái từ trạng thái này sang trạng thái khác — từ 'chưa initialize' đến 'ready', giống như nàng gái 'về' gia đình chồng (chuyển đổi trạng thái xã hội)."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：鴻漸于干，小子厲，有言，無咎。",
+      "hanviet": "Sơ Lục: Hồng tiệm vu can, tiểu tử lệ, hữu ngôn, vô cữu.",
+      "translation": "Con ngỗng từ từ tiến đến bờ cỏ (khô cạn) — con trai trẻ gặp nguy hiểm và có lời chỉ trích; nhưng không có lỗi.",
+      "english": "The wild geese gradually approaching the shore. A young officer in similar circumstances will be in a position of danger, and be spoken against; but there will be no error.",
+      "explain": "Giai đoạn đầu tiên của hành trình — vị trí thấp, có rủi ro, nhưng miễn là biết lắng nghe và chịu chỉ trích, sẽ không có lỗi lớn.",
+      "itExample": "MVP mới deploy trên production — chỉ có một nhóm nhỏ dùng, có lỗi/rủi ro, chắc chắn nhận feedback phê bình; nhưng nếu chịu chỉ trích và cải thiện nhanh thì không có vấn đề gì to tát.",
+      "lifeExample": "Bắt đầu một công việc hoặc dự án mới — vị trí thấp, bé xíu, sẽ bị chỉ trích; nhưng miễn là chịu nghe lời chỉ dẫn, sẽ không thất bại."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：鴻漸于磐，飲食衎衎，吉。",
+      "hanviet": "Lục Nhị: Hồng tiệm vu bàn, uống thực hãn hãn, cát.",
+      "translation": "Con ngỗng từ từ tiến đến các tảng đá lớn — thưởng thức ăn uống một cách vui vẻ, an toàn — tốt lành.",
+      "english": "The geese gradually approaching the large rocks, where they eat and drink joyfully and at ease. There will be good fortune.",
+      "explain": "Đã lên một bậc cao hơn, ổn định hơn (tảng đá chắc chắn) — không còn lo lắng, có thể tận hưởng thành quả của giai đoạn trước.",
+      "itExample": "Beta release ổn định, nhóm user không quá nhỏ nữa, feedback không phải toàn lỗi nữa — đội phát triển có thể yên tâm, tận hưởng sự ổn định tạm thời trước khi scale tiếp.",
+      "lifeExample": "Đạt đến một mốc ổn định nhất định trong công việc (được bổ nhiệm, dự án ổn định) — không còn lo sợ mất việc, có thể lên kế hoạch dài hạn."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：鴻漸于陸，夫征不復，婦孕不育，凶；利禦寇。",
+      "hanviet": "Cửu Tam: Hồng tiệm vu lục, phu chinh bất phục, phụ dạ bất dục, hung; lợi ngữ khách.",
+      "translation": "Con ngỗng tiến đến đất bằng phẳng — chồng đi chinh phục mà không quay lại, vợ mang thai mà không thể sinh con — xấu; nhưng có lợi trong việc phòng chống kẻ xâm lược.",
+      "english": "The geese gradually advanced to the dry plains...a husband who goes on an expedition from which he does not return, and of a wife who is pregnant, but will not nourish her child. There will be evil.",
+      "explain": "Giai đoạn nguy hiểm nhất của Tiệm — có vẻ ổn định (đất bằng) nhưng thực chất chứa ẩn họa (chồng vợ tách rời). Cảnh báo: mở rộng quá mà mất đi sự gắn kết nội bộ sẽ gây thất bại.",
+      "itExample": "Product mở rộng tính năng quá nhanh, nhưng infrastructure không theo kịp (server ở châu Á không được support tốt, data consistency bị phá vỡ) — cảnh báo nguy hiểm mặc dù trên bề mặt có vẻ tiếp tục tăng trưởng.",
+      "lifeExample": "Công ty mở rộng quá nhanh, tuyển dụng nhiều nhân viên, nhưng văn hoá công ty bị xáo trộn, người cũ đi đi lại lại, người mới không hòa nhập — bề ngoài tiếp tục tăng trưởng nhưng nội bộ tan rã."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：鴻漸于木，或得其桷，無咎。",
+      "hanviet": "Lục Tứ: Hồng tiệm vu mộc, hoặc đắc kỳ cách, vô cữu.",
+      "translation": "Con ngỗng tiến đến các cây gỗ — có thể nằm trên cành cây bằng phẳng để nghỉ — không có lỗi.",
+      "english": "The geese gradually advanced to the trees. They may light on the flat branches. There will be no error.",
+      "explain": "Vượt qua giai đoạn nguy hiểm (Cửu Tam), đã tìm được nơi an toàn (cành cây) để nghỉ ngơi — không còn lo sợ gì nữa.",
+      "itExample": "Sau khi vượt qua giai đoạn scale lớn đầu tiên, product đã tìm được equilibrium — traffic ổn định, cost có thể kiểm soát được, nhân sự ổn định không còn chảy máu.",
+      "lifeExample": "Sau một giai đoạn chao đảo, đội nhóm/công ty đã tìm được nhịp độ ổn định — người không còn đi, quy trình ổn định, mọi người an tâm."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：鴻漸于陵，婦三歲不孕，終莫之勝，吉。",
+      "hanviet": "Cửu Ngũ: Hồng tiệm vu lăng, phụ tam tuế bất dạ, chung mạc chi thắng, cát.",
+      "translation": "Con ngỗng tiến đến đồi cao — vợ ba năm chưa sinh con, nhưng cuối cùng không có gì có thể cản lại được (tự nhiên có con) — tốt lành.",
+      "english": "The geese gradually advanced to the high mound...a wife who for three years does not become pregnant: but in the end the natural issue cannot be prevented. There will be good fortune.",
+      "explain": "Ở vị trí cao nhất (Cửu Ngũ), có chút bất toàn (chưa có con) nhưng cuối cùng tự nhiên xảy ra — đây là khoa học của thời gian: cứ kiên tâm theo đúng tiến trình thì tự nhiên sẽ thành công.",
+      "itExample": "Product ở vị trí thị trường hàng đầu, nhưng chưa có feature 'X' mà đối thủ có — có vẻ yếu ớt tạm thời, nhưng nếu tiếp tục chiến lược đúng đắn, cuối cùng cũng sẽ có feature đó và vượt qua đối thủ.",
+      "lifeExample": "Ở vị trí cao trong sự nghiệp nhưng vẫn chưa tìm được người bạn đời đúng đắn, tưởng như thất bại — nhưng nếu vẫn giữ vững con đường đúng, cuối cùng sẽ tìm được người xứng đáng."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：鴻漸于陸，其羽可用為儀，吉。",
+      "hanviet": "Thượng Cửu: Hồng tiệm vu mạch, kỳ vũ khả dụng vi nghi, cát.",
+      "translation": "Con ngỗng tiến đến cao ngất ngưỡng — lông cánh của nó có thể dùng làm trang trí nghi lễ — tốt lành.",
+      "english": "The geese gradually advanced to the large heights beyond. Their feathers can be used as ornaments. There will be good fortune.",
+      "explain": "Đỉnh cao nhất của Tiệm — con ngỗng đã hoàn toàn trưởng thành, lông vũ trở nên quý giá, có thể dùng làm biểu tượng trong nghi lễ. Đây là hoàn thành của quá trình từng bước.",
+      "itExample": "Product đã trở thành platform chuẩn, được nhiều công ty khác tích hợp vào quy trình của họ, trở thành tiêu chuẩn công nghiệp — lông vũ (API, documentation) được dùng rộng rãi.",
+      "lifeExample": "Người đã đạt tới đỉnh cao sự nghiệp — không chỉ thành công bản thân mà còn trở thành hình mẫu, cố vấn cho thế hệ tới, những kinh nghiệm/hiểu biết của họ trở thành tài sản quý giá của xã hội."
+    }
+  ],
+
+  "keywords": ["Tiệm", "漸", "Gió-Núi", "tiến từng bước", "canary release", "không bỏ qua giai đoạn", "từ từ nhưng chắc chắn"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/jian1", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán từng hào; đọc lại qua DeKorne." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 53", "url": "https://jamesdekorne.com/GBCh/hex53.htm", "note": "Trang tổng hợp trích dẫn đầy đủ bản dịch Legge." },
+    { "source": "維基文庫 Wikisource — 周易/漸", "url": "https://zh.wikisource.org/zh-hant/周易/漸", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/53", "label": "64 Quẻ — Quẻ 53: Phong Sơn Tiệm" }
+  ]
+}

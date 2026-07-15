@@ -1,0 +1,159 @@
+{
+  "id": 52,
+  "hanzi": "艮",
+  "pinyin": "Gèn",
+  "hanviet": "Cấn",
+  "english": "Keeping Still (Mountain)",
+  "upperTrigram": "gen",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "艮：艮其背，不獲其身，行其庭，不見其人，无咎。",
+    "hanviet": "Cấn: Cấn kỳ bối, bất hoạch kỳ thân, hành kỳ đình, bất kiến kỳ nhân, vô cữu.",
+    "translation": "Cấn (dừng lại): dừng như cái lưng đứng yên — không còn vướng bận ý thức về bản thân mình; đi trong sân nhà mà không (bị phân tâm bởi) thấy người khác — không có lỗi.",
+    "english": "When his repose is like the back, and he loses all consciousness of self; when he walks in his courtyard and does not see the people, there will be no error."
+  },
+
+  "daTuong": {
+    "hanzi": "兼山，艮；君子以思不出其位。",
+    "hanviet": "Kiêm sơn, Cấn; quân tử dĩ tư bất xuất kỳ vị.",
+    "translation": "Núi chồng lên núi — đó là hình tượng quẻ Cấn. Người quân tử noi theo đó mà suy nghĩ và hành động không vượt quá phạm vi vị trí, trách nhiệm của mình.",
+    "english": "The image of one mountain atop another forms Keeping Still. The superior man, in accordance with this, does not allow his thoughts to go beyond the duties of his immediate circumstances.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Cấn là quẻ Núi chồng lên Núi — trigram Cấn (山, núi, con trai út) lặp lại 2 lần, tượng trưng cho sự dừng lại, tĩnh lặng, bất động. Cấn không dạy 'không bao giờ hành động' mà dạy 'biết dừng đúng lúc, đúng chỗ' — như cái lưng đứng yên không vướng ý thức về bản thân, như đi trong sân mà tâm không bị phân tán bởi ngoại cảnh. Sáu hào đi dọc theo cơ thể từ dưới lên — ngón chân (Sơ Lục), bắp chân (Lục Nhị), ngang lưng (Cửu Tam), toàn thân (Lục Tứ), hàm/lời nói (Lục Ngũ), và mức tĩnh lặng sâu dày chân thành nhất (Thượng Cửu) — mỗi hào là một cấp độ tinh tế hơn của việc 'biết dừng'.",
+
+  "computer_science": "Cấn là hình mẫu của circuit breaker pattern và graceful shutdown: biết dừng một tiến trình đúng thời điểm, đúng ranh giới thay vì cưỡng ép nó chạy tiếp hoặc dừng nửa vời gây lỗi. 'Quân tử dĩ tư bất xuất kỳ vị' (suy nghĩ không vượt quá vị trí của mình) chính là Single Responsibility Principle — mỗi module/thread chỉ hoạt động trong phạm vi (scope) của nó, không xâm phạm ranh giới của phần khác, nhờ đó tránh race condition.",
+
+  "life": "Không phải lúc nào hành động cũng là câu trả lời đúng — biết dừng lại đúng lúc, đúng chỗ mới là trí tuệ thật sự. Cấn dạy rằng sự tĩnh lặng có ý thức (biết mình đang dừng, dừng vì điều gì) khác hẳn với sự trì trệ hay né tránh.",
+
+  "programming": "Sáu hào là sáu cấp độ của một 'feature freeze' hay 'code freeze': dừng ngay từ đề xuất trước khi bắt tay code là dễ nhất (Sơ Lục), bất lực khi không có quyền ngăn quyết định sai của cấp trên (Lục Nhị), cưỡng ép dừng đúng vào điểm kết nối trọng yếu giữa 2 module gây đứt gãy nghiêm trọng (Cửu Tam), graceful shutdown đúng chuẩn cho toàn bộ service (Lục Tứ), kiểm soát lời nói/comment có trật tự trong code review (Lục Ngũ), và văn hoá 'sleep on it trước quyết định lớn' đã ngấm sâu thành thói quen tổ chức (Thượng Cửu).",
+
+  "characters": [
+    {
+      "hanzi": "艮",
+      "pinyin": "gèn",
+      "hanviet": "cấn",
+      "meaning": "Dừng lại, đứng yên, ngăn trở; tên một quẻ/trigram tượng trưng cho Núi.",
+      "origin": "Giáp cốt văn có hình một con mắt (目) quay ngược lại phía sau trên một hình người — Thuyết Văn giải là 'trừng mắt nhìn lại, không chịu tiến tới', biểu thị sự cưỡng lại/dừng lại. Từ nghĩa 'dừng, ngăn' mở rộng thành trigram chỉ Núi (khối vật cản đường đi).",
+      "example": "艮卦 (Cấn quái) = quẻ Cấn; 止艮 (chỉ cấn) = dừng lại, ngưng nghỉ.",
+      "cs": "Circuit Breaker",
+      "csExplain": "Cơ chế chủ động ngắt một luồng xử lý đúng thời điểm để tránh lỗi lan rộng, thay vì để nó chạy tiếp không kiểm soát."
+    },
+    {
+      "hanzi": "背",
+      "pinyin": "bèi",
+      "hanviet": "bối",
+      "meaning": "Cái lưng; quay lưng lại, trái ngược.",
+      "origin": "Chữ hình thanh-hội ý: 北 (bắc — nguyên là hình 2 người quay lưng vào nhau, nghĩa gốc 'quay lưng') + 肉/月 (bộ nhục, chỉ bộ phận cơ thể) — ghép lại chỉ rõ 'phần lưng của cơ thể'.",
+      "example": "背後 (bối hậu) = phía sau lưng; 違背 (vi bối) = làm trái, phản lại.",
+      "cs": "Background Process",
+      "csExplain": "Tiến trình đứng yên phía sau, không tương tác/không bị chi phối bởi những gì đang diễn ra phía trước — ẩn dụ cho sự tĩnh lặng có kiểm soát."
+    },
+    {
+      "hanzi": "庭",
+      "pinyin": "tíng",
+      "hanviet": "đình",
+      "meaning": "Sân nhà, sân trước, nơi xử lý việc công (triều đình).",
+      "origin": "Chữ hình thanh: bộ 广 (nghiễm, mái nhà/công trình) + 廷 (đình, vừa biểu âm vừa mang nghĩa 'triều đình, nơi tiếp kiến') — chỉ khoảng sân trước nhà hoặc nơi thiết triều.",
+      "example": "家庭 (gia đình) = gia đình; 庭院 (đình viện) = sân vườn.",
+      "cs": "Scope Boundary",
+      "csExplain": "Không gian hoạt động được xác định rõ ranh giới — đi trong phạm vi của mình (sân nhà) mà không bị nhiễu bởi những gì ngoài phạm vi đó."
+    },
+    {
+      "hanzi": "獲",
+      "pinyin": "huò",
+      "hanviet": "hoạch",
+      "meaning": "Bắt được, thu được, đạt được.",
+      "origin": "Chữ hình thanh-hội ý: 犬 (khuyển, chó — công cụ săn bắt) + 蒦 (hoạch, thanh phù kiêm ý 'nắm giữ được con chim') — nghĩa gốc là 'chó săn bắt được con mồi', mở rộng thành 'đạt được, thu được' nói chung.",
+      "example": "獲得 (hoạch đắc) = đạt được, thu được; 收獲 (thu hoạch) = gặt hái, thu hoạch.",
+      "cs": "Acquire (lock)",
+      "csExplain": "Hành động 'chiếm giữ' một tài nguyên — trong câu 不獲其身 (không giữ lấy ý thức về bản thân) ý nói buông bỏ việc 'acquire' sự chú ý vào bản ngã để đạt trạng thái tĩnh lặng thuần khiết."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：艮其趾，无咎，利永貞。",
+      "hanviet": "Sơ Lục: Cấn kỳ chỉ, vô cữu, lợi vĩnh trinh.",
+      "translation": "Dừng lại ngay từ ngón chân, khi chưa bắt đầu bước đi — không có lỗi, có lợi khi giữ vững điều này lâu dài.",
+      "english": "The first line, magnetic, shows its subject keeping her toes at rest. There will be no error, but it will be advantageous for her to be persistently firm and correct.",
+      "explain": "Dừng đúng lúc ngay từ bước đầu tiên là dễ nhất và an toàn nhất — ngăn chặn sai lầm trước khi nó kịp bắt đầu.",
+      "itExample": "Chặn một thay đổi/feature request ngay từ giai đoạn đề xuất, trước khi bắt tay viết code, khi thấy nó không phù hợp — rẻ và an toàn hơn nhiều so với việc dừng giữa chừng.",
+      "lifeExample": "Từ chối một lời mời hay một quyết định sai ngay từ đầu, trước khi dấn thân vào — dễ dàng hơn nhiều so với việc phải rút lui giữa chừng."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：艮其腓，不拯其隨，其心不快。",
+      "hanviet": "Lục Nhị: Cấn kỳ phì, bất chửng kỳ tùy, kỳ tâm bất khoái.",
+      "translation": "Dừng lại ở bắp chân — không thể cứu giúp được người mình đang đi theo phía trên, lòng cảm thấy không vui.",
+      "english": "The second line, magnetic, shows its subject keeping the calves of her legs at rest. She cannot help the subject of the line above whom she follows, and is dissatisfied in her mind.",
+      "explain": "Muốn dừng lại nhưng vị trí phụ thuộc (bắp chân đi theo đùi) khiến không tự chủ được — đành bất lực nhìn người ở trên hành động sai mà không ngăn được.",
+      "itExample": "Một kỹ sư biết một quyết định kiến trúc là sai nhưng không có quyền quyết định, chỉ là người thực thi theo cấp trên — đành bất lực, ấm ức trong lòng.",
+      "lifeExample": "Biết người mình đi cùng (sếp, đối tác) đang đi sai hướng nhưng vị trí của mình không đủ ảnh hưởng để ngăn lại — đành chịu đựng trong không thoải mái."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：艮其限，列其夤，厲薰心。",
+      "hanviet": "Cửu Tam: Cấn kỳ hạn, liệt kỳ di, lệ huân tâm.",
+      "translation": "Dừng lại ngang lưng, nơi giáp ranh trên dưới cơ thể — làm tách rời cả phần thịt sống lưng, nguy hiểm như lửa đốt cháy trong lòng.",
+      "english": "The third line, dynamic, shows its subject keeping his loins at rest, and separating the ribs from the body below. The situation is perilous, and the heart glows with suppressed excitement.",
+      "explain": "Cưỡng ép dừng đúng ngay điểm nối quan trọng nhất (giữa trên và dưới) gây chia cắt, tổn thương nghiêm trọng — dừng sai chỗ cũng nguy hiểm chẳng kém không dừng.",
+      "itExample": "Buộc dừng (freeze) một hệ thống ngay tại điểm kết nối giữa 2 module lõi đang phụ thuộc chặt vào nhau — gây đứt gãy dữ liệu nghiêm trọng, để lại rủi ro âm ỉ.",
+      "lifeExample": "Cắt đứt đột ngột một mối quan hệ hay hợp tác đúng vào lúc hai bên đang gắn bó sâu sắc nhất — gây tổn thương nặng nề, để lại nỗi day dứt kéo dài."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：艮其身，无咎。",
+      "hanviet": "Lục Tứ: Cấn kỳ thân, vô cữu.",
+      "translation": "Dừng lại toàn thân — không có lỗi.",
+      "english": "The fourth line, magnetic, shows its subject keeping her trunk at rest. There will be no error.",
+      "explain": "Dừng đúng lúc, đúng phạm vi, dừng toàn bộ chứ không phải nửa vời một phần — hành động chín chắn, không gây ra lỗi.",
+      "itExample": "Tạm dừng hoàn toàn một service/module theo đúng chuẩn graceful shutdown, thay vì chỉ tắt nửa vời — an toàn, không để lại lỗi ẩn.",
+      "lifeExample": "Biết dừng lại hoàn toàn một công việc không còn phù hợp, thay vì cố duy trì nửa vời — quyết định dứt khoát mà không gây hậu quả xấu."
+    },
+    {
+      "id": 5,
+      "name": "Lục Ngũ",
+      "hanzi": "六五：艮其輔，言有序，悔亡。",
+      "hanviet": "Lục Ngũ: Cấn kỳ phụ, ngôn hữu tự, hối vong.",
+      "translation": "Dừng lại ở hàm (kiểm soát lời nói) — lời nói ra có trật tự, sự hối tiếc tiêu tan.",
+      "english": "The fifth line, magnetic, shows its subject keeping her jawbones at rest, so that her words are all orderly. Occasion for repentance will disappear.",
+      "explain": "Kiểm soát được lời nói — biết dừng đúng lúc khi nói — là mức độ tinh tế cao của việc 'dừng', giúp tránh được hối tiếc vì lỡ lời.",
+      "itExample": "Biết dừng đúng lúc trong code review/giao tiếp nhóm — chỉ góp ý có trật tự, đúng trọng tâm, tránh những bình luận thừa gây hiểu lầm hoặc mất lòng.",
+      "lifeExample": "Học được cách kiểm soát lời nói, chỉ nói đúng lúc đúng chỗ và có trật tự — tránh được nhiều hối tiếc vì lỡ lời trong giao tiếp hàng ngày."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Cửu",
+      "hanzi": "上九：敦艮，吉。",
+      "hanviet": "Thượng Cửu: Đôn Cấn, cát.",
+      "translation": "Dừng lại một cách chân thành, sâu dày, bền vững — tốt lành.",
+      "english": "The sixth line, dynamic, shows its subject devotedly maintaining his restfulness. There will be good fortune.",
+      "explain": "Mức độ cao nhất của việc 'dừng' — không phải dừng gượng ép mà dừng một cách tự nhiên, sâu sắc, thành tâm. Đây là hào tốt nhất trong cả quẻ.",
+      "itExample": "Một tổ chức đạt tới văn hoá 'biết dừng đúng lúc' một cách tự nhiên (feature freeze, code freeze, sleep-on-it trước quyết định lớn) đã trở thành thói quen bền vững, không cần ép buộc — kết quả luôn tốt.",
+      "lifeExample": "Đạt tới mức độ tĩnh tâm sâu sắc, tự nhiên biết buông bỏ và dừng lại đúng lúc trong mọi việc — đây là trí tuệ trưởng thành nhất, mang lại an lành lâu dài."
+    }
+  ],
+
+  "keywords": ["Cấn", "艮", "Núi", "thuần Cấn", "dừng lại", "tĩnh lặng", "biết dừng đúng lúc", "tự chủ"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/gen", "note": "Bản dịch tiếng Anh public domain, đối chiếu nguyên văn chữ Hán từng hào; đọc lại nguyên văn Legge qua trang tổng hợp James DeKorne." },
+    { "source": "James DeKorne, The Gnostic Book of Changes — Hexagram 52", "url": "https://jamesdekorne.com/GBCh/hex52.htm", "note": "Trang tổng hợp trích dẫn đầy đủ bản dịch Legge cho Thoán từ, Đại Tượng và 6 hào." },
+    { "source": "維基文庫 Wikisource — 周易/艮", "url": "https://zh.wikisource.org/zh-hant/周易/艮", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/8", "label": "Finger CPU Lab — Bài 8: Bát Quái" },
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/52", "label": "64 Quẻ — Quẻ 52: Thuần Cấn" }
+  ]
+}

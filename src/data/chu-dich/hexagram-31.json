@@ -1,0 +1,158 @@
+{
+  "id": 31,
+  "hanzi": "咸",
+  "pinyin": "Xián",
+  "hanviet": "Hàm",
+  "english": "Influence (Wooing)",
+  "upperTrigram": "dui",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "咸：亨。利貞。取女吉。",
+    "hanviet": "Hàm: Hanh. Lợi trinh. Thủ nữ cát.",
+    "translation": "Hàm (cảm ứng lẫn nhau): hanh thông. Thuận lợi khi giữ chính đính. Cưới vợ thì tốt lành.",
+    "english": "Hsien indicates that, (on the fulfilment of the conditions implied in it), there will be free course and success. Its advantageousness will depend on the being firm and correct, (as in) the connexion with marrying a young lady. There will be good fortune."
+  },
+
+  "daTuong": {
+    "hanzi": "山上有澤，咸；君子以虛受人。",
+    "hanviet": "Sơn thượng hữu trạch, Hàm; quân tử dĩ hư thụ nhân.",
+    "translation": "Trên núi có hồ nước, đó là tượng của Hàm; người quân tử noi theo đó mà giữ lòng trống rỗng, cởi mở để tiếp nhận người khác.",
+    "english": "(The trigram representing) a mountain and above it that for (the waters of) a marsh form Hsien. The superior man, in accordance with this, keeps his mind free from pre-occupation, and open to receive (the influences of) others.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Hàm nghĩa là 'cảm ứng lẫn nhau' — quẻ ghép Hồ (Đoài, thiếu nữ) ở trên và Núi (Cấn, thiếu nam) ở dưới, biểu tượng cho sự rung động, thu hút tự nhiên giữa hai bên (như đôi trai gái mới yêu). Đặc biệt: núi (dương, cứng) chịu ở dưới, hồ (âm, mềm) ở trên — thế 'nhún nhường' này chính là điều kiện để cảm ứng thành công (khác với sự áp đặt từ trên xuống). Sáu hào mô tả sự cảm ứng lan dần từ dưới lên trên cơ thể (ngón chân → bắp chân → đùi → lưng → hàm/má/lưỡi) — một tín hiệu cảm xúc/ảnh hưởng lan tỏa từng bước, càng lên cao càng cần thận trọng để không chỉ là cảm xúc nông cạn (hào 3 'giữ chặt kẻ mình đi theo — đáng tiếc') mà phải là sự cảm ứng chân thành, sâu sắc (hào 5 'cảm ứng ở lưng — không hối tiếc').",
+
+  "computer_science": "Hàm giống hệt một event/signal lan truyền qua các layer của hệ thống: tín hiệu bắt đầu từ tầng thấp nhất (ngón chân — edge event nhỏ) rồi lan dần lên các layer cao hơn (bắp chân, đùi, lưng, hàm) — mỗi layer chỉ nên phản ứng đúng mức độ của mình, không nên escalate quá sớm (hào 2 cảnh báo: di chuyển vội ở tầng thấp thì xấu, cứ đứng yên đúng vị trí mới tốt). Đây cũng là mô hình publish-subscribe: ảnh hưởng lan tỏa tự nhiên giữa các component không cần ép buộc trung tâm, giống sức hút tương hỗ giữa producer và consumer trong hệ thống event-driven.",
+
+  "life": "Ảnh hưởng và sức hút thật sự không đến từ sự cưỡng ép mà từ cảm ứng tự nhiên, chân thành — giống núi nhún nhường bên dưới hồ. Giữ lòng cởi mở, trống rỗng để tiếp nhận (không cố chấp định kiến) là điều kiện để tạo ra kết nối sâu sắc, thay vì chỉ là rung động nông cạn thoáng qua.",
+
+  "programming": "Developer experience (DX) tốt vận hành theo nguyên lý 'Hàm': API/tài liệu tốt tạo ra sức hút tự nhiên khiến developer muốn dùng, không cần ép buộc bằng vendor lock-in — giống sự thu hút tương hỗ giữa 2 quái trong quẻ. Khi thiết kế hệ thống event-driven, để tín hiệu lan truyền đúng theo tầng (layer) của nó, tránh phản ứng thái quá ngay từ những sự kiện nhỏ ở tầng thấp nhất.",
+
+  "characters": [
+    {
+      "hanzi": "咸",
+      "pinyin": "xián",
+      "hanviet": "hàm",
+      "meaning": "Đều, cùng, cảm ứng lẫn nhau.",
+      "origin": "Chữ ghép bộ 戌 (tuất, gốc là hình vũ khí) + 口 (khẩu, miệng) — nghĩa gốc cổ liên quan tới 'toàn bộ, tất cả' (lời thề/tuyên bố chung); trong Kinh Dịch, 咸 được dùng theo nghĩa giả tá cho 感 (cảm) khi bỏ bộ tâm — biểu thị sự cảm ứng không chủ ý, tự nhiên (khác với 感 hữu ý về sau).",
+      "example": "咸與 (hàm dữ, cổ văn) = cùng tham gia; chữ 咸 là gốc chiết tự của 感 (cảm động, cảm ứng).",
+      "cs": "Signal / Event trigger",
+      "csExplain": "Một tín hiệu cảm ứng tự nhiên lan truyền không cần lệnh gọi trực tiếp — giống 1 event được emit và các listener tự phản ứng."
+    },
+    {
+      "hanzi": "取",
+      "pinyin": "qǔ",
+      "hanviet": "thủ",
+      "meaning": "Lấy, cưới (vợ), thu nhận.",
+      "origin": "Chữ ghép bộ 耳 (nhĩ, tai) + 又 (hựu, bàn tay) — nghĩa gốc cổ liên quan tới tập tục thời chiến cổ (cắt tai tù binh để tính công), về sau mở rộng nghĩa trung tính thành 'lấy, thu nhận, cưới hỏi'.",
+      "example": "取得 (thủ đắc) = đạt được; 取消 (thủ tiêu) = hủy bỏ.",
+      "cs": "Fetch / Acquire",
+      "csExplain": "Hành động 'lấy về' một tài nguyên hoặc kết nối — giống thao tác fetch/acquire một resource trong hệ thống."
+    },
+    {
+      "hanzi": "女",
+      "pinyin": "nǚ",
+      "hanviet": "nữ",
+      "meaning": "Người phụ nữ, con gái.",
+      "origin": "Chữ tượng hình người phụ nữ đang quỳ/ngồi khoanh tay, một trong các bộ thủ cổ nhất trong chữ Hán.",
+      "example": "女子 (nữ tử), 女兒 (nữ nhi) = con gái.",
+      "cs": "Passive receiver role",
+      "csExplain": "Trong ẩn dụ cảm ứng, vai trò tiếp nhận tín hiệu — giống 1 subscriber/receiver trong mô hình pub-sub."
+    },
+    {
+      "hanzi": "亨",
+      "pinyin": "hēng",
+      "hanviet": "hanh",
+      "meaning": "Hanh thông, thông suốt, trôi chảy.",
+      "origin": "Nguyên là chữ tượng hình miếu thờ/lễ vật dâng cúng (cùng gốc với 享 - hưởng), nghĩa gốc 'dâng tế, được hưởng', về sau mượn nghĩa 'thông suốt, hanh thông'.",
+      "example": "亨通 (hanh thông) = mọi việc suôn sẻ.",
+      "cs": "Successful execution path",
+      "csExplain": "Luồng xử lý thông suốt không nghẽn — kết quả khi 2 bên cảm ứng/kết nối đúng cách."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：咸其拇。",
+      "hanviet": "Sơ Lục: Hàm kỳ mẫu.",
+      "translation": "Cảm ứng ở ngón chân cái.",
+      "english": "The first SIX, divided, shows one moving his great toes.",
+      "explain": "Tín hiệu cảm ứng vừa mới xuất hiện, còn rất nhỏ và nông cạn (chỉ ở ngón chân) — chưa đủ để tạo ra hành động thực sự, chỉ là dấu hiệu ban đầu.",
+      "itExample": "Một event nhỏ (log warning đầu tiên) xuất hiện — chưa đủ để trigger alert hay hành động gì, chỉ là tín hiệu ở 'tầng thấp nhất' cần được ghi nhận.",
+      "lifeExample": "Cảm nhận đầu tiên, thoáng qua về một người hay một cơ hội — còn quá sớm để hành động, chỉ nên ghi nhận và quan sát thêm."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：咸其腓，凶，居吉。",
+      "hanviet": "Lục Nhị: Hàm kỳ phì, hung, cư cát.",
+      "translation": "Cảm ứng ở bắp chân; nếu vội di chuyển thì xấu, ở yên tại chỗ thì tốt.",
+      "english": "The second SIX, divided, shows one moving the calves of his leg. There will be evil. If he abide (quiet in his place), there will be good fortune.",
+      "explain": "Tín hiệu đã rõ hơn nhưng vẫn còn quá sớm để hành động chủ động — kiên nhẫn giữ nguyên vị trí tốt hơn là vội vàng phản ứng.",
+      "itExample": "Một cảnh báo hệ thống mới xuất hiện lần đầu — thay vì vội vàng thay đổi cấu hình production ngay, tốt hơn nên theo dõi thêm (giữ nguyên trạng) để xác nhận đây có phải vấn đề thật hay không.",
+      "lifeExample": "Cảm thấy có dấu hiệu bất ổn trong 1 mối quan hệ hay công việc — đôi khi kiên nhẫn quan sát thêm tốt hơn là phản ứng vội vàng."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：咸其股，執其隨，往吝。",
+      "hanviet": "Cửu Tam: Hàm kỳ cổ, chấp kỳ tùy, vãng lận.",
+      "translation": "Cảm ứng ở đùi, giữ chặt lấy những gì mình đi theo — tiến tới thì đáng tiếc.",
+      "english": "The third NINE, undivided, shows one moving his thighs, and keeping close hold of those whom he follows. Going forward (in this way) will cause regret.",
+      "explain": "Đùi di chuyển theo chân, không có chủ kiến riêng — cảm ứng ở mức này chỉ là bám theo người khác một cách thụ động, thiếu suy xét độc lập, nên hành động sẽ dẫn tới hối tiếc.",
+      "itExample": "Một team chỉ chạy theo trend công nghệ mới (vì thấy công ty khác dùng) mà không tự đánh giá xem có phù hợp với bài toán của mình hay không — quyết định thiếu chủ kiến này dễ dẫn tới hối tiếc.",
+      "lifeExample": "Làm theo đám đông chỉ vì thấy người khác làm vậy, thiếu suy xét riêng — quyết định này thường dẫn tới hối tiếc về sau."
+    },
+    {
+      "id": 4,
+      "name": "Cửu Tứ",
+      "hanzi": "九四：貞吉悔亡，憧憧往來，朋從爾思。",
+      "hanviet": "Cửu Tứ: Trinh cát hối vong, sung sung vãng lai, bằng tùng nhĩ tư.",
+      "translation": "Giữ chính đính thì tốt, hối tiếc tiêu tan; nếu lòng cứ phân vân qua lại không yên, thì chỉ những ai cùng chí hướng mới theo kịp suy nghĩ của mình.",
+      "english": "The fourth NINE, undivided, shows that firm correctness which will lead to good fortune, and prevent all occasion for repentance. If (its subject is) unsettled in his movements, (only) his friends will follow his purpose.",
+      "explain": "Vị trí trung tâm của quẻ, gần trái tim — cảm ứng chân thành, vững vàng thì tốt; nhưng nếu để tâm trí dao động, phân vân liên tục thì chỉ thu hút được nhóm nhỏ cùng tần số, không tạo được ảnh hưởng rộng.",
+      "itExample": "Một tầm nhìn sản phẩm rõ ràng, nhất quán (không dao động liên tục) thu hút được sự đồng thuận rộng rãi trong team; ngược lại, direction thay đổi xoành xoạch chỉ giữ được nhóm nhỏ trung thành nhất theo kịp.",
+      "lifeExample": "Một người có lập trường vững vàng, chân thành thu hút được nhiều mối quan hệ tốt; còn nếu cứ dao động, thiếu nhất quán thì chỉ những người thân thiết nhất mới hiểu và theo kịp."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：咸其脢，无悔。",
+      "hanviet": "Cửu Ngũ: Hàm kỳ mỗi, vô hối.",
+      "translation": "Cảm ứng ở phần lưng trên tim — không có hối tiếc.",
+      "english": "The fifth NINE, undivided, shows one moving the flesh along the spine above the heart. There will be no occasion for repentance.",
+      "explain": "Vị trí lãnh đạo, cảm ứng đã đạt tới mức sâu sắc, ổn định (ở lưng — không dễ bị kích động như đùi hay bắp chân) — đây là sự cảm ứng chín chắn, không hời hợt, nên không có gì phải hối tiếc.",
+      "itExample": "Một mối quan hệ đối tác/khách hàng được xây dựng trên sự thấu hiểu sâu sắc, ổn định (không chỉ là phản ứng cảm tính nhất thời) — nền tảng vững chắc này không tạo ra rủi ro hối tiếc về sau.",
+      "lifeExample": "Một mối quan hệ hay quyết định dựa trên sự thấu hiểu sâu sắc, ổn định, không phải cảm xúc nhất thời — loại cảm ứng chín chắn này hiếm khi khiến ta hối tiếc."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：咸其輔，頰，舌。",
+      "hanviet": "Thượng Lục: Hàm kỳ phụ, giáp, thiệt.",
+      "translation": "Cảm ứng ở hàm, má, lưỡi (chỉ còn lời nói suông).",
+      "english": "The sixth SIX, divided, shows one moving his jaws and tongue.",
+      "explain": "Hào cuối cùng, cảm ứng đã lên tới miệng lưỡi — chỉ còn là lời nói, không còn hành động thực chất; đây là lời cảnh báo về sự cảm ứng hời hợt, chỉ dừng ở ngôn từ.",
+      "itExample": "Một buổi họp toàn 'lời nói hay' (hứa hẹn, cam kết bằng miệng) nhưng không có hành động cụ thể theo sau — cảm ứng chỉ dừng ở tầng bề mặt, không tạo ra giá trị thực.",
+      "lifeExample": "Những lời hứa hẹn, tán tỉnh chỉ dừng ở ngôn từ mà không đi kèm hành động thực chất — đây là dấu hiệu cảm ứng nông cạn, không nên đặt nhiều niềm tin."
+    }
+  ],
+
+  "keywords": ["Hàm", "咸", "cảm ứng", "thu hút", "núi và hồ", "signal propagation", "event-driven"],
+
+  "references": [
+    { "source": "Chinese Wikisource — 周易/咸", "url": "https://zh.wikisource.org/zh-hant/周易/咸", "note": "Nguyên văn chữ Hán quái từ, hào từ, Đại Tượng — đối chiếu chéo." },
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16 — Hexagram 31 (bản mirror)", "url": "https://baharna.com/iching/legge/001110.htm", "note": "Bản dịch tiếng Anh public domain của Legge, đối chiếu từng hào với nguyên văn." },
+    { "source": "Chinese Text Project — 周易 Book of Changes", "url": "https://ctext.org/book-of-changes", "note": "Trang mục lục nguồn học thuật công khai lưu trữ Chu Dịch; trang riêng của quẻ 咸 không truy cập trực tiếp được trong phiên này nên đối chiếu qua Wikisource + baharna.com." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/31", "label": "64 Quẻ — Quẻ 31: Trạch Sơn Hàm" }
+  ]
+}

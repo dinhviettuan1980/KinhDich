@@ -1,0 +1,149 @@
+{
+  "id": 39,
+  "hanzi": "蹇",
+  "pinyin": "Jiǎn",
+  "hanviet": "Kiển",
+  "english": "Obstruction",
+  "upperTrigram": "kan",
+  "lowerTrigram": "gen",
+  "status": "ready",
+
+  "judgment": {
+    "hanzi": "蹇：利西南，不利東北；利見大人，貞吉。",
+    "hanviet": "Kiển: Lợi tây nam, bất lợi đông bắc; lợi kiến đại nhân, trinh cát.",
+    "translation": "Kiển (Trở ngại): thuận lợi hướng tây nam, không lợi hướng đông bắc; thuận lợi gặp được đại nhân, giữ vững chính đạo thì tốt lành.",
+    "english": "Jian indicates that, in the circumstances which it denotes, advantage will be found in the south-west, and the contrary in the north-east. It will be advantageous to meet with the great man. With firmness and correctness there will be good fortune."
+  },
+
+  "daTuong": {
+    "hanzi": "山上有水，蹇；君子以反身修德。",
+    "hanviet": "Sơn thượng hữu thủy, Kiển; quân tử dĩ phản thân tu đức.",
+    "translation": "Nước ứ đọng trên núi — đó là tượng của Kiển; người quân tử noi theo đó mà quay lại nhìn vào bản thân, tu dưỡng đức hạnh.",
+    "english": "A mountain with water on it forms the image of Obstruction. The superior man examines himself and cultivates his virtue accordingly.",
+    "note": "Đại Tượng truyện (大象傳) — thuộc Thập Dực, lời bình về hình tượng quẻ, không phải Thoán từ gốc."
+  },
+
+  "meaning": "Kiển là quẻ chỉ tình trạng bị cản trở, bí tắc — nước ứ đọng trên núi không thể chảy xuống, hướng tây nam thì có thể vượt qua (núi có thể leo), hướng đông bắc thì nước lạnh đông cứng cứng lại không đi được. Bài học không phải 'tránh hoàn toàn rắc rối' (không thể) mà 'hiểu rõ hạn chế, tìm hướng đi khả thi'. Ngoài ra, quẻ này nhấn mạnh vai trò của 'đại nhân' (người có quyền lực/uy tín) — bị mắc kẹt thì cần giúp đỡ từ bên ngoài, không nên cố vùng vẫy một mình. Giai đoạn cua ba tuyên bố là thời gian để 'tu dưỡng đức hạnh', chứ không phải hoảng loạn.",
+
+  "computer_science": "Kiển giống một hệ thống gặp dependency blocker, performance bottleneck, hoặc organizational friction (nước ứ đọng trên núi). Cách xử lý không phải 'brute force' tiếp tục cố gắng, mà là 'reflection + pivot': xem lại kiến trúc, tìm đường vòng (tây nam), hoặc request escalation/resource từ leadership (đại nhân). Giai đoạn này để viết better tests, document lý do bottleneck, prep migration strategy.",
+
+  "life": "Trong cuộc sống, bị cản trở là bình thường. Điều quan trọng không phải 'tránh trở ngại' mà 'chọn đúng phương hướng' (tây nam vs đông bắc) — tức là hiểu rõ rằng một số con đường không khả thi, cần thay đổi cách tiếp cận. Và khi cần, đừng ngại tìm kiếm sự hỗ trợ từ người có ảnh hưởng hơn.",
+
+  "programming": "Khi stuck trong sprint, không thể deliver feature do dependency block hoặc technical debt quá nặng: thay vì stress ngắn hạn, dùng thời gian này để: (1) document rõ blocker là gì; (2) escalate tới leadership để unblock (request tài nguyên, thay đổi prioritize); (3) refactor phần nào được để giảm kỳ vọng realistic; (4) improve testing/tooling để next sprint đỡ bị block. Đó là 'phản thân tu đức' trong mặt engineering."
+
+  ,
+
+  "characters": [
+    {
+      "hanzi": "蹇",
+      "pinyin": "jiǎn",
+      "hanviet": "kiển",
+      "meaning": "Ngoảnh, liệt, trở ngại, bất tiện.",
+      "origin": "Chữ hình thanh gồm 足 (chân) + 寒 (lạnh, biểu âm) — hình ảnh chân bị cứng vì lạnh, không bước được — nguyên nghĩa là 'chân yếu, khó bước', mở rộng thành 'trở ngại, bất lợi'.",
+      "example": "蹇步 (kiển bộ) = bước khó khăn; 跛蹇 (ba kiển) = ngoảnh ngoại.",
+      "cs": "Impedance / Blocker",
+      "csExplain": "Một trở ngại làm giảm throughput hoặc tốc độ (giống chân bị liệt không bước được nhanh)."
+    },
+    {
+      "hanzi": "利",
+      "pinyin": "lì",
+      "hanviet": "lợi",
+      "meaning": "Lợi ích, thuận lợi, sắc bén.",
+      "origin": "Chữ ghép từ 禾 (lúa) + 刀 (dao) — hình ảnh gặt lúa, meaning 'lợi ích, thu hoạch'.",
+      "example": "利益 (lợi ích); 便利 (tiện lợi).",
+      "cs": "Favorable Direction",
+      "csExplain": "Con đường hay hướng tiếp cận có thể sinh ra giá trị (tây nam) trái ngược với hướng không khả thi (đông bắc)."
+    },
+    {
+      "hanzi": "見",
+      "pinyin": "jiàn",
+      "hanviet": "kiến",
+      "meaning": "Thấy, gặp, ý kiến.",
+      "origin": "Chữ hình thanh ghép 目 (mắt) + 人 (người) — người sử dụng mắt để nhìn/thấy.",
+      "example": "見面 (kiến diện) = gặp mặt; 見解 (kiến giải) = ý kiến.",
+      "cs": "Meeting / Escalation",
+      "csExplain": "Việc gặp gỡ/trao đổi với người có quyền lực/kinh nghiệm hơn là cách phá vỡ blockade."
+    }
+  ],
+
+  "yao": [
+    {
+      "id": 1,
+      "name": "Sơ Lục",
+      "hanzi": "初六：往蹇，來譽。",
+      "hanviet": "Sơ Lục: Vãng kiển, lai dự.",
+      "translation": "Đi tới gặp trở ngại; nhưng ở lại sẽ được khen.",
+      "english": "Advancing leads to greater difficulties; remaining stationary brings praise.",
+      "explain": "Vị trí thấp nhất của quẻ — nhận thức được rõ ràng rằng đi tới là bất khả thi, nên chọn dừng lại là quyết định khôn ngoan.",
+      "itExample": "Một junior dev nhận ra feature này sẽ phá vỡ integration test, thay vì cố push qua (vì áp lực deadline), dừng lại báo cáo vấn đề — được appreciation từ tech lead vì proactive thinking.",
+      "lifeExample": "Nhận ra con đường này (đi Đông Bắc) không khả thi, chọn dừng lại thay vì lao vào — được khen ngợi vì sự khôn ngoan."
+    },
+    {
+      "id": 2,
+      "name": "Lục Nhị",
+      "hanzi": "六二：王臣蹇蹇，匪躬之故。",
+      "hanviet": "Lục Nhị: Vương thần kiển kiển, phỉ cung chi cố.",
+      "translation": "Thần tôi của vua cũng gặp trở ngại; nhưng không phải vì cá nhân mà vì công vụ.",
+      "english": "The king's minister (too) struggles through difficulty, not for personal gain.",
+      "explain": "Dù ở vị trí cao, vẫn phải gặp trở ngại — điều đặc biệt là vẫn giữ được sự chính trực, không xích mích lợi ích cá nhân.",
+      "itExample": "Tech lead phải deal với organization friction (budget, stakeholder misalignment) để bảo vệ team — còn khi gặp khó mà vẫn ưu tiên team's interest chứ không qua mặt team để self-serve.",
+      "lifeExample": "Cha mẹ phải gặp khó khăn để nuôi con, cung cấp tài nguyên cho con em — vẫn làm vì trách nhiệm, không phải vì lợi ích cá nhân."
+    },
+    {
+      "id": 3,
+      "name": "Cửu Tam",
+      "hanzi": "九三：往蹇來反。",
+      "hanviet": "Cửu Tam: Vãng kiển lai phản.",
+      "translation": "Đi tới gặp trở ngại; khi nhận ra, quay lại.",
+      "english": "Advancing encounters difficulty; remaining still, he returns (to his associates).",
+      "explain": "Nhận ra con đường này không khả thi, quyết định quay lại — điều này không phải thất bại mà là sự phán đoán đúng và linh hoạt.",
+      "itExample": "Cố gắng integrate external library nhưng dependencies xung đột quá phức tạp; quyết định quay lại, dùng workaround khác — một team review cảnh báo 'đi không được, quay về để tìm cách khác'.",
+      "lifeExample": "Cố theo đuổi một con đường sự nghiệp nhưng thấy rõ nó không phù hợp; quay lại, thay đổi hướng — là sự khôn ngoan, không phải bỏ cuộc."
+    },
+    {
+      "id": 4,
+      "name": "Lục Tứ",
+      "hanzi": "六四：往蹇來連。",
+      "hanviet": "Lục Tứ: Vãng kiển lai liên.",
+      "translation": "Đi tới gặp trở ngại; khi chuyên chở lại (trở về, kết nối với), sẽ được kết nối với người phía trên.",
+      "english": "Advancing meets difficulty; remaining still, he unites with those above.",
+      "explain": "Không cố đi tiếp, mà quay lại kết nối với người phía trên (leader, mentor) — điều này mở ra cơ hội được hỗ trợ.",
+      "itExample": "Stuck ở một vấn đề, thay vì cứ mà debug một mình (往蹇), khi báo cáo tới senior/lead (來連), ngay lập tức được guidance hoặc resource để unblock.",
+      "lifeExample": "Gặp khó khăn và chọn nhìn lên tìm sự hỗ trợ từ mentor/sếp, thay vì cố một mình — kết nối này giải quyết vấn đề."
+    },
+    {
+      "id": 5,
+      "name": "Cửu Ngũ",
+      "hanzi": "九五：大蹇朋來。",
+      "hanviet": "Cửu Ngũ: Đại kiển pêng lai.",
+      "translation": "Trở ngại lớn; nhưng bạn bè sẽ đến giúp.",
+      "english": "Greatest difficulty: (yet) friends arrive to offer assistance.",
+      "explain": "Đỉnh cao của khó khăn — nhưng chính lúc này, những người bạn/đồng minh thực sự xuất hiện để hỗ trợ.",
+      "itExample": "Một project critical gặp disaster (major bug on production); nhưng ngay lập tức cả org/nhiều team volun jump in để giúp dọn — sự hợp tác này là bài học giá trị.",
+      "lifeExample": "Gặp khó khăn lớn (bệnh tật, mất việc); nhưng chính lúc này, bạn bè cũ/gia đình gần nhất xuất hiện mạnh mẽ — sự hỗ trợ này quý hơn bao giờ hết."
+    },
+    {
+      "id": 6,
+      "name": "Thượng Lục",
+      "hanzi": "上六：往蹇來碩，吉；利見大人。",
+      "hanviet": "Thượng Lục: Vãng kiển lai thạch, cát; lợi kiến đại nhân.",
+      "translation": "Đi tới gặp trở ngại; khi quay về, sẽ đạt thành quả lớn — tốt lành; và thuận lợi gặp được đại nhân.",
+      "english": "Advancing increases difficulty; stillness yields great merit and good fortune; it will be advantageous to meet the great man.",
+      "explain": "Hào cuối cùng của quẻ Kiển — sau khi nhận ra trở ngại không thể vượt qua, dừng lại và quay lại, sẽ đạt được thứ gì đó lớn hơn. Và quan trọng là đi gặp 'đại nhân' (người có ảnh hưởng).",
+      "itExample": "Một 'rewrite from scratch' project khó nhất khi còn cố force cách cũ; khi chịu pivot strategy + escalate tới CTO/architecture board để reframe problem, mới thấy giải pháp lớn hơn ban đầu.",
+      "lifeExample": "Sau cùng nhận ra bộ bộ cố chấp với con đường cũ là chủ yếu, khi buông bỏ nó và tìm mentor/coach từ bên ngoài, giải pháp toàn cảnh lớn hơn mới hiển lộ."
+    }
+  ],
+
+  "keywords": ["Kiển", "蹇", "trở ngại", "bị cản trở", "tây nam", "Thủy Sơn", "tìm hướng đi khác"],
+
+  "references": [
+    { "source": "James Legge, The Yî King (1899), Sacred Books of the East vol. 16", "url": "https://ctext.org/book-of-changes/jian", "note": "Nguyên văn chữ Hán + bản dịch tiếng Anh public domain của quẻ Kiển." },
+    { "source": "維基文庫 Wikisource — 周易/蹇", "url": "https://zh.wikisource.org/zh-hant/周易/蹇", "note": "Đối chiếu chéo nguyên văn chữ Hán (卦辭, 爻辭, 象曰)." }
+  ],
+
+  "relatedLessons": [
+    { "module": "finger-cpu", "path": "/finger-cpu/bai/9", "label": "Finger CPU Lab — Bài 9: 64 Quẻ" },
+    { "module": "que", "path": "/que/39", "label": "64 Quẻ — Quẻ 39: Thủy Sơn Kiển" }
+  ]
+}
