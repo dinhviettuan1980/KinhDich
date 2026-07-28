@@ -18,7 +18,7 @@ function blocksToText(blocks) {
 // Tải 1 lần, cache ở module để chuyển trang không fetch lại
 let _cache = null
 function loadQue() {
-  if (!_cache) _cache = fetch('/data/que.json').then((r) => r.json()).catch(() => [])
+  if (!_cache) _cache = fetch(`${import.meta.env.BASE_URL}data/que.json`).then((r) => r.json()).catch(() => [])
   return _cache
 }
 // Ký tự Unicode quẻ Kinh Dịch (theo thứ tự Văn Vương): ䷀ = quẻ 1 … ䷿ = quẻ 64

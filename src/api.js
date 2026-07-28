@@ -1,4 +1,4 @@
-const BASE = '/kinhdich'
+export const BASE = '/api/kinhdich'
 
 export function getUserId() {
   let id = localStorage.getItem('kd_user_id')

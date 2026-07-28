@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FullHexagramSVG from '../components/FullHexagramSVG'
 import { getHexagramById } from '../data/hexagrams'
-import { getUserId } from '../api'
+import { getUserId, BASE } from '../api'
 
 function timeAgo(dateStr) {
   const d = new Date(dateStr)
@@ -33,7 +33,7 @@ function CastingCard({ item, onDeleted, onNoteUpdated }) {
   async function saveNote() {
     setSaving(true)
     try {
-      await fetch(`/kinhdich/castings/${item.id}/note`, {
+      await fetch(`${BASE}/castings/${item.id}/note`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ note }),
@@ -47,7 +47,7 @@ function CastingCard({ item, onDeleted, onNoteUpdated }) {
     if (!confirm('Xóa quẻ này khỏi lịch sử?')) return
     setDeleting(true)
     try {
-      await fetch(`/kinhdich/castings/${item.id}`, { method: 'DELETE' })
+      await fetch(`${BASE}/castings/${item.id}`, { method: 'DELETE' })
       onDeleted(item.id)
     } catch (e) { console.error(e) } finally { setDeleting(false) }
   }
@@ -163,7 +163,7 @@ export default function CastingHistoryPage() {
 
   useEffect(() => {
     const userId = getUserId()
-    fetch(`/kinhdich/castings/${userId}`)
+    fetch(`${BASE}/castings/${userId}`)
       .then(r => r.json())
       .then(data => setItems(data.castings || []))
       .catch(e => setError('Không thể tải lịch sử'))

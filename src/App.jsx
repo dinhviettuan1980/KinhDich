@@ -55,7 +55,7 @@ export default function App() {
   }, []) // eslint-disable-line
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/kinhdich">
       <div className="min-h-screen transition-colors duration-200">
         <Navbar />
         <main className="pb-16">

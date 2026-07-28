@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import FullHexagramSVG from '../components/FullHexagramSVG'
 import CoinAnimation from '../components/CoinAnimation'
 import { computeHexagrams, TRIGRAM_SHORT, TRIGRAM_ELEMENT, getHexagramById } from '../data/hexagrams'
-import { getUserId } from '../api'
+import { getUserId, BASE } from '../api'
 import {
   playCoinToss, playCoinLand, playLineComplete, playHexagramComplete,
   isSoundOn, setSoundEnabled,
@@ -91,7 +91,7 @@ export default function CastingPage() {
     setSaving(true)
     try {
       const userId = getUserId()
-      await fetch('/kinhdich/castings', {
+      await fetch(`${BASE}/castings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
