@@ -1,3 +1,5 @@
+import { auth } from './firebase'
+
 export const BASE = '/api/kinhdich'
 
 export function getUserId() {
@@ -23,13 +25,19 @@ export function clearActiveUser() {
 }
 
 // ---- Hồ sơ tài khoản ----
-function authHeaders(json) {
-  const h = { 'x-kd-token': localStorage.getItem('kd_token') || '' }
+// Ưu tiên Firebase (SSO chung hệ sinh thái) nếu đang đăng nhập; fallback token cũ.
+async function authHeaders(json) {
+  const h = {}
   if (json) h['Content-Type'] = 'application/json'
+  if (auth.currentUser) {
+    h['Authorization'] = `Bearer ${await auth.currentUser.getIdToken()}`
+  } else {
+    h['x-kd-token'] = localStorage.getItem('kd_token') || ''
+  }
   return h
 }
 export async function getMe() {
-  const res = await fetch(`${BASE}/me`, { headers: authHeaders() })
+  const res = await fetch(`${BASE}/me`, { headers: await authHeaders() })
   const data = await res.json()
   if (!res.ok) {
     const err = new Error(data.error || 'Lỗi tải hồ sơ')
@@ -39,16 +47,29 @@ export async function getMe() {
   return data // { username, isAdmin, fullName, address, birthday }
 }
 export async function updateProfile({ fullName, address, birthday }) {
-  const res = await fetch(`${BASE}/me`, { method: 'PUT', headers: authHeaders(true), body: JSON.stringify({ fullName, address, birthday }) })
+  const res = await fetch(`${BASE}/me`, { method: 'PUT', headers: await authHeaders(true), body: JSON.stringify({ fullName, address, birthday }) })
   const data = await res.json()
   if (!res.ok) throw new Error(data.error || 'Lỗi lưu hồ sơ')
   return data
 }
 export async function changePassword(oldPassword, newPassword) {
-  const res = await fetch(`${BASE}/me/password`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ oldPassword, newPassword }) })
+  const res = await fetch(`${BASE}/me/password`, { method: 'POST', headers: await authHeaders(true), body: JSON.stringify({ oldPassword, newPassword }) })
   const data = await res.json()
   if (!res.ok) throw new Error(data.error || 'Lỗi đổi mật khẩu')
   return data
+}
+
+// Liên kết tài khoản Kinh Dịch cũ (username/password) với phiên Firebase đang đăng nhập.
+export async function linkFirebaseAccount(username, password) {
+  if (!auth.currentUser) throw new Error('Chưa đăng nhập hệ sinh thái')
+  const res = await fetch(`${BASE}/me/link-firebase`, {
+    method: 'POST',
+    headers: await authHeaders(true),
+    body: JSON.stringify({ username, password }),
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'Liên kết thất bại')
+  return data // { username, linked }
 }
 
 // ---- Văn khấn ----
@@ -59,19 +80,19 @@ export async function fetchVanKhanList() {
   return d.items
 }
 export async function addVanKhanUrl(url, category) {
-  const res = await fetch(`${BASE}/vankhan/from-url`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ url, category }) })
+  const res = await fetch(`${BASE}/vankhan/from-url`, { method: 'POST', headers: await authHeaders(true), body: JSON.stringify({ url, category }) })
   const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
 }
 export async function addVanKhanText({ title, text, source, category }) {
-  const res = await fetch(`${BASE}/vankhan`, { method: 'POST', headers: authHeaders(true), body: JSON.stringify({ title, text, source, category }) })
+  const res = await fetch(`${BASE}/vankhan`, { method: 'POST', headers: await authHeaders(true), body: JSON.stringify({ title, text, source, category }) })
   const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
 }
 export async function updateVanKhanText(id, { title, text, category }) {
-  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'PUT', headers: authHeaders(true), body: JSON.stringify({ title, text, category }) })
+  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'PUT', headers: await authHeaders(true), body: JSON.stringify({ title, text, category }) })
   const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
 }
 export async function deleteVanKhan(id) {
-  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'DELETE', headers: authHeaders() })
+  const res = await fetch(`${BASE}/vankhan/${id}`, { method: 'DELETE', headers: await authHeaders() })
   const d = await res.json(); if (!res.ok) throw new Error(d.error || 'Lỗi'); return d
 }
 

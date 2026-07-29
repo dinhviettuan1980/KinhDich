@@ -2,12 +2,17 @@ import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { useStore, LENS } from '../store'
 import LoginModal from './LoginModal'
+import LinkAccountModal from './LinkAccountModal'
 
 export default function Navbar() {
-  const { darkMode, toggleDark, progress, user, logout, lens, setLens, loginOpen, openLogin, closeLogin } = useStore()
+  const {
+    darkMode, toggleDark, progress, user, logout, lens, setLens,
+    loginOpen, openLogin, closeLogin, firebaseUnlinked,
+  } = useStore()
   const [menuOpen, setMenuOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const [lensOpen, setLensOpen] = useState(false)
+  const [linkOpen, setLinkOpen] = useState(false)
   const location = useLocation()
   const streak = progress?.streak || 0
 
@@ -125,7 +130,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-2 pb-2 mb-2 border-b border-gray-100 dark:border-dark-border">
                       <div className="min-w-0">
                         <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{user.name}</div>
-                        <div className="text-xs text-gray-400 truncate">{user.email || ({ google: 'Google', facebook: 'Facebook', user: 'Tài khoản' }[user.provider])}</div>
+                        <div className="text-xs text-gray-400 truncate">{user.email || ({ google: 'Google', facebook: 'Facebook', firebase: 'Hệ sinh thái', user: 'Tài khoản' }[user.provider])}</div>
                       </div>
                     </div>
                     <Link
@@ -146,12 +151,23 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            <button
-              onClick={openLogin}
-              className="px-3 py-1.5 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary-light transition-colors"
-            >
-              Đăng nhập
-            </button>
+            <div className="flex items-center gap-1.5">
+              {firebaseUnlinked && (
+                <button
+                  onClick={() => setLinkOpen(true)}
+                  className="hidden sm:block px-2.5 py-1.5 rounded-lg text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-dark-card transition-colors"
+                  title="Đã đăng nhập hệ sinh thái tuandv.id.vn — liên kết với tài khoản Kinh Dịch cũ để giữ tiến độ"
+                >
+                  Liên kết tài khoản cũ
+                </button>
+              )}
+              <button
+                onClick={openLogin}
+                className="px-3 py-1.5 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary-light transition-colors"
+              >
+                Đăng nhập
+              </button>
+            </div>
           )}
 
           {/* Mobile menu */}
@@ -185,6 +201,7 @@ export default function Navbar() {
       )}
 
       {loginOpen && <LoginModal onClose={closeLogin} />}
+      {linkOpen && <LinkAccountModal onClose={() => setLinkOpen(false)} />}
     </nav>
   )
 }

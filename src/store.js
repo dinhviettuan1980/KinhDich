@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { fetchProgress, setActiveUser, clearActiveUser, fetchProfile, saveLens } from './api'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { fetchProgress, setActiveUser, clearActiveUser, fetchProfile, saveLens, getMe } from './api'
+import { auth } from './firebase'
 
 export const LENS = {
   life: { key: 'life', label: 'Cuộc sống thường ngày', icon: '🌿', field: 'realExample', exampleLabel: '🌍 Ví dụ đời thực' },
@@ -64,7 +66,7 @@ export const useStore = create(
       closeLogin: () => set({ loginOpen: false }),
 
       // ---- Người dùng (chỉ để hiển thị; không cần bảo mật) ----
-      // user: { provider: 'google'|'facebook'|'user', uid, name, email, avatar, isAdmin }
+      // user: { provider: 'google'|'facebook'|'user'|'firebase', uid, name, email, avatar, isAdmin }
       user: null,
       login: async (user) => {
         setActiveUser(user.uid)            // tiến độ gắn theo tài khoản
@@ -74,10 +76,83 @@ export const useStore = create(
       },
       updateUser: (patch) => set((s) => (s.user ? { user: { ...s.user, ...patch } } : {})),
       logout: async () => {
+        if (auth.currentUser) {
+          try { await signOut(auth) } catch { /* noop */ }
+        }
         clearActiveUser()                  // về danh tính khách
-        set({ user: null })
+        set({ user: null, firebaseUnlinked: null })
         try { set({ progress: await fetchProgress() }) } catch { /* noop */ }
         get().loadLens()
+      },
+
+      // ---- SSO hệ sinh thái tuandv.id.vn (Firebase) ----
+      // { username, email, name, avatar } khi Firebase đã đăng nhập nhưng chưa liên kết
+      // với tài khoản Kinh Dịch cũ nào (row "fb_..." tự tạo ở backend). Xem
+      // .claude/plans/virtual-sparking-beaver.md.
+      firebaseUnlinked: null,
+      initFirebaseAuth: () => {
+        onAuthStateChanged(auth, async (fbUser) => {
+          if (!fbUser) return
+          if (get().user) return // đã có phiên đang hoạt động (cũ hoặc firebase) — không ghi đè
+          try {
+            const me = await getMe()
+            if (String(me.username).startsWith('fb_')) {
+              set({
+                firebaseUnlinked: {
+                  username: me.username,
+                  email: fbUser.email,
+                  name: fbUser.displayName || fbUser.email,
+                  avatar: fbUser.photoURL,
+                },
+              })
+            } else {
+              await get().login({
+                provider: 'firebase',
+                uid: `user:${me.username}`,
+                username: me.username,
+                name: me.fullName || fbUser.displayName || me.username,
+                fullName: me.fullName || null,
+                email: fbUser.email,
+                avatar: fbUser.photoURL,
+                isAdmin: me.isAdmin,
+              })
+            }
+          } catch { /* noop — /me chưa sẵn sàng (vd server chưa cấu hình Firebase Admin) */ }
+        })
+      },
+      // Sau khi POST /me/link-firebase thành công — /me giờ trả về đúng tài khoản cũ.
+      adoptLinkedAccount: async () => {
+        try {
+          const me = await getMe()
+          await get().login({
+            provider: 'firebase',
+            uid: `user:${me.username}`,
+            username: me.username,
+            name: me.fullName || me.username,
+            fullName: me.fullName || null,
+            email: me.email || null,
+            avatar: get().firebaseUnlinked?.avatar || null,
+            isAdmin: me.isAdmin,
+          })
+        } finally {
+          set({ firebaseUnlinked: null })
+        }
+      },
+      // "Bỏ qua, dùng tài khoản mới" — nhận luôn row synthetic (fb_...) làm tài khoản chính.
+      dismissFirebaseLink: () => {
+        const pending = get().firebaseUnlinked
+        if (!pending) return
+        get().login({
+          provider: 'firebase',
+          uid: `user:${pending.username}`,
+          username: pending.username,
+          name: pending.name || pending.username,
+          fullName: null,
+          email: pending.email || null,
+          avatar: pending.avatar || null,
+          isAdmin: false,
+        })
+        set({ firebaseUnlinked: null })
       },
 
       getTodayDay: () => {

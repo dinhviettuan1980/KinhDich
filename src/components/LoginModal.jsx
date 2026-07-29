@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
+import { GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useStore } from '../store'
 import { registerUser, loginUser } from '../api'
+import { auth } from '../firebase'
 
 export default function LoginModal({ onClose }) {
   const { login } = useStore()
@@ -40,6 +42,18 @@ export default function LoginModal({ onClose }) {
     }
   }
 
+  // Đăng nhập chung hệ sinh thái tuandv.id.vn — kết quả xử lý ở store.js's
+  // initFirebaseAuth() (onAuthStateChanged), không cần cập nhật state ở đây.
+  const submitPopup = async (provider) => {
+    setError('')
+    try {
+      await signInWithPopup(auth, provider)
+      onClose()
+    } catch (err) {
+      setError(err.code === 'auth/popup-closed-by-user' ? '' : (err.message || 'Đăng nhập thất bại'))
+    }
+  }
+
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
@@ -48,7 +62,30 @@ export default function LoginModal({ onClose }) {
           <h2 className="text-lg font-display font-bold text-gray-900 dark:text-gray-100">Đăng nhập</h2>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 text-xl leading-none">×</button>
         </div>
-        <p className="text-xs text-gray-400 dark:text-gray-500 mb-5">Để lưu tiến độ học theo tài khoản của bạn.</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">Dùng chung tài khoản với cả hệ sinh thái tuandv.id.vn.</p>
+
+        <div className="space-y-2 mb-4">
+          <button
+            type="button"
+            onClick={() => submitPopup(new GoogleAuthProvider())}
+            className="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-dark-border text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-card"
+          >
+            Tiếp tục với Google
+          </button>
+          <button
+            type="button"
+            onClick={() => submitPopup(new FacebookAuthProvider())}
+            className="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-dark-border text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-card"
+          >
+            Tiếp tục với Facebook
+          </button>
+        </div>
+
+        <div className="flex items-center gap-3 mb-4 text-xs text-gray-400">
+          <div className="flex-1 h-px bg-gray-200 dark:bg-dark-border" />
+          hoặc tài khoản Kinh Dịch cũ
+          <div className="flex-1 h-px bg-gray-200 dark:bg-dark-border" />
+        </div>
 
         <form onSubmit={submitUser} className="space-y-2">
           <input

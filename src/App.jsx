@@ -35,11 +35,17 @@ import { useStore } from './store'
 import { getMe } from './api'
 
 export default function App() {
-  const { darkMode, loadLens, lensReady, lensChosen, user, logout } = useStore()
+  const { darkMode, loadLens, lensReady, lensChosen, user, logout, initFirebaseAuth } = useStore()
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode)
   }, [darkMode])
+
+  // 1 lần khi app khởi động — nhận phiên đăng nhập chung hệ sinh thái tuandv.id.vn nếu có
+  // (xem store.js initFirebaseAuth + .claude/plans/virtual-sparking-beaver.md).
+  useEffect(() => {
+    initFirebaseAuth()
+  }, [initFirebaseAuth])
 
   useEffect(() => {
     loadLens()
