@@ -37,7 +37,7 @@ def timeline(o: Order) -> list[dict]:
 def detail_ctx(db: Session, o: Order) -> dict:
     return {"o": o, "timeline": timeline(o), "status_label": LABELS[S(o.status)], "can_cancel": svc.can_user_cancel(o),
             "final": S(o.status) in TERMINAL or o.status in ("rejected", "cancelled", "failed"),
-            "evidence": getattr(o, "evidence", [])}
+            "evidence": o.evidence}
 
 
 @router.get("")
@@ -76,3 +76,12 @@ def order_audio(order_id: int, db: Session = Depends(get_db), user: User = Depen
     if not key:
         raise HTTPException(404, "Chưa có file âm thanh")
     return FileResponse(get_storage().local_path(key), media_type="audio/mpeg")
+
+
+@router.get("/{order_id}/anh/{evidence_id}")
+def evidence_photo(order_id: int, evidence_id: int, db: Session = Depends(get_db), user: User = Depends(require_user)):
+    o = owned_order(db, order_id, user)
+    ev = next((e for e in o.evidence if e.id == evidence_id), None)
+    if not ev:
+        raise HTTPException(404)
+    return FileResponse(get_storage().local_path(ev.path), media_type="image/jpeg")

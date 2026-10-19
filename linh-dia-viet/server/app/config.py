@@ -1,3 +1,4 @@
+import os
 from functools import lru_cache
 from pathlib import Path
 
@@ -6,8 +7,15 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 BASE_DIR = Path(__file__).resolve().parent
 
 
+def _env_files() -> tuple[str, ...] | None:
+    # APP_ENV_FILE="" để tắt (test), hoặc danh sách file cách nhau bằng dấu phẩy.
+    raw = os.environ.get("APP_ENV_FILE", ".env,../.env")
+    files = tuple(f for f in raw.split(",") if f.strip())
+    return files or None
+
+
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=(".env", "../.env"), extra="ignore")
+    model_config = SettingsConfigDict(env_file=_env_files(), extra="ignore")
 
     env: str = "dev"
     secret_key: str = "dev-secret-change-me"

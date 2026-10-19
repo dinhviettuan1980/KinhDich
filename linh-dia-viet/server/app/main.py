@@ -10,8 +10,11 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.sessions import SessionMiddleware
 
 from . import db as dbmod
+from . import devices
+from .device_bus import get_bus
+from .scheduler import Scheduler
 from .config import BASE_DIR, get_settings
-from .routers import admin, auth, booking, orders, public
+from .routers import admin, auth, booking, device_api, orders, public
 from .web import LoginRequired, render, u
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -24,7 +27,16 @@ def create_app() -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
+        bus = get_bus()
+        bus.start(devices.handle_message)
+        sched = None
+        if settings.scheduler_enabled:
+            sched = Scheduler(settings.scheduler_interval_seconds)
+            sched.start()
         yield
+        if sched:
+            sched.stop()
+        bus.stop()
 
     app = FastAPI(title="Linh Địa Việt", lifespan=lifespan, docs_url=None, redoc_url=None)
     app.add_middleware(
@@ -34,7 +46,7 @@ def create_app() -> FastAPI:
     )
     p = settings.prefix
     app.mount(f"{p}/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-    for r in (public.router, auth.router, booking.router, orders.router, admin.router):
+    for r in (public.router, auth.router, booking.router, orders.router, admin.router, device_api.router):
         app.include_router(r, prefix=p)
 
     if p:

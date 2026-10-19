@@ -63,6 +63,10 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False)
     if len(temples) != len(ids):
         raise BookingError("Có đền không còn nhận lễ.")
     temples.sort(key=lambda t: ids.index(t.id))
+    if not partial:
+        missing = [t.name for t in temples if not t.device_id]
+        if missing:
+            raise BookingError("Chưa nhận lễ từ xa tại: " + ", ".join(missing) + " (đền chưa lắp thiết bị).")
 
     package = None
     pkg_id = _form_get(form, "goi")

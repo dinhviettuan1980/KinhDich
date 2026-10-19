@@ -5,6 +5,7 @@ from pathlib import Path
 
 _tmp = Path(tempfile.mkdtemp(prefix="ld-test-"))
 os.environ.update({
+    "APP_ENV_FILE": "",
     "ENV": "test",
     "DATABASE_URL": f"sqlite:///{_tmp}/test.db",
     "DATA_DIR": str(_tmp / "data"),
@@ -25,7 +26,10 @@ from app.db import Base  # noqa: E402
 from app.main import app  # noqa: E402
 from app.security import hash_password, limiter  # noqa: E402
 from app.seed import seed  # noqa: E402
-from app.models import User  # noqa: E402
+from app.models import Device, Temple, User  # noqa: E402
+from app.device_bus import InMemoryDeviceBus, set_bus  # noqa: E402
+from app.security import hash_token  # noqa: E402
+from sqlalchemy import select  # noqa: E402
 
 P = "/le-chua"
 
@@ -37,6 +41,15 @@ def db():
     limiter.reset()
     session = dbmod.SessionLocal()
     seed(session)
+    # Seed chỉ có 1 thiết bị (đền đầu tiên); test đặt nhiều đền cần thiết bị cho cả 3 đền.
+    for i, t in enumerate(session.scalars(select(Temple).where(Temple.device_id.is_(None)).order_by(Temple.id)), 2):
+        session.add(Device(id=f"pi-test-0{i}", name=f"Pi test {i}", token_hash=hash_token(f"tok-{i}")))
+        session.flush()
+        t.device_id = f"pi-test-0{i}"
+    session.commit()
+    bus = InMemoryDeviceBus()
+    set_bus(bus)
+    session.bus = bus
     yield session
     session.close()
 

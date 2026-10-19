@@ -91,6 +91,7 @@ class Device(Base):
     last_seen_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     net_type: Mapped[str | None] = mapped_column(String(10))
     version: Mapped[str | None] = mapped_column(String(40))
+    test_photo_key: Mapped[str | None] = mapped_column(String(300))  # ảnh "chụp thử" gần nhất
     last_status: Mapped[dict | None] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
 
@@ -218,3 +219,41 @@ class Payment(Base):
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
     paid_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     order: Mapped[Order] = relationship(back_populates="payments")
+
+
+class DeviceJob(Base):
+    """Một lần giao bài khấn của 1 đơn xuống 1 thiết bị. id (uuid hex) chính là job_id trên MQTT."""
+    __tablename__ = "device_jobs"
+    id: Mapped[str] = mapped_column(String(32), primary_key=True)
+    order_id: Mapped[int] = mapped_column(ForeignKey("orders.id"), index=True)
+    device_id: Mapped[str | None] = mapped_column(ForeignKey("devices.id", ondelete="SET NULL"), index=True)
+    state: Mapped[str] = mapped_column(String(12), default="queued", index=True)
+    # queued | delivered | downloaded | playing | done | error | cancelled
+    play_at: Mapped[datetime] = mapped_column(UTCDateTime())
+    attempts: Mapped[int] = mapped_column(Integer, default=0)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+    sent_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    delivered_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    downloaded_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    playing_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    done_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    error: Mapped[str | None] = mapped_column(Text)
+    log: Mapped[list | None] = mapped_column(JSON)  # [[ts, state, detail], ...]
+    order: Mapped["Order"] = relationship(back_populates="jobs")
+    device: Mapped[Device | None] = relationship()
+
+
+class Evidence(Base):
+    __tablename__ = "evidence"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    order_id: Mapped[int] = mapped_column(ForeignKey("orders.id"), index=True)
+    job_id: Mapped[str | None] = mapped_column(ForeignKey("device_jobs.id", ondelete="SET NULL"))
+    kind: Mapped[str] = mapped_column(String(10), default="photo")
+    path: Mapped[str] = mapped_column(String(300))
+    captured_at: Mapped[datetime] = mapped_column(UTCDateTime())
+    note: Mapped[str | None] = mapped_column(String(200))  # before | start | after
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+
+
+Order.jobs = relationship(DeviceJob, back_populates="order", order_by=DeviceJob.created_at)
+Order.evidence = relationship(Evidence, order_by=Evidence.captured_at)

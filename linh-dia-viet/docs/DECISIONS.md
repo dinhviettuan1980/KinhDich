@@ -55,3 +55,25 @@ Bốn vai trò trong `users.role`:
   "Mâm lễ đã bày" (`orders.tray_ready_at`, không thêm trạng thái). Quản lý đền được từ chối đơn và sửa mẫu sớ riêng.
 - **TTS:** `edge` mặc định; `google` (REST + API key) và `fpt` (v5, URL bất đồng bộ) đã viết nhưng **chưa thử với tài khoản thật**.
   `fake` (âm báo) dùng cho test. Văn bản dài được cắt theo câu rồi nối bằng ffmpeg.
+
+## M3 – Thiết bị
+- **job_id** = `device_jobs.id` (uuid hex). Gửi lại khi thiết bị chưa xác nhận dùng **cùng** job_id (Pi tự bỏ lệnh trùng);
+  "gửi lại" cho đơn `failed` tạo **job mới** (phát sớm nhất sau 1 phút) vì job cũ Pi đã đánh dấu lỗi.
+- **Lệnh thêm ngoài đặc tả:** `{type:"cancel", job_id}` (đơn bị hủy/từ chối sau khi đã gửi lệnh) và
+  `{type:"capture"}` (nút "chụp thử"). Ảnh chụp thử upload với `phase=test`.
+- **Mapping ACK → đơn:** received→delivered, playing→playing, done→played, error→failed; downloaded chỉ cập nhật job.
+  ACK lệch thứ tự/đến bù được "đi tiếp" trên luồng chính, không bao giờ lùi trạng thái. ACK `playing/done` đến sau
+  khi vòng kiểm tra đã đánh dấu `failed` (Pi mất mạng nhưng vẫn phát) → đơn được khôi phục (`failed → scheduled → … → played`).
+- **Hoàn tất:** ảnh `after` tới khi đơn đã `played` → `evidence_received → completed`. Không có ảnh sau
+  `EVIDENCE_TIMEOUT_SECONDS` → `completed` kèm ghi chú (nếu có ảnh before/start thì vẫn qua `evidence_received`).
+- **Quá hạn:** đơn `scheduled/delivered/playing` sau `giờ phát + 5 phút + PLAY_GRACE_SECONDS` mà chưa xong → `failed`.
+- **Đền chưa gắn thiết bị** không đặt lễ được (chỉ hiện để xem).
+- **Vòng nền** (`scheduler.py`) chạy trong tiến trình API mỗi 10 giây — giả định chỉ chạy 1 tiến trình API.
+- **Dữ liệu cá nhân:** lệnh xuống thiết bị chỉ có job_id, URL audio có chữ ký, sha256, giờ phát, âm lượng, cấu hình chụp.
+  Audit log không lưu URL có chữ ký.
+- **MQTT:** mật khẩu MQTT của thiết bị = token thiết bị (server chỉ lưu băm). Mosquitto đọc mật khẩu từ file sinh lúc
+  khởi động (`mosquitto/entrypoint.sh`); ACL theo `%u` = device_id. Phiên bền (`clean_session=false`) cho cả server và Pi.
+- **pi-agent** chạy toàn bộ logic trong `tick(now)` (dễ test bằng đồng hồ giả); ACK nằm trong outbox SQLite tới khi
+  broker xác nhận (QoS 1 `on_publish`); ảnh nằm trong hàng đợi upload, thử lại với backoff.
+- **Test tích hợp** chạy server + agent (`--simulate`) trong cùng tiến trình qua `InMemoryDeviceBus`;
+  `test_mqtt_live.py` (đánh dấu `mqtt`) kiểm tra với Mosquitto thật, gồm cả ACL.
