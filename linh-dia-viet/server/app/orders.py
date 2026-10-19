@@ -97,7 +97,7 @@ def start_payment(db: Session, orders: list[Order], actor: str, provider: str = 
     return txn
 
 
-def payment_result(db: Session, txn_ref: str, success: bool, actor: str) -> list[Order]:
+def payment_result(db: Session, txn_ref: str, success: bool, actor: str, schedule: bool = True) -> list[Order]:
     """Xử lý kết quả thanh toán (từ trang giả lập hoặc webhook nhà cung cấp). Idempotent."""
     payments = db.scalars(select(Payment).where(Payment.txn_ref == txn_ref)).all()
     paid = []
@@ -116,9 +116,22 @@ def payment_result(db: Session, txn_ref: str, success: bool, actor: str) -> list
         else:  # đơn đã hủy trong lúc chờ → ghi nhận tiền, chuyển hoàn tiền
             if o.status == S.CANCELLED:
                 transition(db, o, S.REFUND_REQUESTED, actor, "Thanh toán sau khi đơn đã hủy")
-    for o in paid:
-        try_schedule(db, o, actor)
+    if schedule:
+        for o in paid:
+            try_schedule(db, o, actor)
     return paid
+
+
+def schedule_in_background(order_ids: list[int], actor: str) -> None:
+    """Tạo audio (TTS có thể mất vài chục giây) + xếp lịch sau khi đã trả response thanh toán.
+    Lỗi thì vòng nền (devices.tick) sẽ thử lại các đơn còn 'paid'."""
+    from . import db as dbmod
+    with dbmod.SessionLocal() as db:
+        for oid in order_ids:
+            o = db.get(Order, oid)
+            if o:
+                try_schedule(db, o, actor)
+                db.commit()
 
 
 # ---------------- Hủy / từ chối ----------------
@@ -154,3 +167,19 @@ def mark_refunded(db: Session, order: Order, actor: str) -> None:
     for p in order.payments:
         if p.status == "succeeded":
             p.status = "refunded"
+
+
+def moderate(db: Session, prayer: Prayer, approve: bool, actor: str, note: str = "") -> None:
+    """Duyệt / từ chối bản ghi âm. Duyệt → xếp lịch các đơn đã trả tiền. Từ chối → đơn đã trả tiền bị
+    'rejected' (→ hoàn tiền), đơn chưa trả tiền bị hủy."""
+    from .state_machine import can_transition
+    prayer.moderation = "approved" if approve else "rejected"
+    prayer.moderation_note = note or None
+    audit(db, actor, "prayer.approve" if approve else "prayer.reject", f"prayer:{prayer.id}", note=note)
+    for o in prayer.orders:
+        if approve:
+            try_schedule(db, o, actor)
+        elif o.status in (S.PAID, S.SCHEDULED):
+            reject(db, o, actor, f"Bản ghi âm không được duyệt: {note}")
+        elif can_transition(o.status, S.CANCELLED):
+            transition(db, o, S.CANCELLED, actor, f"Bản ghi âm không được duyệt: {note}")

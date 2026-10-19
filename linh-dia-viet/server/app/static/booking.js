@@ -22,6 +22,24 @@
       });
   }
 
+  // ---- Chọn nhiều đền ----
+  var maxTemples = parseInt(form.dataset.maxTemples, 10) || 100;
+  var boxes = function () { return Array.prototype.slice.call(form.querySelectorAll("input[name=den][data-ok]")); };
+  function syncTemples() {
+    var n = boxes().filter(function (b) { return b.checked; }).length;
+    $("temple-count").textContent = n + " đền";
+    boxes().forEach(function (b) { if (!b.checked) b.disabled = n >= maxTemples; });
+  }
+  form.addEventListener("change", function (e) { if (e.target.name === "den") syncTemples(); });
+  $("btn-all").addEventListener("click", function () {
+    var all = boxes(), on = !all.every(function (b) { return b.checked; });
+    all.slice(0, maxTemples).forEach(function (b) { b.checked = on; });
+    if (!on) all.forEach(function (b) { b.checked = false; });
+    syncTemples();
+    all[0] && all[0].dispatchEvent(new Event("change", { bubbles: true }));
+  });
+  syncTemples();
+
   // ---- Cách khấn ----
   function syncKind() {
     var kind = form.querySelector('[name=cach_khan]:checked').value;

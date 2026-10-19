@@ -7,7 +7,8 @@
     </div>
     <div class="ld-muted">{{ t.address }}{% if t.province %}, {{ t.province }}{% endif %}</div>
     <p>{{ t.description }}</p>
-    <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}"> Chọn đền này</label>
+    {% if t.device_id %}<label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}"> Chọn đền này</label>
+    {% else %}<p class="ld-muted">Đền chưa lắp thiết bị, chưa nhận lễ từ xa.</p>{% endif %}
   </div>
 {% else %}
   <p class="ld-muted">Không tìm thấy đền nào.</p>

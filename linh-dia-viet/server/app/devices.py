@@ -250,3 +250,17 @@ def add_evidence(db: Session, job: DeviceJob, key: str, captured_at: datetime, p
     db.refresh(job.order, ["evidence"])
     maybe_complete(db, job.order, f"device:{job.device_id}")
     return ev
+
+
+def set_system_lock(db: Session, locked: bool, actor: str) -> int:
+    """Khóa khẩn cấp: dừng phát trên mọi thiết bị và chặn mọi lệnh mới (trừ stop). Trả về số thiết bị được gửi stop."""
+    s = db.get(Setting, "system_lock") or Setting(key="system_lock", value="0")
+    s.value = "1" if locked else "0"
+    db.merge(s)
+    audit(db, actor, "system.lock" if locked else "system.unlock", "system")
+    n = 0
+    if locked:
+        for dev in db.scalars(select(Device).where(Device.revoked.is_(False))).all():
+            send_command(db, dev.id, {"type": "stop"}, actor)
+            n += 1
+    return n

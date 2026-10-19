@@ -2,6 +2,18 @@
 {% block title %}Quản lý{% endblock %}
 {% block content %}
 <h1>{% if user.is_admin %}Quản trị hệ thống{% else %}Quản lý — {{ roles[user.role] }}{% endif %}</h1>
+{% if user.is_admin %}
+<form class="ld-card" method="post" action="{{ u('/admin/khoa-khan-cap') }}"
+      onsubmit="return confirm('{{ 'Mở khóa hệ thống?' if locked else 'DỪNG PHÁT trên mọi thiết bị và chặn mọi lệnh mới?' }}')">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  {% if locked %}
+    <div class="ld-lock">⚠ HỆ THỐNG ĐANG KHÓA KHẨN CẤP — không lệnh nào được gửi xuống thiết bị</div>
+    <p><button class="ld-btn secondary block" name="khoa" value="0">Mở khóa</button></p>
+  {% else %}
+    <button class="ld-btn danger block" name="khoa" value="1">⏹ KHÓA KHẨN CẤP — dừng phát toàn hệ thống</button>
+  {% endif %}
+</form>
+{% endif %}
 {% if not user.is_admin %}
 <div class="ld-card"><b>Đền phụ trách:</b>
   {% for t in my_temples %}{{ t.name }}{% if not loop.last %}, {% endif %}{% else %}<span class="ld-muted">chưa được gán — liên hệ quản trị.</span>{% endfor %}
@@ -11,6 +23,7 @@
 <div class="ld-card"><a href="{{ u('/admin/lich-le') }}">Lịch lễ{% if user.is_admin %} &amp; đơn hàng{% endif %}</a></div>
 <div class="ld-card"><a href="{{ u('/admin/goi-le') }}">Gói lễ</a></div>
 {% if user.is_admin or user.role == 'temple_manager' %}<div class="ld-card"><a href="{{ u('/admin/mau-so') }}">Mẫu sớ</a></div>{% endif %}
-{% if user.is_admin %}<div class="ld-card"><a href="{{ u('/admin/thiet-bi') }}">Thiết bị</a></div>{% endif %}
+{% if user.is_admin %}<div class="ld-card"><a href="{{ u('/admin/thiet-bi') }}">Thiết bị</a></div>
+<div class="ld-card"><a href="{{ u('/admin/kiem-duyet') }}">Kiểm duyệt ghi âm</a>{% if pending %} <span class="ld-badge warn">{{ pending }} chờ duyệt</span>{% endif %}</div>{% endif %}
 {% if user.is_admin %}<div class="ld-card"><a href="{{ u('/admin/nguoi-dung') }}">Người dùng &amp; phân quyền</a></div>{% endif %}
 {% endblock %}

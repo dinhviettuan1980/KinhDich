@@ -6,7 +6,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile
+from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -318,18 +318,21 @@ def payment_page(txn: str, request: Request, db: Session = Depends(get_db), user
 
 
 @router.post("/thanh-toan/{txn}/gia-lap", dependencies=csrf)
-async def mock_pay(txn: str, request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
+async def mock_pay(txn: str, request: Request, background: BackgroundTasks, db: Session = Depends(get_db),
+                   user: User = Depends(require_user)):
     pays = _txn_payments(db, txn, user)
     ok = (await request.form()).get("ket_qua") == "thanh_cong"
-    svc.payment_result(db, txn, ok, f"user:{user.id}")
+    paid = svc.payment_result(db, txn, ok, f"user:{user.id}", schedule=False)
     db.commit()
+    background.add_task(svc.schedule_in_background, [o.id for o in paid], f"user:{user.id}")
     if not ok:
         return RedirectResponse(u(f"/thanh-toan/{txn}"), 303)
     return RedirectResponse(u(f"/don/{pays[0].order_id}"), 303)
 
 
 @router.post("/api/thanh-toan/webhook/{provider}")
-async def payment_webhook(provider: str, request: Request, db: Session = Depends(get_db)):
+async def payment_webhook(provider: str, request: Request, background: BackgroundTasks,
+                          db: Session = Depends(get_db)):
     """Webhook cho cổng thanh toán (VietQR… sau này). Body JSON {txn_ref, status: succeeded|failed},
     header X-Signature = hex(HMAC-SHA256(PAYMENT_WEBHOOK_SECRET, body))."""
     import hashlib
@@ -343,6 +346,8 @@ async def payment_webhook(provider: str, request: Request, db: Session = Depends
     if not hmac.compare_digest(expected, request.headers.get("x-signature", "")):
         raise HTTPException(401, "Sai chữ ký")
     data = json.loads(body)
-    svc.payment_result(db, str(data["txn_ref"]), data.get("status") == "succeeded", f"webhook:{provider}")
+    paid = svc.payment_result(db, str(data["txn_ref"]), data.get("status") == "succeeded", f"webhook:{provider}",
+                              schedule=False)
     db.commit()
+    background.add_task(svc.schedule_in_background, [o.id for o in paid], f"webhook:{provider}")
     return {"ok": True}

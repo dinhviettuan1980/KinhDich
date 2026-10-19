@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Kiểm duyệt ghi âm{% endblock %}
+{% block content %}
+<h1>Kiểm duyệt ghi âm</h1>
+{% for p in prayers %}
+<div class="ld-card">
+  <div class="ld-spread"><b>Bản ghi #{{ p.id }}</b><span class="ld-muted">{{ fmt_local(p.created_at) }}</span></div>
+  <div class="ld-muted">{{ p.full_name }} ({{ p.birth_year }}) · {{ p.orders|length }} đơn ·
+    {% for o in p.orders %}{{ o.temple.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+    {% if p.audio_seconds %} · {{ '%d:%02d'|format(p.audio_seconds // 60, p.audio_seconds % 60) }}{% endif %}</div>
+  <audio controls preload="none" src="{{ u('/admin/kiem-duyet/' ~ p.id ~ '/audio') }}"></audio>
+  <form method="post" action="{{ u('/admin/kiem-duyet/' ~ p.id) }}" class="ld-row" style="margin-top:8px">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button class="ld-btn small" name="quyet_dinh" value="duyet">✓ Duyệt</button>
+    <input type="text" name="ly_do" placeholder="Lý do từ chối" style="flex:1;min-width:160px">
+    <button class="ld-btn small danger" name="quyet_dinh" value="tu_choi">Từ chối</button>
+  </form>
+</div>
+{% else %}<p class="ld-muted">Không có bản ghi nào chờ duyệt.</p>{% endfor %}
+{% endblock %}

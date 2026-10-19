@@ -8,7 +8,7 @@
 </form>
 {% for o in orders %}
 <div class="ld-card">
-  <div class="ld-spread"><b>#{{ o.id }} · {{ o.temple.name }}</b><span class="ld-badge">{{ labels[o.status] }}</span></div>
+  <div class="ld-spread"><b>{% if user.is_admin %}<a href="{{ u('/admin/don/' ~ o.id) }}">#{{ o.id }}</a>{% else %}#{{ o.id }}{% endif %} · {{ o.temple.name }}</b><span class="ld-badge">{{ labels[o.status] }}</span></div>
   <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · {{ o.package.name }}{% if o.tray_ready_at %} · mâm lễ đã bày{% endif %}</div>
   {% if user.is_admin %}<div class="ld-muted">Khách: {{ o.prayer.full_name }} · {{ o.user.email or o.user.phone }} · {{ fmt_vnd(o.total) }}{% if o.note %} · {{ o.note }}{% endif %}</div>{% endif %}
   <div class="ld-row" style="margin-top:8px">

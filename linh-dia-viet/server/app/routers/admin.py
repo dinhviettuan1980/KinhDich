@@ -36,7 +36,12 @@ def _visible_temples(db: Session, user: User) -> list[Temple]:
 
 @router.get("")
 def dashboard(request: Request, db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
-    return render(request, "admin/index.html", {"my_temples": _visible_temples(db, user), "roles": ROLES})
+    from ..devices import system_locked
+    from ..models import Prayer
+    pending = db.query(Prayer).filter(Prayer.kind == "recorded", Prayer.moderation == "pending").count() \
+        if user.is_admin else 0
+    return render(request, "admin/index.html", {"my_temples": _visible_temples(db, user), "roles": ROLES,
+                                                "locked": system_locked(db), "pending": pending})
 
 
 # ---------------- Đền ----------------
@@ -435,3 +440,88 @@ def device_test_photo(device_id: str, db: Session = Depends(get_db), admin: User
         raise HTTPException(404)
     return FileResponse(get_storage().local_path(dev.test_photo_key), media_type="image/jpeg",
                         headers={"Cache-Control": "no-store"})
+
+
+# ---------------- Kiểm duyệt ghi âm (admin) ----------------
+
+@router.get("/kiem-duyet")
+def moderation_queue(request: Request, db: Session = Depends(get_db), admin: User = Depends(require_admin)):
+    from ..models import Prayer
+    pending = db.scalars(select(Prayer).where(Prayer.kind == "recorded", Prayer.moderation == "pending")
+                         .order_by(Prayer.created_at)).all()
+    return render(request, "admin/moderation.html", {"prayers": pending})
+
+
+@router.get("/kiem-duyet/{prayer_id}/audio")
+def moderation_audio(prayer_id: int, db: Session = Depends(get_db), admin: User = Depends(require_admin)):
+    from fastapi.responses import FileResponse
+    from ..models import Prayer
+    from ..storage import get_storage
+    p = db.get(Prayer, prayer_id)
+    if not p or not p.audio_key:
+        raise HTTPException(404)
+    return FileResponse(get_storage().local_path(p.audio_key), media_type="audio/mpeg")
+
+
+@router.post("/kiem-duyet/{prayer_id}", dependencies=csrf)
+async def moderation_decide(prayer_id: int, request: Request, db: Session = Depends(get_db),
+                            admin: User = Depends(require_admin)):
+    from .. import orders as svc
+    from ..models import Prayer
+    p = db.get(Prayer, prayer_id)
+    if not p or p.kind != "recorded" or p.moderation != "pending":
+        raise HTTPException(404)
+    form = await request.form()
+    approve = form.get("quyet_dinh") == "duyet"
+    note = str(form.get("ly_do", "")).strip()[:500]
+    if not approve and not note:
+        raise HTTPException(400, "Cần nêu lý do từ chối")
+    svc.moderate(db, p, approve, f"user:{admin.id}", note)
+    db.commit()
+    flash(request, "Đã duyệt bản ghi." if approve else "Đã từ chối bản ghi.", "ok")
+    return RedirectResponse(u("/admin/kiem-duyet"), 303)
+
+
+# ---------------- Khóa khẩn cấp (admin) ----------------
+
+@router.post("/khoa-khan-cap", dependencies=csrf)
+async def emergency_lock(request: Request, db: Session = Depends(get_db), admin: User = Depends(require_admin)):
+    from .. import devices
+    lock = (await request.form()).get("khoa") == "1"
+    n = devices.set_system_lock(db, lock, f"user:{admin.id}")
+    db.commit()
+    flash(request, f"ĐÃ KHÓA KHẨN CẤP: gửi lệnh dừng tới {n} thiết bị, chặn mọi lệnh mới." if lock
+          else "Đã mở khóa hệ thống.", "error" if lock else "ok")
+    return RedirectResponse(u("/admin"), 303)
+
+
+# ---------------- Đơn hàng & log job (admin) ----------------
+
+@router.get("/don/{order_id}")
+def order_admin_detail(order_id: int, request: Request, db: Session = Depends(get_db),
+                       admin: User = Depends(require_admin)):
+    from ..models import AuditLog, Order
+    from ..state_machine import LABELS
+    o = db.get(Order, order_id)
+    if o is None:
+        raise HTTPException(404)
+    logs = db.scalars(select(AuditLog).where(AuditLog.target == f"order:{o.id}").order_by(AuditLog.id)).all()
+    return render(request, "admin/order_detail.html", {"o": o, "labels": LABELS, "logs": logs})
+
+
+@router.post("/don/{order_id}/gui-lai", dependencies=csrf)
+def order_resend(order_id: int, request: Request, db: Session = Depends(get_db), admin: User = Depends(require_admin)):
+    from .. import devices
+    from ..models import Order
+    o = db.get(Order, order_id)
+    if o is None:
+        raise HTTPException(404)
+    if devices.system_locked(db):
+        raise HTTPException(409, "Hệ thống đang khóa khẩn cấp")
+    try:
+        devices.resend(db, o, f"user:{admin.id}")
+    except ValueError as e:
+        raise HTTPException(409, str(e))
+    db.commit()
+    flash(request, f"Đã gửi lại job cho đơn #{o.id}.", "ok")
+    return RedirectResponse(u(f"/admin/don/{o.id}"), 303)

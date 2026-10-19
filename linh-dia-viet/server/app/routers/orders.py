@@ -85,3 +85,14 @@ def evidence_photo(order_id: int, evidence_id: int, db: Session = Depends(get_db
     if not ev:
         raise HTTPException(404)
     return FileResponse(get_storage().local_path(ev.path), media_type="image/jpeg")
+
+
+@router.get("/{order_id}/json")
+def order_json(order_id: int, db: Session = Depends(get_db), user: User = Depends(require_user)):
+    """Trạng thái đơn dạng JSON (cho app/script theo dõi)."""
+    o = owned_order(db, order_id, user)
+    return {"id": o.id, "status": o.status, "label": LABELS[S(o.status)], "note": o.note,
+            "scheduled_at": o.scheduled_at.isoformat(),
+            "events": [{"status": e.status, "ts": e.ts.isoformat(), "note": e.note} for e in o.events],
+            "evidence": [{"id": e.id, "phase": e.note, "captured_at": e.captured_at.isoformat(),
+                          "url": u(f"/don/{o.id}/anh/{e.id}")} for e in o.evidence]}

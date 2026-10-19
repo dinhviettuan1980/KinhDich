@@ -4,17 +4,19 @@
 <h1>Đặt lễ</h1>
 <form id="booking" class="ld-steps" method="post" action="{{ u('/dat-le') }}"
       data-preview="{{ u('/dat-le/xem-truoc') }}" data-tts="{{ u('/dat-le/nghe-thu') }}"
-      data-upload="{{ u('/dat-le/ghi-am') }}" data-lunar="{{ u('/dat-le/am-lich') }}" data-max-seconds="{{ max_seconds }}">
+      data-upload="{{ u('/dat-le/ghi-am') }}" data-lunar="{{ u('/dat-le/am-lich') }}" data-max-temples="{{ settings().max_temples_per_order }}" data-max-seconds="{{ max_seconds }}">
   <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
 
   <section class="ld-step ld-card">
     <h2>Chọn đền, chùa</h2>
-    <p class="ld-muted">Có thể chọn nhiều nơi; bài khấn sẽ được phát cùng giờ tại từng nơi.</p>
+    <p class="ld-muted">Có thể chọn nhiều nơi (tối đa {{ settings().max_temples_per_order }}); bài khấn sẽ được phát cùng giờ tại từng nơi.</p>
+    <p class="ld-row"><span id="temple-count" class="ld-badge">0 đền</span>
+      <button type="button" class="ld-btn secondary small" id="btn-all">Chọn tất cả</button></p>
     <div hx-get="{{ u('/dat-le/goi-le') }}" hx-trigger="change" hx-target="#packages" hx-include="[name=den],[name=goi]">
     {% for t in temples %}
-      <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}" {% if t.id in selected %}checked{% endif %}>
+      <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}" {% if t.id in selected %}checked{% endif %} {% if t.device_id %}data-ok{% else %}disabled{% endif %}>
         <span>{{ t.name }} <span class="ld-muted">· {{ t.province }}</span>
-        {% if online[t.id] %}<span class="ld-badge on">trực tuyến</span>{% else %}<span class="ld-badge off">ngoại tuyến</span>{% endif %}</span></label>
+        {% if not t.device_id %}<span class="ld-badge">chưa nhận lễ từ xa</span>{% elif online[t.id] %}<span class="ld-badge on">trực tuyến</span>{% else %}<span class="ld-badge off">ngoại tuyến</span>{% endif %}</span></label>
     {% endfor %}
     </div>
   </section>

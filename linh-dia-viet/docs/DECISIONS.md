@@ -91,3 +91,16 @@ Bốn vai trò trong `users.role`:
 - **systemd:** user riêng `linhdia` (nhóm audio, video), `Restart=always`, chạy sau `time-sync.target`, `ProtectSystem=strict`.
 - **Đã kiểm trên máy dev:** thêm thiết bị qua CLI trong container → mosquitto nạp lại → agent `--simulate` đăng nhập
   MQTT bằng token mới và hiện Online. **Chưa kiểm trên Raspberry Pi + loa + camera thật** (cần làm theo `pi-agent/README.md` mục 7).
+
+## M5 – Hoàn thiện
+- **Kiểm duyệt ghi âm** (admin): duyệt → các đơn đã trả tiền được xếp lịch ngay; từ chối (bắt buộc lý do) → đơn đã trả tiền
+  chuyển `rejected → refund_requested`, đơn chưa trả tiền bị hủy. Khách thấy lý do trên trang đơn.
+- **Khóa khẩn cấp:** lưu ở bảng `settings` (`system_lock`). Bật khóa → gửi `stop` tới mọi thiết bị chưa thu hồi; khi khóa,
+  `send_command` chặn mọi lệnh trừ `stop` (ghi audit `device.cmd_blocked`), vòng nền không gửi lệnh phát, nút gửi lại job
+  trả 409. Khách vẫn đặt đơn được; đơn quá giờ trong lúc khóa sẽ `failed` theo luật quá hạn thông thường.
+- **Thanh toán xong** → trả trang ngay, việc tạo audio TTS + xếp lịch chạy nền (`BackgroundTasks`); lỗi thì vòng nền thử lại.
+  (Lý do: demo thật cho thấy edge-tts mất ~30 giây.)
+- **Đơn & log job** của admin: trang `/admin/don/{id}` gồm các job (log từng bước ACK), dòng thời gian, audit, ảnh, nút gửi lại.
+- **Ghép Kinh Dịch:** sửa tối thiểu 1 file của repo Kinh Dịch (`src/pages/VanKhanPage.jsx`: thẻ link) + biến
+  `VITE_LE_CHUA_URL`. Không đổi router/menu của Kinh Dịch.
+- **JSON trạng thái đơn** `/don/{id}/json` (chủ đơn/admin) cho script demo và app sau này.

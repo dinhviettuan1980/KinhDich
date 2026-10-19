@@ -228,6 +228,17 @@ export default function VanKhanPage() {
         {isAdmin && <button onClick={() => setAdding(true)} className="btn-primary text-sm px-3 py-1.5 flex-shrink-0">➕ Thêm bài</button>}
       </div>
 
+      {/* Linh Địa Việt — dâng lễ từ xa (app riêng, cùng domain, xem linh-dia-viet/README.md) */}
+      <a href={import.meta.env.VITE_LE_CHUA_URL || '/le-chua/'}
+        className="card p-4 mb-4 flex items-center gap-3 hover:border-primary/40 transition-colors">
+        <span className="text-2xl flex-shrink-0">🛕</span>
+        <span className="min-w-0">
+          <span className="block font-semibold text-gray-900 dark:text-gray-100">Lễ chùa từ xa</span>
+          <span className="block text-xs text-gray-500 dark:text-gray-400">Đặt mâm lễ, chọn giờ — bài khấn được phát tại đền, ảnh mâm lễ gửi về cho bạn.</span>
+        </span>
+        <span className="ml-auto text-primary text-sm flex-shrink-0">→</span>
+      </a>
+
       {/* Tabs phân loại */}
       <div className="flex gap-1.5 flex-wrap mb-3">
         {CATS.map((c) => {

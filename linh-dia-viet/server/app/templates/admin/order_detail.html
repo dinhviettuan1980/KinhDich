@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Đơn #{{ o.id }}{% endblock %}
+{% block content %}
+<h1>Đơn #{{ o.id }} · {{ o.temple.name }}</h1>
+<div class="ld-card">
+  <p><span class="ld-badge">{{ labels[o.status] }}</span>{% if o.note %} <span class="ld-muted">{{ o.note }}</span>{% endif %}</p>
+  <p class="ld-muted">Mã đặt: {{ o.booking_ref }} · Giờ hẹn: {{ fmt_local(o.scheduled_at, o.timezone) }} · {{ o.package.name }} · {{ fmt_vnd(o.total) }}<br>
+  Khách: {{ o.prayer.full_name }} ({{ o.prayer.birth_year }}) · {{ o.user.email or o.user.phone }} · Cách khấn: {{ o.prayer.kind }} ({{ o.prayer.moderation }})</p>
+  {% if o.status in ('failed', 'scheduled', 'delivered') %}
+  <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/gui-lai') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button class="ld-btn small">↻ Gửi lại job</button></form>{% endif %}
+</div>
+<h2>Job thiết bị</h2>
+{% for j in o.jobs %}
+<div class="ld-card">
+  <div class="ld-spread"><code>{{ j.id }}</code><span class="ld-badge {% if j.state == 'error' %}off{% elif j.state == 'done' %}on{% endif %}">{{ j.state }}</span></div>
+  <div class="ld-muted">Thiết bị: {{ j.device_id or '—' }} · Phát lúc: {{ fmt_local(j.play_at, None, '%H:%M:%S %d/%m') }} · Gửi {{ j.attempts }} lần{% if j.error %} · Lỗi: {{ j.error }}{% endif %}</div>
+  <div class="ld-scroll"><table>
+    {% for ts, st, detail in j.log or [] %}<tr><td class="ld-muted">{{ ts[11:19] }}</td><td>{{ st }}</td><td>{{ detail or '' }}</td></tr>{% endfor %}
+  </table></div>
+</div>
+{% else %}<p class="ld-muted">Chưa có job.</p>{% endfor %}
+<h2>Dòng thời gian</h2>
+<div class="ld-card ld-scroll"><table>
+  {% for e in o.events %}<tr><td class="ld-muted">{{ fmt_local(e.ts, o.timezone, '%H:%M:%S %d/%m') }}</td><td>{{ labels[e.status] }}</td><td>{{ e.note or '' }}</td></tr>{% endfor %}
+</table></div>
+<h2>Audit</h2>
+<div class="ld-card ld-scroll"><table>
+  {% for l in logs %}<tr><td class="ld-muted">{{ fmt_local(l.ts, o.timezone, '%H:%M:%S %d/%m') }}</td><td>{{ l.actor }}</td><td>{{ l.action }}</td><td class="ld-muted">{{ l.detail or '' }}</td></tr>{% endfor %}
+</table></div>
+{% if o.evidence %}<h2>Ảnh</h2><div class="ld-photos">{% for e in o.evidence %}<img src="{{ u('/don/' ~ o.id ~ '/anh/' ~ e.id) }}" alt="{{ e.note }}">{% endfor %}</div>{% endif %}
+{% endblock %}
