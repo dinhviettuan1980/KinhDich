@@ -77,3 +77,17 @@ Bốn vai trò trong `users.role`:
   broker xác nhận (QoS 1 `on_publish`); ảnh nằm trong hàng đợi upload, thử lại với backoff.
 - **Test tích hợp** chạy server + agent (`--simulate`) trong cùng tiến trình qua `InMemoryDeviceBus`;
   `test_mqtt_live.py` (đánh dấu `mqtt`) kiểm tra với Mosquitto thật, gồm cả ACL.
+
+## M4 – Phần cứng thật
+- **Thêm thiết bị:** trang admin hoặc `python -m app.cli add-device`. Token sinh ngẫu nhiên, hiện đúng 1 lần; server lưu
+  SHA-256 (cho HTTP) và băm PBKDF2-SHA512 dạng `$7$` của Mosquitto (cho MQTT). API ghi `mosquitto/extra/devices.passwd`
+  (thư mục dùng chung); entrypoint của mosquitto thấy file đổi thì dựng lại passwd và gửi SIGHUP (≈5 giây).
+  Thu hồi token = xoá dòng khỏi file → thiết bị bị từ chối ở lần kết nối sau, và HTTP trả 401 ngay.
+- **Thiết bị demo** `pi-demo-01` lấy mật khẩu MQTT từ biến môi trường `DEMO_DEVICE_TOKEN` (không qua file).
+- **Phát:** `mpv` mặc định (có tham số âm lượng và chọn thiết bị ALSA); `ffplay`; `aplay` (qua ffmpeg → wav, âm lượng
+  chỉnh bằng `alsamixer`). Mất điện giữa lúc phát → khởi động lại đánh dấu job lỗi, không phát lại.
+- **Camera:** `rpicam-still` (mặc định, Bookworm), `picamera2`, `fswebcam`, `ffmpeg` v4l2, hoặc `none`.
+- **Kiểm tra phần cứng:** `python -m ld_agent --test-speaker` / `--test-camera FILE` chạy với cùng file cấu hình của dịch vụ.
+- **systemd:** user riêng `linhdia` (nhóm audio, video), `Restart=always`, chạy sau `time-sync.target`, `ProtectSystem=strict`.
+- **Đã kiểm trên máy dev:** thêm thiết bị qua CLI trong container → mosquitto nạp lại → agent `--simulate` đăng nhập
+  MQTT bằng token mới và hiện Online. **Chưa kiểm trên Raspberry Pi + loa + camera thật** (cần làm theo `pi-agent/README.md` mục 7).

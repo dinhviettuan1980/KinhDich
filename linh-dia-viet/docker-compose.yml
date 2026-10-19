@@ -5,10 +5,12 @@ services:
     environment:
       DATABASE_URL: ${DATABASE_URL:-sqlite:////srv/data/linhdia.db}
       MQTT_HOST: mosquitto
+      MQTT_PASSWD_FILE: /srv/mqtt-extra/devices.passwd
     ports:
       - "8000:8000"
     volumes:
       - api-data:/srv/data
+      - ./mosquitto/extra:/srv/mqtt-extra
     depends_on:
       - mosquitto
     restart: unless-stopped

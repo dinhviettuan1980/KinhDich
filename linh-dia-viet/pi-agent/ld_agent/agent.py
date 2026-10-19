@@ -300,6 +300,6 @@ class Agent:
                 "queue": len(self.store.jobs_in("received", "downloaded")), "camera": self.camera.kind}
 
     def publish_status(self, now: float) -> None:
-        self._last_status = now
-        if self.transport.connected():
+        if self.transport.connected():  # chưa kết nối thì thử lại ở tick sau, không đợi hết chu kỳ
+            self._last_status = now
             self.transport.publish_status(self.status())

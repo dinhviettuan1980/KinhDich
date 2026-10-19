@@ -57,6 +57,7 @@ class Settings(BaseSettings):
     mqtt_username: str = "ld-server"
     mqtt_password: str = ""
     mqtt_tls: bool = False
+    mqtt_passwd_file: str = ""  # vd /srv/mqtt-extra/devices.passwd (thư mục dùng chung với mosquitto)
     dispatch_lead_seconds: int = 600
     play_grace_seconds: int = 900
     evidence_timeout_seconds: int = 600

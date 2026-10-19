@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Thiết bị{% endblock %}
+{% block content %}
+<h1>Thiết bị</h1>
+{% if new_token %}
+<div class="ld-flash ok">
+  <b>Token của {{ new_token[0] }}</b> (chỉ hiện một lần — chép vào <code>/etc/linh-dia-viet/agent.env</code> trên Pi):<br>
+  <code style="word-break:break-all">LD_DEVICE_ID={{ new_token[0] }}<br>LD_DEVICE_TOKEN={{ new_token[1] }}</code>
+</div>
+{% endif %}
+{% for d in devices %}
+<div class="ld-card">
+  <div class="ld-spread">
+    <h3>{{ d.id }} <span class="ld-muted">· {{ d.name }}</span></h3>
+    {% if d.revoked %}<span class="ld-badge off">Đã thu hồi</span>{% elif online[d.id] %}<span class="ld-badge on">● Online</span>{% else %}<span class="ld-badge off">Offline</span>{% endif %}
+  </div>
+  <div class="ld-muted">
+    Đền: {{ temples[d.id].name if d.id in temples else '— chưa gắn —' }}<br>
+    Lần cuối thấy: {{ fmt_local(d.last_seen_at, None, '%H:%M:%S %d/%m/%Y') or 'chưa bao giờ' }}
+    · Mạng: {{ d.net_type or '?' }}{% if d.last_status and d.last_status.rssi %} ({{ d.last_status.rssi }} dBm){% endif %}
+    · Phiên bản: {{ d.version or '?' }}
+    {% if d.last_status %}<br>Nhiệt độ: {{ d.last_status.temp or '?' }}°C · Âm lượng: {{ d.last_status.volume }} · Đĩa trống: {{ d.last_status.disk_free }} MB · Hàng đợi: {{ d.last_status.queue }} · Camera: {{ d.last_status.camera }}{% endif %}
+  </div>
+  <div class="ld-row" style="margin-top:10px">
+    {% for t, label in [('test_tone','🔔 Phát âm thử'), ('capture','📷 Chụp thử'), ('stop','⏹ Dừng ngay')] %}
+    <form method="post" action="{{ u('/admin/thiet-bi/' ~ d.id ~ '/lenh') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <button class="ld-btn small {% if t == 'stop' %}danger{% else %}secondary{% endif %}" name="type" value="{{ t }}">{{ label }}</button></form>
+    {% endfor %}
+  </div>
+  {% if d.test_photo_key %}<p><img src="{{ u('/admin/thiet-bi/' ~ d.id ~ '/anh-thu') }}" alt="Ảnh chụp thử" style="max-width:100%;border-radius:8px"></p>{% endif %}
+  {% if jobs[d.id] %}
+  <details><summary>Job gần đây</summary><div class="ld-scroll"><table>
+    <tr><th>Đơn</th><th>Giờ phát</th><th>Trạng thái</th><th>Lỗi</th></tr>
+    {% for j in jobs[d.id] %}<tr><td>#{{ j.order_id }}</td><td>{{ fmt_local(j.play_at) }}</td><td>{{ j.state }}</td><td>{{ j.error or '' }}</td></tr>{% endfor %}
+  </table></div></details>
+  {% endif %}
+  <form method="post" action="{{ u('/admin/thiet-bi/' ~ d.id ~ '/token') }}" class="ld-row" style="margin-top:8px"
+        onsubmit="return confirm('Chắc chắn? Thiết bị đang dùng token cũ sẽ mất kết nối.')">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button class="ld-btn small secondary" name="action" value="rotate">Cấp token mới</button>
+    {% if not d.revoked %}<button class="ld-btn small secondary" name="action" value="revoke">Thu hồi token</button>{% endif %}
+  </form>
+</div>
+{% endfor %}
+<h2>Thêm thiết bị</h2>
+<form class="ld-card" method="post" action="{{ u('/admin/thiet-bi/moi') }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label>Mã thiết bị (vd pi-ngoc-son-01)</label><input type="text" name="device_id" required pattern="[a-z0-9][a-z0-9\-]{2,40}">
+  <label>Tên</label><input type="text" name="name">
+  <p><button class="ld-btn">Tạo và cấp token</button></p>
+  <p class="ld-muted">Sau khi tạo, gắn thiết bị vào đền ở trang Đền, chùa.</p>
+</form>
+{% endblock %}

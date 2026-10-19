@@ -24,13 +24,44 @@ def build(cfg: Config) -> Agent:
     return Agent(cfg, MqttTransport(cfg), httpx.Client(follow_redirects=True), player, camera)
 
 
+def hardware_test(cfg: Config, args) -> int:
+    """Kiểm tra phần cứng khi lắp đặt (không cần server)."""
+    import subprocess
+    import tempfile
+    if args.test_camera:
+        cam = Camera(cfg.camera, cfg.camera_device, cfg.photo_width, cfg.photo_height, cfg.jpeg_quality)
+        ok = cam.capture(args.test_camera, "test")
+        logging.info("Chụp ảnh (%s): %s", cfg.camera, f"OK → {args.test_camera}" if ok else "LỖI")
+        if not ok:
+            return 1
+    if args.test_speaker:
+        tone = Path(tempfile.gettempdir()) / "ld-test-tone.wav"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "sine=frequency=660:duration=3", str(tone)],
+                       check=True)
+        player = ProcessPlayer(cfg.player, cfg.audio_device)
+        vol = min(cfg.volume_default, cfg.volume_max)
+        logging.info("Phát âm thử bằng %s, âm lượng %s, thiết bị '%s'", cfg.player, vol, cfg.audio_device or "mặc định")
+        player.start(tone, vol, time.time())
+        while player.is_playing(time.time()):
+            time.sleep(0.2)
+        err = player.result()
+        logging.info("Loa: %s", err or "OK")
+        if err:
+            return 1
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="ld_agent", description="Linh Địa Việt – agent Raspberry Pi")
     ap.add_argument("--env", type=Path, default=None, help="file cấu hình .env")
     ap.add_argument("--simulate", action="store_true", help="không cần loa/camera thật: chỉ in log, tạo ảnh giả")
+    ap.add_argument("--test-speaker", action="store_true", help="phát âm thử 3 giây qua loa rồi thoát")
+    ap.add_argument("--test-camera", type=Path, metavar="FILE.jpg", help="chụp 1 ảnh ra file rồi thoát")
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     cfg = Config.load(args.env, simulate=True if args.simulate else None)
+    if args.test_speaker or args.test_camera:
+        return hardware_test(cfg, args)
     if not cfg.device_token:
         logging.error("Thiếu LD_DEVICE_TOKEN")
         return 2

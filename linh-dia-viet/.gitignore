@@ -5,5 +5,5 @@ __pycache__/
 data/
 server/data/
 pi-agent/data/
-mosquitto/extra/devices.passwd.txt
+mosquitto/extra/devices.passwd*
 .pytest_cache/

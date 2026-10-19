@@ -86,6 +86,7 @@ class Device(Base):
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     name: Mapped[str] = mapped_column(String(120))
     token_hash: Mapped[str] = mapped_column(String(128))
+    mqtt_hash: Mapped[str | None] = mapped_column(String(300))  # băm PBKDF2 cho file passwd của Mosquitto
     revoked: Mapped[bool] = mapped_column(Boolean, default=False)
     online: Mapped[bool] = mapped_column(Boolean, default=False)
     last_seen_at: Mapped[datetime | None] = mapped_column(UTCDateTime())

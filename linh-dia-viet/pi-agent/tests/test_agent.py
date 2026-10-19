@@ -234,3 +234,12 @@ def test_config_from_env_file(tmp_path, monkeypatch):
     c = Config.load(f)
     assert c.device_id == "pi-9" and c.device_token == "abc" and c.volume_max == 100
     assert c.quiet_start == dtime(21, 30) and c.simulate
+
+
+def test_status_sent_as_soon_as_connected(env):
+    agent, tr, srv, player = env
+    tr.online = False
+    agent.tick(local_ts(9, 0))
+    tr.online = True
+    agent.tick(local_ts(9, 0) + 1)
+    assert len(tr.statuses) == 1

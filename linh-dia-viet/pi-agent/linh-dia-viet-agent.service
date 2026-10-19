@@ -1,0 +1,23 @@
+[Unit]
+Description=Linh Dia Viet - agent phat bai khan
+Wants=network-online.target time-sync.target
+After=network-online.target time-sync.target sound.target
+
+[Service]
+Type=simple
+User=linhdia
+Group=linhdia
+SupplementaryGroups=audio video
+WorkingDirectory=/opt/linh-dia-viet-agent
+ExecStart=/opt/linh-dia-viet-agent/venv/bin/python -m ld_agent --env /etc/linh-dia-viet/agent.env
+Restart=always
+RestartSec=5
+# Bảo vệ cơ bản
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/linh-dia-viet /tmp
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

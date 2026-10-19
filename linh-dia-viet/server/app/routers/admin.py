@@ -354,3 +354,84 @@ async def prayer_template_save(scope: str, request: Request, db: Session = Depen
     db.commit()
     flash(request, "Đã lưu mẫu sớ.", "ok")
     return RedirectResponse(u("/admin/mau-so"), 303)
+
+
+# ---------------- Thiết bị (chỉ admin) ----------------
+
+@router.get("/thiet-bi")
+def device_list(request: Request, db: Session = Depends(get_db), admin: User = Depends(require_admin)):
+    from ..models import DeviceJob
+    from .public import device_online
+    devs = db.scalars(select(Device).order_by(Device.id)).all()
+    temples = {t.device_id: t for t in db.scalars(select(Temple).where(Temple.device_id.is_not(None)))}
+    jobs = {d.id: db.scalars(select(DeviceJob).where(DeviceJob.device_id == d.id)
+                             .order_by(DeviceJob.created_at.desc()).limit(5)).all() for d in devs}
+    return render(request, "admin/devices.html", {
+        "devices": devs, "temples": temples, "jobs": jobs, "online": {d.id: device_online(d) for d in devs},
+        "new_token": request.session.pop("new_device_token", None)})
+
+
+@router.post("/thiet-bi/moi", dependencies=csrf)
+async def device_create(request: Request, db: Session = Depends(get_db), admin: User = Depends(require_admin)):
+    from ..device_admin import create_device
+    form = await request.form()
+    try:
+        token = create_device(db, str(form.get("device_id", "")), str(form.get("name", "")))
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    device_id = str(form.get("device_id")).strip().lower()
+    audit(db, f"user:{admin.id}", "device.create", f"device:{device_id}")
+    db.commit()
+    request.session["new_device_token"] = [device_id, token]  # hiện đúng 1 lần
+    return RedirectResponse(u("/admin/thiet-bi"), 303)
+
+
+@router.post("/thiet-bi/{device_id}/token", dependencies=csrf)
+async def device_token(device_id: str, request: Request, db: Session = Depends(get_db),
+                       admin: User = Depends(require_admin)):
+    from ..device_admin import revoke, rotate_token
+    dev = db.get(Device, device_id)
+    if dev is None:
+        raise HTTPException(404)
+    action = (await request.form()).get("action")
+    if action == "revoke":
+        revoke(db, dev)
+        flash(request, f"Đã thu hồi token của {dev.id}.", "ok")
+    elif action == "rotate":
+        request.session["new_device_token"] = [dev.id, rotate_token(db, dev)]
+    else:
+        raise HTTPException(400)
+    audit(db, f"user:{admin.id}", f"device.token_{action}", f"device:{dev.id}")
+    db.commit()
+    return RedirectResponse(u("/admin/thiet-bi"), 303)
+
+
+@router.post("/thiet-bi/{device_id}/lenh", dependencies=csrf)
+async def device_command(device_id: str, request: Request, db: Session = Depends(get_db),
+                         admin: User = Depends(require_admin)):
+    from .. import devices
+    dev = db.get(Device, device_id)
+    if dev is None:
+        raise HTTPException(404)
+    kind = (await request.form()).get("type")
+    if kind not in ("test_tone", "capture", "stop"):
+        raise HTTPException(400)
+    try:
+        devices.send_command(db, dev.id, {"type": kind}, f"user:{admin.id}")
+        flash(request, {"test_tone": "Đã gửi lệnh phát âm thử.", "capture": "Đã gửi lệnh chụp thử, ảnh sẽ hiện sau vài giây.",
+                        "stop": "Đã gửi lệnh dừng ngay."}[kind], "ok")
+    except devices.CommandBlocked as e:
+        flash(request, str(e), "error")
+    db.commit()
+    return RedirectResponse(u("/admin/thiet-bi"), 303)
+
+
+@router.get("/thiet-bi/{device_id}/anh-thu")
+def device_test_photo(device_id: str, db: Session = Depends(get_db), admin: User = Depends(require_admin)):
+    from fastapi.responses import FileResponse
+    from ..storage import get_storage
+    dev = db.get(Device, device_id)
+    if not dev or not dev.test_photo_key:
+        raise HTTPException(404)
+    return FileResponse(get_storage().local_path(dev.test_photo_key), media_type="image/jpeg",
+                        headers={"Cache-Control": "no-store"})
