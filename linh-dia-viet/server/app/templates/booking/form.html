@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Đặt lễ{% endblock %}
+{% block content %}
+<h1>Đặt lễ</h1>
+<form id="booking" class="ld-steps" method="post" action="{{ u('/dat-le') }}"
+      data-preview="{{ u('/dat-le/xem-truoc') }}" data-tts="{{ u('/dat-le/nghe-thu') }}"
+      data-upload="{{ u('/dat-le/ghi-am') }}" data-lunar="{{ u('/dat-le/am-lich') }}" data-max-seconds="{{ max_seconds }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+  <section class="ld-step ld-card">
+    <h2>Chọn đền, chùa</h2>
+    <p class="ld-muted">Có thể chọn nhiều nơi; bài khấn sẽ được phát cùng giờ tại từng nơi.</p>
+    <div hx-get="{{ u('/dat-le/goi-le') }}" hx-trigger="change" hx-target="#packages" hx-include="[name=den],[name=goi]">
+    {% for t in temples %}
+      <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}" {% if t.id in selected %}checked{% endif %}>
+        <span>{{ t.name }} <span class="ld-muted">· {{ t.province }}</span>
+        {% if online[t.id] %}<span class="ld-badge on">trực tuyến</span>{% else %}<span class="ld-badge off">ngoại tuyến</span>{% endif %}</span></label>
+    {% endfor %}
+    </div>
+  </section>
+
+  <section class="ld-step ld-card">
+    <h2>Chọn gói lễ</h2>
+    <div id="packages">{% include "booking/_packages.html" %}</div>
+  </section>
+
+  <section class="ld-step ld-card">
+    <h2>Thông tin tín chủ</h2>
+    <label for="ho_ten">Họ và tên</label>
+    <input id="ho_ten" type="text" name="ho_ten" maxlength="120" required value="{{ prefill.ho_ten|default('') }}">
+    <label for="nam_sinh">Năm sinh (âm lịch)</label>
+    <input id="nam_sinh" type="number" name="nam_sinh" min="1900" max="2100" inputmode="numeric" required value="{{ prefill.nam_sinh|default('') }}">
+    <label for="dia_chi">Địa chỉ</label>
+    <input id="dia_chi" type="text" name="dia_chi" maxlength="300" required value="{{ prefill.dia_chi|default('') }}">
+    <label for="nguyen_vong">Nguyện vọng</label>
+    <textarea id="nguyen_vong" name="nguyen_vong" maxlength="1000" required placeholder="Ví dụ: gia đình con được mạnh khỏe, bình an, công việc hanh thông">{{ prefill.nguyen_vong|default('') }}</textarea>
+  </section>
+
+  <section class="ld-step ld-card">
+    <h2>Ngày giờ khấn</h2>
+    <label for="thoi_gian">Thời gian (giờ Việt Nam)</label>
+    <input id="thoi_gian" type="datetime-local" name="thoi_gian" min="{{ min_dt }}" required>
+    <p id="am-lich" class="ld-muted"></p>
+  </section>
+
+  <section class="ld-step ld-card">
+    <h2>Cách khấn</h2>
+    <label class="ld-check"><input type="radio" name="cach_khan" value="tts" {% if prefill.cach_khan|default('tts') == 'tts' %}checked{% endif %}> Hệ thống soạn sớ và đọc bằng giọng đọc tự động</label>
+    <label class="ld-check"><input type="radio" name="cach_khan" value="recorded" {% if prefill.cach_khan == 'recorded' %}checked{% endif %}> Tôi tự ghi âm giọng đọc</label>
+
+    <div id="tts-box">
+      <p><button type="button" class="ld-btn secondary small" id="btn-preview">Xem trước bài khấn</button></p>
+      <p id="multi-note" class="ld-muted" hidden>Đặt nhiều đền: các ô {ten_den}, {than_linh}, {dia_chi_den} sẽ được tự điền theo từng đền.</p>
+      <input type="hidden" name="van_ban_goc" id="van_ban_goc">
+      <textarea name="van_ban" id="van_ban" maxlength="{{ max_chars }}" rows="10" placeholder="Bấm “Xem trước bài khấn” để hệ thống soạn sớ, bạn có thể sửa nhẹ.">{{ prefill.van_ban|default('') }}</textarea>
+      <p class="ld-muted">Mẫu sớ chỉ mang tính tham khảo. Bạn có thể sửa nhẹ (tối đa {{ max_chars }} ký tự).</p>
+      <p><button type="button" class="ld-btn secondary small" id="btn-listen">▶ Nghe thử giọng đọc</button></p>
+      <audio id="tts-audio" controls hidden></audio>
+    </div>
+
+    <div id="rec-box" hidden>
+      <input type="hidden" name="ghi_am" id="ghi_am" value="{{ prefill.ghi_am|default('') }}">
+      <div class="ld-row">
+        <button type="button" class="ld-btn" id="btn-rec">● Bắt đầu ghi</button>
+        <span class="ld-rec-time" id="rec-time">00:00</span>
+        <span class="ld-muted">/ {{ '%02d:00'|format(max_seconds // 60) }}</span>
+      </div>
+      <audio id="rec-audio" controls hidden></audio>
+      <p class="ld-row"><button type="button" class="ld-btn secondary small" id="btn-rec-upload" hidden>Dùng bản ghi này</button></p>
+      <label for="rec-file">Hoặc tải file âm thanh lên</label>
+      <input id="rec-file" type="file" accept="audio/*">
+      <p id="rec-status" class="ld-muted">{% if prefill.ghi_am %}Đang dùng bản ghi của đơn trước.{% endif %}</p>
+    </div>
+  </section>
+
+  <div id="form-error" class="ld-flash error" hidden></div>
+  <p><button class="ld-btn block" id="btn-submit">Xem lại đơn</button></p>
+</form>
+<script src="{{ u('/static/booking.js') }}" defer></script>
+{% endblock %}

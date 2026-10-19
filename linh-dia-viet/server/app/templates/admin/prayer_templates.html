@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Mẫu sớ{% endblock %}
+{% block content %}
+<h1>Mẫu sớ</h1>
+{% if user.is_admin %}<div class="ld-card"><a href="{{ u('/admin/mau-so/chung') }}"><b>Mẫu chung</b></a> <span class="ld-muted">— dùng cho mọi đền không có mẫu riêng</span></div>{% endif %}
+{% for t in temples %}
+<div class="ld-card ld-spread"><a href="{{ u('/admin/mau-so/' ~ t.id) }}">{{ t.name }}</a>
+  {% if tpls.get(t.id) %}<span class="ld-badge on">mẫu riêng</span>{% else %}<span class="ld-badge">dùng mẫu chung</span>{% endif %}</div>
+{% endfor %}
+{% endblock %}

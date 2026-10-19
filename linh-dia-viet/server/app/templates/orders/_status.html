@@ -1,0 +1,25 @@
+<div id="status" {% if not final %}hx-get="{{ u('/don/' ~ o.id ~ '/trang-thai') }}" hx-trigger="every 3s" hx-swap="outerHTML"{% endif %}>
+  <div class="ld-card">
+    <div class="ld-spread"><h3>Trạng thái</h3><span class="ld-badge {% if o.status in ('failed','rejected','cancelled') %}off{% elif o.status == 'completed' %}on{% else %}warn{% endif %}">{{ status_label }}</span></div>
+    <ul class="ld-timeline">
+    {% for it in timeline %}
+      <li class="{% if it.bad %}bad{% elif it.done %}done{% endif %}"><b {% if not it.done %}class="ld-muted"{% endif %}>{{ it.label }}</b>
+        {% if it.ts %}<span class="ld-muted"> · {{ fmt_local(it.ts, o.timezone, '%H:%M:%S %d/%m') }}</span>{% endif %}
+        {% if it.note %}<div class="ld-muted">{{ it.note }}</div>{% endif %}</li>
+    {% endfor %}
+    </ul>
+    {% if o.tray_ready_at %}<p class="ld-muted">Mâm lễ đã được bày lúc {{ fmt_local(o.tray_ready_at, o.timezone) }}.</p>{% endif %}
+    {% if o.prayer.moderation == 'pending' %}<p class="ld-badge warn">Bản ghi âm đang chờ kiểm duyệt</p>{% endif %}
+    {% if o.prayer.moderation == 'rejected' %}<p class="ld-flash error">Bản ghi âm bị từ chối: {{ o.prayer.moderation_note }}</p>{% endif %}
+  </div>
+  {% if evidence %}
+  <div class="ld-card"><h3>Ảnh mâm lễ</h3><div class="ld-photos">
+    {% for e in evidence %}<a href="{{ u('/don/' ~ o.id ~ '/anh/' ~ e.id) }}"><img src="{{ u('/don/' ~ o.id ~ '/anh/' ~ e.id) }}" alt="Ảnh {{ e.note or '' }}" loading="lazy"></a>{% endfor %}
+  </div></div>
+  {% endif %}
+  {% if can_cancel %}
+  <form method="post" action="{{ u('/don/' ~ o.id ~ '/huy') }}" onsubmit="return confirm('Hủy đơn này?')">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="ld-btn danger small">Hủy đơn</button>
+  </form>
+  {% endif %}
+</div>

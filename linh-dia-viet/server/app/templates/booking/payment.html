@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Thanh toán{% endblock %}
+{% block content %}
+<h1>Thanh toán</h1>
+<div class="ld-card">
+  <p>Mã giao dịch: <b>{{ txn }}</b></p>
+  <p>Số tiền: <b>{{ fmt_vnd(amount) }}</b> ({{ payments|length }} đơn)</p>
+  {% if pending %}
+  <p class="ld-flash">Bản thử nghiệm: cổng thanh toán được <b>giả lập</b>, không trừ tiền thật.</p>
+  <form method="post" action="{{ u('/thanh-toan/' ~ txn ~ '/gia-lap') }}" class="ld-row">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button class="ld-btn" name="ket_qua" value="thanh_cong">Thanh toán thành công</button>
+    <button class="ld-btn secondary" name="ket_qua" value="that_bai">Giả lập thất bại</button>
+  </form>
+  {% else %}
+  <p>Giao dịch đã xử lý: {% for p in payments %}{{ p.status }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  <a class="ld-btn" href="{{ u('/don/' ~ first_order.id) }}">Xem đơn</a>
+  {% endif %}
+</div>
+{% endblock %}

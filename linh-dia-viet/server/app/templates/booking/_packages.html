@@ -1,0 +1,6 @@
+{% for p in packages %}
+  <label class="ld-check"><input type="radio" name="goi" value="{{ p.id }}" required {% if prefill and prefill.goi|string == p.id|string %}checked{% endif %}>
+    <span><b>{{ p.name }}</b> — {{ fmt_vnd(p.price) }}{% if p.temple_id %} <span class="ld-badge">riêng của đền</span>{% endif %}<br><span class="ld-muted">{{ p.description }}</span></span></label>
+{% else %}
+  <p class="ld-muted">Chọn đền để xem gói lễ.</p>
+{% endfor %}

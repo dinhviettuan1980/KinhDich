@@ -135,3 +135,86 @@ class Setting(Base):
     __tablename__ = "settings"
     key: Mapped[str] = mapped_column(String(80), primary_key=True)
     value: Mapped[str] = mapped_column(Text)
+
+
+class PrayerTemplate(Base):
+    """Mẫu sớ. temple_id NULL = mẫu chung; mẫu riêng của đền được ưu tiên."""
+    __tablename__ = "prayer_templates"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(200))
+    body: Mapped[str] = mapped_column(Text)
+    temple_id: Mapped[int | None] = mapped_column(ForeignKey("temples.id", ondelete="CASCADE"), unique=True)
+    updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow, onupdate=utcnow)
+    temple: Mapped[Temple | None] = relationship()
+
+
+class Prayer(Base):
+    __tablename__ = "prayers"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True)
+    kind: Mapped[str] = mapped_column(String(10))  # tts | recorded
+    full_name: Mapped[str] = mapped_column(String(120))
+    birth_year: Mapped[int] = mapped_column(Integer)
+    address: Mapped[str] = mapped_column(String(300))
+    wish: Mapped[str] = mapped_column(Text)
+    # Văn bản khách đã sửa (NULL = dùng mẫu sớ của từng đền). Có thể chứa {ten_den}… khi đặt nhiều đền.
+    text: Mapped[str | None] = mapped_column(Text)
+    voice: Mapped[str | None] = mapped_column(String(60))
+    audio_key: Mapped[str | None] = mapped_column(String(300))  # bản ghi âm (kind=recorded)
+    audio_seconds: Mapped[float | None] = mapped_column()
+    moderation: Mapped[str] = mapped_column(String(10), default="approved")  # pending | approved | rejected
+    moderation_note: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+    user: Mapped[User] = relationship()
+    orders: Mapped[list["Order"]] = relationship(back_populates="prayer")
+
+
+class Order(Base):
+    __tablename__ = "orders"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    booking_ref: Mapped[str] = mapped_column(String(32), index=True)  # gom các đơn của 1 lần đặt (nhiều đền)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True)
+    prayer_id: Mapped[int] = mapped_column(ForeignKey("prayers.id"))
+    temple_id: Mapped[int] = mapped_column(ForeignKey("temples.id"), index=True)
+    package_id: Mapped[int] = mapped_column(ForeignKey("offering_packages.id"))
+    scheduled_at: Mapped[datetime] = mapped_column(UTCDateTime(), index=True)  # UTC
+    timezone: Mapped[str] = mapped_column(String(50), default="Asia/Ho_Chi_Minh")
+    status: Mapped[str] = mapped_column(String(20), default="created", index=True)
+    total: Mapped[int] = mapped_column(Integer)  # VND, chốt giá lúc đặt
+    script_text: Mapped[str | None] = mapped_column(Text)  # văn bản sớ cuối cùng cho đền này
+    audio_key: Mapped[str | None] = mapped_column(String(300))  # file sẽ phát tại đền
+    audio_sha256: Mapped[str | None] = mapped_column(String(64))
+    note: Mapped[str | None] = mapped_column(Text)  # lý do từ chối/hủy/lỗi
+    tray_ready_at: Mapped[datetime | None] = mapped_column(UTCDateTime())  # kiosk báo mâm lễ đã bày
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow, onupdate=utcnow)
+
+    user: Mapped[User] = relationship()
+    prayer: Mapped[Prayer] = relationship(back_populates="orders")
+    temple: Mapped[Temple] = relationship()
+    package: Mapped[OfferingPackage] = relationship()
+    events: Mapped[list["OrderEvent"]] = relationship(order_by="OrderEvent.id", cascade="all, delete-orphan")
+    payments: Mapped[list["Payment"]] = relationship(back_populates="order", order_by="Payment.id")
+
+
+class OrderEvent(Base):
+    """Dòng thời gian trạng thái của đơn (hiển thị cho khách)."""
+    __tablename__ = "order_events"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    order_id: Mapped[int] = mapped_column(ForeignKey("orders.id", ondelete="CASCADE"), index=True)
+    status: Mapped[str] = mapped_column(String(20))
+    ts: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+    note: Mapped[str | None] = mapped_column(Text)
+
+
+class Payment(Base):
+    __tablename__ = "payments"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    order_id: Mapped[int] = mapped_column(ForeignKey("orders.id"), index=True)
+    provider: Mapped[str] = mapped_column(String(20))  # mock | vietqr (sau này)
+    status: Mapped[str] = mapped_column(String(20), default="pending")  # pending | succeeded | failed | refunded
+    txn_ref: Mapped[str] = mapped_column(String(64), index=True)  # mã giao dịch (1 lần đặt có thể chung mã)
+    amount: Mapped[int] = mapped_column(Integer)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+    paid_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    order: Mapped[Order] = relationship(back_populates="payments")

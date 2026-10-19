@@ -11,7 +11,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from . import db as dbmod
 from .config import BASE_DIR, get_settings
-from .routers import admin, auth, public
+from .routers import admin, auth, booking, orders, public
 from .web import LoginRequired, render, u
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -34,7 +34,7 @@ def create_app() -> FastAPI:
     )
     p = settings.prefix
     app.mount(f"{p}/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-    for r in (public.router, auth.router, admin.router):
+    for r in (public.router, auth.router, booking.router, orders.router, admin.router):
         app.include_router(r, prefix=p)
 
     if p:

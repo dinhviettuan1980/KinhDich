@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Sửa mẫu sớ{% endblock %}
+{% block content %}
+<h1>{{ 'Mẫu riêng — ' ~ temple.name if temple else 'Mẫu chung' }}</h1>
+<form class="ld-card" method="post" action="{{ u('/admin/mau-so/' ~ scope) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <p class="ld-muted">Biến dùng được: {% for v in variables %}<code>{{ '{' ~ v ~ '}' }}</code> {% endfor %}</p>
+  <textarea name="body" rows="14" maxlength="5000">{{ body }}</textarea>
+  <p class="ld-row"><button class="ld-btn">Lưu</button>
+  {% if temple and tpl %}<button class="ld-btn secondary" name="xoa" value="1">Xóa mẫu riêng</button>{% endif %}</p>
+</form>
+{% endblock %}

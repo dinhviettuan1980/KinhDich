@@ -207,3 +207,150 @@ async def user_save(user_id: str, request: Request, db: Session = Depends(get_db
     db.commit()
     flash(request, "Đã lưu người dùng.", "ok")
     return RedirectResponse(u("/admin/nguoi-dung"), 303)
+
+
+# ---------------- Lịch lễ của đền (admin / quản lý đền / kiosk) ----------------
+# Nhân sự đền KHÔNG thấy dữ liệu cá nhân (họ tên, địa chỉ, năm sinh, nguyện vọng) — chỉ admin thấy.
+
+@router.get("/lich-le")
+def schedule(request: Request, status: str = "", db: Session = Depends(get_db),
+             user: User = Depends(require_backoffice)):
+    from ..models import Order
+    from ..state_machine import LABELS
+    stmt = select(Order).order_by(Order.scheduled_at.desc()).limit(300)
+    if not user.is_admin:
+        stmt = stmt.where(Order.temple_id.in_(user.temple_ids or {-1}),
+                          Order.status.notin_(["created", "awaiting_payment"]))
+    if status:
+        stmt = stmt.where(Order.status == status)
+    return render(request, "admin/schedule.html", {"orders": db.scalars(stmt).all(), "labels": LABELS,
+                                                   "status": status})
+
+
+def _staff_order(db: Session, order_id: int, user: User, roles):
+    from ..models import Order
+    o = db.get(Order, order_id)
+    if o is None:
+        raise HTTPException(404)
+    if not can_manage_temple(user, o.temple_id, roles=roles):
+        raise HTTPException(403)
+    return o
+
+
+@router.post("/don/{order_id}/mam-le", dependencies=csrf)
+def tray_ready(order_id: int, request: Request, db: Session = Depends(get_db),
+               user: User = Depends(require_backoffice)):
+    from ..models import utcnow
+    o = _staff_order(db, order_id, user, ("vendor", "temple_manager"))
+    if o.status not in ("paid", "scheduled", "delivered"):
+        raise HTTPException(409, "Đơn không ở trạng thái chuẩn bị lễ")
+    o.tray_ready_at = utcnow()
+    audit(db, f"user:{user.id}", "order.tray_ready", f"order:{o.id}")
+    db.commit()
+    flash(request, f"Đã báo mâm lễ đơn #{o.id} sẵn sàng.", "ok")
+    return RedirectResponse(u("/admin/lich-le"), 303)
+
+
+@router.post("/don/{order_id}/tu-choi", dependencies=csrf)
+async def reject_order(order_id: int, request: Request, db: Session = Depends(get_db),
+                       user: User = Depends(require_backoffice)):
+    from .. import orders as svc
+    from ..state_machine import InvalidTransition
+    o = _staff_order(db, order_id, user, ("temple_manager",))
+    reason = str((await request.form()).get("ly_do", "")).strip()[:500]
+    if not reason:
+        raise HTTPException(400, "Cần nêu lý do từ chối")
+    try:
+        svc.reject(db, o, f"user:{user.id}", reason)
+    except InvalidTransition as e:
+        raise HTTPException(409, str(e))
+    db.commit()
+    flash(request, f"Đã từ chối đơn #{o.id}.", "ok")
+    return RedirectResponse(u("/admin/lich-le"), 303)
+
+
+@router.post("/don/{order_id}/hoan-tien", dependencies=csrf)
+def refund_order(order_id: int, request: Request, db: Session = Depends(get_db),
+                 admin: User = Depends(require_admin)):
+    from .. import orders as svc
+    from ..models import Order
+    from ..state_machine import InvalidTransition
+    o = db.get(Order, order_id)
+    if o is None:
+        raise HTTPException(404)
+    try:
+        svc.mark_refunded(db, o, f"user:{admin.id}")
+    except InvalidTransition as e:
+        raise HTTPException(409, str(e))
+    db.commit()
+    flash(request, f"Đã đánh dấu hoàn tiền đơn #{o.id}.", "ok")
+    return RedirectResponse(u("/admin/lich-le"), 303)
+
+
+# ---------------- Mẫu sớ (admin: mọi mẫu; quản lý đền: mẫu riêng của đền mình) ----------------
+
+@router.get("/mau-so")
+def prayer_templates(request: Request, db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
+    from ..models import PrayerTemplate
+    if user.role == "vendor":
+        raise HTTPException(403)
+    tpls = {t.temple_id: t for t in db.scalars(select(PrayerTemplate))}
+    return render(request, "admin/prayer_templates.html",
+                  {"shared": tpls.get(None), "temples": _visible_temples(db, user), "tpls": tpls})
+
+
+def _tpl_scope(db: Session, scope: str, user: User):
+    """scope = 'chung' (mẫu chung, chỉ admin) hoặc id đền."""
+    from ..models import PrayerTemplate
+    if scope == "chung":
+        if not user.is_admin:
+            raise HTTPException(403)
+        temple_id = None
+    else:
+        temple_id = int(scope)
+        if not db.get(Temple, temple_id):
+            raise HTTPException(404)
+        if not can_manage_temple(user, temple_id, roles=("temple_manager",)):
+            raise HTTPException(403)
+    cond = PrayerTemplate.temple_id.is_(None) if temple_id is None else PrayerTemplate.temple_id == temple_id
+    return temple_id, db.scalar(select(PrayerTemplate).where(cond))
+
+
+@router.get("/mau-so/{scope}")
+def prayer_template_form(scope: str, request: Request, db: Session = Depends(get_db),
+                         user: User = Depends(require_backoffice)):
+    from ..prayer_text import DEFAULT_TEMPLATE, VARIABLES
+    temple_id, tpl = _tpl_scope(db, scope, user)
+    return render(request, "admin/prayer_template_form.html", {
+        "scope": scope, "temple": db.get(Temple, temple_id) if temple_id else None, "tpl": tpl,
+        "body": tpl.body if tpl else DEFAULT_TEMPLATE, "variables": VARIABLES})
+
+
+@router.post("/mau-so/{scope}", dependencies=csrf)
+async def prayer_template_save(scope: str, request: Request, db: Session = Depends(get_db),
+                               user: User = Depends(require_backoffice)):
+    from ..models import PrayerTemplate
+    from ..prayer_text import unknown_variables
+    temple_id, tpl = _tpl_scope(db, scope, user)
+    form = await request.form()
+    body = str(form.get("body", "")).replace("\r\n", "\n").strip()
+    if form.get("xoa") and tpl and temple_id is not None:
+        db.delete(tpl)
+        audit(db, f"user:{user.id}", "prayer_template.delete", f"temple:{temple_id}")
+        db.commit()
+        flash(request, "Đã xóa mẫu riêng, đền sẽ dùng mẫu chung.", "ok")
+        return RedirectResponse(u("/admin/mau-so"), 303)
+    if not body or len(body) > 5000:
+        raise HTTPException(400, "Mẫu sớ trống hoặc quá dài")
+    bad = unknown_variables(body)
+    if bad:
+        raise HTTPException(400, "Biến không hợp lệ: " + ", ".join(sorted(bad)))
+    if tpl is None:
+        tpl = PrayerTemplate(temple_id=temple_id, name="Mẫu chung" if temple_id is None else "Mẫu riêng", body=body)
+        db.add(tpl)
+    tpl.body = body
+    db.flush()
+    audit(db, f"user:{user.id}", "prayer_template.save", f"template:{tpl.id}", temple_id=temple_id)
+    db.commit()
+    flash(request, "Đã lưu mẫu sớ.", "ok")
+    return RedirectResponse(u("/admin/mau-so"), 303)

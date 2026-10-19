@@ -28,3 +28,30 @@ Bốn vai trò trong `users.role`:
 - Đăng ký công khai luôn là `customer`; chỉ admin nâng quyền. Tài khoản bị khóa (`active=false`) không đăng nhập được.
 - Ở các mốc sau: nhân sự đền xem lịch lễ của đền mình (vendor không thấy dữ liệu cá nhân của khách),
   `temple_manager` được từ chối đơn (`rejected`).
+
+## M2 – Đặt lễ & sớ
+- **Âm lịch:** tự cài thuật toán Hồ Ngọc Đức (UTC+7) thay vì thư viện âm lịch Trung Quốc (UTC+8 lệch Tết 1985…).
+  Có test với Tết 1985, 2000, 2007, 2020, 2023–2026, các tháng nhuận 2020/2023/2025 và Trung thu 2024.
+  Phát hiện: `src/data/amlich.js` của trang Kinh Dịch gõ sai dấu ở công thức `newMoon` (`C -= a + b` thay vì `C = C - a + b`),
+  có thể lệch ngày quanh điểm sóc. Không sửa vì nằm ngoài phạm vi; ghi lại để xử lý riêng.
+- **Năm sinh** coi là năm âm lịch (can chi tính trực tiếp từ năm nhập).
+- **Ngày trong sớ** (`{ngay_am}`, `{ngay_duong}`) là ngày làm lễ (giờ hẹn theo giờ Việt Nam), không phải ngày đặt.
+- **Sớ khi đặt nhiều đền:** mỗi đơn có văn bản/audio riêng (`orders.script_text`, `orders.audio_key`) vì sớ chứa tên đền.
+  Nếu khách không sửa → mỗi đền dùng mẫu của đền đó. Nếu sửa → văn bản sửa dùng cho mọi đền, các biến
+  `{ten_den}`, `{than_linh}`, `{dia_chi_den}` được giữ lại và điền theo từng đền.
+- **"Sửa nhẹ":** tối đa `MAX_PRAYER_CHARS` (3000) ký tự và không dài hơn 1,5× bản gốc + 300 ký tự; không cho biến lạ.
+- **Gói lễ khi đặt nhiều đền:** chỉ chọn được gói dùng chung; gói riêng của đền chỉ hiện khi đặt 1 đền.
+- **Một giờ hẹn cho mọi đền** trong một lần đặt.
+- **Thanh toán:** mỗi đơn 1 `payment`, các payment của 1 lần đặt chung `txn_ref` để trả một lần. Trang giả lập gọi cùng
+  hàm xử lý với webhook (`/api/thanh-toan/webhook/{provider}`, ký HMAC). Thanh toán xong mà đơn đã hủy → `refund_requested`.
+- **Xếp lịch:** `paid → scheduled` ngay khi bài khấn được duyệt và audio đã tạo; TTS lỗi → giữ `paid` để thử lại.
+- **Khách tự hủy** được tới trước giờ gửi lệnh xuống thiết bị (`giờ hẹn − DISPATCH_LEAD_SECONDS`). Đơn đã trả tiền
+  bị hủy/từ chối tự chuyển `refund_requested`; admin bấm "Đã hoàn tiền" → `refunded`.
+- **`played → completed`** được phép trực tiếp (khi hết thời gian chờ ảnh, camera lỗi) — ngoài luồng chính của đặc tả.
+- **`failed → scheduled`** cho nút "gửi lại job" của admin.
+- **Bảng thêm:** `order_events` (dòng thời gian), `prayer_templates` (mẫu chung + mẫu riêng từng đền).
+- **Theo dõi đơn:** polling HTMX mỗi 3 giây (đơn giản hơn SSE, đủ "gần tức thì").
+- **Nhân sự đền:** xem "Lịch lễ" của đền mình (giờ, gói lễ, trạng thái), không thấy dữ liệu cá nhân. Kiosk bấm
+  "Mâm lễ đã bày" (`orders.tray_ready_at`, không thêm trạng thái). Quản lý đền được từ chối đơn và sửa mẫu sớ riêng.
+- **TTS:** `edge` mặc định; `google` (REST + API key) và `fpt` (v5, URL bất đồng bộ) đã viết nhưng **chưa thử với tài khoản thật**.
+  `fake` (âm báo) dùng cho test. Văn bản dài được cắt theo câu rồi nối bằng ffmpeg.

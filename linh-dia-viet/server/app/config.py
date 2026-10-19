@@ -34,6 +34,8 @@ class Settings(BaseSettings):
     max_upload_bytes: int = 20 * 1024 * 1024
     auto_approve_recordings: bool = True
 
+    payment_webhook_secret: str = ""  # để trống = tắt webhook
+
     # TTS
     tts_provider: str = "edge"  # edge | google | fpt | fake
     tts_voice: str = "vi-VN-HoaiMyNeural"

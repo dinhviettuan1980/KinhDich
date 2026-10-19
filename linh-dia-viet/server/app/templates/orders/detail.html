@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Đơn #{{ o.id }}{% endblock %}
+{% block content %}
+<h1>Đơn #{{ o.id }} · {{ o.temple.name }}</h1>
+<div class="ld-card">
+  <p><b>Giờ khấn:</b> {{ fmt_local(o.scheduled_at, o.timezone) }}<br>
+  <b>Gói lễ:</b> {{ o.package.name }} — {{ fmt_vnd(o.total) }}<br>
+  <b>Tín chủ:</b> {{ o.prayer.full_name }} ({{ o.prayer.birth_year }})</p>
+</div>
+{% include "orders/_status.html" %}
+{% if o.script_text %}<h2>Bài khấn</h2><div class="ld-card ld-sowrite">{{ o.script_text }}</div>{% endif %}
+{% if o.audio_key or o.prayer.kind == 'recorded' %}<h2>Nghe lại</h2><audio controls preload="none" src="{{ u('/don/' ~ o.id ~ '/audio') }}"></audio>{% endif %}
+<p><a class="ld-btn secondary" href="{{ u('/dat-le') }}?tu_don={{ o.id }}">Đặt lại đơn này</a></p>
+{% endblock %}

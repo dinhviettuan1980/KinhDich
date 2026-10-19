@@ -6,7 +6,8 @@ from sqlalchemy.orm import Session
 
 from . import db as dbmod
 from .config import get_settings
-from .models import Device, OfferingPackage, Temple, TempleStaff, User
+from .models import Device, OfferingPackage, PrayerTemplate, Temple, TempleStaff, User
+from .prayer_text import DEFAULT_TEMPLATE
 from .security import hash_password, hash_token
 
 log = logging.getLogger("linhdia.seed")
@@ -44,6 +45,8 @@ def seed(db: Session) -> None:
     if not db.scalar(select(OfferingPackage)):
         for p in PACKAGES:
             db.add(OfferingPackage(**p))
+    if not db.scalar(select(PrayerTemplate).where(PrayerTemplate.temple_id.is_(None))):
+        db.add(PrayerTemplate(name="Mẫu chung", body=DEFAULT_TEMPLATE))
     db.flush()
     if s.env in ("dev", "test") and s.demo_staff_password:
         # Tài khoản mẫu cho 2 vai trò nhân sự, gắn với đền đầu tiên (chỉ khi dev/test).
