@@ -1,0 +1,16 @@
+<form method="get" action="{{ u('/dat-le') }}">
+{% for t in temples %}
+  <div class="ld-card">
+    <div class="ld-spread">
+      <h3><a href="{{ u('/den/' ~ t.slug) }}">{{ t.name }}</a></h3>
+      {% if online[t.id] %}<span class="ld-badge on">● Đang trực tuyến</span>{% else %}<span class="ld-badge off">Ngoại tuyến</span>{% endif %}
+    </div>
+    <div class="ld-muted">{{ t.address }}{% if t.province %}, {{ t.province }}{% endif %}</div>
+    <p>{{ t.description }}</p>
+    <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}"> Chọn đền này</label>
+  </div>
+{% else %}
+  <p class="ld-muted">Không tìm thấy đền nào.</p>
+{% endfor %}
+{% if temples %}<p><button class="ld-btn block">Đặt lễ tại các đền đã chọn</button></p>{% endif %}
+</form>

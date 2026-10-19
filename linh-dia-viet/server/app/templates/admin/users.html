@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Người dùng{% endblock %}
+{% block content %}
+<div class="ld-spread"><h1>Người dùng</h1><a class="ld-btn small" href="{{ u('/admin/nguoi-dung/moi') }}">+ Thêm</a></div>
+<form class="ld-card ld-row" method="get">
+  <input type="search" name="q" value="{{ q }}" placeholder="Tên, email, điện thoại" style="flex:1">
+  <select name="role" style="width:auto"><option value="">Mọi vai trò</option>
+    {% for k, v in roles.items() %}<option value="{{ k }}" {% if k == role %}selected{% endif %}>{{ v }}</option>{% endfor %}</select>
+  <button class="ld-btn small">Lọc</button>
+</form>
+<div class="ld-scroll"><table>
+<tr><th>Tên</th><th>Liên hệ</th><th>Vai trò</th><th>Đền</th></tr>
+{% for x in users %}<tr>
+  <td><a href="{{ u('/admin/nguoi-dung/' ~ x.id) }}">{{ x.name }}</a>{% if not x.active %} <span class="ld-badge off">khóa</span>{% endif %}</td>
+  <td>{{ x.email or x.phone }}</td><td>{{ roles[x.role] }}</td>
+  <td>{% for s in x.staff_of %}{{ s.temple.name }}{% if not loop.last %}, {% endif %}{% endfor %}</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

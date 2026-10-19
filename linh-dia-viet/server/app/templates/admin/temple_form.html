@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Sửa đền{% endblock %}
+{% block content %}
+<h1>{{ t.name or 'Thêm đền' }}</h1>
+<form class="ld-card" method="post" action="{{ u('/admin/den/' ~ (t.id or 'moi')) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label>Tên</label><input type="text" name="name" required value="{{ t.name or '' }}">
+  <label>Slug (đường dẫn)</label><input type="text" name="slug" value="{{ t.slug or '' }}">
+  <label>Địa chỉ</label><input type="text" name="address" value="{{ t.address or '' }}">
+  <label>Tỉnh/thành</label><input type="text" name="province" value="{{ t.province or '' }}">
+  <label>Danh vị thần linh chính</label><input type="text" name="deity" value="{{ t.deity or '' }}">
+  <label>Mô tả</label><textarea name="description">{{ t.description or '' }}</textarea>
+  <label>Thiết bị</label>
+  <select name="device_id"><option value="">— không —</option>
+  {% for d in devices %}<option value="{{ d.id }}" {% if d.id == t.device_id %}selected{% endif %}>{{ d.id }} · {{ d.name }}</option>{% endfor %}</select>
+  <label>Trạng thái</label>
+  <select name="status"><option value="active" {% if t.status == 'active' %}selected{% endif %}>Hiển thị</option><option value="hidden" {% if t.status == 'hidden' %}selected{% endif %}>Ẩn</option></select>
+  <p><button class="ld-btn">Lưu</button></p>
+</form>
+{% endblock %}

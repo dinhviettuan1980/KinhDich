@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/
+server/data/
+pi-agent/data/
+mosquitto/extra/devices.passwd.txt
+.pytest_cache/

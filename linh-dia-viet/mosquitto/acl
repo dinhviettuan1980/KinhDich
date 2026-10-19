@@ -1,0 +1,8 @@
+# Tài khoản server: toàn quyền trong namespace ld/
+user ld-server
+topic readwrite ld/#
+
+# Mỗi thiết bị đăng nhập bằng username = device_id, chỉ được dùng namespace của chính nó.
+pattern read  ld/%u/cmd
+pattern write ld/%u/ack
+pattern write ld/%u/status

@@ -1,0 +1,94 @@
+/* Linh Địa Việt — mọi style nằm dưới .ld để có thể nhúng vào site khác mà không đụng style toàn cục. */
+.ld {
+  --ld-bg: #faf6ee;
+  --ld-surface: #ffffff;
+  --ld-ink: #2b1d14;
+  --ld-muted: #6f5f52;
+  --ld-line: #e6dccb;
+  --ld-primary: #7a1f1f;
+  --ld-primary-ink: #ffffff;
+  --ld-gold: #b8892b;
+  --ld-ok: #2f6b3a;
+  --ld-warn: #9a6a00;
+  --ld-err: #a12a2a;
+  --ld-radius: 12px;
+  font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ld-ink);
+  background: var(--ld-bg);
+  line-height: 1.55;
+  font-size: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.ld *, .ld *::before, .ld *::after { box-sizing: border-box; }
+.ld a { color: var(--ld-primary); }
+.ld h1, .ld h2, .ld h3 { font-family: "Noto Serif", Georgia, serif; color: var(--ld-primary); line-height: 1.3; margin: .4em 0 .5em; }
+.ld h1 { font-size: 1.5rem; }
+.ld h2 { font-size: 1.2rem; }
+.ld h3 { font-size: 1.05rem; }
+.ld main { flex: 1; width: 100%; max-width: 760px; margin: 0 auto; padding: 16px; }
+
+.ld-header { background: var(--ld-primary); color: var(--ld-primary-ink); border-bottom: 3px solid var(--ld-gold); }
+.ld-header .in { max-width: 760px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ld-header a { color: inherit; text-decoration: none; }
+.ld-brand { font-family: "Noto Serif", Georgia, serif; font-weight: 700; font-size: 1.1rem; margin-right: auto; }
+.ld-brand small { display: block; font-weight: 400; font-size: .75rem; opacity: .85; }
+.ld-nav { display: flex; gap: 14px; font-size: .92rem; align-items: center; flex-wrap: wrap; }
+.ld-nav form { margin: 0; }
+.ld-nav button { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 0; }
+.ld-footer { color: var(--ld-muted); font-size: .85rem; text-align: center; padding: 20px 16px 28px; border-top: 1px solid var(--ld-line); }
+
+.ld-card { background: var(--ld-surface); border: 1px solid var(--ld-line); border-radius: var(--ld-radius); padding: 14px 16px; margin: 0 0 12px; }
+.ld-card h3 { margin-top: 0; }
+.ld-muted { color: var(--ld-muted); font-size: .9rem; }
+.ld-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ld-spread { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.ld-badge { display: inline-block; font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: var(--ld-line); color: var(--ld-ink); white-space: nowrap; }
+.ld-badge.on { background: #dcefdf; color: var(--ld-ok); }
+.ld-badge.off { background: #f1e6e6; color: var(--ld-err); }
+.ld-badge.warn { background: #f7ecd2; color: var(--ld-warn); }
+
+.ld label { display: block; font-weight: 600; margin: 12px 0 4px; font-size: .95rem; }
+.ld input[type=text], .ld input[type=email], .ld input[type=password], .ld input[type=number], .ld input[type=search],
+.ld input[type=datetime-local], .ld input[type=tel], .ld select, .ld textarea {
+  width: 100%; padding: 11px 12px; font: inherit; color: inherit; background: #fff;
+  border: 1px solid var(--ld-line); border-radius: 10px;
+}
+.ld textarea { min-height: 120px; resize: vertical; }
+.ld input:focus, .ld select:focus, .ld textarea:focus { outline: 2px solid var(--ld-gold); outline-offset: 1px; }
+.ld .ld-check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; margin: 8px 0; }
+.ld .ld-check input { margin-top: 5px; width: 18px; height: 18px; accent-color: var(--ld-primary); }
+
+.ld-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 11px 18px; min-height: 44px;
+  border-radius: 10px; border: 1px solid var(--ld-primary); background: var(--ld-primary); color: var(--ld-primary-ink) !important;
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.ld-btn.secondary { background: transparent; color: var(--ld-primary) !important; }
+.ld-btn.danger { background: var(--ld-err); border-color: var(--ld-err); }
+.ld-btn.small { min-height: 34px; padding: 6px 12px; font-size: .9rem; }
+.ld-btn.block { width: 100%; }
+.ld-btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+.ld-flash { padding: 10px 14px; border-radius: 10px; margin: 0 0 12px; background: #eef3fb; }
+.ld-flash.error { background: #f8e3e3; color: var(--ld-err); }
+.ld-flash.ok { background: #e2f1e5; color: var(--ld-ok); }
+
+.ld table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.ld th, .ld td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--ld-line); vertical-align: top; }
+.ld .ld-scroll { overflow-x: auto; }
+
+.ld-steps { counter-reset: step; }
+.ld-step > h2::before { counter-increment: step; content: counter(step) ". "; color: var(--ld-gold); }
+
+.ld-timeline { list-style: none; padding: 0; margin: 0; }
+.ld-timeline li { position: relative; padding: 0 0 14px 22px; border-left: 2px solid var(--ld-line); margin-left: 6px; }
+.ld-timeline li::before { content: ""; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--ld-line); }
+.ld-timeline li.done::before { background: var(--ld-gold); }
+.ld-timeline li.bad::before { background: var(--ld-err); }
+
+.ld-sowrite { white-space: pre-wrap; font-family: "Noto Serif", Georgia, serif; background: #fffdf7; border-left: 3px solid var(--ld-gold); padding: 12px 14px; }
+.ld-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.ld-photos img { width: 100%; border-radius: 8px; display: block; }
+.ld audio { width: 100%; }
+.ld-rec-time { font-variant-numeric: tabular-nums; font-size: 1.4rem; font-weight: 700; }
+.ld-lock { background: var(--ld-err); color: #fff; text-align: center; padding: 6px; font-size: .9rem; }

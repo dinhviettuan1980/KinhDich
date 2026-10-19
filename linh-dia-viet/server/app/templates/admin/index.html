@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Quản lý{% endblock %}
+{% block content %}
+<h1>{% if user.is_admin %}Quản trị hệ thống{% else %}Quản lý — {{ roles[user.role] }}{% endif %}</h1>
+{% if not user.is_admin %}
+<div class="ld-card"><b>Đền phụ trách:</b>
+  {% for t in my_temples %}{{ t.name }}{% if not loop.last %}, {% endif %}{% else %}<span class="ld-muted">chưa được gán — liên hệ quản trị.</span>{% endfor %}
+</div>
+{% endif %}
+{% if user.is_admin or user.role == 'temple_manager' %}<div class="ld-card"><a href="{{ u('/admin/den') }}">Đền, chùa</a></div>{% endif %}
+<div class="ld-card"><a href="{{ u('/admin/goi-le') }}">Gói lễ</a></div>
+{% if user.is_admin %}<div class="ld-card"><a href="{{ u('/admin/nguoi-dung') }}">Người dùng &amp; phân quyền</a></div>{% endif %}
+{% endblock %}

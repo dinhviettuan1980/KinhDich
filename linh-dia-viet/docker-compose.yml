@@ -1,0 +1,35 @@
+services:
+  api:
+    build: ./server
+    env_file: .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////srv/data/linhdia.db}
+      MQTT_HOST: mosquitto
+    ports:
+      - "8000:8000"
+    volumes:
+      - api-data:/srv/data
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0.20
+    entrypoint: ["/bin/sh", "/mosquitto/entrypoint.sh"]
+    environment:
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      DEMO_DEVICE_ID: ${DEMO_DEVICE_ID:-pi-demo-01}
+      DEMO_DEVICE_TOKEN: ${DEMO_DEVICE_TOKEN}
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/acl:/mosquitto/acl.src:ro
+      - ./mosquitto/entrypoint.sh:/mosquitto/entrypoint.sh:ro
+      - ./mosquitto/extra:/mosquitto/extra:ro
+      - mqtt-data:/mosquitto/data
+    restart: unless-stopped
+
+volumes:
+  api-data:
+  mqtt-data:

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Nhập mã OTP{% endblock %}
+{% block content %}
+<h1>Nhập mã OTP</h1>
+<div class="ld-card">
+  <p class="ld-muted">Mã gồm 6 chữ số đã gửi tới <b>{{ identifier }}</b>, hiệu lực 5 phút. (Bản thử nghiệm: mã được in ra log máy chủ.)</p>
+  <form method="post" action="{{ u('/otp/xac-nhan') }}?next={{ next|default('', true)|urlencode }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="hidden" name="identifier" value="{{ identifier }}">
+    <label for="c">Mã OTP</label>
+    <input id="c" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required>
+    <p><button class="ld-btn block">Xác nhận</button></p>
+  </form>
+</div>
+{% endblock %}

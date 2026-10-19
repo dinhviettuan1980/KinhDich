@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Đăng nhập{% endblock %}
+{% block content %}
+<h1>Đăng nhập</h1>
+<div class="ld-card">
+  <form method="post" action="{{ u('/dang-nhap') }}?next={{ next|default('', true)|urlencode }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="i1">Email hoặc số điện thoại</label>
+    <input id="i1" name="identifier" type="text" autocomplete="username" required value="{{ identifier|default('') }}">
+    <label for="p1">Mật khẩu</label>
+    <input id="p1" name="password" type="password" autocomplete="current-password" required>
+    <p><button class="ld-btn block">Đăng nhập</button></p>
+  </form>
+</div>
+<div class="ld-card">
+  <h3>Hoặc nhận mã OTP</h3>
+  <form method="post" action="{{ u('/otp/gui') }}?next={{ next|default('', true)|urlencode }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="i2">Email hoặc số điện thoại</label>
+    <input id="i2" name="identifier" type="text" required>
+    <p><button class="ld-btn secondary block">Gửi mã</button></p>
+  </form>
+</div>
+<p class="ld-muted">Chưa có tài khoản? <a href="{{ u('/dang-ky') }}">Đăng ký</a></p>
+{% endblock %}

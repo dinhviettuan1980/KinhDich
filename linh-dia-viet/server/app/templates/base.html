@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>{% block title %}Lễ chùa từ xa{% endblock %} · Linh Địa Việt</title>
+  <link rel="stylesheet" href="{{ u('/static/ld.css') }}">
+  <script src="{{ u('/static/htmx.min.js') }}" defer></script>
+  <script src="{{ u('/static/ld.js') }}" defer></script>
+</head>
+<body style="margin:0">
+<div class="ld">
+  {% include "_header.html" %}
+  <main>
+    {% for kind, msg in pop_flash(request) %}<div class="ld-flash {{ kind }}">{{ msg }}</div>{% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  {% include "_footer.html" %}
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dâng lễ từ xa</h1>
+<p class="ld-muted">Chọn đền, chùa, đặt mâm lễ và giờ khấn. Bài khấn được phát tại đền đúng giờ, ảnh mâm lễ gửi về cho bạn.</p>
+<form class="ld-card" method="get" action="{{ u('/') }}" hx-get="{{ u('/') }}" hx-target="#temples" hx-trigger="input changed delay:300ms from:#q, submit">
+  <label for="q">Tìm đền, chùa, tỉnh thành</label>
+  <input id="q" type="search" name="q" value="{{ q }}" placeholder="Ví dụ: Hà Nội, Ngọc Sơn…">
+</form>
+<div id="temples">{% include "public/_temple_list.html" %}</div>
+{% endblock %}

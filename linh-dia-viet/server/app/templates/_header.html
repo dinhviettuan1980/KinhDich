@@ -1,0 +1,16 @@
+<header class="ld-header">
+  <div class="in">
+    <a class="ld-brand" href="{{ u('/') }}">Linh Địa Việt<small>Lễ chùa từ xa</small></a>
+    <nav class="ld-nav">
+      {% if settings().home_url %}<a href="{{ settings().home_url }}">← {{ settings().home_label }}</a>{% endif %}
+      <a href="{{ u('/') }}">Đền chùa</a>
+      {% if user %}
+        <a href="{{ u('/don') }}">Đơn của tôi</a>
+        {% if user.is_admin or user.is_staff %}<a href="{{ u("/admin") }}">Quản lý</a>{% endif %}
+        <form method="post" action="{{ u('/dang-xuat') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button>Đăng xuất</button></form>
+      {% else %}
+        <a href="{{ u('/dang-nhap') }}">Đăng nhập</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Đền chùa{% endblock %}
+{% block content %}
+<div class="ld-spread"><h1>Đền, chùa</h1><a class="ld-btn small" href="{{ u('/admin/den/moi') }}">+ Thêm</a></div>
+<div class="ld-scroll"><table>
+<tr><th>Tên</th><th>Tỉnh</th><th>Thiết bị</th><th>Trạng thái</th></tr>
+{% for t in temples %}<tr><td><a href="{{ u('/admin/den/' ~ t.id) }}">{{ t.name }}</a></td><td>{{ t.province }}</td><td>{{ t.device_id or '—' }}</td><td>{{ t.status }}</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

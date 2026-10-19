@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Lỗi {{ code }}{% endblock %}
+{% block content %}
+<div class="ld-card"><h1>{% if code == 404 %}Không tìm thấy{% elif code == 403 %}Không có quyền{% else %}Có lỗi xảy ra{% endif %}</h1>
+<p>{{ detail }}</p><a class="ld-btn secondary" href="{{ u('/') }}">Về trang chủ</a></div>
+{% endblock %}

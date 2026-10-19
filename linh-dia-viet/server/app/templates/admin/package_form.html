@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Sửa gói lễ{% endblock %}
+{% block content %}
+<h1>{{ p.name or 'Thêm gói lễ' }}</h1>
+<form class="ld-card" method="post" action="{{ u('/admin/goi-le/' ~ (p.id or 'moi')) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label>Tên</label><input type="text" name="name" required value="{{ p.name or '' }}">
+  <label>Giá (VND)</label><input type="number" name="price" min="0" step="1000" required value="{{ p.price }}">
+  <label>Mô tả</label><textarea name="description">{{ p.description or '' }}</textarea>
+  <label>Ảnh (URL)</label><input type="text" name="image_url" value="{{ p.image_url or '' }}">
+  <label>Thuộc đền</label>
+  <select name="temple_id"><option value="">Dùng chung</option>
+  {% for t in temples %}<option value="{{ t.id }}" {% if t.id == p.temple_id %}selected{% endif %}>{{ t.name }}</option>{% endfor %}</select>
+  <label class="ld-check"><input type="checkbox" name="active" value="true" {% if p.active %}checked{% endif %}> Đang bán</label>
+  <p><button class="ld-btn">Lưu</button></p>
+</form>
+{% endblock %}
