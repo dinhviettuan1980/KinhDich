@@ -15,6 +15,14 @@ def orders_of(db, ref):
     return db.scalars(select(Order).where(Order.booking_ref == ref).order_by(Order.id)).all()
 
 
+def test_everything_requires_login(client):
+    for path in ("/", "/den/den-ngoc-son", "/dat-le?den=1&goi=2"):
+        r = client.get(f"{P}{path}", follow_redirects=False)
+        assert r.status_code == 303 and "dang-nhap" in r.headers["location"]
+    # sau khi đăng nhập quay lại đúng chỗ (giữ cả đền + gói đã chọn)
+    assert "%3Fden%3D1%26goi%3D2" in client.get(f"{P}/dat-le?den=1&goi=2", follow_redirects=False).headers["location"]
+
+
 def test_booking_page_requires_login(client):
     r = client.get(f"{P}/dat-le", follow_redirects=False)
     assert r.status_code == 303 and "dang-nhap" in r.headers["location"]
@@ -49,13 +57,15 @@ def test_tts_listen(user_client, db):
 def test_full_tts_flow_to_scheduled(user_client, db):
     ref = create_booking(user_client, db)
     [o] = orders_of(db, ref)
-    assert o.status == "created" and o.total == 150_000
-    r = user_client.get(f"{P}/dat-le/xem-lai/{ref}")
-    assert "Nguyễn Văn A" in r.text and "Xác nhận và thanh toán" in r.text
+    assert o.status == "awaiting_payment" and o.total == 150_000
+    from helpers import TXN
+    r = user_client.get(f"{P}/thanh-toan/{TXN[ref]}")
+    assert "Nguyễn Văn A" in r.text and "Thanh toán 150.000 ₫" in r.text
     confirm_and_pay(user_client, ref)
     [o] = orders_of(db, ref)
     assert o.status == "scheduled"
     assert [e.status for e in o.events] == ["created", "awaiting_payment", "paid", "scheduled"]
+    assert not o.play_asap
     assert o.script_text and "Đền Ngọc Sơn" in o.script_text and o.audio_key.startswith("tts/")
     assert len(o.audio_sha256) == 64
     assert db.scalar(select(Payment).where(Payment.order_id == o.id)).status == "succeeded"
@@ -71,7 +81,9 @@ def test_edited_text_is_used(user_client, db):
     d["van_ban_goc"] = "Mẫu gốc dài vừa phải cho việc kiểm tra."
     d["van_ban"] = "Kính lạy chư vị tại {ten_den}. Con là {ho_ten}, xin phù hộ."
     r = post_json(user_client, "/dat-le", d)
-    ref = r.json()["redirect"].rsplit("/", 1)[1]
+    ref = r.json()["ref"]
+    from helpers import TXN
+    TXN[ref] = r.json()["txn"]
     confirm_and_pay(user_client, ref)
     [o] = orders_of(db, ref)
     assert o.script_text == "Kính lạy chư vị tại Đền Ngọc Sơn. Con là Nguyễn Văn A, xin phù hộ."
@@ -146,7 +158,8 @@ def test_other_user_cannot_see_order(user_client, db, client):
     user_client.post(f"{P}/dang-xuat", data={"csrf_token": user_client.csrf})
     tok = login(client, "kiosk@example.com", "demo12345")  # nhân sự đền cũng không xem được dữ liệu cá nhân
     assert client.get(f"{P}/don/{o.id}").status_code == 404
-    assert client.get(f"{P}/dat-le/xem-lai/{ref}").status_code == 404
+    from helpers import TXN
+    assert client.get(f"{P}/thanh-toan/{TXN[ref]}").status_code == 404
     assert client.get(f"{P}/don/{o.id}/audio").status_code == 404
 
 
@@ -189,8 +202,8 @@ def test_reorder_prefills(user_client, db):
 def test_payment_webhook_signature(user_client, db, monkeypatch):
     monkeypatch.setattr(get_settings(), "payment_webhook_secret", "whsec")
     ref = create_booking(user_client, db)
-    r = user_client.post(f"{P}/dat-le/xem-lai/{ref}", data={"csrf_token": user_client.csrf}, follow_redirects=False)
-    txn = r.headers["location"].rsplit("/", 1)[1]
+    from helpers import TXN
+    txn = TXN[ref]
     body = json.dumps({"txn_ref": txn, "status": "succeeded"}).encode()
     url = f"{P}/api/thanh-toan/webhook/mock"
     assert user_client.post(url, content=body, headers={"X-Signature": "sai"}).status_code == 401
@@ -200,3 +213,51 @@ def test_payment_webhook_signature(user_client, db, monkeypatch):
     [o] = orders_of(db, ref)
     assert o.status == "scheduled"
     assert db.scalar(select(AuditLog).where(AuditLog.actor == "webhook:mock"))
+
+
+def test_preselected_temple_and_package_show_summary(user_client, db):
+    tid = temple_id(db)
+    from helpers import shared_package
+    pkg = shared_package(db)
+    html = user_client.get(f"{P}/dat-le?den={tid}&goi={pkg.id}").text
+    assert "Nơi dâng lễ" in html and 'name="den" value="%d"' % tid in html and 'type="checkbox" name="den"' not in html
+    assert f'type="hidden" name="goi" value="{pkg.id}"' in html and 'type="radio" name="goi"' not in html
+    html = user_client.get(f"{P}/dat-le").text  # chưa chọn gì → hiện danh sách để chọn
+    assert 'type="checkbox" name="den"' in html
+
+
+def test_devotee_info_saved_to_profile(user_client, db):
+    html = user_client.get(f"{P}/dat-le?den={temple_id(db)}").text
+    assert 'id="info-fields" hidden' not in html and 'id="info-summary"' not in html  # lần đầu: hiện form để nhập
+    create_booking(user_client, db)
+    from app.models import User
+    db.expire_all()
+    u = db.scalar(select(User).where(User.email == "a@example.com"))
+    assert (u.devotee_name, u.birth_year, u.address) == ("Nguyễn Văn A", 1990, "Cầu Giấy, Hà Nội")
+    html = user_client.get(f"{P}/dat-le?den={temple_id(db)}").text
+    assert 'id="info-summary"' in html and 'id="info-fields" hidden' in html  # lần sau: thu gọn, bấm Sửa mới mở
+    r = user_client.post(f"{P}/tai-khoan/tin-chu", data={"ho_ten": "Trần Thị B", "nam_sinh": "1992", "dia_chi": "HCM",
+                                                       "nguyen_vong": "bình an", "csrf_token": user_client.csrf},
+                         follow_redirects=False)
+    assert r.status_code == 303
+    db.expire_all()
+    assert db.scalar(select(User).where(User.email == "a@example.com")).devotee_name == "Trần Thị B"
+
+
+def test_play_now_dispatches_right_after_payment(user_client, db):
+    ref = create_booking(user_client, db, khi_nao="ngay", thoi_gian="")
+    [o] = orders_of(db, ref)
+    assert o.play_asap and o.status == "awaiting_payment"
+    confirm_and_pay(user_client, ref)
+    [o] = orders_of(db, ref)
+    from app.models import utcnow
+    from datetime import timedelta
+    assert o.status == "scheduled"
+    assert utcnow() < o.scheduled_at < utcnow() + timedelta(seconds=60)  # phát sau ~20 giây
+    sent = [p for d, p in db.bus.sent if p.get("type") == "play"]
+    assert sent and sent[-1]["job_id"] == o.jobs[-1].id  # lệnh đã vào kênh ngay, không chờ vòng nền
+
+
+def test_hen_gio_requires_time(user_client, db):
+    r = post_json(user_client, "/dat-le", booking_data(db, khi_nao="hen_gio", thoi_gian=""))
+    assert r.status_code == 400 and "Phát ngay" in r.json()["error"]

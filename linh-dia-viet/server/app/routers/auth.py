@@ -160,3 +160,22 @@ def change_password(request: Request, old: str = Form(""), new: str = Form(...),
         db.commit()
         flash(request, "Đã đổi mật khẩu.", "ok")
     return RedirectResponse(u("/tai-khoan"), 303)
+
+
+@router.post("/tai-khoan/tin-chu", dependencies=[Depends(check_csrf)])
+def save_devotee(request: Request, ho_ten: str = Form(""), nam_sinh: str = Form(""), dia_chi: str = Form(""),
+                 nguyen_vong: str = Form(""), db: Session = Depends(get_db), user=Depends(current_user)):
+    from datetime import date
+    from ..prayer_text import clean_input
+    if not user:
+        return RedirectResponse(u("/dang-nhap"), 303)
+    me = db.get(User, user.id)
+    by = int(nam_sinh) if nam_sinh.isdigit() else None
+    if by is not None and not (1900 <= by <= date.today().year):
+        flash(request, "Năm sinh không hợp lệ.", "error")
+        return RedirectResponse(u("/tai-khoan"), 303)
+    me.devotee_name, me.birth_year = clean_input(ho_ten, 120) or None, by
+    me.address, me.wish = clean_input(dia_chi, 300) or None, clean_input(nguyen_vong, 1000) or None
+    db.commit()
+    flash(request, "Đã lưu thông tin tín chủ.", "ok")
+    return RedirectResponse(u("/tai-khoan"), 303)

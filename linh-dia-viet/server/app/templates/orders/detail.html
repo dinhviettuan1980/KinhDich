@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Đơn #{{ o.id }} · {{ o.temple.name }}</h1>
 <div class="ld-card">
-  <p><b>Giờ khấn:</b> {{ fmt_local(o.scheduled_at, o.timezone) }}<br>
+  <p><b>Giờ khấn:</b> {% if o.play_asap and o.status in ('created', 'awaiting_payment', 'paid') %}phát ngay sau khi thanh toán{% else %}{{ fmt_local(o.scheduled_at, o.timezone) }}{% endif %}<br>
   <b>Gói lễ:</b> {{ o.package.name }} — {{ fmt_vnd(o.total) }}<br>
   <b>Tín chủ:</b> {{ o.prayer.full_name }} ({{ o.prayer.birth_year }})</p>
 </div>

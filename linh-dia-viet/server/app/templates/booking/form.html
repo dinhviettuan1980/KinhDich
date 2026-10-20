@@ -2,62 +2,87 @@
 {% block title %}Đặt lễ{% endblock %}
 {% block content %}
 <h1>Đặt lễ</h1>
-<form id="booking" class="ld-steps" method="post" action="{{ u('/dat-le') }}"
+<form id="booking" method="post" action="{{ u('/dat-le') }}"
       data-preview="{{ u('/dat-le/xem-truoc') }}" data-tts="{{ u('/dat-le/nghe-thu') }}"
-      data-upload="{{ u('/dat-le/ghi-am') }}" data-lunar="{{ u('/dat-le/am-lich') }}" data-max-temples="{{ settings().max_temples_per_order }}" data-max-seconds="{{ max_seconds }}">
+      data-upload="{{ u('/dat-le/ghi-am') }}" data-lunar="{{ u('/dat-le/am-lich') }}"
+      data-max-temples="{{ settings().max_temples_per_order }}" data-max-seconds="{{ max_seconds }}">
   <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
 
-  <section class="ld-step ld-card">
+  {# ---------- Đền ---------- #}
+  {% if chosen %}
+    {% for t in chosen %}<input type="hidden" name="den" value="{{ t.id }}">{% endfor %}
+    <div class="ld-card ld-spread">
+      <div><span class="ld-muted">Nơi dâng lễ</span><br>
+        <b>{% for t in chosen %}{{ t.name }}{% if not loop.last %}, {% endif %}{% endfor %}</b></div>
+      <a class="ld-btn secondary small" href="{{ u('/') }}">Đổi</a>
+    </div>
+  {% else %}
+  <section class="ld-card">
     <h2>Chọn đền, chùa</h2>
-    <p class="ld-muted">Có thể chọn nhiều nơi (tối đa {{ settings().max_temples_per_order }}); bài khấn sẽ được phát cùng giờ tại từng nơi.</p>
+    <p class="ld-muted">Có thể chọn nhiều nơi (tối đa {{ settings().max_temples_per_order }}); bài khấn được phát tại từng nơi.</p>
     <p class="ld-row"><span id="temple-count" class="ld-badge">0 đền</span>
       <button type="button" class="ld-btn secondary small" id="btn-all">Chọn tất cả</button></p>
     <div hx-get="{{ u('/dat-le/goi-le') }}" hx-trigger="change" hx-target="#packages" hx-include="[name=den],[name=goi]">
     {% for t in temples %}
-      <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}" {% if t.id in selected %}checked{% endif %} {% if t.device_id %}data-ok{% else %}disabled{% endif %}>
+      <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}" {% if t.device_id %}data-ok{% else %}disabled{% endif %}>
         <span>{{ t.name }} <span class="ld-muted">· {{ t.province }}</span>
         {% if not t.device_id %}<span class="ld-badge">chưa nhận lễ từ xa</span>{% elif online[t.id] %}<span class="ld-badge on">trực tuyến</span>{% else %}<span class="ld-badge off">ngoại tuyến</span>{% endif %}</span></label>
     {% endfor %}
     </div>
   </section>
+  {% endif %}
 
-  <section class="ld-step ld-card">
+  {# ---------- Gói lễ ---------- #}
+  {% if chosen and chosen_pkg %}
+    <input type="hidden" name="goi" value="{{ chosen_pkg.id }}">
+    <div class="ld-card ld-spread">
+      <div><span class="ld-muted">Gói lễ</span><br><b>{{ chosen_pkg.name }}</b> — {{ fmt_vnd(chosen_pkg.price) }}
+        {% if chosen|length > 1 %}<span class="ld-muted"> × {{ chosen|length }} đền</span>{% endif %}</div>
+      <a class="ld-btn secondary small" href="{{ change_pkg_url }}">Đổi</a>
+    </div>
+  {% else %}
+  <section class="ld-card">
     <h2>Chọn gói lễ</h2>
     <div id="packages">{% include "booking/_packages.html" %}</div>
   </section>
+  {% endif %}
 
-  <section class="ld-step ld-card">
-    <h2>Thông tin tín chủ</h2>
-    <label for="ho_ten">Họ và tên</label>
-    <input id="ho_ten" type="text" name="ho_ten" maxlength="120" required value="{{ prefill.ho_ten|default('') }}">
-    <label for="nam_sinh">Năm sinh (âm lịch)</label>
-    <input id="nam_sinh" type="number" name="nam_sinh" min="1900" max="2100" inputmode="numeric" required value="{{ prefill.nam_sinh|default('') }}">
-    <label for="dia_chi">Địa chỉ</label>
-    <input id="dia_chi" type="text" name="dia_chi" maxlength="300" required value="{{ prefill.dia_chi|default('') }}">
-    <label for="nguyen_vong">Nguyện vọng</label>
-    <textarea id="nguyen_vong" name="nguyen_vong" maxlength="1000" required placeholder="Ví dụ: gia đình con được mạnh khỏe, bình an, công việc hanh thông">{{ prefill.nguyen_vong|default('') }}</textarea>
+  {# ---------- Tín chủ (lưu theo tài khoản) ---------- #}
+  <section class="ld-card">
+    <div class="ld-spread"><h2 style="margin:0">Tín chủ</h2>
+      {% if info_complete %}<button type="button" class="ld-btn secondary small" id="btn-edit-info">Sửa</button>{% endif %}</div>
+    {% if info_complete %}
+    <p id="info-summary" class="ld-muted" style="margin-bottom:0">
+      <b style="color:var(--ld-ink)">{{ prefill.ho_ten }}</b>, sinh năm {{ prefill.nam_sinh }} · {{ prefill.dia_chi }}<br>
+      Nguyện vọng: {{ prefill.nguyen_vong }}</p>
+    {% endif %}
+    <div id="info-fields" {% if info_complete %}hidden{% endif %}>
+      <label for="ho_ten">Họ và tên</label>
+      <input id="ho_ten" type="text" name="ho_ten" maxlength="120" required value="{{ prefill.ho_ten|default('') }}">
+      <label for="nam_sinh">Năm sinh (âm lịch)</label>
+      <input id="nam_sinh" type="number" name="nam_sinh" min="1900" max="2100" inputmode="numeric" required value="{{ prefill.nam_sinh|default('') }}">
+      <label for="dia_chi">Địa chỉ</label>
+      <input id="dia_chi" type="text" name="dia_chi" maxlength="300" required value="{{ prefill.dia_chi|default('') }}">
+      <label for="nguyen_vong">Nguyện vọng</label>
+      <textarea id="nguyen_vong" name="nguyen_vong" maxlength="1000" required rows="3" placeholder="Ví dụ: gia đình con được mạnh khỏe, bình an, công việc hanh thông">{{ prefill.nguyen_vong|default('') }}</textarea>
+      <p class="ld-muted">Thông tin được lưu vào tài khoản, lần sau không cần nhập lại.</p>
+    </div>
   </section>
 
-  <section class="ld-step ld-card">
-    <h2>Ngày giờ khấn</h2>
-    <label for="thoi_gian">Thời gian (giờ Việt Nam)</label>
-    <input id="thoi_gian" type="datetime-local" name="thoi_gian" min="{{ min_dt }}" required>
-    <p id="am-lich" class="ld-muted"></p>
-  </section>
-
-  <section class="ld-step ld-card">
-    <h2>Cách khấn</h2>
-    <label class="ld-check"><input type="radio" name="cach_khan" value="tts" {% if prefill.cach_khan|default('tts') == 'tts' %}checked{% endif %}> Hệ thống soạn sớ và đọc bằng giọng đọc tự động</label>
-    <label class="ld-check"><input type="radio" name="cach_khan" value="recorded" {% if prefill.cach_khan == 'recorded' %}checked{% endif %}> Tôi tự ghi âm giọng đọc</label>
+  {# ---------- Tờ sớ + cách khấn ---------- #}
+  <section class="ld-card">
+    <h2>Bài khấn</h2>
+    <label class="ld-check"><input type="radio" name="cach_khan" value="tts" {% if prefill.cach_khan|default('tts') == 'tts' %}checked{% endif %}> Giọng đọc tự động đọc tờ sớ</label>
+    <label class="ld-check"><input type="radio" name="cach_khan" value="recorded" {% if prefill.cach_khan == 'recorded' %}checked{% endif %}> Tôi tự đọc và ghi âm</label>
 
     <div id="so-box" class="ld-card" style="background:#fffdf7">
       <h3 style="margin-top:0">📜 Tờ sớ</h3>
-      <p id="so-hint-tts" class="ld-muted">Hệ thống tự soạn sớ từ thông tin của bạn; giọng đọc tự động sẽ đọc đúng bài này tại đền. Bạn có thể sửa nhẹ.</p>
-      <p id="so-hint-rec" class="ld-muted" hidden><b>Hãy đọc to, chậm rãi bài dưới đây</b> khi bấm ghi âm (có thể sửa nhẹ trước khi đọc).</p>
+      <p id="so-hint-tts" class="ld-muted">Hệ thống tự soạn từ thông tin tín chủ; giọng đọc tự động sẽ đọc đúng bài này tại đền. Có thể sửa nhẹ.</p>
+      <p id="so-hint-rec" class="ld-muted" hidden><b>Hãy đọc to, chậm rãi bài dưới đây</b> khi ghi âm (có thể sửa nhẹ trước khi đọc).</p>
       <p id="multi-note" class="ld-muted" hidden>Đặt nhiều đền: các ô {ten_den}, {than_linh}, {dia_chi_den} sẽ được tự điền theo từng đền.</p>
       <input type="hidden" name="van_ban_goc" id="van_ban_goc">
-      <textarea name="van_ban" id="van_ban" maxlength="{{ max_chars }}" rows="12" class="ld-sowrite" placeholder="Chọn đền và điền thông tin, tờ sớ sẽ tự hiện ở đây.">{{ prefill.van_ban|default('') }}</textarea>
-      <p class="ld-row"><button type="button" class="ld-btn secondary small" id="btn-preview">↻ Soạn lại theo thông tin mới</button>
+      <textarea name="van_ban" id="van_ban" maxlength="{{ max_chars }}" rows="12" class="ld-sowrite" placeholder="Tờ sớ sẽ tự hiện ở đây.">{{ prefill.van_ban|default('') }}</textarea>
+      <p class="ld-row"><button type="button" class="ld-btn secondary small" id="btn-preview">↻ Soạn lại</button>
         <span class="ld-muted">Mẫu sớ chỉ mang tính tham khảo.</span></p>
     </div>
 
@@ -68,7 +93,7 @@
 
     <div id="rec-box" hidden>
       <input type="hidden" name="ghi_am" id="ghi_am" value="{{ prefill.ghi_am|default('') }}">
-      <p class="ld-muted">Bấm <b>Bắt đầu ghi</b>, đọc tờ sớ ở trên, rồi bấm <b>Dừng</b>. Nghe lại, nếu ưng thì bấm <b>Dùng bản ghi này</b> để tải lên máy chủ.</p>
+      <p class="ld-muted">Bấm <b>Bắt đầu ghi</b>, đọc tờ sớ ở trên, bấm <b>Dừng</b>. Nghe lại; ưng thì bấm <b>Dùng bản ghi này</b>.</p>
       <div class="ld-row">
         <button type="button" class="ld-btn" id="btn-rec">● Bắt đầu ghi</button>
         <span class="ld-rec-time" id="rec-time">00:00</span>
@@ -82,8 +107,20 @@
     </div>
   </section>
 
+  {# ---------- Khi nào phát ---------- #}
+  <section class="ld-card">
+    <h2>Khi nào phát</h2>
+    <label class="ld-check"><input type="radio" name="khi_nao" value="ngay" checked> Phát ngay sau khi thanh toán</label>
+    <label class="ld-check"><input type="radio" name="khi_nao" value="hen_gio"> Hẹn giờ</label>
+    <div id="hen-gio" hidden>
+      <input id="thoi_gian" type="datetime-local" name="thoi_gian" min="{{ min_dt }}">
+      <p id="am-lich" class="ld-muted"></p>
+    </div>
+    <p class="ld-muted">Thiết bị tại đền không phát trong giờ nghỉ 22:00–05:00.</p>
+  </section>
+
   <div id="form-error" class="ld-flash error" hidden></div>
-  <p><button class="ld-btn block" id="btn-submit">Xem lại đơn</button></p>
+  <p><button class="ld-btn block" id="btn-submit">Đặt lễ và thanh toán</button></p>
 </form>
 <script src="{{ u('/static/booking.js') }}" defer></script>
 {% endblock %}

@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 
+from sqlalchemy import false as sql_false
 from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, Text, TypeDecorator
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -38,12 +39,21 @@ class User(Base):
     # temple_manager: người quản lý đền/chùa · admin: quản trị hệ thống
     role: Mapped[str] = mapped_column(String(20), default="customer")
     active: Mapped[bool] = mapped_column(Boolean, default=True)
+    # Thông tin tín chủ (lưu 1 lần, tự điền khi đặt lễ)
+    devotee_name: Mapped[str | None] = mapped_column(String(120))
+    birth_year: Mapped[int | None] = mapped_column(Integer)
+    address: Mapped[str | None] = mapped_column(String(300))
+    wish: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
     staff_of: Mapped[list["TempleStaff"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
     @property
     def is_admin(self) -> bool:
         return self.role == "admin"
+
+    @property
+    def devotee_complete(self) -> bool:
+        return bool(self.devotee_name and self.birth_year and self.address)
 
     @property
     def is_staff(self) -> bool:
@@ -180,6 +190,7 @@ class Order(Base):
     temple_id: Mapped[int] = mapped_column(ForeignKey("temples.id"), index=True)
     package_id: Mapped[int] = mapped_column(ForeignKey("offering_packages.id"))
     scheduled_at: Mapped[datetime] = mapped_column(UTCDateTime(), index=True)  # UTC
+    play_asap: Mapped[bool] = mapped_column(Boolean, default=False, server_default=sql_false())  # phát ngay khi xếp lịch xong
     timezone: Mapped[str] = mapped_column(String(50), default="Asia/Ho_Chi_Minh")
     status: Mapped[str] = mapped_column(String(20), default="created", index=True)
     total: Mapped[int] = mapped_column(Integer)  # VND, chốt giá lúc đặt

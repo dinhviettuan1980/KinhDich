@@ -3,7 +3,7 @@
 
 Cần server đang chạy (docker compose up) và .env chứa DEMO_DEVICE_TOKEN. Chạy từ thư mục linh-dia-viet/:
     .venv/bin/python scripts/demo_e2e.py
-Mất khoảng 3–4 phút (giờ hẹn ≥ MIN_LEAD_SECONDS, ảnh "after" chụp sau CAPTURE_AFTER_S giây).
+Mặc định "phát ngay" (~1 phút, ảnh "after" chụp sau CAPTURE_AFTER_S giây); --hen-gio thử luồng hẹn giờ (~4 phút).
 """
 import argparse
 import os
@@ -51,6 +51,7 @@ def main() -> int:
     ap.add_argument("--device-id", default=env.get("DEMO_DEVICE_ID", "pi-demo-01"))
     ap.add_argument("--device-token", default=env.get("DEMO_DEVICE_TOKEN", ""))
     ap.add_argument("--temple", default="den-ngoc-son", help="slug đền đã gắn thiết bị demo")
+    ap.add_argument("--hen-gio", action="store_true", help="hẹn giờ (mặc định: phát ngay sau khi thanh toán)")
     ap.add_argument("--lead-seconds", type=int, default=int(env.get("MIN_LEAD_SECONDS", 120)) + 30)
     ap.add_argument("--timeout", type=int, default=420)
     args = ap.parse_args()
@@ -94,15 +95,13 @@ def main() -> int:
         at = at.replace(second=0, microsecond=0)
         data = {"den": temple_id, "goi": pkg, "ho_ten": "Nguyễn Văn Demo", "nam_sinh": "1990",
                 "dia_chi": "Cầu Giấy, Hà Nội", "nguyen_vong": "gia đình mạnh khỏe, bình an", "cach_khan": "tts",
-                "thoi_gian": at.strftime("%Y-%m-%dT%H:%M")}
+                "khi_nao": "hen_gio" if args.hen_gio else "ngay", "thoi_gian": at.strftime("%Y-%m-%dT%H:%M")}
         r = c.post(f"{prefix}/dat-le", data=data, headers={"X-CSRF-Token": tok})
         assert r.status_code == 200, r.text
-        ref = r.json()["redirect"].rsplit("/", 1)[1]
-        print(f"  Mã đặt {ref}, giờ khấn {at:%H:%M %d/%m/%Y}")
+        ref, txn = r.json()["ref"], r.json()["txn"]
+        print(f"  Mã đặt {ref}, " + (f"giờ khấn {at:%H:%M %d/%m/%Y}" if args.hen_gio else "phát ngay sau khi thanh toán"))
 
-        step("Xác nhận + thanh toán giả lập")
-        r = c.post(f"{prefix}/dat-le/xem-lai/{ref}", data={"csrf_token": tok})
-        txn = r.headers["location"].rsplit("/", 1)[1]
+        step("Thanh toán giả lập")
         r = c.post(f"{prefix}/thanh-toan/{txn}/gia-lap", data={"csrf_token": tok, "ket_qua": "thanh_cong"})
         order_id = int(r.headers["location"].rsplit("/", 1)[1])
         print(f"  Đơn #{order_id} — {base}/don/{order_id}")

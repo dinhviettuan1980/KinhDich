@@ -118,13 +118,14 @@ def test_book_100_temples(user_client, db):
     db.expire_all()
     orders = db.scalars(select(Order).where(Order.booking_ref == ref)).all()
     assert len(orders) == 100 and len({o.prayer_id for o in orders}) == 1
-    page = user_client.get(f"{P}/dat-le/xem-lai/{ref}").text
+    from helpers import TXN
+    page = user_client.get(f"{P}/thanh-toan/{TXN[ref]}").text
     assert "15.000.000 ₫" in page  # 100 × 150.000
 
 
-def test_kinh_dich_link_and_prefix(client, monkeypatch):
+def test_kinh_dich_link_and_prefix(user_client, monkeypatch):
     monkeypatch.setattr(get_settings(), "home_url", "/kinhdich/van-khan")
-    html = client.get(f"{P}/").text
+    html = user_client.get(f"{P}/").text
     assert 'href="/kinhdich/van-khan"' in html and "Kinh Dịch" in html
     assert 'class="ld"' in html  # style bọc trong .ld
 
@@ -148,8 +149,8 @@ def test_cli_create_staff(db, capsys):
     assert u.role == "vendor" and len(u.temple_ids) == 1
 
 
-def test_temple_page_package_links(client, db):
-    html = client.get(f"{P}/den/den-ngoc-son").text
+def test_temple_page_package_links(user_client, db):
+    html = user_client.get(f"{P}/den/den-ngoc-son").text
     assert "Chọn gói này và đặt lễ" in html and "&goi=" in html
 
 

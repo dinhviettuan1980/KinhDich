@@ -1,4 +1,5 @@
-"""Luồng đặt lễ: chọn đền → gói lễ → thông tin → cách khấn → ngày giờ → xem lại → thanh toán giả lập."""
+"""Luồng đặt lễ (đã đăng nhập): đền + gói (chọn sẵn từ ngoài) → tín chủ (lưu theo tài khoản) → tờ sớ / ghi âm
+→ phát ngay hoặc hẹn giờ → thanh toán giả lập."""
 import tempfile
 import uuid
 from dataclasses import dataclass
@@ -40,8 +41,9 @@ class Booking:
     kind: str
     text: str | None
     recording_key: str | None
-    scheduled_at: datetime | None  # UTC
+    scheduled_at: datetime | None  # UTC; None = phát ngay sau khi thanh toán
     tz: str
+    play_asap: bool = True
 
 
 def _form_get(form, name, default=""):
@@ -90,17 +92,19 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False)
         raise BookingError("Cách khấn không hợp lệ.")
 
     tz = s.default_timezone
+    play_asap = _form_get(form, "khi_nao", "ngay") != "hen_gio"
     scheduled_at = None
     raw = _form_get(form, "thoi_gian")
-    if raw:
+    if not play_asap and raw:
         try:
             scheduled_at = datetime.fromisoformat(raw).replace(tzinfo=ZoneInfo(tz)).astimezone(ZoneInfo("UTC"))
         except ValueError:
             raise BookingError("Thời gian không hợp lệ.")
-    if not partial:
+    if not partial and not play_asap:
         now = utcnow()
         if not scheduled_at or scheduled_at < now + timedelta(seconds=s.min_lead_seconds):
-            raise BookingError(f"Giờ hẹn phải sau thời điểm hiện tại ít nhất {max(1, s.min_lead_seconds // 60)} phút.")
+            raise BookingError(f"Giờ hẹn phải sau thời điểm hiện tại ít nhất {max(1, s.min_lead_seconds // 60)} phút "
+                               "(hoặc chọn “Phát ngay”).")
         if scheduled_at > now + timedelta(days=365):
             raise BookingError("Chỉ đặt trước tối đa 1 năm.")
 
@@ -121,7 +125,8 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False)
         recording_key = _form_get(form, "ghi_am")
         if not partial and recording_key not in request.session.get("rec_keys", []):
             raise BookingError("Vui lòng ghi âm (đọc tờ sớ) rồi bấm “Dùng bản ghi này”, hoặc tải file lên.")
-    return Booking(temples, package, full_name, birth_year, address, wish, kind, text, recording_key, scheduled_at, tz)
+    return Booking(temples, package, full_name, birth_year, address, wish, kind, text, recording_key, scheduled_at, tz,
+                   play_asap)
 
 
 def preview_text(db: Session, b: Booking) -> str:
@@ -143,7 +148,9 @@ def preview_text(db: Session, b: Booking) -> str:
 @router.get("/dat-le")
 def booking_page(request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
     selected = [int(x) for x in request.query_params.getlist("den") if x.isdigit()]
-    prefill = {"goi": request.query_params.get("goi", "")}
+    # tín chủ: lấy từ tài khoản (lưu lại sau mỗi lần đặt)
+    prefill = {"goi": request.query_params.get("goi", ""), "ho_ten": user.devotee_name or "",
+               "nam_sinh": user.birth_year or "", "dia_chi": user.address or "", "nguyen_vong": user.wish or ""}
     src = request.query_params.get("tu_don", "")
     if src.isdigit():  # "đặt lại đơn này"
         o = db.get(Order, int(src))
@@ -158,12 +165,20 @@ def booking_page(request: Request, db: Session = Depends(get_db), user: User = D
                     keys.append(p.audio_key)
                 prefill["ghi_am"] = p.audio_key
     temples = list(db.scalars(select(Temple).where(Temple.status == "active").order_by(Temple.name)))
+    by_id = {t.id: t for t in temples}
+    chosen = [by_id[i] for i in selected if i in by_id and by_id[i].device_id]
+    packages = packages_for(db, [t.id for t in chosen])
+    chosen_pkg = next((p for p in packages if str(p.id) == str(prefill.get("goi"))), None)
     s = get_settings()
     min_dt = (utcnow() + timedelta(seconds=s.min_lead_seconds + 60)).astimezone(ZoneInfo(s.default_timezone))
     return render(request, "booking/form.html", {
-        "temples": temples, "selected": selected, "online": {t.id: device_online(t.device) for t in temples},
-        "packages": packages_for(db, selected), "prefill": prefill, "min_dt": min_dt.strftime("%Y-%m-%dT%H:%M"),
-        "max_seconds": s.max_audio_seconds, "max_chars": s.max_prayer_chars,
+        "temples": temples, "selected": [t.id for t in chosen], "online": {t.id: device_online(t.device) for t in temples},
+        # đã chọn từ ngoài thì chỉ hiện tóm tắt, không bắt chọn lại
+        "chosen": chosen, "chosen_pkg": chosen_pkg, "packages": packages, "prefill": prefill,
+        "change_pkg_url": u(f"/den/{chosen[0].slug}") if len(chosen) == 1
+        else u("/dat-le?" + "&".join(f"den={t.id}" for t in chosen)),
+        "info_complete": bool(prefill["ho_ten"] and prefill["nam_sinh"] and prefill["dia_chi"] and prefill["nguyen_vong"]),
+        "min_dt": min_dt.strftime("%Y-%m-%dT%H:%M"), "max_seconds": s.max_audio_seconds, "max_chars": s.max_prayer_chars,
     })
 
 
@@ -263,41 +278,20 @@ async def submit(request: Request, db: Session = Depends(get_db), user: User = D
     db.add(prayer)
     db.flush()
     ref = svc.new_ref()
+    orders = []
     for t in b.temples:
         o = Order(booking_ref=ref, user_id=user.id, prayer_id=prayer.id, temple_id=t.id, package_id=b.package.id,
-                  scheduled_at=b.scheduled_at, timezone=b.tz, total=b.package.price)
+                  scheduled_at=b.scheduled_at or utcnow(), play_asap=b.play_asap, timezone=b.tz, total=b.package.price)
         db.add(o)
         db.flush()
         db.add(OrderEvent(order_id=o.id, status="created"))
-    db.commit()
-    return {"redirect": u(f"/dat-le/xem-lai/{ref}")}
-
-
-def _booking_orders(db: Session, ref: str, user: User) -> list[Order]:
-    orders = list(db.scalars(select(Order).where(Order.booking_ref == ref).order_by(Order.id)))
-    if not orders or (orders[0].user_id != user.id and not user.is_admin):
-        raise HTTPException(404)
-    return orders
-
-
-@router.get("/dat-le/xem-lai/{ref}")
-def review(ref: str, request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
-    orders = _booking_orders(db, ref, user)
-    first = orders[0]
-    return render(request, "booking/review.html", {
-        "orders": orders, "ref": ref, "prayer": first.prayer, "total": sum(o.total for o in orders),
-        "script": svc.script_for(db, first.prayer, first) if first.prayer.kind == "tts" else None,
-    })
-
-
-@router.post("/dat-le/xem-lai/{ref}", dependencies=csrf)
-def confirm(ref: str, request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
-    orders = _booking_orders(db, ref, user)
-    if not any(o.status in ("created", "awaiting_payment") for o in orders):
-        return RedirectResponse(u(f"/don/{orders[0].id}"), 303)
+        orders.append(o)
+    # lưu thông tin tín chủ vào tài khoản để lần sau không phải nhập lại
+    me = db.get(User, user.id)
+    me.devotee_name, me.birth_year, me.address, me.wish = b.full_name, b.birth_year, b.address, b.wish
     txn = svc.start_payment(db, orders, f"user:{user.id}")
     db.commit()
-    return RedirectResponse(u(f"/thanh-toan/{txn}"), 303)
+    return {"redirect": u(f"/thanh-toan/{txn}"), "ref": ref, "txn": txn}
 
 
 # ---------------- Thanh toán giả lập ----------------
@@ -312,9 +306,11 @@ def _txn_payments(db: Session, txn: str, user: User) -> list[Payment]:
 @router.get("/thanh-toan/{txn}")
 def payment_page(txn: str, request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
     pays = _txn_payments(db, txn, user)
+    first = pays[0].order
     return render(request, "booking/payment.html", {
-        "txn": txn, "payments": pays, "amount": sum(p.amount for p in pays),
-        "pending": any(p.status == "pending" for p in pays), "first_order": pays[0].order})
+        "txn": txn, "payments": pays, "amount": sum(p.amount for p in pays), "orders": [p.order for p in pays],
+        "pending": any(p.status == "pending" for p in pays), "first_order": first, "prayer": first.prayer,
+        "script": svc.script_for(db, first.prayer, first) if first.prayer.kind == "tts" else None})
 
 
 @router.post("/thanh-toan/{txn}/gia-lap", dependencies=csrf)

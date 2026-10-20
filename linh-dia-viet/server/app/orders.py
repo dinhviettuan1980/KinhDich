@@ -78,6 +78,8 @@ def try_schedule(db: Session, order: Order, actor: str = "system") -> bool:
     except Exception as e:  # TTS lỗi mạng… → giữ 'paid', vòng nền thử lại
         log.warning("Chưa tạo được audio cho đơn %s: %s", order.id, e)
         return False
+    if order.play_asap:  # "phát ngay": tính từ lúc xếp lịch (sau thanh toán / sau khi duyệt), không phải lúc đặt
+        order.scheduled_at = utcnow() + timedelta(seconds=get_settings().asap_delay_seconds)
     transition(db, order, S.SCHEDULED, actor)
     from . import hooks
     hooks.on_scheduled(db, order)

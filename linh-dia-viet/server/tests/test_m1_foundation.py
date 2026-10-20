@@ -20,7 +20,8 @@ def test_seed_data(db):
     assert admin.password_hash.startswith("$argon2")
 
 
-def test_home_lists_temples_and_search(client):
+def test_home_lists_temples_and_search(user_client):
+    client = user_client
     r = client.get(f"{P}/")
     assert r.status_code == 200
     assert "Đền Ngọc Sơn" in r.text and "Chùa Trấn Quốc" in r.text
@@ -33,7 +34,8 @@ def test_root_redirects_to_prefix(client):
     assert r.status_code == 307 and r.headers["location"] == f"{P}/"
 
 
-def test_temple_detail(client):
+def test_temple_detail(user_client):
+    client = user_client
     r = client.get(f"{P}/den/den-ngoc-son")
     assert r.status_code == 200 and "Lễ hoa quả" in r.text
     assert client.get(f"{P}/den/khong-co").status_code == 404

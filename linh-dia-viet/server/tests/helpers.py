@@ -27,7 +27,8 @@ def local_dt(minutes_from_now: float) -> str:
 def booking_data(db, temples=("den-ngoc-son",), minutes=60 * 24, **over):
     data = {"den": [str(temple_id(db, s)) for s in temples], "goi": str(shared_package(db).id),
             "ho_ten": "Nguyễn Văn A", "nam_sinh": "1990", "dia_chi": "Cầu Giấy, Hà Nội",
-            "nguyen_vong": "gia đình mạnh khỏe, bình an", "cach_khan": "tts", "thoi_gian": local_dt(minutes)}
+            "nguyen_vong": "gia đình mạnh khỏe, bình an", "cach_khan": "tts", "khi_nao": "hen_gio",
+            "thoi_gian": local_dt(minutes)}
     data.update(over)
     return data
 
@@ -36,16 +37,19 @@ def post_json(client, path, data=None, files=None):
     return client.post(f"{P}{path}", data=data, files=files, headers={"X-CSRF-Token": client.csrf})
 
 
+TXN: dict[str, str] = {}  # booking_ref → mã giao dịch
+
+
 def create_booking(client, db, **kw) -> str:
     r = post_json(client, "/dat-le", booking_data(db, **kw))
     assert r.status_code == 200, r.text
-    return r.json()["redirect"].rsplit("/", 1)[1]
+    TXN[r.json()["ref"]] = r.json()["txn"]
+    assert r.json()["redirect"].endswith(f"/thanh-toan/{r.json()['txn']}")
+    return r.json()["ref"]
 
 
 def confirm_and_pay(client, ref, success=True) -> str:
-    r = client.post(f"{P}/dat-le/xem-lai/{ref}", data={"csrf_token": client.csrf}, follow_redirects=False)
-    assert r.status_code == 303
-    txn = r.headers["location"].rsplit("/", 1)[1]
+    txn = TXN[ref]
     r = client.post(f"{P}/thanh-toan/{txn}/gia-lap", data={"csrf_token": client.csrf,
                                                          "ket_qua": "thanh_cong" if success else "that_bai"},
                     follow_redirects=False)

@@ -26,12 +26,13 @@
   var maxTemples = parseInt(form.dataset.maxTemples, 10) || 100;
   var boxes = function () { return Array.prototype.slice.call(form.querySelectorAll("input[name=den][data-ok]")); };
   function syncTemples() {
+    if (!$("temple-count")) return;  // đền đã chọn sẵn từ ngoài
     var n = boxes().filter(function (b) { return b.checked; }).length;
     $("temple-count").textContent = n + " đền";
     boxes().forEach(function (b) { if (!b.checked) b.disabled = n >= maxTemples; });
   }
   form.addEventListener("change", function (e) { if (e.target.name === "den") syncTemples(); });
-  $("btn-all").addEventListener("click", function () {
+  $("btn-all") && $("btn-all").addEventListener("click", function () {
     var all = boxes(), on = !all.every(function (b) { return b.checked; });
     all.slice(0, maxTemples).forEach(function (b) { b.checked = on; });
     if (!on) all.forEach(function (b) { b.checked = false; });
@@ -50,6 +51,21 @@
   }
   form.querySelectorAll("[name=cach_khan]").forEach(function (r) { r.addEventListener("change", syncKind); });
   syncKind();
+
+  // ---- Phát ngay / hẹn giờ ----
+  form.querySelectorAll("[name=khi_nao]").forEach(function (r) {
+    r.addEventListener("change", function () {
+      $("hen-gio").hidden = form.querySelector("[name=khi_nao]:checked").value !== "hen_gio";
+      autoPreview();
+    });
+  });
+
+  // ---- Sửa thông tin tín chủ ----
+  $("btn-edit-info") && $("btn-edit-info").addEventListener("click", function () {
+    $("info-fields").hidden = false;
+    $("info-summary").hidden = true;
+    this.hidden = true;
+  });
 
   // ---- Ngày âm lịch ----
   $("thoi_gian").addEventListener("change", function () {
@@ -79,7 +95,9 @@
   });
   // Tự soạn sớ: khi mở trang, khi đổi đền/gói/thông tin (nếu người dùng chưa sửa tay)
   function autoPreview() {
-    if (form.querySelector("input[name=den]:checked")) preview(false);
+    var has = Array.prototype.some.call(form.querySelectorAll("input[name=den]"),
+      function (i) { return i.type === "hidden" || i.checked; });
+    if (has) preview(false);
   }
   ["ho_ten", "nam_sinh", "dia_chi", "nguyen_vong", "thoi_gian"].forEach(function (id) {
     $(id).addEventListener("change", autoPreview);

@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session, joinedload
 from ..config import get_settings
 from ..db import get_db
 from ..models import Device, OfferingPackage, Temple, utcnow
-from ..web import current_user, render
+from ..web import render, require_user
 
 router = APIRouter()
 
@@ -28,7 +28,7 @@ def packages_for(db: Session, temple_ids: list[int]) -> list[OfferingPackage]:
 
 
 @router.get("/")
-def home(request: Request, q: str = "", db: Session = Depends(get_db), user=Depends(current_user)):
+def home(request: Request, q: str = "", db: Session = Depends(get_db), user=Depends(require_user)):
     stmt = select(Temple).options(joinedload(Temple.device)).where(Temple.status == "active").order_by(Temple.name)
     if q.strip():
         like = f"%{q.strip()}%"
@@ -41,7 +41,7 @@ def home(request: Request, q: str = "", db: Session = Depends(get_db), user=Depe
 
 
 @router.get("/den/{slug}")
-def temple_detail(slug: str, request: Request, db: Session = Depends(get_db), user=Depends(current_user)):
+def temple_detail(slug: str, request: Request, db: Session = Depends(get_db), user=Depends(require_user)):
     temple = db.scalar(select(Temple).where(Temple.slug == slug, Temple.status == "active"))
     if not temple:
         raise HTTPException(404, "Không tìm thấy đền/chùa")

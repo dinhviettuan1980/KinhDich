@@ -3,18 +3,29 @@
 {% block content %}
 <h1>Thanh toán</h1>
 <div class="ld-card">
-  <p>Mã giao dịch: <b>{{ txn }}</b></p>
-  <p>Số tiền: <b>{{ fmt_vnd(amount) }}</b> ({{ payments|length }} đơn)</p>
-  {% if pending %}
-  <p class="ld-flash">Bản thử nghiệm: cổng thanh toán được <b>giả lập</b>, không trừ tiền thật.</p>
-  <form method="post" action="{{ u('/thanh-toan/' ~ txn ~ '/gia-lap') }}" class="ld-row">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-    <button class="ld-btn" name="ket_qua" value="thanh_cong">Thanh toán thành công</button>
-    <button class="ld-btn secondary" name="ket_qua" value="that_bai">Giả lập thất bại</button>
-  </form>
-  {% else %}
-  <p>Giao dịch đã xử lý: {% for p in payments %}{{ p.status }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
-  <a class="ld-btn" href="{{ u('/don/' ~ first_order.id) }}">Xem đơn</a>
-  {% endif %}
+  {% for o in orders %}<div class="ld-spread"><span>{{ o.temple.name }} · {{ o.package.name }}</span><span>{{ fmt_vnd(o.total) }}</span></div>{% endfor %}
+  <hr style="border:0;border-top:1px solid var(--ld-line)">
+  <div class="ld-spread"><b>Tổng cộng</b><b>{{ fmt_vnd(amount) }}</b></div>
+  <p class="ld-muted" style="margin-bottom:0">
+    Tín chủ: {{ prayer.full_name }} ({{ prayer.birth_year }}) ·
+    {{ 'Giọng đọc tự động' if prayer.kind == 'tts' else 'Bản ghi âm của bạn' }} ·
+    {% if first_order.play_asap %}<b>Phát ngay</b> sau khi thanh toán{% else %}Hẹn {{ fmt_local(first_order.scheduled_at, first_order.timezone) }}{% endif %}
+  </p>
 </div>
+{% if pending %}
+<div class="ld-card">
+  <p class="ld-flash">Bản thử nghiệm: thanh toán <b>giả lập</b>, không trừ tiền thật. Mã giao dịch {{ txn }}.</p>
+  <form method="post" action="{{ u('/thanh-toan/' ~ txn ~ '/gia-lap') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <p><button class="ld-btn block" name="ket_qua" value="thanh_cong">Thanh toán {{ fmt_vnd(amount) }}</button></p>
+    <p class="ld-row"><button class="ld-btn secondary small" name="ket_qua" value="that_bai">Giả lập thất bại</button>
+      <a class="ld-btn secondary small" href="{{ u('/dat-le') }}?tu_don={{ first_order.id }}">Sửa lại đơn</a></p>
+  </form>
+</div>
+{% else %}
+<div class="ld-card"><p>Giao dịch đã xử lý.</p><a class="ld-btn" href="{{ u('/don/' ~ first_order.id) }}">Xem đơn</a></div>
+{% endif %}
+{% if script %}<details class="ld-card"><summary>Tờ sớ{% if orders|length > 1 %} (tại {{ first_order.temple.name }}){% endif %}</summary><div class="ld-sowrite">{{ script }}</div></details>{% endif %}
+{% if prayer.kind == 'recorded' %}<div class="ld-card"><b>Bản ghi âm</b><audio controls src="{{ u('/don/' ~ first_order.id ~ '/audio') }}"></audio>
+  {% if prayer.moderation == 'pending' %}<p class="ld-muted">Bản ghi sẽ được kiểm duyệt trước khi phát.</p>{% endif %}</div>{% endif %}
 {% endblock %}

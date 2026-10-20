@@ -89,7 +89,8 @@ def test_end_to_end_to_completed(setup, db, user_client):
     assert db.scalar(select(AuditLog).where(AuditLog.action == "device.cmd", AuditLog.target == "device:pi-demo-01"))
 
 
-def test_status_marks_device_online(setup, db, client):
+def test_status_marks_device_online(setup, db, user_client):
+    client = user_client
     order, agent, clock = setup
     agent.publish_status(clock["t"])
     db.bus.pump()

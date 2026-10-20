@@ -56,7 +56,8 @@ def create_app() -> FastAPI:
 
     @app.exception_handler(LoginRequired)
     async def _login_required(request: Request, exc: LoginRequired):
-        return RedirectResponse(u("/dang-nhap") + "?next=" + quote(str(request.url.path)), 303)
+        nxt = request.url.path + (f"?{request.url.query}" if request.url.query else "")
+        return RedirectResponse(u("/dang-nhap") + "?next=" + quote(nxt), 303)
 
     @app.exception_handler(StarletteHTTPException)
     async def _http_error(request: Request, exc: StarletteHTTPException):
