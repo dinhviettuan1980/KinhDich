@@ -112,3 +112,12 @@ def test_alembic_matches_models(tmp_path):
     for table in Base.metadata.sorted_tables:
         cols = {c["name"] for c in insp.get_columns(table.name)}
         assert cols == {c.name for c in table.columns}, table.name
+
+
+def test_runtime_files_not_gitignored():
+    """File dữ liệu trong app/ phải được commit (lỗi cũ: 'data/' trong .gitignore nuốt mất app/data/)."""
+    server = Path(__file__).resolve().parents[1]
+    for f in (server / "app").rglob("*"):
+        if f.is_file() and "__pycache__" not in f.parts:
+            r = subprocess.run(["git", "check-ignore", "-q", str(f)], cwd=server)
+            assert r.returncode == 1, f"{f} bị .gitignore bỏ qua"

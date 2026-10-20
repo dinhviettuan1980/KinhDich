@@ -2,8 +2,8 @@
 __pycache__/
 *.pyc
 .env
-data/
-server/data/
-pi-agent/data/
+/data/
+/server/data/
+/pi-agent/data/
 mosquitto/extra/devices.passwd*
 .pytest_cache/

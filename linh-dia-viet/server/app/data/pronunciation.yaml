@@ -1,0 +1,15 @@
+# Từ điển phát âm cho TTS: "cách viết" -> "cách đọc".
+# Áp dụng trước bước đọc số; không phân biệt hoa thường; chỉ khớp nguyên cụm từ.
+# Người am hiểu có thể bổ sung các từ Hán Việt mà giọng TTS đọc sai.
+replacements:
+  "Nam mô": "Na mô"
+  "Tỵ": "Tị"
+  "TP.": "thành phố"
+  "Tp.": "thành phố"
+  "Q.": "quận"
+  "P.": "phường"
+  "TT.": "thị trấn"
+  "H.": "huyện"
+  "Đ/c": "địa chỉ"
+  "đ/c": "địa chỉ"
+  "&": "và"
