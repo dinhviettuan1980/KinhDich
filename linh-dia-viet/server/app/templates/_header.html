@@ -6,6 +6,7 @@
       <a href="{{ u('/') }}">Đền chùa</a>
       {% if user %}
         <a href="{{ u('/don') }}">Đơn của tôi</a>
+        <a href="{{ u('/tai-khoan') }}">Tài khoản</a>
         {% if user.is_admin or user.is_staff %}<a href="{{ u("/admin") }}">Quản lý</a>{% endif %}
         <form method="post" action="{{ u('/dang-xuat') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button>Đăng xuất</button></form>
       {% else %}

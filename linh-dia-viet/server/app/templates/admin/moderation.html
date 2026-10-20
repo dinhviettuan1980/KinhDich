@@ -9,6 +9,7 @@
     {% for o in p.orders %}{{ o.temple.name }}{% if not loop.last %}, {% endif %}{% endfor %}
     {% if p.audio_seconds %} · {{ '%d:%02d'|format(p.audio_seconds // 60, p.audio_seconds % 60) }}{% endif %}</div>
   <audio controls preload="none" src="{{ u('/admin/kiem-duyet/' ~ p.id ~ '/audio') }}"></audio>
+  {% if p.text %}<details><summary>Tờ sớ khách đọc</summary><div class="ld-sowrite">{{ p.text }}</div></details>{% endif %}
   <form method="post" action="{{ u('/admin/kiem-duyet/' ~ p.id) }}" class="ld-row" style="margin-top:8px">
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     <button class="ld-btn small" name="quyet_dinh" value="duyet">✓ Duyệt</button>

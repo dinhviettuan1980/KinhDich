@@ -50,18 +50,25 @@
     <label class="ld-check"><input type="radio" name="cach_khan" value="tts" {% if prefill.cach_khan|default('tts') == 'tts' %}checked{% endif %}> Hệ thống soạn sớ và đọc bằng giọng đọc tự động</label>
     <label class="ld-check"><input type="radio" name="cach_khan" value="recorded" {% if prefill.cach_khan == 'recorded' %}checked{% endif %}> Tôi tự ghi âm giọng đọc</label>
 
-    <div id="tts-box">
-      <p><button type="button" class="ld-btn secondary small" id="btn-preview">Xem trước bài khấn</button></p>
+    <div id="so-box" class="ld-card" style="background:#fffdf7">
+      <h3 style="margin-top:0">📜 Tờ sớ</h3>
+      <p id="so-hint-tts" class="ld-muted">Hệ thống tự soạn sớ từ thông tin của bạn; giọng đọc tự động sẽ đọc đúng bài này tại đền. Bạn có thể sửa nhẹ.</p>
+      <p id="so-hint-rec" class="ld-muted" hidden><b>Hãy đọc to, chậm rãi bài dưới đây</b> khi bấm ghi âm (có thể sửa nhẹ trước khi đọc).</p>
       <p id="multi-note" class="ld-muted" hidden>Đặt nhiều đền: các ô {ten_den}, {than_linh}, {dia_chi_den} sẽ được tự điền theo từng đền.</p>
       <input type="hidden" name="van_ban_goc" id="van_ban_goc">
-      <textarea name="van_ban" id="van_ban" maxlength="{{ max_chars }}" rows="10" placeholder="Bấm “Xem trước bài khấn” để hệ thống soạn sớ, bạn có thể sửa nhẹ.">{{ prefill.van_ban|default('') }}</textarea>
-      <p class="ld-muted">Mẫu sớ chỉ mang tính tham khảo. Bạn có thể sửa nhẹ (tối đa {{ max_chars }} ký tự).</p>
+      <textarea name="van_ban" id="van_ban" maxlength="{{ max_chars }}" rows="12" class="ld-sowrite" placeholder="Chọn đền và điền thông tin, tờ sớ sẽ tự hiện ở đây.">{{ prefill.van_ban|default('') }}</textarea>
+      <p class="ld-row"><button type="button" class="ld-btn secondary small" id="btn-preview">↻ Soạn lại theo thông tin mới</button>
+        <span class="ld-muted">Mẫu sớ chỉ mang tính tham khảo.</span></p>
+    </div>
+
+    <div id="tts-box">
       <p><button type="button" class="ld-btn secondary small" id="btn-listen">▶ Nghe thử giọng đọc</button></p>
       <audio id="tts-audio" controls hidden></audio>
     </div>
 
     <div id="rec-box" hidden>
       <input type="hidden" name="ghi_am" id="ghi_am" value="{{ prefill.ghi_am|default('') }}">
+      <p class="ld-muted">Bấm <b>Bắt đầu ghi</b>, đọc tờ sớ ở trên, rồi bấm <b>Dừng</b>. Nghe lại, nếu ưng thì bấm <b>Dùng bản ghi này</b> để tải lên máy chủ.</p>
       <div class="ld-row">
         <button type="button" class="ld-btn" id="btn-rec">● Bắt đầu ghi</button>
         <span class="ld-rec-time" id="rec-time">00:00</span>

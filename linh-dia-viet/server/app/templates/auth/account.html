@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Tài khoản{% endblock %}
+{% block content %}
+<h1>Tài khoản</h1>
+<div class="ld-card"><b>{{ user.name }}</b><br><span class="ld-muted">{{ user.email or user.phone }}</span></div>
+<form class="ld-card" method="post" action="{{ u('/tai-khoan/mat-khau') }}">
+  <h3>Đổi mật khẩu</h3>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  {% if user.password_hash %}<label for="old">Mật khẩu hiện tại</label><input id="old" name="old" type="password" autocomplete="current-password" required>{% endif %}
+  <label for="new">Mật khẩu mới (tối thiểu 8 ký tự)</label><input id="new" name="new" type="password" minlength="8" autocomplete="new-password" required>
+  <p><button class="ld-btn">Đổi mật khẩu</button></p>
+</form>
+{% endblock %}

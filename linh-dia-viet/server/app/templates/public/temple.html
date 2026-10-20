@@ -2,16 +2,19 @@
 {% block title %}{{ temple.name }}{% endblock %}
 {% block content %}
 <h1>{{ temple.name }}</h1>
-<p>{% if online %}<span class="ld-badge on">● Thiết bị đang trực tuyến</span>{% else %}<span class="ld-badge off">Thiết bị ngoại tuyến</span>{% endif %}</p>
+<p>{% if not temple.device_id %}<span class="ld-badge">Chưa nhận lễ từ xa</span>{% elif online %}<span class="ld-badge on">● Thiết bị đang trực tuyến</span>{% else %}<span class="ld-badge off">Thiết bị ngoại tuyến</span>{% endif %}</p>
 <div class="ld-card">
   <div class="ld-muted">{{ temple.address }}{% if temple.province %}, {{ temple.province }}{% endif %}</div>
   <p>{{ temple.description }}</p>
   {% if temple.deity %}<p><b>Thờ:</b> {{ temple.deity }}</p>{% endif %}
 </div>
-<h2>Gói lễ</h2>
+<h2>Chọn gói lễ</h2>
 {% for p in packages %}
-  <div class="ld-card"><div class="ld-spread"><b>{{ p.name }}</b><span>{{ fmt_vnd(p.price) }}</span></div>
-  <div class="ld-muted">{{ p.description }}</div></div>
+  <div class="ld-card">
+    <div class="ld-spread"><b>{{ p.name }}</b><span>{{ fmt_vnd(p.price) }}</span></div>
+    <div class="ld-muted">{{ p.description }}</div>
+    {% if temple.device_id %}<p style="margin-bottom:0"><a class="ld-btn small" href="{{ u('/dat-le') }}?den={{ temple.id }}&goi={{ p.id }}">Chọn gói này và đặt lễ →</a></p>{% endif %}
+  </div>
 {% endfor %}
-<p><a class="ld-btn block" href="{{ u('/dat-le') }}?den={{ temple.id }}">Đặt lễ tại đây</a></p>
+{% if not temple.device_id %}<p class="ld-muted">Đền này chưa lắp thiết bị nên chưa đặt lễ từ xa được.</p>{% endif %}
 {% endblock %}

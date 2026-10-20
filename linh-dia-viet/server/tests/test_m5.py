@@ -127,3 +127,37 @@ def test_kinh_dich_link_and_prefix(client, monkeypatch):
     html = client.get(f"{P}/").text
     assert 'href="/kinhdich/van-khan"' in html and "Kinh Dịch" in html
     assert 'class="ld"' in html  # style bọc trong .ld
+
+
+def test_change_password(user_client, db):
+    c = user_client
+    assert "Đổi mật khẩu" in c.get(f"{P}/tai-khoan").text
+    c.post(f"{P}/tai-khoan/mat-khau", data={"old": "sai", "new": "moi12345", "csrf_token": c.csrf})
+    c.post(f"{P}/tai-khoan/mat-khau", data={"old": "matkhau123", "new": "moi12345", "csrf_token": c.csrf})
+    c.post(f"{P}/dang-xuat", data={"csrf_token": c.csrf})
+    login(c, "a@example.com", "moi12345")
+
+
+def test_cli_create_staff(db, capsys):
+    from app.cli import main
+    main(["create-user", "kiosk2@example.com", "--role", "vendor", "--temple", "den-ngoc-son", "--password", "abc12345"])
+    assert "kiosk2@example.com / abc12345" in capsys.readouterr().out
+    db.expire_all()
+    from app.models import User
+    u = db.scalar(select(User).where(User.email == "kiosk2@example.com"))
+    assert u.role == "vendor" and len(u.temple_ids) == 1
+
+
+def test_temple_page_package_links(client, db):
+    html = client.get(f"{P}/den/den-ngoc-son").text
+    assert "Chọn gói này và đặt lễ" in html and "&goi=" in html
+
+
+def test_recorded_booking_keeps_read_text(user_client, db, tmp_path):
+    key = post_json(user_client, "/dat-le/ghi-am",
+                    files={"file": ("r.wav", tone(tmp_path / "r.wav").read_bytes(), "audio/wav")}).json()["key"]
+    d = booking_data(db, cach_khan="recorded", ghi_am=key, van_ban_goc="Bài gốc.", van_ban="Bài gốc, con xin đọc.")
+    r = post_json(user_client, "/dat-le", d)
+    assert r.status_code == 200
+    from app.models import Prayer
+    assert db.scalars(select(Prayer)).all()[-1].text == "Bài gốc, con xin đọc."

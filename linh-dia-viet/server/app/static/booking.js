@@ -45,6 +45,8 @@
     var kind = form.querySelector('[name=cach_khan]:checked').value;
     $("tts-box").hidden = kind !== "tts";
     $("rec-box").hidden = kind !== "recorded";
+    $("so-hint-tts").hidden = kind !== "tts";
+    $("so-hint-rec").hidden = kind !== "recorded";
   }
   form.querySelectorAll("[name=cach_khan]").forEach(function (r) { r.addEventListener("change", syncKind); });
   syncKind();
@@ -75,9 +77,16 @@
     if (edited && !confirm("Soạn lại sẽ xoá phần bạn đã sửa. Tiếp tục?")) return;
     preview(true);
   });
+  // Tự soạn sớ: khi mở trang, khi đổi đền/gói/thông tin (nếu người dùng chưa sửa tay)
+  function autoPreview() {
+    if (form.querySelector("input[name=den]:checked")) preview(false);
+  }
   ["ho_ten", "nam_sinh", "dia_chi", "nguyen_vong", "thoi_gian"].forEach(function (id) {
-    $(id).addEventListener("change", function () { if ($("van_ban").value) preview(false); });
+    $(id).addEventListener("change", autoPreview);
   });
+  form.addEventListener("change", function (e) { if (e.target.name === "den" || e.target.name === "goi") autoPreview(); });
+  document.body.addEventListener("htmx:afterSwap", autoPreview);
+  if (!$("van_ban").value) autoPreview();
 
   // ---- Nghe thử ----
   $("btn-listen").addEventListener("click", function () {
@@ -160,7 +169,7 @@
     var go = function () {
       return post(form.action, new FormData(form)).then(function (j) { window.location = j.redirect; });
     };
-    var p = (kind === "tts" && !$("van_ban").value) ? preview(true).then(go) : go();
+    var p = !$("van_ban").value ? preview(true).then(go) : go();
     p.catch(function (err) { showError(err.message); });
   });
 })();

@@ -136,3 +136,27 @@ def register(request: Request, name: str = Form(...), identifier: str = Form(...
 def logout(request: Request):
     request.session.clear()
     return RedirectResponse(u("/"), 303)
+
+
+@router.get("/tai-khoan")
+def account_page(request: Request, user=Depends(current_user)):
+    if not user:
+        return RedirectResponse(u("/dang-nhap?next=") + u("/tai-khoan"), 303)
+    return render(request, "auth/account.html")
+
+
+@router.post("/tai-khoan/mat-khau", dependencies=[Depends(check_csrf), Depends(rate_limit("passwd", 10, 300))])
+def change_password(request: Request, old: str = Form(""), new: str = Form(...), db: Session = Depends(get_db),
+                    user=Depends(current_user)):
+    if not user:
+        return RedirectResponse(u("/dang-nhap"), 303)
+    user = db.get(User, user.id)
+    if user.password_hash and not verify_password(old, user.password_hash):
+        flash(request, "Mật khẩu hiện tại không đúng.", "error")
+    elif len(new) < 8:
+        flash(request, "Mật khẩu mới tối thiểu 8 ký tự.", "error")
+    else:
+        user.password_hash = hash_password(new)
+        db.commit()
+        flash(request, "Đã đổi mật khẩu.", "ok")
+    return RedirectResponse(u("/tai-khoan"), 303)

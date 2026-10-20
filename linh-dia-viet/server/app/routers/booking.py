@@ -104,23 +104,23 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False)
         if scheduled_at > now + timedelta(days=365):
             raise BookingError("Chỉ đặt trước tối đa 1 năm.")
 
+    # Văn bản sớ: TTS đọc bài này; khi tự ghi âm, đây là bài khách đọc (lưu lại để đối chiếu khi kiểm duyệt).
     text = None
+    edited = (_form_get(form, "van_ban") or "").replace("\r\n", "\n").strip()
+    original = (_form_get(form, "van_ban_goc") or "").replace("\r\n", "\n").strip()
+    if edited and edited != original:
+        if len(edited) > s.max_prayer_chars:
+            raise BookingError(f"Bài khấn tối đa {s.max_prayer_chars} ký tự.")
+        if original and len(edited) > len(original) * 1.5 + 300:
+            raise BookingError("Chỉ được sửa nhẹ bài khấn (văn bản dài hơn quá nhiều so với mẫu).")
+        if prayer_text.unknown_variables(edited):
+            raise BookingError("Văn bản có biến không hợp lệ trong dấu { }.")
+        text = prayer_text.clean_multiline(edited, s.max_prayer_chars)
     recording_key = None
-    if kind == "tts":
-        edited = (_form_get(form, "van_ban") or "").replace("\r\n", "\n").strip()
-        original = (_form_get(form, "van_ban_goc") or "").replace("\r\n", "\n").strip()
-        if edited and edited != original:
-            if len(edited) > s.max_prayer_chars:
-                raise BookingError(f"Bài khấn tối đa {s.max_prayer_chars} ký tự.")
-            if original and len(edited) > len(original) * 1.5 + 300:
-                raise BookingError("Chỉ được sửa nhẹ bài khấn (văn bản dài hơn quá nhiều so với mẫu).")
-            if prayer_text.unknown_variables(edited):
-                raise BookingError("Văn bản có biến không hợp lệ trong dấu { }.")
-            text = prayer_text.clean_multiline(edited, s.max_prayer_chars)
-    else:
+    if kind == "recorded":
         recording_key = _form_get(form, "ghi_am")
         if not partial and recording_key not in request.session.get("rec_keys", []):
-            raise BookingError("Vui lòng ghi âm hoặc tải lên bài khấn.")
+            raise BookingError("Vui lòng ghi âm (đọc tờ sớ) rồi bấm “Dùng bản ghi này”, hoặc tải file lên.")
     return Booking(temples, package, full_name, birth_year, address, wish, kind, text, recording_key, scheduled_at, tz)
 
 
@@ -143,7 +143,7 @@ def preview_text(db: Session, b: Booking) -> str:
 @router.get("/dat-le")
 def booking_page(request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
     selected = [int(x) for x in request.query_params.getlist("den") if x.isdigit()]
-    prefill = {}
+    prefill = {"goi": request.query_params.get("goi", "")}
     src = request.query_params.get("tu_don", "")
     if src.isdigit():  # "đặt lại đơn này"
         o = db.get(Order, int(src))
