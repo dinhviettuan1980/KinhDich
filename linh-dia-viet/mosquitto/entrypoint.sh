@@ -20,6 +20,16 @@ build() {
   mv "$PW.new" "$PW"
 }
 
+# TLS (production): chép chứng chỉ để user mosquitto đọc được (privkey của certbot chỉ root đọc).
+copy_certs() {
+  if [ -n "$TLS_CERT_DIR" ]; then
+    mkdir -p /mosquitto/certs
+    cp -L "$TLS_CERT_DIR/fullchain.pem" "$TLS_CERT_DIR/privkey.pem" /mosquitto/certs/
+    chown -R mosquitto:mosquitto /mosquitto/certs && chmod 600 /mosquitto/certs/privkey.pem
+  fi
+}
+copy_certs
+
 cp /mosquitto/acl.src /mosquitto/config/acl
 chown mosquitto:mosquitto /mosquitto/config/acl 2>/dev/null || true
 chmod 0700 /mosquitto/config/acl

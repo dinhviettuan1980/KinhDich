@@ -7,7 +7,7 @@ services:
       MQTT_HOST: mosquitto
       MQTT_PASSWD_FILE: /srv/mqtt-extra/devices.passwd
     ports:
-      - "8000:8000"
+      - "${LD_API_BIND:-8000}:8000"
     volumes:
       - api-data:/srv/data
       - ./mosquitto/extra:/srv/mqtt-extra
@@ -23,7 +23,7 @@ services:
       DEMO_DEVICE_ID: ${DEMO_DEVICE_ID:-pi-demo-01}
       DEMO_DEVICE_TOKEN: ${DEMO_DEVICE_TOKEN}
     ports:
-      - "1883:1883"
+      - "${LD_MQTT_BIND:-1883}:1883"
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
       - ./mosquitto/acl:/mosquitto/acl.src:ro

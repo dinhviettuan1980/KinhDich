@@ -1,0 +1,16 @@
+# Ghép thêm cho production:  docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+# Trong .env của server đặt:  LD_API_BIND=127.0.0.1:8040  LD_MQTT_BIND=127.0.0.1:1883  LD_DOMAIN=tuandv.id.vn
+# - API chỉ nghe 127.0.0.1 (nginx proxy /le-chua vào).
+# - MQTT 1883 chỉ nội bộ; thiết bị ngoài internet kết nối 8883 TLS bằng chứng chỉ Let's Encrypt của domain.
+services:
+  api:
+    environment:
+      FORWARDED_ALLOW_IPS: "*"   # cổng API chỉ mở trên 127.0.0.1 nên chỉ nginx cùng máy gọi được
+  mosquitto:
+    ports:
+      - "8883:8883"
+    volumes:
+      - ./mosquitto/mosquitto.prod.conf:/mosquitto/config/mosquitto.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    environment:
+      TLS_CERT_DIR: /etc/letsencrypt/live/${LD_DOMAIN:-tuandv.id.vn}
