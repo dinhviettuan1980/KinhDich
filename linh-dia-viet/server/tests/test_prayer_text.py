@@ -27,6 +27,7 @@ def test_render_full_template():
     assert "sinh năm 1990 (Canh Ngọ)" in text
     assert "ngày mùng 1 tháng Giêng năm Bính Ngọ (ngày 17 tháng 2 năm 2026)" in text
     assert "Kính lạy Đức Thánh Trần tại Đền Ngọc Sơn." in text
+    assert "ngày ngày" not in render(DEFAULT_TEMPLATE, personal_context("A", 1990, "x", "y", "z", date(2026, 10, 25)))
 
 
 def test_render_keeps_missing_vars_and_no_injection():

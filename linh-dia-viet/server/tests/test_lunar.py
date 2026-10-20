@@ -42,3 +42,4 @@ def test_can_chi(year, cc):
 def test_text():
     assert solar_to_lunar(date(2026, 2, 17)).text() == "mùng 1 tháng Giêng năm Bính Ngọ"
     assert solar_to_lunar(date(2025, 7, 25)).text() == "mùng 1 tháng 6 nhuận năm Ất Tỵ"
+    assert solar_to_lunar(date(2026, 10, 25)).text() == "16 tháng 9 năm Bính Ngọ"  # không lặp "ngày ngày"

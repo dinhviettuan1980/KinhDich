@@ -103,8 +103,9 @@ class LunarDate:
         return can_chi_year(self.year)
 
     def text(self) -> str:
-        """Ví dụ: 'mùng 1 tháng Giêng năm Bính Ngọ', 'ngày 15 tháng 6 nhuận năm Ất Tỵ'."""
-        d = f"mùng {self.day}" if self.day <= 10 else f"ngày {self.day}"
+        """Ví dụ: 'mùng 1 tháng Giêng năm Bính Ngọ', '15 tháng 6 nhuận năm Ất Tỵ'.
+        Không có chữ 'ngày' ở đầu vì mẫu sớ viết 'Hôm nay là ngày {ngay_am}'."""
+        d = f"mùng {self.day}" if self.day <= 10 else str(self.day)
         m = MONTH_NAMES.get(self.month, str(self.month))
         return f"{d} tháng {m}{' nhuận' if self.leap else ''} năm {self.year_can_chi}"
 

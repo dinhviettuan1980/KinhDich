@@ -31,7 +31,7 @@ def test_preview_and_lunar(user_client, db):
     text = r.json()["text"]
     assert "Đền Ngọc Sơn" in text and "Canh Ngọ" in text and "mùng 1 tháng Giêng năm Bính Ngọ" in text
     r = user_client.get(f"{P}/dat-le/am-lich?ngay=2024-09-17")
-    assert r.json()["text"] == "ngày 15 tháng 8 năm Giáp Thìn"
+    assert r.json()["text"] == "15 tháng 8 năm Giáp Thìn"
 
 
 def test_preview_multi_keeps_temple_placeholders(user_client, db):
