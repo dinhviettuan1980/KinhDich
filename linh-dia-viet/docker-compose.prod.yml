@@ -1,5 +1,5 @@
 # Ghép thêm cho production:  docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-# Trong .env của server đặt:  LD_API_BIND=127.0.0.1:8040  LD_MQTT_BIND=127.0.0.1:1883  LD_DOMAIN=tuandv.id.vn
+# Trong .env của server đặt:  LD_API_BIND=127.0.0.1:8042  LD_MQTT_BIND=127.0.0.1:1883  LD_DOMAIN=tuandv.id.vn
 # - API chỉ nghe 127.0.0.1 (nginx proxy /le-chua vào).
 # - MQTT 1883 chỉ nội bộ; thiết bị ngoài internet kết nối 8883 TLS bằng chứng chỉ Let's Encrypt của domain.
 services:

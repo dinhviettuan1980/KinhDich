@@ -1,0 +1,8 @@
+[Unit]
+Description=Theo dõi danh sách thiết bị MQTT của Linh Địa Việt
+
+[Path]
+PathChanged=@FRAGMENT@
+
+[Install]
+WantedBy=multi-user.target

@@ -40,7 +40,7 @@ ssh "$HOST" "cd '$REMOTE_DIR' && docker compose -f docker-compose.yml -f docker-
 
 echo "==> Kiểm tra sức khỏe"
 PORT=$(ssh "$HOST" "grep -E '^LD_API_BIND=' '$REMOTE_DIR/.env' | cut -d: -f2" || true)
-PORT=${PORT:-8040}
+PORT=${PORT:-8042}
 for i in $(seq 1 20); do
   if ssh "$HOST" "curl -fsS http://127.0.0.1:$PORT/le-chua/healthz" >/dev/null 2>&1; then echo "   API OK (cổng $PORT)"; break; fi
   sleep 3

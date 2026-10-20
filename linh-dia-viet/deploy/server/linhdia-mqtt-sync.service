@@ -1,0 +1,6 @@
+[Unit]
+Description=Đồng bộ mật khẩu MQTT thiết bị Linh Địa Việt
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/linhdia-mqtt-sync

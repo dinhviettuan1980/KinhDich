@@ -46,6 +46,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--base", default=os.environ.get("DEMO_BASE", "http://localhost:8000/le-chua"))
     ap.add_argument("--mqtt-host", default="localhost")
+    ap.add_argument("--mqtt-port", default="1883")
+    ap.add_argument("--mqtt-tls", action="store_true", help="kết nối MQTT qua TLS (production: --mqtt-port 8883)")
     ap.add_argument("--device-id", default=env.get("DEMO_DEVICE_ID", "pi-demo-01"))
     ap.add_argument("--device-token", default=env.get("DEMO_DEVICE_TOKEN", ""))
     ap.add_argument("--temple", default="den-ngoc-son", help="slug đền đã gắn thiết bị demo")
@@ -67,7 +69,8 @@ def main() -> int:
     step("Khởi động Pi giả lập (pi-agent --simulate)")
     data_dir = tempfile.mkdtemp(prefix="ld-demo-pi-")
     agent_env = {**os.environ, "LD_SERVER_URL": base, "LD_DEVICE_ID": args.device_id,
-                 "LD_DEVICE_TOKEN": args.device_token, "LD_MQTT_HOST": args.mqtt_host, "LD_DATA_DIR": data_dir,
+                 "LD_DEVICE_TOKEN": args.device_token, "LD_MQTT_HOST": args.mqtt_host, "LD_MQTT_PORT": args.mqtt_port,
+                 "LD_MQTT_TLS": "true" if args.mqtt_tls else "false", "LD_DATA_DIR": data_dir,
                  "LD_SIMULATE_PLAY_SECONDS": "5", "LD_QUIET_START": "00:00", "LD_QUIET_END": "00:00"}
     agent = subprocess.Popen([sys.executable, "-m", "ld_agent", "--simulate", "--env", "/dev/null"],
                              cwd=ROOT / "pi-agent", env=agent_env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,

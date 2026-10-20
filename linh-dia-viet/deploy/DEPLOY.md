@@ -1,36 +1,43 @@
-# Deploy lên VPS (tuandv.id.vn)
+# Deploy lên VPS tuandv.id.vn (đang dùng)
+
+VPS không có Docker, nên app chạy giống các app khác trên máy: **pm2 + nginx**, cộng thêm **Mosquitto** cài bằng apt.
+
+| Thành phần | Ở đâu |
+|---|---|
+| Mã nguồn | `~/KinhDich/linh-dia-viet` (cùng repo Kinh Dịch; cron `auto-deploy.sh` tự `git pull` khi `main` có commit mới) |
+| API | pm2 `linhdia-api` → uvicorn `127.0.0.1:8042`, venv `~/KinhDich/linh-dia-viet/.venv` |
+| Cấu hình | `~/KinhDich/linh-dia-viet/.env` (chmod 600, không commit) |
+| Dữ liệu | `~/linh-dia-viet-data/` (SQLite `linhdia.db`, `files/` audio + ảnh, `mqtt/devices.passwd`) |
+| Web | nginx `tuandv.id.vn`: `include /etc/nginx/snippets/le-chua.conf` → `https://tuandv.id.vn/le-chua/` |
+| MQTT | mosquitto: `127.0.0.1:1883` (API) + `:8883` TLS (thiết bị), cấu hình ở `/etc/mosquitto/conf.d/linhdia.conf` |
+| Mật khẩu MQTT | `/usr/local/sbin/linhdia-mqtt-sync` dựng `/etc/mosquitto/linhdia.passwd`. Chạy tự động khi admin thêm hoặc thu hồi thiết bị (`linhdia-mqtt-sync.path`) và khi certbot gia hạn chứng chỉ |
+
+## Cài lần đầu (đã làm ngày 2026-10-20)
 
 ```bash
-cd linh-dia-viet
-DEPLOY_HOST=root@103.163.216.32 ./deploy/deploy.sh --fe     # --fe: build lại và đẩy frontend Kinh Dịch
+ssh pc1@103.163.216.32
+cd ~/KinhDich/linh-dia-viet && ADMIN_EMAIL=<email admin> bash deploy/server/setup.sh
+echo 'bash /home/pc1/KinhDich/linh-dia-viet/deploy/server/update.sh' >> ~/deploy-kinhdich.sh
 ```
 
-Script làm theo thứ tự:
-1. Kiểm tra máy chủ có Docker Compose.
-2. `rsync` mã nguồn tới `/opt/linh-dia-viet`. Không đụng `.env`, `data/` và passwd thiết bị trên máy chủ.
-3. Lần đầu: tạo `.env` từ `.env.prod.example`, sinh ngẫu nhiên `SECRET_KEY`, `MQTT_PASSWORD`, `DEMO_DEVICE_TOKEN`, `ADMIN_PASSWORD`.
-   Mật khẩu admin in ra **một lần**.
-4. `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`, sau đó kiểm tra `/le-chua/healthz`.
-5. `--fe`: chạy `npm run build` ở repo Kinh Dịch rồi `rsync dist/` tới `FE_DIR` (mặc định `/var/www/kinhdich`).
-6. Ghi `/etc/nginx/snippets/le-chua.conf`. Nếu server block đã `include` snippet này thì nạp lại nginx;
-   nếu chưa, script in hướng dẫn thêm 1 dòng.
+## Cập nhật
 
-## Việc cần làm tay ở lần đầu
+Chỉ cần push lên `main`. Khoảng 2 phút sau, `auto-deploy.sh` chạy `deploy-kinhdich.sh`: build frontend Kinh Dịch,
+rồi chạy `update.sh` (pip install, `alembic upgrade`, seed, `pm2 restart linhdia-api`). Theo dõi trong `~/auto-deploy.log`.
 
-- Thêm `include /etc/nginx/snippets/le-chua.conf;` vào `server { listen 443 … server_name tuandv.id.vn; }`, rồi chạy
-  `nginx -t && systemctl reload nginx`.
-- Mở cổng thiết bị: `ufw allow 8883/tcp`. Không mở 1883, vì cổng này chỉ dùng nội bộ.
-- Gia hạn chứng chỉ: thêm deploy hook để mosquitto nạp lại chứng chỉ mới:
-  `echo 'cd /opt/linh-dia-viet && docker compose restart mosquitto' > /etc/letsencrypt/renewal-hooks/deploy/mosquitto.sh && chmod +x $_`
-- Pi kết nối bằng `LD_MQTT_HOST=tuandv.id.vn`, `LD_MQTT_PORT=8883`, `LD_MQTT_TLS=true`, `LD_SERVER_URL=https://tuandv.id.vn/le-chua`.
+## Kiểm tra từ máy dev (demo đầu-cuối trên production)
 
-## Biến điều khiển
+```bash
+.venv/bin/python scripts/demo_e2e.py --base https://tuandv.id.vn/le-chua \
+  --mqtt-host tuandv.id.vn --mqtt-port 8883 --mqtt-tls --device-token <DEMO_DEVICE_TOKEN trong .env máy chủ>
+```
 
-`DEPLOY_HOST` (bắt buộc), `REMOTE_DIR` (mặc định `/opt/linh-dia-viet`), `FE_DIR` (mặc định `/var/www/kinhdich`).
-Trong `.env` máy chủ: `LD_API_BIND=127.0.0.1:8040`, `LD_MQTT_BIND=127.0.0.1:1883`, `LD_DOMAIN=tuandv.id.vn`.
+## Pi kết nối production
 
-## Lưu ý SSH
+`LD_SERVER_URL=https://tuandv.id.vn/le-chua`, `LD_MQTT_HOST=tuandv.id.vn`, `LD_MQTT_PORT=8883`, `LD_MQTT_TLS=true`.
+Nếu nhà cung cấp VPS có tường lửa riêng, cần mở cổng **8883/tcp**.
 
-Ngày 2026-10-20, `known_hosts` trên máy dev có khoá cũ cho `tuandv.id.vn` (báo *host key changed*). Khoá theo IP
-`103.163.216.32` thì vẫn khớp. Kiểm tra fingerprint trên VPS (`ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub`)
-rồi mới chạy `ssh-keygen -R tuandv.id.vn`. Trước khi đó, dùng `DEPLOY_HOST=root@103.163.216.32`.
+## Phương án Docker
+
+Nếu sau này VPS có Docker: `DEPLOY_HOST=pc1@103.163.216.32 ./deploy/deploy.sh` dùng `docker-compose.prod.yml`.
+Khi dùng phương án này, đặt `LD_API_BIND=127.0.0.1:8042`, vì cổng 8040 trên VPS đã có app Java chiếm.
