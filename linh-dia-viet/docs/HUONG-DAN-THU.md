@@ -12,19 +12,20 @@ Mật khẩu được gửi riêng; đổi được ở menu **Tài khoản**. T
 | Quản lý đền (Đền Ngọc Sơn) | quanly.ngocson@tuandv.id.vn |
 
 ## 1. Khách đặt lễ và tự ghi âm
-1. Đăng nhập bằng **khachthu**, rồi vào **Đền chùa → Đền Ngọc Sơn**. (Hiện chỉ Ngọc Sơn có thiết bị; hai đền còn lại chưa đặt được.)
-2. Ở gói lễ muốn đặt, bấm **Chọn gói này và đặt lễ →**. Form mở ra với đền và gói đã chọn sẵn.
-3. Điền họ tên, năm sinh, địa chỉ, nguyện vọng, và giờ khấn (sau thời điểm hiện tại ít nhất 2 phút).
-   Khối **📜 Tờ sớ** tự soạn lại theo các thông tin này.
-4. Ở mục **Cách khấn**, chọn **Tôi tự ghi âm giọng đọc**. Bấm **● Bắt đầu ghi**, đọc tờ sớ, rồi bấm **■ Dừng**.
-   Nghe lại, rồi bấm **Dùng bản ghi này**: file được tải lên máy chủ và chuyển thành MP3 chuẩn hoá.
-   (Hoặc chọn **Hệ thống soạn sớ…** rồi bấm **▶ Nghe thử giọng đọc**.)
-5. **Xem lại đơn → Xác nhận và thanh toán → Thanh toán thành công** (thanh toán giả lập).
-6. Trang đơn tự cập nhật trạng thái: Đã xếp lịch → Thiết bị đã nhận lệnh → Đang phát → Đã phát xong → Ảnh mâm lễ → Hoàn tất.
+1. Vào https://tuandv.id.vn/le-chua/. Mọi trang đều cần đăng nhập; dùng tài khoản **khachthu**.
+2. **Đền chùa → Đền Ngọc Sơn → Chọn gói này và đặt lễ →**. Đền và gói hiện dạng tóm tắt (nút **Đổi** nếu muốn chọn lại).
+3. **Tín chủ:** lần đầu nhập họ tên, năm sinh, địa chỉ, nguyện vọng. Thông tin được lưu vào tài khoản; lần sau chỉ hiện tóm tắt,
+   bấm **Sửa** khi cần (hoặc sửa ở **Tài khoản**).
+4. **Bài khấn:** tờ sớ 📜 tự soạn sẵn. Chọn **Tôi tự đọc và ghi âm**, bấm **● Bắt đầu ghi**, đọc tờ sớ, bấm **■ Dừng**,
+   nghe lại, rồi bấm **Dùng bản ghi này** (file lên máy chủ, chuyển thành MP3 chuẩn hoá). Hoặc để **Giọng đọc tự động**.
+5. **Khi nào phát:** mặc định **Phát ngay sau khi thanh toán**. Chọn **Hẹn giờ** nếu muốn phát vào giờ khác.
+6. **Đặt lễ và thanh toán** → trang thanh toán (có tóm tắt) → **Thanh toán …** (giả lập).
+7. Trang đơn tự cập nhật. Với phát ngay: lệnh vào kênh MQTT ngay, Pi tải file và **phát sau khoảng 20 giây**, rồi gửi ảnh → **Hoàn tất**.
 
 ## 2. Pi nhận lệnh và phát (hoạt động thế nào)
 - Pi luôn giữ kết nối MQTT tới `tuandv.id.vn:8883` (TLS) và nghe kênh riêng `ld/<mã thiết bị>/cmd`.
-- **Trước giờ khấn 10 phút** (hoặc ngay lập tức nếu đặt sát giờ hơn), server gửi lệnh `play` vào kênh. Lệnh gồm
+- **Phát ngay:** server gửi lệnh `play` vào kênh ngay khi thanh toán xong (và khi bản ghi được duyệt nếu bật kiểm duyệt),
+  giờ phát = lúc đó + 20 giây. **Hẹn giờ:** gửi lệnh trước giờ khấn 10 phút. Lệnh gồm
   link tải MP3 (có chữ ký, hạn 1 giờ), mã sha256, giờ phát và âm lượng.
 - Pi tải MP3 về ngay, kiểm tra sha256 rồi báo "đã tải". Nó chụp ảnh "trước", **đúng giờ thì phát ra loa**,
   chụp ảnh lúc bắt đầu, và chụp ảnh "sau" 30 giây sau khi phát xong. Ảnh được gửi về server.
