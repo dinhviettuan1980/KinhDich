@@ -61,7 +61,7 @@ class Config:
         c.mqtt_host = g("MQTT_HOST", c.mqtt_host)
         c.mqtt_port = int(g("MQTT_PORT", c.mqtt_port))
         c.mqtt_tls = g("MQTT_TLS", "false").lower() == "true"
-        c.data_dir = Path(g("DATA_DIR", str(c.data_dir)))
+        c.data_dir = Path(g("DATA_DIR", str(c.data_dir))).expanduser()
         c.player = g("PLAYER", c.player)
         c.audio_device = g("AUDIO_DEVICE", c.audio_device)
         c.volume_max = max(0, min(100, int(g("VOLUME_MAX", c.volume_max))))

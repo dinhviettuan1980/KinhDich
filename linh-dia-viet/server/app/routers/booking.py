@@ -262,7 +262,8 @@ def session_audio(name: str, request: Request, user: User = Depends(require_user
 
 
 @router.post("/dat-le", dependencies=csrf)
-async def submit(request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
+async def submit(request: Request, background: BackgroundTasks, db: Session = Depends(get_db),
+                 user: User = Depends(require_user)):
     form = await request.form()
     try:
         b = parse_booking(db, request, form)
@@ -291,6 +292,7 @@ async def submit(request: Request, db: Session = Depends(get_db), user: User = D
     me.devotee_name, me.birth_year, me.address, me.wish = b.full_name, b.birth_year, b.address, b.wish
     txn = svc.start_payment(db, orders, f"user:{user.id}")
     db.commit()
+    background.add_task(svc.prewarm_tts, [o.id for o in orders])
     return {"redirect": u(f"/thanh-toan/{txn}"), "ref": ref, "txn": txn}
 
 

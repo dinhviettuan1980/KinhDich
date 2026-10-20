@@ -194,3 +194,17 @@ def moderate(db: Session, prayer: Prayer, approve: bool, actor: str, note: str =
             reject(db, o, actor, f"Bản ghi âm không được duyệt: {note}")
         elif can_transition(o.status, S.CANCELLED):
             transition(db, o, S.CANCELLED, actor, f"Bản ghi âm không được duyệt: {note}")
+
+
+def prewarm_tts(order_ids: list[int]) -> None:
+    """Tạo sẵn giọng đọc ngay khi đặt đơn (lúc khách còn ở trang thanh toán) → thanh toán xong phát được ngay.
+    Kết quả nằm trong cache TTS nên try_schedule sau đó không phải chờ. Lỗi thì bỏ qua (try_schedule sẽ làm lại)."""
+    from . import db as dbmod
+    with dbmod.SessionLocal() as db:
+        for oid in order_ids:
+            o = db.get(Order, oid)
+            if o and o.prayer.kind == "tts":
+                try:
+                    tts.synthesize_cached(script_for(db, o.prayer, o), o.prayer.voice)
+                except Exception as e:
+                    log.info("Chưa tạo sẵn được giọng đọc cho đơn %s: %s", oid, e)

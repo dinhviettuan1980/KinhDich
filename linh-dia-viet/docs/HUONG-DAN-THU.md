@@ -31,7 +31,16 @@ Mật khẩu được gửi riêng; đổi được ở menu **Tài khoản**. T
   chụp ảnh lúc bắt đầu, và chụp ảnh "sau" 30 giây sau khi phát xong. Ảnh được gửi về server.
 - Mất mạng sau khi đã tải xong thì Pi vẫn phát đúng giờ, có mạng lại thì gửi báo cáo bù.
 
-## 3. Nếu chưa có Pi thật: chạy Pi giả lập trên máy tính
+## 3. Pi giả trên máy tính (phát thật ra loa)
+```bash
+cd KinhDich/linh-dia-viet/pi-agent
+cp .env.mac.example .env.mac      # điền LD_DEVICE_TOKEN (grep DEMO_DEVICE_TOKEN ~/KinhDich/linh-dia-viet/.env trên VPS)
+./run-mac.sh start                # nhận lệnh thật, PHÁT RA LOA bằng ffplay, ảnh mâm lễ là ảnh giả
+./run-mac.sh log                  # xem log;  ./run-mac.sh stop  để tắt
+```
+Máy tính này đóng vai `pi-demo-01` (Đền Ngọc Sơn). Đừng chạy cùng lúc với Pi thật dùng cùng mã thiết bị.
+
+### Cách khác: Pi giả lập hoàn toàn (không phát loa)
 Máy cần Python 3.11+. Lấy token thiết bị demo trên VPS: `grep DEMO_DEVICE_TOKEN ~/KinhDich/linh-dia-viet/.env`.
 ```bash
 cd KinhDich/linh-dia-viet/pi-agent && pip install -r requirements.txt

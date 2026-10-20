@@ -261,3 +261,19 @@ def test_play_now_dispatches_right_after_payment(user_client, db):
 def test_hen_gio_requires_time(user_client, db):
     r = post_json(user_client, "/dat-le", booking_data(db, khi_nao="hen_gio", thoi_gian=""))
     assert r.status_code == 400 and "Phát ngay" in r.json()["error"]
+
+
+def test_tts_prewarmed_at_booking(user_client, db, monkeypatch):
+    """Giọng đọc được tạo ngay khi đặt (trước thanh toán) để 'phát ngay' không phải chờ TTS."""
+    from app import tts
+    from app.storage import get_storage
+    ref = create_booking(user_client, db, khi_nao="ngay", thoi_gian="")
+    [o] = orders_of(db, ref)
+    from app import orders as svc
+    key, _ = tts.synthesize_cached(svc.script_for(db, o.prayer, o), o.prayer.voice)
+    assert get_storage().exists(key)
+    calls = []
+    monkeypatch.setattr(tts.FakeTTS, "synthesize", lambda *a: calls.append(1))
+    confirm_and_pay(user_client, ref)
+    assert calls == []  # lúc xếp lịch dùng cache, không gọi nhà cung cấp TTS nữa
+    assert orders_of(db, ref)[0].status == "scheduled"
