@@ -8,6 +8,7 @@ import base64
 import hashlib
 import re
 import tempfile
+import threading
 import time
 from pathlib import Path
 from typing import Protocol
@@ -33,13 +34,31 @@ class TTSProvider(Protocol):
 
 
 class EdgeTTS:
-    name, max_chunk_bytes = "edge", 8000
+    # edge-tts chạy gần bằng thời gian thực (VPS: ~22s cho 33s audio) → cắt theo câu và gọi song song rồi nối lại.
+    name, max_chunk_bytes = "edge", 3000
+    concurrency = 4
+    one_sentence_per_chunk = True
 
     def synthesize(self, text, voice, dst):
+        self.synthesize_all([text], voice, [dst])
+
+    def synthesize_all(self, texts, voice, dsts):
         import edge_tts
 
         async def run():
-            await edge_tts.Communicate(text, voice).save(str(dst))
+            sem = asyncio.Semaphore(self.concurrency)
+
+            async def one(text, dst):
+                async with sem:
+                    for attempt in range(4):  # dịch vụ thỉnh thoảng trả NoAudioReceived khi gọi dồn dập
+                        try:
+                            await edge_tts.Communicate(text, voice).save(str(dst))
+                            return
+                        except Exception:
+                            if attempt == 3:
+                                raise
+                            await asyncio.sleep(0.5 * (attempt + 1))
+            await asyncio.gather(*(one(t, d) for t, d in zip(texts, dsts)))
         asyncio.run(run())
 
 
@@ -99,13 +118,14 @@ def get_provider() -> TTSProvider:
     return PROVIDERS[name]()
 
 
-def split_chunks(text: str, max_bytes: int) -> list[str]:
-    """Cắt theo câu để mỗi đoạn không vượt giới hạn byte của nhà cung cấp."""
+def split_chunks(text: str, max_bytes: int, pack: bool = True) -> list[str]:
+    """Cắt theo câu để mỗi đoạn không vượt giới hạn byte của nhà cung cấp.
+    pack=False: mỗi câu một đoạn (để gọi song song)."""
     sentences = re.split(r"(?<=[.!?…])\s+|\n+", text)
     chunks, cur = [], ""
     for s in filter(None, (x.strip() for x in sentences)):
         cand = f"{cur} {s}".strip()
-        if len(cand.encode()) <= max_bytes:
+        if pack and len(cand.encode()) <= max_bytes:
             cur = cand
             continue
         if cur:
@@ -125,21 +145,40 @@ def cache_key(text: str, voice: str, provider: str) -> str:
     return f"tts/{h}.mp3"
 
 
+_inflight: dict[str, threading.Lock] = {}
+_inflight_guard = threading.Lock()
+
+
 def synthesize_cached(text: str, voice: str | None = None) -> tuple[str, float]:
-    """Trả về (storage key, thời lượng giây). Gọi nhà cung cấp chỉ khi chưa có trong cache."""
+    """Trả về (storage key, thời lượng giây). Gọi nhà cung cấp chỉ khi chưa có trong cache.
+    Cùng một bài đang được tạo ở luồng khác (vd tạo sẵn lúc đặt đơn) thì chờ luồng đó, không tạo lại."""
     provider = get_provider()
     voice = voice or get_settings().tts_voice
     spoken = normalize_for_tts(text)
     key = cache_key(spoken, voice, provider.name)
     storage = get_storage()
-    if storage.exists(key):
-        return key, audio.duration_of(storage.local_path(key))
+    with _inflight_guard:
+        lock = _inflight.setdefault(key, threading.Lock())
+    with lock:
+        if storage.exists(key):
+            return key, audio.duration_of(storage.local_path(key))
+        dur = _synthesize(provider, spoken, voice, key)
+    with _inflight_guard:
+        _inflight.pop(key, None)
+    return key, dur
+
+
+def _synthesize(provider, spoken: str, voice: str, key: str) -> float:
+    storage = get_storage()
     with tempfile.TemporaryDirectory() as d:
-        parts = []
-        for i, chunk in enumerate(split_chunks(spoken, provider.max_chunk_bytes)):
-            p = Path(d) / f"part{i}.mp3"
-            provider.synthesize(chunk, voice, p)
-            parts.append(p)
+        chunks = split_chunks(spoken, provider.max_chunk_bytes,
+                              pack=not getattr(provider, "one_sentence_per_chunk", False))
+        parts = [Path(d) / f"part{i}.mp3" for i in range(len(chunks))]
+        if hasattr(provider, "synthesize_all"):
+            provider.synthesize_all(chunks, voice, parts)
+        else:
+            for chunk, p in zip(chunks, parts):
+                provider.synthesize(chunk, voice, p)
         if not parts:
             raise TTSError("Văn bản trống")
         raw = Path(d) / "raw.mp3"
@@ -150,4 +189,4 @@ def synthesize_cached(text: str, voice: str | None = None) -> tuple[str, float]:
         out = Path(d) / "out.mp3"
         dur = audio.normalize_to_mp3(raw, out)
         storage.put_file(out, key)
-    return key, dur
+    return dur
