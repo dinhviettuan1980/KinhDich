@@ -204,7 +204,9 @@ def tick(db: Session, now: datetime | None = None) -> None:
     s = get_settings()
     now = now or utcnow()
     # 1) đơn đã trả tiền nhưng chưa xếp lịch được (TTS lỗi tạm thời)
-    for o in db.scalars(select(Order).where(Order.status == S.PAID)).all():
+    # (bỏ qua đơn vừa thanh toán < 1 phút: tác vụ nền sau thanh toán đang lo, tránh tạo TTS 2 lần)
+    for o in db.scalars(select(Order).where(Order.status == S.PAID,
+                                            Order.updated_at < now - timedelta(seconds=60))).all():
         svc.try_schedule(db, o)
     # 2) gửi lệnh trước giờ phát DISPATCH_LEAD; gửi lại mỗi 5 phút nếu thiết bị chưa xác nhận
     lead = timedelta(seconds=s.dispatch_lead_seconds)

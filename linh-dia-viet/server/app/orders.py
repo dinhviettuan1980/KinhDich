@@ -4,7 +4,7 @@ import secrets
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
 from . import prayer_text, tts
@@ -80,7 +80,16 @@ def try_schedule(db: Session, order: Order, actor: str = "system") -> bool:
         return False
     if order.play_asap:  # "phát ngay": tính từ lúc xếp lịch (sau thanh toán / sau khi duyệt), không phải lúc đặt
         order.scheduled_at = utcnow() + timedelta(seconds=get_settings().asap_delay_seconds)
-    transition(db, order, S.SCHEDULED, actor)
+    # Giành quyền xếp lịch bằng UPDATE có điều kiện: tác vụ nền sau thanh toán và vòng nền có thể cùng chạy
+    # (TTS mất vài chục giây) — chỉ một bên thắng, bên còn lại không tạo job thứ hai.
+    claimed = db.execute(update(Order).where(Order.id == order.id, Order.status == S.PAID)
+                         .values(status=S.SCHEDULED.value, updated_at=utcnow()))
+    if claimed.rowcount != 1:
+        db.expire(order)  # bỏ thay đổi chưa ghi (audio, giờ phát) của bên thua; không đụng phần còn lại của giao dịch
+        return False
+    order.status = S.SCHEDULED.value
+    db.add(OrderEvent(order_id=order.id, status=order.status))
+    audit(db, actor, "order.transition", f"order:{order.id}", src=S.PAID.value, dst=order.status)
     from . import hooks
     hooks.on_scheduled(db, order)
     return True

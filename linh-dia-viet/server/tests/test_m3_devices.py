@@ -216,3 +216,26 @@ def test_ack_from_wrong_device_ignored(setup, db):
     job = order.jobs[-1]
     devices.handle_ack(db, "pi-test-02", {"job_id": job.id, "state": "done"})
     assert db.get(Order, order.id).status == "scheduled"
+
+
+def test_concurrent_schedule_creates_one_job(user_client, db, monkeypatch):
+    """Lỗi thật trên production: tác vụ nền sau thanh toán và vòng nền cùng xếp lịch 1 đơn → 2 job, Pi phát 2 lần."""
+    from app import db as dbmod, orders as svc
+    from helpers import create_booking
+    monkeypatch.setattr(svc, "schedule_in_background", lambda *a, **k: None)  # giữ đơn ở 'paid'
+    ref = create_booking(user_client, db, khi_nao="ngay", thoi_gian="")
+    from helpers import confirm_and_pay
+    confirm_and_pay(user_client, ref)
+    oid = db.scalar(select(Order).where(Order.booking_ref == ref)).id
+    s1, s2 = dbmod.SessionLocal(), dbmod.SessionLocal()
+    o1, o2 = s1.get(Order, oid), s2.get(Order, oid)
+    assert o1.status == o2.status == "paid"  # cả hai worker cùng thấy 'paid'
+    assert svc.try_schedule(s1, o1) is True
+    s1.commit()
+    assert svc.try_schedule(s2, o2) is False  # worker thứ hai thua, không tạo job
+    s2.commit()
+    s1.close(), s2.close()
+    db.expire_all()
+    o = db.get(Order, oid)
+    assert o.status == "scheduled" and len(o.jobs) == 1
+    assert [e.status for e in o.events].count("scheduled") == 1
