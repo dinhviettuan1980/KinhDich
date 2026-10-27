@@ -7,4 +7,3 @@ __pycache__/
 /pi-agent/data/
 mosquitto/extra/devices.passwd*
 .pytest_cache/
-pi-agent/.env.mac

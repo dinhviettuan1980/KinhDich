@@ -31,25 +31,13 @@ Mật khẩu được gửi riêng; đổi được ở menu **Tài khoản**. T
   chụp ảnh lúc bắt đầu, và chụp ảnh "sau" 30 giây sau khi phát xong. Ảnh được gửi về server.
 - Mất mạng sau khi đã tải xong thì Pi vẫn phát đúng giờ, có mạng lại thì gửi báo cáo bù.
 
-## 3. Pi giả trên máy tính (phát thật ra loa)
-```bash
-cd KinhDich/linh-dia-viet/pi-agent
-cp .env.mac.example .env.mac      # điền LD_DEVICE_TOKEN (grep DEMO_DEVICE_TOKEN ~/KinhDich/linh-dia-viet/.env trên VPS)
-./run-mac.sh start                # nhận lệnh thật, PHÁT RA LOA bằng ffplay, ảnh mâm lễ là ảnh giả
-./run-mac.sh log                  # xem log;  ./run-mac.sh stop  để tắt
-```
-Máy tính này đóng vai `pi-demo-01` (Đền Ngọc Sơn). Đừng chạy cùng lúc với Pi thật dùng cùng mã thiết bị.
-
-### Cách khác: Pi giả lập hoàn toàn (không phát loa)
-Máy cần Python 3.11+. Lấy token thiết bị demo trên VPS: `grep DEMO_DEVICE_TOKEN ~/KinhDich/linh-dia-viet/.env`.
-```bash
-cd KinhDich/linh-dia-viet/pi-agent && pip install -r requirements.txt
-LD_SERVER_URL=https://tuandv.id.vn/le-chua LD_DEVICE_ID=pi-demo-01 LD_DEVICE_TOKEN=<token> \
-LD_MQTT_HOST=tuandv.id.vn LD_MQTT_PORT=8883 LD_MQTT_TLS=true LD_DATA_DIR=/tmp/ld-pi \
-python -m ld_agent --simulate --env /dev/null
-```
-Bỏ `--simulate` thì máy tính **phát thật ra loa** (cần `mpv` hoặc `ffplay`; đặt thêm `LD_PLAYER=ffplay LD_CAMERA=none`).
-Giờ cấm phát mặc định là 22:00–05:00. Muốn thử trong khung giờ đó thì đặt `LD_QUIET_START=00:00 LD_QUIET_END=00:00`.
+## 3. Pi thật
+Raspberry Pi 4 (hostname `ngocson`, cắm LAN) chạy agent với mã `pi-demo-01`, gắn với **Đền Ngọc Sơn**.
+- Cài: chép thư mục `pi-agent` lên Pi rồi `sudo ./install.sh`; cấu hình ở `/etc/linh-dia-viet/agent.env`
+  (token thiết bị: `grep DEMO_DEVICE_TOKEN ~/KinhDich/linh-dia-viet/.env` trên VPS). Chi tiết: `pi-agent/README.md`.
+- Âm thanh ra jack 3.5mm: `LD_AUDIO_DEVICE=alsa/plughw:CARD=Headphones,DEV=0`.
+- Chưa có camera nên tạm đặt `LD_CAMERA=simulate` (ảnh giả). Có webcam USB thì đổi thành `LD_CAMERA=fswebcam`.
+- Xem log: `journalctl -u linh-dia-viet-agent -f`. Thử loa: `sudo -u linhdia /opt/linh-dia-viet-agent/venv/bin/python -m ld_agent --env /etc/linh-dia-viet/agent.env --test-speaker`.
 
 ## 4. Quản trị
 Đăng nhập **tuandv@gmail.com**, vào **Quản lý**:
