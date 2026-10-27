@@ -133,16 +133,22 @@ def payment_result(db: Session, txn_ref: str, success: bool, actor: str, schedul
     return paid
 
 
-def schedule_in_background(order_ids: list[int], actor: str) -> None:
+def schedule_in_background(order_ids: list[int], actor: str, retries: int = 3, wait_s: float = 3.0) -> None:
     """Tạo audio (TTS có thể mất vài chục giây) + xếp lịch sau khi đã trả response thanh toán.
-    Lỗi thì vòng nền (devices.tick) sẽ thử lại các đơn còn 'paid'."""
+    TTS lỗi tạm thời (dịch vụ giọng đọc từ chối) → thử lại ngay vài lần; vẫn lỗi thì vòng nền (devices.tick) lo tiếp."""
+    import time
     from . import db as dbmod
     with dbmod.SessionLocal() as db:
         for oid in order_ids:
-            o = db.get(Order, oid)
-            if o:
-                try_schedule(db, o, actor)
+            for attempt in range(retries + 1):
+                o = db.get(Order, oid)
+                if not o:
+                    break
+                ok = try_schedule(db, o, actor)
                 db.commit()
+                if ok or o.status != S.PAID or o.prayer.moderation != "approved" or attempt == retries:
+                    break
+                time.sleep(wait_s * (attempt + 1))
 
 
 # ---------------- Hủy / từ chối ----------------

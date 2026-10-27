@@ -89,3 +89,23 @@ def test_clip_built_after_completion(user_client, db, tmp_path):
     db.refresh(o)
     assert o.clip_key == f"clips/{o.id}.mp4"
     assert "▶" in user_client.get(f"{P}/don").text
+
+
+def test_background_schedule_retries_transient_tts_error(user_client, db, monkeypatch):
+    from app import orders as svc, tts
+    d = booking_data(db, khi_nao="ngay")
+    r = post_json(user_client, "/dat-le", d)  # chưa trả tiền (trang thanh toán) để tự gọi tác vụ nền
+    [o] = db.scalars(select(Order).where(Order.booking_ref == r.json()["ref"])).all()
+    svc.payment_result(db, r.json()["txn"], True, "test", schedule=False)
+    db.commit()
+    real, calls = tts.synthesize_cached, []
+
+    def flaky(*a, **k):
+        calls.append(1)
+        if len(calls) < 3:
+            raise RuntimeError("No audio was received")
+        return real(*a, **k)
+    monkeypatch.setattr(tts, "synthesize_cached", flaky)
+    svc.schedule_in_background([o.id], "test", wait_s=0)
+    db.expire_all()
+    assert len(calls) == 3 and db.get(Order, o.id).status == "scheduled"

@@ -50,14 +50,14 @@ class EdgeTTS:
 
             async def one(text, dst):
                 async with sem:
-                    for attempt in range(4):  # dịch vụ thỉnh thoảng trả NoAudioReceived khi gọi dồn dập
+                    for attempt in range(5):  # dịch vụ thỉnh thoảng trả NoAudioReceived khi gọi dồn dập
                         try:
                             await edge_tts.Communicate(text, voice).save(str(dst))
                             return
                         except Exception:
-                            if attempt == 3:
+                            if attempt == 4:
                                 raise
-                            await asyncio.sleep(0.5 * (attempt + 1))
+                            await asyncio.sleep(0.7 * 2 ** attempt)  # 0.7, 1.4, 2.8, 5.6s
             await asyncio.gather(*(one(t, d) for t, d in zip(texts, dsts)))
         asyncio.run(run())
 
