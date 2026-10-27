@@ -5,7 +5,7 @@
 {% for o in orders %}
 <div class="ld-card">
   <div class="ld-spread"><a href="{{ u('/don/' ~ o.id) }}"><b>#{{ o.id }} · {{ o.temple.name }}</b></a><span class="ld-badge">{{ labels[o.status] }}</span></div>
-  <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · {{ o.package.name }} · {{ fmt_vnd(o.total) }}</div>
+  <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · {{ o.offering_text }} · {{ fmt_vnd(o.total) }}</div>
   <p><a class="ld-btn secondary small" href="{{ u('/dat-le') }}?tu_don={{ o.id }}">Đặt lại đơn này</a></p>
 </div>
 {% else %}

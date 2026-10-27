@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Thanh toán</h1>
 <div class="ld-card">
-  {% for o in orders %}<div class="ld-spread"><span>{{ o.temple.name }} · {{ o.package.name }}</span><span>{{ fmt_vnd(o.total) }}</span></div>{% endfor %}
+  {% for o in orders %}<div class="ld-spread"><span>{{ o.temple.name }}<br><span class="ld-muted">{{ o.offering_text }}</span></span><span>{{ fmt_vnd(o.total) }}</span></div>{% endfor %}
   <hr style="border:0;border-top:1px solid var(--ld-line)">
   <div class="ld-spread"><b>Tổng cộng</b><b>{{ fmt_vnd(amount) }}</b></div>
   <p class="ld-muted" style="margin-bottom:0">

@@ -25,7 +25,7 @@ def local_dt(minutes_from_now: float) -> str:
 
 
 def booking_data(db, temples=("den-ngoc-son",), minutes=60 * 24, **over):
-    data = {"den": [str(temple_id(db, s)) for s in temples], "goi": str(shared_package(db).id),
+    data = {"den": [str(temple_id(db, s)) for s in temples], f"sl_{shared_package(db).id}": "1",
             "ho_ten": "Nguyễn Văn A", "nam_sinh": "1990", "dia_chi": "Cầu Giấy, Hà Nội",
             "nguyen_vong": "gia đình mạnh khỏe, bình an", "cach_khan": "tts", "khi_nao": "hen_gio",
             "thoi_gian": local_dt(minutes)}

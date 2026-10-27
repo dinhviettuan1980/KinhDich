@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Gói lễ{% endblock %}
+{% block title %}Lễ vật{% endblock %}
 {% block content %}
-<div class="ld-spread"><h1>Gói lễ</h1><a class="ld-btn small" href="{{ u('/admin/goi-le/moi') }}">+ Thêm</a></div>
+<div class="ld-spread"><h1>Lễ vật</h1><a class="ld-btn small" href="{{ u('/admin/goi-le/moi') }}">+ Thêm</a></div>
 <div class="ld-scroll"><table>
-<tr><th>Tên</th><th>Giá</th><th>Phạm vi</th><th>Bật</th></tr>
-{% for p in packages %}<tr><td><a href="{{ u('/admin/goi-le/' ~ p.id) }}">{{ p.name }}</a></td><td>{{ fmt_vnd(p.price) }}</td><td>{{ p.temple.name if p.temple else 'Dùng chung' }}</td><td>{{ '✓' if p.active else '—' }}</td></tr>{% endfor %}
+<tr><th>Tên</th><th>Giá / đơn vị</th><th>Phạm vi</th><th>Bật</th></tr>
+{% for p in packages %}<tr><td><a href="{{ u('/admin/goi-le/' ~ p.id) }}">{{ p.name }}</a></td><td>{{ fmt_vnd(p.price) }}/{{ p.unit }}</td><td>{{ p.temple.name if p.temple else 'Dùng chung' }}</td><td>{{ '✓' if p.active else '—' }}</td></tr>{% endfor %}
 </table></div>
 {% endblock %}

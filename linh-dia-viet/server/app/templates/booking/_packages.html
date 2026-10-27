@@ -1,6 +1,20 @@
+{# Danh mục lễ vật: chọn số lượng từng món (0 = không lấy). #}
 {% for p in packages %}
-  <label class="ld-check"><input type="radio" name="goi" value="{{ p.id }}" required {% if prefill and prefill.goi|string == p.id|string %}checked{% endif %}>
-    <span><b>{{ p.name }}</b> — {{ fmt_vnd(p.price) }}{% if p.temple_id %} <span class="ld-badge">riêng của đền</span>{% endif %}<br><span class="ld-muted">{{ p.description }}</span></span></label>
+  {% set q = (prefill.qty or {}).get(p.id, 0) if prefill else 0 %}
+  <div class="ld-item">
+    <div class="ld-item-info"><b>{{ p.name }}</b> <span class="ld-muted">· {{ fmt_vnd(p.price) }}/{{ p.unit }}</span>
+      {% if p.temple_id %}<span class="ld-badge">riêng của đền</span>{% endif %}
+      {% if p.description %}<br><span class="ld-muted small">{{ p.description }}</span>{% endif %}</div>
+    <div class="ld-stepper" data-price="{{ p.price }}">
+      <button type="button" class="ld-btn secondary small" data-step="-1" aria-label="Bớt {{ p.name }}">−</button>
+      <input type="number" name="sl_{{ p.id }}" value="{{ q }}" min="0" max="{{ p.max_qty }}" inputmode="numeric" aria-label="Số {{ p.unit }} {{ p.name }}">
+      <button type="button" class="ld-btn secondary small" data-step="1" aria-label="Thêm {{ p.name }}">+</button>
+    </div>
+  </div>
 {% else %}
-  <p class="ld-muted">Chọn đền để xem gói lễ.</p>
+  <p class="ld-muted">Chọn đền để xem lễ vật.</p>
 {% endfor %}
+{% if packages %}
+<div class="ld-spread ld-item-total"><span>Tạm tính{% if n_temples > 1 %} <span class="ld-muted">(× {{ n_temples }} đền)</span>{% endif %}</span>
+  <b id="items-total" data-temples="{{ n_temples }}">0 ₫</b></div>
+{% endif %}

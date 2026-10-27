@@ -19,12 +19,12 @@ def device_online(device: Device | None) -> bool:
 
 
 def packages_for(db: Session, temple_ids: list[int]) -> list[OfferingPackage]:
-    """Gói dùng chung + (nếu chỉ chọn 1 đền) gói riêng của đền đó."""
+    """Lễ vật dùng chung + (nếu chỉ chọn 1 đền) lễ vật riêng của đền đó."""
     cond = OfferingPackage.temple_id.is_(None)
     if len(temple_ids) == 1:
         cond = or_(cond, OfferingPackage.temple_id == temple_ids[0])
     return list(db.scalars(select(OfferingPackage).where(cond, OfferingPackage.active.is_(True))
-                           .order_by(OfferingPackage.price)))
+                           .order_by(OfferingPackage.sort, OfferingPackage.price, OfferingPackage.id)))
 
 
 @router.get("/")

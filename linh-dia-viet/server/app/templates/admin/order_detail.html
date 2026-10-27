@@ -4,7 +4,7 @@
 <h1>Đơn #{{ o.id }} · {{ o.temple.name }}</h1>
 <div class="ld-card">
   <p><span class="ld-badge">{{ labels[o.status] }}</span>{% if o.note %} <span class="ld-muted">{{ o.note }}</span>{% endif %}</p>
-  <p class="ld-muted">Mã đặt: {{ o.booking_ref }} · Giờ hẹn: {{ fmt_local(o.scheduled_at, o.timezone) }} · {{ o.package.name }} · {{ fmt_vnd(o.total) }}<br>
+  <p class="ld-muted">Mã đặt: {{ o.booking_ref }} · Giờ hẹn: {{ fmt_local(o.scheduled_at, o.timezone) }} · {{ o.offering_text }} · {{ fmt_vnd(o.total) }}<br>
   Khách: {{ o.prayer.full_name }} ({{ o.prayer.birth_year }}) · {{ o.user.email or o.user.phone }} · Cách khấn: {{ o.prayer.kind }} ({{ o.prayer.moderation }})</p>
   {% if o.status in ('failed', 'scheduled', 'delivered') %}
   <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/gui-lai') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">

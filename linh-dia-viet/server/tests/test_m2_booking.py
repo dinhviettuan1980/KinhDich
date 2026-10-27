@@ -5,7 +5,7 @@ import json
 from sqlalchemy import select
 
 from app.config import get_settings
-from app.models import AuditLog, Order, Payment, Prayer, PrayerTemplate
+from app.models import AuditLog, Order, Payment, Prayer, PrayerTemplate, Temple
 from conftest import P, login
 from helpers import booking_data, confirm_and_pay, create_booking, post_json, temple_id, tone
 
@@ -30,7 +30,7 @@ def test_booking_page_requires_login(client):
 
 def test_booking_page_renders(user_client, db):
     r = user_client.get(f"{P}/dat-le?den={temple_id(db)}")
-    assert r.status_code == 200 and "Lễ hoa quả" in r.text and "Ghi âm" not in r.text[:0]
+    assert r.status_code == 200 and "Gà luộc" in r.text and 'name="sl_' in r.text and "Ghi âm" not in r.text[:0]
 
 
 def test_preview_and_lunar(user_client, db):
@@ -57,10 +57,11 @@ def test_tts_listen(user_client, db):
 def test_full_tts_flow_to_scheduled(user_client, db):
     ref = create_booking(user_client, db)
     [o] = orders_of(db, ref)
-    assert o.status == "awaiting_payment" and o.total == 150_000
+    assert o.status == "awaiting_payment" and o.total == 20_000
+    assert [(i.name, i.unit, i.qty, i.price) for i in o.items] == [("Hương (nhang)", "bó", 1, 20_000)]
     from helpers import TXN
     r = user_client.get(f"{P}/thanh-toan/{TXN[ref]}")
-    assert "Nguyễn Văn A" in r.text and "Thanh toán 150.000 ₫" in r.text
+    assert "Nguyễn Văn A" in r.text and "Thanh toán 20.000 ₫" in r.text and "1 bó hương (nhang)" in r.text
     confirm_and_pay(user_client, ref)
     [o] = orders_of(db, ref)
     assert o.status == "scheduled"
@@ -215,13 +216,13 @@ def test_payment_webhook_signature(user_client, db, monkeypatch):
     assert db.scalar(select(AuditLog).where(AuditLog.actor == "webhook:mock"))
 
 
-def test_preselected_temple_and_package_show_summary(user_client, db):
+def test_preselected_temple_shows_summary_and_item_menu(user_client, db):
     tid = temple_id(db)
     from helpers import shared_package
     pkg = shared_package(db)
-    html = user_client.get(f"{P}/dat-le?den={tid}&goi={pkg.id}").text
+    html = user_client.get(f"{P}/dat-le?den={tid}&goi={pkg.id}").text  # link cũ ?goi= → món đó 1 phần
     assert "Nơi dâng lễ" in html and 'name="den" value="%d"' % tid in html and 'type="checkbox" name="den"' not in html
-    assert f'type="hidden" name="goi" value="{pkg.id}"' in html and 'type="radio" name="goi"' not in html
+    assert f'name="sl_{pkg.id}" value="1"' in html and 'name="goi"' not in html
     html = user_client.get(f"{P}/dat-le").text  # chưa chọn gì → hiện danh sách để chọn
     assert 'type="checkbox" name="den"' in html
 
@@ -277,3 +278,47 @@ def test_tts_prewarmed_at_booking(user_client, db, monkeypatch):
     confirm_and_pay(user_client, ref)
     assert calls == []  # lúc xếp lịch dùng cache, không gọi nhà cung cấp TTS nữa
     assert orders_of(db, ref)[0].status == "scheduled"
+
+
+def _item(db, name):
+    from app.models import OfferingPackage
+    return db.scalar(select(OfferingPackage).where(OfferingPackage.name == name))
+
+
+def test_itemized_offerings_total_script_and_tray(user_client, db):
+    from helpers import shared_package
+    huong, ga, xoi = shared_package(db), _item(db, "Gà luộc"), _item(db, "Xôi gấc")
+    d = booking_data(db, temples=("den-ngoc-son", "chua-tran-quoc"), **{f"sl_{huong.id}": "3", f"sl_{ga.id}": "1",
+                                                                        f"sl_{xoi.id}": "2", f"sl_{_item(db, 'Nến').id}": "0"})
+    db.scalar(select(Temple).where(Temple.slug == "chua-tran-quoc")).device_id = "pi-demo-01"
+    db.commit()
+    r = post_json(user_client, "/dat-le/xem-truoc", d)
+    assert "3 bó hương (nhang), 2 đĩa xôi gấc, 1 con gà luộc" in r.json()["text"]
+    r = post_json(user_client, "/dat-le", d)
+    assert r.status_code == 200, r.text
+    orders = orders_of(db, r.json()["ref"])
+    assert len(orders) == 2 and all(o.total == 3 * 20_000 + 280_000 + 2 * 60_000 for o in orders)
+    assert orders[0].offering_text == "3 bó hương (nhang), 2 đĩa xôi gấc, 1 con gà luộc"
+    page = user_client.get(f"{P}/thanh-toan/{r.json()['txn']}").text
+    assert "Thanh toán 920.000 ₫" in page
+    # sửa giá danh mục sau đó không làm đổi đơn đã đặt
+    ga.price = 999_000
+    db.commit()
+    db.expire_all()
+    assert orders_of(db, r.json()["ref"])[0].items[2].price == 280_000
+    # "đặt lại đơn này" điền lại đúng số lượng
+    html = user_client.get(f"{P}/dat-le?tu_don={orders[0].id}").text
+    assert f'name="sl_{huong.id}" value="3"' in html and f'name="sl_{ga.id}" value="1"' in html
+
+
+def test_itemized_validation(user_client, db):
+    from helpers import shared_package
+    huong, ga = shared_package(db), _item(db, "Gà luộc")
+    r = post_json(user_client, "/dat-le", booking_data(db, **{f"sl_{huong.id}": "0"}))
+    assert r.status_code == 400 and "ít nhất một lễ vật" in r.json()["error"]
+    r = post_json(user_client, "/dat-le", booking_data(db, **{f"sl_{ga.id}": str(ga.max_qty + 1)}))
+    assert r.status_code == 400 and "tối đa" in r.json()["error"]
+    ga.active = False
+    db.commit()
+    r = post_json(user_client, "/dat-le", booking_data(db, **{f"sl_{huong.id}": "0", f"sl_{ga.id}": "1"}))
+    assert r.status_code == 400  # món đã ngừng bán không được tính

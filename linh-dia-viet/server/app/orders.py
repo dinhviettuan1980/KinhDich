@@ -52,7 +52,7 @@ def local_date(dt_utc: datetime, tz: str):
 
 def script_for(db: Session, prayer: Prayer, order: Order) -> str:
     ctx = prayer_text.personal_context(prayer.full_name, prayer.birth_year, prayer.address, prayer.wish,
-                                       order.package.name, local_date(order.scheduled_at, order.timezone))
+                                       order.offering_text, local_date(order.scheduled_at, order.timezone))
     ctx.update(prayer_text.temple_context(order.temple))
     return prayer_text.render(prayer.text or template_for(db, order.temple), ctx)
 

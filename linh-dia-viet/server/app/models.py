@@ -122,11 +122,15 @@ class Temple(Base):
 
 
 class OfferingPackage(Base):
+    """Một món lễ vật bán lẻ (hương, hoa, gà luộc…): khách chọn số lượng từng món, không bán theo combo."""
     __tablename__ = "offering_packages"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(200))
     description: Mapped[str] = mapped_column(Text, default="")
-    price: Mapped[int] = mapped_column(Integer)  # VND
+    price: Mapped[int] = mapped_column(Integer)  # VND cho 1 đơn vị
+    unit: Mapped[str] = mapped_column(String(30), default="phần", server_default="phần")  # bó, con, đĩa…
+    max_qty: Mapped[int] = mapped_column(Integer, default=10, server_default="10")
+    sort: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
     image_url: Mapped[str] = mapped_column(String(300), default="")
     temple_id: Mapped[int | None] = mapped_column(ForeignKey("temples.id", ondelete="CASCADE"))  # NULL = dùng chung
     active: Mapped[bool] = mapped_column(Boolean, default=True)
@@ -188,7 +192,7 @@ class Order(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True)
     prayer_id: Mapped[int] = mapped_column(ForeignKey("prayers.id"))
     temple_id: Mapped[int] = mapped_column(ForeignKey("temples.id"), index=True)
-    package_id: Mapped[int] = mapped_column(ForeignKey("offering_packages.id"))
+    package_id: Mapped[int | None] = mapped_column(ForeignKey("offering_packages.id"))  # đơn cũ (combo)
     scheduled_at: Mapped[datetime] = mapped_column(UTCDateTime(), index=True)  # UTC
     play_asap: Mapped[bool] = mapped_column(Boolean, default=False, server_default=sql_false())  # phát ngay khi xếp lịch xong
     timezone: Mapped[str] = mapped_column(String(50), default="Asia/Ho_Chi_Minh")
@@ -205,9 +209,34 @@ class Order(Base):
     user: Mapped[User] = relationship()
     prayer: Mapped[Prayer] = relationship(back_populates="orders")
     temple: Mapped[Temple] = relationship()
-    package: Mapped[OfferingPackage] = relationship()
+    package: Mapped[OfferingPackage | None] = relationship()
+    items: Mapped[list["OrderItem"]] = relationship(order_by="OrderItem.id", cascade="all, delete-orphan")
     events: Mapped[list["OrderEvent"]] = relationship(order_by="OrderEvent.id", cascade="all, delete-orphan")
     payments: Mapped[list["Payment"]] = relationship(back_populates="order", order_by="Payment.id")
+
+    @property
+    def offering_text(self) -> str:
+        """Lễ vật của đơn, dạng đọc được: "3 bó hương, 1 con gà luộc"."""
+        if self.items:
+            return offering_text((i.qty, i.unit, i.name) for i in self.items)
+        return self.package.name if self.package else ""
+
+
+def offering_text(lines) -> str:
+    """[(3, "bó", "Hương"), (1, "con", "Gà luộc")] → "3 bó hương, 1 con gà luộc"."""
+    return ", ".join(f"{q} {unit} {name[:1].lower()}{name[1:]}" for q, unit, name in lines)
+
+
+class OrderItem(Base):
+    """Lễ vật trong đơn — chốt tên/đơn vị/giá lúc đặt (sửa danh mục sau không đổi đơn cũ)."""
+    __tablename__ = "order_items"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    order_id: Mapped[int] = mapped_column(ForeignKey("orders.id", ondelete="CASCADE"), index=True)
+    package_id: Mapped[int | None] = mapped_column(ForeignKey("offering_packages.id", ondelete="SET NULL"))
+    name: Mapped[str] = mapped_column(String(200))
+    unit: Mapped[str] = mapped_column(String(30))
+    price: Mapped[int] = mapped_column(Integer)
+    qty: Mapped[int] = mapped_column(Integer)
 
 
 class OrderEvent(Base):

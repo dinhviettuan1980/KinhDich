@@ -101,11 +101,11 @@ def temple_save(temple_id: str, request: Request, name: str = Form(...), address
     return RedirectResponse(u("/admin/den" if user.is_admin else "/admin"), 303)
 
 
-# ---------------- Gói lễ ----------------
+# ---------------- Lễ vật (bán lẻ từng món) ----------------
 
 @router.get("/goi-le")
 def packages(request: Request, db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
-    stmt = select(OfferingPackage).order_by(OfferingPackage.price)
+    stmt = select(OfferingPackage).order_by(OfferingPackage.active.desc(), OfferingPackage.sort, OfferingPackage.price)
     if not user.is_admin:
         stmt = stmt.where(OfferingPackage.temple_id.in_(user.temple_ids or {-1}))
     return render(request, "admin/packages.html", {"packages": db.scalars(stmt).all()})
@@ -113,7 +113,7 @@ def packages(request: Request, db: Session = Depends(get_db), user: User = Depen
 
 def _load_pkg(db: Session, pkg_id: str, user: User) -> OfferingPackage:
     if pkg_id == "moi":
-        return OfferingPackage(active=True, price=0)
+        return OfferingPackage(active=True, price=0, unit="phần", max_qty=10, sort=0)
     pkg = db.get(OfferingPackage, int(pkg_id))
     if pkg is None:
         raise HTTPException(404)
@@ -131,11 +131,12 @@ def package_form(pkg_id: str, request: Request, db: Session = Depends(get_db),
 
 @router.post("/goi-le/{pkg_id}", dependencies=csrf)
 def package_save(pkg_id: str, request: Request, name: str = Form(...), description: str = Form(""),
-                 price: int = Form(...), image_url: str = Form(""), temple_id: str = Form(""),
+                 price: int = Form(...), unit: str = Form("phần"), max_qty: int = Form(10), sort: int = Form(0),
+                 image_url: str = Form(""), temple_id: str = Form(""),
                  active: bool = Form(False), db: Session = Depends(get_db),
                  user: User = Depends(require_backoffice)):
-    if price < 0:
-        raise HTTPException(400, "Giá không hợp lệ")
+    if price < 0 or not 1 <= max_qty <= 99:
+        raise HTTPException(400, "Giá hoặc số lượng tối đa không hợp lệ")
     pkg = _load_pkg(db, pkg_id, user)
     new_temple_id = int(temple_id) if temple_id else None
     if not can_manage_temple(user, new_temple_id):  # nhân sự đền không tạo gói "dùng chung"
@@ -144,10 +145,11 @@ def package_save(pkg_id: str, request: Request, name: str = Form(...), descripti
         db.add(pkg)
     pkg.name, pkg.description, pkg.price = name.strip(), description.strip(), price
     pkg.image_url, pkg.active, pkg.temple_id = image_url.strip(), active, new_temple_id
+    pkg.unit, pkg.max_qty, pkg.sort = unit.strip()[:30] or "phần", max_qty, sort
     db.flush()
     audit(db, f"user:{user.id}", "package.save", f"package:{pkg.id}", name=pkg.name, price=price)
     db.commit()
-    flash(request, "Đã lưu gói lễ.", "ok")
+    flash(request, "Đã lưu lễ vật.", "ok")
     return RedirectResponse(u("/admin/goi-le"), 303)
 
 

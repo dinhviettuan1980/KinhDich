@@ -14,7 +14,8 @@ from conftest import P, csrf_of, login
 def test_seed_data(db):
     assert db.scalar(select(Temple).where(Temple.slug == "den-ngoc-son")).device_id == "pi-demo-01"
     assert len(db.scalars(select(Temple)).all()) == 3
-    assert len(db.scalars(select(OfferingPackage)).all()) == 4
+    items = db.scalars(select(OfferingPackage).order_by(OfferingPackage.sort)).all()
+    assert len(items) == 12 and items[0].unit == "bó" and all(i.max_qty >= 1 for i in items)
     assert db.get(Device, "pi-demo-01").token_hash != "dev-device-token-change-me"
     admin = db.scalar(select(User).where(User.role == "admin"))
     assert admin.password_hash.startswith("$argon2")
@@ -37,7 +38,7 @@ def test_root_redirects_to_prefix(client):
 def test_temple_detail(user_client):
     client = user_client
     r = client.get(f"{P}/den/den-ngoc-son")
-    assert r.status_code == 200 and "Lễ hoa quả" in r.text
+    assert r.status_code == 200 and "Gà luộc" in r.text and "/con" in r.text
     assert client.get(f"{P}/den/khong-co").status_code == 404
 
 

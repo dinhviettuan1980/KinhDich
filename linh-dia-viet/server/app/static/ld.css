@@ -92,3 +92,13 @@
 .ld audio { width: 100%; }
 .ld-rec-time { font-variant-numeric: tabular-nums; font-size: 1.4rem; font-weight: 700; }
 .ld-lock { background: var(--ld-err); color: #fff; text-align: center; padding: 6px; font-size: .9rem; }
+
+/* Danh mục lễ vật (chọn số lượng) */
+.ld-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--ld-line); }
+.ld-item-info { min-width: 0; }
+.ld-item .small { font-size: .85rem; }
+.ld-stepper { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.ld-stepper .ld-btn.small { min-width: 36px; padding: 6px 0; }
+.ld .ld-stepper input { width: 3.2em; text-align: center; margin: 0; padding: 6px 2px; -moz-appearance: textfield; }
+.ld-stepper input::-webkit-outer-spin-button, .ld-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.ld-item-total { padding-top: 12px; font-size: 1.05rem; }

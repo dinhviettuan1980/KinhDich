@@ -8,13 +8,13 @@
   <p>{{ temple.description }}</p>
   {% if temple.deity %}<p><b>Thờ:</b> {{ temple.deity }}</p>{% endif %}
 </div>
-<h2>Chọn gói lễ</h2>
+<h2>Lễ vật</h2>
+<div class="ld-card">
 {% for p in packages %}
-  <div class="ld-card">
-    <div class="ld-spread"><b>{{ p.name }}</b><span>{{ fmt_vnd(p.price) }}</span></div>
-    <div class="ld-muted">{{ p.description }}</div>
-    {% if temple.device_id %}<p style="margin-bottom:0"><a class="ld-btn small" href="{{ u('/dat-le') }}?den={{ temple.id }}&goi={{ p.id }}">Chọn gói này và đặt lễ →</a></p>{% endif %}
-  </div>
+  <div class="ld-spread ld-item"><span><b>{{ p.name }}</b>{% if p.description %}<br><span class="ld-muted small">{{ p.description }}</span>{% endif %}</span>
+    <span style="white-space:nowrap">{{ fmt_vnd(p.price) }}/{{ p.unit }}</span></div>
 {% endfor %}
+  {% if temple.device_id %}<p style="margin-bottom:0"><a class="ld-btn block" href="{{ u('/dat-le') }}?den={{ temple.id }}">Sắm lễ và đặt lễ →</a></p>{% endif %}
+</div>
 {% if not temple.device_id %}<p class="ld-muted">Đền này chưa lắp thiết bị nên chưa đặt lễ từ xa được.</p>{% endif %}
 {% endblock %}

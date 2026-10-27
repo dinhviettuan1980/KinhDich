@@ -1,4 +1,4 @@
-"""Dữ liệu mẫu: 3 đền, 4 gói lễ, 1 thiết bị pi-demo-01, 1 admin. Chạy lại nhiều lần không sao."""
+"""Dữ liệu mẫu: 3 đền, danh mục lễ vật bán lẻ, 1 thiết bị pi-demo-01, 1 admin. Chạy lại nhiều lần không sao."""
 import logging
 
 from sqlalchemy import select
@@ -24,11 +24,19 @@ TEMPLES = [
          description="Nơi thờ Bà Chúa Xứ dưới chân núi Sam, lễ vía lớn vào tháng Tư âm lịch."),
 ]
 
-PACKAGES = [
-    dict(name="Lễ chay thanh tịnh", price=150_000, description="Hương, hoa tươi, quả, nước sạch."),
-    dict(name="Lễ hoa quả", price=250_000, description="Hương, hoa, mâm ngũ quả, trầu cau, nước."),
-    dict(name="Lễ mặn đầy đủ", price=500_000, description="Hương, hoa, quả, xôi, gà luộc, rượu, vàng mã."),
-    dict(name="Lễ dâng sao giải hạn", price=350_000, description="Hương, hoa, quả, nến, sớ dâng sao."),
+ITEMS = [
+    dict(name="Hương (nhang)", unit="bó", price=20_000, max_qty=10, description="Hương trầm, 1 bó khoảng 100 nén."),
+    dict(name="Nến", unit="đôi", price=20_000, max_qty=10, description="Đôi nến đỏ thắp hai bên ban thờ."),
+    dict(name="Hoa tươi", unit="bó", price=60_000, max_qty=5, description="Hoa cúc vàng, hoa hồng hoặc hoa sen theo mùa."),
+    dict(name="Ngũ quả", unit="mâm", price=150_000, max_qty=3, description="Năm loại quả tươi bày trên đĩa."),
+    dict(name="Trầu cau", unit="cơi", price=30_000, max_qty=5, description="Lá trầu têm cánh phượng và quả cau."),
+    dict(name="Oản", unit="cặp", price=30_000, max_qty=5, description="Oản đường hình tháp, dùng cho lễ chay."),
+    dict(name="Xôi gấc", unit="đĩa", price=60_000, max_qty=5, description="Xôi gấc đỏ (có thể đổi xôi đỗ)."),
+    dict(name="Gà luộc", unit="con", price=280_000, max_qty=3, description="Gà trống luộc nguyên con, cài hoa hồng."),
+    dict(name="Rượu trắng", unit="chai", price=40_000, max_qty=5, description="Rượu nếp nhỏ."),
+    dict(name="Bánh kẹo", unit="gói", price=30_000, max_qty=5, description="Bánh kẹo, chè lam."),
+    dict(name="Vàng mã", unit="bộ", price=50_000, max_qty=5, description="Tiền vàng, sớ giấy (đốt sau lễ)."),
+    dict(name="Nước sạch", unit="chai", price=10_000, max_qty=5, description="Chai nước tinh khiết."),
 ]
 
 
@@ -43,8 +51,8 @@ def seed(db: Session) -> None:
         if not db.scalar(select(Temple).where(Temple.slug == t["slug"])):
             db.add(Temple(**t, device_id=s.demo_device_id if i == 0 else None))
     if not db.scalar(select(OfferingPackage)):
-        for p in PACKAGES:
-            db.add(OfferingPackage(**p))
+        for i, it in enumerate(ITEMS):
+            db.add(OfferingPackage(**it, sort=i))
     if not db.scalar(select(PrayerTemplate).where(PrayerTemplate.temple_id.is_(None))):
         db.add(PrayerTemplate(name="Mẫu chung", body=DEFAULT_TEMPLATE))
     db.flush()

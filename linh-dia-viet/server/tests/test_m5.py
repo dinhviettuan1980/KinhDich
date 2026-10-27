@@ -120,7 +120,7 @@ def test_book_100_temples(user_client, db):
     assert len(orders) == 100 and len({o.prayer_id for o in orders}) == 1
     from helpers import TXN
     page = user_client.get(f"{P}/thanh-toan/{TXN[ref]}").text
-    assert "15.000.000 ₫" in page  # 100 × 150.000
+    assert "2.000.000 ₫" in page  # 100 × 20.000
 
 
 def test_kinh_dich_link_and_prefix(user_client, monkeypatch):
@@ -149,9 +149,9 @@ def test_cli_create_staff(db, capsys):
     assert u.role == "vendor" and len(u.temple_ids) == 1
 
 
-def test_temple_page_package_links(user_client, db):
+def test_temple_page_lists_items_and_book_link(user_client, db):
     html = user_client.get(f"{P}/den/den-ngoc-son").text
-    assert "Chọn gói này và đặt lễ" in html and "&goi=" in html
+    assert "Sắm lễ và đặt lễ" in html and "&goi=" not in html and "/bó" in html
 
 
 def test_recorded_booking_keeps_read_text(user_client, db, tmp_path):

@@ -41,6 +41,34 @@
   });
   syncTemples();
 
+  // ---- Lễ vật: nút −/+ và tạm tính ----
+  function syncItems() {
+    var total = 0;
+    form.querySelectorAll(".ld-stepper").forEach(function (st) {
+      var inp = st.querySelector("input");
+      total += (parseInt(inp.value, 10) || 0) * parseInt(st.dataset.price, 10);
+    });
+    var el = $("items-total");
+    if (el) el.textContent = (total * (parseInt(el.dataset.temples, 10) || 1)).toLocaleString("vi-VN") + " ₫";
+  }
+  form.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-step]");
+    if (!b) return;
+    var inp = b.parentNode.querySelector("input");
+    var v = (parseInt(inp.value, 10) || 0) + parseInt(b.dataset.step, 10);
+    inp.value = Math.max(0, Math.min(parseInt(inp.max, 10) || 99, v));
+    inp.dispatchEvent(new Event("change", { bubbles: true }));
+  });
+  var itemTimer = null;
+  form.addEventListener("change", function (e) {
+    if (!/^sl_/.test(e.target.name || "")) return;
+    syncItems();
+    clearTimeout(itemTimer);  // bấm +/− liên tục: soạn lại sớ một lần sau khi dừng tay
+    itemTimer = setTimeout(autoPreview, 600);
+  });
+  document.body.addEventListener("htmx:afterSwap", syncItems);
+  syncItems();
+
   // ---- Cách khấn ----
   function syncKind() {
     var kind = form.querySelector('[name=cach_khan]:checked').value;
@@ -102,7 +130,7 @@
   ["ho_ten", "nam_sinh", "dia_chi", "nguyen_vong", "thoi_gian"].forEach(function (id) {
     $(id).addEventListener("change", autoPreview);
   });
-  form.addEventListener("change", function (e) { if (e.target.name === "den" || e.target.name === "goi") autoPreview(); });
+  form.addEventListener("change", function (e) { if (e.target.name === "den") autoPreview(); });
   document.body.addEventListener("htmx:afterSwap", autoPreview);
   if (!$("van_ban").value) autoPreview();
 

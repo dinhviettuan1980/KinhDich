@@ -21,7 +21,7 @@
 {% endif %}
 {% if user.is_admin or user.role == 'temple_manager' %}<div class="ld-card"><a href="{{ u('/admin/den') }}">Đền, chùa</a></div>{% endif %}
 <div class="ld-card"><a href="{{ u('/admin/lich-le') }}">Lịch lễ{% if user.is_admin %} &amp; đơn hàng{% endif %}</a></div>
-<div class="ld-card"><a href="{{ u('/admin/goi-le') }}">Gói lễ</a></div>
+<div class="ld-card"><a href="{{ u('/admin/goi-le') }}">Lễ vật</a></div>
 {% if user.is_admin or user.role == 'temple_manager' %}<div class="ld-card"><a href="{{ u('/admin/mau-so') }}">Mẫu sớ</a></div>{% endif %}
 {% if user.is_admin %}<div class="ld-card"><a href="{{ u('/admin/thiet-bi') }}">Thiết bị</a></div>
 <div class="ld-card"><a href="{{ u('/admin/kiem-duyet') }}">Kiểm duyệt ghi âm</a>{% if pending %} <span class="ld-badge warn">{{ pending }} chờ duyệt</span>{% endif %}</div>{% endif %}

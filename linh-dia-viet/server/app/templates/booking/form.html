@@ -22,7 +22,7 @@
     <p class="ld-muted">Có thể chọn nhiều nơi (tối đa {{ settings().max_temples_per_order }}); bài khấn được phát tại từng nơi.</p>
     <p class="ld-row"><span id="temple-count" class="ld-badge">0 đền</span>
       <button type="button" class="ld-btn secondary small" id="btn-all">Chọn tất cả</button></p>
-    <div hx-get="{{ u('/dat-le/goi-le') }}" hx-trigger="change" hx-target="#packages" hx-include="[name=den],[name=goi]">
+    <div hx-get="{{ u('/dat-le/goi-le') }}" hx-trigger="change" hx-target="#packages" hx-include="[name=den],[name^=sl_]">
     {% for t in temples %}
       <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}" {% if t.device_id %}data-ok{% else %}disabled{% endif %}>
         <span>{{ t.name }} <span class="ld-muted">· {{ t.province }}</span>
@@ -32,20 +32,12 @@
   </section>
   {% endif %}
 
-  {# ---------- Gói lễ ---------- #}
-  {% if chosen and chosen_pkg %}
-    <input type="hidden" name="goi" value="{{ chosen_pkg.id }}">
-    <div class="ld-card ld-spread">
-      <div><span class="ld-muted">Gói lễ</span><br><b>{{ chosen_pkg.name }}</b> — {{ fmt_vnd(chosen_pkg.price) }}
-        {% if chosen|length > 1 %}<span class="ld-muted"> × {{ chosen|length }} đền</span>{% endif %}</div>
-      <a class="ld-btn secondary small" href="{{ change_pkg_url }}">Đổi</a>
-    </div>
-  {% else %}
+  {# ---------- Lễ vật ---------- #}
   <section class="ld-card">
-    <h2>Chọn gói lễ</h2>
+    <h2>Sắm lễ vật</h2>
+    <p class="ld-muted">Chọn số lượng từng món; kiosk tại đền bày mâm đúng như bạn chọn.</p>
     <div id="packages">{% include "booking/_packages.html" %}</div>
   </section>
-  {% endif %}
 
   {# ---------- Tín chủ (lưu theo tài khoản) ---------- #}
   <section class="ld-card">

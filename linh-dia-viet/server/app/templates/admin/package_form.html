@@ -1,11 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Sửa gói lễ{% endblock %}
+{% block title %}Sửa lễ vật{% endblock %}
 {% block content %}
-<h1>{{ p.name or 'Thêm gói lễ' }}</h1>
+<h1>{{ p.name or 'Thêm lễ vật' }}</h1>
 <form class="ld-card" method="post" action="{{ u('/admin/goi-le/' ~ (p.id or 'moi')) }}">
   <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
   <label>Tên</label><input type="text" name="name" required value="{{ p.name or '' }}">
-  <label>Giá (VND)</label><input type="number" name="price" min="0" step="1000" required value="{{ p.price }}">
+  <label>Đơn vị</label><input type="text" name="unit" maxlength="30" required placeholder="bó, con, đĩa, mâm…" value="{{ p.unit or 'phần' }}">
+  <label>Giá 1 đơn vị (VND)</label><input type="number" name="price" min="0" step="1000" required value="{{ p.price }}">
+  <label>Tối đa mỗi đơn</label><input type="number" name="max_qty" min="1" max="99" required value="{{ p.max_qty or 10 }}">
+  <label>Thứ tự hiển thị</label><input type="number" name="sort" value="{{ p.sort or 0 }}">
   <label>Mô tả</label><textarea name="description">{{ p.description or '' }}</textarea>
   <label>Ảnh (URL)</label><input type="text" name="image_url" value="{{ p.image_url or '' }}">
   <label>Thuộc đền</label>
