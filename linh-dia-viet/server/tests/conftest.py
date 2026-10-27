@@ -11,6 +11,7 @@ os.environ.update({
     "DATA_DIR": str(_tmp / "data"),
     "DEVICE_BUS": "memory",
     "TTS_PROVIDER": "fake",
+    "RECOGNITION_PROVIDER": "off",
     "SCHEDULER_ENABLED": "false",
     "SECRET_KEY": "test-secret",
     "ADMIN_EMAIL": "admin@example.com",

@@ -46,10 +46,9 @@ class Settings(BaseSettings):
     payment_webhook_secret: str = ""  # để trống = tắt webhook
 
     # TTS
-    # Nhận diện mâm lễ: auto (= claude nếu có ANTHROPIC_API_KEY, không thì tắt) | claude | fake | off
-    recognition_provider: str = "auto"
-    anthropic_api_key: str = ""
-    recognition_model: str = "claude-sonnet-5-5"
+    # Nhận diện mâm lễ (đếm lễ vật trên ảnh camera): hfspace (HF Space OCR /tray, miễn phí) | fake | off
+    recognition_provider: str = "hfspace"
+    recognition_url: str = "https://tuandv80-ocr-numbers.hf.space"
     tts_provider: str = "edge"  # edge | google | fpt | fake
     tts_voice: str = "vi-VN-HoaiMyNeural"
     google_tts_api_key: str = ""
