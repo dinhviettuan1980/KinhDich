@@ -1,5 +1,6 @@
-"""Luồng đặt lễ (đã đăng nhập): đền + lễ vật (chọn số lượng từng món) → tín chủ (lưu theo tài khoản) → tờ sớ / ghi âm
-→ phát ngay hoặc hẹn giờ → thanh toán giả lập."""
+"""Luồng đặt lễ. Trước đó (1 lần): tài khoản → thông tin tín chủ (họ tên, ngày sinh, địa chỉ) → thẻ thanh toán giả lập.
+Mỗi lần đặt: đền → lễ vật (số lượng từng món) → nguyện vọng + tờ sớ → giọng đọc tự động / tự ghi âm
+→ đọc ngay khi mâm lễ bày xong hoặc hẹn giờ → chốt (trừ tiền thẻ đã lưu) → xem lại trong lịch sử."""
 import tempfile
 import uuid
 from dataclasses import dataclass
@@ -12,7 +13,7 @@ from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from .. import audio, orders as svc, prayer_text, tts
+from .. import audio, billing, orders as svc, prayer_text, tts
 from ..config import get_settings
 from ..db import get_db
 from ..lunar import solar_to_lunar
@@ -20,7 +21,9 @@ from ..models import (OfferingPackage, Order, OrderEvent, OrderItem, Payment, Pr
                       offering_text, utcnow)
 from ..security import check_csrf, rate_limit
 from ..storage import get_storage
-from ..web import render, require_user, u
+from ..state_machine import OrderStatus as S
+from ..web import flash, fmt_vnd, render, require_user, u
+from .auth import onboarding_url
 from .public import device_online, packages_for
 
 router = APIRouter()
@@ -52,7 +55,7 @@ def _form_get(form, name, default=""):
     return v if isinstance(v, str) else default
 
 
-def parse_booking(db: Session, request: Request, form, *, partial: bool = False) -> Booking:
+def parse_booking(db: Session, request: Request, form, *, partial: bool = False, user: User | None = None) -> Booking:
     s = get_settings()
     ids = []
     for x in form.getlist("den"):
@@ -82,15 +85,16 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False)
     if not items and not partial:
         raise BookingError("Vui lòng chọn ít nhất một lễ vật.")
 
-    full_name = prayer_text.clean_input(_form_get(form, "ho_ten"), 120)
-    address = prayer_text.clean_input(_form_get(form, "dia_chi"), 300)
+    # tín chủ: lấy từ hồ sơ tài khoản (form chỉ gửi khi muốn ghi đè)
+    full_name = prayer_text.clean_input(_form_get(form, "ho_ten") or (user and user.devotee_name) or "", 120)
+    address = prayer_text.clean_input(_form_get(form, "dia_chi") or (user and user.address) or "", 300)
     wish = prayer_text.clean_input(_form_get(form, "nguyen_vong"), 1000)
-    by = _form_get(form, "nam_sinh")
+    by = _form_get(form, "nam_sinh") or str((user and user.birth_year) or "")
     birth_year = int(by) if by.isdigit() else None
     if birth_year is not None and not (1900 <= birth_year <= date.today().year):
         raise BookingError("Năm sinh không hợp lệ.")
     if not partial and not (full_name and birth_year and address and wish):
-        raise BookingError("Vui lòng điền đủ họ tên, năm sinh, địa chỉ và nguyện vọng.")
+        raise BookingError("Vui lòng điền nguyện vọng (và đủ họ tên, ngày sinh, địa chỉ trong thông tin tín chủ).")
 
     kind = _form_get(form, "cach_khan", "tts")
     if kind not in ("tts", "recorded"):
@@ -156,6 +160,9 @@ def preview_text(db: Session, b: Booking) -> str:
 
 @router.get("/dat-le")
 def booking_page(request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
+    here = request.url.path + (f"?{request.url.query}" if request.url.query else "")
+    if step := onboarding_url(user, here):  # chưa đủ hồ sơ / chưa có thẻ → làm nốt rồi quay lại
+        return RedirectResponse(step, 303)
     selected = [int(x) for x in request.query_params.getlist("den") if x.isdigit()]
     # tín chủ: lấy từ tài khoản (lưu lại sau mỗi lần đặt)
     goi = request.query_params.get("goi", "")  # link cũ "chọn gói này" → 1 phần món đó
@@ -213,7 +220,7 @@ def lunar_api(ngay: str, user: User = Depends(require_user)):
 async def preview(request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
     form = await request.form()
     try:
-        b = parse_booking(db, request, form, partial=True)
+        b = parse_booking(db, request, form, partial=True, user=user)
     except BookingError as e:
         return JSONResponse({"error": str(e)}, 400)
     return {"text": preview_text(db, b), "multi": len(b.temples) > 1}
@@ -277,7 +284,7 @@ async def submit(request: Request, background: BackgroundTasks, db: Session = De
                  user: User = Depends(require_user)):
     form = await request.form()
     try:
-        b = parse_booking(db, request, form)
+        b = parse_booking(db, request, form, user=user)
     except BookingError as e:
         return JSONResponse({"error": str(e)}, 400)
     s = get_settings()
@@ -303,7 +310,23 @@ async def submit(request: Request, background: BackgroundTasks, db: Session = De
     # lưu thông tin tín chủ vào tài khoản để lần sau không phải nhập lại
     me = db.get(User, user.id)
     me.devotee_name, me.birth_year, me.address, me.wish = b.full_name, b.birth_year, b.address, b.wish
-    txn = svc.start_payment(db, orders, f"user:{user.id}")
+    actor = f"user:{user.id}"
+    if _form_get(form, "thanh_toan") == "the" and me.has_card:  # chốt lễ: trừ tiền thẻ đã lưu ngay
+        txn = svc.start_payment(db, orders, actor, provider="card")
+        db.flush()  # payment_result tìm payment theo txn (session không autoflush)
+        ok, reason = billing.charge(me, sum(o.total for o in orders))
+        paid = svc.payment_result(db, txn, ok, actor, schedule=False)
+        if not ok:
+            for o in orders:
+                svc.transition(db, o, S.CANCELLED, actor, reason)
+            db.commit()
+            return JSONResponse({"error": f"Thanh toán không thành công: {reason} Hãy đổi thẻ trong Tài khoản."}, 402)
+        db.commit()
+        background.add_task(svc.schedule_in_background, [o.id for o in paid], actor)
+        flash(request, f"Đã chốt lễ và trừ {fmt_vnd(sum(o.total for o in orders))} vào thẻ {me.card_label}. "
+                       "Ảnh mâm lễ và clip xem lại sẽ có ở đây khi lễ xong.", "ok")
+        return {"redirect": u(f"/don?moi={ref}"), "ref": ref, "txn": txn}
+    txn = svc.start_payment(db, orders, actor)
     db.commit()
     background.add_task(svc.prewarm_tts, [o.id for o in orders])
     return {"redirect": u(f"/thanh-toan/{txn}"), "ref": ref, "txn": txn}

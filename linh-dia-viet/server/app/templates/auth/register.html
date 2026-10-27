@@ -2,13 +2,18 @@
 {% block title %}Đăng ký{% endblock %}
 {% block content %}
 <h1>Đăng ký</h1>
+{% set current = 1 %}{% include "auth/_steps.html" %}
 <div class="ld-card">
-  <form method="post" action="{{ u('/dang-ky') }}">
+  <form method="post" action="{{ u('/dang-ky') }}{% if request.query_params.get('next') %}?next={{ request.query_params.get('next')|urlencode }}{% endif %}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-    <label for="n">Họ tên</label><input id="n" name="name" type="text" required maxlength="120" value="{{ name|default('') }}">
+    <label for="n">Họ và tên (ghi trên sớ)</label><input id="n" name="name" type="text" required maxlength="120" autocomplete="name" value="{{ name|default('') }}">
+    <label for="ns">Ngày sinh</label><input id="ns" name="ngay_sinh" type="date" required min="1900-01-01" value="{{ ngay_sinh|default('') }}">
+    <label for="dc">Địa chỉ</label><input id="dc" name="dia_chi" type="text" required maxlength="300" autocomplete="street-address" value="{{ dia_chi|default('') }}">
     <label for="i">Email hoặc số điện thoại</label><input id="i" name="identifier" type="text" required value="{{ identifier|default('') }}">
     <label for="p">Mật khẩu (tối thiểu 8 ký tự)</label><input id="p" name="password" type="password" minlength="8" autocomplete="new-password" required>
-    <p><button class="ld-btn block">Tạo tài khoản</button></p>
+    <p class="ld-muted">Họ tên, ngày sinh, địa chỉ dùng để lập tờ sớ — nhập một lần, lần sau không phải nhập lại.</p>
+    <p><button class="ld-btn block">Tiếp tục</button></p>
   </form>
+  <p class="ld-muted" style="margin-bottom:0">Đã có tài khoản? <a href="{{ u('/dang-nhap') }}">Đăng nhập</a></p>
 </div>
 {% endblock %}

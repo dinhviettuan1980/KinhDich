@@ -12,6 +12,14 @@
     {% if o.prayer.moderation == 'pending' %}<p class="ld-badge warn">Bản ghi âm đang chờ kiểm duyệt</p>{% endif %}
     {% if o.prayer.moderation == 'rejected' %}<p class="ld-flash error">Bản ghi âm bị từ chối: {{ o.prayer.moderation_note }}</p>{% endif %}
   </div>
+  {% if has_clip %}
+  <div class="ld-card"><h3>🎬 Clip xem lại</h3>
+    <video class="ld-clip" controls preload="none" playsinline
+           poster="{{ u('/don/' ~ o.id ~ '/anh/' ~ (evidence|selectattr('note', 'equalto', 'start')|map(attribute='id')|first or evidence[0].id)) }}"
+           src="{{ u('/don/' ~ o.id ~ '/clip') }}"></video>
+    <p class="ld-muted" style="margin-bottom:0">Mâm lễ trước, trong và sau khi khấn, kèm bài khấn đã đọc tại đền.</p>
+  </div>
+  {% endif %}
   {% if evidence %}
   <div class="ld-card"><h3>Ảnh mâm lễ</h3><div class="ld-photos">
     {% for e in evidence %}<a href="{{ u('/don/' ~ o.id ~ '/anh/' ~ e.id) }}"><img src="{{ u('/don/' ~ o.id ~ '/anh/' ~ e.id) }}" alt="Ảnh {{ e.note or '' }}" loading="lazy"></a>{% endfor %}

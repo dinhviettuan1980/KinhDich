@@ -74,7 +74,7 @@ def test_full_tts_flow_to_scheduled(user_client, db):
     assert "Đã xếp lịch" in page.text and "Hủy đơn" in page.text
     assert user_client.get(f"{P}/don/{o.id}/audio").status_code == 200
     assert user_client.get(f"{P}/don/{o.id}/trang-thai").status_code == 200
-    assert "Đặt lại đơn này" in user_client.get(f"{P}/don").text
+    assert "Lịch sử lễ" in user_client.get(f"{P}/don").text and "Đặt lại đơn này" in page.text
 
 
 def test_edited_text_is_used(user_client, db):
@@ -100,7 +100,7 @@ def test_edit_limits(user_client, db):
 def test_validation_errors(user_client, db):
     assert post_json(user_client, "/dat-le", booking_data(db, minutes=0)).status_code == 400  # quá sát giờ
     assert post_json(user_client, "/dat-le", booking_data(db, temples=())).status_code == 400
-    assert post_json(user_client, "/dat-le", booking_data(db, ho_ten="")).status_code == 400
+    assert post_json(user_client, "/dat-le", booking_data(db, nguyen_vong="")).status_code == 400
     assert post_json(user_client, "/dat-le", booking_data(db, nam_sinh="1800")).status_code == 400
     d = booking_data(db)
     d["den"] = [str(i) for i in range(1, 102)]
@@ -197,7 +197,7 @@ def test_reorder_prefills(user_client, db):
     ref = create_booking(user_client, db)
     [o] = orders_of(db, ref)
     r = user_client.get(f"{P}/dat-le?tu_don={o.id}")
-    assert 'value="Nguyễn Văn A"' in r.text and 'value="1990"' in r.text
+    assert "gia đình mạnh khỏe, bình an</textarea>" in r.text and "Nguyễn Văn A" in r.text
 
 
 def test_payment_webhook_signature(user_client, db, monkeypatch):
@@ -229,14 +229,16 @@ def test_preselected_temple_shows_summary_and_item_menu(user_client, db):
 
 def test_devotee_info_saved_to_profile(user_client, db):
     html = user_client.get(f"{P}/dat-le?den={temple_id(db)}").text
-    assert 'id="info-fields" hidden' not in html and 'id="info-summary"' not in html  # lần đầu: hiện form để nhập
-    create_booking(user_client, db)
+    # tín chủ lấy từ hồ sơ: chỉ hiện tóm tắt + nút Sửa, không có ô nhập
+    assert "Nguyễn Văn A" in html and "01/06/1990" in html and 'name="ho_ten"' not in html
+    d = booking_data(db)
+    for k in ("ho_ten", "nam_sinh", "dia_chi"):
+        d.pop(k)
+    r = post_json(user_client, "/dat-le", d)
+    assert r.status_code == 200, r.text
+    [o] = orders_of(db, r.json()["ref"])
+    assert (o.prayer.full_name, o.prayer.birth_year, o.prayer.address) == ("Nguyễn Văn A", 1990, "Cầu Giấy, Hà Nội")
     from app.models import User
-    db.expire_all()
-    u = db.scalar(select(User).where(User.email == "a@example.com"))
-    assert (u.devotee_name, u.birth_year, u.address) == ("Nguyễn Văn A", 1990, "Cầu Giấy, Hà Nội")
-    html = user_client.get(f"{P}/dat-le?den={temple_id(db)}").text
-    assert 'id="info-summary"' in html and 'id="info-fields" hidden' in html  # lần sau: thu gọn, bấm Sửa mới mở
     r = user_client.post(f"{P}/tai-khoan/tin-chu", data={"ho_ten": "Trần Thị B", "nam_sinh": "1992", "dia_chi": "HCM",
                                                        "nguyen_vong": "bình an", "csrf_token": user_client.csrf},
                          follow_redirects=False)

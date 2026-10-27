@@ -3,16 +3,20 @@
 {% block content %}
 <h1>Tài khoản</h1>
 <div class="ld-card"><b>{{ user.name }}</b><br><span class="ld-muted">{{ user.email or user.phone }}</span></div>
-<form class="ld-card" method="post" action="{{ u('/tai-khoan/tin-chu') }}">
-  <h3>Thông tin tín chủ</h3>
-  <p class="ld-muted">Tự điền vào tờ sớ mỗi lần đặt lễ.</p>
-  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-  <label for="ho_ten">Họ và tên</label><input id="ho_ten" type="text" name="ho_ten" maxlength="120" value="{{ user.devotee_name or '' }}">
-  <label for="nam_sinh">Năm sinh (âm lịch)</label><input id="nam_sinh" type="number" name="nam_sinh" min="1900" max="2100" value="{{ user.birth_year or '' }}">
-  <label for="dia_chi">Địa chỉ</label><input id="dia_chi" type="text" name="dia_chi" maxlength="300" value="{{ user.address or '' }}">
-  <label for="nguyen_vong">Nguyện vọng thường dùng</label><textarea id="nguyen_vong" name="nguyen_vong" maxlength="1000" rows="3">{{ user.wish or '' }}</textarea>
-  <p><button class="ld-btn">Lưu</button></p>
-</form>
+<div class="ld-card">
+  <div class="ld-spread"><h3 style="margin:0">Thông tin tín chủ</h3><a class="ld-btn secondary small" href="{{ u('/tai-khoan/ho-so') }}">Sửa</a></div>
+  {% if user.profile_complete %}
+  <p style="margin-bottom:0"><b>{{ user.devotee_name }}</b> · sinh {{ user.birth_date.strftime('%d/%m/%Y') }} (năm âm {{ user.birth_year }})<br>
+    <span class="ld-muted">{{ user.address }}</span></p>
+  {% else %}<p class="ld-muted" style="margin-bottom:0">Chưa đủ thông tin để lập sớ.</p>{% endif %}
+</div>
+<div class="ld-card">
+  <div class="ld-spread"><h3 style="margin:0">Thẻ thanh toán</h3><a class="ld-btn secondary small" href="{{ u('/tai-khoan/the') }}">{{ 'Đổi thẻ' if user.has_card else 'Thêm thẻ' }}</a></div>
+  {% if user.has_card %}
+  <div class="ld-spread" style="margin-top:10px"><span><b>{{ user.card_label }}</b> · hết hạn {{ user.card_exp }}</span>
+    <form method="post" action="{{ u('/tai-khoan/the/xoa') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="ld-btn secondary small">Gỡ thẻ</button></form></div>
+  {% else %}<p class="ld-muted" style="margin-bottom:0">Chưa liên kết thẻ.</p>{% endif %}
+</div>
 <form class="ld-card" method="post" action="{{ u('/tai-khoan/mat-khau') }}">
   <h3>Đổi mật khẩu</h3>
   <input type="hidden" name="csrf_token" value="{{ csrf_token }}">

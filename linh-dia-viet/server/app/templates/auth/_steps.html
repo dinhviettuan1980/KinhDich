@@ -1,0 +1,6 @@
+{# Thanh tiến trình đăng ký: 1 tài khoản · 2 thông tin tín chủ · 3 thẻ thanh toán #}
+<ol class="ld-steps">
+  {% for n, label in [(1, 'Tài khoản'), (2, 'Tín chủ'), (3, 'Thẻ thanh toán')] %}
+  <li class="{{ 'done' if n < current else 'on' if n == current else '' }}"><span>{{ n }}</span>{{ label }}</li>
+  {% endfor %}
+</ol>

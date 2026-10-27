@@ -49,7 +49,12 @@
       total += (parseInt(inp.value, 10) || 0) * parseInt(st.dataset.price, 10);
     });
     var el = $("items-total");
-    if (el) el.textContent = (total * (parseInt(el.dataset.temples, 10) || 1)).toLocaleString("vi-VN") + " ₫";
+    var all = el ? total * (parseInt(el.dataset.temples, 10) || 1) : 0;
+    var txt = all.toLocaleString("vi-VN") + " ₫";
+    if (el) el.textContent = txt;
+    if ($("grand-total")) $("grand-total").textContent = all ? txt : "—";
+    if ($("btn-submit") && $("grand-total") && form.querySelector("[name=thanh_toan]"))
+      $("btn-submit").textContent = all ? "Chốt lễ · " + txt : "Chốt lễ";
   }
   form.addEventListener("click", function (e) {
     var b = e.target.closest("[data-step]");
@@ -128,7 +133,7 @@
     if (has) preview(false);
   }
   ["ho_ten", "nam_sinh", "dia_chi", "nguyen_vong", "thoi_gian"].forEach(function (id) {
-    $(id).addEventListener("change", autoPreview);
+    $(id) && $(id).addEventListener("change", autoPreview);
   });
   form.addEventListener("change", function (e) { if (e.target.name === "den") autoPreview(); });
   document.body.addEventListener("htmx:afterSwap", autoPreview);

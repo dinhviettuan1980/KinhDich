@@ -1,7 +1,7 @@
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 from sqlalchemy import false as sql_false
-from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, Text, TypeDecorator
+from sqlalchemy import JSON, Boolean, Date, DateTime, ForeignKey, Integer, String, Text, TypeDecorator
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .db import Base
@@ -41,9 +41,15 @@ class User(Base):
     active: Mapped[bool] = mapped_column(Boolean, default=True)
     # Thông tin tín chủ (lưu 1 lần, tự điền khi đặt lễ)
     devotee_name: Mapped[str | None] = mapped_column(String(120))
-    birth_year: Mapped[int | None] = mapped_column(Integer)
+    birth_year: Mapped[int | None] = mapped_column(Integer)  # năm âm lịch (tính từ ngày sinh) — dùng trong sớ
+    birth_date: Mapped[date | None] = mapped_column(Date)  # ngày sinh dương lịch
     address: Mapped[str | None] = mapped_column(String(300))
     wish: Mapped[str | None] = mapped_column(Text)
+    # Thẻ thanh toán GIẢ LẬP: chỉ lưu hãng + 4 số cuối + hạn, không bao giờ lưu số thẻ đầy đủ / CVC
+    card_brand: Mapped[str | None] = mapped_column(String(20))
+    card_last4: Mapped[str | None] = mapped_column(String(4))
+    card_exp: Mapped[str | None] = mapped_column(String(5))  # MM/YY
+    card_holder: Mapped[str | None] = mapped_column(String(120))
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
     staff_of: Mapped[list["TempleStaff"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
@@ -54,6 +60,19 @@ class User(Base):
     @property
     def devotee_complete(self) -> bool:
         return bool(self.devotee_name and self.birth_year and self.address)
+
+    @property
+    def profile_complete(self) -> bool:
+        """Đủ điều kiện lập sớ: họ tên, ngày sinh, địa chỉ."""
+        return bool(self.devotee_name and self.birth_date and self.address)
+
+    @property
+    def has_card(self) -> bool:
+        return bool(self.card_last4)
+
+    @property
+    def card_label(self) -> str:
+        return f"{self.card_brand} •••• {self.card_last4}" if self.card_last4 else ""
 
     @property
     def is_staff(self) -> bool:
@@ -203,6 +222,7 @@ class Order(Base):
     audio_sha256: Mapped[str | None] = mapped_column(String(64))
     note: Mapped[str | None] = mapped_column(Text)  # lý do từ chối/hủy/lỗi
     tray_ready_at: Mapped[datetime | None] = mapped_column(UTCDateTime())  # kiosk báo mâm lễ đã bày
+    clip_key: Mapped[str | None] = mapped_column(String(300))  # clip xem lại (ảnh mâm + bài khấn)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow, onupdate=utcnow)
 

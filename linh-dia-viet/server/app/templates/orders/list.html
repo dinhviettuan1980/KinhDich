@@ -1,14 +1,20 @@
 {% extends "base.html" %}
-{% block title %}Đơn của tôi{% endblock %}
+{% block title %}Lịch sử lễ{% endblock %}
 {% block content %}
-<h1>Đơn của tôi</h1>
+<div class="ld-spread"><h1>Lịch sử lễ</h1><a class="ld-btn small" href="{{ u('/') }}">+ Đặt lễ mới</a></div>
 {% for o in orders %}
-<div class="ld-card">
-  <div class="ld-spread"><a href="{{ u('/don/' ~ o.id) }}"><b>#{{ o.id }} · {{ o.temple.name }}</b></a><span class="ld-badge">{{ labels[o.status] }}</span></div>
-  <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · {{ o.offering_text }} · {{ fmt_vnd(o.total) }}</div>
-  <p><a class="ld-btn secondary small" href="{{ u('/dat-le') }}?tu_don={{ o.id }}">Đặt lại đơn này</a></p>
-</div>
+<a class="ld-card ld-hist{% if new_ref and o.booking_ref == new_ref %} new{% endif %}" href="{{ u('/don/' ~ o.id) }}">
+  <div class="ld-hist-thumb">{% if cover[o.id] %}<img src="{{ u('/don/' ~ o.id ~ '/anh/' ~ cover[o.id]) }}" alt="" loading="lazy">{% else %}<span>🛕</span>{% endif %}
+    {% if o.status == 'completed' and cover[o.id] %}<span class="play">▶</span>{% endif %}</div>
+  <div class="ld-hist-body">
+    <div class="ld-spread"><b>{{ o.temple.name }}</b>
+      <span class="ld-badge {% if o.status in ('failed','rejected','cancelled') %}off{% elif o.status == 'completed' %}on{% else %}warn{% endif %}">{{ labels[o.status] }}</span></div>
+    <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · {{ fmt_vnd(o.total) }}</div>
+    <div class="ld-muted small">{{ o.offering_text }}</div>
+    {% if o.status == 'completed' and cover[o.id] %}<div class="small" style="color:var(--ld-primary)">Xem lại ảnh & clip →</div>{% endif %}
+  </div>
+</a>
 {% else %}
-<p class="ld-muted">Bạn chưa có đơn nào. <a href="{{ u('/') }}">Đặt lễ ngay</a></p>
+<p class="ld-muted">Bạn chưa có lễ nào. <a href="{{ u('/') }}">Đặt lễ ngay</a></p>
 {% endfor %}
 {% endblock %}

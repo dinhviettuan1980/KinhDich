@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Thông tin tín chủ{% endblock %}
+{% block content %}
+<h1>Thông tin tín chủ</h1>
+{% if step %}{% set current = 2 %}{% include "auth/_steps.html" %}
+<p class="ld-muted">Cần họ tên, ngày sinh và địa chỉ để lập tờ sớ.</p>{% endif %}
+<form class="ld-card" method="post" action="{{ u('/tai-khoan/ho-so') }}{% if next %}?next={{ next|urlencode }}{% endif %}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label for="ho_ten">Họ và tên</label><input id="ho_ten" type="text" name="ho_ten" maxlength="120" required value="{{ user.devotee_name or user.name or '' }}">
+  <label for="ngay_sinh">Ngày sinh</label><input id="ngay_sinh" type="date" name="ngay_sinh" required min="1900-01-01" value="{{ user.birth_date.isoformat() if user.birth_date else '' }}">
+  {% if user.birth_year %}<p class="ld-muted">Năm âm lịch ghi trên sớ: {{ user.birth_year }}</p>{% endif %}
+  <label for="dia_chi">Địa chỉ</label><input id="dia_chi" type="text" name="dia_chi" maxlength="300" required value="{{ user.address or '' }}">
+  <label for="nguyen_vong">Nguyện vọng thường dùng <span class="ld-muted">(không bắt buộc)</span></label>
+  <textarea id="nguyen_vong" name="nguyen_vong" maxlength="1000" rows="3" placeholder="Ví dụ: gia đình con được mạnh khỏe, bình an">{{ user.wish or '' }}</textarea>
+  <p><button class="ld-btn block">{{ 'Tiếp tục' if step else 'Lưu' }}</button></p>
+</form>
+{% endblock %}

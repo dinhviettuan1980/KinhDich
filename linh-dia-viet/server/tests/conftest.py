@@ -81,7 +81,10 @@ def admin_client(client):
 
 @pytest.fixture
 def user(db):
-    u = User(name="Nguyễn Văn A", email="a@example.com", password_hash=hash_password("matkhau123"))
+    from datetime import date
+    u = User(name="Nguyễn Văn A", email="a@example.com", password_hash=hash_password("matkhau123"),
+             devotee_name="Nguyễn Văn A", birth_date=date(1990, 6, 1), birth_year=1990, address="Cầu Giấy, Hà Nội",
+             card_brand="Visa", card_last4="4242", card_exp="12/30", card_holder="NGUYEN VAN A")
     db.add(u)
     db.commit()
     return u

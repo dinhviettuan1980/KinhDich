@@ -102,3 +102,21 @@
 .ld .ld-stepper input { width: 3.2em; text-align: center; margin: 0; padding: 6px 2px; -moz-appearance: textfield; }
 .ld-stepper input::-webkit-outer-spin-button, .ld-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .ld-item-total { padding-top: 12px; font-size: 1.05rem; }
+
+/* Các bước đăng ký */
+.ld-steps { display: flex; gap: 6px; list-style: none; padding: 0; margin: 0 0 14px; font-size: .9rem; color: var(--ld-muted, #7a6a5a); }
+.ld-steps li { flex: 1; display: flex; align-items: center; gap: 6px; }
+.ld-steps li span { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ld-line); font-weight: 700; flex-shrink: 0; }
+.ld-steps li.on { color: var(--ld-ink); font-weight: 600; }
+.ld-steps li.on span { background: var(--ld-primary); color: #fff; }
+.ld-steps li.done span { background: var(--ld-ok); color: #fff; }
+
+/* Lịch sử lễ */
+a.ld-hist { display: flex; gap: 12px; color: inherit; text-decoration: none; align-items: stretch; }
+a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122, 31, 31, .15); }
+.ld-hist-thumb { position: relative; width: 104px; flex-shrink: 0; aspect-ratio: 4 / 3; border-radius: 8px; overflow: hidden; background: var(--ld-line); display: grid; place-items: center; font-size: 2rem; }
+.ld-hist-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.ld-hist-thumb .play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 1.6rem; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.ld-hist-body { flex: 1; min-width: 0; }
+.ld-hist-body .small, .ld-muted.small { font-size: .85rem; }
+.ld-clip { width: 100%; border-radius: 8px; background: #000; aspect-ratio: 4 / 3; }

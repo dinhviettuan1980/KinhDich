@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Thẻ thanh toán{% endblock %}
+{% block content %}
+<h1>Thẻ thanh toán</h1>
+{% if step %}{% set current = 3 %}{% include "auth/_steps.html" %}{% endif %}
+{% if user.has_card %}<div class="ld-card ld-spread"><span>Đang dùng <b>{{ user.card_label }}</b> · hết hạn {{ user.card_exp }}</span></div>{% endif %}
+<form class="ld-card" method="post" action="{{ u('/tai-khoan/the') }}{% if next %}?next={{ next|urlencode }}{% endif %}" autocomplete="off">
+  <p class="ld-flash">Bản thử nghiệm: thẻ <b>giả lập</b>, không trừ tiền thật — <b>gõ thông tin bất kỳ</b> cũng được
+    (ví dụ 4242 4242 4242 4242, 12/28, 123).</p>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label for="so_the">Số thẻ</label><input id="so_the" name="so_the" type="text" inputmode="numeric" required maxlength="23" placeholder="4242 4242 4242 4242" autocomplete="off">
+  <div class="ld-row">
+    <div style="flex:1"><label for="het_han">Hết hạn (MM/YY)</label><input id="het_han" name="het_han" type="text" maxlength="7" placeholder="12/28" value="{{ het_han|default('') }}"></div>
+    <div style="flex:1"><label for="cvc">CVC</label><input id="cvc" name="cvc" type="password" inputmode="numeric" maxlength="4" placeholder="123" autocomplete="off"></div>
+  </div>
+  <label for="chu_the">Tên chủ thẻ</label><input id="chu_the" name="chu_the" type="text" maxlength="120" value="{{ chu_the|default(user.devotee_name or user.name or '') }}">
+  <p class="ld-muted">Chỉ lưu hãng thẻ, 4 số cuối và hạn dùng. Mỗi lần chốt lễ, tiền được trừ vào thẻ này.</p>
+  <p><button class="ld-btn block">{{ 'Liên kết thẻ và bắt đầu đặt lễ' if step else 'Lưu thẻ' }}</button></p>
+</form>
+{% endblock %}
