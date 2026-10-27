@@ -30,7 +30,7 @@ def _call_hfspace(image: bytes, items: list[dict]) -> dict:
     url = get_settings().recognition_url.rstrip("/") + "/tray"
     try:
         r = httpx.post(url, files={"file": ("tray.jpg", image, "image/jpeg")},
-                       data={"items": json.dumps(items, ensure_ascii=False)}, timeout=120)
+                       data={"items": json.dumps(items, ensure_ascii=False)}, timeout=240)  # Space tự thử lại khi Gemini quá tải
     except httpx.HTTPError as e:
         raise RecognitionError(f"Không gọi được dịch vụ nhận diện: {e}") from e
     if r.status_code != 200:
