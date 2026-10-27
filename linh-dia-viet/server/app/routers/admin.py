@@ -40,8 +40,10 @@ def dashboard(request: Request, db: Session = Depends(get_db), user: User = Depe
     from ..models import Prayer
     pending = db.query(Prayer).filter(Prayer.kind == "recorded", Prayer.moderation == "pending").count() \
         if user.is_admin else 0
+    from .. import alerts
     return render(request, "admin/index.html", {"my_temples": _visible_temples(db, user), "roles": ROLES,
-                                                "locked": system_locked(db), "pending": pending})
+                                                "locked": system_locked(db), "pending": pending,
+                                                "alerts": alerts.active(db, user)})
 
 
 # ---------------- Đền ----------------

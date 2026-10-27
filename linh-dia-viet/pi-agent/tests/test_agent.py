@@ -257,3 +257,41 @@ def test_fake_tray_photo_from_order_items(tmp_path):
     with Image.open(p) as im:
         assert im.format == "JPEG" and im.size == (1280, 960)
     assert Camera("simulate").capture(tmp_path / "e.jpg", "before")  # không có lễ vật → mâm trống
+
+
+def test_waits_for_clock_sync_after_power_loss(tmp_path, monkeypatch):
+    """Pi không có pin RTC: vừa có điện lại, chưa đồng bộ giờ thì chưa chụp/phát và cũng không coi là trễ."""
+    cfg = Config(server_url="http://srv/le-chua", device_id="pi-x", device_token="tok", data_dir=tmp_path,
+                 simulate=False, volume_max=80, quiet_start=dtime(22, 0), quiet_end=dtime(5, 0), clock_wait_seconds=600)
+    srv, tr, synced = FakeServer(), FakeTransport(), {"v": False}
+    agent = Agent(cfg, tr, httpx.Client(transport=httpx.MockTransport(srv.handler)), SimPlayer(10), Camera("simulate"),
+                  clock=lambda: local_ts(9, 0), clock_synced=lambda: synced["v"])
+    agent.start()
+    tr.on_cmd(play_cmd())
+    agent.tick(local_ts(9, 50))
+    assert states(tr) == ["received", "downloaded"]  # tải trước vẫn được
+    agent.tick(local_ts(10, 0))
+    assert states(tr)[-1] == "downloaded" and srv.uploads == []  # chưa đồng bộ giờ → chưa chụp, chưa phát
+    assert agent.status()["clock_synced"] is False
+    synced["v"] = True
+    agent.tick(local_ts(10, 0) + 3)
+    assert states(tr)[-1] == "playing" and agent.status()["clock_synced"] is True
+    # mất mạng hẳn: quá thời gian chờ thì phát theo giờ máy
+    synced["v"] = False
+    agent2 = Agent(cfg, FakeTransport(), agent.http, SimPlayer(10), Camera("simulate"), clock=lambda: local_ts(9, 0),
+                   clock_synced=lambda: False)
+    assert not agent2._clock_ready()
+    monkeypatch.setattr("ld_agent.agent.time.monotonic", lambda: agent2._started_mono + 601)
+    assert agent2._clock_ready()
+
+
+def test_clock_synced_reads_timedatectl(monkeypatch):
+    from ld_agent import sysinfo
+    import subprocess
+    monkeypatch.setattr(sysinfo, "_synced", False)
+    monkeypatch.setattr(subprocess, "run", lambda *a, **k: subprocess.CompletedProcess(a, 0, stdout="no\n"))
+    assert sysinfo.clock_synced() is False
+    monkeypatch.setattr(subprocess, "run", lambda *a, **k: subprocess.CompletedProcess(a, 0, stdout="yes\n"))
+    assert sysinfo.clock_synced() is True
+    monkeypatch.setattr(subprocess, "run", lambda *a, **k: subprocess.CompletedProcess(a, 0, stdout="no\n"))
+    assert sysinfo.clock_synced() is True  # đã đồng bộ một lần thì nhớ

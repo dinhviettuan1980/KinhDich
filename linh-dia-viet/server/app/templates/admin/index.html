@@ -2,6 +2,7 @@
 {% block title %}Quản lý{% endblock %}
 {% block content %}
 <h1>{% if user.is_admin %}Quản trị hệ thống{% else %}Quản lý — {{ roles[user.role] }}{% endif %}</h1>
+{% for a in alerts %}<div class="ld-flash error">{{ a.text }}</div>{% endfor %}
 {% if user.is_admin %}
 <form class="ld-card" method="post" action="{{ u('/admin/khoa-khan-cap') }}"
       onsubmit="return confirm('{{ 'Mở khóa hệ thống?' if locked else 'DỪNG PHÁT trên mọi thiết bị và chặn mọi lệnh mới?' }}')">

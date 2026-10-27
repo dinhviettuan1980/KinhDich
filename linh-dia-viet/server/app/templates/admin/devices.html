@@ -19,7 +19,7 @@
     Lần cuối thấy: {{ fmt_local(d.last_seen_at, None, '%H:%M:%S %d/%m/%Y') or 'chưa bao giờ' }}
     · Mạng: {{ d.net_type or '?' }}{% if d.last_status and d.last_status.rssi %} ({{ d.last_status.rssi }} dBm){% endif %}
     · Phiên bản: {{ d.version or '?' }}
-    {% if d.last_status %}<br>Nhiệt độ: {{ d.last_status.temp or '?' }}°C · Âm lượng: {{ d.last_status.volume }} · Đĩa trống: {{ d.last_status.disk_free }} MB · Hàng đợi: {{ d.last_status.queue }} · Camera: {{ d.last_status.camera }}{% endif %}
+    {% if d.last_status %}<br>Nhiệt độ: {{ d.last_status.temp or '?' }}°C · Âm lượng: {{ d.last_status.volume }} · Đĩa trống: {{ d.last_status.disk_free }} MB · Hàng đợi: {{ d.last_status.queue }} · Camera: {{ d.last_status.camera }}{% if d.last_status.clock_synced is false %} · <b class="ld-badge warn">giờ chưa đồng bộ</b>{% endif %}{% endif %}
   </div>
   <div class="ld-row" style="margin-top:10px">
     {% for t, label in [('test_tone','🔔 Phát âm thử'), ('capture','📷 Chụp thử'), ('stop','⏹ Dừng ngay')] %}

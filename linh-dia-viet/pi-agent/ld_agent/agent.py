@@ -39,9 +39,12 @@ def iso(ts: float) -> str:
 
 class Agent:
     def __init__(self, cfg: Config, transport: Transport, http: httpx.Client, player: Player, camera: Camera,
-                 clock=time.time):
+                 clock=time.time, clock_synced=sysinfo.clock_synced):
         self.cfg, self.transport, self.http, self.player, self.camera, self.clock = \
             cfg, transport, http, player, camera, clock
+        self.clock_synced = clock_synced
+        self._started_mono = time.monotonic()  # không phụ thuộc giờ hệ thống (có thể đang sai)
+        self._clock_warned = False
         self.store = Store(cfg.data_dir / "agent.db")
         self.audio_dir = cfg.data_dir / "audio"
         self.photo_dir = cfg.data_dir / "photos"
@@ -154,7 +157,20 @@ class Agent:
             raise ValueError("sai sha256")
         tmp.replace(dst)
 
+    def _clock_ready(self) -> bool:
+        """Chỉ chụp/phát khi giờ đã đồng bộ; quá clock_wait_seconds mà chưa được (mất mạng) thì đành theo giờ máy."""
+        if self.cfg.simulate or self.clock_synced():
+            return True
+        if time.monotonic() - self._started_mono >= self.cfg.clock_wait_seconds:
+            if not self._clock_warned:
+                log.warning("Chưa đồng bộ được giờ sau %ss — phát theo giờ máy", self.cfg.clock_wait_seconds)
+                self._clock_warned = True
+            return True
+        return False
+
     def _captures_before(self, now: float) -> None:
+        if not self._clock_ready():
+            return
         for j in self.store.jobs_in("downloaded"):
             cap = json.loads(j["payload"]).get("capture") or {}
             before = cap.get("before_s")
@@ -176,6 +192,8 @@ class Agent:
             self.store.update_job(job_id, now, state="done",
                                   after_due=now + after if after is not None else None, after_done=0 if after is not None else 1)
             self._ack(job_id, "done", now)
+        if not self._clock_ready():
+            return  # vừa có điện lại, đồng hồ chưa đúng: chưa phát, cũng chưa coi là trễ
         for j in self.store.jobs_in("downloaded"):
             if now < j["play_at"]:
                 break
@@ -300,7 +318,8 @@ class Agent:
             net, rssi = "wifi", -55
         return {"online": True, "net": net, "rssi": rssi, "temp": sysinfo.cpu_temp(), "volume": self.volume,
                 "version": __version__, "uptime": sysinfo.uptime(), "disk_free": sysinfo.disk_free_mb(self.cfg.data_dir),
-                "queue": len(self.store.jobs_in("received", "downloaded")), "camera": self.camera.kind}
+                "queue": len(self.store.jobs_in("received", "downloaded")), "camera": self.camera.kind,
+                "clock_synced": bool(self.cfg.simulate or self.clock_synced())}
 
     def publish_status(self, now: float) -> None:
         if self.transport.connected():  # chưa kết nối thì thử lại ở tick sau, không đợi hết chu kỳ

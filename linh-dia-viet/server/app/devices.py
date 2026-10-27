@@ -145,7 +145,8 @@ def handle_status(db: Session, device_id: str, payload: dict, now: datetime | No
         dev.net_type = str(payload.get("net", ""))[:10] or None
         dev.version = str(payload.get("version", ""))[:40] or None
         dev.last_status = {k: payload.get(k) for k in
-                           ("net", "rssi", "temp", "volume", "version", "uptime", "disk_free", "queue", "camera")}
+                           ("net", "rssi", "temp", "volume", "version", "uptime", "disk_free", "queue", "camera",
+                            "clock_synced")}
 
 
 def handle_ack(db: Session, device_id: str, payload: dict, now: datetime | None = None) -> None:
@@ -246,6 +247,10 @@ def tick(db: Session, now: datetime | None = None) -> None:
     for dev in db.scalars(select(Device).where(Device.online.is_(True))).all():
         if not dev.last_seen_at or dev.last_seen_at < stale:
             dev.online = False
+    # 6) thiết bị mất kết nối (mất điện/mạng) mà sắp có lễ → cảnh báo admin/nhân sự đền
+    from . import alerts
+    db.flush()
+    alerts.check_devices(db, now)
 
 
 def add_evidence(db: Session, job: DeviceJob, key: str, captured_at: datetime, phase: str) -> Evidence:

@@ -45,6 +45,7 @@ class Config:
     photo_height: int = 960
     jpeg_quality: int = 80
     max_late_seconds: int = 600  # quá giờ hẹn bao lâu thì bỏ, không phát nữa
+    clock_wait_seconds: int = 600  # sau khi bật máy, chờ đồng bộ giờ tối đa bao lâu rồi mới phát theo giờ máy
     status_interval: int = 60
     simulate: bool = False
     simulate_play_seconds: float = 3.0
@@ -72,6 +73,7 @@ class Config:
         c.camera = g("CAMERA", c.camera)
         c.camera_device = g("CAMERA_DEVICE", c.camera_device)
         c.max_late_seconds = int(g("MAX_LATE_SECONDS", c.max_late_seconds))
+        c.clock_wait_seconds = int(g("CLOCK_WAIT_SECONDS", c.clock_wait_seconds))
         c.status_interval = int(g("STATUS_INTERVAL", c.status_interval))
         c.simulate = (g("SIMULATE", "false").lower() == "true") if simulate is None else simulate
         c.simulate_play_seconds = float(g("SIMULATE_PLAY_SECONDS", c.simulate_play_seconds))

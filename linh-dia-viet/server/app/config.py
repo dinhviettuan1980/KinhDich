@@ -66,6 +66,9 @@ class Settings(BaseSettings):
     play_grace_seconds: int = 900
     evidence_timeout_seconds: int = 600
     device_offline_after_seconds: int = 180
+    alert_lead_minutes: int = 60  # thiết bị mất kết nối mà có lễ trong vòng N phút tới → cảnh báo
+    telegram_bot_token: str = ""  # tuỳ chọn: gửi cảnh báo qua Telegram
+    telegram_chat_id: str = ""
     signed_url_ttl_seconds: int = 3600
     capture_before_s: int = 60
     capture_after_s: int = 5

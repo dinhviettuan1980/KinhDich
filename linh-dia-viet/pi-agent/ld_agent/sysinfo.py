@@ -1,6 +1,7 @@
 """Thông tin hệ thống cho bản tin status (đọc từ /proc, /sys trên Raspberry Pi)."""
 import os
 import shutil
+import subprocess
 import time
 from pathlib import Path
 
@@ -40,6 +41,25 @@ def uptime() -> int:
         return int(float(Path("/proc/uptime").read_text().split()[0]))
     except (OSError, ValueError):
         return int(time.time() - _BOOT)
+
+
+_synced = False
+
+
+def clock_synced() -> bool:
+    """Đồng hồ đã đồng bộ NTP chưa (Pi không có pin RTC: sau mất điện giờ có thể lệch tới khi có mạng).
+    Máy không có timedatectl (dev/test) coi như đã đồng bộ. Đã đồng bộ một lần thì nhớ luôn."""
+    global _synced
+    if _synced:
+        return True
+    try:
+        r = subprocess.run(["timedatectl", "show", "-p", "NTPSynchronized", "--value"],
+                           capture_output=True, text=True, timeout=5)
+    except (OSError, subprocess.SubprocessError):
+        _synced = True
+        return True
+    _synced = r.returncode != 0 or r.stdout.strip() == "yes"
+    return _synced
 
 
 def disk_free_mb(path: Path) -> int:
