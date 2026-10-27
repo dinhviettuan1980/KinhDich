@@ -37,7 +37,7 @@ class Settings(BaseSettings):
     # Đặt lễ
     max_temples_per_order: int = 100
     min_lead_seconds: int = 120
-    asap_delay_seconds: int = 20  # "phát ngay": chừa thời gian để Pi tải file trước khi phát
+    asap_delay_seconds: int = 8  # "phát ngay": chừa thời gian để Pi tải file trước khi phát (Pi trễ vẫn phát bù)
     max_prayer_chars: int = 3000
     max_audio_seconds: int = 300
     max_upload_bytes: int = 20 * 1024 * 1024
@@ -65,7 +65,7 @@ class Settings(BaseSettings):
     device_offline_after_seconds: int = 180
     signed_url_ttl_seconds: int = 3600
     capture_before_s: int = 60
-    capture_after_s: int = 30
+    capture_after_s: int = 5
     default_volume: int = 70
     scheduler_interval_seconds: float = 10.0
     scheduler_enabled: bool = True
