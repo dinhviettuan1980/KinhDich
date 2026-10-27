@@ -244,6 +244,17 @@ def _staff_order(db: Session, order_id: int, user: User, roles):
     return o
 
 
+@router.get("/don/{order_id}/phieu-ten")
+def name_card(order_id: int, request: Request, db: Session = Depends(get_db),
+              user: User = Depends(require_backoffice)):
+    """Phiếu tên đặt lên mâm lễ (kiosk in ra) — camera đọc phiếu để đối chiếu đúng tín chủ."""
+    from ..lunar import can_chi_year
+    o = _staff_order(db, order_id, user, roles=("temple_manager", "vendor"))
+    audit(db, f"user:{user.id}", "order.name_card", f"order:{o.id}")
+    db.commit()
+    return render(request, "admin/name_card.html", {"o": o, "can_chi": can_chi_year(o.prayer.birth_year)})
+
+
 @router.post("/don/{order_id}/mam-le", dependencies=csrf)
 def tray_ready(order_id: int, request: Request, db: Session = Depends(get_db),
                user: User = Depends(require_backoffice)):

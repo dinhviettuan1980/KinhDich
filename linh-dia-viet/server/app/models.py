@@ -313,8 +313,20 @@ class Evidence(Base):
     path: Mapped[str] = mapped_column(String(300))
     captured_at: Mapped[datetime] = mapped_column(UTCDateTime())
     note: Mapped[str | None] = mapped_column(String(200))  # before | start | after
+    analysis: Mapped[dict | None] = mapped_column(JSON)  # kết quả nhận diện mâm lễ (app/recognition.py)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+    order: Mapped["Order"] = relationship(viewonly=True)
 
 
 Order.jobs = relationship(DeviceJob, back_populates="order", order_by=DeviceJob.created_at)
 Order.evidence = relationship(Evidence, order_by=Evidence.captured_at)
+
+
+def tray_check(order: Order) -> tuple[Evidence, dict] | None:
+    """Kết quả nhận diện dùng để hiển thị: ưu tiên ảnh lúc khấn → trước lễ → sau lễ."""
+    rank = {"start": 0, "before": 1, "after": 2}
+    done = [e for e in order.evidence if e.analysis and "items" in e.analysis]
+    if not done:
+        return None
+    ev = min(done, key=lambda e: (not e.analysis.get("ok"), rank.get(e.note or "", 9)))
+    return ev, ev.analysis

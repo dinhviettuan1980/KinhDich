@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phiếu tên · đơn #{{ o.id }}</title>
+<style>
+  @page { size: A5 landscape; margin: 10mm; }
+  body { margin: 0; font-family: "Arial", "Helvetica", sans-serif; background: #f4efe6; color: #111; }
+  .card { box-sizing: border-box; width: 190mm; max-width: 100%; margin: 12px auto; background: #fff; border: 3px solid #111;
+          padding: 10mm 12mm; text-align: center; }
+  .lbl { font-size: 15pt; letter-spacing: .08em; text-transform: uppercase; }
+  .name { font-size: 40pt; font-weight: 800; line-height: 1.15; margin: 4mm 0 2mm; text-transform: uppercase; }
+  .sub { font-size: 18pt; }
+  .meta { margin-top: 6mm; font-size: 13pt; display: flex; justify-content: space-between; border-top: 2px solid #111; padding-top: 3mm; }
+  .tools { text-align: center; margin: 12px; } button { font-size: 16px; padding: 10px 18px; }
+  @media print { body { background: #fff; } .tools { display: none; } .card { margin: 0 auto; } }
+</style></head>
+<body>
+<div class="tools"><button onclick="print()">🖨 In phiếu</button></div>
+<div class="card">
+  <div class="lbl">Tín chủ</div>
+  <div class="name">{{ o.prayer.full_name }}</div>
+  <div class="sub">Sinh năm {{ o.prayer.birth_year }} ({{ can_chi }})</div>
+  <div class="meta"><span>{{ o.temple.name }}</span><span>{{ fmt_local(o.scheduled_at, o.timezone) }}</span><span>Đơn #{{ o.id }}</span></div>
+</div>
+</body></html>

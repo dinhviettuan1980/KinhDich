@@ -120,3 +120,9 @@ a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122,
 .ld-hist-body { flex: 1; min-width: 0; }
 .ld-hist-body .small, .ld-muted.small { font-size: .85rem; }
 .ld-clip { width: 100%; border-radius: 8px; background: #000; aspect-ratio: 4 / 3; }
+
+/* Kiểm tra mâm lễ */
+.ld-check-table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.ld-check-table th { text-align: left; font-weight: 600; color: var(--ld-muted); font-size: .85rem; }
+.ld-check-table td, .ld-check-table th { padding: 6px 4px; border-bottom: 1px solid var(--ld-line); vertical-align: top; }
+.ld-check-table td:nth-child(n+2) { white-space: nowrap; }

@@ -10,6 +10,9 @@
   <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/gui-lai') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     <button class="ld-btn small">↻ Gửi lại job</button></form>{% endif %}
 </div>
+<p><a class="ld-btn secondary small" href="{{ u('/admin/don/' ~ o.id ~ '/phieu-ten') }}" target="_blank">🖨 In phiếu tên</a></p>
+{% include "orders/_tray_check.html" %}
+{% for e in o.evidence %}{% if e.analysis and e.analysis.error %}<p class="ld-flash error">Nhận diện ảnh {{ e.note }} lỗi: {{ e.analysis.error }}</p>{% endif %}{% endfor %}
 <h2>Job thiết bị</h2>
 {% for j in o.jobs %}
 <div class="ld-card">

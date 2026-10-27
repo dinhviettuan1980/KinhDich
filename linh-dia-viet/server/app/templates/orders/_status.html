@@ -12,6 +12,7 @@
     {% if o.prayer.moderation == 'pending' %}<p class="ld-badge warn">Bản ghi âm đang chờ kiểm duyệt</p>{% endif %}
     {% if o.prayer.moderation == 'rejected' %}<p class="ld-flash error">Bản ghi âm bị từ chối: {{ o.prayer.moderation_note }}</p>{% endif %}
   </div>
+  {% include "orders/_tray_check.html" %}
   {% if has_clip %}
   <div class="ld-card"><h3>🎬 Clip xem lại</h3>
     <video class="ld-clip" controls preload="none" playsinline

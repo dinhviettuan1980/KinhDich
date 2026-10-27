@@ -3,12 +3,12 @@ import io
 import uuid
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends, File, Form, Header, HTTPException, UploadFile
+from fastapi import APIRouter, BackgroundTasks, Depends, File, Form, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from PIL import Image
 from sqlalchemy.orm import Session
 
-from .. import devices
+from .. import devices, recognition
 from ..db import get_db
 from ..models import Device, DeviceJob
 from ..security import token_matches
@@ -67,9 +67,9 @@ def _parse_ts(s: str) -> datetime:
 
 
 @router.post("/api/device/evidence")
-async def upload_evidence(job_id: str = Form(""), phase: str = Form(...), captured_at: str = Form(""),
-                          file: UploadFile = File(...), dev: Device = Depends(device_auth),
-                          db: Session = Depends(get_db)):
+async def upload_evidence(background: BackgroundTasks, job_id: str = Form(""), phase: str = Form(...),
+                          captured_at: str = Form(""), file: UploadFile = File(...),
+                          dev: Device = Depends(device_auth), db: Session = Depends(get_db)):
     data = read_jpeg(await file.read(MAX_PHOTO_BYTES + 1))
     storage = get_storage()
     if phase == "test":  # ảnh "chụp thử" từ trang admin
@@ -88,6 +88,7 @@ async def upload_evidence(job_id: str = Form(""), phase: str = Form(...), captur
     if any(e.job_id == job.id and e.note == phase for e in job.order.evidence):
         return {"ok": True, "duplicate": True}  # thiết bị gửi lại sau khi mất mạng
     key = storage.put_bytes(data, f"evidence/{job.order_id}/{phase}-{uuid.uuid4().hex[:10]}.jpg")
-    devices.add_evidence(db, job, key, _parse_ts(captured_at), phase)
+    ev = devices.add_evidence(db, job, key, _parse_ts(captured_at), phase)
     db.commit()
+    background.add_task(recognition.analyze_evidence, ev.id)  # đối chiếu lễ vật + phiếu tên (chạy sau khi trả lời Pi)
     return {"ok": True}

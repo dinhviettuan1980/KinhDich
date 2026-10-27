@@ -12,6 +12,7 @@
   <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · <b>{{ o.offering_text }}</b>{% if o.tray_ready_at %} · mâm lễ đã bày{% endif %}</div>
   {% if user.is_admin %}<div class="ld-muted">Khách: {{ o.prayer.full_name }} · {{ o.user.email or o.user.phone }} · {{ fmt_vnd(o.total) }}{% if o.note %} · {{ o.note }}{% endif %}</div>{% endif %}
   <div class="ld-row" style="margin-top:8px">
+    {% if o.status in ('paid','scheduled','delivered','playing') %}<a class="ld-btn secondary small" href="{{ u('/admin/don/' ~ o.id ~ '/phieu-ten') }}" target="_blank">🖨 In phiếu tên</a>{% endif %}
     {% if o.status in ('paid','scheduled','delivered') and not o.tray_ready_at and (user.is_admin or user.is_staff) %}
     <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/mam-le') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="ld-btn small">Mâm lễ đã bày</button></form>{% endif %}
     {% if o.status in ('paid','scheduled') and (user.is_admin or user.role == 'temple_manager') %}
