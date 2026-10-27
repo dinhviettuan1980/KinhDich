@@ -243,3 +243,17 @@ def test_status_sent_as_soon_as_connected(env):
     tr.online = True
     agent.tick(local_ts(9, 0) + 1)
     assert len(tr.statuses) == 1
+
+
+def test_fake_tray_photo_from_order_items(tmp_path):
+    from PIL import Image
+    from ld_agent import fake_tray
+    assert fake_tray.icon_for("Hương (nhang)") is None and fake_tray.icon_for("Gà luộc") == "🐓"
+    assert fake_tray.icon_for("Món lạ") is False
+    tray = {"items": [{"name": "Hương (nhang)", "unit": "bó", "qty": 3}, {"name": "Gà luộc", "unit": "con", "qty": 1},
+                      {"name": "Món lạ", "unit": "phần", "qty": 2}], "temple": "Đền Ngọc Sơn"}
+    p = tmp_path / "t.jpg"
+    assert Camera("simulate").capture(p, "start", tray=tray)
+    with Image.open(p) as im:
+        assert im.format == "JPEG" and im.size == (1280, 960)
+    assert Camera("simulate").capture(tmp_path / "e.jpg", "before")  # không có lễ vật → mâm trống

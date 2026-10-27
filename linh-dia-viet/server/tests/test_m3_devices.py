@@ -69,6 +69,7 @@ def test_end_to_end_to_completed(setup, db, user_client):
     cmd = db.bus.sent[-1][1]
     assert cmd["type"] == "play" and cmd["sha256"] == order.audio_sha256 and "/files/tts/" in cmd["audio_url"]
     assert "ho_ten" not in str(cmd) and "Nguyễn Văn A" not in str(cmd)  # thiết bị không nhận dữ liệu cá nhân
+    assert cmd["tray"] == {"items": [{"name": "Hương (nhang)", "unit": "bó", "qty": 1}], "temple": "Đền Ngọc Sơn"}
     o = db.get(Order, order.id)
     assert o.status == "delivered" and o.jobs[-1].state == "downloaded"
     assert [e.note for e in o.evidence] == ["before"]

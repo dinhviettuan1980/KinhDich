@@ -231,7 +231,10 @@ class Agent:
 
     def _capture(self, job_id: str | None, phase: str, now: float) -> None:
         path = self.photo_dir / f"{job_id or 'test'}-{phase}-{int(now)}.jpg"
-        if self.camera.capture(path, label=phase):
+        tray = None
+        if job_id and (j := self.store.get_job(job_id)):
+            tray = json.loads(j["payload"]).get("tray")
+        if self.camera.capture(path, label=phase, tray=tray):
             self.store.push_upload(job_id or "", phase, path, iso(now))
         else:
             log.error("Không chụp được ảnh %s", phase)

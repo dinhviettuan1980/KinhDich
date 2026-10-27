@@ -62,6 +62,9 @@ def play_payload(job: DeviceJob) -> dict:
         "type": "play", "job_id": job.id, "audio_url": signed_url(order.audio_key), "sha256": order.audio_sha256,
         "play_at": iso(job.play_at), "volume": s.default_volume,
         "capture": {"before_s": s.capture_before_s, "at_start": True, "after_s": s.capture_after_s},
+        # lễ vật của đơn để đối chiếu mâm (camera giả lập dựng ảnh mâm từ đây) — không kèm dữ liệu cá nhân
+        "tray": {"items": [{"name": i.name, "unit": i.unit, "qty": i.qty} for i in order.items],
+                 "temple": order.temple.name},
     }
 
 

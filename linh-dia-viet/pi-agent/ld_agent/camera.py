@@ -13,11 +13,17 @@ class Camera:
                  quality: int = 80):
         self.kind, self.device, self.w, self.h, self.q = kind, device, width, height, quality
 
-    def capture(self, dst: Path, label: str = "") -> bool:
+    def capture(self, dst: Path, label: str = "", tray: dict | None = None) -> bool:
+        """tray: lễ vật của đơn (kèm lệnh phát) — chỉ dùng để dựng ảnh mâm giả khi kind=simulate."""
         dst.parent.mkdir(parents=True, exist_ok=True)
         try:
             if self.kind == "simulate":
-                dst.write_bytes(self._fake(label))
+                try:
+                    from . import fake_tray
+                    dst.write_bytes(fake_tray.render(tray, label))
+                except Exception as e:  # dựng mâm giả lỗi → vẫn có ảnh đơn giản
+                    log.warning("Không dựng được mâm giả: %s", e)
+                    dst.write_bytes(self._fake(label))
                 return True
             if self.kind == "none":
                 return False

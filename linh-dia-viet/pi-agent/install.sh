@@ -9,7 +9,7 @@ DATA=/var/lib/linh-dia-viet
 
 echo "==> Cài gói hệ thống"
 apt-get update
-apt-get install -y python3-venv python3-pil mpv ffmpeg alsa-utils fswebcam
+apt-get install -y python3-venv python3-pil mpv ffmpeg alsa-utils fswebcam fonts-dejavu-core fonts-noto-color-emoji
 # camera CSI: rpicam-apps + picamera2 có sẵn trên Raspberry Pi OS Bookworm; cài thêm nếu thiếu
 apt-get install -y rpicam-apps python3-picamera2 || echo "(bỏ qua: không có gói camera CSI)"
 
