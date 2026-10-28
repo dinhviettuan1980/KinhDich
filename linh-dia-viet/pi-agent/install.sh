@@ -10,7 +10,7 @@ DATA=/var/lib/linh-dia-viet
 echo "==> Cài gói hệ thống"
 apt-get update
 apt-get install -y python3-venv python3-pil mpv ffmpeg alsa-utils fswebcam fonts-dejavu-core fonts-noto-color-emoji \
-  bluez bluez-alsa-utils
+  bluez bluez-alsa-utils iw
 # camera CSI: rpicam-apps + picamera2 có sẵn trên Raspberry Pi OS Bookworm; cài thêm nếu thiếu
 apt-get install -y rpicam-apps python3-picamera2 || echo "(bỏ qua: không có gói camera CSI)"
 
@@ -34,6 +34,13 @@ fi
 chown -R linhdia:linhdia "$DATA"
 chown root:linhdia "$ETC/agent.env"
 chmod 640 "$ETC/agent.env"
+
+echo "==> Wi-Fi: tắt tiết kiệm điện (ở đền chỉ có Wi-Fi; chip Broadcom ngủ giữa các gói → trễ, rớt MQTT)"
+if [ -d /etc/NetworkManager/conf.d ]; then
+  printf '[connection]\nwifi.powersave = 2\n' > /etc/NetworkManager/conf.d/ld-wifi-powersave.conf
+  systemctl reload NetworkManager || true
+fi
+iw dev wlan0 set power_save off 2>/dev/null || true
 
 echo "==> Đồng bộ giờ (NTP)"
 timedatectl set-ntp true || true
