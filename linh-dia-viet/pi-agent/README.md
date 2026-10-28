@@ -140,6 +140,16 @@ Sau khoảng một phút, trang **Thiết bị** sẽ hiện "Online". Bấm **P
 
 Dịch vụ tự khởi động cùng máy và tự chạy lại sau 5 giây nếu bị lỗi (`Restart=always`).
 
+### Cài Wi-Fi tại đền bằng điện thoại (không cần máy tính)
+
+Dịch vụ `ld-wifi-setup` (chạy root, cài cùng `install.sh`) theo dõi mạng. Nếu thiết bị mất mạng liên tục 3 phút, ví dụ khi mới lắp ở đền hoặc đền đổi mật khẩu Wi‑Fi, nó tự phát Wi‑Fi **`LinhDia-Setup-<mã thiết bị>`**. Mật khẩu là `LD_SETUP_PASSWORD`, mặc định `linhdiaviet`; nên dán nhãn ghi mật khẩu lên hộp thiết bị.
+
+1. Dùng điện thoại vào Wi‑Fi `LinhDia-Setup-…`. Trang **Cài Wi‑Fi** tự bật lên; nếu không, mở trình duyệt vào `http://10.42.0.1`.
+2. Chọn Wi‑Fi của đền (thiết bị chỉ bắt được băng **2.4 GHz**), nhập mật khẩu, bấm **Kết nối**.
+3. Thiết bị lưu Wi‑Fi đó với ưu tiên cao nhất rồi thử kết nối. Khoảng 1 phút sau, trang **Thiết bị** sẽ hiện "Online". Nếu sai mật khẩu, Wi‑Fi `LinhDia-Setup-…` sẽ xuất hiện lại, và trang cài đặt báo lỗi.
+
+Nếu bật Wi‑Fi cài đặt rồi mà 10 phút không ai mở trang, thiết bị tắt nó và thử lại các mạng đã biết, đề phòng chỉ là router đền khởi động lại. Trang cài đặt chỉ mở khi đang phát Wi‑Fi cài đặt, để người dùng chung mạng đền không đổi được Wi‑Fi của thiết bị. Xem log: `journalctl -u ld-wifi-setup -f`.
+
 ## 7. Kiểm tra cuối: đơn thật hẹn sau 2 phút
 
 1. Đặt một đơn ở đền đã gắn thiết bị, hẹn giờ sau 2–3 phút (`MIN_LEAD_SECONDS=120`), rồi thanh toán giả lập.

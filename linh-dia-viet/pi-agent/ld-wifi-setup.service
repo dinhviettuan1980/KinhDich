@@ -1,0 +1,14 @@
+[Unit]
+Description=Linh Dia Viet - che do cai Wi-Fi (mat mang -> phat Wi-Fi LinhDia-Setup)
+After=NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/linh-dia-viet-agent
+ExecStart=/opt/linh-dia-viet-agent/venv/bin/python -m ld_agent.wifi_setup --env /etc/linh-dia-viet/agent.env
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -10,7 +10,7 @@ DATA=/var/lib/linh-dia-viet
 echo "==> Cài gói hệ thống"
 apt-get update
 apt-get install -y python3-venv python3-pil mpv ffmpeg alsa-utils fswebcam fonts-dejavu-core fonts-noto-color-emoji \
-  bluez bluez-alsa-utils iw
+  bluez bluez-alsa-utils iw dnsmasq-base
 # camera CSI: rpicam-apps + picamera2 có sẵn trên Raspberry Pi OS Bookworm; cài thêm nếu thiếu
 apt-get install -y rpicam-apps python3-picamera2 || echo "(bỏ qua: không có gói camera CSI)"
 
@@ -52,8 +52,9 @@ install -m 755 "$SRC/bluetooth/ld-bt-reconnect" /usr/local/bin/ld-bt-reconnect
 install -m 644 "$SRC/bluetooth/ld-bt-reconnect.service" "$SRC/bluetooth/ld-bt-reconnect.timer" /etc/systemd/system/
 
 echo "==> Cài dịch vụ systemd"
-cp "$SRC/linh-dia-viet-agent.service" /etc/systemd/system/
+cp "$SRC/linh-dia-viet-agent.service" "$SRC/ld-wifi-setup.service" /etc/systemd/system/
 systemctl daemon-reload
+systemctl enable ld-wifi-setup && systemctl restart ld-wifi-setup   # mất mạng 3 phút → phát Wi-Fi LinhDia-Setup
 systemctl enable --now ld-bt-reconnect.timer   # không có /etc/linh-dia-viet/bt-speaker thì không làm gì
 systemctl enable linh-dia-viet-agent
 systemctl restart linh-dia-viet-agent
