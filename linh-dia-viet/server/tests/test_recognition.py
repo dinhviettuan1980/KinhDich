@@ -70,6 +70,11 @@ def test_device_photos_analyzed_and_shown(setup, db, user_client, monkeypatch): 
     assert "Kiểm tra mâm lễ" in page and "Khớp đơn" in page and "(giả lập)" in page and "Phiếu tên" not in page
 
 
+@pytest.fixture(autouse=True)
+def no_retry_wait(monkeypatch):
+    monkeypatch.setattr(recognition, "RETRY_DELAYS", (0, 0))
+
+
 def test_recognition_error_does_not_break_order(setup, db, monkeypatch):  # noqa: F811
     monkeypatch.setattr(get_settings(), "recognition_provider", "hfspace")
     _fake_space(monkeypatch, {}, status=503)
@@ -108,3 +113,23 @@ def test_mismatch_alerts_temple_staff_only(setup, db, client, monkeypatch):  # n
     assert alerts.active(db, stranger) == []  # nhân sự đền khác không thấy
     login(client, "kiosk@example.com", "demo12345")
     assert f"Mâm lễ chưa khớp đơn #{o.id}" in client.get(f"{P}/admin").text
+
+
+def test_recognition_retries_when_space_times_out(setup, db, monkeypatch):  # noqa: F811
+    """Gemini free tier quá tải → Space trả 500 timeout; server thử lại rồi có kết quả."""
+    monkeypatch.setattr(get_settings(), "recognition_provider", "hfspace")
+    calls = []
+
+    def post(url, files=None, data=None, timeout=None):
+        calls.append(1)
+        if len(calls) % 2:
+            return httpx.Response(500, json={"detail": "Tray lỗi: The read operation timed out"})
+        items = json.loads(data["items"])
+        return httpx.Response(200, json={"items": [{"name": i["name"], "seen": i["qty"]} for i in items], "extra": []})
+    monkeypatch.setattr(recognition.httpx, "post", post)
+    order, agent, clock = setup
+    at = move_play_time(db, order)
+    run(db, agent, clock)
+    db.expire_all()
+    ev = db.get(Order, order.id).evidence[0]
+    assert ev.analysis["ok"] and "error" not in ev.analysis and len(calls) == 2

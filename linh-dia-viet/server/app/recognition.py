@@ -8,6 +8,7 @@ Nhà cung cấp qua RECOGNITION_PROVIDER:
 """
 import json
 import logging
+import time
 import unicodedata
 
 import httpx
@@ -16,6 +17,9 @@ from .config import get_settings
 from .models import utcnow
 
 log = logging.getLogger("linhdia.recognition")
+
+
+RETRY_DELAYS = (30, 90)  # giây chờ trước mỗi lần thử lại khi dịch vụ nhận diện lỗi
 
 
 class RecognitionError(RuntimeError):
@@ -111,11 +115,15 @@ def analyze_evidence(evidence_id: int) -> None:
         items = [{"name": i.name, "unit": i.unit, "qty": i.qty} for i in o.items]
         if not items:
             return
-        try:
-            ev.analysis = analyze(get_storage().local_path(ev.path).read_bytes(), items, kind)
-        except Exception as e:
-            log.warning("Nhận diện ảnh %s (đơn %s) lỗi: %s", ev.id, o.id, e)
-            ev.analysis = {"provider": kind, "at": utcnow().isoformat(), "error": str(e)[:300]}
+        image = get_storage().local_path(ev.path).read_bytes()
+        for attempt, delay in enumerate((0, *RETRY_DELAYS)):  # Gemini free tier hay quá tải/timeout → thử lại
+            time.sleep(delay)
+            try:
+                ev.analysis = analyze(image, items, kind)
+                break
+            except Exception as e:
+                log.warning("Nhận diện ảnh %s (đơn %s) lỗi (lần %d): %s", ev.id, o.id, attempt + 1, e)
+                ev.analysis = {"provider": kind, "at": utcnow().isoformat(), "error": str(e)[:300]}
         db.commit()
         a = ev.analysis
         if a.get("problems") and not any((e.analysis or {}).get("alerted") for e in o.evidence if e.id != ev.id):
