@@ -30,5 +30,6 @@
 <div class="ld-card ld-scroll"><table>
   {% for l in logs %}<tr><td class="ld-muted">{{ fmt_local(l.ts, o.timezone, '%H:%M:%S %d/%m') }}</td><td>{{ l.actor }}</td><td>{{ l.action }}</td><td class="ld-muted">{{ l.detail or '' }}</td></tr>{% endfor %}
 </table></div>
-{% if o.evidence %}<h2>Ảnh</h2><div class="ld-photos">{% for e in o.evidence %}<img src="{{ u('/don/' ~ o.id ~ '/anh/' ~ e.id) }}" alt="{{ e.note }}">{% endfor %}</div>{% endif %}
+{% if o.photos %}<h2>Ảnh</h2><div class="ld-photos">{% for e in o.photos %}<img src="{{ u('/don/' ~ o.id ~ '/anh/' ~ e.id) }}" alt="{{ e.note }}">{% endfor %}</div>{% endif %}
+{% if o.video %}<h2>Video tại đền</h2><video class="ld-clip" controls preload="none" playsinline src="{{ u('/don/' ~ o.id ~ '/clip') }}"></video>{% endif %}
 {% endblock %}

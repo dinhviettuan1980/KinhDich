@@ -109,7 +109,18 @@ Kiểm tra phần cứng bằng chính cấu hình của dịch vụ:
 cd /opt/linh-dia-viet-agent
 sudo -u linhdia venv/bin/python -m ld_agent --env /etc/linh-dia-viet/agent.env --test-speaker
 sudo -u linhdia venv/bin/python -m ld_agent --env /etc/linh-dia-viet/agent.env --test-camera /tmp/t.jpg
+sudo -u linhdia venv/bin/python -m ld_agent --env /etc/linh-dia-viet/agent.env --test-video /tmp/t.mp4  # 10s hình + tiếng
 ```
+
+### Video tại đền (hình mâm lễ + tiếng thu thật)
+
+Agent quay video trong lúc loa đọc sớ và quay thêm 3 giây sau khi đọc xong. Hình là mâm lễ, tiếng thu từ micro của webcam USB nên nghe được tiếng khấn vang tại đền cùng tiếng xung quanh. Khách xem video này ở mục **Lịch sử lễ**; video thay cho clip ghép từ ảnh.
+
+- Cần `LD_CAMERA=fswebcam` hoặc `LD_CAMERA=ffmpeg`. Ảnh "lúc khấn" (dùng để nhận diện mâm lễ) được lấy từ một khung hình của video, vì webcam đang bận quay.
+- Micro được tự chọn: card USB đầu tiên có thiết bị thu (`LD_AUDIO_IN=auto`). Muốn chỉ định thì xem `arecord -l` rồi đặt `LD_AUDIO_IN=plughw:CARD=<tên>,DEV=0`.
+- Mặc định quay 1280x720, 10 hình/giây, tối đa 600 kbps và 5 phút (`LD_VIDEO_SIZE`, `LD_VIDEO_FPS`, `LD_RECORD_MAX_SECONDS`). Server nhận tối đa 24 MB.
+- `LD_CAMERA=simulate`: video giả gồm ảnh mâm giả và bài khấn, có lọc tiếng cho giống tiếng thu qua micro.
+- Tắt quay video: `LD_RECORD=false`.
 
 Sau khoảng một phút, trang **Thiết bị** sẽ hiện "Online". Bấm **Phát âm thử** hoặc **Chụp thử** để kiểm tra từ xa.
 

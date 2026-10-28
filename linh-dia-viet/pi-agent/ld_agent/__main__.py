@@ -12,6 +12,7 @@ from .agent import Agent
 from .camera import Camera
 from .config import Config
 from .player import ProcessPlayer, SimPlayer
+from .recorder import Recorder
 from .transport import MqttTransport
 
 
@@ -21,7 +22,8 @@ def build(cfg: Config) -> Agent:
     else:
         player = ProcessPlayer(cfg.player, cfg.audio_device)
         camera = Camera(cfg.camera, cfg.camera_device, cfg.photo_width, cfg.photo_height, cfg.jpeg_quality)
-    return Agent(cfg, MqttTransport(cfg), httpx.Client(follow_redirects=True), player, camera)
+    recorder = Recorder(camera.kind, cfg.camera_device, cfg.audio_in, cfg.video_size, cfg.video_fps, cfg.record_max_seconds)
+    return Agent(cfg, MqttTransport(cfg), httpx.Client(follow_redirects=True), player, camera, recorder=recorder)
 
 
 def hardware_test(cfg: Config, args) -> int:
@@ -32,6 +34,16 @@ def hardware_test(cfg: Config, args) -> int:
         cam = Camera(cfg.camera, cfg.camera_device, cfg.photo_width, cfg.photo_height, cfg.jpeg_quality)
         ok = cam.capture(args.test_camera, "test")
         logging.info("Chụp ảnh (%s): %s", cfg.camera, f"OK → {args.test_camera}" if ok else "LỖI")
+        if not ok:
+            return 1
+    if args.test_video:
+        rec = Recorder(cfg.camera, cfg.camera_device, cfg.audio_in, cfg.video_size, cfg.video_fps, 10)
+        if not rec.uses_camera:
+            logging.error("Quay video cần LD_CAMERA=fswebcam hoặc ffmpeg (webcam USB)")
+            return 1
+        logging.info("Quay thử 10 giây — webcam %s, micro '%s'", cfg.camera_device, rec.audio_in or "KHÔNG THẤY")
+        ok = rec.start(args.test_video) and rec.finish(timeout=40) is not None
+        logging.info("Quay video: %s", f"OK → {args.test_video}" if ok else "LỖI")
         if not ok:
             return 1
     if args.test_speaker:
@@ -57,10 +69,11 @@ def main(argv=None) -> int:
     ap.add_argument("--simulate", action="store_true", help="không cần loa/camera thật: chỉ in log, tạo ảnh giả")
     ap.add_argument("--test-speaker", action="store_true", help="phát âm thử 3 giây qua loa rồi thoát")
     ap.add_argument("--test-camera", type=Path, metavar="FILE.jpg", help="chụp 1 ảnh ra file rồi thoát")
+    ap.add_argument("--test-video", type=Path, metavar="FILE.mp4", help="quay 10 giây video + tiếng micro rồi thoát")
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     cfg = Config.load(args.env, simulate=True if args.simulate else None)
-    if args.test_speaker or args.test_camera:
+    if args.test_speaker or args.test_camera or args.test_video:
         return hardware_test(cfg, args)
     if not cfg.device_token:
         logging.error("Thiếu LD_DEVICE_TOKEN")

@@ -253,8 +253,9 @@ def tick(db: Session, now: datetime | None = None) -> None:
     alerts.check_devices(db, now)
 
 
-def add_evidence(db: Session, job: DeviceJob, key: str, captured_at: datetime, phase: str) -> Evidence:
-    ev = Evidence(order_id=job.order_id, job_id=job.id, kind="photo", path=key, captured_at=captured_at, note=phase)
+def add_evidence(db: Session, job: DeviceJob, key: str, captured_at: datetime, phase: str,
+                 kind: str = "photo") -> Evidence:
+    ev = Evidence(order_id=job.order_id, job_id=job.id, kind=kind, path=key, captured_at=captured_at, note=phase)
     db.add(ev)
     db.flush()
     db.refresh(job.order, ["evidence"])

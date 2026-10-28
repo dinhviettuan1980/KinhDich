@@ -295,3 +295,96 @@ def test_clock_synced_reads_timedatectl(monkeypatch):
     assert sysinfo.clock_synced() is True
     monkeypatch.setattr(subprocess, "run", lambda *a, **k: subprocess.CompletedProcess(a, 0, stdout="no\n"))
     assert sysinfo.clock_synced() is True  # đã đồng bộ một lần thì nhớ
+
+
+# ---------------- video tại đền (quay lúc đọc sớ) ----------------
+
+class FakeRecorder:
+    enabled = True
+
+    def __init__(self, uses_camera: bool):
+        self.uses_camera, self.running, self.started, self.stopped = uses_camera, False, [], 0
+
+    def busy(self):
+        return self.running
+
+    def start(self, dst, audio=None, still=None):
+        self.started.append((dst, audio, still))
+        self.dst, self.running = dst, True
+        return True
+
+    def stop(self):
+        self.stopped += 1
+
+    def finish(self, timeout=20):
+        self.running = False
+        self.dst.write_bytes(b"\x00\x00\x00\x18ftypisom" + b"\x00" * 2000)
+        return self.dst
+
+
+def rec_env(tmp_path, uses_camera):
+    cfg = Config(server_url="http://srv/le-chua", device_id="pi-x", device_token="tok", data_dir=tmp_path,
+                 simulate=True, simulate_play_seconds=10, record_tail_seconds=3)
+    srv, tr, rec = FakeServer(), FakeTransport(), FakeRecorder(uses_camera)
+    agent = Agent(cfg, tr, httpx.Client(transport=httpx.MockTransport(srv.handler)), SimPlayer(10), Camera("simulate"),
+                  clock=lambda: local_ts(9, 0), recorder=rec)
+    agent.start()
+    return agent, tr, srv, rec
+
+
+def phases(srv):
+    return [up.split(b'name="phase"\r\n\r\n')[1].split(b"\r\n")[0].decode() for up in srv.uploads]
+
+
+def test_simulated_video_recorded_during_prayer(tmp_path):
+    agent, tr, srv, rec = rec_env(tmp_path, uses_camera=False)
+    tr.on_cmd(play_cmd())
+    agent.tick(local_ts(9, 50))
+    agent.tick(local_ts(9, 59) + 1)
+    agent.tick(local_ts(10, 0))
+    dst, audio, still = rec.started[0]
+    assert audio.name == "j1.mp3" and still is not None  # giả lập: ảnh mâm giả + bài khấn
+    assert phases(srv) == ["before", "start"]  # không chiếm webcam → vẫn chụp ảnh "start" như cũ
+    agent.tick(local_ts(10, 0) + 11)  # đọc xong, quay thêm 3s
+    assert states(tr)[-1] == "done" and phases(srv) == ["before", "start"]
+    agent.tick(local_ts(10, 0) + 15)
+    assert phases(srv) == ["before", "start", "video"]
+    assert b"video/mp4" in srv.uploads[-1] and not dst.exists() and not still.exists()
+    agent.tick(local_ts(10, 0) + 42)
+    assert phases(srv)[-1] == "after"
+
+
+def test_webcam_video_gives_start_frame(tmp_path, monkeypatch):
+    import ld_agent.agent as agent_mod
+
+    def fake_grab(video, dst, at_s=2.0):
+        dst.write_bytes(b"\xff\xd8\xff" + b"0" * 100)
+        return True
+    monkeypatch.setattr(agent_mod, "grab_frame", fake_grab)
+    agent, tr, srv, rec = rec_env(tmp_path, uses_camera=True)
+    tr.on_cmd(play_cmd())
+    agent.tick(local_ts(9, 50))
+    agent.tick(local_ts(9, 59) + 1)
+    agent.tick(local_ts(10, 0))
+    assert rec.started[0][2] is None and phases(srv) == ["before"]  # webcam bận quay: không chụp riêng
+    agent.tick(local_ts(10, 0) + 11)
+    assert rec.stopped == 0  # còn quay thêm 3s sau khi đọc xong
+    agent.tick(local_ts(10, 0) + 15)
+    assert rec.stopped == 1 and phases(srv) == ["before", "start", "video"]
+
+
+def test_stop_command_ends_recording(tmp_path):
+    agent, tr, srv, rec = rec_env(tmp_path, uses_camera=True)
+    tr.on_cmd(play_cmd())
+    agent.tick(local_ts(9, 50))
+    agent.tick(local_ts(10, 0))
+    tr.on_cmd({"type": "stop"})
+    agent.tick(local_ts(10, 0) + 1)
+    assert rec.stopped == 1 and "video" in phases(srv)
+
+
+def test_record_disabled(tmp_path):
+    cfg = Config(server_url="http://srv/le-chua", device_id="pi-x", device_token="tok", data_dir=tmp_path,
+                 simulate=True, record=False)
+    agent = Agent(cfg, FakeTransport(), httpx.Client(), SimPlayer(1), Camera("simulate"), recorder=FakeRecorder(False))
+    assert agent.recorder is None

@@ -240,3 +240,27 @@ def test_concurrent_schedule_creates_one_job(user_client, db, monkeypatch):
     o = db.get(Order, oid)
     assert o.status == "scheduled" and len(o.jobs) == 1
     assert [e.status for e in o.events].count("scheduled") == 1
+
+
+def test_video_upload_shown_as_temple_video(setup, db, client, user_client):
+    """Pi gửi video mâm lễ + tiếng thu tại đền → trang đơn phát video đó thay cho clip ghép ảnh."""
+    order, agent, clock = setup
+    move_play_time(db, order)
+    run(db, agent, clock)
+    up = f"{P}/api/device/evidence"
+    good = {"Authorization": "Bearer dev-device-token-change-me", "X-Device-Id": "pi-demo-01"}
+    job_id = order.jobs[-1].id
+    mp4 = b"\x00\x00\x00\x18ftypisom" + b"\x00" * 4000
+    r = client.post(up, headers=good, data={"job_id": job_id, "phase": "video"},
+                    files={"file": ("v.mp4", b"\xff\xd8\xff" + b"0" * 100, "video/mp4")})
+    assert r.status_code == 415  # không phải MP4
+    r = client.post(up, headers=good, data={"job_id": job_id, "phase": "video"}, files={"file": ("v.mp4", mp4, "video/mp4")})
+    assert r.status_code == 200 and r.json() == {"ok": True}
+    r = client.post(up, headers=good, data={"job_id": job_id, "phase": "video"}, files={"file": ("v.mp4", mp4, "video/mp4")})
+    assert r.json()["duplicate"] is True
+    o = db.get(Order, order.id)
+    db.refresh(o)
+    assert o.video and o.video.kind == "video" and o.photos == [e for e in o.evidence if e.kind == "photo"]
+    assert "Video tại đền" in user_client.get(f"{P}/don/{o.id}").text
+    r = user_client.get(f"{P}/don/{o.id}/clip")
+    assert r.status_code == 200 and r.content == mp4

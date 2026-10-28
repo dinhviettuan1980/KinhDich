@@ -14,11 +14,11 @@
   </div>
   {% include "orders/_tray_check.html" %}
   {% if has_clip %}
-  <div class="ld-card"><h3>🎬 Clip xem lại</h3>
+  <div class="ld-card"><h3>🎬 {{ 'Video tại đền' if video else 'Clip xem lại' }}</h3>
     <video class="ld-clip" controls preload="none" playsinline
-           poster="{{ u('/don/' ~ o.id ~ '/anh/' ~ (evidence|selectattr('note', 'equalto', 'start')|map(attribute='id')|first or evidence[0].id)) }}"
+           {% if evidence %}poster="{{ u('/don/' ~ o.id ~ '/anh/' ~ (evidence|selectattr('note', 'equalto', 'start')|map(attribute='id')|first or evidence[0].id)) }}"{% endif %}
            src="{{ u('/don/' ~ o.id ~ '/clip') }}"></video>
-    <p class="ld-muted" style="margin-bottom:0">Mâm lễ trước, trong và sau khi khấn, kèm bài khấn đã đọc tại đền.</p>
+    <p class="ld-muted" style="margin-bottom:0">{% if video %}Quay mâm lễ ngay lúc đọc sớ, tiếng thu trực tiếp tại đền lúc {{ fmt_local(video.captured_at, o.timezone) }}.{% else %}Mâm lễ trước, trong và sau khi khấn, kèm bài khấn đã đọc tại đền.{% endif %}</p>
   </div>
   {% endif %}
   {% if evidence %}

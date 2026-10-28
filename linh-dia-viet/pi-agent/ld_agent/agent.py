@@ -20,6 +20,7 @@ from . import __version__, sysinfo
 from .camera import Camera
 from .config import Config
 from .player import Player
+from .recorder import Recorder, grab_frame
 from .store import Store
 from .transport import Transport
 
@@ -39,9 +40,11 @@ def iso(ts: float) -> str:
 
 class Agent:
     def __init__(self, cfg: Config, transport: Transport, http: httpx.Client, player: Player, camera: Camera,
-                 clock=time.time, clock_synced=sysinfo.clock_synced):
+                 clock=time.time, clock_synced=sysinfo.clock_synced, recorder: Recorder | None = None):
         self.cfg, self.transport, self.http, self.player, self.camera, self.clock = \
             cfg, transport, http, player, camera, clock
+        self.recorder = recorder if recorder and cfg.record and recorder.enabled else None
+        self.rec: dict | None = None  # video đang quay: job_id, stop_at, frame (cần lấy ảnh "start" từ video)
         self.clock_synced = clock_synced
         self._started_mono = time.monotonic()  # không phụ thuộc giờ hệ thống (có thể đang sai)
         self._clock_warned = False
@@ -75,6 +78,8 @@ class Agent:
             if self.playing_job:
                 self._fail(self.playing_job, "Dừng theo lệnh", now)
                 self.playing_job = None
+            if self.rec:
+                self.rec["stop_at"] = now
         elif t == "cancel":
             j = self.store.get_job(str(cmd.get("job_id")))
             if j and j["state"] in ("received", "downloaded"):
@@ -118,6 +123,7 @@ class Agent:
         self._downloads(now)
         self._captures_before(now)
         self._playback(now)
+        self._recording(now)
         self._captures_after(now)
         self._uploads(now)
         if now - self._last_status >= self.cfg.status_interval:
@@ -183,6 +189,8 @@ class Agent:
             if self.player.is_playing(now):
                 return
             job_id, self.playing_job = self.playing_job, None
+            if self.rec and self.rec["job_id"] == job_id:
+                self.rec["stop_at"] = now + self.cfg.record_tail_seconds
             err = self.player.result()
             if err:
                 self._fail(job_id, err, now)
@@ -215,10 +223,49 @@ class Agent:
             self.playing_job = j["job_id"]
             self.store.update_job(j["job_id"], now, state="playing")
             self._ack(j["job_id"], "playing", now, f"volume={vol}")
-            if (cmd.get("capture") or {}).get("at_start"):
+            at_start = (cmd.get("capture") or {}).get("at_start")
+            if self._start_recording(j, cmd, now) and self.recorder.uses_camera:
+                self.rec["frame"] = bool(at_start)  # webcam đang quay → ảnh "start" lấy từ video
+            elif at_start:
                 self._capture(j["job_id"], "start", now)
 
+    # ---------------- video tại đền ----------------
+
+    def _start_recording(self, j: dict, cmd: dict, now: float) -> bool:
+        if not self.recorder or self.recorder.busy():
+            return False
+        dst = self.photo_dir / f"{j['job_id']}-video-{int(now)}.mp4"
+        still = None
+        if not self.recorder.uses_camera:  # giả lập: video = ảnh mâm giả + bài khấn
+            still = self.photo_dir / f"{j['job_id']}-rec.jpg"
+            if not self.camera.capture(still, label="video", tray=cmd.get("tray")):
+                return False
+        if not self.recorder.start(dst, audio=Path(j["audio_path"]), still=still):
+            return False
+        self.rec = {"job_id": j["job_id"], "stop_at": None, "frame": False, "started": now, "still": still}
+        return True
+
+    def _recording(self, now: float) -> None:
+        if not self.rec or self.rec["stop_at"] is None or now < self.rec["stop_at"]:
+            return
+        rec, self.rec = self.rec, None
+        self.recorder.stop()
+        video = self.recorder.finish()
+        if rec["still"]:
+            rec["still"].unlink(missing_ok=True)
+        if not video:
+            if rec["frame"]:  # quay hỏng: chụp bù ảnh "start"
+                self._capture(rec["job_id"], "start", now)
+            return
+        if rec["frame"]:
+            frame = self.photo_dir / f"{rec['job_id']}-start-{int(rec['started'])}.jpg"
+            if grab_frame(video, frame):
+                self.store.push_upload(rec["job_id"], "start", frame, iso(rec["started"] + 2))
+        self.store.push_upload(rec["job_id"], "video", video, iso(rec["started"]))
+
     def _captures_after(self, now: float) -> None:
+        if self.rec and self.recorder.uses_camera:
+            return  # webcam còn đang quay
         for j in self.store.jobs_in("done"):
             if not j["after_done"] and j["after_due"] is not None and now >= j["after_due"]:
                 self.store.update_job(j["job_id"], now, after_done=1)
@@ -263,14 +310,17 @@ class Agent:
             if not path.exists():
                 self.store.drop_upload(up["id"])
                 continue
+            video = path.suffix == ".mp4"
             try:
                 with open(path, "rb") as f:
-                    r = self.http.post(f"{self.cfg.server_url}/api/device/evidence", headers=self.headers, timeout=60,
+                    r = self.http.post(f"{self.cfg.server_url}/api/device/evidence", headers=self.headers,
+                                       timeout=300 if video else 60,
                                        data={"job_id": up["job_id"], "phase": up["phase"],
                                              "captured_at": up["captured_at"]},
-                                       files={"file": (path.name, f, "image/jpeg")})
+                                       files={"file": (path.name, f, "video/mp4" if video else "image/jpeg")})
                 if r.status_code in (400, 401, 404, 413, 415):  # lỗi vĩnh viễn: bỏ, không thử lại vô hạn
-                    log.error("Server từ chối ảnh (%s): %s", r.status_code, r.text[:200])
+                    log.error("Server từ chối %s (%s): %s", path.name, r.status_code, r.text[:200])
+                    path.unlink(missing_ok=True)
                     self.store.drop_upload(up["id"])
                     continue
                 r.raise_for_status()

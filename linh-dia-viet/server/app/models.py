@@ -241,6 +241,15 @@ class Order(Base):
             return offering_text((i.qty, i.unit, i.name) for i in self.items)
         return self.package.name if self.package else ""
 
+    @property
+    def photos(self) -> list["Evidence"]:
+        return [e for e in self.evidence if e.kind == "photo"]
+
+    @property
+    def video(self) -> "Evidence | None":
+        """Video quay tại đền lúc đọc sớ (hình mâm lễ + tiếng thu tại chỗ), nếu thiết bị có gửi."""
+        return next((e for e in self.evidence if e.kind == "video"), None)
+
 
 def offering_text(lines) -> str:
     """[(3, "bó", "Hương"), (1, "con", "Gà luộc")] → "3 bó hương, 1 con gà luộc"."""

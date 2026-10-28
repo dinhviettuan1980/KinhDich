@@ -42,7 +42,8 @@ def timeline(o: Order) -> list[dict]:
 def detail_ctx(db: Session, o: Order) -> dict:
     return {"o": o, "timeline": timeline(o), "status_label": LABELS[S(o.status)], "can_cancel": svc.can_user_cancel(o),
             "final": S(o.status) in TERMINAL or o.status in ("rejected", "cancelled", "failed"),
-            "evidence": o.evidence, "has_clip": bool(o.clip_key) or clips.can_build(o)}
+            "evidence": o.photos, "video": o.video,
+            "has_clip": bool(o.video) or bool(o.clip_key) or clips.can_build(o)}
 
 
 @router.get("")
@@ -50,7 +51,7 @@ def history(request: Request, db: Session = Depends(get_db), user: User = Depend
     orders = db.scalars(select(Order).where(Order.user_id == user.id).order_by(Order.id.desc()).limit(200)).all()
     cover = {}
     for o in orders:  # ảnh đại diện: ảnh sau lễ, không có thì ảnh mới nhất
-        ph = sorted(o.evidence, key=lambda e: (e.note == "after", e.id))
+        ph = sorted(o.photos, key=lambda e: (e.note == "after", e.id))
         if ph:
             cover[o.id] = ph[-1].id
     return render(request, "orders/list.html", {"orders": orders, "labels": LABELS, "cover": cover,
@@ -92,7 +93,7 @@ def order_audio(order_id: int, db: Session = Depends(get_db), user: User = Depen
 @router.get("/{order_id}/anh/{evidence_id}")
 def evidence_photo(order_id: int, evidence_id: int, db: Session = Depends(get_db), user: User = Depends(require_user)):
     o = owned_order(db, order_id, user)
-    ev = next((e for e in o.evidence if e.id == evidence_id), None)
+    ev = next((e for e in o.photos if e.id == evidence_id), None)
     if not ev:
         raise HTTPException(404)
     return FileResponse(get_storage().local_path(ev.path), media_type="image/jpeg")
@@ -100,8 +101,11 @@ def evidence_photo(order_id: int, evidence_id: int, db: Session = Depends(get_db
 
 @router.get("/{order_id}/clip")
 def order_clip(order_id: int, db: Session = Depends(get_db), user: User = Depends(require_user)):
-    """Clip xem lại (MP4): dựng lần đầu khi mở xem, các lần sau dùng lại."""
+    """Clip xem lại (MP4). Có video thiết bị quay tại đền (hình + tiếng thật) thì dùng video đó;
+    không thì dựng từ ảnh + bài khấn lần đầu khi mở xem, các lần sau dùng lại."""
     o = owned_order(db, order_id, user)
+    if o.video:
+        return FileResponse(get_storage().local_path(o.video.path), media_type="video/mp4")
     with _clip_lock:
         db.refresh(o)
         if not o.clip_key:
@@ -124,4 +128,5 @@ def order_json(order_id: int, db: Session = Depends(get_db), user: User = Depend
             "scheduled_at": o.scheduled_at.isoformat(),
             "events": [{"status": e.status, "ts": e.ts.isoformat(), "note": e.note} for e in o.events],
             "evidence": [{"id": e.id, "phase": e.note, "captured_at": e.captured_at.isoformat(),
-                          "url": u(f"/don/{o.id}/anh/{e.id}")} for e in o.evidence]}
+                          "url": u(f"/don/{o.id}/anh/{e.id}")} for e in o.photos],
+            "video": u(f"/don/{o.id}/clip") if o.video else None}

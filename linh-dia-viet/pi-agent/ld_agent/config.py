@@ -44,6 +44,12 @@ class Config:
     photo_width: int = 1280
     photo_height: int = 960
     jpeg_quality: int = 80
+    record: bool = True  # quay video mâm lễ + tiếng tại đền lúc đọc sớ (webcam USB có micro, hoặc giả lập)
+    audio_in: str = "auto"  # micro ALSA, vd "plughw:CARD=Camera,DEV=0"; auto = micro USB đầu tiên
+    video_size: str = "1280x720"
+    video_fps: int = 10
+    record_max_seconds: int = 300
+    record_tail_seconds: float = 3.0  # quay thêm sau khi đọc xong
     max_late_seconds: int = 600  # quá giờ hẹn bao lâu thì bỏ, không phát nữa
     clock_wait_seconds: int = 600  # sau khi bật máy, chờ đồng bộ giờ tối đa bao lâu rồi mới phát theo giờ máy
     status_interval: int = 60
@@ -72,6 +78,12 @@ class Config:
         c.timezone = g("TIMEZONE", c.timezone)
         c.camera = g("CAMERA", c.camera)
         c.camera_device = g("CAMERA_DEVICE", c.camera_device)
+        c.record = g("RECORD", "true").lower() == "true"
+        c.audio_in = g("AUDIO_IN", c.audio_in)
+        c.video_size = g("VIDEO_SIZE", c.video_size)
+        c.video_fps = int(g("VIDEO_FPS", c.video_fps))
+        c.record_max_seconds = int(g("RECORD_MAX_SECONDS", c.record_max_seconds))
+        c.record_tail_seconds = float(g("RECORD_TAIL_SECONDS", c.record_tail_seconds))
         c.max_late_seconds = int(g("MAX_LATE_SECONDS", c.max_late_seconds))
         c.clock_wait_seconds = int(g("CLOCK_WAIT_SECONDS", c.clock_wait_seconds))
         c.status_interval = int(g("STATUS_INTERVAL", c.status_interval))

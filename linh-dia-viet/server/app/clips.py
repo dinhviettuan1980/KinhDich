@@ -20,7 +20,7 @@ def audio_key_of(order: Order) -> str | None:
 
 
 def can_build(order: Order) -> bool:
-    return order.status == "completed" and bool(order.evidence) and bool(audio_key_of(order))
+    return order.status == "completed" and bool(order.photos) and bool(audio_key_of(order))
 
 
 def build(order: Order) -> str:

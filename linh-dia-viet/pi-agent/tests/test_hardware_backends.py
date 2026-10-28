@@ -83,3 +83,22 @@ def test_real_ffplay_plays_short_file(tmp_path):
         time.sleep(0.1)
     p.stop()
     assert p.result() is None
+
+
+@pytest.mark.skipif(not shutil.which("ffmpeg"), reason="cần ffmpeg")
+def test_simulated_recorder_makes_mp4_with_sound(tmp_path):
+    import json
+    import subprocess
+    from ld_agent.camera import Camera
+    from ld_agent.recorder import Recorder, grab_frame
+    audio, still, out = tmp_path / "a.mp3", tmp_path / "s.jpg", tmp_path / "v.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", "sine=frequency=440:duration=2", str(audio)], check=True)
+    assert Camera("simulate").capture(still, "video", {"items": [{"name": "Hương", "unit": "bó", "qty": 1}]})
+    rec = Recorder("simulate")
+    assert rec.enabled and not rec.uses_camera
+    assert rec.start(out, audio=audio, still=still)
+    assert rec.finish() == out
+    probe = json.loads(subprocess.run(["ffprobe", "-v", "error", "-show_streams", "-of", "json", str(out)],
+                                      capture_output=True, check=True).stdout)
+    assert {s["codec_type"] for s in probe["streams"]} == {"video", "audio"}
+    assert grab_frame(out, tmp_path / "f.jpg", at_s=1)
