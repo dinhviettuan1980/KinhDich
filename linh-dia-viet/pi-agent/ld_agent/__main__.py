@@ -22,7 +22,8 @@ def build(cfg: Config) -> Agent:
     else:
         player = ProcessPlayer(cfg.player, cfg.audio_device)
         camera = Camera(cfg.camera, cfg.camera_device, cfg.photo_width, cfg.photo_height, cfg.jpeg_quality)
-    recorder = Recorder(camera.kind, cfg.camera_device, cfg.audio_in, cfg.video_size, cfg.video_fps, cfg.record_max_seconds)
+    recorder = Recorder(camera.kind, cfg.camera_device, cfg.audio_in, cfg.video_size, cfg.video_fps, cfg.record_max_seconds,
+                        audio_out=cfg.audio_device)
     return Agent(cfg, MqttTransport(cfg), httpx.Client(follow_redirects=True), player, camera, recorder=recorder)
 
 
@@ -37,7 +38,8 @@ def hardware_test(cfg: Config, args) -> int:
         if not ok:
             return 1
     if args.test_video:
-        rec = Recorder(cfg.camera, cfg.camera_device, cfg.audio_in, cfg.video_size, cfg.video_fps, 10)
+        rec = Recorder(cfg.camera, cfg.camera_device, cfg.audio_in, cfg.video_size, cfg.video_fps, 10,
+                       audio_out=cfg.audio_device)
         if not rec.uses_camera:
             logging.error("Quay video cần LD_CAMERA=fswebcam hoặc ffmpeg (webcam USB)")
             return 1

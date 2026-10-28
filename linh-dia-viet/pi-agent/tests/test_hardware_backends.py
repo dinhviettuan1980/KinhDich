@@ -102,3 +102,22 @@ def test_simulated_recorder_makes_mp4_with_sound(tmp_path):
                                       capture_output=True, check=True).stdout)
     assert {s["codec_type"] for s in probe["streams"]} == {"video", "audio"}
     assert grab_frame(out, tmp_path / "f.jpg", at_s=1)
+
+
+def test_mic_picks_webcam_not_output_sound_card(tmp_path):
+    """Card âm thanh USB (phát loa) cũng có lỗ micro → phải chọn micro của webcam."""
+    from ld_agent.recorder import card_of, find_usb_mic
+    a = tmp_path / "asound"
+    (a / "cards").parent.mkdir()
+    (a / "cards").write_text(
+        " 0 [vc4hdmi        ]: vc4-hdmi - vc4-hdmi\n                      vc4-hdmi\n"
+        " 1 [Device         ]: USB-Audio - USB Audio Device\n                      GeneralPlus USB Audio Device\n"
+        " 2 [Camera         ]: USB-Audio - HD Web Camera\n                      Sonix HD Web Camera\n")
+    for card in ("Device", "Camera"):
+        (a / card).mkdir()
+        (a / card / "pcm0c").mkdir()
+    assert card_of("alsa/plughw:CARD=Device,DEV=0") == "Device"
+    assert find_usb_mic(exclude="Device", asound=a) == "plughw:CARD=Camera,DEV=0"
+    assert find_usb_mic(asound=a) == "plughw:CARD=Camera,DEV=0"  # ưu tiên tên có "camera"
+    (a / "Camera" / "pcm0c").rmdir()
+    assert find_usb_mic(exclude="Device", asound=a) == ""  # webcam không có micro → không lấy nhầm card loa

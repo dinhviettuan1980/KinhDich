@@ -57,6 +57,20 @@ Ghi cấu hình vào `/etc/linh-dia-viet/agent.env`:
 - dùng mpv: `LD_PLAYER=mpv` và `LD_AUDIO_DEVICE=alsa/plughw:CARD=Headphones,DEV=0` (xem `mpv --audio-device=help`);
 - dùng aplay: `LD_PLAYER=aplay` và `LD_AUDIO_DEVICE=plughw:1,0`. Âm lượng lúc này chỉnh bằng `alsamixer`, vì aplay không có tham số âm lượng.
 
+### Card âm thanh USB (Pi Zero không có jack 3.5 mm)
+
+Cắm card vào hub USB, nối dây AUX 3.5 mm từ lỗ tai nghe của card sang ngõ AUDIO INPUT của loa, rồi:
+
+```bash
+aplay -l                                            # vd "card 1: Device [USB Audio Device]" → tên card là Device
+sudo sed -i 's|^LD_AUDIO_DEVICE=.*|LD_AUDIO_DEVICE=alsa/plughw:CARD=Device,DEV=0|' /etc/linh-dia-viet/agent.env
+sudo rm -f /etc/linh-dia-viet/bt-speaker            # nếu trước đó dùng loa Bluetooth
+amixer -c Device scontrols && amixer -c Device sset Speaker 90%   # tên điều khiển tuỳ card (Speaker/PCM/Headphone)
+sudo systemctl restart linh-dia-viet-agent
+```
+
+Card âm thanh USB cũng có lỗ micro. Agent bỏ qua card đang dùng để phát loa và lấy micro của webcam để thu tiếng video.
+
 ### Loa Bluetooth
 
 Bật loa ở chế độ ghép đôi (đèn nháy nhanh), đặt gần Pi, rồi:

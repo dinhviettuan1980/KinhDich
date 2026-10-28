@@ -15,24 +15,34 @@ log = logging.getLogger("ld_agent.recorder")
 V4L2 = ("fswebcam", "ffmpeg")  # loại camera là webcam USB (v4l2) quay được video
 
 
-def find_usb_mic() -> str:
-    """ALSA của micro USB đầu tiên (thường là micro của webcam), vd 'plughw:CARD=Camera,DEV=0'. Không có → ''."""
+def card_of(alsa_device: str) -> str:
+    """'alsa/plughw:CARD=Device,DEV=0' → 'Device' (card đang dùng để phát loa)."""
+    m = re.search(r"CARD=([^,]+)", alsa_device or "")
+    return m.group(1) if m else ""
+
+
+def find_usb_mic(exclude: str = "", asound: Path = Path("/proc/asound")) -> str:
+    """ALSA của micro webcam, vd 'plughw:CARD=Camera,DEV=0'. Không có → ''.
+
+    Bỏ qua card đang phát loa (card âm thanh USB cũng có lỗ micro); ưu tiên card có chữ camera/webcam trong tên."""
     try:
-        cards = Path("/proc/asound/cards").read_text()
+        cards = (asound / "cards").read_text()
     except OSError:
         return ""
-    for m in re.finditer(r"^\s*\d+\s+\[(\S+)\s*\]:\s*USB-Audio", cards, re.M):
-        card = m.group(1)
-        if any(Path("/proc/asound").glob(f"{card}/pcm*c")):  # có thiết bị thu (capture)
-            return f"plughw:CARD={card},DEV=0"
-    return ""
+    found = []
+    for m in re.finditer(r"^\s*\d+\s+\[(\S+)\s*\]:\s*USB-Audio - (.*)$", cards, re.M):
+        card, desc = m.group(1), m.group(2)
+        if card == exclude or not any((asound / card).glob("pcm*c")):  # có thiết bị thu (capture)
+            continue
+        found.append((not re.search(r"cam|webcam|video", f"{card} {desc}", re.I), card))
+    return f"plughw:CARD={min(found)[1]},DEV=0" if found else ""
 
 
 class Recorder:
     def __init__(self, camera_kind: str, device: str = "/dev/video0", audio_in: str = "auto",
-                 size: str = "1280x720", fps: int = 10, max_seconds: int = 300):
+                 size: str = "1280x720", fps: int = 10, max_seconds: int = 300, audio_out: str = ""):
         self.kind, self.device, self.size, self.fps, self.max_seconds = camera_kind, device, size, fps, max_seconds
-        self.audio_in = find_usb_mic() if audio_in == "auto" else audio_in
+        self.audio_in = find_usb_mic(exclude=card_of(audio_out)) if audio_in == "auto" else audio_in
         self.proc: subprocess.Popen | None = None
         self.path: Path | None = None
 
