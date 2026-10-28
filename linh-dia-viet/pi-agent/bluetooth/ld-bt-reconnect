@@ -1,0 +1,8 @@
+#!/bin/sh
+# Giữ loa Bluetooth của agent luôn kết nối (loa tắt/bật, Pi khởi động lại). Chạy bởi ld-bt-reconnect.timer.
+M=$(cat /etc/linh-dia-viet/bt-speaker 2>/dev/null) || exit 0
+[ -n "$M" ] || exit 0
+bluetoothctl power on >/dev/null 2>&1
+bluetoothctl info "$M" 2>/dev/null | grep -q "Connected: yes" && exit 0
+timeout 20 bluetoothctl connect "$M" >/dev/null 2>&1 && logger -t ld-bt "đã kết nối lại loa $M"
+exit 0

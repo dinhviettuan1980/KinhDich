@@ -9,7 +9,8 @@ DATA=/var/lib/linh-dia-viet
 
 echo "==> Cài gói hệ thống"
 apt-get update
-apt-get install -y python3-venv python3-pil mpv ffmpeg alsa-utils fswebcam fonts-dejavu-core fonts-noto-color-emoji
+apt-get install -y python3-venv python3-pil mpv ffmpeg alsa-utils fswebcam fonts-dejavu-core fonts-noto-color-emoji \
+  bluez bluez-alsa-utils
 # camera CSI: rpicam-apps + picamera2 có sẵn trên Raspberry Pi OS Bookworm; cài thêm nếu thiếu
 apt-get install -y rpicam-apps python3-picamera2 || echo "(bỏ qua: không có gói camera CSI)"
 
@@ -37,9 +38,16 @@ chmod 640 "$ETC/agent.env"
 echo "==> Đồng bộ giờ (NTP)"
 timedatectl set-ntp true || true
 
+echo "==> Loa Bluetooth (bluez-alsa: chạy như dịch vụ hệ thống, không cần phiên đăng nhập)"
+systemctl disable --now bluealsa-aplay 2>/dev/null || true   # Pi là nguồn phát, không phải loa nhận
+systemctl enable --now bluealsa || true
+install -m 755 "$SRC/bluetooth/ld-bt-reconnect" /usr/local/bin/ld-bt-reconnect
+install -m 644 "$SRC/bluetooth/ld-bt-reconnect.service" "$SRC/bluetooth/ld-bt-reconnect.timer" /etc/systemd/system/
+
 echo "==> Cài dịch vụ systemd"
 cp "$SRC/linh-dia-viet-agent.service" /etc/systemd/system/
 systemctl daemon-reload
+systemctl enable --now ld-bt-reconnect.timer   # không có /etc/linh-dia-viet/bt-speaker thì không làm gì
 systemctl enable linh-dia-viet-agent
 systemctl restart linh-dia-viet-agent
 systemctl --no-pager status linh-dia-viet-agent | head -5 || true

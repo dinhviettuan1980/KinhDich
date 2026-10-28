@@ -1,0 +1,7 @@
+[Unit]
+Description=Linh Dia Viet - giu ket noi loa Bluetooth
+After=bluetooth.service bluealsa.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ld-bt-reconnect

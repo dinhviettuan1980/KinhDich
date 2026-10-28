@@ -1,0 +1,10 @@
+[Unit]
+Description=Kiem tra loa Bluetooth moi 30s
+
+[Timer]
+OnBootSec=15
+OnUnitActiveSec=30
+AccuracySec=5
+
+[Install]
+WantedBy=timers.target

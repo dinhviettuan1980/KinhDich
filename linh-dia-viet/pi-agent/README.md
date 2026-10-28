@@ -57,6 +57,22 @@ Ghi cấu hình vào `/etc/linh-dia-viet/agent.env`:
 - dùng mpv: `LD_PLAYER=mpv` và `LD_AUDIO_DEVICE=alsa/plughw:CARD=Headphones,DEV=0` (xem `mpv --audio-device=help`);
 - dùng aplay: `LD_PLAYER=aplay` và `LD_AUDIO_DEVICE=plughw:1,0`. Âm lượng lúc này chỉnh bằng `alsamixer`, vì aplay không có tham số âm lượng.
 
+### Loa Bluetooth
+
+Bật loa ở chế độ ghép đôi (đèn nháy nhanh), đặt gần Pi, rồi:
+
+```bash
+cd pi-agent/bluetooth
+sudo ./bt-pair.sh                          # quét, liệt kê thiết bị có tên (vd "联想thinkplus-K30")
+sudo ./bt-pair.sh D7:DD:FE:25:50:FB 100    # ghép + kết nối, âm lượng loa 100%, chuyển agent sang loa này
+```
+
+Script đặt `LD_AUDIO_DEVICE=alsa/bluealsa:DEV=<địa chỉ>,PROFILE=a2dp` và ghi địa chỉ vào `/etc/linh-dia-viet/bt-speaker`. Timer `ld-bt-reconnect` kiểm tra mỗi 30 giây và tự kết nối lại khi loa tắt/bật hoặc Pi khởi động lại.
+
+Âm lượng có 2 tầng. Tầng 1 là âm lượng bluealsa của loa: `sudo -u linhdia amixer -D bluealsa sset '<tên> A2DP' 80%`. Tầng 2 là âm lượng của từng lễ, do server gửi xuống và bị chặn trần bởi `LD_VOLUME_MAX`.
+
+Quay lại cổng 3.5 mm: sửa `LD_AUDIO_DEVICE` trong `agent.env` rồi xoá `/etc/linh-dia-viet/bt-speaker`.
+
 ## 4. Thử camera
 
 ```bash
