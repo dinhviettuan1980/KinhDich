@@ -126,3 +126,13 @@ a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122,
 .ld-check-table th { text-align: left; font-weight: 600; color: var(--ld-muted); font-size: .85rem; }
 .ld-check-table td, .ld-check-table th { padding: 6px 4px; border-bottom: 1px solid var(--ld-line); vertical-align: top; }
 .ld-check-table td:nth-child(n+2) { white-space: nowrap; }
+
+/* App trên điện thoại (PWA, mở toàn màn hình): chừa tai thỏ / thanh home của iPhone */
+.ld-app .ld-header { padding-top: env(safe-area-inset-top); }
+.ld-app .ld { padding-bottom: env(safe-area-inset-bottom); }
+.ld-install { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 50;
+  display: flex; gap: 12px; align-items: center; padding: 12px 40px 12px 12px; background: var(--ld-surface);
+  border: 1px solid var(--ld-line); border-radius: var(--ld-radius); box-shadow: 0 8px 24px rgba(43, 29, 20, .18); font-size: 14px; }
+.ld-install[hidden] { display: none; }
+.ld-install img { width: 44px; height: 44px; border-radius: 10px; flex: none; }
+.ld-install button { position: absolute; top: 6px; right: 8px; border: 0; background: none; font-size: 22px; color: var(--ld-muted); cursor: pointer; }

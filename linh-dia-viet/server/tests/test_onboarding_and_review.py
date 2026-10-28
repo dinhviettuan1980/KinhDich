@@ -109,3 +109,16 @@ def test_background_schedule_retries_transient_tts_error(user_client, db, monkey
     svc.schedule_in_background([o.id], "test", wait_s=0)
     db.expire_all()
     assert len(calls) == 3 and db.get(Order, o.id).status == "scheduled"
+
+
+def test_pwa_manifest_and_ios_tags(client):
+    """Cài lên màn hình chính iPhone như app: manifest + icon + thẻ apple-*."""
+    m = client.get(f"{P}/manifest.webmanifest")
+    assert m.status_code == 200 and m.headers["content-type"].startswith("application/manifest+json")
+    j = m.json()
+    assert j["display"] == "standalone" and j["start_url"] == f"{P}/" and j["scope"] == f"{P}/"
+    for ic in j["icons"]:
+        r = client.get(ic["src"])
+        assert r.status_code == 200 and r.content[:4] == b"\x89PNG"
+    page = client.get(f"{P}/dang-nhap").text
+    assert 'rel="manifest"' in page and 'rel="apple-touch-icon"' in page and "apple-mobile-web-app-capable" in page
