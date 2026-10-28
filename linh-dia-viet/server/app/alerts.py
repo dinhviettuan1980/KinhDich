@@ -69,13 +69,33 @@ def check_devices(db: Session, now: datetime | None = None) -> None:
             notify(db, f"✅ Thiết bị {dev.id} ({names}) đã kết nối lại.", f"device:{dev.id}")
 
 
-def active(db: Session, user) -> list[dict]:
+TRAY_PREFIX = "alert:tray:"
+TRAY_SHOW = timedelta(hours=12)
+
+
+def tray_mismatch(db: Session, order: Order, text: str, now: datetime | None = None) -> None:
+    """Mâm lễ không khớp đơn: chỉ hiện ở trang Quản lý cho admin + nhân sự đền đó (quản lý, kiosk) trong 12 giờ.
+    Không gửi Telegram (thông báo phụ); khách tự xem kết quả trên trang lễ."""
+    now = now or utcnow()
+    key = TRAY_PREFIX + str(order.id)
+    st = db.get(Setting, key) or Setting(key=key)
+    st.value = json.dumps({"text": text, "temple_ids": [order.temple_id], "until": (now + TRAY_SHOW).isoformat()},
+                          ensure_ascii=False)
+    db.add(st)
+    audit(db, "system", "alert", f"order:{order.id}", text=text)
+    log.info("Mâm lễ chưa khớp: %s", text)
+
+
+def active(db: Session, user, now: datetime | None = None) -> list[dict]:
     """Cảnh báo đang mở mà user được xem (admin: tất cả; nhân sự: đền của mình)."""
+    now = now or utcnow()
     out = []
-    for st in db.scalars(select(Setting).where(Setting.key.startswith(PREFIX))).all():
+    for st in db.scalars(select(Setting).where(Setting.key.startswith("alert:"))).all():
         try:
             d = json.loads(st.value)
         except ValueError:
+            continue
+        if d.get("until") and datetime.fromisoformat(d["until"]) < now:
             continue
         if user.is_admin or set(d.get("temple_ids") or []) & user.temple_ids:
             out.append(d)

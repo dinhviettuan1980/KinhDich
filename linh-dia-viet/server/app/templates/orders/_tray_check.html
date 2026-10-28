@@ -1,17 +1,21 @@
-{# Kết quả nhận diện mâm lễ (camera + AI đếm lễ vật, đối chiếu với đơn). Cần biến o. #}
+{# Kết quả nhận diện mâm lễ (camera + AI đếm lễ vật, đối chiếu với đơn): đủ / thiếu / thừa / ngoài đơn. Cần biến o. #}
 {% set tc = tray_check(o) %}
 {% if tc %}{% set ev, a = tc %}
 <div class="ld-card ld-check-card">
   <div class="ld-spread"><h3 style="margin:0">Kiểm tra mâm lễ</h3>
-    <span class="ld-badge {{ 'on' if a.ok else 'warn' }}">{{ 'Khớp đơn' if a.ok else 'Cần xem lại' }}</span></div>
+    <span class="ld-badge {{ 'on' if a.ok else 'warn' }}">{{ 'Khớp đơn' if a.ok else 'Chưa khớp đơn' }}</span></div>
   <p class="ld-muted small">Camera nhận diện trên ảnh {{ {'before': 'trước lễ', 'start': 'lúc khấn', 'after': 'sau lễ'}.get(ev.note, '') }}
     {% if a.provider == 'fake' %}(giả lập){% endif %}</p>
+  {% if a.problems %}<div class="ld-flash error"><ul style="margin:0;padding-left:1.2em">
+    {% for p in a.problems %}<li>{{ p }}</li>{% endfor %}</ul></div>{% endif %}
   <table class="ld-check-table">
     <tr><th>Lễ vật</th><th>Đặt</th><th>Thấy</th><th></th></tr>
-    {% for r in a['items'] %}<tr><td>{{ r.name }}{% if r.note %}<br><span class="ld-muted small">{{ r.note }}</span>{% endif %}</td>
-      <td>{{ r.expected }} {{ r.unit }}</td><td>{{ r.seen }}</td><td>{{ '✅' if r.ok else '⚠️' }}</td></tr>{% endfor %}
+    {% for r in a['items'] %}{% set st = r.status or ('du' if r.ok else 'thieu') %}
+    <tr><td>{{ r.name }}{% if r.note %}<br><span class="ld-muted small">{{ r.note }}</span>{% endif %}</td>
+      <td>{{ r.expected }} {{ r.unit }}</td><td>{{ r.seen }}</td>
+      <td>{% if st == 'du' %}✅ Đủ{% elif st == 'thieu' %}⚠️ Thiếu {{ r.expected - r.seen }}{% else %}⚠️ Thừa {{ r.seen - r.expected }}{% endif %}</td></tr>{% endfor %}
+    {% for x in a.extra %}<tr><td>{{ x }}</td><td>—</td><td>có</td><td>⚠️ Ngoài đơn</td></tr>{% endfor %}
   </table>
-  {% if a.extra %}<p class="ld-muted small" style="margin-bottom:0">Thấy thêm: {{ a.extra|join(', ') }}</p>{% endif %}
   {% if a.summary %}<p class="ld-muted small" style="margin-bottom:0">{{ a.summary }}</p>{% endif %}
 </div>
 {% endif %}

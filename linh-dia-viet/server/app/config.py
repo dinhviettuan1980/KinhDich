@@ -50,7 +50,7 @@ class Settings(BaseSettings):
     recognition_provider: str = "hfspace"
     recognition_url: str = "https://tuandv80-ocr-numbers.hf.space"
     tts_provider: str = "edge"  # edge | google | fpt | fake
-    tts_voice: str = "vi-VN-HoaiMyNeural"
+    tts_voice: str = "vi-VN-NamMinhNeural,-8%,-6Hz"  # giọng nam miền Bắc, đọc chậm & trầm hơn chút (Edge: tên,tốc độ,cao độ)
     google_tts_api_key: str = ""
     fpt_tts_api_key: str = ""
 

@@ -70,3 +70,21 @@ def test_signed_url():
     assert verify_signature("tts/abc.mp3", int(q["exp"]), q["sig"], now=1000)
     assert not verify_signature("tts/abc.mp3", int(q["exp"]), q["sig"], now=2000)  # hết hạn
     assert not verify_signature("tts/khac.mp3", int(q["exp"]), q["sig"], now=1000)
+
+
+def test_voice_spec_rate_pitch(monkeypatch, tmp_path):
+    """TTS_VOICE "tên,tốc độ,cao độ": Edge nhận rate/pitch; nhà cung cấp khác chỉ lấy tên giọng."""
+    assert tts.split_voice("vi-VN-NamMinhNeural,-8%,-6Hz") == ("vi-VN-NamMinhNeural", {"rate": "-8%", "pitch": "-6Hz"})
+    assert tts.split_voice("vi-VN-HoaiMyNeural") == ("vi-VN-HoaiMyNeural", {})
+    import edge_tts
+    calls = []
+
+    class FakeCommunicate:
+        def __init__(self, text, voice, **kw):
+            calls.append((voice, kw))
+
+        async def save(self, path):
+            Path(path).write_bytes(b"mp3")
+    monkeypatch.setattr(edge_tts, "Communicate", FakeCommunicate)
+    tts.EdgeTTS().synthesize("Nam mô A Di Đà Phật", "vi-VN-NamMinhNeural,-8%,-6Hz", tmp_path / "a.mp3")
+    assert calls == [("vi-VN-NamMinhNeural", {"rate": "-8%", "pitch": "-6Hz"})]

@@ -33,6 +33,13 @@ class TTSProvider(Protocol):
         """Ghi file âm thanh (mp3) cho một đoạn văn bản ngắn."""
 
 
+def split_voice(voice: str) -> tuple[str, dict]:
+    """"vi-VN-NamMinhNeural,-8%,-6Hz" → ("vi-VN-NamMinhNeural", {"rate": "-8%", "pitch": "-6Hz"}).
+    Tốc độ/cao độ chỉ Edge dùng; nhà cung cấp khác chỉ lấy tên giọng."""
+    name, *rest = (voice or "").split(",")
+    return name.strip(), {k: v.strip() for k, v in zip(("rate", "pitch"), rest) if v.strip()}
+
+
 class EdgeTTS:
     # edge-tts chạy gần bằng thời gian thực (VPS: ~22s cho 33s audio) → cắt theo câu và gọi song song rồi nối lại.
     name, max_chunk_bytes = "edge", 3000
@@ -44,6 +51,7 @@ class EdgeTTS:
 
     def synthesize_all(self, texts, voice, dsts):
         import edge_tts
+        name, prosody = split_voice(voice)
 
         async def run():
             sem = asyncio.Semaphore(self.concurrency)
@@ -52,7 +60,7 @@ class EdgeTTS:
                 async with sem:
                     for attempt in range(5):  # dịch vụ thỉnh thoảng trả NoAudioReceived khi gọi dồn dập
                         try:
-                            await edge_tts.Communicate(text, voice).save(str(dst))
+                            await edge_tts.Communicate(text, name, **prosody).save(str(dst))
                             return
                         except Exception:
                             if attempt == 4:
@@ -71,7 +79,7 @@ class GoogleTTS:
         if not key:
             raise TTSError("Thiếu GOOGLE_TTS_API_KEY")
         r = httpx.post("https://texttospeech.googleapis.com/v1/text:synthesize", params={"key": key}, timeout=60,
-                       json={"input": {"text": text}, "voice": {"languageCode": "vi-VN", "name": voice},
+                       json={"input": {"text": text}, "voice": {"languageCode": "vi-VN", "name": split_voice(voice)[0]},
                              "audioConfig": {"audioEncoding": "MP3"}})
         if r.status_code != 200:
             raise TTSError(f"Google TTS lỗi {r.status_code}")
@@ -87,7 +95,7 @@ class FptTTS:
         if not key:
             raise TTSError("Thiếu FPT_TTS_API_KEY")
         r = httpx.post("https://api.fpt.ai/hmi/tts/v5", content=text.encode(), timeout=30,
-                       headers={"api_key": key, "voice": voice, "speed": "0"})
+                       headers={"api_key": key, "voice": split_voice(voice)[0], "speed": "0"})
         url = r.json().get("async") if r.status_code == 200 else None
         if not url:
             raise TTSError(f"FPT TTS lỗi {r.status_code}")

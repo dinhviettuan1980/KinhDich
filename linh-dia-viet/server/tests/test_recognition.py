@@ -3,11 +3,13 @@ import json
 
 import httpx
 import pytest
+from sqlalchemy import select
 
 from app import recognition
 from app.config import get_settings
-from app.models import Order
-from conftest import P
+from app import alerts
+from app.models import AuditLog, Order, Temple, TempleStaff, User
+from conftest import P, login
 from test_m3_devices import move_play_time, run, setup  # noqa: F401  (fixture)
 
 ITEMS = [{"name": "Hương (nhang)", "unit": "bó", "qty": 3}, {"name": "Xôi gấc", "unit": "đĩa", "qty": 1}]
@@ -26,9 +28,10 @@ def _fake_space(monkeypatch, reply: dict, status=200):
 def test_hfspace_counts_items(monkeypatch):
     sent = _fake_space(monkeypatch, {"items": [{"name": "Hương (nhang)", "seen": 3, "note": ""},
                                                {"name": "Xôi gấc", "seen": 1, "note": "đĩa đỏ"}],
-                                     "extra": ["chén nước"], "summary": "Mâm đủ lễ."})
+                                     "extra": ["Bát hương", "mâm đồng"], "summary": "Mâm đủ lễ."})
     r = recognition.analyze(b"\xff\xd8jpeg", ITEMS, "hfspace")
-    assert r["ok"] and r["items"][1]["note"] == "đĩa đỏ" and r["extra"] == ["chén nước"]
+    assert r["ok"] and r["items"][1]["note"] == "đĩa đỏ" and r["problems"] == []
+    assert r["extra"] == []  # vật cố định của ban thờ không tính là lễ vật thừa
     assert sent["url"] == get_settings().recognition_url + "/tray"
     assert json.loads(sent["data"]["items"]) == ITEMS  # chỉ gửi ảnh + lễ vật, không có tên khách
     assert set(sent["data"]) == {"items"}
@@ -37,7 +40,16 @@ def test_hfspace_counts_items(monkeypatch):
 def test_missing_item_flagged(monkeypatch):
     _fake_space(monkeypatch, {"items": [{"name": "Hương (nhang)", "seen": 2}, {"name": "xôi gấc", "seen": "?"}]})
     r = recognition.analyze(b"x", ITEMS, "hfspace")
-    assert not r["ok"] and [(i["seen"], i["ok"]) for i in r["items"]] == [(2, False), (0, False)]
+    assert not r["ok"] and [(i["seen"], i["status"]) for i in r["items"]] == [(2, "thieu"), (0, "thieu")]
+    assert r["problems"] == ["Thiếu 1 bó Hương (nhang)", "Thiếu 1 đĩa Xôi gấc"]
+
+
+def test_extra_quantity_and_unlisted_items_flagged(monkeypatch):
+    _fake_space(monkeypatch, {"items": [{"name": "Hương (nhang)", "seen": 3}, {"name": "Xôi gấc", "seen": 2}],
+                              "extra": ["Gà luộc", "bát hương"]})
+    r = recognition.analyze(b"x", ITEMS, "hfspace")
+    assert not r["ok"] and [i["status"] for i in r["items"]] == ["du", "thua"]
+    assert r["problems"] == ["Thừa 1 đĩa Xôi gấc", "Ngoài đơn: Gà luộc"]
 
 
 def test_space_error_raises(monkeypatch):
@@ -67,3 +79,32 @@ def test_recognition_error_does_not_break_order(setup, db, monkeypatch):  # noqa
     run(db, agent, clock, at.timestamp() + 0.5)
     o = db.get(Order, order.id)
     assert o.status == "playing" and all("error" in e.analysis for e in o.evidence)
+
+
+def test_mismatch_alerts_temple_staff_only(setup, db, client, monkeypatch):  # noqa: F811
+    """Mâm thiếu → bảng kiểm tra trên trang lễ của khách; cảnh báo chỉ ở trang Quản lý của nhân sự đền đó, 1 lần/đơn,
+    không gửi Telegram."""
+    monkeypatch.setattr(get_settings(), "recognition_provider", "hfspace")
+    _fake_space(monkeypatch, {"items": [], "extra": ["rượu"]})
+    sent = []
+    monkeypatch.setattr(alerts, "send_telegram", lambda text: sent.append(text))
+    order, agent, clock = setup
+    at = move_play_time(db, order)
+    run(db, agent, clock)
+    run(db, agent, clock, at.timestamp() + 0.5)
+    db.expire_all()
+    o = db.get(Order, order.id)
+    assert len(o.evidence) >= 2 and all(not e.analysis["ok"] for e in o.evidence)
+    page = client.get(f"{P}/don/{o.id}").text  # khách tự xem
+    assert "Chưa khớp đơn" in page and "Thiếu" in page and "Ngoài đơn" in page and "rượu" in page
+    assert sum(1 for e in o.evidence if e.analysis.get("alerted")) == 1
+    assert db.query(AuditLog).filter(AuditLog.action == "alert", AuditLog.target == f"order:{o.id}").count() == 1
+    assert not [t for t in sent if "Mâm lễ" in t]  # không gửi Telegram
+    other = db.scalar(select(Temple).where(Temple.id != o.temple_id))
+    stranger = User(name="Kiosk khác", email="kiosk2@example.com", password_hash="x", role="vendor")
+    stranger.staff_of.append(TempleStaff(temple_id=other.id))
+    db.add(stranger)
+    db.commit()
+    assert alerts.active(db, stranger) == []  # nhân sự đền khác không thấy
+    login(client, "kiosk@example.com", "demo12345")
+    assert f"Mâm lễ chưa khớp đơn #{o.id}" in client.get(f"{P}/admin").text
