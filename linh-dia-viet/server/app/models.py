@@ -332,10 +332,10 @@ Order.evidence = relationship(Evidence, order_by=Evidence.captured_at)
 
 
 def tray_check(order: Order) -> tuple[Evidence, dict] | None:
-    """Kết quả nhận diện dùng để hiển thị: ưu tiên ảnh lúc khấn → trước lễ → sau lễ."""
-    rank = {"start": 0, "before": 1, "after": 2}
+    """Kết quả nhận diện dùng để hiển thị: ảnh lúc khấn (mâm đã bày xong) → sau lễ → trước lễ."""
+    rank = {"start": 0, "after": 1, "before": 2}
     done = [e for e in order.evidence if e.analysis and "items" in e.analysis]
     if not done:
         return None
-    ev = min(done, key=lambda e: (not e.analysis.get("ok"), rank.get(e.note or "", 9)))
+    ev = min(done, key=lambda e: rank.get(e.note or "", 9))
     return ev, ev.analysis

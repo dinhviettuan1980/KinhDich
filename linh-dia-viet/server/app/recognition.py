@@ -125,12 +125,18 @@ def analyze_evidence(evidence_id: int) -> None:
                 log.warning("Nhận diện ảnh %s (đơn %s) lỗi (lần %d): %s", ev.id, o.id, attempt + 1, e)
                 ev.analysis = {"provider": kind, "at": utcnow().isoformat(), "error": str(e)[:300]}
         db.commit()
-        a = ev.analysis
-        if a.get("problems") and not any((e.analysis or {}).get("alerted") for e in o.evidence if e.id != ev.id):
+        if ev.note != DECIDING_PHASE or "items" not in ev.analysis:
+            return  # ảnh trước lễ có thể chụp lúc còn đang bày mâm → chỉ ảnh lúc khấn quyết định có báo hay không
+        if ev.analysis["problems"]:
             _alert_mismatch(db, ev)
+        else:
+            from .alerts import clear_tray
+            clear_tray(db, o.id)
+            db.commit()
 
 
 PHASES = {"before": "trước lễ", "start": "lúc khấn", "after": "sau lễ"}
+DECIDING_PHASE = "start"  # ảnh lúc bắt đầu khấn: mâm đã bày xong
 
 
 def _alert_mismatch(db, ev) -> None:

@@ -86,6 +86,12 @@ def tray_mismatch(db: Session, order: Order, text: str, now: datetime | None = N
     log.info("Mâm lễ chưa khớp: %s", text)
 
 
+def clear_tray(db: Session, order_id: int) -> None:
+    st = db.get(Setting, TRAY_PREFIX + str(order_id))
+    if st:
+        db.delete(st)
+
+
 def active(db: Session, user, now: datetime | None = None) -> list[dict]:
     """Cảnh báo đang mở mà user được xem (admin: tất cả; nhân sự: đền của mình)."""
     now = now or utcnow()

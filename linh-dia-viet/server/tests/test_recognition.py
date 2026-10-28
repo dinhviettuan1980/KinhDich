@@ -133,3 +133,28 @@ def test_recognition_retries_when_space_times_out(setup, db, monkeypatch):  # no
     db.expire_all()
     ev = db.get(Order, order.id).evidence[0]
     assert ev.analysis["ok"] and "error" not in ev.analysis and len(calls) == 2
+
+
+def test_before_photo_mismatch_alone_does_not_alert(setup, db, client, monkeypatch):  # noqa: F811
+    """Ảnh trước lễ chụp lúc còn đang bày mâm: lệch cũng không báo; ảnh lúc khấn khớp → trang hiện "Khớp đơn"."""
+    monkeypatch.setattr(get_settings(), "recognition_provider", "hfspace")
+    calls = []
+
+    def post(url, files=None, data=None, timeout=None):
+        calls.append(1)
+        items = json.loads(data["items"])
+        seen = 0 if len(calls) == 1 else None  # ảnh đầu (trước lễ) thiếu hết
+        return httpx.Response(200, json={"items": [{"name": i["name"], "seen": i["qty"] if seen is None else 0}
+                                                   for i in items], "extra": []})
+    monkeypatch.setattr(recognition.httpx, "post", post)
+    order, agent, clock = setup
+    at = move_play_time(db, order)
+    run(db, agent, clock)
+    run(db, agent, clock, at.timestamp() + 0.5)
+    db.expire_all()
+    o = db.get(Order, order.id)
+    by = {e.note: e.analysis for e in o.photos}
+    assert not by["before"]["ok"] and by["start"]["ok"]
+    assert db.query(AuditLog).filter(AuditLog.action == "alert", AuditLog.target == f"order:{o.id}").count() == 0
+    page = client.get(f"{P}/don/{o.id}").text
+    assert "Khớp đơn" in page and "lúc khấn" in page
