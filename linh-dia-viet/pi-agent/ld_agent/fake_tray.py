@@ -22,7 +22,7 @@ TEXT_FONTS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
               "/System/Library/Fonts/Supplemental/Arial Bold.ttf", "/Library/Fonts/Arial Unicode.ttf"]
 
 # từ khoá (không dấu) trong tên lễ vật → emoji; "huong" vẽ tay
-ICONS = [("huong", None), ("nhang", None), ("nen", "🕯️"), ("hoa", "💐"), ("qua", "🍊"), ("trau", "🌿"),
+ICONS = [("huong", None), ("nhang", None), ("giay", "🍙"), ("sua", "🥛"), ("tien", "💵"), ("qua", "🍊"), ("nen", "🕯️"), ("hoa", "💐"), ("trau", "🌿"),
          ("cau", "🌿"), ("oan", "🍙"), ("xoi", "🍚"), ("ga", "🐓"), ("ruou", "🍶"), ("banh", "🍬"),
          ("keo", "🍬"), ("vang", "🧧"), ("ma", "🧧"), ("nuoc", "💧"), ("tra", "🍵"), ("chuoi", "🍌")]
 FRUITS = ["🍊", "🍎", "🍌", "🍇", "🍐"]

@@ -6,6 +6,7 @@ from pathlib import Path
 
 from sqlalchemy import create_engine, inspect, select
 
+from app import seed
 from app.db import Base
 from app.models import AuditLog, Device, OfferingPackage, Temple, User
 from conftest import P, csrf_of, login
@@ -15,7 +16,7 @@ def test_seed_data(db):
     assert db.scalar(select(Temple).where(Temple.slug == "den-ngoc-son")).device_id == "pi-demo-01"
     assert len(db.scalars(select(Temple)).all()) == 3
     items = db.scalars(select(OfferingPackage).order_by(OfferingPackage.sort)).all()
-    assert len(items) == 12 and items[0].unit == "bó" and all(i.max_qty >= 1 for i in items)
+    assert len(items) == len(seed.ITEMS) and items[0].unit == "bó" and all(i.max_qty >= 1 for i in items)
     assert db.get(Device, "pi-demo-01").token_hash != "dev-device-token-change-me"
     admin = db.scalar(select(User).where(User.role == "admin"))
     assert admin.password_hash.startswith("$argon2")

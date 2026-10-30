@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from . import db as dbmod
 from .config import get_settings
-from .models import Device, OfferingPackage, PrayerTemplate, Temple, TempleStaff, User
+from .models import Device, OfferingPackage, PrayerTemplate, Setting, Temple, TempleStaff, User
 from .prayer_text import DEFAULT_TEMPLATE
 from .security import hash_password, hash_token
 
@@ -37,7 +37,14 @@ ITEMS = [
     dict(name="Bánh kẹo", unit="gói", price=30_000, max_qty=5, description="Bánh kẹo, chè lam."),
     dict(name="Vàng mã", unit="bộ", price=50_000, max_qty=5, description="Tiền vàng, sớ giấy (đốt sau lễ)."),
     dict(name="Nước sạch", unit="chai", price=10_000, max_qty=5, description="Chai nước tinh khiết."),
+    # v2: món lẻ cho mâm nhỏ
+    dict(name="Hoa quả", unit="quả", price=15_000, max_qty=10, description="Cam, quýt, bưởi… tính theo từng quả."),
+    dict(name="Bánh giầy giò", unit="cái", price=25_000, max_qty=10, description="Bánh giầy kẹp giò lụa, lót lá chuối."),
+    dict(name="Sữa hộp", unit="hộp", price=10_000, max_qty=10, description="Hộp sữa tươi nhỏ."),
+    dict(name="Trà", unit="gói", price=30_000, max_qty=5, description="Gói chè/trà khô dâng lễ."),
+    dict(name="Tiền giọt dầu", unit="tờ", price=10_000, max_qty=10, description="Tờ tiền lẻ đặt lên mâm, sau lễ bỏ hòm công đức."),
 ]
+CATALOG_VERSION = "2"  # tăng khi thêm món vào ITEMS: lần seed sau bổ sung món còn thiếu (1 lần, không hồi sinh món admin đã xoá)
 
 
 def seed(db: Session) -> None:
@@ -53,6 +60,16 @@ def seed(db: Session) -> None:
     if not db.scalar(select(OfferingPackage)):
         for i, it in enumerate(ITEMS):
             db.add(OfferingPackage(**it, sort=i))
+        db.merge(Setting(key="seed:catalog", value=CATALOG_VERSION))
+    elif (db.get(Setting, "seed:catalog") or Setting(value="1")).value != CATALOG_VERSION:
+        have = set(db.scalars(select(OfferingPackage.name).where(OfferingPackage.temple_id.is_(None))))
+        top = max(db.scalars(select(OfferingPackage.sort)), default=0)
+        for it in ITEMS:
+            if it["name"] not in have:
+                top += 1
+                db.add(OfferingPackage(**it, sort=top))
+                log.info("Thêm lễ vật mới vào danh mục: %s", it["name"])
+        db.merge(Setting(key="seed:catalog", value=CATALOG_VERSION))
     if not db.scalar(select(PrayerTemplate).where(PrayerTemplate.temple_id.is_(None))):
         db.add(PrayerTemplate(name="Mẫu chung", body=DEFAULT_TEMPLATE))
     db.flush()
