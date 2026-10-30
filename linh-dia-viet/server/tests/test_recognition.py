@@ -158,3 +158,11 @@ def test_before_photo_mismatch_alone_does_not_alert(setup, db, client, monkeypat
     assert db.query(AuditLog).filter(AuditLog.action == "alert", AuditLog.target == f"order:{o.id}").count() == 0
     page = client.get(f"{P}/don/{o.id}").text
     assert "Khớp đơn" in page and "lúc khấn" in page
+
+
+@pytest.mark.parametrize("thing,ignored", [
+    ("Đĩa nhựa trắng", True), ("Bát hương", True), ("khay inox", True), ("Một cái đĩa sứ trắng trống", True),
+    ("Đĩa xôi", False), ("Khay hoa quả", False), ("Lọ hoa", False), ("rượu", False), ("chén nước", False)])
+def test_empty_containers_are_not_extra_offerings(thing, ignored):
+    """Camera thật (đơn #28): AI liệt kê "Đĩa nhựa trắng" đựng hương → đồ đựng trống không tính là lễ vật ngoài đơn."""
+    assert recognition._is_fixture(thing) is ignored

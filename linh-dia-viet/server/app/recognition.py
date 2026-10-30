@@ -49,8 +49,13 @@ def _call_fake(image: bytes, items: list[dict]) -> dict:
 
 
 # vật cố định của ban thờ / khung ảnh — AI hay liệt kê vào "extra" nhưng không phải lễ vật thừa
-FIXTURES = ("bat huong", "lu huong", "ban tho", "mam", "khay", "tuong", "anh tho", "khan", "bai vi", "chu", "nhan",
-            "anh gia lap", "khung", "bat", "chan nen", "den")
+FIXTURES = ("bat huong", "lu huong", "ban tho", "tuong", "anh tho", "khan", "bai vi", "chu", "nhan",
+            "anh gia lap", "khung", "chan nen", "den")
+# đồ đựng trống (đĩa nhựa trắng, khay inox…) cũng bỏ qua; "đĩa xôi", "khay hoa quả" vẫn tính là lễ vật ngoài đơn
+CONTAINERS = {"dia", "bat", "chen", "coc", "ly", "khay", "mam", "to", "ong", "hop", "tui", "de", "gia", "lo", "binh"}
+DESCRIPTORS = set("""nhua su gom thuy tinh inox nhom dong go giay tre may la trang do den xanh vang bac hong nau xam
+    trong rong nho lon to tron vuong dai bau sau duc suot sach cu moi mau sac tren ban duoi ben canh mot cai
+    chiec dung khong co""".split())
 
 
 def _plain(s: str) -> str:
@@ -59,8 +64,11 @@ def _plain(s: str) -> str:
 
 
 def _is_fixture(thing: str) -> bool:
-    p = _plain(thing)
-    return any(p == f or p.startswith(f + " ") for f in FIXTURES)
+    words = [w for w in _plain(thing).replace(",", " ").split() if w not in ("mot", "cai", "chiec")]
+    p = " ".join(words)
+    if any(p == f or p.startswith(f + " ") for f in FIXTURES):
+        return True
+    return bool(words) and words[0] in CONTAINERS and all(w in DESCRIPTORS or w.isdigit() for w in words[1:])
 
 
 def problems(a: dict) -> list[str]:
