@@ -38,12 +38,12 @@ def card(path, lines, sub=None):
 card(D / "title.png", [("Linh Địa Việt", 96, FONT, (255, 225, 160)),
                        ("Lễ chùa từ xa", 60, FONT_R, "white"), ("", 30, FONT_R, "white"),
                        ("Demo quy trình khách hàng", 52, FONT, "white"),
-                       ("đăng ký → sắm lễ → dâng sớ → chốt → xem lại", 40, FONT_R, (240, 220, 200))])
-card(D / "clipcard.png", [("Clip xem lại", 92, FONT, (255, 225, 160)),
-                          ("khách nhận trong Lịch sử lễ", 52, FONT_R, "white"), ("", 30, FONT_R, "white"),
-                          ("Mâm lễ trước – trong – sau khi khấn", 44, FONT_R, (240, 220, 200)),
-                          ("kèm bài khấn đã đọc tại đền (bật tiếng)", 44, FONT_R, (240, 220, 200)),
-                          ("Ảnh mâm hiện là ảnh giả lập — sẽ thay bằng camera thật", 34, FONT_R, (230, 190, 150))])
+                       ("đăng nhập → sắm lễ → dâng sớ → đọc ngay → xem lại" if m.get("login")
+                        else "đăng ký → sắm lễ → dâng sớ → chốt → xem lại", 40, FONT_R, (240, 220, 200))])
+card(D / "clipcard.png", [("Video tại đền", 92, FONT, (255, 225, 160)),
+                          ("khách xem lại trong Lịch sử lễ", 52, FONT_R, "white"), ("", 30, FONT_R, "white"),
+                          ("Camera quay mâm lễ lúc đọc sớ", 44, FONT_R, (240, 220, 200)),
+                          ("kèm tiếng khấn thu tại chỗ (bật tiếng)", 44, FONT_R, (240, 220, 200))])
 # nhãn tua nhanh
 im = Image.new("RGBA", (420, 90), (0, 0, 0, 0))
 d = ImageDraw.Draw(im)

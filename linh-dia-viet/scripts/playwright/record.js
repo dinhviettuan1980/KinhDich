@@ -6,6 +6,10 @@ const fs = require("fs");
 const BASE = "https://tuandv.id.vn/le-chua";
 const OUT = __dirname + "/out";
 const W = 540, H = 1170;
+const LOGIN = process.env.LD_LOGIN || "";  // "email:mật khẩu"
+// LD_ITEMS="Hương (nhang)=1;Hoa quả=3" — lễ vật đúng như mâm đang bày trước camera
+const ITEMS = (process.env.LD_ITEMS || "Hương (nhang)=3;Nến=1;Hoa tươi=1;Ngũ quả=1;Xôi gấc=2;Gà luộc=1")
+  .split(";").map(x => x.split("=")).map(([n, q]) => [n.trim(), +q]);
 
 const OVERLAY = `
 (() => {
@@ -55,28 +59,41 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const type = async (sel, text) => { await page.click(sel); await page.type(sel, text, { delay: 55 }); await sleep(250); };
   const scrollTo = async (sel) => { await page.locator(sel).first().scrollIntoViewIfNeeded(); await sleep(700); };
 
-  // 1. Đăng ký
-  await page.goto(BASE + "/dang-ky");
-  await cap("Bước 1 · Đăng ký tài khoản", "Họ tên, ngày sinh, địa chỉ — đủ để lập tờ sớ, chỉ nhập một lần");
-  await sleep(1500);
-  await type("#n", "Nguyễn Văn An");
-  await page.fill("#ns", "1985-03-12"); await sleep(600);
-  await type("#dc", "Cầu Giấy, Hà Nội");
-  const email = "khach-" + Math.random().toString(16).slice(2, 8) + "@example.com";
-  await type("#i", email);
-  await type("#p", "demo-password");
-  await sleep(600);
-  await page.click("button:has-text('Tiếp tục')");
+  // 1–2. Tài khoản: LD_LOGIN="email:mật khẩu" → đăng nhập tài khoản có sẵn (đã có hồ sơ + thẻ); không thì đăng ký mới
+  let email;
+  if (LOGIN) {
+    email = LOGIN.slice(0, LOGIN.indexOf(":"));
+    await page.goto(BASE + "/dang-nhap");
+    await cap("Bước 1 · Đăng nhập", "Khách đã có tài khoản: hồ sơ tín chủ và thẻ thanh toán lưu sẵn");
+    await sleep(1500);
+    await type("#i1", email);
+    await type("#p1", LOGIN.slice(LOGIN.indexOf(":") + 1));
+    await page.click("button:has-text('Đăng nhập')");
+    await page.waitForURL(u => !/dang-nhap/.test(u.toString()));
+  } else {
+    // 1. Đăng ký
+    await page.goto(BASE + "/dang-ky");
+    await cap("Bước 1 · Đăng ký tài khoản", "Họ tên, ngày sinh, địa chỉ — đủ để lập tờ sớ, chỉ nhập một lần");
+    await sleep(1500);
+    await type("#n", "Nguyễn Văn An");
+    await page.fill("#ns", "1985-03-12"); await sleep(600);
+    await type("#dc", "Cầu Giấy, Hà Nội");
+    email = "khach-" + Math.random().toString(16).slice(2, 8) + "@example.com";
+    await type("#i", email);
+    await type("#p", "demo-password");
+    await sleep(600);
+    await page.click("button:has-text('Tiếp tục')");
 
-  // 2. Thẻ
-  await page.waitForURL(/tai-khoan\/the/);
-  await cap("Bước 2 · Liên kết thẻ thanh toán", "Bản thử nghiệm: thẻ giả lập, không trừ tiền thật");
-  await sleep(1500);
-  await type("#so_the", "4242 4242 4242 4242");
-  await type("#het_han", "12/28");
-  await type("#cvc", "123");
-  await sleep(500);
-  await page.click("button:has-text('Liên kết thẻ')");
+    // 2. Thẻ
+    await page.waitForURL(/tai-khoan\/the/);
+    await cap("Bước 2 · Liên kết thẻ thanh toán", "Bản thử nghiệm: thẻ giả lập, không trừ tiền thật");
+    await sleep(1500);
+    await type("#so_the", "4242 4242 4242 4242");
+    await type("#het_han", "12/28");
+    await type("#cvc", "123");
+    await sleep(500);
+    await page.click("button:has-text('Liên kết thẻ')");
+  }
 
   // 3. Chọn đền
   await page.waitForURL(u => !/tai-khoan/.test(u.toString()));
@@ -94,8 +111,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await page.waitForURL(/dat-le/);
   await cap("Bước 4 · Sắm lễ vật", "Bấm + / − chọn số lượng từng món, tạm tính tự cộng");
   await sleep(1200);
-  const items = [["Hương (nhang)", 3], ["Nến", 1], ["Hoa tươi", 1], ["Ngũ quả", 1], ["Xôi gấc", 2], ["Gà luộc", 1]];
-  for (const [name, n] of items) {
+  for (const [name, n] of ITEMS) {
     const row = page.locator(".ld-item", { has: page.locator(`b:text-is("${name}")`) });
     await row.scrollIntoViewIfNeeded(); await sleep(300);
     for (let i = 0; i < n; i++) { await row.locator("[data-step='1']").click(); await sleep(420); }
@@ -145,7 +161,13 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   // 9. Xem lại
   await page.request.get(orderUrl + "/clip", { timeout: 180000 });  // dựng clip trước để không phải chờ
   await page.reload();
-  await cap("Bước 9 · Xem lại: ảnh mâm lễ & clip", "Ảnh trước – trong – sau lễ, clip kèm bài khấn đã đọc tại đền");
+  for (let i = 0; i < 30 && !(await page.locator(".ld-check-card").count()); i++) {  // AI nhận diện ảnh lúc khấn (≤ ~5 phút)
+    await sleep(10000); await page.reload();
+  }
+  mark.waitEnd = (Date.now() - t0) / 1000;  // đoạn chờ nhận diện cũng tua nhanh
+  await cap("Bước 9 · Kiểm tra mâm lễ", "Camera + AI đếm từng lễ vật, đối chiếu với đơn: đủ / thiếu / thừa");
+  await scrollTo(".ld-check-card"); await sleep(4000);
+  await cap("Bước 9 · Video tại đền", "Quay mâm lễ kèm tiếng đọc sớ thu tại chỗ — bật tiếng để nghe");
   await scrollTo("video.ld-clip"); await sleep(1500);
   await sleep(3500);  // clip có tiếng được ghép vào cuối video demo
   await scrollTo(".ld-photos"); await sleep(2500);
@@ -160,6 +182,6 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await ctx.close();
   await browser.close();
   fs.renameSync(await video.path(), OUT + "/screen.webm");
-  fs.writeFileSync(OUT + "/marks.json", JSON.stringify({ ...mark, order: orderUrl, email }, null, 1));
+  fs.writeFileSync(OUT + "/marks.json", JSON.stringify({ ...mark, order: orderUrl, email, login: !!LOGIN }, null, 1));
   console.log(JSON.stringify({ ...mark, order: orderUrl, email }));
 })().catch(e => { console.error(e); process.exit(1); });

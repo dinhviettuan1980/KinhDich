@@ -5,6 +5,8 @@ cd scripts/playwright
 npm install && npx playwright install chromium
 node iphone.js      # đăng ký tài khoản thử → chụp các màn hình chính khổ iPhone 13 vào iphone/, báo tràn ngang
 node record.js      # quay toàn bộ quy trình khách (đăng ký → thẻ → đặt lễ → chờ Pi → xem lại) vào out/
+# Khách đã có tài khoản + lễ vật đúng như mâm đang bày trước camera:
+LD_LOGIN="email:mật khẩu" LD_ITEMS="Hương (nhang)=1;Hoa quả=3;Sữa hộp=1" node record.js
 python build.py     # dựng video demo cuối: tiêu đề + quay màn hình (đoạn chờ tua ×4) + clip tại đền (cần ffmpeg, Pillow)
 ```
 
