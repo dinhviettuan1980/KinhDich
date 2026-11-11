@@ -1,13 +1,13 @@
 """Trang đơn của khách: lịch sử, theo dõi (dòng thời gian cập nhật bằng polling HTMX), hủy, nghe lại."""
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import FileResponse, RedirectResponse
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 import logging
 import threading
 
-from .. import clips, orders as svc
+from .. import clips, devices, orders as svc
 from ..db import get_db
 from ..models import Order, User
 from ..security import check_csrf
@@ -40,7 +40,9 @@ def timeline(o: Order) -> list[dict]:
 
 
 def detail_ctx(db: Session, o: Order) -> dict:
-    return {"o": o, "timeline": timeline(o), "status_label": LABELS[S(o.status)], "can_cancel": svc.can_user_cancel(o),
+    n = db.scalar(select(func.count()).select_from(Order).where(Order.booking_ref == o.booking_ref,
+                                                                 Order.user_id == o.user_id))
+    return {"group_size": n, "o": o, "timeline": timeline(o), "status_label": LABELS[S(o.status)], "can_cancel": svc.can_user_cancel(o),
             "final": S(o.status) in TERMINAL or o.status in ("rejected", "cancelled", "failed"),
             "evidence": o.photos, "video": o.video,
             "has_clip": bool(o.video) or bool(o.clip_key) or clips.can_build(o)}
@@ -54,8 +56,54 @@ def history(request: Request, db: Session = Depends(get_db), user: User = Depend
         ph = sorted(o.photos, key=lambda e: (e.note == "after", e.id))
         if ph:
             cover[o.id] = ph[-1].id
-    return render(request, "orders/list.html", {"orders": orders, "labels": LABELS, "cover": cover,
+    sizes: dict[str, int] = {}
+    for o in orders:
+        sizes[o.booking_ref] = sizes.get(o.booking_ref, 0) + 1
+    return render(request, "orders/list.html", {"group_size": sizes, "orders": orders, "labels": LABELS, "cover": cover,
                                                 "new_ref": request.query_params.get("moi", "")})
+
+
+def group_rows(db: Session, ref: str, user: User) -> list[dict]:
+    q = select(Order).where(Order.booking_ref == ref).order_by(Order.id)
+    if not user.is_admin:
+        q = q.where(Order.user_id == user.id)
+    rows = []
+    for o in db.scalars(q).all():
+        job = devices.current_job(o)
+        dev = o.temple.device
+        rows.append({"o": o, "job": job, "label": LABELS[S(o.status)], "photos": o.photos, "video": o.video,
+                     "kind": ((dev.last_status or {}).get("kind") or "pi") if dev else None,
+                     "start": job.playing_at if job else None, "end": job.done_at if job and job.state == "done" else None})
+    return rows
+
+
+def group_summary(rows: list[dict]) -> dict:
+    """Bằng chứng "cùng lúc": khoảng cách giữa giờ bắt đầu phát sớm nhất và muộn nhất do các thiết bị tự báo."""
+    starts = [r["start"] for r in rows if r["start"]]
+    spread = (max(starts) - min(starts)).total_seconds() if len(starts) >= 2 else None
+    return {"n": len(rows), "played": len(starts), "spread": spread,
+            "simultaneous": spread is not None and len(starts) == len(rows) and spread <= 5,
+            "evidence_ok": sum(1 for r in rows if r["photos"] or r["video"])}
+
+
+@router.get("/lo/{ref}")
+def group(ref: str, request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
+    """Một lần đặt ở nhiều đền: đặt các nơi cạnh nhau để thấy bài khấn và mâm lễ diễn ra cùng lúc."""
+    rows = group_rows(db, ref, user)
+    if not rows:
+        raise HTTPException(404)
+    return render(request, "orders/group.html", {"rows": rows, "sum": group_summary(rows), "ref": ref,
+                                                 "final": all(r["o"].status in ("completed", "failed", "rejected", "cancelled")
+                                                              for r in rows),
+                                                 "prayer": rows[0]["o"].prayer, "o": rows[0]["o"]})
+
+
+@router.get("/lo/{ref}/trang-thai")
+def group_status(ref: str, request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
+    rows = group_rows(db, ref, user)
+    if not rows:
+        raise HTTPException(404)
+    return render(request, "orders/_group_body.html", {"rows": rows, "sum": group_summary(rows), "ref": ref})
 
 
 @router.get("/{order_id}")

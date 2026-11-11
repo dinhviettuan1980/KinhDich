@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Linh Địa Việt · Thiết bị điện thoại</title>
+<style>
+  body{margin:0;background:#1a0f0f;color:#f3e6d0;font:16px/1.45 system-ui,sans-serif;padding:16px}
+  h1{font-size:18px;margin:0 0 4px} p{margin:6px 0;color:#d9c7a8}
+  input{width:100%;box-sizing:border-box;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #6b3a2e;background:#2a1816;color:#fff;font-size:16px}
+  button{width:100%;padding:14px;border:0;border-radius:10px;background:#b8860b;color:#fff;font-size:17px;font-weight:600;margin-top:8px}
+  video{width:100%;border-radius:10px;background:#000;max-height:46vh}
+  .pill{display:inline-block;padding:3px 12px;border-radius:99px;background:#444;font-size:14px}
+  .pill.ok{background:#2e6b3a}.pill.bad{background:#8a2a2a}
+  ul{list-style:none;padding:0;margin:10px 0;font-size:13px;max-height:34vh;overflow:auto}
+  li{padding:3px 0;border-bottom:1px solid #3a2420}li.ok{color:#9be0a8}li.bad{color:#ff9d9d}
+  .muted{font-size:12px;color:#a58f78}
+</style>
+</head>
+<body>
+<h1>🛕 Linh Địa Việt · Thiết bị điện thoại</h1>
+<div id="setup">
+  <p>Điện thoại này đóng vai một đền: phát bài khấn ra loa (loa máy, Bluetooth hoặc dây 3.5 mm) và quay mâm lễ bằng camera sau.</p>
+  <input id="did" placeholder="Mã thiết bị (vd phone-demo-01)" autocomplete="off" autocapitalize="off">
+  <input id="tok" placeholder="Token thiết bị" autocomplete="off" autocapitalize="off">
+  <button id="go">Bắt đầu nhận lệnh</button>
+  <p class="muted">Cần Chrome, kết nối HTTPS. Bấm nút một lần để cho phép camera, micro và âm thanh. Sau đó cắm sạc, để màn hình sáng và không đóng trang.</p>
+</div>
+<div id="run" hidden>
+  <div><span id="state" class="pill">…</span> <span id="offset" class="muted"></span></div>
+  <video id="cam" playsinline muted></video>
+  <ul id="log"></ul>
+</div>
+<script src="{{ u('/static/phone.js') }}?v=1"></script>
+</body>
+</html>

@@ -50,6 +50,13 @@ def temple_detail(slug: str, request: Request, db: Session = Depends(get_db), us
     })
 
 
+@router.get("/may")
+def phone_device(request: Request):
+    """Trang biến điện thoại Android thành một thiết bị đền (loa + camera + micro của máy). Không cần đăng nhập:
+    quyền nằm ở mã + token thiết bị (tạo ở Admin → Thiết bị)."""
+    return render(request, "device/phone.html", {})
+
+
 @router.get("/healthz")
 def healthz():
     return {"ok": True}

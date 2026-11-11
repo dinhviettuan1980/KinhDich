@@ -3,12 +3,12 @@ import io
 import uuid
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, BackgroundTasks, Depends, File, Form, Header, HTTPException, UploadFile
+from fastapi import APIRouter, BackgroundTasks, Body, Depends, File, Form, Header, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from PIL import Image
 from sqlalchemy.orm import Session
 
-from .. import devices, recognition
+from .. import audio, devices, recognition
 from ..db import get_db
 from ..models import Device, DeviceJob
 from ..security import token_matches
@@ -67,6 +67,24 @@ def _parse_ts(s: str) -> datetime:
         return datetime.now(timezone.utc)
 
 
+@router.post("/api/device/poll")
+def device_poll(status: dict = Body(default_factory=dict), dev: Device = Depends(device_auth),
+                db: Session = Depends(get_db)):
+    """Kênh HTTP cho điện thoại: báo trạng thái + nhận việc (xem devices.web_poll)."""
+    safe = {k: v for k, v in status.items() if k in ("net", "rssi", "volume", "version", "camera", "clock_synced",
+                                                    "battery", "clock_offset_ms", "kind", "queue")}
+    out = devices.web_poll(db, dev, safe)
+    db.commit()
+    return out
+
+
+@router.post("/api/device/ack")
+def device_ack(payload: dict = Body(...), dev: Device = Depends(device_auth), db: Session = Depends(get_db)):
+    devices.handle_ack(db, dev.id, payload)
+    db.commit()
+    return {"ok": True}
+
+
 @router.post("/api/device/evidence")
 async def upload_evidence(background: BackgroundTasks, job_id: str = Form(""), phase: str = Form(...),
                           captured_at: str = Form(""), file: UploadFile = File(...),
@@ -100,6 +118,11 @@ async def upload_evidence(background: BackgroundTasks, job_id: str = Form(""), p
 def _save_video(db: Session, dev: Device, job_id: str, captured_at: str, data: bytes) -> dict:
     if len(data) > MAX_VIDEO_BYTES:
         raise HTTPException(413, "Video quá lớn")
+    if data[:4] == b"\x1a\x45\xdf\xa3":  # WebM (Chrome Android cũ chưa quay được MP4) → đổi sang MP4
+        try:
+            data = audio.webm_to_mp4(data)
+        except audio.AudioError:
+            raise HTTPException(415, "Video WebM hỏng")
     if data[4:8] != b"ftyp":  # chữ ký MP4, không tin đuôi file
         raise HTTPException(415, "Chỉ nhận video MP4")
     job = db.get(DeviceJob, job_id)

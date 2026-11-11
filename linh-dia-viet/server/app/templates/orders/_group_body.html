@@ -1,0 +1,31 @@
+{% set t = '%H:%M:%S' %}
+<div class="ld-card" style="border-left:4px solid {% if sum.simultaneous %}#2e6b3a{% else %}#b8860b{% endif %}">
+  {% if sum.simultaneous %}
+    <b style="color:#2e6b3a">✔ Đã khấn đồng thời tại {{ sum.n }} nơi</b><br>
+    <span class="ld-muted">Các thiết bị tự báo giờ bắt đầu đọc sớ, lệch nhau {{ '%.1f'|format(sum.spread) }} giây.</span>
+  {% elif sum.played == sum.n and sum.spread is not none %}
+    <b>Đã khấn tại {{ sum.n }} nơi</b><br><span class="ld-muted">Giờ bắt đầu lệch nhau {{ '%.1f'|format(sum.spread) }} giây.</span>
+  {% else %}
+    <b>Đang thực hiện:</b> {{ sum.played }}/{{ sum.n }} nơi đã bắt đầu đọc sớ.
+  {% endif %}
+  {% if sum.evidence_ok %}<br><span class="ld-muted">Đã có ảnh/video mâm lễ từ {{ sum.evidence_ok }}/{{ sum.n }} nơi.</span>{% endif %}
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
+{% for r in rows %}{% set o = r.o %}
+<div class="ld-card">
+  <div class="ld-spread"><b>{{ o.temple.name }}</b>
+    <span class="ld-badge {% if o.status in ('failed','rejected','cancelled') %}off{% elif o.status == 'completed' %}on{% else %}warn{% endif %}">{{ r.label }}</span></div>
+  <div class="ld-muted small">Thiết bị: {{ 'Điện thoại Android' if r.kind == 'phone' else 'Raspberry Pi' }}{% if o.temple.device %} · {{ o.temple.device.id }}{% endif %}</div>
+  <p style="margin:8px 0">
+    <b>Bắt đầu đọc sớ:</b> {{ fmt_local(r.start, o.timezone, t) if r.start else '—' }}<br>
+    <b>Đọc xong:</b> {{ fmt_local(r.end, o.timezone, t) if r.end else '—' }}
+  </p>
+  {% if r.video %}
+    <video controls playsinline preload="metadata" style="width:100%;border-radius:8px" src="{{ u('/don/' ~ o.id ~ '/clip') }}"></video>
+  {% elif r.photos %}
+    <img style="width:100%;border-radius:8px" alt="Mâm lễ" src="{{ u('/don/' ~ o.id ~ '/anh/' ~ r.photos[-1].id) }}">
+  {% else %}<p class="ld-muted small">Chưa có ảnh mâm lễ.</p>{% endif %}
+  <a class="small" href="{{ u('/don/' ~ o.id) }}">Chi tiết đơn #{{ o.id }} →</a>
+</div>
+{% endfor %}
+</div>

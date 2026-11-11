@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Lễ đồng thời{% endblock %}
+{% block content %}
+<h1>Lễ đồng thời · {{ rows|length }} nơi</h1>
+<div class="ld-card"><p><b>Tín chủ:</b> {{ prayer.full_name }} ({{ prayer.birth_year }}) · <b>Mã đặt:</b> {{ ref }}</p></div>
+<div id="grp" {% if not final %}hx-get="{{ u('/don/lo/' ~ ref ~ '/trang-thai') }}" hx-trigger="every 3s" hx-swap="innerHTML"{% endif %}>
+{% include "orders/_group_body.html" %}
+</div>
+<p><a class="ld-btn secondary" href="{{ u('/don') }}">← Lịch sử lễ</a></p>
+{% endblock %}

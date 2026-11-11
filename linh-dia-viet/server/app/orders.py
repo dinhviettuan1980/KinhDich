@@ -69,17 +69,20 @@ def prepare_audio(db: Session, order: Order) -> None:
     order.audio_sha256 = sha256_file(get_storage().local_path(key))
 
 
-def try_schedule(db: Session, order: Order, actor: str = "system") -> bool:
-    """paid → scheduled khi bài khấn đã duyệt và audio sẵn sàng."""
+def try_schedule(db: Session, order: Order, actor: str = "system", at: datetime | None = None,
+                 prepared: bool = False) -> bool:
+    """paid → scheduled khi bài khấn đã duyệt và audio sẵn sàng.
+    at: giờ phát chung của cả lần đặt (nhiều đền) — chỉ áp cho đơn "phát ngay"; prepared: audio đã tạo rồi."""
     if order.status != S.PAID or order.prayer.moderation != "approved":
         return False
-    try:
-        prepare_audio(db, order)
-    except Exception as e:  # TTS lỗi mạng… → giữ 'paid', vòng nền thử lại
-        log.warning("Chưa tạo được audio cho đơn %s: %s", order.id, e)
-        return False
+    if not prepared:
+        try:
+            prepare_audio(db, order)
+        except Exception as e:  # TTS lỗi mạng… → giữ 'paid', vòng nền thử lại
+            log.warning("Chưa tạo được audio cho đơn %s: %s", order.id, e)
+            return False
     if order.play_asap:  # "phát ngay": tính từ lúc xếp lịch (sau thanh toán / sau khi duyệt), không phải lúc đặt
-        order.scheduled_at = utcnow() + timedelta(seconds=get_settings().asap_delay_seconds)
+        order.scheduled_at = at or utcnow() + timedelta(seconds=get_settings().asap_delay_seconds)
     # Giành quyền xếp lịch bằng UPDATE có điều kiện: tác vụ nền sau thanh toán và vòng nền có thể cùng chạy
     # (TTS mất vài chục giây) — chỉ một bên thắng, bên còn lại không tạo job thứ hai.
     claimed = db.execute(update(Order).where(Order.id == order.id, Order.status == S.PAID)
@@ -93,6 +96,26 @@ def try_schedule(db: Session, order: Order, actor: str = "system") -> bool:
     from . import hooks
     hooks.on_scheduled(db, order)
     return True
+
+
+def schedule_group(db: Session, orders: list[Order], actor: str = "system") -> int:
+    """Xếp lịch các đơn cùng 1 lần đặt (nhiều đền) với CÙNG một giờ phát.
+    Tạo xong audio của mọi đơn rồi mới chốt giờ, nên đền nào có TTS chậm cũng không làm lệch các đền khác.
+    Đơn nào chưa tạo được audio thì để 'paid' cho vòng nền thử lại. Trả về số đơn đã xếp lịch."""
+    ready = []
+    for o in orders:
+        if o.status != S.PAID or o.prayer.moderation != "approved":
+            continue
+        try:
+            prepare_audio(db, o)
+            ready.append(o)
+        except Exception as e:
+            log.warning("Chưa tạo được audio cho đơn %s: %s", o.id, e)
+    s = get_settings()
+    # nhiều đền: chừa thêm thời gian để mọi Pi/điện thoại tải xong file (Pi Zero, 4G… chậm hơn)
+    delay = s.asap_delay_seconds if len(orders) <= 1 else max(s.asap_delay_seconds, s.group_asap_delay_seconds)
+    at = utcnow() + timedelta(seconds=delay)
+    return sum(try_schedule(db, o, actor, at=at, prepared=True) for o in ready)
 
 
 # ---------------- Thanh toán ----------------
@@ -128,27 +151,25 @@ def payment_result(db: Session, txn_ref: str, success: bool, actor: str, schedul
             if o.status == S.CANCELLED:
                 transition(db, o, S.REFUND_REQUESTED, actor, "Thanh toán sau khi đơn đã hủy")
     if schedule:
-        for o in paid:
-            try_schedule(db, o, actor)
+        schedule_group(db, paid, actor)
     return paid
 
 
 def schedule_in_background(order_ids: list[int], actor: str, retries: int = 3, wait_s: float = 3.0) -> None:
     """Tạo audio (TTS có thể mất vài chục giây) + xếp lịch sau khi đã trả response thanh toán.
-    TTS lỗi tạm thời (dịch vụ giọng đọc từ chối) → thử lại ngay vài lần; vẫn lỗi thì vòng nền (devices.tick) lo tiếp."""
+    Các đơn của 1 lần đặt được xếp cùng một giờ phát. TTS lỗi tạm thời → thử lại ngay vài lần;
+    vẫn lỗi thì vòng nền (devices.tick) lo tiếp."""
     import time
     from . import db as dbmod
     with dbmod.SessionLocal() as db:
-        for oid in order_ids:
-            for attempt in range(retries + 1):
-                o = db.get(Order, oid)
-                if not o:
-                    break
-                ok = try_schedule(db, o, actor)
-                db.commit()
-                if ok or o.status != S.PAID or o.prayer.moderation != "approved" or attempt == retries:
-                    break
-                time.sleep(wait_s * (attempt + 1))
+        for attempt in range(retries + 1):
+            orders = [o for o in (db.get(Order, oid) for oid in order_ids) if o]
+            schedule_group(db, orders, actor)
+            db.commit()
+            pending = [o for o in orders if o.status == S.PAID and o.prayer.moderation == "approved"]
+            if not pending or attempt == retries:
+                break
+            time.sleep(wait_s * (attempt + 1))
 
 
 # ---------------- Hủy / từ chối ----------------
@@ -193,9 +214,15 @@ def moderate(db: Session, prayer: Prayer, approve: bool, actor: str, note: str =
     prayer.moderation = "approved" if approve else "rejected"
     prayer.moderation_note = note or None
     audit(db, actor, "prayer.approve" if approve else "prayer.reject", f"prayer:{prayer.id}", note=note)
+    if approve:
+        by_ref: dict[str, list[Order]] = {}
+        for o in prayer.orders:
+            by_ref.setdefault(o.booking_ref, []).append(o)
+        for group in by_ref.values():
+            schedule_group(db, group, actor)
     for o in prayer.orders:
         if approve:
-            try_schedule(db, o, actor)
+            continue
         elif o.status in (S.PAID, S.SCHEDULED):
             reject(db, o, actor, f"Bản ghi âm không được duyệt: {note}")
         elif can_transition(o.status, S.CANCELLED):

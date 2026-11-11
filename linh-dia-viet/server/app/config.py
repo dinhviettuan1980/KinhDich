@@ -37,6 +37,7 @@ class Settings(BaseSettings):
     # Đặt lễ
     max_temples_per_order: int = 100
     min_lead_seconds: int = 120
+    group_asap_delay_seconds: int = 15  # "phát ngay" nhiều đền: chừa thêm để mọi thiết bị tải xong file
     asap_delay_seconds: int = 8  # "phát ngay": chừa thời gian để Pi tải file trước khi phát (Pi trễ vẫn phát bù)
     max_prayer_chars: int = 3000
     max_audio_seconds: int = 300

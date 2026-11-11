@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Lịch sử lễ{% endblock %}
 {% block content %}
+{% set shown = [] %}
 <div class="ld-spread"><h1>Lịch sử lễ</h1><a class="ld-btn small" href="{{ u('/') }}">+ Đặt lễ mới</a></div>
 {% for o in orders %}
+{% if group_size[o.booking_ref] > 1 and o.booking_ref not in shown %}{% set _ = shown.append(o.booking_ref) %}
+<a class="ld-card" style="border-left:4px solid #b8860b" href="{{ u('/don/lo/' ~ o.booking_ref) }}"><b>🛕 Lễ đồng thời tại {{ group_size[o.booking_ref] }} nơi</b>
+  <div class="ld-muted small">Xem các nơi cạnh nhau: giờ đọc sớ, ảnh, video →</div></a>{% endif %}
 <a class="ld-card ld-hist{% if new_ref and o.booking_ref == new_ref %} new{% endif %}" href="{{ u('/don/' ~ o.id) }}">
   <div class="ld-hist-thumb">{% if cover[o.id] %}<img src="{{ u('/don/' ~ o.id ~ '/anh/' ~ cover[o.id]) }}" alt="" loading="lazy">{% else %}<span>🛕</span>{% endif %}
     {% if o.status == 'completed' and cover[o.id] %}<span class="play">▶</span>{% endif %}</div>

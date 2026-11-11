@@ -1,6 +1,7 @@
 """Nghiệp vụ thiết bị: giao job, gửi lệnh (có audit), xử lý ACK/status, vòng kiểm tra quá hạn."""
 import logging
 import uuid
+from collections import defaultdict, deque
 from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import select
@@ -44,12 +45,20 @@ class CommandBlocked(RuntimeError):
     pass
 
 
+# Hộp thư lệnh điều khiển cho thiết bị kênh HTTP (điện thoại): stop / test_tone / capture / cancel.
+# Lệnh "play" không nằm ở đây — thiết bị hỏi lại server là được danh sách job còn hiệu lực (bền qua khởi động lại).
+CONTROL_TYPES = {"stop", "test_tone", "capture", "cancel", "config"}
+_mailbox: dict[str, deque] = defaultdict(lambda: deque(maxlen=20))
+
+
 def send_command(db: Session, device_id: str, payload: dict, actor: str) -> bool:
     """Mọi lệnh xuống thiết bị đều qua đây: kiểm tra khóa khẩn cấp + ghi audit log."""
     if payload.get("type") != "stop" and system_locked(db):
         audit(db, actor, "device.cmd_blocked", f"device:{device_id}", type=payload.get("type"))
         raise CommandBlocked("Hệ thống đang khóa khẩn cấp")
     ok = get_bus().send(device_id, payload)
+    if payload.get("type") in CONTROL_TYPES:
+        _mailbox[device_id].append({**payload, "id": uuid.uuid4().hex[:8]})
     detail = {k: v for k, v in payload.items() if k != "audio_url"}  # không lưu URL có chữ ký vào log
     audit(db, actor, "device.cmd", f"device:{device_id}", ok=ok, **detail)
     return ok
@@ -146,7 +155,35 @@ def handle_status(db: Session, device_id: str, payload: dict, now: datetime | No
         dev.version = str(payload.get("version", ""))[:40] or None
         dev.last_status = {k: payload.get(k) for k in
                            ("net", "rssi", "temp", "volume", "version", "uptime", "disk_free", "queue", "camera",
-                            "clock_synced")}
+                            "clock_synced", "kind", "battery", "clock_offset_ms")}
+
+
+def web_poll(db: Session, dev: Device, status: dict, now: datetime | None = None) -> dict:
+    """Kênh HTTP cho thiết bị không có MQTT (điện thoại Android chạy trang /may): thiết bị gọi mỗi vài giây,
+    báo trạng thái và nhận lại việc cần làm. Lệnh play được dựng lại từ CSDL mỗi lần nên không mất khi server
+    khởi động lại; thiết bị tự chống phát trùng bằng job_id."""
+    now = now or utcnow()
+    s = get_settings()
+    handle_status(db, dev.id, {**status, "online": True, "kind": status.get("kind", "phone")}, now)
+    locked = system_locked(db)
+    jobs, cancel = [], []
+    lead, grace = timedelta(seconds=s.dispatch_lead_seconds), timedelta(seconds=s.play_grace_seconds)
+    if not locked:
+        for job in db.scalars(select(DeviceJob).where(
+                DeviceJob.device_id == dev.id, DeviceJob.state.in_(("queued", "delivered", "downloaded")),
+                DeviceJob.play_at <= now + lead, DeviceJob.play_at > now - grace)).all():
+            if job.order.status in (S.SCHEDULED, S.DELIVERED):
+                jobs.append(play_payload(job))
+                if job.sent_at is None:
+                    job.sent_at = now
+                    job.attempts += 1
+                    _log(job, "sent", "kênh HTTP", now)
+    for job in db.scalars(select(DeviceJob).where(
+            DeviceJob.device_id == dev.id, DeviceJob.state == "cancelled", DeviceJob.play_at > now - grace)).all():
+        cancel.append(job.id)
+    box = _mailbox[dev.id]
+    control = [box.popleft() for _ in range(len(box))]
+    return {"server_time": iso(now), "locked": locked, "jobs": jobs, "cancel": cancel, "control": control}
 
 
 def handle_ack(db: Session, device_id: str, payload: dict, now: datetime | None = None) -> None:
@@ -168,8 +205,18 @@ def handle_ack(db: Session, device_id: str, payload: dict, now: datetime | None 
     if new != "error" and job.state in JOB_ORDER and JOB_ORDER.index(new) <= JOB_ORDER.index(job.state):
         return
     job.state = new
+    # Giờ thiết bị tự báo (lúc thật sự bắt đầu/ngừng phát) chính xác hơn giờ server nhận ACK; chỉ tin khi lệch < 2 phút
+    stamp = now
+    if new in ("playing", "done"):
+        try:
+            ts = datetime.fromisoformat(str(payload.get("ts", "")).replace("Z", "+00:00"))
+            ts = ts if ts.tzinfo else ts.replace(tzinfo=timezone.utc)
+            if abs((ts - now).total_seconds()) < 120:
+                stamp = min(ts, now)  # giờ thiết bị không thể ở tương lai so với lúc server nhận
+        except ValueError:
+            pass
     setattr(job, {"delivered": "delivered_at", "downloaded": "downloaded_at", "playing": "playing_at",
-                  "done": "done_at", "error": "done_at"}[new], now)
+                  "done": "done_at", "error": "done_at"}[new], stamp)
     order = job.order
     if job is not current_job(order):
         return
@@ -209,9 +256,12 @@ def tick(db: Session, now: datetime | None = None) -> None:
     now = now or utcnow()
     # 1) đơn đã trả tiền nhưng chưa xếp lịch được (TTS lỗi tạm thời)
     # (bỏ qua đơn vừa thanh toán < 1 phút: tác vụ nền sau thanh toán đang lo, tránh tạo TTS 2 lần)
+    stuck: dict[str, list[Order]] = {}
     for o in db.scalars(select(Order).where(Order.status == S.PAID,
                                             Order.updated_at < now - timedelta(seconds=60))).all():
-        svc.try_schedule(db, o)
+        stuck.setdefault(o.booking_ref, []).append(o)
+    for group in stuck.values():  # cùng lần đặt thì xếp cùng giờ phát
+        svc.schedule_group(db, group)
     # 2) gửi lệnh trước giờ phát DISPATCH_LEAD; gửi lại mỗi 5 phút nếu thiết bị chưa xác nhận
     lead = timedelta(seconds=s.dispatch_lead_seconds)
     grace = timedelta(seconds=s.play_grace_seconds)

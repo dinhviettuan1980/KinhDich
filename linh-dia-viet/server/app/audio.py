@@ -86,3 +86,16 @@ def concat_mp3(parts: list[Path], dst: Path) -> None:
 def sine(dst: Path, seconds: float, freq: int = 440) -> None:
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", f"sine=frequency={freq}:duration={seconds}",
                     "-ac", "1", "-ar", "44100", "-c:a", "libmp3lame", "-b:a", "64k", str(dst)], check=True, timeout=60)
+
+
+def webm_to_mp4(data: bytes) -> bytes:
+    """Đổi video WebM do trình duyệt điện thoại quay sang MP4 (H.264 + AAC) để mọi trình duyệt xem được."""
+    with tempfile.TemporaryDirectory() as d:
+        src, dst = Path(d) / "in.webm", Path(d) / "out.mp4"
+        src.write_bytes(data)
+        r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-c:v", "libx264", "-preset", "veryfast",
+                            "-crf", "30", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "64k",
+                            "-movflags", "+faststart", str(dst)], capture_output=True, timeout=180)
+        if r.returncode != 0 or not dst.exists() or dst.stat().st_size < 1000:
+            raise AudioError("Không đổi được video WebM sang MP4")
+        return dst.read_bytes()
