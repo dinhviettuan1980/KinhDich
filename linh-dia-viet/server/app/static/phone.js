@@ -3,7 +3,7 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const base = location.pathname.replace(/\/may\/?$/, "");
-  const VERSION = "phone-1";
+  const VERSION = "phone-4";
   let cfg = null, stream = null, audioEl = null, actx = null, wakeLock = null;
   let offset = 0;                    // giờ server - giờ máy (ms): phát đúng giờ dù đồng hồ điện thoại lệch
   let current = null;                // job đang xử lý
@@ -13,7 +13,11 @@
   const sleep = (ms) => new Promise((r) => setTimeout(r, Math.max(0, ms)));
   const nowServer = () => Date.now() + offset;
   async function sleepUntilServer(ts) { while (nowServer() < ts) await sleep(Math.min(1000, ts - nowServer())); }
+  const logBuf = [];                 // gửi kèm mỗi lần hỏi lệnh → admin/kỹ thuật xem được từ xa
+  let step = "chờ lệnh";
+  let record = localStorage.getItem("ld_record") !== "0";    // quay video mâm lễ (máy yếu có thể tắt)
   function log(msg, cls = "") {
+    logBuf.push(new Date(nowServer()).toISOString().slice(11, 19) + " " + msg); if (logBuf.length > 20) logBuf.shift();
     const li = document.createElement("li");
     li.className = cls; li.textContent = new Date().toLocaleTimeString("vi-VN") + "  " + msg;
     $("log").prepend(li);
@@ -52,6 +56,47 @@
     return false;
   }
 
+  // Camera trên điện thoại hay "đứng hình" sau khi màn hình tắt / trang bị ẩn: track ended/muted hoặc khung hình
+  // không chạy nữa (video giữ khung cuối → ảnh chụp lặp lại y hệt). Kiểm tra trước mỗi lần chụp/quay, hỏng thì mở lại.
+  // camera sau ("environment") hoặc trước ("user"): chọn theo cách đặt máy trên giá; nhớ trong máy
+  let facing = localStorage.getItem("ld_facing") || "environment";
+  const media = () => ({ video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } },
+                         audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+  let cameraOk = false;
+  function streamDead() {
+    const v = $("cam"), t = stream && stream.getVideoTracks()[0];
+    return !t || t.readyState === "ended" || t.muted || v.paused || v.readyState < 2;
+  }
+  async function frameMoving(ms = 700) {
+    const v = $("cam"), t0 = v.currentTime;
+    await sleep(ms);
+    return v.currentTime > t0;
+  }
+  async function openCamera() {
+    if (stream) stream.getTracks().forEach((t) => t.stop());
+    stream = await navigator.mediaDevices.getUserMedia(media());
+    $("cam").srcObject = stream;
+    await $("cam").play().catch(() => {});
+  }
+  async function setFacing(f) {
+    if (f !== "user" && f !== "environment") return;
+    facing = f; localStorage.setItem("ld_facing", f);
+    if (current) { log("Đang có lễ — đổi camera sau khi xong", "bad"); return; }
+    try { await openCamera(); cameraOk = true; log("Đã chuyển sang camera " + (f === "user" ? "trước" : "sau"), "ok"); }
+    catch (e) { cameraOk = false; log("Không đổi được camera: " + e.message, "bad"); }
+  }
+  async function ensureCamera() {
+    if (!streamDead() && (await frameMoving())) return (cameraOk = true);
+    log("Camera đứng hình — mở lại", "bad");
+    try {
+      await openCamera();
+      for (let i = 0; i < 10 && $("cam").readyState < 2; i++) await sleep(300);
+      cameraOk = !streamDead() && (await frameMoving());
+    } catch (e) { log("Không mở lại được camera: " + e.message, "bad"); cameraOk = false; }
+    if (cameraOk) log("Camera đã chạy lại", "ok");
+    return cameraOk;
+  }
+
   function photo() {
     const v = $("cam");
     if (!v.videoWidth) return Promise.resolve(null);
@@ -60,6 +105,7 @@
     return new Promise((res) => c.toBlob(res, "image/jpeg", 0.82));
   }
   async function shoot(job, phase) {
+    await ensureCamera();
     const b = await photo();
     if (!b) { log("Chưa có hình từ camera", "bad"); return; }
     if (await upload(job, phase, b, phase + ".jpg")) log("Đã chụp ảnh: " + phase);
@@ -70,15 +116,21 @@
       if (window.MediaRecorder && MediaRecorder.isTypeSupported(m)) return m;
     return "";
   }
-  function startRecording() {
+  async function startRecording() {
+    if (!record) { log("Không quay video (đã tắt)"); return null; }
+    if (!stream) { log("Không có camera để quay", "bad"); return null; }
     const mime = pickMime();
     if (!mime) { log("Trình duyệt không quay được video", "bad"); return null; }
+    const track = stream.getVideoTracks()[0];
+    try { await track.applyConstraints({ width: { ideal: 640 }, height: { ideal: 480 } }); } catch (e) { /* giữ nguyên */ }
     const chunks = [];
-    const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 600000, audioBitsPerSecond: 64000 });
+    const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 400000, audioBitsPerSecond: 48000 });
     rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
     const done = new Promise((res) => (rec.onstop = () => res(new Blob(chunks, { type: mime.split(";")[0] }))));
     rec.start(1000);
-    return { rec, done, ext: mime.includes("mp4") ? "mp4" : "webm" };
+    log("Bắt đầu quay video (" + mime.split(";")[0] + ")");
+    const restore = () => track.applyConstraints({ width: { ideal: 1280 }, height: { ideal: 720 } }).catch(() => {});
+    return { rec, done: done.then((b) => { restore(); return b; }), ext: mime.includes("mp4") ? "mp4" : "webm" };
   }
 
   async function sha256(buf) {
@@ -102,18 +154,24 @@
       const url = URL.createObjectURL(new Blob([buf], { type: "audio/mpeg" }));
       const before = (cap.before_s || 0) * 1000;
       if (before && nowServer() < playAt - before) { await sleepUntilServer(playAt - before); await shoot(job, "before"); }
-      await sleepUntilServer(playAt - 1500);
-      const recorder = startRecording();
+      step = "kiểm tra camera";
+      await sleepUntilServer(playAt - 4000);
+      if (record) await ensureCamera();                       // quay bằng luồng camera còn sống
+      audioEl.src = url; audioEl.load();                      // nạp sẵn để bấm phát là có tiếng ngay
+      audioEl.volume = Math.min(1, (job.volume || 70) / 100);
+      step = "chờ giờ phát";
       await sleepUntilServer(playAt);
       if (locked) throw new Error("Hệ thống đang khóa khẩn cấp");
-      audioEl.src = url;
-      audioEl.volume = Math.min(1, (job.volume || 70) / 100);
       const ended = new Promise((res, rej) => { audioEl.onended = res; audioEl.onerror = () => rej(new Error("Loa không phát được")); });
-      await audioEl.play();
+      step = "bắt đầu phát";
+      await audioEl.play();                                   // loa trước, quay sau: quay video không làm trễ giờ đọc
       setState("Đang đọc sớ", "ok"); log("ĐANG PHÁT bài khấn", "ok");
       ack(job, "playing");
+      step = "đang phát";
+      const recorder = await startRecording().catch((e) => { log("Không quay được: " + e.message, "bad"); return null; });
       sleep(2000).then(() => cap.at_start !== false && shoot(job, "start"));
       await ended;
+      step = "gửi ảnh/video";
       log("Đọc xong", "ok"); setState("Sẵn sàng", "ok");
       ack(job, "done");
       await sleep((cap.after_s ?? 5) * 1000);
@@ -129,7 +187,7 @@
       await ack(job, "error", String(e.message).slice(0, 200));
     } finally {
       seen.add(job.job_id); localStorage.setItem("ld_done", JSON.stringify([...seen].slice(-100)));
-      current = null; setState("Sẵn sàng", "ok");
+      current = null; step = "chờ lệnh"; setState("Sẵn sàng", "ok");
     }
   }
   async function worker() {
@@ -147,8 +205,9 @@
     let battery = null;
     try { const b = await navigator.getBattery(); battery = Math.round(b.level * 100); } catch (e) { /* không hỗ trợ */ }
     const c = navigator.connection || {};
-    return { net: c.type === "cellular" ? "4g" : "wifi", rssi: null, version: VERSION, camera: "phone", battery,
-             clock_synced: true, clock_offset_ms: Math.round(offset), queue: queue.length + (current ? 1 : 0) };
+    return { net: c.type === "cellular" ? "4g" : "wifi", rssi: null, version: VERSION, camera: cameraOk ? "phone" : "phone-loi", battery,
+             clock_synced: true, clock_offset_ms: Math.round(offset), queue: queue.length + (current ? 1 : 0),
+             step, record, log: logBuf.slice(-20) };
   }
   async function poll() {
     try {
@@ -168,6 +227,11 @@
         if (c.type === "stop") stopAudio();
         else if (c.type === "test_tone") { beep(); log("Phát âm thử"); }
         else if (c.type === "capture") shoot(null, "test");
+        else if (c.type === "config") {
+          if (c.camera) setFacing(c.camera);
+          if (typeof c.record === "boolean") { record = c.record; localStorage.setItem("ld_record", record ? "1" : "0");
+                                               log(record ? "Bật quay video" : "Tắt quay video", "ok"); }
+        }
       }
       for (const j of res.jobs) {
         if (seen.has(j.job_id) || (current && current.job_id === j.job_id) || queue.some((q) => q.job_id === j.job_id)) continue;
@@ -181,22 +245,22 @@
     cfg = { id: $("did").value.trim(), token: $("tok").value.trim() };
     if (!cfg.id || !cfg.token) { alert("Nhập mã thiết bị và token"); return; }
     localStorage.setItem("ld_phone", JSON.stringify(cfg));
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment", width: { ideal: 1280 }, height: { ideal: 720 } },
-        audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
-    } catch (e) {
-      log("Không mở được camera/micro: " + e.message, "bad");
-      stream = null;
-    }
-    if (stream) { $("cam").srcObject = stream; await $("cam").play().catch(() => {}); }
+    // mở khóa âm thanh NGAY trong lần chạm (trước hộp hỏi quyền camera — sau đó Chrome có thể không coi là thao tác người dùng)
     audioEl = new Audio(); audioEl.setAttribute("playsinline", "");
     actx = new (window.AudioContext || window.webkitAudioContext)();
     audioEl.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
-    await audioEl.play().catch(() => {});                     // mở khóa phát âm thanh (cần 1 lần chạm)
+    const unlocked = audioEl.play().then(() => true).catch(() => false);
+    actx.resume().catch(() => {});
+    try { await openCamera(); cameraOk = true; } catch (e) {
+      log("Không mở được camera/micro: " + e.message, "bad");
+      stream = null;
+    }
+    if (!(await unlocked)) log("Chưa mở được âm thanh — chạm vào màn hình một lần", "bad");
     try { wakeLock = await navigator.wakeLock.request("screen"); } catch (e) { log("Không giữ được màn hình sáng — hãy tắt tự khóa màn hình", "bad"); }
     document.addEventListener("visibilitychange", async () => {
-      if (document.visibilityState === "visible") try { wakeLock = await navigator.wakeLock.request("screen"); } catch (e) { /* bỏ qua */ }
+      if (document.visibilityState !== "visible") return;
+      try { wakeLock = await navigator.wakeLock.request("screen"); } catch (e) { /* bỏ qua */ }
+      if (!current) ensureCamera();                           // quay lại trang: khôi phục camera nếu đã dừng
     });
     $("setup").hidden = true; $("run").hidden = false;
     log("Đã bật. Giữ trang này mở, cắm sạc và để màn hình sáng.", "ok");
@@ -208,6 +272,9 @@
     const h = new URLSearchParams(location.hash.slice(1));
     let saved = {}; try { saved = JSON.parse(localStorage.getItem("ld_phone") || "{}"); } catch (e) { /* bỏ qua */ }
     $("did").value = h.get("id") || saved.id || ""; $("tok").value = h.get("token") || saved.token || "";
+    if (h.get("cam") === "user" || h.get("cam") === "environment") { facing = h.get("cam"); localStorage.setItem("ld_facing", facing); }
+    if (h.get("rec") === "0" || h.get("rec") === "1") { record = h.get("rec") === "1"; localStorage.setItem("ld_record", h.get("rec")); }
+    $("flip").addEventListener("click", () => setFacing(facing === "user" ? "environment" : "user"));
     if (location.hash) history.replaceState(null, "", location.pathname);   // không để token trên thanh địa chỉ
     $("go").addEventListener("click", start);
   });

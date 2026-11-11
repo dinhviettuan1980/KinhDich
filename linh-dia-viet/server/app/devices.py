@@ -155,7 +155,7 @@ def handle_status(db: Session, device_id: str, payload: dict, now: datetime | No
         dev.version = str(payload.get("version", ""))[:40] or None
         dev.last_status = {k: payload.get(k) for k in
                            ("net", "rssi", "temp", "volume", "version", "uptime", "disk_free", "queue", "camera",
-                            "clock_synced", "kind", "battery", "clock_offset_ms")}
+                            "clock_synced", "kind", "battery", "clock_offset_ms", "step", "record", "log")}
 
 
 def web_poll(db: Session, dev: Device, status: dict, now: datetime | None = None) -> dict:

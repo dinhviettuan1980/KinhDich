@@ -22,11 +22,17 @@
     {% if d.last_status %}<br>Nhiệt độ: {{ d.last_status.temp or '?' }}°C · Âm lượng: {{ d.last_status.volume }} · Đĩa trống: {{ d.last_status.disk_free }} MB · Hàng đợi: {{ d.last_status.queue }} · Camera: {{ d.last_status.camera }}{% if d.last_status.clock_synced is false %} · <b class="ld-badge warn">giờ chưa đồng bộ</b>{% endif %}{% endif %}
   </div>
   <div class="ld-row" style="margin-top:10px">
-    {% for t, label in [('test_tone','🔔 Phát âm thử'), ('capture','📷 Chụp thử'), ('stop','⏹ Dừng ngay')] %}
+    {% set cmds = [('test_tone','🔔 Phát âm thử'), ('capture','📷 Chụp thử'), ('stop','⏹ Dừng ngay')] %}
+    {% if d.last_status and d.last_status.kind == 'phone' %}{% set cmds = cmds + [('camera_front','🤳 Camera trước'), ('camera_back','📷 Camera sau'),
+       ('record_off' if d.last_status.record is not false else 'record_on', '🎥 Tắt quay video' if d.last_status.record is not false else '🎥 Bật quay video')] %}{% endif %}
+    {% for t, label in cmds %}
     <form method="post" action="{{ u('/admin/thiet-bi/' ~ d.id ~ '/lenh') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
       <button class="ld-btn small {% if t == 'stop' %}danger{% else %}secondary{% endif %}" name="type" value="{{ t }}">{{ label }}</button></form>
     {% endfor %}
   </div>
+  {% if d.last_status and d.last_status.log %}<details><summary>Nhật ký điện thoại{% if d.last_status.step %} — đang: {{ d.last_status.step }}{% endif %}</summary>
+    <pre class="ld-scroll small" style="white-space:pre-wrap">{{ d.last_status.log|join('
+') }}</pre></details>{% endif %}
   {% if d.test_photo_key %}<p><img src="{{ u('/admin/thiet-bi/' ~ d.id ~ '/anh-thu') }}" alt="Ảnh chụp thử" style="max-width:100%;border-radius:8px"></p>{% endif %}
   {% if jobs[d.id] %}
   <details><summary>Job gần đây</summary><div class="ld-scroll"><table>

@@ -1,5 +1,7 @@
 """Một lần đặt ở nhiều đền: cùng giờ phát, điện thoại làm thiết bị đền (kênh HTTP), trang "Lễ đồng thời"."""
+import re
 from datetime import timedelta
+from pathlib import Path
 
 from sqlalchemy import select
 
@@ -217,3 +219,52 @@ def test_reorder_restores_per_temple_trays(user_client, db):
     first = db.scalar(select(Order).where(Order.booking_ref == r.json()["ref"]).order_by(Order.id))
     html = user_client.get(f"{P}/dat-le?tu_don={first.id}").text
     assert 'value="rieng" selected' in html and f'name="sx_{t2.id}_{b.id}" value="3"' in html
+
+
+def test_phone_page_checks_camera_before_capture(client):
+    """Camera điện thoại đứng hình sau khi màn hình tắt (demo thật: 3 ảnh chụp thử giống hệt từng byte) →
+    phone.js phải kiểm tra/mở lại camera trước mỗi lần chụp và trước khi quay; trang nạp đúng phiên bản script."""
+    js = (Path(__file__).resolve().parents[1] / "app" / "static" / "phone.js").read_text(encoding="utf-8")
+    version = re.search(r'const VERSION = "phone-(\d+)"', js).group(1)
+    assert f"phone.js?v={version}" in client.get(f"{P}/may").text
+    shoot = js[js.index("async function shoot("):]
+    assert shoot.index("ensureCamera()") < shoot.index("photo()")
+    run = js[js.index("async function runJob("):]
+    assert run.index("ensureCamera()") < run.index("startRecording()")
+    assert "frameMoving" in js and '"ended"' in js
+
+
+def test_admin_switches_phone_camera(user_client, client, db, admin_client):
+    """Điện thoại đặt trên giá ngược chiều mâm (demo thật) → admin đổi sang camera trước từ xa, không phải chạm máy."""
+    ref, orders = book_asap(user_client, db)
+    dev_id = orders[1].temple.device_id
+    client.post(f"{P}/api/device/poll", json={"kind": "phone", "camera": "phone"}, headers=auth(dev_id))
+    page = admin_client.get(f"{P}/admin/thiet-bi").text
+    assert page.count("camera_front") == 1  # chỉ điện thoại có nút đổi camera, Pi không có
+    r = admin_client.post(f"{P}/admin/thiet-bi/{dev_id}/lenh", data={"csrf_token": admin_client.csrf, "type": "camera_front"})
+    assert r.status_code == 200 and "camera trước" in r.text
+    c = client.post(f"{P}/api/device/poll", json={}, headers=auth(dev_id)).json()["control"]
+    assert [(x["type"], x["camera"]) for x in c] == [("config", "user")]
+    assert admin_client.post(f"{P}/admin/thiet-bi/{dev_id}/lenh",
+                             data={"csrf_token": admin_client.csrf, "type": "reboot"}).status_code == 400
+
+
+def test_phone_reports_step_and_log_and_record_toggle(user_client, client, db, admin_client):
+    """Demo thật: điện thoại treo ngay lúc bắt đầu quay mà không thấy được màn hình → máy gửi bước đang làm + nhật ký
+    về server (admin xem từ xa); admin tắt/bật quay video cho máy yếu."""
+    ref, orders = book_asap(user_client, db)
+    dev_id = orders[1].temple.device_id
+    status = {"kind": "phone", "camera": "phone", "record": True, "step": "chờ giờ phát",
+              "log": [f"00:00:{i:02d} dòng {i}" for i in range(30)] + ["x" * 500]}
+    client.post(f"{P}/api/device/poll", json=status, headers=auth(dev_id))
+    db.expire_all()
+    from app.models import Device
+    st = db.get(Device, dev_id).last_status
+    assert st["step"] == "chờ giờ phát" and len(st["log"]) == 20 and len(st["log"][-1]) == 160
+    page = admin_client.get(f"{P}/admin/thiet-bi").text
+    assert "Nhật ký điện thoại" in page and "đang: chờ giờ phát" in page and "record_off" in page
+    admin_client.post(f"{P}/admin/thiet-bi/{dev_id}/lenh", data={"csrf_token": admin_client.csrf, "type": "record_off"})
+    c = client.post(f"{P}/api/device/poll", json={"log": "không phải danh sách"}, headers=auth(dev_id)).json()["control"]
+    assert [(x["type"], x.get("record")) for x in c] == [("config", False)]
+    db.expire_all()
+    assert db.get(Device, dev_id).last_status["log"] is None

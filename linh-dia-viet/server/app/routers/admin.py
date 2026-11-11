@@ -423,12 +423,17 @@ async def device_command(device_id: str, request: Request, db: Session = Depends
     if dev is None:
         raise HTTPException(404)
     kind = (await request.form()).get("type")
-    if kind not in ("test_tone", "capture", "stop"):
+    configs = {"camera_front": {"camera": "user"}, "camera_back": {"camera": "environment"},  # điện thoại: chỉnh từ xa
+               "record_on": {"record": True}, "record_off": {"record": False}}
+    if kind not in ("test_tone", "capture", "stop", *configs):
         raise HTTPException(400)
+    payload = {"type": "config", **configs[kind]} if kind in configs else {"type": kind}
     try:
-        devices.send_command(db, dev.id, {"type": kind}, f"user:{admin.id}")
+        devices.send_command(db, dev.id, payload, f"user:{admin.id}")
         flash(request, {"test_tone": "Đã gửi lệnh phát âm thử.", "capture": "Đã gửi lệnh chụp thử, ảnh sẽ hiện sau vài giây.",
-                        "stop": "Đã gửi lệnh dừng ngay."}[kind], "ok")
+                        "stop": "Đã gửi lệnh dừng ngay.", "camera_front": "Đã chuyển điện thoại sang camera trước.",
+                        "camera_back": "Đã chuyển điện thoại sang camera sau.", "record_on": "Đã bật quay video.",
+                        "record_off": "Đã tắt quay video (vẫn phát và chụp ảnh)."}[kind], "ok")
     except devices.CommandBlocked as e:
         flash(request, str(e), "error")
     db.commit()

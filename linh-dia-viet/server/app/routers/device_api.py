@@ -72,7 +72,10 @@ def device_poll(status: dict = Body(default_factory=dict), dev: Device = Depends
                 db: Session = Depends(get_db)):
     """Kênh HTTP cho điện thoại: báo trạng thái + nhận việc (xem devices.web_poll)."""
     safe = {k: v for k, v in status.items() if k in ("net", "rssi", "volume", "version", "camera", "clock_synced",
-                                                    "battery", "clock_offset_ms", "kind", "queue")}
+                                                    "battery", "clock_offset_ms", "kind", "queue", "record")}
+    safe["step"] = str(status.get("step") or "")[:40] or None   # bước đang làm + nhật ký: chẩn đoán điện thoại từ xa
+    logs = status.get("log")
+    safe["log"] = [str(x)[:160] for x in logs[-20:]] if isinstance(logs, list) else None
     out = devices.web_poll(db, dev, safe)
     db.commit()
     return out
