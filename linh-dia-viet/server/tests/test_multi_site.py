@@ -6,7 +6,7 @@ from sqlalchemy import select
 from app import devices
 from app.models import Order, utcnow
 from conftest import P
-from helpers import booking_data, confirm_and_pay, create_booking
+from helpers import TXN, booking_data, confirm_and_pay, create_booking
 
 TWO = ("den-ngoc-son", "chua-tran-quoc")
 
@@ -118,3 +118,102 @@ def test_webm_converted_to_mp4(user_client, client, db, tmp_path):
     assert r.status_code == 200, r.text
     db.expire_all()
     assert db.get(Order, o.id).video is not None
+
+
+# ---------- Mâm lễ riêng từng đền ----------
+
+def _pkgs(db):
+    from app.models import OfferingPackage
+    return list(db.scalars(select(OfferingPackage).where(OfferingPackage.temple_id.is_(None))
+                           .order_by(OfferingPackage.id)))
+
+
+def _book(user_client, db, extra, temples=TWO):
+    data = booking_data(db, temples=temples, khi_nao="ngay")
+    data.update(extra)
+    r = user_client.post(f"{P}/dat-le", data=data, headers={"X-CSRF-Token": user_client.csrf})
+    if r.status_code == 200:
+        TXN[r.json()["ref"]] = r.json()["txn"]
+    return r
+
+
+def _items(db, ref):
+    return {o.temple.slug: sorted((i.package_id, i.qty) for i in o.items)
+            for o in db.scalars(select(Order).where(Order.booking_ref == ref))}
+
+
+def test_second_temple_same_as_first_by_default(user_client, db):
+    a, b = _pkgs(db)[:2]
+    r = _book(user_client, db, {f"sl_{a.id}": "1", f"sl_{b.id}": "2"})
+    assert r.status_code == 200, r.text
+    it = _items(db, r.json()["ref"])
+    assert it["den-ngoc-son"] == it["chua-tran-quoc"] == sorted([(a.id, 1), (b.id, 2)])
+
+
+def test_second_temple_own_tray(user_client, db):
+    a, b = _pkgs(db)[:2]
+    from app.models import Temple
+    t2 = db.scalar(select(Temple).where(Temple.slug == "chua-tran-quoc"))
+    r = _book(user_client, db, {f"sl_{a.id}": "1", f"mam_{t2.id}": "rieng", f"sx_{t2.id}_{b.id}": "3"})
+    assert r.status_code == 200, r.text
+    ref = r.json()["ref"]
+    assert _items(db, ref) == {"den-ngoc-son": [(a.id, 1)], "chua-tran-quoc": [(b.id, 3)]}
+    totals = {o.temple.slug: o.total for o in db.scalars(select(Order).where(Order.booking_ref == ref))}
+    assert totals["den-ngoc-son"] == a.price and totals["chua-tran-quoc"] == b.price * 3
+    # bài khấn của mỗi đền ghi đúng lễ vật của đền đó
+    confirm_and_pay(user_client, ref)
+    db.expire_all()
+    scripts = {o.temple.slug: o.script_text for o in db.scalars(select(Order).where(Order.booking_ref == ref))}
+    assert b.name.lower() in scripts["chua-tran-quoc"].lower()
+    assert scripts["den-ngoc-son"] != scripts["chua-tran-quoc"]
+
+
+def test_third_temple_copies_second_custom_tray(user_client, db):
+    from app.models import Temple
+    a, b = _pkgs(db)[:2]
+    t2 = db.scalar(select(Temple).where(Temple.slug == "chua-tran-quoc"))
+    t3 = db.scalar(select(Temple).where(Temple.slug == "den-ba-chua-xu"))
+    r = _book(user_client, db, {f"sl_{a.id}": "1", f"mam_{t2.id}": "rieng", f"sx_{t2.id}_{b.id}": "2",
+                                f"mam_{t3.id}": f"giong_{t2.id}"}, temples=("den-ngoc-son", "chua-tran-quoc", "den-ba-chua-xu"))
+    assert r.status_code == 200, r.text
+    it = _items(db, r.json()["ref"])
+    assert it["den-ba-chua-xu"] == it["chua-tran-quoc"] == [(b.id, 2)] and it["den-ngoc-son"] == [(a.id, 1)]
+
+
+def test_circular_copy_falls_back_and_empty_custom_rejected(user_client, db):
+    from app.models import Temple
+    a, _b = _pkgs(db)[:2]
+    t2 = db.scalar(select(Temple).where(Temple.slug == "chua-tran-quoc"))
+    t3 = db.scalar(select(Temple).where(Temple.slug == "den-ba-chua-xu"))
+    r = _book(user_client, db, {f"sl_{a.id}": "1", f"mam_{t2.id}": f"giong_{t3.id}", f"mam_{t3.id}": f"giong_{t2.id}"},
+              temples=("den-ngoc-son", "chua-tran-quoc", "den-ba-chua-xu"))
+    assert r.status_code == 200
+    assert all(v == [(a.id, 1)] for v in _items(db, r.json()["ref"]).values())
+    bad = _book(user_client, db, {f"sl_{a.id}": "1", f"mam_{t2.id}": "rieng"})
+    assert bad.status_code == 400 and "mâm riêng" in bad.json()["error"]
+
+
+def test_package_options_renders_per_temple_choice(user_client, db):
+    from app.models import Temple
+    t1 = db.scalar(select(Temple).where(Temple.slug == "den-ngoc-son"))
+    t2 = db.scalar(select(Temple).where(Temple.slug == "chua-tran-quoc"))
+    html = user_client.get(f"{P}/dat-le/goi-le?den={t1.id}&den={t2.id}").text
+    assert f'name="mam_{t2.id}"' in html and "Giống mâm đền" in html and "Tự chọn mâm mới" in html
+    assert 'name="mam_' not in user_client.get(f"{P}/dat-le/goi-le?den={t1.id}").text
+
+
+def test_booking_form_prechosen_multi_shows_tray_choice(user_client, db):
+    from app.models import Temple
+    ids = [db.scalar(select(Temple).where(Temple.slug == x)).id for x in TWO]
+    html = user_client.get(f"{P}/dat-le?den={ids[0]}&den={ids[1]}").text
+    assert f'name="mam_{ids[1]}"' in html and 'data-scope="base"' in html
+
+
+def test_reorder_restores_per_temple_trays(user_client, db):
+    from app.models import Temple
+    a, b = _pkgs(db)[:2]
+    t2 = db.scalar(select(Temple).where(Temple.slug == "chua-tran-quoc"))
+    r = _book(user_client, db, {f"sl_{a.id}": "1", f"mam_{t2.id}": "rieng", f"sx_{t2.id}_{b.id}": "3"})
+    first = db.scalar(select(Order).where(Order.booking_ref == r.json()["ref"]).order_by(Order.id))
+    html = user_client.get(f"{P}/dat-le?tu_don={first.id}").text
+    assert 'value="rieng" selected' in html and f'name="sx_{t2.id}_{b.id}" value="3"' in html

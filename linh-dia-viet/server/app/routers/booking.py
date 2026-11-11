@@ -3,7 +3,7 @@ Mỗi lần đặt: đền → lễ vật (số lượng từng món) → nguy�
 → đọc ngay khi mâm lễ bày xong hoặc hẹn giờ → chốt (trừ tiền thẻ đã lưu) → xem lại trong lịch sử."""
 import tempfile
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -48,6 +48,7 @@ class Booking:
     scheduled_at: datetime | None  # UTC; None = phát ngay sau khi thanh toán
     tz: str
     play_asap: bool = True
+    items_by_temple: dict[int, list[tuple[OfferingPackage, int]]] = field(default_factory=dict)  # mâm lễ từng đền
 
 
 def _form_get(form, name, default=""):
@@ -84,6 +85,7 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False,
         items.append((p, int(q)))
     if not items and not partial:
         raise BookingError("Vui lòng chọn ít nhất một lễ vật.")
+    items_by = resolve_trays(db, form, temples, items, partial)
 
     # tín chủ: lấy từ hồ sơ tài khoản (form chỉ gửi khi muốn ghi đè)
     full_name = prayer_text.clean_input(_form_get(form, "ho_ten") or (user and user.devotee_name) or "", 120)
@@ -135,7 +137,50 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False,
         if not partial and recording_key not in request.session.get("rec_keys", []):
             raise BookingError("Vui lòng ghi âm (đọc tờ sớ) rồi bấm “Dùng bản ghi này”, hoặc tải file lên.")
     return Booking(temples, items, full_name, birth_year, address, wish, kind, text, recording_key, scheduled_at, tz,
-                   play_asap)
+                   play_asap, items_by)
+
+
+def resolve_trays(db: Session, form, temples: list[Temple], base: list[tuple[OfferingPackage, int]],
+                  partial: bool) -> dict[int, list[tuple[OfferingPackage, int]]]:
+    """Mâm lễ của từng đền. Đền đầu tiên dùng mâm chính (sl_*). Mỗi đền còn lại chọn:
+    - mam_<id> = giong_<đền khác>: lấy đúng mâm của đền đó (mặc định: giống đền đầu tiên);
+    - mam_<id> = rieng: tự chọn mâm mới (sx_<id>_<món>)."""
+    first = temples[0]
+    by: dict[int, list[tuple[OfferingPackage, int]]] = {first.id: base}
+    if len(temples) == 1:
+        return by
+    ids = {t.id for t in temples}
+    modes: dict[int, str] = {t.id: _form_get(form, f"mam_{t.id}") or f"giong_{first.id}" for t in temples[1:]}
+    for t in temples[1:]:
+        if modes[t.id] != "rieng":
+            continue
+        mine = []
+        for p in packages_for(db, [t.id]):
+            q = _form_get(form, f"sx_{t.id}_{p.id}")
+            if not q.isdigit() or int(q) == 0:
+                continue
+            if int(q) > p.max_qty:
+                raise BookingError(f"{t.name} · {p.name}: tối đa {p.max_qty} {p.unit}.")
+            mine.append((p, int(q)))
+        if not mine and not partial:
+            raise BookingError(f"Vui lòng chọn ít nhất một lễ vật cho mâm riêng của {t.name}.")
+        by[t.id] = mine
+    pending = [t for t in temples[1:] if t.id not in by]
+    for _ in range(len(pending) + 1):  # "giống đền X" có thể nối tiếp qua đền khác
+        for t in list(pending):
+            m = modes[t.id]
+            src = int(m[6:]) if m.startswith("giong_") and m[6:].isdigit() and int(m[6:]) in ids else first.id
+            if src in by:
+                by[t.id] = list(by[src])
+                pending.remove(t)
+    for t in pending:  # vòng tròn (A giống B, B giống A) → như đền đầu tiên
+        by[t.id] = list(base)
+    for t in temples:  # món riêng của đền nào chỉ đặt được ở đền đó
+        for p, _q in by[t.id]:
+            if p.temple_id is not None and p.temple_id != t.id:
+                raise BookingError(f"“{p.name}” chỉ có ở một đền riêng, không đặt được tại {t.name}. "
+                                   "Hãy chọn mâm riêng cho đền này.")
+    return by
 
 
 def items_text(items: list[tuple[OfferingPackage, int]]) -> str:
@@ -174,7 +219,18 @@ def booking_page(request: Request, db: Session = Depends(get_db), user: User = D
         if o and o.user_id == user.id:
             p = o.prayer
             selected = [x.temple_id for x in p.orders if x.booking_ref == o.booking_ref] or [o.temple_id]
-            prefill = {"qty": {i.package_id: i.qty for i in o.items if i.package_id}, "ho_ten": p.full_name, "nam_sinh": p.birth_year, "dia_chi": p.address,
+            grp = sorted((x for x in p.orders if x.booking_ref == o.booking_ref), key=lambda x: selected.index(x.temple_id)
+                         if x.temple_id in selected else 0)
+            base_qty = {i.package_id: i.qty for i in (grp[0].items if grp else o.items) if i.package_id}
+            mam, sx = {}, {}
+            for x in grp[1:]:
+                q = {i.package_id: i.qty for i in x.items if i.package_id}
+                if q == base_qty:
+                    mam[x.temple_id] = f"giong_{grp[0].temple_id}"
+                else:
+                    mam[x.temple_id] = "rieng"
+                    sx.update({f"{x.temple_id}_{pid}": n for pid, n in q.items()})
+            prefill = {"qty": base_qty, "mam": mam, "sx": sx, "ho_ten": p.full_name, "nam_sinh": p.birth_year, "dia_chi": p.address,
                        "nguyen_vong": p.wish, "cach_khan": p.kind, "van_ban": p.text or ""}
             if p.kind == "recorded" and p.audio_key:
                 keys = request.session.setdefault("rec_keys", [])
@@ -184,27 +240,45 @@ def booking_page(request: Request, db: Session = Depends(get_db), user: User = D
     temples = list(db.scalars(select(Temple).where(Temple.status == "active").order_by(Temple.name)))
     by_id = {t.id: t for t in temples}
     chosen = [by_id[i] for i in selected if i in by_id and by_id[i].device_id]
-    packages = packages_for(db, [t.id for t in chosen])
     s = get_settings()
     min_dt = (utcnow() + timedelta(seconds=s.min_lead_seconds + 60)).astimezone(ZoneInfo(s.default_timezone))
     return render(request, "booking/form.html", {
         "temples": temples, "selected": [t.id for t in chosen], "online": {t.id: device_online(t.device) for t in temples},
         # đã chọn từ ngoài thì chỉ hiện tóm tắt, không bắt chọn lại
-        "chosen": chosen, "packages": packages, "prefill": prefill, "n_temples": max(1, len(chosen)),
+        "chosen": chosen, **tray_ctx(db, chosen, prefill),
         "info_complete": bool(prefill["ho_ten"] and prefill["nam_sinh"] and prefill["dia_chi"] and prefill["nguyen_vong"]),
         "min_dt": min_dt.strftime("%Y-%m-%dT%H:%M"), "max_seconds": s.max_audio_seconds, "max_chars": s.max_prayer_chars,
     })
 
 
+def tray_ctx(db: Session, temples: list[Temple], prefill: dict) -> dict:
+    """Dữ liệu vẽ phần lễ vật: mâm chính + (nhiều đền) lựa chọn mâm cho từng đền còn lại."""
+    ids = [t.id for t in temples]
+    ctx = {"packages": packages_for(db, ids), "prefill": prefill, "n_temples": max(1, len(ids)),
+           "temples_sel": temples if len(temples) > 1 else [], "own_packages": {}}
+    for t in temples[1:]:
+        ctx["own_packages"][t.id] = packages_for(db, [t.id])
+    return ctx
+
+
 @router.get("/dat-le/goi-le")
 def package_options(request: Request, db: Session = Depends(get_db), user: User = Depends(require_user)):
-    ids = [int(x) for x in request.query_params.getlist("den") if x.isdigit()]
-    qty = {}
+    ids = []
+    for x in request.query_params.getlist("den"):
+        if x.isdigit() and int(x) not in ids:
+            ids.append(int(x))
+    qty, mam, sx = {}, {}, {}
     for k, v in request.query_params.items():
         if k.startswith("sl_") and k[3:].isdigit() and v.isdigit():
             qty[int(k[3:])] = int(v)
-    return render(request, "booking/_packages.html", {"packages": packages_for(db, ids), "prefill": {"qty": qty},
-                                                      "n_temples": max(1, len(ids))})
+        elif k.startswith("sx_") and v.isdigit():
+            sx[k[3:]] = int(v)
+        elif k.startswith("mam_") and k[4:].isdigit():
+            mam[int(k[4:])] = v
+    found = {t.id: t for t in db.scalars(select(Temple).where(Temple.id.in_(ids), Temple.status == "active"))}
+    temples = [found[i] for i in ids if i in found]
+    return render(request, "booking/_packages.html",
+                  tray_ctx(db, temples, {"qty": qty, "mam": mam, "sx": sx}))
 
 
 @router.get("/dat-le/am-lich")
@@ -299,10 +373,11 @@ async def submit(request: Request, background: BackgroundTasks, db: Session = De
     ref = svc.new_ref()
     orders = []
     for t in b.temples:
+        its = b.items_by_temple.get(t.id) or b.items
         o = Order(booking_ref=ref, user_id=user.id, prayer_id=prayer.id, temple_id=t.id,
                   scheduled_at=b.scheduled_at or utcnow(), play_asap=b.play_asap, timezone=b.tz,
-                  total=sum(p.price * q for p, q in b.items),
-                  items=[OrderItem(package_id=p.id, name=p.name, unit=p.unit, price=p.price, qty=q) for p, q in b.items])
+                  total=sum(p.price * q for p, q in its),
+                  items=[OrderItem(package_id=p.id, name=p.name, unit=p.unit, price=p.price, qty=q) for p, q in its])
         db.add(o)
         db.flush()
         db.add(OrderEvent(order_id=o.id, status="created"))

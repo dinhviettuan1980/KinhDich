@@ -1,20 +1,44 @@
-{# Danh mục lễ vật: chọn số lượng từng món (0 = không lấy). #}
-{% for p in packages %}
-  {% set q = (prefill.qty or {}).get(p.id, 0) if prefill else 0 %}
+{# Danh mục lễ vật: chọn số lượng từng món (0 = không lấy). Nhiều đền: mâm của đền đầu + lựa chọn mâm cho từng đền còn lại. #}
+{% macro stepper(p, name, q, scope) %}
   <div class="ld-item">
     <div class="ld-item-info"><b>{{ p.name }}</b> <span class="ld-muted">· {{ fmt_vnd(p.price) }}/{{ p.unit }}</span>
       {% if p.temple_id %}<span class="ld-badge">riêng của đền</span>{% endif %}
       {% if p.description %}<br><span class="ld-muted small">{{ p.description }}</span>{% endif %}</div>
-    <div class="ld-stepper" data-price="{{ p.price }}">
+    <div class="ld-stepper" data-price="{{ p.price }}" data-scope="{{ scope }}">
       <button type="button" class="ld-btn secondary small" data-step="-1" aria-label="Bớt {{ p.name }}">−</button>
-      <input type="number" name="sl_{{ p.id }}" value="{{ q }}" min="0" max="{{ p.max_qty }}" inputmode="numeric" aria-label="Số {{ p.unit }} {{ p.name }}">
+      <input type="number" name="{{ name }}" value="{{ q }}" min="0" max="{{ p.max_qty }}" inputmode="numeric" aria-label="Số {{ p.unit }} {{ p.name }}">
       <button type="button" class="ld-btn secondary small" data-step="1" aria-label="Thêm {{ p.name }}">+</button>
     </div>
   </div>
+{% endmacro %}
+{% if temples_sel %}<h3 style="margin-bottom:4px">Mâm lễ tại {{ temples_sel[0].name }}</h3>{% endif %}
+{% for p in packages %}
+  {{ stepper(p, 'sl_' ~ p.id, (prefill.qty or {}).get(p.id, 0) if prefill else 0, 'base') }}
 {% else %}
   <p class="ld-muted">Chọn đền để xem lễ vật.</p>
 {% endfor %}
+{% if temples_sel %}
+  <p class="ld-muted small">Mâm trên là của <b>{{ temples_sel[0].name }}</b>. Với các đền còn lại, chọn lấy <b>giống</b> mâm một đền khác hoặc <b>tự chọn mâm mới</b>.</p>
+  {% for t in temples_sel[1:] %}
+    {% set cur = (((prefill or {}).get('mam') or {}).get(t.id)) or ('giong_' ~ temples_sel[0].id) %}
+    <div class="ld-card ld-mam-card" data-temple="{{ t.id }}" style="background:#fffdf7">
+      <div class="ld-spread"><b>{{ t.name }}</b><span class="ld-muted small">Tạm tính: <b data-mam-total>0 ₫</b></span></div>
+      <label for="mam_{{ t.id }}" class="small ld-muted">Mâm lễ tại đền này</label>
+      <select id="mam_{{ t.id }}" name="mam_{{ t.id }}" class="ld-mam">
+        {% for s in temples_sel if s.id != t.id %}
+          <option value="giong_{{ s.id }}" {% if cur == 'giong_' ~ s.id %}selected{% endif %}>Giống mâm đền {{ s.name }}</option>
+        {% endfor %}
+        <option value="rieng" {% if cur == 'rieng' %}selected{% endif %}>Tự chọn mâm mới…</option>
+      </select>
+      <div class="ld-mam-custom" {% if cur != 'rieng' %}hidden{% endif %}>
+        {% for p in own_packages[t.id] %}
+          {{ stepper(p, 'sx_' ~ t.id ~ '_' ~ p.id, (((prefill or {}).get('sx') or {}).get(t.id ~ '_' ~ p.id, 0)), t.id) }}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
 {% if packages %}
-<div class="ld-spread ld-item-total"><span>Tạm tính{% if n_temples > 1 %} <span class="ld-muted">(× {{ n_temples }} đền)</span>{% endif %}</span>
+<div class="ld-spread ld-item-total"><span>Tạm tính{% if n_temples > 1 %} <span class="ld-muted">(cả {{ n_temples }} đền)</span>{% endif %}</span>
   <b id="items-total" data-temples="{{ n_temples }}">0 ₫</b></div>
 {% endif %}

@@ -42,14 +42,39 @@
   syncTemples();
 
   // ---- Lễ vật: nút −/+ và tạm tính ----
-  function syncItems() {
-    var total = 0;
-    form.querySelectorAll(".ld-stepper").forEach(function (st) {
-      var inp = st.querySelector("input");
-      total += (parseInt(inp.value, 10) || 0) * parseInt(st.dataset.price, 10);
+  // Mâm lễ từng đền: đền đầu dùng mâm chính; đền khác "giống đền X" hoặc "tự chọn mâm mới".
+  function scopeTotal(scope) {
+    var t = 0;
+    form.querySelectorAll('.ld-stepper[data-scope="' + scope + '"]').forEach(function (st) {
+      t += (parseInt(st.querySelector("input").value, 10) || 0) * parseInt(st.dataset.price, 10);
     });
+    return t;
+  }
+  function trayTotal(id, seen) {
+    var sel = form.querySelector("select[name=mam_" + id + "]");
+    if (!sel) return scopeTotal("base");                       // đền đầu tiên / đặt 1 đền
+    if (sel.value === "rieng") return scopeTotal(String(id));
+    var src = sel.value.replace("giong_", "");
+    if (seen.indexOf(src) >= 0) return scopeTotal("base");     // vòng tròn → như mâm chính
+    return trayTotal(src, seen.concat([id]));
+  }
+  function syncItems() {
+    var cards = form.querySelectorAll(".ld-mam-card"), all = 0;
+    form.querySelectorAll(".ld-mam").forEach(function (sel) {
+      sel.closest(".ld-mam-card").querySelector(".ld-mam-custom").hidden = sel.value !== "rieng";
+    });
+    if (cards.length) {
+      all = scopeTotal("base");
+      cards.forEach(function (c) {
+        var t = trayTotal(c.dataset.temple, []);
+        c.querySelector("[data-mam-total]").textContent = t.toLocaleString("vi-VN") + " ₫";
+        all += t;
+      });
+    } else {
+      var el0 = $("items-total");
+      all = el0 ? scopeTotal("base") * (parseInt(el0.dataset.temples, 10) || 1) : 0;
+    }
     var el = $("items-total");
-    var all = el ? total * (parseInt(el.dataset.temples, 10) || 1) : 0;
     var txt = all.toLocaleString("vi-VN") + " ₫";
     if (el) el.textContent = txt;
     if ($("grand-total")) $("grand-total").textContent = all ? txt : "—";
@@ -66,7 +91,9 @@
   });
   var itemTimer = null;
   form.addEventListener("change", function (e) {
-    if (!/^sl_/.test(e.target.name || "")) return;
+    var nm = e.target.name || "";
+    if (/^mam_/.test(nm)) { syncItems(); return; }
+    if (!/^(sl_|sx_)/.test(nm)) return;
     syncItems();
     clearTimeout(itemTimer);  // bấm +/− liên tục: soạn lại sớ một lần sau khi dừng tay
     itemTimer = setTimeout(autoPreview, 600);

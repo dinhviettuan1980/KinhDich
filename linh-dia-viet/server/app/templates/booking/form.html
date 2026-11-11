@@ -22,7 +22,7 @@
     <p class="ld-muted">Có thể chọn nhiều nơi (tối đa {{ settings().max_temples_per_order }}); bài khấn được phát tại từng nơi.</p>
     <p class="ld-row"><span id="temple-count" class="ld-badge">0 đền</span>
       <button type="button" class="ld-btn secondary small" id="btn-all">Chọn tất cả</button></p>
-    <div hx-get="{{ u('/dat-le/goi-le') }}" hx-trigger="change" hx-target="#packages" hx-include="[name=den],[name^=sl_]">
+    <div hx-get="{{ u('/dat-le/goi-le') }}" hx-trigger="change" hx-target="#packages" hx-include="[name=den],[name^=sl_],[name^=sx_],[name^=mam_]">
     {% for t in temples %}
       <label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}" {% if t.device_id %}data-ok{% else %}disabled{% endif %}>
         <span>{{ t.name }} <span class="ld-muted">· {{ t.province }}</span>
@@ -35,7 +35,7 @@
   {# ---------- Lễ vật ---------- #}
   <section class="ld-card">
     <h2>Sắm lễ vật</h2>
-    <p class="ld-muted">Chọn số lượng từng món; kiosk tại đền bày mâm đúng như bạn chọn.</p>
+    <p class="ld-muted">Chọn số lượng từng món; kiosk tại đền bày mâm đúng như bạn chọn. Đặt nhiều đền: mỗi đền có thể giống mâm đền khác hoặc tự chọn mâm mới.</p>
     <div id="packages">{% include "booking/_packages.html" %}</div>
   </section>
 
