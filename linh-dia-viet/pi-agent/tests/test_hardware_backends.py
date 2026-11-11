@@ -2,6 +2,7 @@
 import os
 import shutil
 import stat
+import sys
 import time
 
 import pytest
@@ -10,12 +11,23 @@ from ld_agent.camera import Camera
 from ld_agent.player import ProcessPlayer
 
 
-def fake_bin(tmp_path, name, body):
-    p = tmp_path / "bin" / name
-    p.parent.mkdir(exist_ok=True)
-    p.write_text("#!/bin/sh\n" + body)
-    p.chmod(p.stat().st_mode | stat.S_IEXEC)
-    return p.parent
+def fake_bin(tmp_path, monkeypatch, name, body):
+    """Chương trình giả `name` đặt đầu PATH. Thân viết bằng Python (đối số ở sys.argv) để chạy cả Linux lẫn Windows."""
+    d = tmp_path / "bin"
+    d.mkdir(exist_ok=True)
+    py = d / f"{name}.py"
+    py.write_text("import shutil, sys, time\n" + body, encoding="utf-8")
+    if os.name == "nt":
+        (d / f"{name}.cmd").write_text(f'@"{sys.executable}" "{py}" %*\r\n')
+    else:
+        p = d / name
+        p.write_text(f'#!/bin/sh\nexec "{sys.executable}" "{py}" "$@"\n')
+        p.chmod(p.stat().st_mode | stat.S_IEXEC)
+    monkeypatch.setenv("PATH", f"{d}{os.pathsep}{os.environ['PATH']}")
+
+
+def _write_args(tmp_path) -> str:
+    return f'open(r"{tmp_path / "args"}", "w").write(" ".join(sys.argv[1:]))\n'
 
 
 @pytest.mark.parametrize("kind,binary", [("rpicam", "rpicam-still"), ("fswebcam", "fswebcam")])
@@ -23,8 +35,7 @@ def test_camera_backends(tmp_path, monkeypatch, kind, binary):
     src = tmp_path / "src.jpg"
     Camera("simulate").capture(src)
     # chương trình giả: chép ảnh mẫu vào đối số cuối (rpicam dùng -o FILE ở cuối, fswebcam FILE ở cuối)
-    bindir = fake_bin(tmp_path, binary, f'for a; do last="$a"; done; cp "{src}" "$last"\necho "$@" > "{tmp_path}/args"\n')
-    monkeypatch.setenv("PATH", f"{bindir}:{os.environ['PATH']}")
+    fake_bin(tmp_path, monkeypatch, binary, f'shutil.copy(r"{src}", sys.argv[-1])\n' + _write_args(tmp_path))
     dst = tmp_path / "out" / "a.jpg"
     assert Camera(kind, width=800, height=600, quality=70).capture(dst)
     assert dst.read_bytes() == src.read_bytes()
@@ -33,15 +44,13 @@ def test_camera_backends(tmp_path, monkeypatch, kind, binary):
 
 
 def test_camera_failure_returns_false(tmp_path, monkeypatch):
-    bindir = fake_bin(tmp_path, "rpicam-still", "exit 1\n")
-    monkeypatch.setenv("PATH", f"{bindir}:{os.environ['PATH']}")
+    fake_bin(tmp_path, monkeypatch, "rpicam-still", "sys.exit(1)\n")
     assert not Camera("rpicam").capture(tmp_path / "a.jpg")
     assert not Camera("none").capture(tmp_path / "b.jpg")
 
 
 def test_mpv_command_has_volume_and_device(tmp_path, monkeypatch):
-    bindir = fake_bin(tmp_path, "mpv", f'echo "$@" > "{tmp_path}/args"\n')
-    monkeypatch.setenv("PATH", f"{bindir}:{os.environ['PATH']}")
+    fake_bin(tmp_path, monkeypatch, "mpv", _write_args(tmp_path))
     p = ProcessPlayer("mpv", "alsa/plughw:1,0")
     p.start(tmp_path / "x.mp3", 42, time.time())
     while p.is_playing(time.time()):
@@ -52,8 +61,7 @@ def test_mpv_command_has_volume_and_device(tmp_path, monkeypatch):
 
 
 def test_player_error_reported(tmp_path, monkeypatch):
-    bindir = fake_bin(tmp_path, "mpv", 'echo "no audio device" >&2; exit 2\n')
-    monkeypatch.setenv("PATH", f"{bindir}:{os.environ['PATH']}")
+    fake_bin(tmp_path, monkeypatch, "mpv", 'print("no audio device", file=sys.stderr)\nsys.exit(2)\n')
     p = ProcessPlayer("mpv")
     p.start(tmp_path / "x.mp3", 50, time.time())
     while p.is_playing(time.time()):
@@ -62,8 +70,7 @@ def test_player_error_reported(tmp_path, monkeypatch):
 
 
 def test_stop_kills_player(tmp_path, monkeypatch):
-    bindir = fake_bin(tmp_path, "mpv", "sleep 30\n")
-    monkeypatch.setenv("PATH", f"{bindir}:{os.environ['PATH']}")
+    fake_bin(tmp_path, monkeypatch, "mpv", "time.sleep(30)\n")
     p = ProcessPlayer("mpv")
     p.start(tmp_path / "x.mp3", 50, time.time())
     assert p.is_playing(time.time())

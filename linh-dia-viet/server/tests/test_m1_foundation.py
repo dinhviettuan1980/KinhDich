@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 import subprocess
 import sys
@@ -110,8 +111,11 @@ def test_admin_crud_temple_and_package(admin_client, db):
 def test_alembic_matches_models(tmp_path):
     url = f"sqlite:///{tmp_path}/mig.db"
     server = Path(__file__).resolve().parents[1]
+    env = {"DATABASE_URL": url, "PATH": "/usr/bin:/bin"}
+    if os.name == "nt":  # Python trên Windows không khởi động được nếu thiếu SYSTEMROOT
+        env.update(PATH=os.environ["PATH"], SYSTEMROOT=os.environ["SYSTEMROOT"])
     subprocess.run([sys.executable, "-m", "alembic", "-x", "noop=1", "upgrade", "head"], cwd=server, check=True,
-                   env={"DATABASE_URL": url, "PATH": "/usr/bin:/bin"}, capture_output=True)
+                   env=env, capture_output=True)
     insp = inspect(create_engine(url))
     for table in Base.metadata.sorted_tables:
         cols = {c["name"] for c in insp.get_columns(table.name)}

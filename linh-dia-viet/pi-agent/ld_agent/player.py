@@ -36,7 +36,9 @@ class ProcessPlayer(Player):
         return c
 
     def start(self, path, volume, now):
-        self.proc = subprocess.Popen(self.cmd(path, volume), stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+        c = self.cmd(path, volume)
+        c[0] = shutil.which(c[0]) or c[0]  # đường dẫn đầy đủ: Windows không tự tìm .cmd/.bat khi không qua shell
+        self.proc = subprocess.Popen(c, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 
     def is_playing(self, now):
         return self.proc is not None and self.proc.poll() is None
