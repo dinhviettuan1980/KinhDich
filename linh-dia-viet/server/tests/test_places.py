@@ -167,3 +167,63 @@ def test_real_snapshot_is_sane():
     assert {"Đền Ngọc Sơn", "Chùa Trấn Quốc", "Miếu Bà Chúa Xứ Núi Sam"} <= names
     assert all(p["kind"] in ("chua", "den", "dinh", "mieu", "phu") for p in snap["places"])
     assert sum(1 for p in snap["places"] if not p["prov"]) < len(snap["places"]) * 0.02
+
+
+def test_merge_wikipedia_fills_descriptions_and_adds_new():
+    base = [
+        {"src": "osm", "sid": "way/1", "name": "Chùa Vĩnh Nghiêm", "kind": "chua", "lat": 21.2, "lng": 106.3,
+         "prov": "Bắc Ninh", "addr": "", "wd": "", "wp": ""},
+        {"src": "osm", "sid": "way/2", "name": "Chùa Vĩnh Nghiêm", "kind": "chua", "lat": 10.79, "lng": 106.68,
+         "prov": "Hồ Chí Minh", "addr": "", "wd": "", "wp": ""},
+        {"src": "osm", "sid": "way/3", "name": "Chùa Dâu", "kind": "chua", "lat": 21.04, "lng": 106.12,
+         "prov": "Bắc Ninh", "addr": "", "wd": "", "wp": ""},
+    ]
+    kinds = {"Chùa Vĩnh Nghiêm (Bắc Ninh)": "chua", "Chùa Dâu": "chua", "Bút Tháp": "chua", "Chùa Xa Lạ": "chua"}
+    details = [
+        {"title": "Chùa Vĩnh Nghiêm (Bắc Ninh)", "lat": None, "lng": None, "desc": "Thiền phái Trúc Lâm.",
+         "url": "https://vi.wikipedia.org/wiki/A", "qid": "Q10", "pageid": 10, "img": ""},
+        {"title": "Chùa Dâu", "lat": None, "lng": None, "desc": "Chùa cổ nhất.", "url": "https://vi.wikipedia.org/wiki/B",
+         "qid": "", "pageid": 11, "img": ""},
+        {"title": "Bút Tháp", "lat": 21.07, "lng": 106.03, "desc": "Chùa Ninh Phúc.", "url": "https://vi.wikipedia.org/wiki/C",
+         "qid": "Q12", "pageid": 12, "img": "https://upload.wikimedia.org/wikipedia/commons/x.jpg"},
+        {"title": "Chùa Xa Lạ", "lat": None, "lng": None, "desc": "Không ghép được.", "url": "u", "qid": "", "pageid": 13, "img": ""},
+    ]
+    wp = places.records_from_wikipedia(details, kinds, None)
+    out = places.merge_wikipedia(base, wp)
+    by = {r["sid"]: r for r in out}
+    assert by["way/1"]["desc"] == "Thiền phái Trúc Lâm." and by["way/1"]["wd"] == "Q10"  # khớp tỉnh trong ngoặc
+    assert not by["way/2"].get("desc")
+    assert by["way/3"]["desc"] == "Chùa cổ nhất."  # tên duy nhất
+    assert by["vi:12"]["kind"] == "chua" and by["vi:12"]["name"] == "Bút Tháp"  # có toạ độ, không trùng → thêm mới
+    assert "vi:13" not in by  # không toạ độ, không ghép được → bỏ
+
+
+def test_admin_place_list_edit_hide_and_create(admin_client, client, db):
+    places.load(db, _snap())
+    db.commit()
+    kl = db.scalar(select(SacredPlace).where(SacredPlace.source_id == "node/9"))
+    page = admin_client.get(f"{P}/admin/dia-diem?q=Kim").text
+    assert "Đình Kim Liên" in page and "Chùa Trấn Quốc" not in page
+    assert "Danh bạ đình chùa" in admin_client.get(f"{P}/admin").text
+    form = {"csrf_token": admin_client.csrf, "name": "Đình Kim Liên", "kind": "dinh", "province": "Hà Nội",
+            "address": "Phương Mai", "lat": "21.0071", "lng": "105.8381", "description": "Đình thờ Cao Sơn Đại Vương.",
+            "status": "hidden"}
+    r = admin_client.post(f"{P}/admin/dia-diem/{kl.id}", data=form, follow_redirects=False)
+    assert r.status_code == 303
+    db.expire_all()
+    kl = db.get(SacredPlace, kl.id)
+    assert kl.edited and kl.status == "hidden" and kl.address == "Phương Mai"
+    j = admin_client.get(f"{P}/ban-do/diem.json").json()
+    assert all(pt[4] != "Đình Kim Liên" for pt in j["points"])
+    # thêm điểm mới bằng tay
+    r = admin_client.post(f"{P}/admin/dia-diem/moi", data={**form, "name": "Chùa Mới", "kind": "chua", "status": "active"},
+                          follow_redirects=False)
+    new_id = int(r.headers["location"].rsplit("/", 1)[-1])
+    assert db.get(SacredPlace, new_id).source == "manual"
+    # toạ độ ngoài Việt Nam, link không hợp lệ → 400
+    assert admin_client.post(f"{P}/admin/dia-diem/moi", data={**form, "lat": "48.8"}).status_code == 400
+    assert admin_client.post(f"{P}/admin/dia-diem/moi", data={**form, "website": "javascript:alert(1)"}).status_code == 400
+
+
+def test_admin_place_pages_require_admin(user_client, db):
+    assert user_client.get(f"{P}/admin/dia-diem", follow_redirects=False).status_code == 403

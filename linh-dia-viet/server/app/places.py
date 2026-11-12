@@ -317,6 +317,131 @@ def fetch_wiki_summaries(titles: list[str], client, batch: int = 20, delay: floa
     return out
 
 
+# Thể loại Wikipedia tiếng Việt → loại địa điểm (dùng khi tiêu đề bài không tự nói loại, vd "Bút Tháp")
+WIKI_ROOTS = {"Thể loại:Chùa Việt Nam": "chua", "Thể loại:Đình Việt Nam": "dinh", "Thể loại:Đền Việt Nam": "den",
+              "Thể loại:Đền tại Việt Nam": "den", "Thể loại:Miếu Việt Nam": "mieu"}
+WIKI_SKIP_CAT = re.compile(r"hải ngoại|nước ngoài|ở nước|ấn độ giáo|tháp chăm|công giáo|nhà thờ|thánh thất|hồi giáo|"
+                           r"sơ khai|nhà sư|tăng nhân|trụ trì|lễ hội|bản mẫu|hình ảnh|văn miếu|khổng", re.I)
+
+
+def wiki_category_pages(client, max_depth: int = 4, delay: float = 0.5) -> dict[str, str]:
+    """Duyệt đệ quy các thể loại gốc → {tiêu đề bài: loại}. Bỏ thể loại hải ngoại, tháp Chăm, nhà thờ…"""
+    pages: dict[str, str] = {}
+    seen: set[str] = set()
+    queue = [(cat, kind, 0) for cat, kind in WIKI_ROOTS.items()]
+    while queue:
+        cat, kind, depth = queue.pop(0)
+        if cat in seen:
+            continue
+        seen.add(cat)
+        cont: dict = {}
+        while True:
+            def go():
+                r = client.get(WIKI_API, params={"action": "query", "format": "json", "list": "categorymembers",
+                                                 "cmtitle": cat, "cmlimit": "500", "cmtype": "page|subcat", **cont})
+                r.raise_for_status()
+                return r.json()
+            j = _retry(go, wait=10)
+            for m in j["query"]["categorymembers"]:
+                if m["ns"] == 14 and depth < max_depth and not WIKI_SKIP_CAT.search(m["title"]):
+                    queue.append((m["title"], kind, depth + 1))
+                elif m["ns"] == 0 and not m["title"].startswith("Danh sách"):
+                    pages.setdefault(m["title"], kind)
+            time.sleep(delay)
+            if "continue" not in j:
+                break
+            cont = {"cmcontinue": j["continue"]["cmcontinue"]}
+    return pages
+
+
+def wiki_page_details(titles: list[str], client, batch: int = 20, delay: float = 1.0) -> list[dict]:
+    """Toạ độ + đoạn mở đầu + QID Wikidata + ảnh (chỉ ảnh Commons) của từng bài, 20 bài/lần."""
+    out = []
+    for i in range(0, len(titles), batch):
+        chunk = titles[i:i + batch]
+
+        def go():
+            r = client.get(WIKI_API, params={
+                "action": "query", "format": "json", "formatversion": "2", "titles": "|".join(chunk),
+                "prop": "coordinates|extracts|pageprops|pageimages|info", "inprop": "url", "coprimary": "primary",
+                "colimit": "max", "exintro": "1", "explaintext": "1", "exlimit": str(batch), "ppprop": "wikibase_item",
+                "piprop": "thumbnail", "pithumbsize": "640", "pilimit": str(batch)})
+            r.raise_for_status()
+            return r.json()["query"]
+        try:
+            q = _retry(go, wait=10)
+        except Exception as exc:
+            log.warning("Wikipedia %s…: %s", chunk[0], exc)
+            continue
+        for page in q.get("pages", []):
+            co = (page.get("coordinates") or [None])[0] or {}
+            if page.get("missing"):
+                continue
+            thumb = (page.get("thumbnail") or {}).get("source", "")
+            out.append({"title": page["title"], "lat": co.get("lat"), "lng": co.get("lon"),
+                        "desc": (page.get("extract") or "").strip()[:4000], "url": page.get("fullurl", ""),
+                        "qid": (page.get("pageprops") or {}).get("wikibase_item", ""), "pageid": page["pageid"],
+                        "img": thumb if "/wikipedia/commons/" in thumb else ""})
+        time.sleep(delay)
+    return out
+
+
+def records_from_wikipedia(details: list[dict], kinds: dict[str, str], provinces: ProvinceIndex | None) -> list[dict]:
+    out = []
+    for d in details:
+        name = re.sub(r"\s*\(.*\)\s*$", "", d["title"]).strip()
+        if EXCLUDED_NAME.search(name):
+            continue
+        kind = classify(name) or kinds.get(d["title"])
+        hint = re.search(r"\(([^)]*)\)\s*$", d["title"])
+        if d["lat"] is None:  # bài không có toạ độ: chỉ dùng để ghép mô tả vào điểm sẵn có
+            lat = lng = None
+            prov = hint.group(1) if hint else ""
+        else:
+            lat, lng = round(d["lat"], 6), round(d["lng"], 6)
+            prov = provinces.lookup(lat, lng) if provinces else ""
+            if provinces and not prov:  # ngoài lãnh thổ (chùa Việt ở nước ngoài) → bỏ
+                continue
+        if kind is None:
+            continue
+        out.append({"src": "wikipedia", "sid": f"vi:{d['pageid']}", "name": name[:200], "kind": kind, "rel": "",
+                    "lat": lat, "lng": lng, "prov": prov, "addr": "", "phone": "",
+                    "web": "", "wd": d["qid"], "wp": d["title"], "img": d["img"],
+                    "desc": d["desc"], "desc_src": d["url"]})
+    return out
+
+
+def merge_wikipedia(records: list[dict], wp: list[dict], radius_km: float = 1.5) -> list[dict]:
+    """Bài Wikipedia trùng (QID, tiêu đề, hoặc cùng tên trong `radius_km`: toạ độ Wikipedia thường kém chính xác)
+    → bổ sung mô tả/ảnh cho bản ghi sẵn có; không trùng → thêm mới."""
+    by_qid = {r["wd"]: r for r in records if r["wd"]}
+    by_title = {r["wp"]: r for r in records if r["wp"]}
+    by_name: dict[str, list[dict]] = {}
+    for r in records:
+        by_name.setdefault(norm(r["name"]), []).append(r)
+    extra = []
+    for w in wp:
+        same = by_name.get(norm(w["name"]), [])
+        if w["lat"] is None:
+            # không toạ độ: tên khớp duy nhất, hoặc khớp tỉnh ghi trong ngoặc ("Chùa Vĩnh Nghiêm (Bắc Ninh)")
+            hint = norm(w["prov"])
+            cands = [r for r in same if hint and (hint in norm(r["prov"]) or hint in norm(r["addr"]))] if hint else same
+            near = cands[0] if len(cands) == 1 else None
+        else:
+            near = next((r for r in same if r["lat"] is not None and _km(r, w) <= radius_km), None)
+        target = (by_qid.get(w["wd"]) if w["wd"] else None) or by_title.get(w["wp"]) or near
+        if target is None and w["lat"] is None:
+            continue
+        if target is None:
+            extra.append(w)
+            by_name.setdefault(norm(w["name"]), []).append(w)
+            continue
+        for key in ("wd", "wp", "img", "desc", "desc_src"):
+            if w.get(key) and not target.get(key):
+                target[key] = w[key]
+    return records + extra
+
+
 def build(out: Path = SNAPSHOT, cache: Path | None = None) -> dict:
     with _http() as client:
         def overpass(q):
@@ -340,12 +465,17 @@ def build(out: Path = SNAPSHOT, cache: Path | None = None) -> dict:
         wd = records_from_wikidata(
             _cached_json(cache, "wikidata.json", lambda: _retry(wikidata))["results"]["bindings"], provs)
         records = merge(dedupe(osm), wd)
-        titles = sorted({r["wp"] for r in records if r["wp"]})
+        log.info("Duyệt thể loại Wikipedia…")
+        kinds = _cached_json(cache, "wiki_cats.json", lambda: wiki_category_pages(client))
+        log.info("Tải %d bài Wikipedia…", len(kinds))
+        details = _cached_json(cache, "wiki_pages.json", lambda: wiki_page_details(sorted(kinds), client))
+        records = merge_wikipedia(records, records_from_wikipedia(details, kinds, provs))
+        titles = sorted({r["wp"] for r in records if r["wp"] and not r.get("desc")})
         log.info("Tải %d tóm tắt Wikipedia…", len(titles))
         summaries = _cached_json(cache, "wiki.json", lambda: fetch_wiki_summaries(titles, client))
     for r in records:
         s = summaries.get(r["wp"])
-        if s:
+        if s and not r.get("desc"):
             r["desc"], r["desc_src"] = s["desc"], s["url"]
     records.sort(key=lambda r: (r["prov"], norm(r["name"]), r["sid"]))
     snap = {"version": datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S"),

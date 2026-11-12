@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ p.name or 'Thêm địa điểm' }}{% endblock %}
+{% block content %}
+<p class="ld-muted small"><a href="{{ u('/admin/dia-diem') }}">← Danh bạ đình chùa</a>{% if p.id %} · <a href="{{ u('/dia-diem/' ~ p.id) }}" target="_blank">Xem trang công khai</a>{% endif %}</p>
+<h1>{{ p.name or 'Thêm địa điểm' }}</h1>
+{% if p.id %}<p class="ld-muted small">Mã {{ p.id }} · nguồn {{ p.source }} {{ p.source_id }}{% if p.edited %} · đã sửa tay{% endif %}
+  {% if p.temple %} · gắn với <a href="{{ u('/admin/den/' ~ p.temple.id) }}">{{ p.temple.name }}</a>{% endif %}</p>{% endif %}
+<form class="ld-card" method="post" action="{{ u('/admin/dia-diem/' ~ (p.id or 'moi')) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label>Tên</label><input type="text" name="name" required value="{{ p.name or '' }}">
+  <label>Loại</label>
+  <select name="kind">{% for k, label in kinds.items() %}<option value="{{ k }}" {% if k == p.kind %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+  <label>Tỉnh/thành</label><input type="text" name="province" value="{{ p.province or '' }}">
+  <label>Địa chỉ</label><input type="text" name="address" value="{{ p.address or '' }}">
+  <div class="ld-row">
+    <div style="flex:1 1 140px"><label>Vĩ độ</label><input type="text" inputmode="decimal" name="lat" required value="{{ p.lat if p.lat is not none else '' }}" placeholder="21.0307"></div>
+    <div style="flex:1 1 140px"><label>Kinh độ</label><input type="text" inputmode="decimal" name="lng" required value="{{ p.lng if p.lng is not none else '' }}" placeholder="105.8524"></div>
+  </div>
+  <p class="ld-muted small">Lấy toạ độ: mở Google Maps, nhấn giữ vào vị trí, chép hai số hiện ra.</p>
+  <label>Điện thoại</label><input type="text" name="phone" value="{{ p.phone or '' }}">
+  <label>Website</label><input type="text" name="website" value="{{ p.website or '' }}">
+  <label>Giới thiệu</label><textarea name="description" rows="8">{{ p.description or '' }}</textarea>
+  <label>Nguồn giới thiệu (URL)</label><input type="text" name="description_source" value="{{ p.description_source or '' }}">
+  <p class="ld-muted small">Nếu giới thiệu lấy từ Wikipedia thì giữ link bài gốc (giấy phép CC BY-SA bắt buộc ghi nguồn). Tự viết thì để trống.</p>
+  <label>Ảnh (URL)</label><input type="text" name="image_url" value="{{ p.image_url or '' }}">
+  <label>Trạng thái</label>
+  <select name="status"><option value="active" {% if p.status == 'active' %}selected{% endif %}>Hiện trên bản đồ</option><option value="hidden" {% if p.status == 'hidden' %}selected{% endif %}>Ẩn</option></select>
+  <p><button class="ld-btn">Lưu</button></p>
+</form>
+{% endblock %}

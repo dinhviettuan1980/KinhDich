@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Danh bạ đình chùa{% endblock %}
+{% block content %}
+<div class="ld-spread"><h1>Danh bạ đình chùa</h1><a class="ld-btn small" href="{{ u('/admin/dia-diem/moi') }}">+ Thêm</a></div>
+<p class="ld-muted small">Dữ liệu nhập tự động từ OpenStreetMap, Wikidata, Wikipedia. Địa điểm đã sửa tay sẽ không bị lần nhập sau ghi đè.
+  Muốn ẩn điểm sai thì đặt trạng thái "Ẩn". Muốn gắn đền nhận lễ thì nhập mã ở <a href="{{ u('/admin/den') }}">Đền, chùa</a>.</p>
+<form class="ld-card" method="get" action="{{ u('/admin/dia-diem') }}">
+  <input type="search" name="q" value="{{ q }}" placeholder="Tên, địa chỉ hoặc mã…" aria-label="Tìm">
+  <div class="ld-row" style="margin-top:8px">
+    <select name="kind" aria-label="Loại" style="flex:1 1 120px;width:auto"><option value="">Mọi loại</option>
+      {% for k, label in kinds.items() %}<option value="{{ k }}" {% if k == kind %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <select name="prov" aria-label="Tỉnh" style="flex:1 1 140px;width:auto"><option value="">Mọi tỉnh</option>
+      {% for pv in provinces %}<option {% if pv == prov %}selected{% endif %}>{{ pv }}</option>{% endfor %}</select>
+    <select name="status" aria-label="Trạng thái" style="flex:1 1 140px;width:auto">
+      {% for v, label in [('', 'Mọi trạng thái'), ('active', 'Đang hiện'), ('hidden', 'Đang ẩn'), ('edited', 'Đã sửa tay'), ('linked', 'Gắn đền nhận lễ')] %}
+      <option value="{{ v }}" {% if v == status %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <button class="ld-btn small">Lọc</button>
+  </div>
+</form>
+<p class="ld-muted small">{{ total }} địa điểm{% if pages > 1 %} · trang {{ page }}/{{ pages }}{% endif %}</p>
+<div class="ld-scroll"><table>
+<tr><th>Mã</th><th>Tên</th><th>Tỉnh</th><th>Nguồn</th><th></th></tr>
+{% for p in rows %}<tr>
+  <td>{{ p.id }}</td>
+  <td><a href="{{ u('/admin/dia-diem/' ~ p.id) }}">{{ p.name }}</a> <span class="ld-muted small">{{ p.kind_label }}</span>
+    {% if p.temple %}<span class="ld-badge on">{{ p.temple.name }}</span>{% endif %}</td>
+  <td>{{ p.province }}</td>
+  <td class="small">{{ p.source }}{% if p.edited %} ✎{% endif %}{% if p.description %} · có mô tả{% endif %}</td>
+  <td>{% if p.status != 'active' %}<span class="ld-badge off">Ẩn</span>{% endif %}</td>
+</tr>{% else %}<tr><td colspan="5" class="ld-muted">Không có địa điểm nào.</td></tr>{% endfor %}
+</table></div>
+{% if pages > 1 %}{% set qs = '&q=' ~ (q | urlencode) ~ '&prov=' ~ (prov | urlencode) ~ '&kind=' ~ kind ~ '&status=' ~ status %}
+<p class="ld-row">
+  {% if page > 1 %}<a class="ld-btn small secondary" href="{{ u('/admin/dia-diem') }}?page={{ page - 1 }}{{ qs }}">← Trước</a>{% endif %}
+  {% if page < pages %}<a class="ld-btn small secondary" href="{{ u('/admin/dia-diem') }}?page={{ page + 1 }}{{ qs }}">Sau →</a>{% endif %}
+</p>{% endif %}
+{% endblock %}

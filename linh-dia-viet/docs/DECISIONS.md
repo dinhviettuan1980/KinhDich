@@ -116,7 +116,10 @@ Bốn vai trò trong `users.role`:
   bỏ điểm không nhận ra loại từ tên/tôn giáo (tag thờ tự trên OSM hay gắn nhầm cho công ty, nhà văn hoá…). Gộp node+way
   trùng tên trong 300 m; Wikidata gộp vào OSM theo QID hoặc trùng tên trong 600 m, còn lại thêm mới (OSM thiếu nhiều di
   tích lớn, vd Đền Ngọc Sơn). Tỉnh gán bằng point-in-polygon trên ranh giới 34 tỉnh của OSM (ray casting, không cần
-  shapely). Snapshot 2026-11-12: 4.654 điểm, 153 có mô tả, phân bố lệch về TP.HCM/Hà Nội theo độ phủ của OSM.
+  shapely). Thêm bài Wikipedia trong các thể loại "Chùa/Đình/Đền/Miếu Việt Nam" (đệ quy, bỏ hải ngoại, tháp Chăm…):
+  bài có toạ độ mà không trùng → thêm điểm mới; bài không toạ độ chỉ ghép mô tả vào điểm sẵn có khi tên khớp duy nhất
+  hoặc khớp tỉnh trong ngoặc. Snapshot 2026-11-12: 4.680 điểm, 285 có mô tả, phân bố lệch về TP.HCM/Hà Nội theo độ phủ OSM.
+- **Quản trị:** `/admin/dia-diem` (admin) tìm/lọc, sửa, ẩn, thêm điểm (`source=manual`); lưu là đánh dấu `edited`.
 - **Hai bước:** `python -m app.places build --cache DIR` (tải Overpass + Wikidata + Wikipedia, ~3 phút) ghi
   `app/data/places_vn.json.gz` (~190 KB, commit vào repo); seed tự nạp khi phiên bản snapshot đổi (`settings.places:snapshot`),
   upsert theo `(source, source_id)`, bản ghi `edited` không bị ghi đè. Production không cần gọi dịch vụ ngoài.
