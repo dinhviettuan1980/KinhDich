@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..config import get_settings
 from ..db import get_db
-from ..models import Device, OfferingPackage, SacredPlace, Temple, utcnow
+from ..models import Deity, Device, OfferingPackage, SacredPlace, Temple, utcnow
 from ..web import render, require_user
 
 router = APIRouter()
@@ -50,6 +50,22 @@ def temple_detail(slug: str, request: Request, db: Session = Depends(get_db), us
         "temple": temple, "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
         "place": db.scalar(select(SacredPlace).where(SacredPlace.temple_id == temple.id, SacredPlace.status == "active")),
     })
+
+
+@router.get("/than-thanh")
+def deity_list(request: Request, q: str = "", nhom: str = "", db: Session = Depends(get_db)):
+    """Tra cứu thần thánh (công khai; chỉ mục độ tin cậy Cao / Trung bình)."""
+    rows = [d for d in db.scalars(select(Deity).order_by(Deity.id)) if d.public]
+    groups = {}
+    for d in rows:
+        groups.setdefault(d.group_code, d.group_name)
+    if nhom in groups:
+        rows = [d for d in rows if d.group_code == nhom]
+    if q.strip():
+        k = q.strip().lower()
+        rows = [d for d in rows if any(k in (x or "").lower() for x in
+                                       (d.name, d.aliases, d.role, d.places, d.province_old, d.province_new))]
+    return render(request, "public/deities.html", {"deities": rows, "q": q, "nhom": nhom, "groups": groups})
 
 
 @router.get("/may")

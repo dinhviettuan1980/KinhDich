@@ -57,6 +57,25 @@
   }
 
   /* ---- Google Maps ---- */
+  /* "Bay" tới một điểm: lướt tâm bản đồ, thu nhỏ ở giữa đường (đi xa thì thu nhiều hơn) rồi phóng to vào điểm. */
+  var FLY_MS = 2200;
+  function flyTo(map, to, zoom, done) {
+    var c = map.getCenter(), from = { lat: c.lat(), lng: c.lng() }, z0 = map.getZoom();
+    var hop = Math.min(4, Math.max(1, Math.log2(1 + km(from, to)) / 2));  // độ "bay lên" theo quãng đường
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { map.moveCamera({ center: to, zoom: zoom }); if (done) done(); return; }
+    var t0 = null;
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function step(now) {
+      if (t0 === null) t0 = now;
+      var t = Math.min(1, (now - t0) / FLY_MS), e = ease(t);
+      map.moveCamera({ center: { lat: from.lat + (to.lat - from.lat) * e, lng: from.lng + (to.lng - from.lng) * e },
+                       zoom: z0 + (zoom - z0) * e - hop * Math.sin(Math.PI * t) });
+      if (t < 1) requestAnimationFrame(step); else if (done) done();
+    }
+    requestAnimationFrame(step);
+  }
+
   function googleAdapter(el) {
     return new Promise(function (ok, fail) {
       window.__ldGmReady = ok;
@@ -91,10 +110,12 @@
       return {
         show: function (list) { clusterer.clearMarkers(); clusterer.addMarkers(list.map(marker)); },
         focus: function (p) {
-          map.setCenter({ lat: p.lat, lng: p.lng }); map.setZoom(16);
-          // mở theo toạ độ (không neo vào marker: marker có thể chưa được clusterer vẽ lên bản đồ)
-          info.setContent(popup(p)); info.setOptions({ position: { lat: p.lat, lng: p.lng }, pixelOffset: new g.Size(0, -34) });
-          info.open({ map: map });
+          info.close();
+          flyTo(map, { lat: p.lat, lng: p.lng }, 16, function () {
+            // mở theo toạ độ (không neo vào marker: marker có thể chưa được clusterer vẽ lên bản đồ)
+            info.setContent(popup(p)); info.setOptions({ position: { lat: p.lat, lng: p.lng }, pixelOffset: new g.Size(0, -34) });
+            info.open({ map: map });
+          });
         },
         fit: function (pts) {
           if (!pts.length) return;
@@ -145,7 +166,9 @@
         show: function (list) { group.clearLayers(); group.addLayers(list.map(marker)); },
         focus: function (p) {
           var m = marker(p);
-          group.zoomToShowLayer(m, function () { m.openPopup(); });
+          map.closePopup();
+          map.flyTo([p.lat, p.lng], 16, { duration: FLY_MS / 1000 });
+          map.once("moveend", function () { group.zoomToShowLayer(m, function () { m.openPopup(); }); });
         },
         fit: function (pts) {
           if (!pts.length) return;
@@ -354,6 +377,8 @@
       return mapP;
     }).then(function (a) {
       adapter = a;
+      var q = /[?&]q=([^&]+)/.exec(location.search);  // từ trang Thần thánh: "Tìm nơi thờ trên bản đồ"
+      if (q) $("ld-q").value = decodeURIComponent(q[1].replace(/\+/g, " "));
       var pre = /[?&]cau=([a-z-]+)/.exec(location.search);  // từ trang chi tiết: "Thường cầu: Tài lộc"
       if (pre && $("ld-intent").querySelector('option[value="' + pre[1] + '"]')) { $("ld-intent").value = pre[1]; apply(true); return; }
       apply(false);

@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..db import get_db
 from ..models import PLACE_INTENTS, PLACE_KINDS, SacredPlace, Temple, User
+from ..deities import matching as deities_matching
 from ..places import norm
 from ..security import check_csrf
 from ..web import abs_url, audit, current_user, flash, render, require_admin, u
@@ -68,7 +69,7 @@ def place_detail(place_id: int, request: Request, db: Session = Depends(get_db),
     if place is None or (place.status != "active" and not (user and user.is_admin)):
         raise HTTPException(404, "Không tìm thấy địa điểm")
     return render(request, "public/place.html", {
-        "p": place, "bookable": bookable(place.temple),
+        "p": place, "bookable": bookable(place.temple), "deities": deities_matching(db, place.deity, place.name),
         "online": device_online(place.temple.device) if place.temple else False,
         "meta_desc": meta_description(place), "jsonld": place_jsonld(place),
     })

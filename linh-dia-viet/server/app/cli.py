@@ -30,6 +30,19 @@ def create_user(args) -> None:
     print(f"{args.email.lower()} / {pw}  ({ROLES[args.role]})")
 
 
+def import_deities(args) -> None:
+    from pathlib import Path
+    from .deities import DeityImportError, import_xlsx
+    with dbmod.SessionLocal() as db:
+        try:
+            n = import_xlsx(db, Path(args.file))
+        except (DeityImportError, OSError) as e:
+            raise SystemExit(f"Không nhập được: {e}")
+        audit(db, "cli", "deity.import", "deities", count=n, file=Path(args.file).name)
+        db.commit()
+    print(f"Đã nhập {n} vị thần, thánh.")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="app.cli")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -44,8 +57,11 @@ def main(argv=None):
     cu.add_argument("--role", default="customer", choices=list(ROLES))
     cu.add_argument("--temple", action="append", default=[], help="slug đền phụ trách (vendor/temple_manager)")
     cu.add_argument("--password", default="")
+    sub.add_parser("import-deities", help="nhập danh mục thần thánh từ bảng tính .xlsx").add_argument("file")
     args = ap.parse_args(argv)
     dbmod.init_engine()
+    if args.cmd == "import-deities":
+        return import_deities(args)
     if args.cmd == "create-user":
         return create_user(args)
     with dbmod.SessionLocal() as db:

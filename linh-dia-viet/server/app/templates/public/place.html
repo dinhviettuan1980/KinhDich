@@ -41,6 +41,10 @@
     {% if p.festival %}<dt>Lễ hội · ngày tiệc</dt><dd>{{ p.festival }}</dd>{% endif %}
   </dl>
   {% endif %}
+  {% for d in deities %}
+  <div class="ld-deity-box"><b>{{ d.name }}</b>{% if d.aliases %} <span class="ld-muted">({{ d.aliases }})</span>{% endif %}
+    <div>{{ d.role }}</div><div class="ld-muted small">{{ d.group_name }} · nơi thờ chính: {{ d.places }}</div></div>
+  {% endfor %}
   {% if p.description %}
     {% for para in p.description.split('\n') if para.strip() %}<p>{{ para }}</p>{% endfor %}
     {% if p.description_source %}<p class="ld-muted small">Theo <a href="{{ p.description_source }}" target="_blank" rel="noopener">{% if 'wikipedia.org' in p.description_source %}Wikipedia</a> (CC BY-SA 4.0){% else %}nguồn này</a>{% endif %}.</p>{% endif %}
