@@ -9,12 +9,13 @@
   var VN = { lat: 15.8, lng: 108.6 };
   // Chủ quyền: luôn hiện nhãn hai quần đảo, không phụ thuộc nền bản đồ (không gom cụm, không bị bộ lọc ẩn).
   var ISLANDS = [
-    { lat: 16.5, lng: 112.0, n: "Quần đảo Hoàng Sa", sub: "(Việt Nam)" },
-    { lat: 12.3, lng: 113.3, n: "Quần đảo Trường Sa", sub: "(Việt Nam)" }  // phía bắc quần đảo, không đè lên điểm chùa
+    { lat: 18.0, lng: 112.0, n: "Quần đảo Hoàng Sa", sub: "(Việt Nam)" },  // trên quần đảo, không đè nhãn của nền Google
+    { lat: 10.8, lng: 111.7, n: "Quần đảo Trường Sa", sub: "(Việt Nam)" }  // khoảng trống phía tây, không đè điểm chùa (Song Tử Tây…)
   ];
   function islandEl(i) {
     var d = document.createElement("div"); d.className = "ld-island";
-    d.innerHTML = "<b>" + esc(i.n) + "</b><span>" + esc(i.sub) + "</span>";
+    // 3 dòng cho gọn, không đè lên cụm điểm ven biển
+    d.innerHTML = "<b>" + esc(i.n).replace("Quần đảo ", "Quần đảo<br>") + "</b><span>" + esc(i.sub) + "</span>";
     return d;
   }
   var $ = function (id) { return document.getElementById(id); };
@@ -66,17 +67,21 @@
       var map = new g.Map(el, { center: VN, zoom: 5, mapId: C.mapId || "DEMO_MAP_ID", streetViewControl: false,
         mapTypeControl: false, fullscreenControl: true, gestureHandling: "greedy" });
       var info = new g.InfoWindow(), cache = {}, meMarker = null;
-      var clusterer = new window.markerClusterer.MarkerClusterer({ map: map });
+      var MC = window.markerClusterer;
+      // Ngừng gom cụm từ zoom 16 để "focus" (zoom 16) luôn thấy từng điểm.
+      var clusterer = new MC.MarkerClusterer({ map: map, algorithm: new MC.SuperClusterAlgorithm({ maxZoom: 15, radius: 60 }) });
       ISLANDS.forEach(function (i) {
-        new g.marker.AdvancedMarkerElement({ map: map, position: { lat: i.lat, lng: i.lng }, content: islandEl(i),
+        var lbl = islandEl(i); lbl.style.transform = "translateY(50%)";  // Advanced Marker neo đáy → đưa tâm nhãn về toạ độ
+        new g.marker.AdvancedMarkerElement({ map: map, position: { lat: i.lat, lng: i.lng }, content: lbl,
           title: i.n + " " + i.sub, zIndex: 1, gmpClickable: false });
       });
       function marker(p) {
         if (!cache[p.id]) {
           var pin = new g.marker.PinElement({ background: color(p), borderColor: "#ffffff", glyphColor: "#ffffff",
             scale: p.b === 2 ? 1.1 : 0.8 });
-          var m = new g.marker.AdvancedMarkerElement({ position: { lat: p.lat, lng: p.lng }, content: pin.element, title: p.n });
-          m.addListener("click", function () { info.setContent(popup(p)); info.open({ map: map, anchor: m }); });
+          var m = new g.marker.AdvancedMarkerElement({ position: { lat: p.lat, lng: p.lng }, content: pin, title: p.n,
+            gmpClickable: true });
+          m.addEventListener("gmp-click", function () { info.setContent(popup(p)); info.open({ map: map, anchor: m }); });
           cache[p.id] = m;
         }
         return cache[p.id];
@@ -85,7 +90,9 @@
         show: function (list) { clusterer.clearMarkers(); clusterer.addMarkers(list.map(marker)); },
         focus: function (p) {
           map.setCenter({ lat: p.lat, lng: p.lng }); map.setZoom(16);
-          var m = marker(p); info.setContent(popup(p)); info.open({ map: map, anchor: m });
+          // mở theo toạ độ (không neo vào marker: marker có thể chưa được clusterer vẽ lên bản đồ)
+          info.setContent(popup(p)); info.setOptions({ position: { lat: p.lat, lng: p.lng }, pixelOffset: new g.Size(0, -34) });
+          info.open({ map: map });
         },
         fit: function (pts) {
           if (!pts.length) return;

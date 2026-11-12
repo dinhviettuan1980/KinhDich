@@ -145,7 +145,7 @@ a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122,
 .ld-map { height: 62vh; min-height: 320px; border: 1px solid var(--ld-line); border-radius: var(--ld-radius); overflow: hidden; background: #e9e4da; margin-bottom: 8px; }
 .ld-pop { font: 14px/1.45 "Be Vietnam Pro", system-ui, sans-serif; color: #2b1d14; min-width: 160px; }
 .ld-pop a { color: #7a1f1f; }
-.ld-island { display: flex; flex-direction: column; align-items: center; white-space: nowrap; pointer-events: none;
+.ld-island { display: flex; flex-direction: column; align-items: center; text-align: center; white-space: nowrap; pointer-events: none;
   font: 600 12px/1.25 system-ui, sans-serif; color: #7a1f1f; text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 2px #fff; }
 .ld-island span { font-weight: 500; font-size: 11px; }
 .leaflet-marker-icon .ld-island { transform: translate(-50%, -50%); }
