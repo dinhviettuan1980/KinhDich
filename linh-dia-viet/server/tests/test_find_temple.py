@@ -71,3 +71,11 @@ def test_admin_saves_purposes_and_coords(admin_client, db):
     assert c.post(f"{P}/admin/den/{t.id}", data={**data, "lat": "", "lng": ""}, follow_redirects=False).status_code == 303
     db.expire_all()
     assert db.get(Temple, t.id).lat is None
+
+
+def test_serif_font_has_vietnamese_fallback():
+    """Windows không có Noto Serif; Georgia vỡ dấu tiếng Việt ("Đề`n") → phải rơi về font đủ dấu."""
+    from pathlib import Path
+    css = (Path(__file__).resolve().parents[1] / "app" / "static" / "ld.css").read_text(encoding="utf-8")
+    stacks = re.findall(r'font-family:\s*"Noto Serif",([^;]+);', css)
+    assert stacks and all("Georgia" not in s and "Cambria" in s for s in stacks)

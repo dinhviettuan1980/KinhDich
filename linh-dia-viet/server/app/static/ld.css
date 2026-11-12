@@ -23,7 +23,7 @@
 }
 .ld *, .ld *::before, .ld *::after { box-sizing: border-box; }
 .ld a { color: var(--ld-primary); }
-.ld h1, .ld h2, .ld h3 { font-family: "Noto Serif", Georgia, serif; color: var(--ld-primary); line-height: 1.3; margin: .4em 0 .5em; }
+.ld h1, .ld h2, .ld h3 { font-family: "Noto Serif", Cambria, "Times New Roman", serif; color: var(--ld-primary); line-height: 1.3; margin: .4em 0 .5em; }
 .ld h1 { font-size: 1.5rem; }
 .ld h2 { font-size: 1.2rem; }
 .ld h3 { font-size: 1.05rem; }
@@ -32,7 +32,7 @@
 .ld-header { background: var(--ld-primary); color: var(--ld-primary-ink); border-bottom: 3px solid var(--ld-gold); }
 .ld-header .in { max-width: 760px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .ld-header a { color: inherit; text-decoration: none; }
-.ld-brand { font-family: "Noto Serif", Georgia, serif; font-weight: 700; font-size: 1.1rem; margin-right: auto; }
+.ld-brand { font-family: "Noto Serif", Cambria, "Times New Roman", serif; font-weight: 700; font-size: 1.1rem; margin-right: auto; }
 .ld-brand small { display: block; font-weight: 400; font-size: .75rem; opacity: .85; }
 .ld-nav { display: flex; gap: 14px; font-size: .92rem; align-items: center; flex-wrap: wrap; }
 .ld-nav form { margin: 0; }
@@ -86,7 +86,7 @@
 .ld-timeline li.done::before { background: var(--ld-gold); }
 .ld-timeline li.bad::before { background: var(--ld-err); }
 
-.ld-sowrite { white-space: pre-wrap; font-family: "Noto Serif", Georgia, serif; background: #fffdf7; border-left: 3px solid var(--ld-gold); padding: 12px 14px; }
+.ld-sowrite { white-space: pre-wrap; font-family: "Noto Serif", Cambria, "Times New Roman", serif; background: #fffdf7; border-left: 3px solid var(--ld-gold); padding: 12px 14px; }
 .ld-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
 .ld-photos img { width: 100%; border-radius: 8px; display: block; }
 .ld audio { width: 100%; }
