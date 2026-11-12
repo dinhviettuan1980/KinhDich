@@ -1,7 +1,7 @@
 from datetime import date, datetime, timezone
 
 from sqlalchemy import false as sql_false
-from sqlalchemy import JSON, Boolean, Date, DateTime, ForeignKey, Integer, String, Text, TypeDecorator
+from sqlalchemy import JSON, Boolean, Date, DateTime, Float, ForeignKey, Integer, String, Text, TypeDecorator
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .db import Base
@@ -135,9 +135,23 @@ class Temple(Base):
     province: Mapped[str] = mapped_column(String(100), default="")
     description: Mapped[str] = mapped_column(Text, default="")
     deity: Mapped[str] = mapped_column(String(300), default="")  # danh vị thần linh chính
+    # nhu cầu khách hay cầu ở đền này (mã trong PURPOSES, cách nhau dấu phẩy) — để tìm đền theo nhu cầu
+    purposes: Mapped[str] = mapped_column(String(200), default="", server_default="")
+    lat: Mapped[float | None] = mapped_column(Float)  # toạ độ: sắp đền theo khoảng cách + chỉ đường
+    lng: Mapped[float | None] = mapped_column(Float)
     status: Mapped[str] = mapped_column(String(20), default="active")  # active | hidden
     device_id: Mapped[str | None] = mapped_column(ForeignKey("devices.id", ondelete="SET NULL"))
     device: Mapped[Device | None] = relationship()
+
+    @property
+    def purpose_list(self) -> list[str]:
+        return [x for x in (self.purposes or "").split(",") if x in PURPOSES]
+
+
+PURPOSES = {
+    "may-man": "May mắn", "tai-loc": "Tài lộc", "binh-an": "Bình an", "suc-khoe": "Sức khỏe",
+    "cong-danh": "Công danh, học hành", "tinh-duyen": "Tình duyên", "giai-han": "Giải hạn",
+}
 
 
 class OfferingPackage(Base):

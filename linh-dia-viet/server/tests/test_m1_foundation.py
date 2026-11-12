@@ -15,7 +15,7 @@ from conftest import P, csrf_of, login
 
 def test_seed_data(db):
     assert db.scalar(select(Temple).where(Temple.slug == "den-ngoc-son")).device_id == "pi-demo-01"
-    assert len(db.scalars(select(Temple)).all()) == 3
+    assert len(db.scalars(select(Temple)).all()) == len(seed.TEMPLES)
     items = db.scalars(select(OfferingPackage).order_by(OfferingPackage.sort)).all()
     assert len(items) == len(seed.ITEMS) and items[0].unit == "bó" and all(i.max_qty >= 1 for i in items)
     assert db.get(Device, "pi-demo-01").token_hash != "dev-device-token-change-me"
@@ -94,15 +94,15 @@ def test_admin_redirects_anonymous(client):
 
 def test_admin_crud_temple_and_package(admin_client, db):
     c = admin_client
-    r = c.post(f"{P}/admin/den/moi", data={"name": "Phủ Tây Hồ", "province": "Hà Nội", "deity": "Thánh Mẫu Liễu Hạnh",
+    r = c.post(f"{P}/admin/den/moi", data={"name": "Đền Voi Phục", "province": "Hà Nội", "deity": "Linh Lang Đại Vương",
                                          "status": "active", "device_id": "", "csrf_token": c.csrf}, follow_redirects=False)
     assert r.status_code == 303
-    t = db.scalar(select(Temple).where(Temple.slug == "phu-tay-ho"))
-    assert t and t.deity == "Thánh Mẫu Liễu Hạnh"
+    t = db.scalar(select(Temple).where(Temple.slug == "den-voi-phuc"))
+    assert t and t.deity == "Linh Lang Đại Vương"
     r = c.post(f"{P}/admin/goi-le/moi", data={"name": "Lễ Mẫu", "price": "300000", "temple_id": str(t.id),
                                             "active": "true", "csrf_token": c.csrf}, follow_redirects=False)
     assert r.status_code == 303
-    assert "Lễ Mẫu" in c.get(f"{P}/den/phu-tay-ho").text
+    assert "Lễ Mẫu" in c.get(f"{P}/den/den-voi-phuc").text
     assert "Lễ Mẫu" not in c.get(f"{P}/den/den-ngoc-son").text  # gói riêng không lộ sang đền khác
     db.expire_all()
     assert db.scalar(select(AuditLog).where(AuditLog.action == "package.save"))

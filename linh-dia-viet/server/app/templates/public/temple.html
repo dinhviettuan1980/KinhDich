@@ -4,7 +4,9 @@
 <h1>{{ temple.name }}</h1>
 <p>{% if not temple.device_id %}<span class="ld-badge">Chưa nhận lễ từ xa</span>{% elif online %}<span class="ld-badge on">● Thiết bị đang trực tuyến</span>{% else %}<span class="ld-badge off">Thiết bị ngoại tuyến</span>{% endif %}</p>
 <div class="ld-card">
-  <div class="ld-muted">{{ temple.address }}{% if temple.province %}, {{ temple.province }}{% endif %}</div>
+  <div class="ld-muted">{{ temple.address }}{% if temple.province %}, {{ temple.province }}{% endif %}
+    {% if temple.lat is not none %} · <a href="https://www.google.com/maps/search/?api=1&query={{ temple.lat }},{{ temple.lng }}" target="_blank" rel="noopener">Xem bản đồ</a>{% endif %}</div>
+  {% if temple.purpose_list %}<div class="ld-chips small">{% for k in temple.purpose_list %}<span class="ld-badge">Cầu {{ purposes[k]|lower }}</span>{% endfor %}</div>{% endif %}
   <p>{{ temple.description }}</p>
   {% if temple.deity %}<p><b>Thờ:</b> {{ temple.deity }}</p>{% endif %}
 </div>

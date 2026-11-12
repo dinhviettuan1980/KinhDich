@@ -42,7 +42,7 @@ def db():
     limiter.reset()
     session = dbmod.SessionLocal()
     seed(session)
-    # Seed chỉ có 1 thiết bị (đền đầu tiên); test đặt nhiều đền cần thiết bị cho cả 3 đền.
+    # Seed chỉ có 1 thiết bị (đền đầu tiên); test đặt nhiều đền cần thiết bị cho mọi đền.
     for i, t in enumerate(session.scalars(select(Temple).where(Temple.device_id.is_(None)).order_by(Temple.id)), 2):
         session.add(Device(id=f"pi-test-0{i}", name=f"Pi test {i}", token_hash=hash_token(f"tok-{i}")))
         session.flush()

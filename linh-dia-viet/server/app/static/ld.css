@@ -136,3 +136,7 @@ a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122,
 .ld-install[hidden] { display: none; }
 .ld-install img { width: 44px; height: 44px; border-radius: 10px; flex: none; }
 .ld-install button { position: absolute; top: 6px; right: 8px; border: 0; background: none; font-size: 22px; color: var(--ld-muted); cursor: pointer; }
+.ld-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; }
+.ld .ld-chip { border: 1px solid var(--ld-line); background: #fff; color: var(--ld-ink); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: .9rem; cursor: pointer; }
+.ld .ld-chip.on { background: var(--ld-primary); border-color: var(--ld-primary); color: #fff; }
+.ld-dist { color: var(--ld-primary); }

@@ -1,11 +1,15 @@
-<form method="get" action="{{ u('/dat-le') }}">
+<form method="get" action="{{ u('/dat-le') }}" id="temple-pick">
+{% if nhu_cau or q %}<p class="ld-muted" id="found">Tìm thấy <b>{{ temples|length }}</b> đền, chùa{% if nhu_cau %} để cầu <b>{{ purposes[nhu_cau]|lower }}</b>{% endif %}{% if dist %}, gần bạn trước{% endif %}.</p>{% endif %}
 {% for t in temples %}
   <div class="ld-card">
     <div class="ld-spread">
       <h3><a href="{{ u('/den/' ~ t.slug) }}">{{ t.name }}</a></h3>
       {% if online[t.id] %}<span class="ld-badge on">● Đang trực tuyến</span>{% else %}<span class="ld-badge off">Ngoại tuyến</span>{% endif %}
     </div>
-    <div class="ld-muted">{{ t.address }}{% if t.province %}, {{ t.province }}{% endif %}</div>
+    <div class="ld-muted">{{ t.address }}{% if t.province %}, {{ t.province }}{% endif %}
+      {% if t.id in dist %} · <b class="ld-dist">cách {{ '%.1f'|format(dist[t.id]) if dist[t.id] < 100 else '%.0f'|format(dist[t.id]) }} km</b>{% endif %}
+      {% if t.lat is not none %} · <a href="https://www.google.com/maps/search/?api=1&query={{ t.lat }},{{ t.lng }}" target="_blank" rel="noopener">Chỉ đường</a>{% endif %}</div>
+    {% if t.purpose_list %}<div class="ld-chips small">{% for k in t.purpose_list %}<span class="ld-badge{% if k == nhu_cau %} warn{% endif %}">{{ purposes[k] }}</span>{% endfor %}</div>{% endif %}
     <p>{{ t.description }}</p>
     {% if t.device_id %}<label class="ld-check"><input type="checkbox" name="den" value="{{ t.id }}"> Chọn đền này</label>
     {% else %}<p class="ld-muted">Đền chưa lắp thiết bị, chưa nhận lễ từ xa.</p>{% endif %}
@@ -13,5 +17,5 @@
 {% else %}
   <p class="ld-muted">Không tìm thấy đền nào.</p>
 {% endfor %}
-{% if temples %}<p><button class="ld-btn block">Đặt lễ tại các đền đã chọn</button></p>{% endif %}
+{% if temples %}<p><button class="ld-btn block" id="btn-book">Đặt lễ tại các đền đã chọn</button></p>{% endif %}
 </form>

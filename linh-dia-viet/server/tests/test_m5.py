@@ -69,7 +69,8 @@ def test_emergency_lock(user_client, db):
     db.bus.sent.clear()
     c.post(f"{P}/admin/khoa-khan-cap", data={"khoa": "1", "csrf_token": c.csrf})
     sent = db.bus.sent[:]
-    assert {d for d, p in sent} == {"pi-demo-01", "pi-test-02", "pi-test-03"} and all(p == {"type": "stop"} for _, p in sent)
+    expect = set(db.scalars(select(Temple.device_id).where(Temple.device_id.is_not(None))))
+    assert {d for d, p in sent} == expect and all(p == {"type": "stop"} for _, p in sent)
     assert "ĐANG KHÓA KHẨN CẤP" in c.get(f"{P}/admin").text
     devices.tick(db)  # không gửi lệnh play khi đang khóa
     db.commit()
@@ -108,7 +109,8 @@ def test_order_json(user_client, db):
 
 
 def test_book_100_temples(user_client, db):
-    for i in range(97):
+    from app import seed
+    for i in range(100 - len(seed.TEMPLES)):
         db.add(Device(id=f"pi-bulk-{i}", name="bulk", token_hash="x"))
         db.add(Temple(slug=f"den-{i}", name=f"Đền số {i}", device_id=f"pi-bulk-{i}"))
     db.commit()

@@ -2,9 +2,17 @@
 {% block content %}
 <h1>Dâng lễ từ xa</h1>
 <p class="ld-muted">Chọn đền, chùa, đặt mâm lễ và giờ khấn. Bài khấn được phát tại đền đúng giờ, ảnh mâm lễ gửi về cho bạn.</p>
-<form class="ld-card" method="get" action="{{ u('/') }}" hx-get="{{ u('/') }}" hx-target="#temples" hx-trigger="input changed delay:300ms from:#q, submit">
+<form id="find" class="ld-card" method="get" action="{{ u('/') }}" hx-get="{{ u('/') }}" hx-target="#temples" hx-trigger="input changed delay:300ms from:#q, submit">
   <label for="q">Tìm đền, chùa, tỉnh thành</label>
-  <input id="q" type="search" name="q" value="{{ q }}" placeholder="Ví dụ: Hà Nội, Ngọc Sơn…">
+  <input id="q" type="search" name="q" value="{{ q }}" placeholder="Ví dụ: Hà Nội, Ngọc Sơn, Thánh Mẫu…">
+  <input type="hidden" name="nhu_cau" id="nhu_cau" value="{{ nhu_cau }}">
+  <input type="hidden" name="lat" id="lat" value="{{ lat }}"><input type="hidden" name="lng" id="lng" value="{{ lng }}">
+  <p class="small ld-muted" style="margin:10px 0 4px">Bạn muốn cầu điều gì?</p>
+  <div class="ld-chips">
+    {% for k, v in purposes.items() %}<button type="button" class="ld-chip{% if k == nhu_cau %} on{% endif %}" data-nhu-cau="{{ k }}">{{ v }}</button>{% endfor %}
+  </div>
+  <p class="ld-row" style="margin-top:10px"><button type="button" class="ld-btn secondary small" id="near-me">📍 Gần tôi</button>
+    <span class="small ld-muted" id="near-note">{% if lat %}Đang sắp xếp theo khoảng cách tới bạn.{% endif %}</span></p>
 </form>
 <div id="temples">{% include "public/_temple_list.html" %}</div>
 {% endblock %}

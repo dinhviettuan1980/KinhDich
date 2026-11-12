@@ -1,3 +1,4 @@
+import math
 from datetime import timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -6,7 +7,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..config import get_settings
 from ..db import get_db
-from ..models import Device, OfferingPackage, Temple, utcnow
+from ..models import PURPOSES, Device, OfferingPackage, Temple, utcnow
 from ..web import render, require_user
 
 router = APIRouter()
@@ -27,14 +28,43 @@ def packages_for(db: Session, temple_ids: list[int]) -> list[OfferingPackage]:
                            .order_by(OfferingPackage.sort, OfferingPackage.price, OfferingPackage.id)))
 
 
+def distance_km(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
+    """Khoảng cách đường chim bay (haversine)."""
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    a = math.sin((p2 - p1) / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(math.radians(lng2 - lng1) / 2) ** 2
+    return 6371 * 2 * math.asin(math.sqrt(a))
+
+
+def _coord(raw: str, limit: float) -> float | None:
+    try:
+        v = float(raw)
+    except ValueError:
+        return None
+    return v if math.isfinite(v) and abs(v) <= limit else None
+
+
 @router.get("/")
-def home(request: Request, q: str = "", db: Session = Depends(get_db), user=Depends(require_user)):
+def home(request: Request, q: str = "", nhu_cau: str = "", lat: str = "", lng: str = "",
+         db: Session = Depends(get_db), user=Depends(require_user)):
     stmt = select(Temple).options(joinedload(Temple.device)).where(Temple.status == "active").order_by(Temple.name)
     if q.strip():
         like = f"%{q.strip()}%"
-        stmt = stmt.where(or_(Temple.name.ilike(like), Temple.province.ilike(like), Temple.address.ilike(like)))
+        stmt = stmt.where(or_(Temple.name.ilike(like), Temple.province.ilike(like), Temple.address.ilike(like),
+                              Temple.deity.ilike(like), Temple.description.ilike(like)))
     temples = list(db.scalars(stmt).unique())
-    ctx = {"temples": temples, "q": q, "online": {t.id: device_online(t.device) for t in temples}}
+    if nhu_cau in PURPOSES:
+        temples = [t for t in temples if nhu_cau in t.purpose_list]
+    else:
+        nhu_cau = ""
+    # vị trí khách (trình duyệt gửi lên khi bấm "Gần tôi"): sắp đền gần trước, đền chưa có toạ độ xuống cuối
+    here = (_coord(lat, 90), _coord(lng, 180))
+    dist = {}
+    if None not in here:
+        dist = {t.id: distance_km(*here, t.lat, t.lng) for t in temples if t.lat is not None and t.lng is not None}
+        temples.sort(key=lambda t: (t.id not in dist, dist.get(t.id, 0)))
+    ctx = {"temples": temples, "q": q, "nhu_cau": nhu_cau, "purposes": PURPOSES, "dist": dist,
+           "lat": lat if dist else "", "lng": lng if dist else "",
+           "online": {t.id: device_online(t.device) for t in temples}}
     if request.headers.get("hx-request"):
         return render(request, "public/_temple_list.html", ctx)
     return render(request, "public/home.html", ctx)
@@ -46,7 +76,7 @@ def temple_detail(slug: str, request: Request, db: Session = Depends(get_db), us
     if not temple:
         raise HTTPException(404, "Không tìm thấy đền/chùa")
     return render(request, "public/temple.html", {
-        "temple": temple, "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
+        "temple": temple, "purposes": PURPOSES, "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
     })
 
 

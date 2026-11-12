@@ -9,6 +9,11 @@
   <label>Địa chỉ</label><input type="text" name="address" value="{{ t.address or '' }}">
   <label>Tỉnh/thành</label><input type="text" name="province" value="{{ t.province or '' }}">
   <label>Danh vị thần linh chính</label><input type="text" name="deity" value="{{ t.deity or '' }}">
+  <label>Nhu cầu khách hay cầu ở đây</label>
+  <div class="ld-chips">{% for k, v in purposes.items() %}<label class="ld-check" style="margin:0 10px 0 0"><input type="checkbox" name="purposes" value="{{ k }}" {% if k in t.purpose_list %}checked{% endif %}> {{ v }}</label>{% endfor %}</div>
+  <label>Toạ độ (vĩ độ, kinh độ) — để sắp theo khoảng cách và chỉ đường</label>
+  <div class="ld-row"><input type="text" name="lat" inputmode="decimal" placeholder="21.0307" value="{{ t.lat if t.lat is not none else '' }}" style="width:48%">
+    <input type="text" name="lng" inputmode="decimal" placeholder="105.8524" value="{{ t.lng if t.lng is not none else '' }}" style="width:48%"></div>
   <label>Mô tả</label><textarea name="description">{{ t.description or '' }}</textarea>
   <label>Thiết bị</label>
   <select name="device_id"><option value="">— không —</option>

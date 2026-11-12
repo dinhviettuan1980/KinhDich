@@ -1,4 +1,4 @@
-"""Dữ liệu mẫu: 3 đền, danh mục lễ vật bán lẻ, 1 thiết bị pi-demo-01, 1 admin. Chạy lại nhiều lần không sao."""
+"""Dữ liệu mẫu: các đền (kèm nhu cầu + toạ độ), danh mục lễ vật bán lẻ, 1 thiết bị pi-demo-01, 1 admin. Chạy lại nhiều lần không sao."""
 import logging
 
 from sqlalchemy import select
@@ -15,13 +15,52 @@ log = logging.getLogger("linhdia.seed")
 TEMPLES = [
     dict(slug="den-ngoc-son", name="Đền Ngọc Sơn", address="Đinh Tiên Hoàng, Hoàn Kiếm", province="Hà Nội",
          deity="Đức Thánh Trần Hưng Đạo và Văn Xương Đế Quân",
-         description="Ngôi đền trên đảo Ngọc giữa hồ Hoàn Kiếm, qua cầu Thê Húc."),
+         description="Ngôi đền trên đảo Ngọc giữa hồ Hoàn Kiếm, qua cầu Thê Húc.",
+         purposes="may-man,cong-danh,binh-an", lat=21.0307, lng=105.8524),
     dict(slug="chua-tran-quoc", name="Chùa Trấn Quốc", address="Thanh Niên, Tây Hồ", province="Hà Nội",
          deity="chư Phật mười phương, chư vị Bồ Tát",
-         description="Ngôi chùa cổ bên Hồ Tây, có lịch sử gần 1.500 năm."),
+         description="Ngôi chùa cổ bên Hồ Tây, có lịch sử gần 1.500 năm.",
+         purposes="may-man,binh-an,giai-han", lat=21.0480, lng=105.8368),
     dict(slug="den-ba-chua-xu", name="Miếu Bà Chúa Xứ Núi Sam", address="Núi Sam, Châu Đốc", province="An Giang",
          deity="Bà Chúa Xứ Thánh Mẫu",
-         description="Nơi thờ Bà Chúa Xứ dưới chân núi Sam, lễ vía lớn vào tháng Tư âm lịch."),
+         description="Nơi thờ Bà Chúa Xứ dưới chân núi Sam, lễ vía lớn vào tháng Tư âm lịch.",
+         purposes="may-man,tai-loc,binh-an", lat=10.6806, lng=105.0806),
+    dict(slug="phu-tay-ho", name="Phủ Tây Hồ", address="Đặng Thai Mai, Tây Hồ", province="Hà Nội",
+         deity="Thánh Mẫu Liễu Hạnh",
+         description="Phủ thờ Mẫu trên bán đảo Hồ Tây, đông người đi lễ đầu năm cầu may.",
+         purposes="may-man,tai-loc,tinh-duyen", lat=21.0572, lng=105.8195),
+    dict(slug="den-ba-chua-kho", name="Đền Bà Chúa Kho", address="Cổ Mễ, Vũ Ninh", province="Bắc Ninh",
+         deity="Bà Chúa Kho",
+         description="Ngôi đền trên núi Kho, nơi khách thập phương đến cầu tài lộc, buôn bán thuận lợi.",
+         purposes="may-man,tai-loc", lat=21.1680, lng=106.0597),
+    dict(slug="den-quan-thanh", name="Đền Quán Thánh", address="Thanh Niên, Ba Đình", province="Hà Nội",
+         deity="Huyền Thiên Trấn Vũ",
+         description="Một trong Thăng Long tứ trấn, có tượng Huyền Thiên Trấn Vũ bằng đồng đen.",
+         purposes="may-man,binh-an,suc-khoe", lat=21.0429, lng=105.8365),
+    dict(slug="chua-ha", name="Chùa Hà", address="Chùa Hà, Cầu Giấy", province="Hà Nội",
+         deity="chư Phật, Đức Thánh Mẫu",
+         description="Ngôi chùa nổi tiếng với người trẻ đến cầu duyên.",
+         purposes="tinh-duyen,binh-an", lat=21.0367, lng=105.7975),
+    dict(slug="chua-phuc-khanh", name="Chùa Phúc Khánh", address="Tây Sơn, Đống Đa", province="Hà Nội",
+         deity="chư Phật mười phương",
+         description="Ngôi chùa đông người đến làm lễ dâng sao giải hạn đầu năm.",
+         purposes="giai-han,binh-an,suc-khoe", lat=21.0122, lng=105.8236),
+    dict(slug="den-tran-nam-dinh", name="Đền Trần", address="Trần Thừa, Lộc Vượng", province="Nam Định",
+         deity="các vua Trần",
+         description="Nơi thờ các vua Trần, nổi tiếng với lễ khai ấn đầu xuân cầu công danh.",
+         purposes="may-man,cong-danh,giai-han", lat=20.4335, lng=106.1770),
+    dict(slug="chua-bai-dinh", name="Chùa Bái Đính", address="Gia Sinh, Gia Viễn", province="Ninh Bình",
+         deity="Phật Thích Ca Mâu Ni, Quan Thế Âm Bồ Tát",
+         description="Quần thể chùa lớn trên núi Bái Đính.",
+         purposes="may-man,binh-an", lat=20.2731, lng=105.8650),
+    dict(slug="chua-huong", name="Chùa Hương", address="Hương Sơn, Mỹ Đức", province="Hà Nội",
+         deity="Quan Thế Âm Bồ Tát",
+         description="Động Hương Tích trong quần thể Hương Sơn, mùa hội từ tháng Giêng đến tháng Ba âm lịch.",
+         purposes="may-man,tai-loc,tinh-duyen", lat=20.6170, lng=105.7480),
+    dict(slug="van-mieu", name="Văn Miếu – Quốc Tử Giám", address="Quốc Tử Giám, Đống Đa", province="Hà Nội",
+         deity="Khổng Tử, Chu Văn An",
+         description="Nơi sĩ tử đến cầu đỗ đạt trước mùa thi.",
+         purposes="cong-danh", lat=21.0277, lng=105.8355),
 ]
 
 ITEMS = [
@@ -55,8 +94,11 @@ def seed(db: Session) -> None:
         db.add(Device(id=s.demo_device_id, name="Pi demo", token_hash=hash_token(s.demo_device_token)))
         db.flush()
     for i, t in enumerate(TEMPLES):
-        if not db.scalar(select(Temple).where(Temple.slug == t["slug"])):
+        have = db.scalar(select(Temple).where(Temple.slug == t["slug"]))
+        if not have:
             db.add(Temple(**t, device_id=s.demo_device_id if i == 0 else None))
+        elif not have.purposes and have.lat is None:  # đền đã có từ trước khi thêm nhu cầu + toạ độ
+            have.purposes, have.lat, have.lng = t["purposes"], t["lat"], t["lng"]
     if not db.scalar(select(OfferingPackage)):
         for i, it in enumerate(ITEMS):
             db.add(OfferingPackage(**it, sort=i))

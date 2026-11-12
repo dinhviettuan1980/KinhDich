@@ -18,3 +18,27 @@ document.addEventListener("htmx:configRequest", function (e) {
     });
   }
 })();
+
+// Trang chủ: lọc đền theo nhu cầu (bấm lại để bỏ) và "Gần tôi" (vị trí lấy từ trình duyệt, chỉ gửi lên để sắp xếp).
+document.addEventListener("click", function (e) {
+  var form = document.getElementById("find");
+  if (!form) return;
+  var chip = e.target.closest("[data-nhu-cau]");
+  if (chip) {
+    var box = document.getElementById("nhu_cau"), on = box.value !== chip.dataset.nhuCau;
+    box.value = on ? chip.dataset.nhuCau : "";
+    form.querySelectorAll("[data-nhu-cau]").forEach(function (c) { c.classList.toggle("on", on && c === chip); });
+    form.requestSubmit();
+  }
+  if (e.target.id === "near-me") {
+    var note = document.getElementById("near-note");
+    if (!navigator.geolocation) { note.textContent = "Trình duyệt không hỗ trợ định vị."; return; }
+    note.textContent = "Đang lấy vị trí…";
+    navigator.geolocation.getCurrentPosition(function (p) {
+      document.getElementById("lat").value = p.coords.latitude.toFixed(4);
+      document.getElementById("lng").value = p.coords.longitude.toFixed(4);
+      note.textContent = "Đang sắp xếp theo khoảng cách tới bạn.";
+      form.requestSubmit();
+    }, function () { note.textContent = "Không lấy được vị trí — hãy cho phép định vị."; }, { timeout: 10000 });
+  }
+});

@@ -13,7 +13,7 @@ from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from ..db import get_db
-from ..models import ROLES, Device, OfferingPackage, Temple, TempleStaff, User
+from ..models import PURPOSES, ROLES, Device, OfferingPackage, Temple, TempleStaff, User
 from ..security import check_csrf, hash_password
 from ..web import audit, can_manage_temple, flash, render, require_admin, require_backoffice, u
 
@@ -69,13 +69,14 @@ def temple_form(temple_id: str, request: Request, db: Session = Depends(get_db),
         if not can_manage_temple(user, temple.id, roles=("temple_manager",)):
             raise HTTPException(403)
     return render(request, "admin/temple_form.html", {
-        "t": temple, "devices": db.scalars(select(Device).order_by(Device.id)).all()})
+        "t": temple, "devices": db.scalars(select(Device).order_by(Device.id)).all(), "purposes": PURPOSES})
 
 
 @router.post("/den/{temple_id}", dependencies=csrf)
 def temple_save(temple_id: str, request: Request, name: str = Form(...), address: str = Form(""),
                 province: str = Form(""), description: str = Form(""), deity: str = Form(""),
                 status: str = Form("active"), device_id: str = Form(""), slug: str = Form(""),
+                purposes: list[str] = Form([]), lat: str = Form(""), lng: str = Form(""),
                 db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
     if temple_id == "moi":
         if not user.is_admin:
@@ -90,6 +91,14 @@ def temple_save(temple_id: str, request: Request, name: str = Form(...), address
             raise HTTPException(403)
     temple.name, temple.address, temple.province = name.strip(), address.strip(), province.strip()
     temple.description, temple.deity = description.strip(), deity.strip()
+    temple.purposes = ",".join(k for k in PURPOSES if k in purposes)
+    try:
+        coords = (float(lat), float(lng)) if lat.strip() or lng.strip() else (None, None)
+    except ValueError:
+        raise HTTPException(400, "Toạ độ không hợp lệ")
+    if coords[0] is not None and not (abs(coords[0]) <= 90 and abs(coords[1]) <= 180):
+        raise HTTPException(400, "Toạ độ không hợp lệ")
+    temple.lat, temple.lng = coords
     if user.is_admin:  # chỉ admin đổi thiết bị, trạng thái hiển thị, đường dẫn
         if device_id and not db.get(Device, device_id):
             raise HTTPException(400, "Thiết bị không tồn tại")
