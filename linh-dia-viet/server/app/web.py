@@ -1,5 +1,6 @@
 """Tiện ích dùng chung cho các router: template, phiên đăng nhập, audit log."""
 from datetime import datetime
+from functools import lru_cache
 from zoneinfo import ZoneInfo
 
 from fastapi import Depends, HTTPException, Request
@@ -29,13 +30,21 @@ def fmt_local(dt: datetime | None, tz: str | None = None, fmt: str = "%H:%M %d/%
     return dt.astimezone(ZoneInfo(tz or get_settings().default_timezone)).strftime(fmt)
 
 
+@lru_cache(maxsize=64)
+def asset(path: str) -> str:
+    """URL file tĩnh kèm ?v=<thời điểm sửa>: deploy xong trình duyệt tải bản mới ngay, không dùng bản cũ trong bộ đệm."""
+    f = BASE_DIR / path.lstrip("/")
+    v = int(f.stat().st_mtime) if f.exists() else 0
+    return f"{u(path)}?v={v}"
+
+
 def abs_url(path: str = "/") -> str:
     """URL tuyệt đối (canonical, sitemap, og:url)."""
     return get_settings().public_base_url.rstrip("/") + u(path)
 
 
 from .models import tray_check  # noqa: E402
-templates.env.globals.update(u=u, abs_url=abs_url, fmt_vnd=fmt_vnd, fmt_local=fmt_local, settings=get_settings, tray_check=tray_check)
+templates.env.globals.update(u=u, asset=asset, abs_url=abs_url, fmt_vnd=fmt_vnd, fmt_local=fmt_local, settings=get_settings, tray_check=tray_check)
 
 
 class LoginRequired(Exception):

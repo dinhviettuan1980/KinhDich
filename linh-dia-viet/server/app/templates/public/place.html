@@ -33,24 +33,32 @@
     <figcaption class="ld-muted small">Ảnh: <a href="https://www.wikidata.org/wiki/{{ p.wikidata }}" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>{% endif %}
   {% if p.alias_list %}<p style="margin-top:0">Còn gọi là: {% for a in p.alias_list %}<b>{{ a }}</b>{{ ", " if not loop.last }}{% endfor %}</p>{% endif %}
   <div class="ld-muted">{{ p.full_address }}</div>
+  {% if p.approx_location %}<p class="ld-flash warn small">Vị trí trên bản đồ là <b>gần đúng</b> (theo địa chỉ, chưa xác minh tại chỗ). Nút <b>Chỉ đường</b> sẽ tìm theo tên và địa chỉ trên Google Maps{% if p.phone %}; nên gọi điện hỏi đường trước khi đi{% endif %}.</p>{% endif %}
+  {% if p.deity or p.festival or p.intent_list %}
+  <dl class="ld-facts">
+    {% if p.deity %}<dt>Thờ</dt><dd>{{ p.deity }}{% if p.deity_groups %} <span class="ld-muted small">(hàng {{ p.deity_groups }}{% if p.deity_groups | lower in ('mẫu', 'quan', 'chầu', 'cô', 'cậu', 'ông hoàng') %} · Tứ phủ{% endif %})</span>{% endif %}</dd>{% endif %}
+    {% if p.intent_list %}<dt>Thường cầu</dt><dd>{% for k, lbl in p.intent_list %}<a class="ld-badge" href="{{ u('/ban-do') }}?cau={{ k }}">{{ lbl }}</a> {% endfor %}</dd>{% endif %}
+    {% if p.festival %}<dt>Lễ hội · ngày tiệc</dt><dd>{{ p.festival }}</dd>{% endif %}
+  </dl>
+  {% endif %}
   {% if p.description %}
     {% for para in p.description.split('\n') if para.strip() %}<p>{{ para }}</p>{% endfor %}
     {% if p.description_source %}<p class="ld-muted small">Theo <a href="{{ p.description_source }}" target="_blank" rel="noopener">{% if 'wikipedia.org' in p.description_source %}Wikipedia</a> (CC BY-SA 4.0){% else %}nguồn này</a>{% endif %}.</p>{% endif %}
-  {% else %}
+  {% elif not p.deity %}
     <p class="ld-muted">Chưa có thông tin giới thiệu về nơi này.</p>
   {% endif %}
   {% if p.phone %}<p>☎ <a href="tel:{{ p.phone | replace(' ', '') }}">{{ p.phone }}</a></p>{% endif %}
   {% if p.website %}<p>🌐 <a href="{{ p.website }}" target="_blank" rel="noopener nofollow">{{ p.website }}</a></p>{% endif %}
   <div class="ld-row">
-    <a class="ld-btn small" href="https://www.google.com/maps/dir/?api=1&destination={{ p.lat }},{{ p.lng }}" target="_blank" rel="noopener">Chỉ đường</a>
-    <a class="ld-btn small secondary" href="https://www.google.com/maps/search/?api=1&query={{ p.lat }},{{ p.lng }}" target="_blank" rel="noopener">Mở Google Maps</a>
+    <a class="ld-btn small" href="https://www.google.com/maps/dir/?api=1&destination={{ p.map_query | urlencode }}" target="_blank" rel="noopener">Chỉ đường</a>
+    <a class="ld-btn small secondary" href="https://www.google.com/maps/search/?api=1&query={{ p.map_query | urlencode }}" target="_blank" rel="noopener">Mở Google Maps</a>
   </div>
 </div>
 
 <div class="ld-place-map">
 {% if settings().google_maps_api_key %}
   <iframe title="Vị trí {{ p.name }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps/embed/v1/place?key={{ settings().google_maps_api_key | urlencode }}&q={{ p.lat }},{{ p.lng }}&zoom=16&language=vi&region=VN"></iframe>
+    src="https://www.google.com/maps/embed/v1/place?key={{ settings().google_maps_api_key | urlencode }}&q={{ p.map_query | urlencode }}{% if not p.approx_location %}&zoom=16{% endif %}&language=vi&region=VN"></iframe>
 {% else %}
   <iframe title="Vị trí {{ p.name }}" loading="lazy"
     src="https://www.openstreetmap.org/export/embed.html?bbox={{ p.lng - 0.006 }},{{ p.lat - 0.004 }},{{ p.lng + 0.006 }},{{ p.lat + 0.004 }}&layer=mapnik&marker={{ p.lat }},{{ p.lng }}"></iframe>

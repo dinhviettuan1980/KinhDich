@@ -35,7 +35,9 @@
   function fmtKm(d) { return d < 1 ? Math.round(d * 1000) + " m" : (d < 10 ? d.toFixed(1) : Math.round(d)) + " km"; }
   function color(p) { return p.b === 2 ? BOOK : (COLORS[p.k] || COLORS.khac); }
   function detailUrl(p) { return C.detail + p.id; }
-  function dirUrl(p) { return "https://www.google.com/maps/dir/?api=1&destination=" + p.lat + "," + p.lng; }
+  function dirUrl(p) {  // vị trí gần đúng → để Google tìm theo tên + địa chỉ
+    return "https://www.google.com/maps/dir/?api=1&destination=" + (p.aq ? encodeURIComponent(p.aq) : p.lat + "," + p.lng);
+  }
 
   function popup(p) {
     return '<div class="ld-pop"><b>' + esc(p.n) + "</b><br><span>" + esc(kinds[p.k] || "") + (p.pv ? " · " + esc(p.pv) : "") + "</span>" +
@@ -217,7 +219,7 @@
     else if (p.s.a.indexOf(phrase) >= 0) { s += 30; viaAlias = true; }
     else if (toks.length > 1 && p.s.x.indexOf(phrase) >= 0) s += 8;
     p.why = viaAlias ? whyItem(p, toks) : "";
-    return s - miss * 15 + (p.b === 2 ? 3 : 0) - p.w.n.length * 0.2;
+    return s - miss * 15 + (p.b === 2 ? 3 : 0) + (p.pr ? (4 - p.pr) * 2 : 0) - p.w.n.length * 0.2;
   }
   function whyItem(p, toks) {  // cụm tên gọi khác / từ khoá khớp nhiều từ gõ nhất
     var best = null, bn = 0;
@@ -230,9 +232,15 @@
   function filtered() {
     var raw = $("ld-q").value.trim(), toks = words(raw), phrase = toks.join(" ");
     lowRaw = raw.toLowerCase().normalize("NFC").replace(/\s+/g, " ");
-    var k = $("ld-kind").value, pv = $("ld-prov").value, b = $("ld-book").checked;
-    var base = all.filter(function (p) { return (!k || p.k === k) && (!pv || p.pv === pv) && (!b || p.b === 2); });
-    if (!toks.length) { base.forEach(function (p) { p.why = ""; }); return base; }
+    var k = $("ld-kind").value, pv = $("ld-prov").value, b = $("ld-book").checked, it = $("ld-intent").value;
+    var base = all.filter(function (p) {
+      return (!k || p.k === k) && (!pv || p.pv === pv) && (!b || p.b === 2) && (!it || p.it_.indexOf(it) >= 0);
+    });
+    if (!toks.length) {
+      base.forEach(function (p) { p.why = ""; });
+      // không gõ gì mà có lọc "cầu gì": nơi tiêu biểu (bậc 1 → 3) lên đầu
+      return it ? base.sort(function (x, y) { return (x.pr || 9) - (y.pr || 9) || (x.n < y.n ? -1 : 1); }) : base;
+    }
     function run(fuzzy, skip, out) {
       base.forEach(function (p) {
         if (skip[p.id]) return;
@@ -248,7 +256,9 @@
     }
     return hits.sort(function (x, y) { return y.sc - x.sc || (x.n < y.n ? -1 : 1); });
   }
-  function active() { return $("ld-q").value.trim() || $("ld-kind").value || $("ld-prov").value || $("ld-book").checked || me; }
+  function active() {
+    return $("ld-q").value.trim() || $("ld-kind").value || $("ld-prov").value || $("ld-intent").value || $("ld-book").checked || me;
+  }
 
   function renderList(list) {
     var box = $("ld-list");
@@ -261,7 +271,9 @@
     box.innerHTML = rows.map(function (p, i) {
       return '<div class="ld-card ld-place-row"><div class="ld-spread"><span><a href="' + detailUrl(p) + '"><b>' + esc(p.n) + "</b></a>" +
         (p.b === 2 ? ' <span class="ld-badge on">★ Nhận lễ</span>' : "") +
-        (p.why ? '<br><span class="small">' + esc(p.why) + "</span>" : "") +
+        (p.pr === 1 ? ' <span class="ld-badge warn">Tiêu biểu</span>' : "") +
+        (p.why ? '<br><span class="small">' + esc(p.why) + "</span>"
+          : (p.dt ? '<br><span class="small">Thờ: ' + esc(p.dt) + "</span>" : "")) +
         '<br><span class="ld-muted small">' + esc(kinds[p.k] || "") +
         (p.pv ? " · " + esc(p.pv) : "") + (me ? " · " + fmtKm(p.d) : "") + "</span></span>" +
         '<button type="button" class="ld-btn small secondary" data-i="' + i + '">Xem</button></div></div>';
@@ -312,13 +324,15 @@
       var counts = {}, provCounts = {};
       all = d.points.map(function (a) {
         var p = { id: a[0], lat: a[1], lng: a[2], k: a[3], n: a[4], pv: d.provinces[a[5]] || "", b: a[6] };
-        var x = a[8] || "", al = a[7] || "", kw = a[9] || "";  // x đã bỏ dấu phía server
+        var x = a[8] || "", al = a[7] || "", kw = a[9] || "", deity = a[10] || "";  // x đã bỏ dấu phía server
+        p.it_ = a[11] ? a[11].split(",") : []; p.pr = a[12] || 0; p.aq = a[13] || ""; p.dt = deity;
         // tên gọi khác + từ khoá: từng cụm riêng, để hiện đúng cụm đã khớp dưới kết quả
         p.it = al.split(";").map(function (t) { return { t: t.trim(), l: "Còn gọi" }; })
+          .concat(deity ? [{ t: deity, l: "Thờ" }] : [])
           .concat(kw.split(/[,;]/).map(function (t) { return { t: t.trim(), l: "Từ khoá" }; }))
           .filter(function (o) { return o.t; });
         p.it.forEach(function (o) { o.w = words(o.t); });
-        p.w = { n: words(p.n), a: words(al + " " + kw), pv: words(p.pv + " " + (PV_ALIAS[p.pv] || "")), x: x ? x.split(" ") : [] };
+        p.w = { n: words(p.n), a: words(al + " " + deity + " " + kw), pv: words(p.pv + " " + (PV_ALIAS[p.pv] || "")), x: x ? x.split(" ") : [] };
         p.s = { n: p.w.n.join(" "), a: p.it.map(function (o) { return o.w.join(" "); }).join(" | "), x: x, pv: words(p.pv).join(" ") };
         p.lo = p.n.toLowerCase().normalize("NFC");
         p.loa = p.it.map(function (o) { return o.t.toLowerCase().normalize("NFC"); }).join(" | ");
@@ -328,19 +342,27 @@
       Object.keys(kinds).forEach(function (k) {
         if (counts[k]) $("ld-kind").insertAdjacentHTML("beforeend", '<option value="' + k + '">' + esc(kinds[k]) + " (" + counts[k] + ")</option>");
       });
+      var ic = {};
+      all.forEach(function (p) { p.it_.forEach(function (c) { ic[c] = (ic[c] || 0) + 1; }); });
+      Object.keys(d.intents || {}).forEach(function (c) {
+        if (ic[c]) $("ld-intent").insertAdjacentHTML("beforeend", '<option value="' + c + '">Cầu ' + esc(d.intents[c].toLowerCase()) + " (" + ic[c] + ")</option>");
+      });
+      if (!Object.keys(ic).length) $("ld-intent").hidden = true;
       d.provinces.forEach(function (pv) {
         $("ld-prov").insertAdjacentHTML("beforeend", '<option value="' + esc(pv) + '">' + esc(pv) + " (" + provCounts[pv] + ")</option>");
       });
       return mapP;
     }).then(function (a) {
       adapter = a;
+      var pre = /[?&]cau=([a-z-]+)/.exec(location.search);  // từ trang chi tiết: "Thường cầu: Tài lộc"
+      if (pre && $("ld-intent").querySelector('option[value="' + pre[1] + '"]')) { $("ld-intent").value = pre[1]; apply(true); return; }
       apply(false);
       var m = /^#p(\d+)$/.exec(location.hash);
       var target = m && all.filter(function (p) { return p.id === +m[1]; })[0];
       if (target && adapter) adapter.focus(target);
     });
     $("ld-q").addEventListener("input", schedule);
-    ["ld-kind", "ld-prov", "ld-book"].forEach(function (id) { $(id).addEventListener("change", function () { apply(true); }); });
+    ["ld-kind", "ld-prov", "ld-intent", "ld-book"].forEach(function (id) { $(id).addEventListener("change", function () { apply(true); }); });
     $("ld-near").addEventListener("click", locate);
     $("ld-list").addEventListener("click", function (e) {
       var b = e.target.closest("button[data-i]");

@@ -12,6 +12,14 @@
   <input type="text" name="aliases" value="{{ p.aliases or '' }}" placeholder="vd: Đền Ông Hoàng Bảy; Đền Bảo Hà Lào Cai">
   <label>Từ khoá tìm kiếm <span class="ld-muted small">(cách nhau dấu phẩy, chỉ dùng để tìm, không hiển thị)</span></label>
   <input type="text" name="keywords" value="{{ p.keywords or '' }}" placeholder="vd: ông bảy, đền ông, cầu tài, sông hồng">
+  <label>Thờ</label><input type="text" name="deity" value="{{ p.deity or '' }}" placeholder="vd: Ông Hoàng Đôi, Ông Hoàng Bảy">
+  <label>Hàng thánh</label><input type="text" name="deity_groups" value="{{ p.deity_groups or '' }}" placeholder="vd: Mẫu, Quan, Chầu, Cô, Cậu, Ông Hoàng, Đức Thánh">
+  <label>Thường cầu</label>
+  <div class="ld-row">{% for k, lbl in intents.items() %}<label class="ld-check"><input type="checkbox" name="intents" value="{{ k }}"{{ ' checked' if k in (p.intents or '').split(',') }}> {{ lbl }}</label>{% endfor %}</div>
+  <label>Lễ hội · ngày tiệc</label><textarea name="festival" rows="2">{{ p.festival or '' }}</textarea>
+  <label>Bậc ưu tiên <span class="ld-muted small">(1 = tiêu biểu nhất, lên đầu kết quả tìm kiếm)</span></label>
+  <select name="priority"><option value="">— không —</option>{% for v in ('1', '2', '3') %}<option value="{{ v }}"{{ ' selected' if p.priority and p.priority|string == v }}>{{ v }}</option>{% endfor %}</select>
+  <label class="ld-check"><input type="checkbox" name="approx_location" value="1"{{ ' checked' if p.approx_location }}> Vị trí gần đúng (chưa xác minh) — bỏ chọn khi đã kiểm tra toạ độ</label>
   <label>Loại</label>
   <select name="kind">{% for k, label in kinds.items() %}<option value="{{ k }}" {% if k == p.kind %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
   <label>Tỉnh/thành</label><input type="text" name="province" value="{{ p.province or '' }}">

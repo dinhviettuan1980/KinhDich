@@ -26,7 +26,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from .config import BASE_DIR
-from .models import PLACE_KINDS, SacredPlace, Setting, Temple
+from .models import PLACE_INTENTS, PLACE_KINDS, SacredPlace, Setting, Temple
 
 log = logging.getLogger(__name__)
 
@@ -323,6 +323,234 @@ def finalize_aliases(records: list[dict], wd_aliases: dict[str, list[str]] | Non
     return n
 
 
+CURATED_FILE = BASE_DIR / "data" / "places_curated.json"
+INTENT_LABELS = PLACE_INTENTS
+_LEAD = re.compile(r"^(?:quan the di tich |khu di tich |den tho |den |phu |chua |mieu |dinh |dong |lang |mo |dien )+")
+# phần tên quá chung (nhiều nơi trùng) → chỉ ghép khi rất gần
+GENERIC_CORES = {"thuong", "ha", "trung", "mau", "cam", "co doi", "doi co", "quan giam sat", "chua ba", "co tam",
+                 "thuong ngan", "tho", "lang", "hang", "ong", "ba"}
+NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
+
+
+def _core(name: str) -> str:
+    """Phần riêng của tên: bỏ ngoặc và tiền tố loại ("Đền Mẫu (Cấm Sơn Linh Từ)" → "mau")."""
+    return _LEAD.sub("", norm(re.sub(r"\(.*?\)|“.*?”|\".*?\"", " ", name))).strip()
+
+
+def _inner_names(name: str) -> list[str]:
+    """Tên trong ngoặc/ngoặc kép: "Đền Dâu (Tang Dã Linh Từ)" → ["Tang Dã Linh Từ"]."""
+    return [part.strip() for groups in re.findall(r"\((.*?)\)|“(.*?)”", name) for part in groups if part.strip()]
+
+
+_GENERIC_WORDS = {"den", "phu", "chua", "mieu", "dinh", "dong", "lang", "mo", "dien", "mau", "tho", "quan", "the", "di",
+                  "tich", "khu", "linh", "tu", "chinh"}
+_KIND_TITLE = re.compile(r"^(đền|phủ|chùa|miếu|đình|điện|lăng|động|quần thể|khu di tích|am|nghè)\b", re.I)
+
+
+def _core_acc(name: str) -> str:
+    """Như _core nhưng giữ dấu: "Đền Sở" → "sở" (≠ "Đình So")."""
+    t = re.sub(r"\(.*?\)|“.*?”", " ", name).lower().strip()
+    t = re.sub(r"^(?:(?:quần thể di tích|khu di tích|đền thờ|đền|phủ|chùa|miếu|đình|động|lăng|mộ|điện)\s+)+", "", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def _word_set(name: str) -> frozenset:
+    return frozenset(w for w in norm(re.sub(r"\(.*?\)|“.*?”", " ", name)).split() if w not in _GENERIC_WORDS)
+
+
+def _names_match(a: str, b: str, km: float) -> bool:
+    if not a or not b:
+        return False
+    if a == b:  # tên ngắn ("đầm", "sở") hay chung chung → chỉ khi rất gần; tên đặc trưng → trong 30 km
+        return km <= (3 if a in GENERIC_CORES or len(a) < 6 else 30)
+    short = min(len(a), len(b))
+    if a in b or b in a:
+        if short >= 7 and min(a, b, key=len) not in GENERIC_CORES:
+            return km <= 10
+        return short >= 3 and km <= 1
+    return False
+
+
+def curated_match(c: dict, records: list[dict]) -> dict | None:
+    """Điểm sẵn có (OSM/Wikidata/Wikipedia) ứng với một nơi trong danh sách biên soạn; gần nhất trong số khớp tên."""
+    cnames = [c["name"], *_inner_names(c["name"])]
+    best = None
+    for r in records:
+        # đền/phủ không ghép vào chùa, đình; miếu chỉ khi tên riêng đủ dài
+        if r.get("lat") is None or r["kind"] in ("chua", "dinh") or r.get("_cur"):
+            continue
+        km = _km(r, c)
+        if km > 30:
+            continue
+        rnames = [r["name"], *r.get("alt", [])]
+        ok = False
+        for cn in cnames:
+            for rn in rnames:
+                a, b = _core(cn), _core(rn)
+                if r["kind"] == "mieu" and min(len(a), len(b)) < 6:
+                    continue
+                if a == b and len(a) < 5 and _core_acc(cn) != _core_acc(rn):
+                    continue  # "Sở" ≠ "So": tên ngắn phải khớp cả dấu
+                ok = ok or _names_match(a, b, km)
+        if ok and (best is None or km < best[0]):
+            best = (km, r)
+    return best[1] if best else None
+
+
+def geocode_curated(items: list[dict], client, delay: float = 1.1) -> dict[str, dict]:
+    """Nominatim (OSM) cho nơi chưa ghép được: tên + địa chỉ cũ, chỉ nhận kết quả cùng tên, cách toạ độ gốc ≤ 30 km.
+    Tôn trọng giới hạn 1 yêu cầu/giây của Nominatim; kết quả cache theo tên."""
+    out = {}
+    for c in items:
+        hits = []
+        for q in (f"{c['name']}, {c['addr']}", re.sub(r"\s*\(.*?\)", "", c["name"]) + ", Việt Nam"):
+            r = _retry(lambda: client.get(NOMINATIM_URL, params={"q": q, "format": "jsonv2", "countrycodes": "vn",
+                                                                  "limit": 5, "accept-language": "vi"}))
+            time.sleep(delay)
+            if r.status_code == 200:
+                hits = r.json()
+            if hits:
+                break
+        key = f"{c['name']}@{c['lat']},{c['lng']}"
+        for h in hits:
+            lat, lng = float(h["lat"]), float(h["lon"])
+            hname = h.get("name") or h.get("display_name", "").split(",")[0]
+            km = _km({"lat": lat, "lng": lng}, c)
+            if km <= 30 and any(_names_match(k, _core(hname), min(km, 2.9))
+                                for k in {_core(c["name"])} | {_core(x) for x in _inner_names(c["name"])}):
+                out[key] = {"lat": round(lat, 6), "lng": round(lng, 6), "name": hname, "km": round(km, 2),
+                            "osm": f"{h.get('osm_type', '')}/{h.get('osm_id', '')}"}
+                break
+    return out
+
+
+# Huyện/thị xã/thành phố cũ (trước sáp nhập 2025, vẫn dùng trong địa chỉ quen gọi) → tỉnh mới. Dùng cho điểm có toạ độ
+# gần đúng: toạ độ lệch có thể rơi sang tỉnh bên cạnh, còn địa chỉ thì đúng.
+OLD_DISTRICT_PROVINCE = {
+    "Hà Nội": ["Thường Tín", "Ba Vì", "Sơn Tây", "Long Biên", "Tây Hồ"],
+    "Lạng Sơn": ["Hữu Lũng", "Chi Lăng", "Cao Lộc", "thành phố Lạng Sơn"],
+    "Ninh Bình": ["Nho Quan", "Tam Điệp", "Vụ Bản", "Ý Yên", "Mỹ Lộc", "Duy Tiên", "Lý Nhân", "thành phố Nam Định"],
+    "Phú Thọ": ["Cao Phong", "Đà Bắc", "Lâm Thao", "Tam Đảo"],
+    "Hưng Yên": ["Quỳnh Phụ", "Tiền Hải", "Hưng Hà", "Ân Thi", "Tiên Lữ", "thành phố Hưng Yên", "Thái Bình"],
+    "Hải Phòng": ["Chí Linh", "Ninh Giang", "Vĩnh Bảo", "Đồ Sơn", "Ngô Quyền"],
+    "Bắc Ninh": ["Lục Nam", "Yên Thế"],
+    "Thanh Hóa": ["Hà Trung", "Hậu Lộc", "Thạch Thành", "Bỉm Sơn"],
+    "Hà Tĩnh": ["Nghi Xuân", "Hồng Lĩnh"],
+    "Nghệ An": ["Quỳnh Lưu", "Hoàng Mai", "Hưng Nguyên"],
+    "Lào Cai": ["Bảo Yên", "Văn Bàn", "Văn Yên", "thành phố Yên Bái", "thành phố Lào Cai"],
+    "Tuyên Quang": ["Yên Sơn", "Hàm Yên", "Vị Xuyên", "thành phố Hà Giang", "thành phố Tuyên Quang"],
+    "Quảng Trị": ["Quảng Trạch"],
+    "Thái Nguyên": ["thành phố Thái Nguyên"],
+}
+_DISTRICT_RX = [(prov, re.compile(r"(?:huyện|thị xã|quận|thành phố|tỉnh)?\s*" + re.escape(d) + r"\b", re.I))
+                for prov, ds in OLD_DISTRICT_PROVINCE.items() for d in ds]
+
+
+def province_hint(addr: str) -> str:
+    """Tỉnh mới suy từ địa chỉ cũ ("…, huyện Thường Tín" → "Hà Nội"); "" nếu không nhận ra."""
+    for prov, rx in _DISTRICT_RX:
+        if rx.search(addr or ""):
+            return prov
+    return ""
+
+
+def merge_curated(records: list[dict], cur: list[dict], provinces, geo: dict[str, dict]) -> dict:
+    """Danh sách đền phủ tiêu biểu (places_curated.json) → bổ sung vào điểm sẵn có (giữ toạ độ OSM chính xác),
+    hoặc thêm điểm mới (toạ độ Nominatim nếu tìm thấy, không thì toạ độ gốc + đánh dấu gần đúng)."""
+    st = {"matched": 0, "geocoded": 0, "approx": 0}
+    for c in cur:
+        kind = "phu" if c["type"] == "Phủ" or norm(c["name"]).startswith("phu ") else "den"
+        target = curated_match(c, records)
+        if target is None:
+            g = geo.get(f"{c['name']}@{c['lat']},{c['lng']}")
+            lat, lng = (g["lat"], g["lng"]) if g else (c["lat"], c["lng"])
+            target = {"src": "ldv", "sid": f"{norm(c['name']).replace(' ', '-')}@{c['lat']:.3f},{c['lng']:.3f}",
+                      "name": c["name"], "kind": kind, "rel": "", "lat": lat, "lng": lng,
+                      "prov": (not g and province_hint(c["addr"])) or (provinces.lookup(lat, lng) if provinces else ""),
+                      "addr": c["addr"], "phone": "",
+                      "web": "", "wd": "", "wp": "", "approx": not g}
+            records.append(target)
+            st["geocoded" if g else "approx"] += 1
+        else:
+            st["matched"] += 1
+            tc = _core(target["name"])
+            if target["name"] != c["name"] and (tc == _core(c["name"]) or tc in GENERIC_CORES):
+                _add_alt(target, target["name"])
+                target["name"] = c["name"]  # "Đền dâu"/"Đền Mẫu" (OSM) → tên chuẩn trong danh sách
+            if not target.get("addr"):
+                target["addr"] = c["addr"]
+            _add_alt(target, c["name"])
+        target["_cur"] = True
+        _add_alt(target, _inner_names(c["name"]))
+        target["phone"] = target.get("phone") or c["phone"]
+        target.update(deity=c["deity"], groups=c["groups"], intents=c["intents"], fest=c["fest"], prio=c["prio"])
+        extra = [c["deity"], *(f"thờ {g}" for g in c["groups"]), *(f"cầu {INTENT_LABELS[i].lower()}" for i in c["intents"])]
+        if set(c["groups"]) & {"Mẫu", "Quan", "Chầu", "Cô", "Cậu", "Ông Hoàng"}:
+            extra += ["Tứ phủ", "đạo Mẫu", "hầu đồng"]
+        if target.get("addr") != c["addr"]:
+            extra.append(c["addr"])  # địa chỉ cũ (huyện, tỉnh trước sáp nhập) để tìm theo thói quen
+        target["kw"] = ", ".join(x for x in (target.get("kw", ""), *extra) if x)
+    for r in records:
+        r.pop("_cur", None)
+    return st
+
+
+def wiki_search_titles(queries: dict[str, str], client, delay: float = 1.0) -> dict[str, list[str]]:
+    """Tìm bài vi.wikipedia cho từng nơi (khoá → câu tìm) → tối đa 3 tiêu đề/nơi."""
+    out = {}
+    for key, q in queries.items():
+        def go():
+            r = client.get(WIKI_API, params={"action": "query", "format": "json", "formatversion": "2", "list": "search",
+                                             "srsearch": q, "srlimit": "3", "srnamespace": "0"})
+            r.raise_for_status()
+            return r.json()["query"]["search"]
+        try:
+            out[key] = [h["title"] for h in _retry(go, wait=10)]
+        except Exception as exc:
+            log.warning("Tìm Wikipedia %s: %s", q, exc)
+        time.sleep(delay)
+    return out
+
+
+def _wiki_accept(r: dict, d: dict, place_names: list[str], hints: list[str]) -> bool:
+    """Bài Wikipedia đúng là nơi này: tiêu đề là tên một nơi thờ (Đền/Phủ/…), phần tên riêng trùng khít (bỏ chữ chung
+    như "Mẫu", "Phủ"), không phải trang định hướng; và toạ độ ≤ 15 km hoặc (không toạ độ) bài nhắc tỉnh/huyện."""
+    title = re.sub(r"\s*\(.*\)\s*$", "", d["title"])
+    if not _KIND_TITLE.match(title) or re.search(r"có thể (?:đề cập|là|chỉ)", d["desc"][:200]):
+        return False
+    tw = _word_set(title)
+    if not tw or not any(_word_set(n) == tw for n in place_names):
+        return False
+    km = _km(r, d) if d.get("lat") is not None else None
+    if km is not None:
+        return km <= 15
+    text = norm(d["desc"][:1500])
+    return any(h and norm(h) in text for h in hints)
+
+
+def attach_wikipedia_to_curated(records: list[dict], client, cache: Path | None) -> int:
+    """Mô tả Wikipedia cho các nơi trong danh sách biên soạn chưa có mô tả."""
+    todo = [r for r in records if r.get("deity") and not r.get("desc")]
+    queries = {r["sid"]: f'{re.sub(r"[(“].*?[)”]", " ", r["name"]).strip()} {r["prov"]}' for r in todo}
+    found = _cached_json(cache, "wiki_curated_search.json", lambda: wiki_search_titles(queries, client))
+    titles = sorted({t for ts in found.values() for t in ts})
+    details = {d["title"]: d for d in _cached_json(cache, "wiki_curated_pages.json",
+                                                   lambda: wiki_page_details(titles, client))}
+    n = 0
+    for r in todo:
+        names = [r["name"], *r.get("alt", []), *_inner_names(r["name"])]
+        hints = [r["prov"], *re.findall(r"(?:huyện|thị xã|thành phố|quận|xã|phường)\s+([^,.]+)", r.get("addr", ""), re.I)]
+        for t in found.get(r["sid"], []):
+            d = details.get(t)
+            if d and d["desc"] and _wiki_accept(r, d, names, hints):
+                r["desc"], r["desc_src"], r["wp"] = d["desc"], d["url"], d["title"]
+                r["img"] = r.get("img") or d["img"]
+                r["wd"] = r.get("wd") or d["qid"]
+                n += 1
+                break
+    return n
+
+
 KEYWORDS_FILE = BASE_DIR / "data" / "places_keywords.json"
 
 
@@ -587,6 +815,16 @@ def build(out: Path = SNAPSHOT, cache: Path | None = None) -> dict:
         s = summaries.get(r["wp"])
         if s and not r.get("desc"):
             r["desc"], r["desc_src"] = s["desc"], s["url"]
+    if CURATED_FILE.exists():
+        cur = json.loads(CURATED_FILE.read_text("utf-8"))["places"]
+        log.info("Ghép %d nơi trong danh sách biên soạn…", len(cur))
+        todo = [c for c in cur if curated_match(c, records) is None]
+        with _http() as client:
+            geo = _cached_json(cache, "nominatim.json", lambda: geocode_curated(todo, client))
+        log.info("Danh sách biên soạn: %s", merge_curated(records, cur, provs, geo))
+        with _http() as client:
+            log.info("Mô tả Wikipedia cho danh sách biên soạn: %d nơi",
+                     attach_wikipedia_to_curated(records, client, cache))
     log.info("%d điểm có tên gọi khác", finalize_aliases(records, wd_alias))
     log.info("%d điểm có từ khoá soạn tay", apply_keywords(records))
     records.sort(key=lambda r: (r["prov"], norm(r["name"]), r["sid"]))
@@ -615,7 +853,10 @@ def load(db: Session, snap: dict) -> dict:
                       lat=r["lat"], lng=r["lng"], province=r.get("prov", ""), address=r.get("addr", ""),
                       phone=r.get("phone", ""), website=r.get("web", ""), wikidata=r.get("wd", ""),
                       description=r.get("desc", ""), description_source=r.get("desc_src", ""),
-                      image_url=r.get("img", ""), aliases=r.get("alias", ""), keywords=r.get("kw", ""))
+                      image_url=r.get("img", ""), aliases=r.get("alias", ""), keywords=r.get("kw", ""),
+                      deity=r.get("deity", ""), deity_groups=", ".join(r.get("groups", [])),
+                      intents=",".join(r.get("intents", [])), festival=r.get("fest", ""), priority=r.get("prio"),
+                      approx_location=bool(r.get("approx")))
         p = existing.get((r["src"], r["sid"]))
         if p is None:
             db.add(SacredPlace(source=r["src"], source_id=r["sid"], **fields))

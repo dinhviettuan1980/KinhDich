@@ -128,7 +128,7 @@ def test_place_detail_shows_booking_and_attribution(client, db):
     html = client.get(f"{P}/dia-diem/{tq.id}").text
     assert "Sắm lễ và đặt lễ tại đây" in html and f"{P}/den/chua-tran-quoc" in html
     assert "Ngôi chùa cổ nhất Thăng Long." in html and "CC BY-SA 4.0" in html
-    assert "openstreetmap.org/way/2" in html and "google.com/maps/dir/?api=1&destination=21.048,105.837" in html
+    assert "openstreetmap.org/way/2" in html and "google.com/maps/dir/?api=1&destination=21.048%2C105.837" in html
     html = client.get(f"{P}/dia-diem/{kl.id}").text
     assert "chưa nhận lễ từ xa" in html and "Sắm lễ" not in html
     kl.status = "hidden"
@@ -283,3 +283,74 @@ def test_points_carry_aliases_keywords_and_admin_edits_them(admin_client, client
     p = db.get(SacredPlace, tq.id)
     assert p.aliases == "Khai Quốc tự; An Quốc tự" and p.keywords == "hồ Tây, cổ nhất" and p.edited
     assert "Chùa Trấn Quốc" in admin_client.get(f"{P}/admin/dia-diem", params={"q": "An Quốc"}).text
+
+
+def _cur(**over):
+    c = {"name": "Đền Bảo Hà", "type": "Đền", "lat": 22.1585, "lng": 104.3415, "addr": "Xã Bảo Hà, huyện Bảo Yên",
+         "phone": "0214 387 9328", "deity": "Ông Hoàng Đôi, Ông Hoàng Bảy", "groups": ["Ông Hoàng"],
+         "intents": ["tai-loc"], "fest": "17-7 (âm lịch) hằng năm.", "prio": 1}
+    c.update(over)
+    return c
+
+
+def test_curated_list_merges_into_precise_points_or_adds_new():
+    osm = [{"src": "osm", "sid": "way/1", "name": "Đền Bảo Hà", "kind": "den", "lat": 22.1711, "lng": 104.3516,
+            "prov": "Lào Cai", "addr": "", "phone": "", "web": "", "wd": "", "wp": ""},
+           {"src": "osm", "sid": "way/2", "name": "Chùa Phố", "kind": "chua", "lat": 20.6466, "lng": 106.0516,
+            "prov": "Hưng Yên", "addr": "", "phone": "", "web": "", "wd": "", "wp": ""},
+           {"src": "osm", "sid": "node/3", "name": "Đền Thượng", "kind": "den", "lat": 21.30, "lng": 105.30,
+            "prov": "Hà Nội", "addr": "", "phone": "", "web": "", "wd": "", "wp": ""}]
+    cur = [_cur(),  # lệch 1,7 km, tên đặc trưng → ghép, giữ toạ độ OSM
+           _cur(name="Đền Mẫu Phố Hiến", lat=20.6465, lng=106.0515, deity="Dương Quý Phi", groups=["Mẫu"], prio=2),
+           _cur(name="Đền Thượng", lat=21.0612, lng=105.3644, deity="Đức Thánh Tản Viên", groups=["Đức Thánh"]),
+           _cur(name="Đền Chợ Củi", lat=18.6185, lng=105.7025, deity="Ông Hoàng Mười")]
+    geo = {"Đền Chợ Củi@18.6185,105.7025": {"lat": 18.62, "lng": 105.71}}
+    st = places.merge_curated(osm, cur, None, geo)
+    assert st == {"matched": 1, "geocoded": 1, "approx": 2}
+    bh = osm[0]
+    assert (bh["lat"], bh["deity"], bh["intents"], bh["prio"], bh["phone"]) == (22.1711, cur[0]["deity"], ["tai-loc"], 1, "0214 387 9328")
+    assert "thờ Ông Hoàng" in bh["kw"] and "cầu tài lộc" in bh["kw"] and "Xã Bảo Hà" in bh["addr"]
+    new = {r["name"]: r for r in osm[3:]}
+    assert set(new) == {"Đền Mẫu Phố Hiến", "Đền Thượng", "Đền Chợ Củi"}  # không ghép đền vào chùa / tên chung ở xa
+    assert new["Đền Chợ Củi"]["lat"] == 18.62 and not new["Đền Chợ Củi"]["approx"]
+    assert new["Đền Thượng"]["approx"] and new["Đền Thượng"]["sid"].startswith("den-thuong@")
+    assert "Tứ phủ" in new["Đền Mẫu Phố Hiến"]["kw"]
+
+
+def test_place_page_shows_worship_info_and_intent_filter(client, db):
+    places.load(db, _snap(deity="Ông Hoàng Bảy", groups=["Ông Hoàng"], intents=["tai-loc", "binh-an"],
+                          fest="17-7 (âm lịch)", prio=1, approx=True))
+    db.commit()
+    tq = db.scalar(select(SacredPlace).where(SacredPlace.source_id == "way/2"))
+    html = client.get(f"{P}/dia-diem/{tq.id}").text
+    assert "Ông Hoàng Bảy" in html and "Tứ phủ" in html and "17-7 (âm lịch)" in html
+    assert f"{P}/ban-do?cau=tai-loc" in html and "gần đúng" in html
+    j = client.get(f"{P}/ban-do/diem.json").json()
+    pt = next(x for x in j["points"] if x[0] == tq.id)
+    assert pt[10] == "Ông Hoàng Bảy" and pt[11] == "tai-loc,binh-an" and pt[12] == 1
+    assert j["intents"]["tai-loc"] == "Tài lộc"
+
+
+def test_admin_edits_worship_info(admin_client, db):
+    places.load(db, _snap())
+    db.commit()
+    tq = db.scalar(select(SacredPlace).where(SacredPlace.source_id == "way/2"))
+    assert 'name="intents"' in admin_client.get(f"{P}/admin/dia-diem/{tq.id}").text
+    form = {"csrf_token": admin_client.csrf, "name": tq.name, "kind": "chua", "province": "Hà Nội", "lat": "21.048",
+            "lng": "105.837", "status": "active", "deity": "Phật", "deity_groups": "Phật",
+            "intents": ["binh-an", "xyz"], "festival": "Rằm tháng Giêng", "priority": "2"}
+    assert admin_client.post(f"{P}/admin/dia-diem/{tq.id}", data=form, follow_redirects=False).status_code == 303
+    db.expire_all()
+    p = db.get(SacredPlace, tq.id)
+    assert (p.deity, p.intents, p.festival, p.priority, p.approx_location) == ("Phật", "binh-an", "Rằm tháng Giêng", 2, False)
+
+
+def test_province_hint_from_old_address_and_real_curated_snapshot():
+    assert places.province_hint("Thôn Bằng Sở, xã Ninh Sở, huyện Thường Tín") == "Hà Nội"
+    assert places.province_hint("Tổ 8, phường Trần Phú, thành phố Hà Giang") == "Tuyên Quang"
+    assert places.province_hint("Phố Xích Đằng") == ""
+    cur = {p["name"]: p for p in places.read_snapshot()["places"] if p.get("deity")}
+    assert len(cur) >= 100
+    assert cur["Đền Sở"]["prov"] == "Hà Nội" and cur["Đền Sở"]["approx"]
+    assert cur["Đền Bảo Hà"]["src"] == "osm" and not cur["Đền Bảo Hà"].get("approx")  # toạ độ OSM chính xác
+    assert cur["Đền Bảo Hà"]["intents"] == ["tai-loc"] and cur["Đền Bảo Hà"]["prio"] == 1

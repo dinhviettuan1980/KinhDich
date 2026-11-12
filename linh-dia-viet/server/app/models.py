@@ -148,6 +148,8 @@ class Temple(Base):
     device: Mapped[Device | None] = relationship()
 
 
+PLACE_INTENTS = {"binh-an": "Bình an", "tai-loc": "Tài lộc", "tinh-duyen": "Tình duyên", "suc-khoe": "Sức khỏe",
+                 "cong-danh": "Công danh"}
 PLACE_KINDS = {"chua": "Chùa", "den": "Đền", "dinh": "Đình", "mieu": "Miếu", "phu": "Phủ", "khac": "Nơi thờ tự"}
 
 
@@ -172,6 +174,13 @@ class SacredPlace(Base):
     description_source: Mapped[str] = mapped_column(String(300), default="")  # URL bài gốc (Wikipedia…)
     aliases: Mapped[str] = mapped_column(Text, default="")  # tên gọi khác, cách nhau "; " (vd "Đền Ông Hoàng Bảy")
     keywords: Mapped[str] = mapped_column(Text, default="")  # từ khoá tìm kiếm (data/places_keywords.json; admin sửa → `edited`, snapshot không ghi đè)
+    # thông tin thờ tự (danh sách đền phủ biên soạn: data/places_curated.json; admin sửa được)
+    deity: Mapped[str] = mapped_column(String(300), default="")  # thờ ai, vd "Ông Hoàng Đôi, Ông Hoàng Bảy"
+    deity_groups: Mapped[str] = mapped_column(String(100), default="")  # hàng thánh: "Mẫu", "Quan", "Ông Hoàng"…
+    intents: Mapped[str] = mapped_column(String(100), default="")  # mã điều cầu, cách nhau dấu phẩy: tai-loc,binh-an
+    festival: Mapped[str] = mapped_column(Text, default="")  # lễ hội / ngày tiệc
+    priority: Mapped[int | None] = mapped_column(Integer)  # bậc ưu tiên 1 (cao nhất) – 3; None = không thuộc danh sách
+    approx_location: Mapped[bool] = mapped_column(Boolean, default=False)  # toạ độ gần đúng (chưa xác minh)
     image_url: Mapped[str] = mapped_column(String(500), default="")
     wikidata: Mapped[str] = mapped_column(String(20), default="")
     status: Mapped[str] = mapped_column(String(10), default="active")  # active | hidden
@@ -191,6 +200,18 @@ class SacredPlace(Base):
         if prov and prov.lower() not in addr.lower():
             addr = f"{addr}, {prov}" if addr else prov
         return addr
+
+    @property
+    def map_query(self) -> str:
+        """Chuỗi Google Maps dùng để tìm/chỉ đường: toạ độ nếu chính xác; nếu gần đúng thì tên + địa chỉ
+        để Google tự tìm đúng vị trí (không lưu dữ liệu của Google)."""
+        if self.approx_location:
+            return ", ".join(x for x in (self.name, self.address, self.province) if x)
+        return f"{self.lat},{self.lng}"
+
+    @property
+    def intent_list(self) -> list[tuple[str, str]]:
+        return [(k, PLACE_INTENTS[k]) for k in (self.intents or "").split(",") if k in PLACE_INTENTS]
 
     @property
     def alias_list(self) -> list[str]:

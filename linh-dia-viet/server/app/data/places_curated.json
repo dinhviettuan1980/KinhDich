@@ -1,0 +1,1795 @@
+{
+ "source": "LinhDiaViet_Data.xlsx (danh sách đền phủ Tứ phủ do Linh Địa Việt biên soạn)",
+ "places": [
+  {
+   "name": "Quần thể di tích đền Suối Mỡ",
+   "type": "Quần thể di tích",
+   "lat": 21.2858,
+   "lng": 106.4715,
+   "addr": "Xã Nghĩa Phương, huyện Lục Nam",
+   "phone": "",
+   "deity": "Thánh Mẫu Thượng Ngàn Quế Hoa Mỵ Nương",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "1-4 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Nguyệt Hồ",
+   "type": "Đền",
+   "lat": 21.4326,
+   "lng": 106.1824,
+   "addr": "Xã Hương Vĩ, huyện Yên Thế",
+   "phone": "0204 387 7476 / 0975 589 432",
+   "deity": "Chúa Nguyệt Hồ",
+   "groups": [
+    "Nữ thần"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "15-2 (âm lịch) hằng năm.",
+   "prio": 3
+  },
+  {
+   "name": "Đền Mẫu (Cấm Sơn Linh Từ)",
+   "type": "Đền",
+   "lat": 22.8255,
+   "lng": 104.9822,
+   "addr": "Tổ 6, phường Nguyễn Trãi, thành phố Hà Giang",
+   "phone": "0914 917 266 / 0912 819 251",
+   "deity": "Công đồng Tứ phủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Thác Da",
+   "type": "Đền",
+   "lat": 22.813,
+   "lng": 104.9855,
+   "addr": "Tổ 8, phường Trần Phú, thành phố Hà Giang",
+   "phone": "0913 271 478 / 0974 161 848",
+   "deity": "Chầu Đệ Nhị",
+   "groups": [
+    "Chầu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Đôi Cô Cầu Má",
+   "type": "Đền",
+   "lat": 22.7533,
+   "lng": 104.9886,
+   "addr": "Xã Đạo Đức, huyện Vị Xuyên",
+   "phone": "",
+   "deity": "Đôi Cô nhân thần bản cảnh",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Trần Thương",
+   "type": "Đền",
+   "lat": 20.6401,
+   "lng": 105.9962,
+   "addr": "Xã Nhân Đạo, huyện Lý Nhân",
+   "phone": "0915 612 521 / 0985 109 265",
+   "deity": "Đức Thánh Trần",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "20-8 (âm lịch) hằng năm. Lễ hội phát lương 14-15 tháng Giêng.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Lảnh Giang",
+   "type": "Đền",
+   "lat": 20.6175,
+   "lng": 105.9526,
+   "addr": "Xã Mộc Nam, huyện Duy Tiên",
+   "phone": "0226 383 3269 / 0913 066 790 / 0987 314 888",
+   "deity": "Quan lớn Đệ Tam",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "24-6 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Cô Tam Giang",
+   "type": "Đền",
+   "lat": 20.6178,
+   "lng": 105.952,
+   "addr": "Xã Mộc Nam, huyện Duy Tiên",
+   "phone": "0348 120 308 / 0912 552 321",
+   "deity": "Cô Bơ",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Và",
+   "type": "Đền",
+   "lat": 21.1398,
+   "lng": 105.4892,
+   "addr": "Phường Trung Hưng, thị xã Sơn Tây",
+   "phone": "",
+   "deity": "Đức Thánh Tản Viên",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "rằm tháng Giêng.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Thượng",
+   "type": "Đền",
+   "lat": 21.0612,
+   "lng": 105.3644,
+   "addr": "Rừng Quốc gia Ba Vì, huyện Ba Vì",
+   "phone": "",
+   "deity": "Đức Thánh Tản Viên",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "Đỉnh núi thờ Thánh Mẫu Cửu Trùng.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Đá Đen",
+   "type": "Đền",
+   "lat": 21.0965,
+   "lng": 105.3902,
+   "addr": "Xã Tản Lịch, huyện Ba Vì",
+   "phone": "0398 227 754",
+   "deity": "Chúa Đá Đen",
+   "groups": [
+    "Địa thần"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Sở",
+   "type": "Đền",
+   "lat": 20.8985,
+   "lng": 105.9015,
+   "addr": "Thôn Bằng Sở, xã Ninh Sở, huyện Thường Tín",
+   "phone": "",
+   "deity": "Thánh Mẫu Cửu Trùng",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Đầm",
+   "type": "Đền",
+   "lat": 20.8988,
+   "lng": 105.902,
+   "addr": "Thôn Bằng Sở, xã Ninh Sở, huyện Thường Tín",
+   "phone": "0243 395 5209",
+   "deity": "Thánh Mẫu Thoải cung",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "từ 1 đến 10-2 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Đại Lộ",
+   "type": "Đền",
+   "lat": 20.8945,
+   "lng": 105.9085,
+   "addr": "Xã Ninh Sở, huyện Thường Tín",
+   "phone": "0243 686 2156",
+   "deity": "Tứ vị Hồng Nương",
+   "groups": [
+    "Nữ thần"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Ghềnh",
+   "type": "Đền",
+   "lat": 21.0385,
+   "lng": 105.8672,
+   "addr": "Thôn Ái Mộ, phường Bồ Đề, quận Long Biên",
+   "phone": "",
+   "deity": "Thánh Mẫu Thoải cung",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "Khởi lập thờ Hoàng hậu Ngọc Hân.",
+   "prio": 1
+  },
+  {
+   "name": "Phủ Tây Hồ",
+   "type": "Phủ",
+   "lat": 21.0551,
+   "lng": 105.8197,
+   "addr": "Phường Quảng An, quận Tây Hồ",
+   "phone": "",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "3-3 (âm lịch) và 13-8 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Chợ Củi",
+   "type": "Đền",
+   "lat": 18.6185,
+   "lng": 105.7025,
+   "addr": "Xã Xuân Hồng, huyện Nghi Xuân",
+   "phone": "0239 821662 / 0978 484 416",
+   "deity": "Ông Hoàng Mười",
+   "groups": [
+    "Ông Hoàng"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "10-10 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Dinh đô Quan Hoàng Mười",
+   "type": "Đền",
+   "lat": 18.5722,
+   "lng": 105.7065,
+   "addr": "Phường Trung Lương, thị xã Hồng Lĩnh",
+   "phone": "",
+   "deity": "Ông Hoàng Mười",
+   "groups": [
+    "Ông Hoàng"
+   ],
+   "intents": [
+    "cong-danh"
+   ],
+   "fest": "10-10 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Kiếp Bạc",
+   "type": "Đền",
+   "lat": 21.1115,
+   "lng": 106.353,
+   "addr": "Xã Hưng Đạo, huyện Chí Linh",
+   "phone": "",
+   "deity": "Đức Thánh Trần",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "15 đến 20-8 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Nam Tào",
+   "type": "Đền",
+   "lat": 21.1145,
+   "lng": 106.3555,
+   "addr": "Xã Hưng Đạo, huyện Chí Linh",
+   "phone": "",
+   "deity": "Quan Nam Tào",
+   "groups": [
+    "Thần"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Bắc Đẩu",
+   "type": "Đền",
+   "lat": 21.1085,
+   "lng": 106.351,
+   "addr": "Xã Hưng Đạo, huyện Chí Linh",
+   "phone": "",
+   "deity": "Quan Bắc Đẩu",
+   "groups": [
+    "Thần"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Tranh",
+   "type": "Đền",
+   "lat": 20.7182,
+   "lng": 106.3115,
+   "addr": "Xã Đồng Tâm, huyện Ninh Giang",
+   "phone": "0220 376 7312",
+   "deity": "Quan lớn Đệ Ngũ Tuần Tranh",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "14-2 và 25-5 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Doan Cửa sông",
+   "type": "Đền",
+   "lat": 20.7055,
+   "lng": 106.321,
+   "addr": "Ngã ba sông Tranh, huyện Ninh Giang",
+   "phone": "0345 391 502 / 0904 605 231",
+   "deity": "Quan lớn Đệ Ngũ Tuần Tranh",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "25-5 (âm lịch) hằng năm.",
+   "prio": 3
+  },
+  {
+   "name": "Đền thờ Đức Thánh Quan lớn Đệ Tứ",
+   "type": "Đền",
+   "lat": 20.6865,
+   "lng": 106.4745,
+   "addr": "Thị trấn Vĩnh Bảo, huyện Vĩnh Bảo",
+   "phone": "0225 558 8388 / 0943 588 388 / 0969 985 299",
+   "deity": "Quan lớn Đệ Tứ",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "24-4 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Tiên Nga",
+   "type": "Đền",
+   "lat": 20.8655,
+   "lng": 106.6882,
+   "addr": "Phường Máy Tơ, quận Ngô Quyền",
+   "phone": "0225 356 1348 / 0983 963 638",
+   "deity": "Chúa Bà Nam Phương",
+   "groups": [
+    "Nữ thần"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "16-6 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Vạn Ngang (Hoành Sơn Linh Từ)",
+   "type": "Đền",
+   "lat": 20.6825,
+   "lng": 106.7915,
+   "addr": "Quận Đồ Sơn",
+   "phone": "",
+   "deity": "Tiên Bằng công chúa, Ông Hoàng Bơ",
+   "groups": [
+    "Ông Hoàng"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "8-3 (âm lịch) hằng năm. Phối thờ Tướng quân Nguyễn Hữu Cầu (có quan niệm là hóa thân của Ông Hoàng Tư Thủy Tề).",
+   "prio": 2
+  },
+  {
+   "name": "Đền Cô Chín (Lưới Rồng Long Sơn Linh Từ)",
+   "type": "Đền",
+   "lat": 20.6945,
+   "lng": 106.7785,
+   "addr": "Phường Ngọc Xuyên, quận Đồ Sơn",
+   "phone": "0976 120 393",
+   "deity": "Cô Chín",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "",
+   "prio": 1
+  },
+  {
+   "name": "Đền Chúa Thác Bờ",
+   "type": "Đền",
+   "lat": 20.8035,
+   "lng": 105.1745,
+   "addr": "Xã Thung Nai, huyện Cao Phong",
+   "phone": "0974 807 037 / 0377 698 989",
+   "deity": "Chúa Thác Bờ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "8 tháng Giêng và 12-4 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Chúa Thác Bờ",
+   "type": "Đền",
+   "lat": 20.8255,
+   "lng": 105.1685,
+   "addr": "Xóm Phố Bờ, xã Vầy Nưa, huyện Đà Bắc",
+   "phone": "0969 722 681 / 0979 117 456",
+   "deity": "Chúa Thác Bờ và Cô Bé Thác Bờ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "8 tháng Giêng và 12-4 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Động Chúa Thác Bờ",
+   "type": "Động",
+   "lat": 20.805,
+   "lng": 105.176,
+   "addr": "Xã Thung Nai, huyện Cao Phong",
+   "phone": "0982 745 999",
+   "deity": "Chúa Thác Bờ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Thượng Bồng Lai",
+   "type": "Đền",
+   "lat": 20.7285,
+   "lng": 105.3025,
+   "addr": "Thị trấn Cao Phong, huyện Cao Phong",
+   "phone": "0834 065 865",
+   "deity": "Cô Đôi Thượng Ngàn",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "2-2 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Đậu An (Thủy Ứng quán)",
+   "type": "Đền",
+   "lat": 20.6485,
+   "lng": 106.0915,
+   "addr": "Thôn An Xá, xã An Viên, huyện Tiên Lữ",
+   "phone": "0221 338 0097",
+   "deity": "Vua Cha Ngọc Hoàng Thượng Đế và các vị Thiên thần",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "từ 6 đến 8-4 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Xích Đằng",
+   "type": "Đền",
+   "lat": 20.6415,
+   "lng": 106.0525,
+   "addr": "Phố Xích Đằng, phường Lam Sơn",
+   "phone": "0913 574 194",
+   "deity": "Quan lớn Đệ Tam",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "24-6 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Tân La",
+   "type": "Đền",
+   "lat": 20.6885,
+   "lng": 106.0585,
+   "addr": "Thôn Đoàn Thượng, xã Bảo Khê, thành phố Hưng Yên (dốc La)",
+   "phone": "",
+   "deity": "Chầu Bát Nàn",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "Thờ Chầu Bảy, Thủ đền, có miếu thờ Cô Bảy. Lễ hội/ngày tiệc: 17-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Mẫu Phố Hiến",
+   "type": "Đền",
+   "lat": 20.6465,
+   "lng": 106.0515,
+   "addr": "Phường Quang Trung, thành phố Hưng Yên",
+   "phone": "0221 386 4110",
+   "deity": "Dương Quý Phi",
+   "groups": [
+    "Mẫu",
+    "Trong linh ngưỡng thờ Tứ vị Hồng Nương"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "từ 10 đến 13-3 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Phù Ủng",
+   "type": "Đền",
+   "lat": 20.8025,
+   "lng": 106.1245,
+   "addr": "Xã Phù Ủng, huyện Ân Thi",
+   "phone": "",
+   "deity": "Thượng Tướng quân Phạm Ngũ Lão",
+   "groups": [
+    "trong tín ngưỡng thờ Đức Thánh Trần",
+    "Đức Thánh"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Công đồng Bắc Lệ",
+   "type": "Đền",
+   "lat": 21.5645,
+   "lng": 106.3425,
+   "addr": "Xã Tân Thành, huyện Hữu Lũng",
+   "phone": "0205 372 6504",
+   "deity": "Tam tòa Thánh Mẫu, Thượng Ngàn Tiên Chúa và Chầu Bé Bắc Lệ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "20-9 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Mẫu Đồng Đăng",
+   "type": "Đền",
+   "lat": 21.9435,
+   "lng": 106.6965,
+   "addr": "Khu Lò Rèn, thị trấn Đồng Đăng, huyện Cao Lộc",
+   "phone": "",
+   "deity": "Thánh Mẫu Cửu Trùng",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "10-1 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Quan Giám sát",
+   "type": "Đền",
+   "lat": 21.5025,
+   "lng": 106.2185,
+   "addr": "Thôn Việt Thắng, xã Hòa Lạc, huyện Hữu Lũng",
+   "phone": "0989 635 368",
+   "deity": "Quan lớn Đệ Nhị Giám sát",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "10-11 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Kỳ Cùng",
+   "type": "Đền",
+   "lat": 21.8505,
+   "lng": 106.7585,
+   "addr": "Phường Vĩnh Trại, thành phố Lạng Sơn",
+   "phone": "0205 387 2174",
+   "deity": "Quan lớn Đệ Ngũ Tuần Tranh",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "từ 22 đến 27-1 (âm lịch) và 25-5 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Chầu Năm",
+   "type": "Đền",
+   "lat": 21.6185,
+   "lng": 106.5285,
+   "addr": "Thôn Lân Bông, thị trấn Chi Lăng, huyện Chi Lăng",
+   "phone": "0205 382 4334",
+   "deity": "Chầu Năm",
+   "groups": [
+    "Chầu"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "20-5 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Chầu Lục",
+   "type": "Đền",
+   "lat": 21.4985,
+   "lng": 106.2155,
+   "addr": "Thôn 94, xã Hòa Lạc, huyện Hữu Lũng",
+   "phone": "0205 656 7770",
+   "deity": "Chầu Lục",
+   "groups": [
+    "Chầu"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "20-9 và 20-5 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Chầu Bát",
+   "type": "Đền",
+   "lat": 21.6355,
+   "lng": 106.5515,
+   "addr": "Thị trấn Đồng Mỏ, huyện Chi Lăng",
+   "phone": "0205 382 0463 / 0988 733 271",
+   "deity": "Chầu Bát",
+   "groups": [
+    "Chầu"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Chầu Mười",
+   "type": "Đền",
+   "lat": 21.6825,
+   "lng": 106.5845,
+   "addr": "Mỏ Ba, xã Hòa Bình, huyện Chi Lăng",
+   "phone": "0835 707 393",
+   "deity": "Chầu Mười",
+   "groups": [
+    "Chầu"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Chúa Cá phê",
+   "type": "Đền",
+   "lat": 21.4585,
+   "lng": 106.1845,
+   "addr": "Xã Hòa Thắng, huyện Hữu Lũng",
+   "phone": "0205 215213 / 0375 183 269",
+   "deity": "Chúa Bói",
+   "groups": [
+    "Thần"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Cô Bé Suối Ngang",
+   "type": "Đền",
+   "lat": 21.4625,
+   "lng": 106.1915,
+   "addr": "Xã Hòa Thắng, huyện Hữu Lũng",
+   "phone": "",
+   "deity": "Cô Bé Suối Ngang",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "12-9 (âm lịch) hằng năm.",
+   "prio": 3
+  },
+  {
+   "name": "Đền Chín Giếng",
+   "type": "Đền",
+   "lat": 20.0865,
+   "lng": 105.8625,
+   "addr": "Khu phố 5, phường Bắc Sơn, xã Bỉm Sơn",
+   "phone": "0237 366 8969",
+   "deity": "Cô Chín",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "9-9 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Mẫu Sơn Lâm (Đèo Keng Linh Từ)",
+   "type": "Đền",
+   "lat": 21.5615,
+   "lng": 106.3405,
+   "addr": "Thôn Vườn Chè, xã Tân Thành, huyện Hữu Lũng",
+   "phone": "0205 372 6685 / 0985 784 406",
+   "deity": "Thánh Mẫu Thượng Ngàn",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "18-9 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Bảo Hà",
+   "type": "Đền",
+   "lat": 22.1585,
+   "lng": 104.3415,
+   "addr": "Xã Bảo Hà, huyện Bảo Yên",
+   "phone": "0214 387 9328 / 0983 320 707",
+   "deity": "Ông Hoàng Đôi, Ông Hoàng Bảy",
+   "groups": [
+    "Ông Hoàng"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "17-7 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Cô Tân An",
+   "type": "Đền",
+   "lat": 22.1545,
+   "lng": 104.3385,
+   "addr": "Xã Tân An, huyện Văn Bàn",
+   "phone": "0214 379 9083 / 0983 320 707",
+   "deity": "Cô Bé Tân An",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "17 tháng Giêng hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Thượng Lào Cai",
+   "type": "Đền",
+   "lat": 22.4995,
+   "lng": 103.9685,
+   "addr": "Phường Lào Cai, thành phố Lào Cai",
+   "phone": "0214 383 0294",
+   "deity": "Đức Thánh Trần và Tứ phủ",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "15 tháng Giêng hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Mẫu Lào Cai",
+   "type": "Đền",
+   "lat": 22.4985,
+   "lng": 103.9675,
+   "addr": "Phường Lào Cai, thành phố Lào Cai",
+   "phone": "0214 394 4879",
+   "deity": "Công đồng Tứ phủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "3-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Đôi Cô",
+   "type": "Đền",
+   "lat": 22.4285,
+   "lng": 104.0115,
+   "addr": "Phường Bình Minh, thành phố Lào Cai",
+   "phone": "0214 385 2036",
+   "deity": "Đôi Cô Cam Đường",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "13-9 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Phủ Quảng Cung",
+   "type": "Phủ",
+   "lat": 20.3185,
+   "lng": 105.9915,
+   "addr": "Thôn Vi Nhuế, xã Yên Đồng, huyện Ý Yên",
+   "phone": "0982 355 752",
+   "deity": "Thánh Mẫu thần chủ giáng sinh lần thứ nhất",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "4-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Phủ chính Tiên Hương",
+   "type": "Phủ",
+   "lat": 20.3955,
+   "lng": 106.0915,
+   "addr": "Quần thể di tích Phủ Dầy, thôn Tiên Hương, xã Kim Thái, huyện Vụ Bản",
+   "phone": "0228 382 0135",
+   "deity": "Thánh Mẫu thần chủ giáng sinh lần thứ hai",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "3-3 và rằm tháng Tám (âm lịch) hằng năm. Hội chợ Viềng 8 tháng Giêng hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Lăng Mẫu Phủ Dầy",
+   "type": "Lăng",
+   "lat": 20.3965,
+   "lng": 106.0925,
+   "addr": "Quần thể di tích Phủ Dầy, xã Kim Thái, huyện Vụ Bản",
+   "phone": "0228 382 0850 / 0969 329 357 / 0834 257 727",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "3-3 và rằm tháng Tám (âm lịch) hằng năm. Hội chợ Viềng 8 tháng Giêng hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Phủ Bóng (Nguyệt Du Cung)",
+   "type": "Phủ",
+   "lat": 20.3945,
+   "lng": 106.0905,
+   "addr": "Quần thể di tích Phủ Dầy, thôn Tiên Hương, xã Kim Thái, huyện Vụ Bản",
+   "phone": "0228 382 0153",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "3-3 và rằm tháng Tám (âm lịch) hằng năm. Hội chợ Viềng 8 tháng Giêng hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Phủ Dầy Vân Cát",
+   "type": "Phủ",
+   "lat": 20.3985,
+   "lng": 106.0945,
+   "addr": "Quần thể di tích Phủ Dầy, thôn Vân Cát, xã Kim Thái, huyện Vụ Bản",
+   "phone": "0228 382 0163",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "3-3 và rằm tháng Tám (âm lịch) hằng năm. Hội chợ Viềng 8 tháng Giêng hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Phủ Nội Tiên Đình",
+   "type": "Phủ",
+   "lat": 20.396,
+   "lng": 106.091,
+   "addr": "Quần thể di tích Phủ Dầy, thôn Tiên Hương, xã Kim Thái, huyện Vụ Bản",
+   "phone": "0989 791 685",
+   "deity": "Tổ tiên Thánh Mẫu thần chủ trong lần giáng sinh thứ hai",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "3-3 và rằm tháng Tám (âm lịch) hằng năm. Hội chợ Viềng 8 tháng Giêng hằng năm. Kỵ nhật Thánh Tổ: 18-4 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Trình Chầu Đệ Tứ (Phủ Bà)",
+   "type": "Đền",
+   "lat": 20.397,
+   "lng": 106.092,
+   "addr": "Quần thể di tích Phủ Dầy, xã Kim Thái, huyện Vụ Bản",
+   "phone": "0228 382 0890 / 0832 817 199",
+   "deity": "Chầu Đệ Tứ",
+   "groups": [
+    "Chầu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "14-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Phủ Giáp Ba",
+   "type": "Phủ",
+   "lat": 20.3855,
+   "lng": 106.0715,
+   "addr": "Xã Quang Trung, huyện Vụ Bản",
+   "phone": "0228 382 2599 / 0912 283 564",
+   "deity": "Đệ Tam Thánh Mẫu Quế Hoa Công chúa",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Bảo Lộc",
+   "type": "Đền",
+   "lat": 20.4685,
+   "lng": 106.1415,
+   "addr": "Xã Mỹ Phúc, huyện Mỹ Lộc",
+   "phone": "",
+   "deity": "Đức Thánh Trần",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "20-8 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Trần triều",
+   "type": "Đền",
+   "lat": 20.4515,
+   "lng": 106.1615,
+   "addr": "Phường Lộc Vượng, thành phố Nam Định",
+   "phone": "",
+   "deity": "Thủy tổ Trần triều, 14 vị vua nhà Trần và Đức Thánh Trần",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "15 tháng Giêng phát ấn và 20-8 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Mẫu Phủ Đồi Ngang",
+   "type": "Đền",
+   "lat": 20.2185,
+   "lng": 105.7915,
+   "addr": "Thôn 3, xã Phú Long, huyện Nho Quan",
+   "phone": "0983 864 939",
+   "deity": "Thánh Mẫu thần chủ, Cậu Quận Đồi Ngang",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "tiệc Mẫu 3-3 (âm lịch) và tiệc Cậu 20-2 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Dâu (Tang Dã Linh Từ)",
+   "type": "Đền",
+   "lat": 20.1585,
+   "lng": 105.9115,
+   "addr": "Thành phố Tam Điệp",
+   "phone": "0229 824863",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "rằm tháng Giêng đến 3-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Quán Cháo (Chúc Sơn Linh Từ)",
+   "type": "Đền",
+   "lat": 20.1655,
+   "lng": 105.9085,
+   "addr": "Thành phố Tam Điệp",
+   "phone": "",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "3-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Cô Đôi Thượng",
+   "type": "Đền",
+   "lat": 20.3585,
+   "lng": 105.7115,
+   "addr": "Làng Bồng Lai, Văn Phương, huyện Nho Quan",
+   "phone": "0988 163 526",
+   "deity": "Cô Đôi Thượng Ngàn",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "rước bóng rước sắc khai xuân: 6 tháng Giêng hằng năm, tiệc dàn nhật 2-2 (âm lịch) hằng năm, tiệc hóa nhật 15-10 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Cờn",
+   "type": "Đền",
+   "lat": 19.2315,
+   "lng": 105.7615,
+   "addr": "Phường Quỳnh Phương, thị xã Hoàng Mai",
+   "phone": "0238 386 6801",
+   "deity": "Tứ vị Hồng Nương",
+   "groups": [
+    "Nữ thần"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "20, 21 tháng Giêng hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Cờn ngoài",
+   "type": "Đền",
+   "lat": 19.2305,
+   "lng": 105.7605,
+   "addr": "Xã Quỳnh Phương, huyện Quỳnh Lưu",
+   "phone": "0238 366 2582 / 0383 284 223",
+   "deity": "Ông Chín Cờn",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "19, 20, 21 tháng Giêng hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Mộ Hạc Linh Từ",
+   "type": "Mộ",
+   "lat": 18.6385,
+   "lng": 105.6515,
+   "addr": "Hưng Thịnh, Hưng Nguyên",
+   "phone": "0238 358 4118",
+   "deity": "Ông Hoàng Mười",
+   "groups": [
+    "Ông Hoàng"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "10-10 (âm lịch) hằng năm.",
+   "prio": 3
+  },
+  {
+   "name": "Đền Chúa Bà",
+   "type": "Đền",
+   "lat": 21.2885,
+   "lng": 105.3115,
+   "addr": "Thị trấn Lâm Thao",
+   "phone": "0210 378 1710 / 0389 627 853",
+   "deity": "Nguyệt Cư Công chúa",
+   "groups": [
+    "Chúa Lâm Thao",
+    "Nữ thần"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "25 tháng Chạp (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền thờ Liễu Hạnh Công chúa",
+   "type": "Đền",
+   "lat": 17.9315,
+   "lng": 106.4515,
+   "addr": "Thôn Vĩnh Sơn, xã Quảng Đông, huyện Quảng Trạch",
+   "phone": "0855 155 155",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Đồng Bằng",
+   "type": "Đền",
+   "lat": 20.6785,
+   "lng": 106.3915,
+   "addr": "Xã An Lễ, huyện Quỳnh Phụ",
+   "phone": "0227 386 5184",
+   "deity": "Vua Cha Bát Hải Động Đình",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "từ 20 đến 25-8 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền A Sào “Đệ Nhị Sinh từ”",
+   "type": "Đền",
+   "lat": 20.6685,
+   "lng": 106.4215,
+   "addr": "Thôn A Sào, xã An Thái, huyện Quỳnh Phụ",
+   "phone": "",
+   "deity": "Đức Thánh Trần",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "10-2 và 20-8 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Quan Đệ Nhất",
+   "type": "Đền",
+   "lat": 20.6795,
+   "lng": 106.3925,
+   "addr": "Xã An Lễ, huyện Quỳnh Phụ",
+   "phone": "0227 391 5276 / 0912 465 502",
+   "deity": "Quan lớn Đệ Nhất",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Quan lớn Điều Thất",
+   "type": "Đền",
+   "lat": 20.6805,
+   "lng": 106.3935,
+   "addr": "Xã An Lễ, huyện Quỳnh Phụ",
+   "phone": "0813 048 378 / 0915 622 192",
+   "deity": "Quan lớn Điều Thất",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "20-8 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Trình Đức Vua Cha Bát Hải",
+   "type": "Đền",
+   "lat": 20.6815,
+   "lng": 106.3945,
+   "addr": "Xã An Lễ, huyện Quỳnh Phụ",
+   "phone": "0986 891 376 / 0352 577 604",
+   "deity": "Quan lớn Đệ Bát",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "20-8 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Tiên La",
+   "type": "Đền",
+   "lat": 20.6185,
+   "lng": 106.2115,
+   "addr": "Thôn Tiên La, xã Đoan Hùng, huyện Hưng Hà, tỉnh Thái Bình",
+   "phone": "",
+   "deity": "Chầu Bát Nàn",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "17-3 (âm lịch) và rằm tháng Tám (âm lịch) hằng năm. Có miếu thờ Cô Bảy.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Hưng Long",
+   "type": "Đền",
+   "lat": 20.4185,
+   "lng": 106.5915,
+   "addr": "Thôn Hưng Long Bắc, xã Đông Long, huyện Tiền Hải",
+   "phone": "0913 381 233",
+   "deity": "Ông Hoàng Bơ",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "13-6 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Mỏ Bạch (Mỏ Bạch Linh Từ)",
+   "type": "Đền",
+   "lat": 21.6015,
+   "lng": 105.8215,
+   "addr": "Phường Quang Vinh, thành phố Thái Nguyên",
+   "phone": "0208 384 3126",
+   "deity": "Chầu Bảy",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Sòng Sơn",
+   "type": "Đền",
+   "lat": 20.0885,
+   "lng": 105.8615,
+   "addr": "Khu số 6, phường Bắc Sơn, thị xã Bỉm Sơn",
+   "phone": "0237 377 0070",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "từ 1 đến 26-2 (âm lịch) hằng năm. Có cung thờ Chầu Cửu.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Mẫu Phố Cát",
+   "type": "Đền",
+   "lat": 20.1015,
+   "lng": 105.8215,
+   "addr": "Xã Thành Vân, huyện Thạch Thành",
+   "phone": "0237 384 7238 / 0977 070 187",
+   "deity": "Thánh Mẫu thần chủ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "24-2 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Quan Giám sát",
+   "type": "Đền",
+   "lat": 20.1035,
+   "lng": 105.8225,
+   "addr": "Xã Thành Vân, huyện Thạch Thành",
+   "phone": "",
+   "deity": "Quan lớn Đệ Nhị Giám sát",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "11-11 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Phủ Mỗ (Tây Mỗ Linh Từ)",
+   "type": "Phủ",
+   "lat": 20.0185,
+   "lng": 105.8815,
+   "addr": "Xã Hà Thái, huyện Hà Trung",
+   "phone": "0345 333 547",
+   "deity": "Thánh Mẫu thần chủ giáng sinh lần thứ ba",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "7-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Mẫu Hàn - Phong Mục",
+   "type": "Đền",
+   "lat": 19.9885,
+   "lng": 105.8415,
+   "addr": "Xã Châu Lộc, huyện Hậu Lộc",
+   "phone": "0329 478 865",
+   "deity": "Thánh Mẫu Thoải cung",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "10-6 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Hàn Sơn",
+   "type": "Đền",
+   "lat": 19.9865,
+   "lng": 105.8405,
+   "addr": "Xã Hà Sơn, huyện Hà Trung",
+   "phone": "0237 374 2002",
+   "deity": "Thánh Mẫu Thoải cung và Đức Ông Lê Thọ Vực",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Quan Giám Hàn Sơn",
+   "type": "Đền",
+   "lat": 19.9895,
+   "lng": 105.8425,
+   "addr": "Thôn Phong Mục, xã Châu Lộc, huyện Hậu Lộc",
+   "phone": "0983 568 217",
+   "deity": "Quan lớn Đệ Nhị Giám sát",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Quan lớn Triệu Tường",
+   "type": "Đền",
+   "lat": 20.0815,
+   "lng": 105.8015,
+   "addr": "Xã Hà Long, huyện Hà Trung",
+   "phone": "",
+   "deity": "Quan lớn Triệu Tường",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "cong-danh"
+   ],
+   "fest": "24-3 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Chầu Đệ Tứ (đền Cây Thị)",
+   "type": "Đền",
+   "lat": 20.0125,
+   "lng": 105.8615,
+   "addr": "Xã Hà Ngọc, huyện Hà Trung",
+   "phone": "0984 683 829 / 0702 030 512",
+   "deity": "Chầu Đệ Tứ",
+   "groups": [
+    "Chầu"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Ba Bông",
+   "type": "Đền",
+   "lat": 19.9855,
+   "lng": 105.8395,
+   "addr": "Xã Hà Sơn, huyện Hà Trung",
+   "phone": "0237 374 2334 / 0972 233 333",
+   "deity": "Cô Bơ",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "12-6 (âm lịch) hằng năm.",
+   "prio": 3
+  },
+  {
+   "name": "Đền Cô Tám Hàn Sơn",
+   "type": "Đền",
+   "lat": 19.9875,
+   "lng": 105.8415,
+   "addr": "Xã Châu Lộc, huyện Hậu Lộc",
+   "phone": "0334 527 991",
+   "deity": "Cô Tám",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "8-8 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Cô Đôi",
+   "type": "Đền",
+   "lat": 19.988,
+   "lng": 105.842,
+   "addr": "Xã Châu Lộc, huyện Hậu Lộc",
+   "phone": "",
+   "deity": "Cô Đôi",
+   "groups": [
+    "Cô"
+   ],
+   "intents": [
+    "tinh-duyen"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Hạ (đền Mẫu Tam Cờ)",
+   "type": "Đền",
+   "lat": 21.8215,
+   "lng": 105.2115,
+   "addr": "Tổ 3, đường Chiến thắng sông Lô, phường Tân Quang, thành phố Tuyên Quang",
+   "phone": "0207 382 3867",
+   "deity": "Phương Dung Công chúa",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "12-2 và 12-7 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Mẫu Ỷ La",
+   "type": "Đền",
+   "lat": 21.8285,
+   "lng": 105.1915,
+   "addr": "Tổ 4, phường Ỷ La, thành phố Tuyên Quang",
+   "phone": "0207 382 1914",
+   "deity": "Phương Dung Công chúa",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "tai-loc"
+   ],
+   "fest": "từ 10 đến 16-2 (âm lịch) hằng năm. Có thờ Cô Tư Ỷ La.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Thượng",
+   "type": "Đền",
+   "lat": 21.8415,
+   "lng": 105.2215,
+   "addr": "Xã Tràng Đà, huyện Yên Sơn",
+   "phone": "0207 388 0011",
+   "deity": "Ngọc Lân Công chúa, Thánh Mẫu Thượng Ngàn",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "12-2 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Thác Cái",
+   "type": "Đền",
+   "lat": 22.0815,
+   "lng": 104.9915,
+   "addr": "Km 61 xã Yên Phú, huyện Hàm Yên",
+   "phone": "",
+   "deity": "Chúa Bà Thác Cái",
+   "groups": [
+    "Thần"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Cấm",
+   "type": "Đền",
+   "lat": 21.8385,
+   "lng": 105.2205,
+   "addr": "Xã Tràng Đà, huyện Yên Sơn",
+   "phone": "0207 388 0267",
+   "deity": "Mẫu Thượng Ngàn",
+   "groups": [
+    "Thần"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Kiếp Bạc (vọng)",
+   "type": "Đền",
+   "lat": 21.8225,
+   "lng": 105.2105,
+   "addr": "Tổ 3, phường Tân Quang, thành phố Tuyên Quang",
+   "phone": "0207 382 3867",
+   "deity": "Đức Thánh Trần",
+   "groups": [
+    "Đức Thánh"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "20-8 (âm lịch) hằng năm.",
+   "prio": 2
+  },
+  {
+   "name": "Đền Thác Con",
+   "type": "Đền",
+   "lat": 22.2815,
+   "lng": 104.8915,
+   "addr": "Thôn Bến Đền, xã Bạch Xa, huyện Hàm Yên",
+   "phone": "0393 634 280",
+   "deity": "Chúa Bà Thác Con",
+   "groups": [
+    "Thần"
+   ],
+   "intents": [
+    "suc-khoe"
+   ],
+   "fest": "",
+   "prio": 3
+  },
+  {
+   "name": "Đền Minh Lương",
+   "type": "Đền",
+   "lat": 21.8915,
+   "lng": 105.1515,
+   "addr": "Xã Lăng Quán, huyện Yên Sơn",
+   "phone": "0207 389 1051 / 0276 556443",
+   "deity": "Cô Bé Minh Lương",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Quốc Mẫu Tây Thiên",
+   "type": "Đền",
+   "lat": 21.4615,
+   "lng": 105.4415,
+   "addr": "Đại Đình, Tam Đảo",
+   "phone": "0211 381 4999",
+   "deity": "Quốc Mẫu Tây Thiên",
+   "groups": [
+    "Chúa Tây Thiên",
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "15-2 (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Cậu Bé Trường Sinh",
+   "type": "Đền",
+   "lat": 21.3985,
+   "lng": 105.5815,
+   "addr": "Cầu Đen, Chân Suối, km 14, đại lộ Tam Đảo",
+   "phone": "0977 884 196",
+   "deity": "Cậu Bé",
+   "groups": [
+    "Cậu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Đông Cuông",
+   "type": "Đền",
+   "lat": 21.9315,
+   "lng": 104.6815,
+   "addr": "Xã Đông Cuông, huyện Văn Yên",
+   "phone": "0216 383 1038",
+   "deity": "Thánh Mẫu Thượng Ngàn, Chầu Đệ Nhị",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "ngày Mão đầu tháng Giêng và ngày Mão đầu tháng chín (âm lịch) hằng năm.",
+   "prio": 1
+  },
+  {
+   "name": "Đền Tuần Quán",
+   "type": "Đền",
+   "lat": 21.7015,
+   "lng": 104.8815,
+   "addr": "Tổ 39, phường Yên Ninh, thành phố Yên Bái",
+   "phone": "",
+   "deity": "Bà lớn Tuần",
+   "groups": [
+    "Quan"
+   ],
+   "intents": [
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 2
+  },
+  {
+   "name": "Đền Bà Chúa Thượng Ngàn",
+   "type": "Đền",
+   "lat": 21.4585,
+   "lng": 105.6415,
+   "addr": "Tam Đảo",
+   "phone": "0211 382 4119",
+   "deity": "Thánh Mẫu Thượng Ngàn, Chúa Thác Bờ và Cô Bé Thác Bờ",
+   "groups": [
+    "Mẫu"
+   ],
+   "intents": [
+    "suc-khoe",
+    "binh-an"
+   ],
+   "fest": "",
+   "prio": 1
+  }
+ ]
+}

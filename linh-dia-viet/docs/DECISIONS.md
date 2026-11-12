@@ -139,3 +139,13 @@ Bốn vai trò trong `users.role`:
   tên khác + từ khoá (8) / tỉnh + tên tắt (5) / địa chỉ + 400 ký tự đầu mô tả (2), cộng thêm khi khớp nguyên cụm, hai từ
   liền nhau, trọn tên tỉnh, trọn một từ khoá, đúng cả dấu; ít hơn 5 kết quả thì nới (sai 1 chữ cái, thiếu 1 từ).
   `diem.json` ~130 KB gzip.
+- **Danh sách đền phủ tiêu biểu** (`app/data/places_curated.json`, chuyển từ `LinhDiaViet_Data.xlsx` sheet Shrines; 105
+  nơi Tứ phủ): mỗi nơi có thờ ai + hàng thánh, điều cầu (bình an/tài lộc/tình duyên/sức khỏe/công danh), lễ hội/ngày
+  tiệc, bậc ưu tiên 1–3, điện thoại (tách khỏi địa chỉ, đổi đầu số di động 11 số cũ). Toạ độ trong file chỉ gần đúng (lệch
+  tới vài km) nên khi build: ghép vào điểm OSM sẵn có (giữ toạ độ OSM; tên đặc trưng ≤ 30 km, tên ngắn/chung ≤ 3 km và
+  khớp cả dấu; đền không ghép vào chùa/đình) → không có thì Nominatim (tên + địa chỉ, cùng tên ≤ 30 km) → không có thì giữ
+  toạ độ file, đánh dấu `approx_location`: trang chi tiết báo "gần đúng", Chỉ đường/Embed dùng "tên, địa chỉ, tỉnh" để
+  Google tự tìm (không lưu dữ liệu Google); tỉnh lấy theo địa chỉ cũ (bảng huyện cũ → tỉnh mới 2025). Mô tả: bài
+  vi.wikipedia chỉ nhận khi tiêu đề là tên nơi thờ, phần tên riêng trùng khít, không phải trang định hướng, và toạ độ
+  ≤ 15 km hoặc bài nhắc tỉnh/huyện. Bản đồ có lọc "Cầu gì", nơi bậc 1 có nhãn "Tiêu biểu" và được ưu tiên khi tìm.
+  Cập nhật file Excel: chạy `server/scripts/curated_from_xlsx.py` (cần openpyxl) rồi `python -m app.places build --cache DIR`.
