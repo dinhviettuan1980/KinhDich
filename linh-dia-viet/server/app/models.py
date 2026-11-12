@@ -39,6 +39,8 @@ class User(Base):
     # temple_manager: người quản lý đền/chùa · admin: quản trị hệ thống
     role: Mapped[str] = mapped_column(String(20), default="customer")
     active: Mapped[bool] = mapped_column(Boolean, default=True)
+    # Tài khoản đối tác (thủ nhang / kiosk) phải được admin duyệt: approved | pending | rejected
+    approval: Mapped[str] = mapped_column(String(10), default="approved", server_default="approved")
     # Thông tin tín chủ (lưu 1 lần, tự điền khi đặt lễ)
     devotee_name: Mapped[str | None] = mapped_column(String(120))
     birth_year: Mapped[int | None] = mapped_column(Integer)  # năm âm lịch (tính từ ngày sinh) — dùng trong sớ
@@ -76,7 +78,11 @@ class User(Base):
 
     @property
     def is_staff(self) -> bool:
-        return self.role in ("vendor", "temple_manager")
+        return self.role in ("vendor", "temple_manager") and self.approval == "approved"
+
+    @property
+    def is_partner_pending(self) -> bool:
+        return self.role in ("vendor", "temple_manager") and self.approval != "approved"
 
     @property
     def temple_ids(self) -> set[int]:
@@ -137,6 +143,8 @@ class Temple(Base):
     deity: Mapped[str] = mapped_column(String(300), default="")  # danh vị thần linh chính
     status: Mapped[str] = mapped_column(String(20), default="active")  # active | hidden
     device_id: Mapped[str | None] = mapped_column(ForeignKey("devices.id", ondelete="SET NULL"))
+    # True: đơn đã thanh toán phải được thủ nhang nhận mới xếp lịch (quá hạn tự hoàn tiền)
+    require_approval: Mapped[bool] = mapped_column(Boolean, default=False, server_default=sql_false())
     device: Mapped[Device | None] = relationship()
 
 
@@ -195,6 +203,8 @@ class OfferingPackage(Base):
     sort: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
     image_url: Mapped[str] = mapped_column(String(300), default="")
     temple_id: Mapped[int | None] = mapped_column(ForeignKey("temples.id", ondelete="CASCADE"))  # NULL = dùng chung
+    vendor_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), index=True)  # kiosk bán món này
+    stock: Mapped[int | None] = mapped_column(Integer)  # tồn kho; NULL = không giới hạn
     active: Mapped[bool] = mapped_column(Boolean, default=True)
     temple: Mapped[Temple | None] = relationship()
 
@@ -230,7 +240,7 @@ class Prayer(Base):
     __tablename__ = "prayers"
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True)
-    kind: Mapped[str] = mapped_column(String(10))  # tts | recorded
+    kind: Mapped[str] = mapped_column(String(10))  # tts | recorded | in_person (thủ nhang đọc tại đền)
     full_name: Mapped[str] = mapped_column(String(120))
     birth_year: Mapped[int] = mapped_column(Integer)
     address: Mapped[str] = mapped_column(String(300))
@@ -264,18 +274,30 @@ class Order(Base):
     audio_key: Mapped[str | None] = mapped_column(String(300))  # file sẽ phát tại đền
     audio_sha256: Mapped[str | None] = mapped_column(String(64))
     note: Mapped[str | None] = mapped_column(Text)  # lý do từ chối/hủy/lỗi
+    vendor_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), index=True)  # kiosk của đơn
+    service_fee: Mapped[int] = mapped_column(Integer, default=0, server_default="0")  # phí thủ nhang đọc sớ (đã nằm trong total)
+    read_started_at: Mapped[datetime | None] = mapped_column(UTCDateTime())  # thủ nhang bắt đầu đọc sớ tại chỗ
+    read_ended_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    accept_by: Mapped[datetime | None] = mapped_column(UTCDateTime())  # hạn thủ nhang trả lời (NULL = không cần duyệt)
+    accepted_at: Mapped[datetime | None] = mapped_column(UTCDateTime())  # thủ nhang đã nhận đơn
     tray_ready_at: Mapped[datetime | None] = mapped_column(UTCDateTime())  # kiosk báo mâm lễ đã bày
     clip_key: Mapped[str | None] = mapped_column(String(300))  # clip xem lại (ảnh mâm + bài khấn)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow, onupdate=utcnow)
 
-    user: Mapped[User] = relationship()
+    user: Mapped[User] = relationship(foreign_keys=[user_id])
+    vendor: Mapped[User | None] = relationship(foreign_keys=[vendor_id])
     prayer: Mapped[Prayer] = relationship(back_populates="orders")
     temple: Mapped[Temple] = relationship()
     package: Mapped[OfferingPackage | None] = relationship()
     items: Mapped[list["OrderItem"]] = relationship(order_by="OrderItem.id", cascade="all, delete-orphan")
     events: Mapped[list["OrderEvent"]] = relationship(order_by="OrderEvent.id", cascade="all, delete-orphan")
     payments: Mapped[list["Payment"]] = relationship(back_populates="order", order_by="Payment.id")
+
+    @property
+    def needs_approval(self) -> bool:
+        """Đơn đang chờ thủ nhang nhận."""
+        return self.accept_by is not None and self.accepted_at is None
 
     @property
     def offering_text(self) -> str:

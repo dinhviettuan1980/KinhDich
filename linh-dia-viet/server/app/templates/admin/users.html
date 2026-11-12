@@ -9,10 +9,16 @@
   <button class="ld-btn small">Lọc</button>
 </form>
 <div class="ld-scroll"><table>
-<tr><th>Tên</th><th>Liên hệ</th><th>Vai trò</th><th>Đền</th></tr>
+<tr><th>Tên</th><th>Liên hệ</th><th>Vai trò</th><th>Đền</th><th>Duyệt</th></tr>
 {% for x in users %}<tr>
   <td><a href="{{ u('/admin/nguoi-dung/' ~ x.id) }}">{{ x.name }}</a>{% if not x.active %} <span class="ld-badge off">khóa</span>{% endif %}</td>
   <td>{{ x.email or x.phone }}</td><td>{{ roles[x.role] }}</td>
-  <td>{% for s in x.staff_of %}{{ s.temple.name }}{% if not loop.last %}, {% endif %}{% endfor %}</td></tr>{% endfor %}
+  <td>{% for s in x.staff_of %}{{ s.temple.name }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+  <td>{% if x.is_partner_pending %}<span class="ld-badge off">{{ 'chờ duyệt' if x.approval == 'pending' else 'bị từ chối' }}</span>
+    <form method="post" action="{{ u('/admin/nguoi-dung/' ~ x.id ~ '/duyet') }}" style="display:inline">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <button class="ld-btn small" name="quyet_dinh" value="duyet">Duyệt</button>
+      {% if x.approval == 'pending' %}<button class="ld-btn small" name="quyet_dinh" value="tu_choi">Từ chối</button>{% endif %}
+    </form>{% elif x.role in ('vendor','temple_manager') %}✓{% endif %}</td></tr>{% endfor %}
 </table></div>
 {% endblock %}

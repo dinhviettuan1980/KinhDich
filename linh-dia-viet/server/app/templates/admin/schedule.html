@@ -8,12 +8,18 @@
 </form>
 {% for o in orders %}
 <div class="ld-card">
-  <div class="ld-spread"><b>{% if user.is_admin %}<a href="{{ u('/admin/don/' ~ o.id) }}">#{{ o.id }}</a>{% else %}#{{ o.id }}{% endif %} · {{ o.temple.name }}</b><span class="ld-badge">{{ labels[o.status] }}</span></div>
-  <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · <b>{{ o.offering_text }}</b>{% if o.tray_ready_at %} · mâm lễ đã bày{% endif %}</div>
+  <div class="ld-spread"><b>{% if user.is_admin %}<a href="{{ u('/admin/don/' ~ o.id) }}">#{{ o.id }}</a>{% else %}#{{ o.id }}{% endif %} · {{ o.temple.name }}</b><span class="ld-badge">{% if o.status == 'paid' and o.needs_approval %}Chờ thủ nhang nhận{% else %}{{ labels[o.status] }}{% endif %}</span></div>
+  <div class="ld-muted">{{ fmt_local(o.scheduled_at, o.timezone) }} · <b>{{ o.offering_text }}</b>{% if o.tray_ready_at %} · mâm lễ đã bày{% endif %}{% if o.vendor_id %} · kiosk #{{ o.vendor_id }}{% endif %}{% if o.status == 'paid' and o.needs_approval %} · hạn nhận {{ fmt_local(o.accept_by, o.timezone) }}{% endif %}</div>
   {% if user.is_admin %}<div class="ld-muted">Khách: {{ o.prayer.full_name }} · {{ o.user.email or o.user.phone }} · {{ fmt_vnd(o.total) }}{% if o.note %} · {{ o.note }}{% endif %}</div>{% endif %}
   <div class="ld-row" style="margin-top:8px">
-    {% if o.status in ('paid','scheduled','delivered') and not o.tray_ready_at and (user.is_admin or user.is_staff) %}
+    {% if o.prayer.kind == 'in_person' and o.status in ('scheduled','playing') and (user.is_admin or user.role == 'temple_manager') %}
+    <a class="ld-btn small" href="{{ u('/thu-nhang/doc/' ~ o.id) }}">Đọc sớ tại đền</a>{% endif %}
+    {% if o.status == 'paid' and o.needs_approval and (user.is_admin or user.role == 'temple_manager') %}
+    <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/nhan') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="ld-btn small">Nhận đơn</button></form>{% endif %}
+    {% if o.status in ('paid','scheduled','delivered') and not o.needs_approval and not o.tray_ready_at and (user.is_admin or user.is_staff) %}
     <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/mam-le') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="ld-btn small">Mâm lễ đã bày</button></form>{% endif %}
+    {% if o.status in ('paid','scheduled') and not o.tray_ready_at and user.role == 'vendor' and user.is_staff %}
+    <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/het-hang') }}" onsubmit="return confirm('Báo hết hàng? Đơn sẽ bị hủy và hoàn tiền cho khách.')"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="ld-btn danger small">Hết hàng</button></form>{% endif %}
     {% if o.status in ('paid','scheduled') and (user.is_admin or user.role == 'temple_manager') %}
     <form method="post" action="{{ u('/admin/don/' ~ o.id ~ '/tu-choi') }}" class="ld-row" onsubmit="return confirm('Từ chối đơn này?')">
       <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="text" name="ly_do" placeholder="Lý do từ chối" required style="width:auto"><button class="ld-btn danger small">Từ chối</button></form>{% endif %}

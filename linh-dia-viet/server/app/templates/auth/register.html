@@ -6,6 +6,13 @@
 <div class="ld-card">
   <form method="post" action="{{ u('/dang-ky') }}{% if request.query_params.get('next') %}?next={{ request.query_params.get('next')|urlencode }}{% endif %}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="vt">Bạn đăng ký với tư cách</label>
+    <select id="vt" name="vai_tro">
+      <option value="khach" {% if vai_tro|default('khach') == 'khach' %}selected{% endif %}>Tín chủ — đặt lễ từ xa</option>
+      <option value="thu_nhang" {% if vai_tro|default('') == 'thu_nhang' %}selected{% endif %}>Thủ nhang — quản lý đền, nhận đơn</option>
+      <option value="kios" {% if vai_tro|default('') == 'kios' %}selected{% endif %}>Kiosk — bán đồ lễ tại đền</option>
+    </select>
+    <p class="ld-muted">Thủ nhang và kiosk cần quản trị viên duyệt trước khi dùng trang quản lý.</p>
     <label for="n">Họ và tên (ghi trên sớ)</label><input id="n" name="name" type="text" required maxlength="120" autocomplete="name" value="{{ name|default('') }}">
     <label for="ns">Ngày sinh</label><input id="ns" name="ngay_sinh" type="date" required min="1900-01-01" value="{{ ngay_sinh|default('') }}">
     <label for="dc">Địa chỉ</label><input id="dc" name="dia_chi" type="text" required maxlength="300" autocomplete="street-address" value="{{ dia_chi|default('') }}">

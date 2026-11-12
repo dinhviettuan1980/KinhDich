@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 
 from . import prayer_text, tts
 from .config import get_settings
-from .models import Order, OrderEvent, Payment, Prayer, PrayerTemplate, Temple, utcnow
+from .models import OfferingPackage, Order, OrderEvent, Payment, Prayer, PrayerTemplate, Temple, utcnow
 from .state_machine import PAID_STATES, USER_CANCELLABLE, OrderStatus as S, check_transition, path_forward
 from .storage import get_storage, sha256_file
 from .web import audit
@@ -22,10 +22,40 @@ def transition(db: Session, order: Order, dst: str, actor: str, note: str | None
     check_transition(src, dst)
     order.status = S(dst).value
     order.updated_at = utcnow()
+    if dst in (S.CANCELLED, S.REJECTED):
+        release_stock(db, order)
     if note:
         order.note = note
     db.add(OrderEvent(order_id=order.id, status=order.status, note=note))
     audit(db, actor, "order.transition", f"order:{order.id}", src=src, dst=order.status, note=note)
+
+
+def reserve_stock(db: Session, orders: list[Order]) -> None:
+    """Giữ hàng trong kho kiosk cho các đơn mới (chỉ món có theo dõi tồn kho). Thiếu hàng → ValueError."""
+    need: dict[int, int] = {}
+    for o in orders:
+        for it in o.items:
+            if it.package_id:
+                need[it.package_id] = need.get(it.package_id, 0) + it.qty
+    for pid, qty in need.items():
+        pkg = db.get(OfferingPackage, pid)
+        if pkg is None or pkg.stock is None:
+            continue
+        res = db.execute(update(OfferingPackage).where(OfferingPackage.id == pid, OfferingPackage.stock >= qty)
+                         .values(stock=OfferingPackage.stock - qty))
+        if res.rowcount != 1:
+            db.expire(pkg)
+            raise ValueError(f"{pkg.name}: kiosk chỉ còn {pkg.stock or 0} {pkg.unit}.")
+        db.expire(pkg)
+
+
+def release_stock(db: Session, order: Order) -> None:
+    """Trả hàng về kho khi đơn bị hủy / từ chối."""
+    for it in order.items:
+        if it.package_id:
+            db.execute(update(OfferingPackage).where(OfferingPackage.id == it.package_id,
+                                                     OfferingPackage.stock.is_not(None))
+                       .values(stock=OfferingPackage.stock + it.qty))
 
 
 def advance_to(db: Session, order: Order, target: str, actor: str) -> bool:
@@ -60,6 +90,9 @@ def script_for(db: Session, prayer: Prayer, order: Order) -> str:
 def prepare_audio(db: Session, order: Order) -> None:
     """Chốt file sẽ phát tại đền: TTS theo văn bản của đơn, hoặc bản ghi âm của khách."""
     prayer = order.prayer
+    if prayer.kind == "in_person":  # không có file âm thanh: thủ nhang đọc trực tiếp bản sớ này
+        order.script_text = script_for(db, prayer, order)
+        return
     if prayer.kind == "recorded":
         key = prayer.audio_key
     else:
@@ -73,7 +106,7 @@ def try_schedule(db: Session, order: Order, actor: str = "system", at: datetime 
                  prepared: bool = False) -> bool:
     """paid → scheduled khi bài khấn đã duyệt và audio sẵn sàng.
     at: giờ phát chung của cả lần đặt (nhiều đền) — chỉ áp cho đơn "phát ngay"; prepared: audio đã tạo rồi."""
-    if order.status != S.PAID or order.prayer.moderation != "approved":
+    if order.status != S.PAID or order.prayer.moderation != "approved" or order.needs_approval:
         return False
     if not prepared:
         try:
@@ -93,8 +126,9 @@ def try_schedule(db: Session, order: Order, actor: str = "system", at: datetime 
     order.status = S.SCHEDULED.value
     db.add(OrderEvent(order_id=order.id, status=order.status))
     audit(db, actor, "order.transition", f"order:{order.id}", src=S.PAID.value, dst=order.status)
-    from . import hooks
-    hooks.on_scheduled(db, order)
+    if order.prayer.kind != "in_person":  # thủ nhang đọc tại chỗ thì không có lệnh xuống thiết bị
+        from . import hooks
+        hooks.on_scheduled(db, order)
     return True
 
 
@@ -102,6 +136,8 @@ def schedule_group(db: Session, orders: list[Order], actor: str = "system") -> i
     """Xếp lịch các đơn cùng 1 lần đặt (nhiều đền) với CÙNG một giờ phát.
     Tạo xong audio của mọi đơn rồi mới chốt giờ, nên đền nào có TTS chậm cũng không làm lệch các đền khác.
     Đơn nào chưa tạo được audio thì để 'paid' cho vòng nền thử lại. Trả về số đơn đã xếp lịch."""
+    if any(o.status == S.PAID and o.needs_approval for o in orders):
+        return 0  # còn đền chưa nhận đơn: chờ đủ để mọi nơi cùng khấn một giờ
     ready = []
     for o in orders:
         if o.status != S.PAID or o.prayer.moderation != "approved":
@@ -170,6 +206,39 @@ def schedule_in_background(order_ids: list[int], actor: str, retries: int = 3, w
             if not pending or attempt == retries:
                 break
             time.sleep(wait_s * (attempt + 1))
+
+
+# ---------------- Thủ nhang nhận đơn ----------------
+
+def init_approval(order: Order, now: datetime | None = None) -> None:
+    """Đơn mới: đền yêu cầu duyệt thì đặt hạn trả lời, ngược lại coi như đã nhận."""
+    now = now or utcnow()
+    if order.temple.require_approval or order.prayer.kind == "in_person":
+        order.accept_by = now + timedelta(seconds=get_settings().accept_timeout_seconds)
+    else:
+        order.accepted_at = now
+
+
+def accept(db: Session, order: Order, actor: str) -> None:
+    """Thủ nhang nhận đơn → xếp lịch cả lần đặt (nếu mọi đền đã nhận)."""
+    if order.status != S.PAID or not order.needs_approval:
+        raise ValueError("Đơn không ở trạng thái chờ nhận")
+    order.accepted_at = utcnow()
+    audit(db, actor, "order.accept", f"order:{order.id}")
+    db.flush()
+    group = db.scalars(select(Order).where(Order.booking_ref == order.booking_ref)).all()
+    schedule_group(db, list(group), actor)
+
+
+def expire_unaccepted(db: Session, now: datetime | None = None) -> int:
+    """Quá hạn thủ nhang chưa nhận → từ chối + hoàn tiền (chạy trong vòng nền)."""
+    now = now or utcnow()
+    n = 0
+    for o in db.scalars(select(Order).where(Order.status == S.PAID, Order.accepted_at.is_(None),
+                                            Order.accept_by.is_not(None), Order.accept_by < now)).all():
+        reject(db, o, "system", "Quá hạn thủ nhang chưa nhận đơn")
+        n += 1
+    return n
 
 
 # ---------------- Hủy / từ chối ----------------
@@ -241,3 +310,44 @@ def prewarm_tts(order_ids: list[int]) -> None:
                     tts.synthesize_cached(script_for(db, o.prayer, o), o.prayer.voice)
                 except Exception as e:
                     log.info("Chưa tạo sẵn được giọng đọc cho đơn %s: %s", oid, e)
+
+
+# ---------------- Thủ nhang đọc sớ tại chỗ ----------------
+
+def reading_window(order: Order) -> tuple[datetime, datetime]:
+    """Được đọc trong cả ngày hẹn (giờ địa phương); thủ nhang không phải đứng chờ đúng phút."""
+    tz = ZoneInfo(order.timezone)
+    day = order.scheduled_at.astimezone(tz).replace(hour=0, minute=0, second=0, microsecond=0)
+    return day.astimezone(ZoneInfo("UTC")), (day + timedelta(days=1)).astimezone(ZoneInfo("UTC"))
+
+
+def start_reading(db: Session, order: Order, actor: str, now: datetime | None = None) -> None:
+    now = now or utcnow()
+    if order.prayer.kind != "in_person" or order.status != S.SCHEDULED:
+        raise ValueError("Đơn không ở trạng thái chờ thủ nhang đọc sớ")
+    lo, hi = reading_window(order)
+    if now < lo:
+        raise ValueError("Chưa đến ngày hẹn đọc sớ")
+    if now >= hi:
+        raise ValueError("Đã quá ngày hẹn")
+    advance_to(db, order, S.PLAYING, actor)
+    order.read_started_at = now
+
+
+def finish_reading(db: Session, order: Order, actor: str, now: datetime | None = None) -> None:
+    if order.status != S.PLAYING or order.prayer.kind != "in_person":
+        raise ValueError("Chưa bấm bắt đầu đọc")
+    order.read_ended_at = now or utcnow()
+    advance_to(db, order, S.COMPLETED, actor)  # played → evidence_received → completed (đã có video)
+
+
+def expire_unread(db: Session, now: datetime | None = None) -> int:
+    """Hết ngày hẹn mà thủ nhang không đọc → lỗi + hoàn tiền."""
+    now = now or utcnow()
+    n = 0
+    for o in db.scalars(select(Order).where(Order.status.in_([S.SCHEDULED, S.PLAYING]))).all():
+        if o.prayer.kind == "in_person" and now >= reading_window(o)[1] + timedelta(hours=2):
+            transition(db, o, S.FAILED, "system", "Thủ nhang chưa đọc sớ trong ngày hẹn")
+            transition(db, o, S.REFUND_REQUESTED, "system")
+            n += 1
+    return n

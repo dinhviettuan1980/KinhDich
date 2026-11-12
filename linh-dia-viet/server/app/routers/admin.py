@@ -94,7 +94,7 @@ def temple_form(temple_id: str, request: Request, db: Session = Depends(get_db),
 def temple_save(temple_id: str, request: Request, name: str = Form(...), address: str = Form(""),
                 province: str = Form(""), description: str = Form(""), deity: str = Form(""),
                 status: str = Form("active"), device_id: str = Form(""), slug: str = Form(""),
-                place_id: str = Form(""),
+                place_id: str = Form(""), require_approval: bool = Form(False),
                 db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
     if temple_id == "moi":
         if not user.is_admin:
@@ -109,6 +109,7 @@ def temple_save(temple_id: str, request: Request, name: str = Form(...), address
             raise HTTPException(403)
     temple.name, temple.address, temple.province = name.strip(), address.strip(), province.strip()
     temple.description, temple.deity = description.strip(), deity.strip()
+    temple.require_approval = require_approval
     if user.is_admin:  # chỉ admin đổi thiết bị, trạng thái hiển thị, đường dẫn
         if device_id and not db.get(Device, device_id):
             raise HTTPException(400, "Thiết bị không tồn tại")
@@ -129,7 +130,9 @@ def temple_save(temple_id: str, request: Request, name: str = Form(...), address
 @router.get("/goi-le")
 def packages(request: Request, db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
     stmt = select(OfferingPackage).order_by(OfferingPackage.active.desc(), OfferingPackage.sort, OfferingPackage.price)
-    if not user.is_admin:
+    if user.role == "vendor":  # kiosk chỉ thấy hàng của mình
+        stmt = stmt.where(OfferingPackage.vendor_id == user.id)
+    elif not user.is_admin:
         stmt = stmt.where(OfferingPackage.temple_id.in_(user.temple_ids or {-1}))
     return render(request, "admin/packages.html", {"packages": db.scalars(stmt).all()})
 
@@ -140,7 +143,10 @@ def _load_pkg(db: Session, pkg_id: str, user: User) -> OfferingPackage:
     pkg = db.get(OfferingPackage, int(pkg_id))
     if pkg is None:
         raise HTTPException(404)
-    if not can_manage_temple(user, pkg.temple_id):
+    if user.role == "vendor":
+        if pkg.vendor_id != user.id:
+            raise HTTPException(403)
+    elif not can_manage_temple(user, pkg.temple_id):
         raise HTTPException(403)
     return pkg
 
@@ -155,15 +161,22 @@ def package_form(pkg_id: str, request: Request, db: Session = Depends(get_db),
 @router.post("/goi-le/{pkg_id}", dependencies=csrf)
 def package_save(pkg_id: str, request: Request, name: str = Form(...), description: str = Form(""),
                  price: int = Form(...), unit: str = Form("phần"), max_qty: int = Form(10), sort: int = Form(0),
-                 image_url: str = Form(""), temple_id: str = Form(""),
+                 image_url: str = Form(""), temple_id: str = Form(""), stock: str = Form(""),
                  active: bool = Form(False), db: Session = Depends(get_db),
                  user: User = Depends(require_backoffice)):
     if price < 0 or not 1 <= max_qty <= 99:
         raise HTTPException(400, "Giá hoặc số lượng tối đa không hợp lệ")
     pkg = _load_pkg(db, pkg_id, user)
     new_temple_id = int(temple_id) if temple_id else None
-    if not can_manage_temple(user, new_temple_id):  # nhân sự đền không tạo gói "dùng chung"
+    if user.role == "vendor":  # kiosk chỉ bán ở đền đã được gắn, hàng luôn thuộc kiosk đó
+        if new_temple_id is None or new_temple_id not in user.temple_ids:
+            raise HTTPException(403, "Chọn đền mà kiosk đã được gắn")
+        pkg.vendor_id = user.id
+    elif not can_manage_temple(user, new_temple_id):  # nhân sự đền không tạo gói "dùng chung"
         raise HTTPException(403)
+    if stock.strip() and (not stock.strip().isdigit() or int(stock) > 100000):
+        raise HTTPException(400, "Số lượng tồn kho không hợp lệ")
+    pkg.stock = int(stock) if stock.strip() else None
     if pkg.id is None:
         db.add(pkg)
     pkg.name, pkg.description, pkg.price = name.strip(), description.strip(), price
@@ -239,6 +252,22 @@ async def user_save(user_id: str, request: Request, db: Session = Depends(get_db
     return RedirectResponse(u("/admin/nguoi-dung"), 303)
 
 
+@router.post("/nguoi-dung/{user_id}/duyet", dependencies=csrf)
+async def user_approve(user_id: int, request: Request, db: Session = Depends(get_db),
+                       admin: User = Depends(require_admin)):
+    target = db.get(User, user_id)
+    if target is None or target.role not in ("vendor", "temple_manager"):
+        raise HTTPException(404)
+    form = await request.form()
+    ok = form.get("quyet_dinh") == "duyet"
+    target.approval = "approved" if ok else "rejected"
+    audit(db, f"user:{admin.id}", "partner.approve" if ok else "partner.reject", f"user:{target.id}")
+    db.commit()
+    flash(request, f"Đã {'duyệt' if ok else 'từ chối'} tài khoản {target.name}." +
+          (" Hãy gắn đền cho họ ở trang sửa người dùng." if ok and not target.temple_ids else ""), "ok")
+    return RedirectResponse(u("/admin/nguoi-dung"), 303)
+
+
 # ---------------- Lịch lễ của đền (admin / quản lý đền / kiosk) ----------------
 # Nhân sự đền KHÔNG thấy dữ liệu cá nhân (họ tên, địa chỉ, năm sinh, nguyện vọng) — chỉ admin thấy.
 
@@ -251,6 +280,9 @@ def schedule(request: Request, status: str = "", db: Session = Depends(get_db),
     if not user.is_admin:
         stmt = stmt.where(Order.temple_id.in_(user.temple_ids or {-1}),
                           Order.status.notin_(["created", "awaiting_payment"]))
+        if user.role == "vendor":  # kiosk chỉ thấy đơn của mình, và chỉ khi thủ nhang đã nhận
+            stmt = stmt.where(or_(Order.vendor_id == user.id, Order.vendor_id.is_(None)),
+                              or_(Order.accept_by.is_(None), Order.accepted_at.is_not(None)))
     if status:
         stmt = stmt.where(Order.status == status)
     return render(request, "admin/schedule.html", {"orders": db.scalars(stmt).all(), "labels": LABELS,
@@ -272,12 +304,54 @@ def tray_ready(order_id: int, request: Request, db: Session = Depends(get_db),
                user: User = Depends(require_backoffice)):
     from ..models import utcnow
     o = _staff_order(db, order_id, user, ("vendor", "temple_manager"))
+    if user.role == "vendor" and o.vendor_id not in (None, user.id):
+        raise HTTPException(403)
+    if o.needs_approval:
+        raise HTTPException(409, "Thủ nhang chưa nhận đơn này")
     if o.status not in ("paid", "scheduled", "delivered"):
         raise HTTPException(409, "Đơn không ở trạng thái chuẩn bị lễ")
     o.tray_ready_at = utcnow()
     audit(db, f"user:{user.id}", "order.tray_ready", f"order:{o.id}")
     db.commit()
     flash(request, f"Đã báo mâm lễ đơn #{o.id} sẵn sàng.", "ok")
+    return RedirectResponse(u("/admin/lich-le"), 303)
+
+
+@router.get("/doanh-thu")
+def revenue_page(request: Request, db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
+    from .. import revenue
+    return render(request, "admin/revenue.html", revenue.report(db, user))
+
+
+@router.post("/don/{order_id}/nhan", dependencies=csrf)
+def accept_order(order_id: int, request: Request, db: Session = Depends(get_db),
+                 user: User = Depends(require_backoffice)):
+    from .. import orders as svc
+    o = _staff_order(db, order_id, user, ("temple_manager",))
+    try:
+        svc.accept(db, o, f"user:{user.id}")
+    except ValueError as e:
+        raise HTTPException(409, str(e))
+    db.commit()
+    flash(request, f"Đã nhận đơn #{o.id}.", "ok")
+    return RedirectResponse(u("/admin/lich-le"), 303)
+
+
+@router.post("/don/{order_id}/het-hang", dependencies=csrf)
+async def out_of_stock(order_id: int, request: Request, db: Session = Depends(get_db),
+                       user: User = Depends(require_backoffice)):
+    """Kiosk báo không chuẩn bị được mâm lễ → đơn bị từ chối, khách được hoàn tiền."""
+    from .. import orders as svc
+    from ..state_machine import InvalidTransition
+    o = _staff_order(db, order_id, user, ("vendor",))
+    if user.role == "vendor" and o.vendor_id != user.id:
+        raise HTTPException(403)
+    try:
+        svc.reject(db, o, f"user:{user.id}", "Kiosk báo hết hàng / không chuẩn bị được lễ vật")
+    except InvalidTransition as e:
+        raise HTTPException(409, str(e))
+    db.commit()
+    flash(request, f"Đã báo hết hàng, đơn #{o.id} sẽ được hoàn tiền cho khách.", "ok")
     return RedirectResponse(u("/admin/lich-le"), 303)
 
 

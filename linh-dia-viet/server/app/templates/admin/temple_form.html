@@ -20,6 +20,7 @@
   {% for d in devices %}<option value="{{ d.id }}" {% if d.id == t.device_id %}selected{% endif %}>{{ d.id }} · {{ d.name }}</option>{% endfor %}</select>
   <label>Trạng thái</label>
   <select name="status"><option value="active" {% if t.status == 'active' %}selected{% endif %}>Hiển thị</option><option value="hidden" {% if t.status == 'hidden' %}selected{% endif %}>Ẩn</option></select>
+  <label class="ld-check"><input type="checkbox" name="require_approval" value="true" {% if t.require_approval %}checked{% endif %}> Thủ nhang duyệt từng đơn (quá {{ (settings().accept_timeout_seconds // 3600) }} giờ không nhận thì tự hoàn tiền)</label>
   <p><button class="ld-btn">Lưu</button></p>
 </form>
 {% endblock %}

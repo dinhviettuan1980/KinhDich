@@ -9,10 +9,11 @@
   <label>Giá 1 đơn vị (VND)</label><input type="number" name="price" min="0" step="1000" required value="{{ p.price }}">
   <label>Tối đa mỗi đơn</label><input type="number" name="max_qty" min="1" max="99" required value="{{ p.max_qty or 10 }}">
   <label>Thứ tự hiển thị</label><input type="number" name="sort" value="{{ p.sort or 0 }}">
+  <label>Tồn kho (để trống = không giới hạn)</label><input type="number" name="stock" min="0" max="100000" value="{{ '' if p.stock is none else p.stock }}">
   <label>Mô tả</label><textarea name="description">{{ p.description or '' }}</textarea>
   <label>Ảnh (URL)</label><input type="text" name="image_url" value="{{ p.image_url or '' }}">
   <label>Thuộc đền</label>
-  <select name="temple_id"><option value="">Dùng chung</option>
+  <select name="temple_id">{% if not user.role == "vendor" %}<option value="">Dùng chung</option>{% endif %}
   {% for t in temples %}<option value="{{ t.id }}" {% if t.id == p.temple_id %}selected{% endif %}>{{ t.name }}</option>{% endfor %}</select>
   <label class="ld-check"><input type="checkbox" name="active" value="true" {% if p.active %}checked{% endif %}> Đang bán</label>
   <p><button class="ld-btn">Lưu</button></p>

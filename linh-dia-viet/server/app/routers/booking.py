@@ -70,7 +70,8 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False,
     if len(temples) != len(ids):
         raise BookingError("Có đền không còn nhận lễ.")
     temples.sort(key=lambda t: ids.index(t.id))
-    if not partial:
+    in_person = _form_get(form, "cach_khan") == "in_person"
+    if not partial and not in_person:
         missing = [t.name for t in temples if not t.device_id]
         if missing:
             raise BookingError("Chưa nhận lễ từ xa tại: " + ", ".join(missing) + " (đền chưa lắp thiết bị).")
@@ -82,6 +83,8 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False,
             continue
         if int(q) > p.max_qty:
             raise BookingError(f"{p.name}: tối đa {p.max_qty} {p.unit}.")
+        if p.stock is not None and int(q) > p.stock:
+            raise BookingError(f"{p.name}: kiosk chỉ còn {p.stock} {p.unit}.")
         items.append((p, int(q)))
     if not items and not partial:
         raise BookingError("Vui lòng chọn ít nhất một lễ vật.")
@@ -99,11 +102,13 @@ def parse_booking(db: Session, request: Request, form, *, partial: bool = False,
         raise BookingError("Vui lòng điền nguyện vọng (và đủ họ tên, ngày sinh, địa chỉ trong thông tin tín chủ).")
 
     kind = _form_get(form, "cach_khan", "tts")
-    if kind not in ("tts", "recorded"):
+    if kind not in ("tts", "recorded", "in_person"):
         raise BookingError("Cách khấn không hợp lệ.")
 
     tz = s.default_timezone
     play_asap = _form_get(form, "khi_nao", "ngay") != "hen_gio"
+    if kind == "in_person" and play_asap and not partial:
+        raise BookingError("Thủ nhang đọc sớ tại đền cần chọn ngày hẹn (không có “Phát ngay”).")
     scheduled_at = None
     raw = _form_get(form, "thoi_gian")
     if not play_asap and raw:
@@ -161,6 +166,8 @@ def resolve_trays(db: Session, form, temples: list[Temple], base: list[tuple[Off
                 continue
             if int(q) > p.max_qty:
                 raise BookingError(f"{t.name} · {p.name}: tối đa {p.max_qty} {p.unit}.")
+            if p.stock is not None and int(q) > p.stock:
+                raise BookingError(f"{t.name} · {p.name}: kiosk chỉ còn {p.stock} {p.unit}.")
             mine.append((p, int(q)))
         if not mine and not partial:
             raise BookingError(f"Vui lòng chọn ít nhất một lễ vật cho mâm riêng của {t.name}.")
@@ -371,17 +378,29 @@ async def submit(request: Request, background: BackgroundTasks, db: Session = De
     db.add(prayer)
     db.flush()
     ref = svc.new_ref()
+    fee = s.in_person_fee if b.kind == "in_person" else 0
     orders = []
     for t in b.temples:
         its = b.items_by_temple.get(t.id) or b.items
-        o = Order(booking_ref=ref, user_id=user.id, prayer_id=prayer.id, temple_id=t.id,
+        vendors = {p.vendor_id for p, _ in its if p.vendor_id}
+        if len(vendors) > 1:
+            db.rollback()
+            return JSONResponse({"error": f"{t.name}: mỗi đơn chỉ mua từ một kiosk — hãy tách thành hai lần đặt."}, 400)
+        o = Order(booking_ref=ref, user_id=user.id, vendor_id=next(iter(vendors), None), prayer_id=prayer.id, temple_id=t.id,
                   scheduled_at=b.scheduled_at or utcnow(), play_asap=b.play_asap, timezone=b.tz,
-                  total=sum(p.price * q for p, q in its),
+                  total=sum(p.price * q for p, q in its) + fee, service_fee=fee,
                   items=[OrderItem(package_id=p.id, name=p.name, unit=p.unit, price=p.price, qty=q) for p, q in its])
+        o.temple, o.prayer = t, prayer
+        svc.init_approval(o)
         db.add(o)
         db.flush()
         db.add(OrderEvent(order_id=o.id, status="created"))
         orders.append(o)
+    try:
+        svc.reserve_stock(db, orders)
+    except ValueError as e:
+        db.rollback()
+        return JSONResponse({"error": str(e)}, 400)
     # lưu thông tin tín chủ vào tài khoản để lần sau không phải nhập lại
     me = db.get(User, user.id)
     me.devotee_name, me.birth_year, me.address, me.wish = b.full_name, b.birth_year, b.address, b.wish

@@ -23,7 +23,8 @@ def packages_for(db: Session, temple_ids: list[int]) -> list[OfferingPackage]:
     cond = OfferingPackage.temple_id.is_(None)
     if len(temple_ids) == 1:
         cond = or_(cond, OfferingPackage.temple_id == temple_ids[0])
-    return list(db.scalars(select(OfferingPackage).where(cond, OfferingPackage.active.is_(True))
+    return list(db.scalars(select(OfferingPackage).where(cond, OfferingPackage.active.is_(True),
+                                                          or_(OfferingPackage.stock.is_(None), OfferingPackage.stock > 0))
                            .order_by(OfferingPackage.sort, OfferingPackage.price, OfferingPackage.id)))
 
 

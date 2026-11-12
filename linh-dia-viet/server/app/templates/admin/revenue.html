@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Doanh thu{% endblock %}
+{% block content %}
+<h1>Doanh thu</h1>
+<p class="ld-muted">Chỉ tính đơn đã hoàn tất. Phí nền tảng {{ pct }}%. Số liệu để đối soát — chưa có chi trả tự động.</p>
+<div class="ld-card ld-spread">
+  <span>Tổng thu: <b>{{ fmt_vnd(total.get('gross', 0)) }}</b></span>
+  <span>Kiosk nhận: <b>{{ fmt_vnd(total.get('kiosk', 0)) }}</b></span>
+  <span>Đền nhận: <b>{{ fmt_vnd(total.get('temple', 0)) }}</b></span>
+  <span>Nền tảng: <b>{{ fmt_vnd(total.get('platform', 0)) }}</b></span>
+</div>
+<div class="ld-scroll"><table>
+<tr><th>Đơn</th><th>Đền</th><th>Tổng</th><th>Kiosk</th><th>Đền</th><th>Nền tảng</th></tr>
+{% for r in rows %}<tr><td>#{{ r.o.id }}</td><td>{{ r.o.temple.name }}</td><td>{{ fmt_vnd(r.o.total) }}</td>
+<td>{{ fmt_vnd(r.kiosk) }}</td><td>{{ fmt_vnd(r.temple) }}</td><td>{{ fmt_vnd(r.platform) }}</td></tr>
+{% else %}<tr><td colspan="6" class="ld-muted">Chưa có đơn hoàn tất.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

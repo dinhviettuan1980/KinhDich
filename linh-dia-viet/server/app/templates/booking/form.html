@@ -55,6 +55,7 @@
     <h3>Ai đọc sớ?</h3>
     <label class="ld-check"><input type="radio" name="cach_khan" value="tts" {% if prefill.cach_khan|default('tts') == 'tts' %}checked{% endif %}> Giọng đọc tự động đọc tờ sớ</label>
     <label class="ld-check"><input type="radio" name="cach_khan" value="recorded" {% if prefill.cach_khan == 'recorded' %}checked{% endif %}> Tôi tự đọc và ghi âm</label>
+    <label class="ld-check"><input type="radio" name="cach_khan" value="in_person" {% if prefill.cach_khan == 'in_person' %}checked{% endif %}> Nhờ thủ nhang đến đọc sớ tại đền (+{{ fmt_vnd(settings().in_person_fee) }} mỗi đền, có video làm bằng chứng, cần chọn ngày hẹn)</label>
 
     <div id="so-box" class="ld-card" style="background:#fffdf7">
       <h3 style="margin-top:0">📜 Tờ sớ</h3>

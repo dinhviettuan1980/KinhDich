@@ -254,6 +254,8 @@ def maybe_complete(db: Session, order: Order, actor: str, now: datetime | None =
 def tick(db: Session, now: datetime | None = None) -> None:
     s = get_settings()
     now = now or utcnow()
+    svc.expire_unaccepted(db, now)
+    svc.expire_unread(db, now)
     # 1) đơn đã trả tiền nhưng chưa xếp lịch được (TTS lỗi tạm thời)
     # (bỏ qua đơn vừa thanh toán < 1 phút: tác vụ nền sau thanh toán đang lo, tránh tạo TTS 2 lần)
     stuck: dict[str, list[Order]] = {}
@@ -274,6 +276,8 @@ def tick(db: Session, now: datetime | None = None) -> None:
     # 3) quá giờ mà chưa phát xong → failed
     max_play = timedelta(seconds=s.max_audio_seconds)
     for o in db.scalars(select(Order).where(Order.status.in_([S.SCHEDULED, S.DELIVERED, S.PLAYING]))).all():
+        if o.prayer.kind == "in_person":
+            continue  # hạn riêng: svc.expire_unread
         job = current_job(o)
         play_at = job.play_at if job else o.scheduled_at
         if now > play_at + max_play + grace:

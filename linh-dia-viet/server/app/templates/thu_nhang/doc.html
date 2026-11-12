@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Đọc sớ tại đền{% endblock %}
+{% block content %}
+<h1>Đọc sớ tại đền · {{ o.temple.name }}</h1>
+<div class="ld-card">
+  <div class="ld-muted">Đơn #{{ o.id }} · ngày hẹn {{ fmt_local(o.scheduled_at, o.timezone) }} · Lễ vật: <b>{{ o.offering_text }}</b></div>
+  <pre id="script" style="white-space:pre-wrap;font:inherit;font-size:1.1rem;line-height:1.7;margin:12px 0">{{ script }}</pre>
+</div>
+<div class="ld-card" id="rd" data-id="{{ o.id }}" data-status="{{ o.status }}"
+     data-url="{{ u('/thu-nhang/doc/' ~ o.id) }}" data-csrf="{{ csrf_token }}">
+  <video id="pv" playsinline muted autoplay style="width:100%;max-height:50vh;background:#000;border-radius:8px"></video>
+  <p id="msg" class="ld-muted">Đặt điện thoại hướng về mâm lễ, bấm “Bắt đầu đọc”, đọc to tờ sớ, rồi bấm “Kết thúc”. Video tự tải lên.</p>
+  <div class="ld-row">
+    <button class="ld-btn" id="bs" {% if o.status != 'scheduled' %}disabled{% endif %}>Bắt đầu đọc</button>
+    <button class="ld-btn secondary" id="kt" disabled>Kết thúc</button>
+  </div>
+</div>
+<script src="{{ u('/static/doc.js') }}"></script>
+{% endblock %}

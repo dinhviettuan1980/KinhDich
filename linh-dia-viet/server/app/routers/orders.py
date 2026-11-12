@@ -73,7 +73,8 @@ def group_rows(db: Session, ref: str, user: User) -> list[dict]:
         dev = o.temple.device
         rows.append({"o": o, "job": job, "label": LABELS[S(o.status)], "photos": o.photos, "video": o.video,
                      "kind": ((dev.last_status or {}).get("kind") or "pi") if dev else None,
-                     "start": job.playing_at if job else None, "end": job.done_at if job and job.state == "done" else None})
+                     "start": job.playing_at if job else o.read_started_at,
+                     "end": job.done_at if job and job.state == "done" else (None if job else o.read_ended_at)})
     return rows
 
 

@@ -15,7 +15,7 @@ from ..lunar import solar_to_lunar
 from ..models import OtpCode, User, utcnow
 from ..prayer_text import clean_input
 from ..security import check_csrf, hash_password, hash_token, rate_limit, token_matches, verify_password
-from ..web import current_user, flash, render, u
+from ..web import audit, current_user, flash, render, u
 
 log = logging.getLogger("linhdia.auth")
 router = APIRouter()
@@ -139,6 +139,9 @@ def set_profile(user: User, name: str, birth: date | None, address: str, wish: s
         user.wish = clean_input(wish, 1000) or None
 
 
+PARTNER_SIGNUP = {"thu_nhang": "temple_manager", "kios": "vendor"}
+
+
 @router.get("/dang-ky")
 def register_page(request: Request, user=Depends(current_user)):
     return render(request, "auth/register.html")
@@ -146,7 +149,8 @@ def register_page(request: Request, user=Depends(current_user)):
 
 @router.post("/dang-ky", dependencies=[Depends(check_csrf), Depends(rate_limit("register", 5, 300))])
 def register(request: Request, name: str = Form(...), identifier: str = Form(...), password: str = Form(...),
-             ngay_sinh: str = Form(""), dia_chi: str = Form(""), db: Session = Depends(get_db)):
+             ngay_sinh: str = Form(""), dia_chi: str = Form(""), vai_tro: str = Form("khach"),
+             db: Session = Depends(get_db)):
     ident = normalize_identifier(identifier)
     error, birth = None, None
     if not name.strip() or len(name) > 120:
@@ -165,12 +169,20 @@ def register(request: Request, name: str = Form(...), identifier: str = Form(...
     if error:
         flash(request, error, "error")
         return render(request, "auth/register.html", {"name": name, "identifier": identifier, "ngay_sinh": ngay_sinh,
-                                                      "dia_chi": dia_chi}, status_code=400)
+                                                      "dia_chi": dia_chi, "vai_tro": vai_tro}, status_code=400)
     user = User(name=name.strip(), password_hash=hash_password(password), **{ident[0]: ident[1]})
+    partner_role = PARTNER_SIGNUP.get(vai_tro)
+    if partner_role:  # thủ nhang / kiosk: chờ admin duyệt, trong lúc chờ chỉ có quyền như khách
+        user.role, user.approval = partner_role, "pending"
     set_profile(user, name, birth, dia_chi)
     db.add(user)
+    db.flush()
+    if partner_role:
+        audit(db, f"user:{user.id}", "partner.signup", f"user:{user.id}", role=partner_role)
     db.commit()
     login_session(request, user)
+    if partner_role:
+        flash(request, "Đã gửi đăng ký đối tác. Quản trị viên sẽ duyệt tài khoản trước khi bạn dùng được trang quản lý.", "ok")
     nxt = _next_url(request)
     return RedirectResponse(onboarding_url(user, nxt) or nxt, 303)
 

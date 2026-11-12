@@ -37,6 +37,9 @@ class Settings(BaseSettings):
     # Đặt lễ
     max_temples_per_order: int = 100
     min_lead_seconds: int = 120
+    in_person_fee: int = 50000  # phí thủ nhang đọc sớ tại chỗ (VND / đền)
+    platform_fee_pct: int = 10  # phí nền tảng trên mỗi đơn hoàn tất
+    accept_timeout_seconds: int = 7200  # thủ nhang phải nhận đơn trong thời gian này, quá hạn tự hoàn tiền
     group_asap_delay_seconds: int = 15  # "phát ngay" nhiều đền: chừa thêm để mọi thiết bị tải xong file
     asap_delay_seconds: int = 8  # "phát ngay": chừa thời gian để Pi tải file trước khi phát (Pi trễ vẫn phát bù)
     max_prayer_chars: int = 3000
