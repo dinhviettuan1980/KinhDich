@@ -29,8 +29,13 @@ def fmt_local(dt: datetime | None, tz: str | None = None, fmt: str = "%H:%M %d/%
     return dt.astimezone(ZoneInfo(tz or get_settings().default_timezone)).strftime(fmt)
 
 
+def abs_url(path: str = "/") -> str:
+    """URL tuyệt đối (canonical, sitemap, og:url)."""
+    return get_settings().public_base_url.rstrip("/") + u(path)
+
+
 from .models import tray_check  # noqa: E402
-templates.env.globals.update(u=u, fmt_vnd=fmt_vnd, fmt_local=fmt_local, settings=get_settings, tray_check=tray_check)
+templates.env.globals.update(u=u, abs_url=abs_url, fmt_vnd=fmt_vnd, fmt_local=fmt_local, settings=get_settings, tray_check=tray_check)
 
 
 class LoginRequired(Exception):

@@ -227,3 +227,25 @@ def test_admin_place_list_edit_hide_and_create(admin_client, client, db):
 
 def test_admin_place_pages_require_admin(user_client, db):
     assert user_client.get(f"{P}/admin/dia-diem", follow_redirects=False).status_code == 403
+
+
+def test_seo_meta_jsonld_and_sitemap(client, db):
+    import json as _json
+    places.load(db, _snap())
+    db.commit()
+    tq = db.scalar(select(SacredPlace).where(SacredPlace.source_id == "way/2"))
+    kl = db.scalar(select(SacredPlace).where(SacredPlace.source_id == "node/9"))
+    html = client.get(f"{P}/dia-diem/{tq.id}").text
+    assert '<meta name="description" content="Ngôi chùa cổ nhất Thăng Long.">' in html
+    assert f'<link rel="canonical" href="http://testserver{P}/dia-diem/{tq.id}">' in html
+    ld = _json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S).group(1))
+    assert ld["@type"] == "BuddhistTemple" and ld["geo"]["latitude"] == 21.048
+    assert ld["address"]["addressRegion"] == "Hà Nội" and "https://www.wikidata.org/wiki/Q2" in ld["sameAs"]
+    html = client.get(f"{P}/dia-diem/{kl.id}").text
+    assert "Đình Kim Liên – Hà Nội" in html and '"PlaceOfWorship"' in html
+    kl.status = "hidden"
+    db.commit()
+    r = client.get(f"{P}/sitemap.xml")
+    assert r.status_code == 200 and r.headers["content-type"].startswith("application/xml")
+    assert f"{P}/ban-do</loc>" in r.text and f"{P}/dia-diem/{tq.id}</loc>" in r.text
+    assert f"/dia-diem/{kl.id}</loc>" not in r.text

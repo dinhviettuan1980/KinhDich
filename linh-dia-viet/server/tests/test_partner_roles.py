@@ -220,3 +220,12 @@ def test_in_person_expires_after_day(user_client, db):
     assert svc.expire_unread(db, o.scheduled_at + timedelta(days=2)) == 1
     db.commit()
     assert db.get(Order, o.id).status == "refund_requested"
+
+
+def test_booking_options_show_kiosk_name_and_low_stock(user_client, db):
+    ns = db.scalar(select(Temple).where(Temple.slug == "den-ngoc-son"))
+    v = db.scalar(select(User).where(User.email == "kiosk@example.com"))
+    db.add(OfferingPackage(name="Hoa sen", price=1000, temple_id=ns.id, vendor_id=v.id, stock=3))
+    db.commit()
+    r = user_client.get(f"{P}/dat-le/goi-le?den={ns.id}")
+    assert r.status_code == 200 and "Kiosk: " + v.name in r.text and "còn 3" in r.text

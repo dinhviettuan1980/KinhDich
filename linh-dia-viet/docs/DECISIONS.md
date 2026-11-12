@@ -127,3 +127,8 @@ Bốn vai trò trong `users.role`:
   gom cụm và tính "Gần tôi". Có `GOOGLE_MAPS_API_KEY` → Google Maps JS (Advanced Marker cần Map ID) + Embed API ở trang chi
   tiết; chưa có key → Leaflet + tile OpenStreetMap, **chỉ hợp dev/ít truy cập** (chính sách tile OSM cấm dùng nặng).
   Trước khi ra mắt cần kiểm tra cách nền bản đồ thể hiện Hoàng Sa, Trường Sa.
+- **SEO:** trang `/dia-diem/{id}` có meta description (đoạn đầu mô tả, hoặc "loại + tên – địa chỉ"), canonical theo
+  `PUBLIC_BASE_URL`, Open Graph và JSON-LD schema.org (`BuddhistTemple` cho chùa, `PlaceOfWorship` cho loại khác; toạ độ,
+  địa chỉ, ảnh, `sameAs` Wikidata/Wikipedia). `{prefix}/sitemap.xml` liệt kê `/ban-do` và mọi địa điểm đang hiện (trang
+  đền/đặt lễ cần đăng nhập nên không đưa vào). robots.txt ở gốc domain thuộc site Kinh Dịch → khai báo sitemap trực tiếp
+  trong Google Search Console.

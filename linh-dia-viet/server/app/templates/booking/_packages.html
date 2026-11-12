@@ -1,7 +1,7 @@
 {# Danh mục lễ vật: chọn số lượng từng món (0 = không lấy). Nhiều đền: mâm của đền đầu + lựa chọn mâm cho từng đền còn lại. #}
 {% macro stepper(p, name, q, scope) %}
   <div class="ld-item">
-    <div class="ld-item-info"><b>{{ p.name }}</b> <span class="ld-muted">· {{ fmt_vnd(p.price) }}/{{ p.unit }}</span>
+    <div class="ld-item-info"><b>{{ p.name }}</b> <span class="ld-muted">· {{ fmt_vnd(p.price) }}/{{ p.unit }}</span>{% if p.vendor_id %} <span class="ld-badge">Kiosk: {{ p.vendor.name }}</span>{% endif %}{% if p.stock is not none and p.stock <= 5 %} <span class="ld-muted">· còn {{ p.stock }}</span>{% endif %}
       {% if p.temple_id %}<span class="ld-badge">riêng của đền</span>{% endif %}
       {% if p.description %}<br><span class="ld-muted small">{{ p.description }}</span>{% endif %}</div>
     <div class="ld-stepper" data-price="{{ p.price }}" data-scope="{{ scope }}">

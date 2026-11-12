@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Bản đồ đình chùa{% endblock %}
+{% block head %}
+  <meta name="description" content="Bản đồ {{ "{:,}".format(total).replace(",", ".") }} đình, chùa, đền, miếu, phủ trên cả nước: tra cứu theo tỉnh, tìm nơi gần bạn, xem giới thiệu và chỉ đường.">
+  <link rel="canonical" href="{{ abs_url('/ban-do') }}">
+  <meta property="og:title" content="Bản đồ đình chùa Việt Nam · Linh Địa Việt">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ abs_url('/ban-do') }}">
+{% endblock %}
 {% block content %}
 <h1>Bản đồ đình chùa</h1>
 <p class="ld-muted">{{ "{:,}".format(total).replace(",", ".") }} đình, chùa, đền, miếu, phủ trên cả nước. Nơi có dấu

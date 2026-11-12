@@ -207,6 +207,7 @@ class OfferingPackage(Base):
     stock: Mapped[int | None] = mapped_column(Integer)  # tồn kho; NULL = không giới hạn
     active: Mapped[bool] = mapped_column(Boolean, default=True)
     temple: Mapped[Temple | None] = relationship()
+    vendor: Mapped["User | None"] = relationship(foreign_keys=[vendor_id])
 
 
 class AuditLog(Base):

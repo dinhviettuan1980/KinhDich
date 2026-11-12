@@ -2,6 +2,7 @@
 import gzip
 import json
 import secrets
+from xml.sax.saxutils import escape
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import RedirectResponse, Response
@@ -11,7 +12,7 @@ from sqlalchemy.orm import Session, joinedload
 from ..db import get_db
 from ..models import PLACE_KINDS, SacredPlace, Temple, User
 from ..security import check_csrf
-from ..web import audit, current_user, flash, render, require_admin, u
+from ..web import abs_url, audit, current_user, flash, render, require_admin, u
 from .public import device_online
 
 router = APIRouter()
@@ -55,7 +56,58 @@ def place_detail(place_id: int, request: Request, db: Session = Depends(get_db),
     return render(request, "public/place.html", {
         "p": place, "bookable": bookable(place.temple),
         "online": device_online(place.temple.device) if place.temple else False,
+        "meta_desc": meta_description(place), "jsonld": place_jsonld(place),
     })
+
+
+def meta_description(p: SacredPlace, limit: int = 160) -> str:
+    if p.description:
+        text = " ".join(p.description.split())
+        return text if len(text) <= limit else text[:limit - 1].rsplit(" ", 1)[0] + "…"
+    where = p.full_address or "Việt Nam"
+    return f"{p.kind_label} {p.name.removeprefix(p.kind_label + ' ')} – {where}. Vị trí trên bản đồ, chỉ đường và thông tin giới thiệu."
+
+
+_SCHEMA_TYPE = {"chua": "BuddhistTemple"}
+
+
+def place_jsonld(p: SacredPlace) -> dict:
+    """schema.org cho kết quả tìm kiếm (tên, toạ độ, địa chỉ, ảnh, liên kết Wikidata/Wikipedia)."""
+    data = {
+        "@context": "https://schema.org", "@type": _SCHEMA_TYPE.get(p.kind, "PlaceOfWorship"),
+        "name": p.name, "url": abs_url(f"/dia-diem/{p.id}"),
+        "geo": {"@type": "GeoCoordinates", "latitude": round(p.lat, 6), "longitude": round(p.lng, 6)},
+        "address": {"@type": "PostalAddress", "addressCountry": "VN",
+                    **({"streetAddress": p.address} if p.address else {}),
+                    **({"addressRegion": p.province} if p.province else {})},
+    }
+    if p.description:
+        data["description"] = meta_description(p, 300)
+    if p.image_url:
+        data["image"] = p.image_url
+    if p.phone:
+        data["telephone"] = p.phone
+    same = [x for x in (p.website, p.description_source,
+                        f"https://www.wikidata.org/wiki/{p.wikidata}" if p.wikidata else "") if x]
+    if same:
+        data["sameAs"] = same
+    return data
+
+
+@router.get("/sitemap.xml")
+def sitemap(db: Session = Depends(get_db)):
+    """Bản đồ trang cho máy tìm kiếm: chỉ các trang công khai (bản đồ + từng địa điểm đang hiện).
+    Khai báo trong Google Search Console (robots.txt ở gốc domain thuộc site khác)."""
+    rows = db.execute(select(SacredPlace.id, SacredPlace.updated_at)
+                      .where(SacredPlace.status == "active").order_by(SacredPlace.id)).all()
+    parts = ['<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+             f"<url><loc>{escape(abs_url('/ban-do'))}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>"]
+    for pid, updated in rows:
+        lastmod = f"<lastmod>{updated.date().isoformat()}</lastmod>" if updated else ""
+        parts.append(f"<url><loc>{escape(abs_url(f'/dia-diem/{pid}'))}</loc>{lastmod}</url>")
+    parts.append("</urlset>")
+    return Response("\n".join(parts), media_type="application/xml",
+                    headers={"Cache-Control": "public, max-age=3600"})
 
 
 # ---- Quản trị danh bạ (admin): sửa tay dữ liệu nhập tự động, ẩn điểm sai, thêm điểm còn thiếu ----
