@@ -5,7 +5,18 @@
   var C = window.LD_MAP || {};
   var COLORS = { chua: "#b8892b", den: "#7a1f1f", dinh: "#8a4b1f", mieu: "#c2410c", phu: "#6b3fa0", khac: "#6f5f52" };
   var BOOK = "#2f6b3a";
-  var VN = { lat: 16.2, lng: 106.3 };
+  // Tâm lệch ra biển để khung mặc định (zoom 5, cả trên điện thoại) thấy trọn đất liền + Hoàng Sa + Trường Sa.
+  var VN = { lat: 15.8, lng: 108.6 };
+  // Chủ quyền: luôn hiện nhãn hai quần đảo, không phụ thuộc nền bản đồ (không gom cụm, không bị bộ lọc ẩn).
+  var ISLANDS = [
+    { lat: 16.5, lng: 112.0, n: "Quần đảo Hoàng Sa", sub: "(Việt Nam)" },
+    { lat: 12.3, lng: 113.3, n: "Quần đảo Trường Sa", sub: "(Việt Nam)" }  // phía bắc quần đảo, không đè lên điểm chùa
+  ];
+  function islandEl(i) {
+    var d = document.createElement("div"); d.className = "ld-island";
+    d.innerHTML = "<b>" + esc(i.n) + "</b><span>" + esc(i.sub) + "</span>";
+    return d;
+  }
   var $ = function (id) { return document.getElementById(id); };
   var all = [], kinds = {}, me = null, adapter = null, lastList = [];
 
@@ -56,6 +67,10 @@
         mapTypeControl: false, fullscreenControl: true, gestureHandling: "greedy" });
       var info = new g.InfoWindow(), cache = {}, meMarker = null;
       var clusterer = new window.markerClusterer.MarkerClusterer({ map: map });
+      ISLANDS.forEach(function (i) {
+        new g.marker.AdvancedMarkerElement({ map: map, position: { lat: i.lat, lng: i.lng }, content: islandEl(i),
+          title: i.n + " " + i.sub, zIndex: 1, gmpClickable: false });
+      });
       function marker(p) {
         if (!cache[p.id]) {
           var pin = new g.marker.PinElement({ background: color(p), borderColor: "#ffffff", glyphColor: "#ffffff",
@@ -105,6 +120,10 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
       var group = L.markerClusterGroup({ chunkedLoading: true, showCoverageOnHover: false, maxClusterRadius: 50 });
       map.addLayer(group);
+      ISLANDS.forEach(function (i) {
+        L.marker([i.lat, i.lng], { interactive: false, keyboard: false, zIndexOffset: -1000,
+          icon: L.divIcon({ className: "", html: islandEl(i).outerHTML, iconSize: null }) }).addTo(map);
+      });
       var cache = {}, meMarker = null;
       function marker(p) {
         if (!cache[p.id]) {

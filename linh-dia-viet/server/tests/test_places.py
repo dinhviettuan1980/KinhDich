@@ -111,6 +111,8 @@ def test_map_page_and_points_are_public(client, db):
     r = client.get(f"{P}/ban-do")
     assert r.status_code == 200 and "Bản đồ đình chùa" in r.text and "/static/map.js" in r.text
     assert 'key: ""' in r.text  # chưa có key → Leaflet
+    js = client.get(f"{P}/static/map.js").text  # chủ quyền: nhãn hai quần đảo luôn có trên bản đồ
+    assert "Quần đảo Hoàng Sa" in js and "Quần đảo Trường Sa" in js
     j = client.get(f"{P}/ban-do/diem.json").json()
     assert j["provinces"] == ["Hà Nội"] and j["kinds"]["chua"] == "Chùa"
     by_name = {pt[4]: pt for pt in j["points"]}
