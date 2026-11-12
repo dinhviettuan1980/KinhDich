@@ -1,0 +1,114 @@
+{
+ "n1": [
+  "dan_chuyen",
+  "Linh Địa Việt, dâng lễ từ xa. Ở bất cứ đâu, bạn vẫn sắm lễ và khấn được tại nhiều đền, chùa cùng một lúc."
+ ],
+ "n2": [
+  "dan_chuyen",
+  "Hãy xem bốn nhân vật: khách hàng, thủ nhang, người bán lễ ở kiosk và quản trị viên phối hợp với nhau thế nào."
+ ],
+ "k1": [
+  "khach",
+  "Chào mọi người, tôi là An. Đầu năm tôi muốn cầu may mắn cho gia đình, nhưng bận quá không về đền được."
+ ],
+ "k2": [
+  "khach",
+  "Tôi chọn nhu cầu May mắn. Ứng dụng gợi ý ngay chín đền, chùa."
+ ],
+ "k3": [
+  "khach",
+  "Bấm Gần tôi: đền gần nhất hiện lên trước, có khoảng cách và chỉ đường."
+ ],
+ "k3b": [
+  "khach",
+  "Phủ Tây Hồ ở đâu nhỉ? Bấm vào tên đền: bản đồ bay thẳng từ nhà tôi tới đền."
+ ],
+ "k3c": [
+  "khach",
+  "Phủ thờ Thánh Mẫu Liễu Hạnh, Đệ tứ Tứ Bất Tử, hợp cầu may mắn và tài lộc. Chọn thôi!"
+ ],
+ "k4": [
+  "khach",
+  "Tôi chọn ba nơi: Phủ Tây Hồ, Chùa Trấn Quốc và Đền Ngọc Sơn."
+ ],
+ "k5": [
+  "khach",
+  "Sắm lễ: hương, hoa, ngũ quả và một con gà luộc. Ba đền dùng chung một mâm."
+ ],
+ "k6": [
+  "khach",
+  "Tờ sớ tự soạn theo tên tuổi, địa chỉ của tôi. Tôi hẹn giờ khấn, rồi bấm chốt lễ."
+ ],
+ "k7": [
+  "khach",
+  "Xong rồi! Ba đền sẽ khấn cùng một giờ. Việc còn lại để đền lo."
+ ],
+ "t1": [
+  "thu_nhang",
+  "Tôi là thủ nhang Đền Ngọc Sơn. Đơn mới hiện ngay trên lịch lễ của đền."
+ ],
+ "t2": [
+  "thu_nhang",
+  "Tôi chỉ thấy lễ vật và giờ khấn, không thấy thông tin riêng của khách."
+ ],
+ "t3": [
+  "thu_nhang",
+  "Sáng mai đền đóng cửa làm lễ riêng, nên đơn này tôi từ chối và ghi rõ lý do. Khách sẽ được hoàn tiền."
+ ],
+ "ki1": [
+  "kiosk",
+  "Em là Lan, bán lễ ở kiosk cạnh đền. Đơn nào cần bày mâm, em thấy ngay."
+ ],
+ "ki2": [
+  "kiosk",
+  "Bày mâm lên ban thờ xong, em bấm: Mâm lễ đã bày."
+ ],
+ "n3": [
+  "dan_chuyen",
+  "Đến giờ hẹn, thiết bị tại ba đền cùng phát bài khấn, chụp ảnh và quay video mâm lễ."
+ ],
+ "n4": [
+  "dan_chuyen",
+  "Ba nơi bắt đầu gần như cùng một lúc, chỉ lệch nhau vài phần mười giây."
+ ],
+ "ki3": [
+  "kiosk",
+  "Ôi, hệ thống báo mâm ở Đền Ngọc Sơn thiếu gà luộc! Trí tuệ nhân tạo đã đếm từng món trên ảnh."
+ ],
+ "t4": [
+  "thu_nhang",
+  "Cảnh báo chỉ gửi cho người của đền này, để chúng tôi bổ sung ngay."
+ ],
+ "k8": [
+  "khach",
+  "Tôi xem lại: ba đền đã khấn đồng thời, có ảnh, có video và bảng kiểm tra mâm lễ."
+ ],
+ "k9": [
+  "khach",
+  "Thiếu món nào tôi cũng biết. Thật yên tâm."
+ ],
+ "a1": [
+  "admin",
+  "Tôi là Mai, quản trị hệ thống. Tôi theo dõi mọi thiết bị ở các đền: trực tuyến, pin, nhật ký."
+ ],
+ "a2": [
+  "admin",
+  "Bài khấn khách tự ghi âm phải qua kiểm duyệt trước khi phát tại đền."
+ ],
+ "a3": [
+  "admin",
+  "Đơn bị đền từ chối, tôi xác nhận hoàn tiền cho khách."
+ ],
+ "a4": [
+  "admin",
+  "Và khi cần, một nút khóa khẩn cấp dừng phát trên toàn hệ thống."
+ ],
+ "n5": [
+  "dan_chuyen",
+  "Linh Địa Việt đã chạy thử trên phần cứng thật: Raspberry Pi và điện thoại Android khấn đồng thời, lệch nhau 0,13 giây."
+ ],
+ "n6": [
+  "dan_chuyen",
+  "Trong video này, màn hình là ứng dụng thật. Thiết bị tại đền và thủ nhang được mô phỏng bằng hoạt hình."
+ ]
+}

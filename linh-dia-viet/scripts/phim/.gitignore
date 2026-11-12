@@ -1,0 +1,13 @@
+data/
+dev-work/
+devices.json
+ids.json
+*.png
+*.jpg
+*.mp4
+film/seg/
+film/build/
+film/voice/
+film/marks.json
+film/durations.json
+__pycache__/
