@@ -81,7 +81,8 @@ def temple_detail(slug: str, request: Request, lat: str = "", lng: str = "", db:
     here = (_coord(lat, 90), _coord(lng, 180))
     dist = distance_km(*here, temple.lat, temple.lng) if None not in here and temple.lat is not None else None
     return render(request, "public/temple.html", {
-        "temple": temple, "purposes": PURPOSES, "dist": dist, "deities": deities.for_temple(db, temple), "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
+        "temple": temple, "purposes": PURPOSES, "dist": dist, "home": here if dist is not None else None,
+        "deities": deities.for_temple(db, temple), "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
     })
 
 

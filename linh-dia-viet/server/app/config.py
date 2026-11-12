@@ -53,6 +53,7 @@ class Settings(BaseSettings):
     tts_provider: str = "edge"  # edge | google | fpt | fake
     tts_voice: str = "vi-VN-NamMinhNeural,-8%,-6Hz"  # giọng nam miền Bắc, đọc chậm & trầm hơn chút (Edge: tên,tốc độ,cao độ)
     google_tts_api_key: str = ""
+    google_maps_api_key: str = ""  # Maps JavaScript API (bản đồ trang đền); trống = OpenStreetMap. Giới hạn key theo tên miền.
     fpt_tts_api_key: str = ""
 
     # Thiết bị

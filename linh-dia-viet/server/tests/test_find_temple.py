@@ -83,7 +83,7 @@ def test_serif_font_has_vietnamese_fallback():
 
 def test_temple_page_has_map_intro_and_distance(user_client):
     page = user_client.get(f"{P}/den/phu-tay-ho", params=CAU_GIAY).text
-    assert 'class="ld-map"' in page and "openstreetmap.org/export/embed.html" in page and "marker=21.0572%2C105.8195" in page
+    assert 'id="ld-gmap"' in page and 'data-key=""' in page and 'data-lat="21.0572"' in page and "temple-map.js" in page
     assert "Giới thiệu" in page and "Tứ bất tử" in page and "Khách thường đến cầu" in page
     assert re.search(r"cách bạn \d+,\d km", page)
     assert "cách bạn" not in user_client.get(f"{P}/den/phu-tay-ho").text
@@ -96,3 +96,12 @@ def test_list_links_keep_location_and_history_restores_full_page(user_client):
     full = user_client.get(f"{P}/", params={"nhu_cau": "may-man", **CAU_GIAY},
                            headers={"HX-Request": "true", "HX-History-Restore-Request": "true"}).text
     assert "<h1>Dâng lễ từ xa</h1>" in full and 'hx-push-url="true"' in full and "cách 4.1 km" in full
+
+
+def test_temple_map_uses_google_when_key_set(user_client, monkeypatch):
+    from app.config import get_settings
+    monkeypatch.setattr(get_settings(), "google_maps_api_key", "test-key")
+    page = user_client.get(f"{P}/den/phu-tay-ho", params=CAU_GIAY).text
+    assert 'id="ld-gmap"' in page and 'data-key="test-key"' in page and "temple-map.js" in page
+    assert 'data-home-lat="21.0333"' in page
+    assert "data-home-lat" not in user_client.get(f"{P}/den/phu-tay-ho").text  # không có vị trí khách: không vẽ nhà

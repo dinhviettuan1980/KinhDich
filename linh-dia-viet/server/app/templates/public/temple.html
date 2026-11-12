@@ -7,9 +7,9 @@
   <div class="ld-muted">{{ temple.address }}{% if temple.province %}, {{ temple.province }}{% endif %}
     {% if dist is not none %} · <b class="ld-dist">cách bạn {{ ('%.1f'|format(dist) if dist < 100 else '%.0f'|format(dist))|replace('.', ',') }} km</b>{% endif %}</div>
   {% if temple.lat is not none %}
-  {% set d = 0.006 %}
-  <iframe class="ld-map" title="Bản đồ {{ temple.name }}" loading="lazy" referrerpolicy="no-referrer"
-    src="https://www.openstreetmap.org/export/embed.html?bbox={{ temple.lng - d * 1.6 }}%2C{{ temple.lat - d }}%2C{{ temple.lng + d * 1.6 }}%2C{{ temple.lat + d }}&amp;layer=mapnik&amp;marker={{ temple.lat }}%2C{{ temple.lng }}"></iframe>
+  <div id="ld-gmap" class="ld-map" data-key="{{ settings().google_maps_api_key }}" data-lat="{{ temple.lat }}" data-lng="{{ temple.lng }}"
+       data-name="{{ temple.name }}"{% if home %} data-home-lat="{{ home[0] }}" data-home-lng="{{ home[1] }}"{% endif %}></div>
+  <script src="{{ u('/static/temple-map.js') }}" defer></script>
   <p class="small" style="margin:6px 0 0"><a href="https://www.google.com/maps/dir/?api=1&destination={{ temple.lat }},{{ temple.lng }}" target="_blank" rel="noopener">Chỉ đường tới đây →</a></p>
   {% endif %}
 </div>
