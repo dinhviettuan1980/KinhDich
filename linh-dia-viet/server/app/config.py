@@ -77,6 +77,11 @@ class Settings(BaseSettings):
     scheduler_interval_seconds: float = 10.0
     scheduler_enabled: bool = True
 
+    # Bản đồ đình chùa: có key → Google Maps JS; để trống → Leaflet + nền OpenStreetMap (chỉ hợp cho dev/ít truy cập).
+    google_maps_api_key: str = ""
+    google_maps_map_id: str = "DEMO_MAP_ID"  # Map ID (bắt buộc cho Advanced Marker); production nên tạo Map ID riêng
+    places_autoload: bool = True  # seed nạp app/data/places_vn.json.gz khi snapshot đổi phiên bản
+
     # Seed
     demo_device_id: str = "pi-demo-01"
     demo_device_token: str = "dev-device-token-change-me"

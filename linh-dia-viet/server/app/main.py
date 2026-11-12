@@ -14,7 +14,7 @@ from . import devices
 from .device_bus import get_bus
 from .scheduler import Scheduler
 from .config import BASE_DIR, get_settings
-from .routers import admin, auth, booking, device_api, orders, public
+from .routers import admin, auth, booking, device_api, orders, places, public
 from .web import LoginRequired, render, u
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -46,7 +46,7 @@ def create_app() -> FastAPI:
     )
     p = settings.prefix
     app.mount(f"{p}/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-    for r in (public.router, auth.router, booking.router, orders.router, admin.router, device_api.router):
+    for r in (public.router, places.router, auth.router, booking.router, orders.router, admin.router, device_api.router):
         app.include_router(r, prefix=p)
 
     @app.get(f"{p}/manifest.webmanifest", include_in_schema=False)

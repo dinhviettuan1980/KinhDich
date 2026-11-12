@@ -4,6 +4,7 @@
     <nav class="ld-nav">
       {% if settings().home_url %}<a href="{{ settings().home_url }}">← {{ settings().home_label }}</a>{% endif %}
       <a href="{{ u('/') }}">Đền chùa</a>
+      <a href="{{ u('/ban-do') }}">Bản đồ</a>
       {% if user %}
         <a href="{{ u('/don') }}">Lịch sử lễ</a>
         <a href="{{ u('/tai-khoan') }}">Tài khoản</a>

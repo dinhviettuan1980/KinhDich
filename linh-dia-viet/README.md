@@ -68,6 +68,7 @@ Chạy API không qua Docker: `cd server && ../.venv/bin/alembic upgrade head &&
 | `MIN_LEAD_SECONDS` | `120` | giờ hẹn phải cách hiện tại ít nhất bao nhiêu giây |
 | `MAX_PRAYER_CHARS`, `MAX_AUDIO_SECONDS`, `MAX_UPLOAD_BYTES` | 3000 / 300 / 20 MB | giới hạn sớ, audio, file tải lên |
 | `TTS_PROVIDER`, `TTS_VOICE` | `edge`, `vi-VN-NamMinhNeural,-8%,-6Hz` (giọng nam miền Bắc; Edge: tên,tốc độ,cao độ) | `google` (`GOOGLE_TTS_API_KEY`), `fpt` (`FPT_TTS_API_KEY`), `fake` |
+| `GOOGLE_MAPS_API_KEY`, `GOOGLE_MAPS_MAP_ID` | trống, `DEMO_MAP_ID` | bản đồ đình chùa `/ban-do`: có key → Google Maps, trống → Leaflet + OSM (dev). Dữ liệu: `python -m app.places build`, xem [DECISIONS](docs/DECISIONS.md) |
 | `DEVICE_BUS` | `mqtt` | `memory` để chạy không cần broker |
 | `MQTT_HOST/PORT/USERNAME/PASSWORD/TLS` | `localhost:1883`, `ld-server` | kết nối broker của server |
 | `MQTT_PASSWD_FILE` | (compose đặt sẵn) | file passwd thiết bị dùng chung với mosquitto |

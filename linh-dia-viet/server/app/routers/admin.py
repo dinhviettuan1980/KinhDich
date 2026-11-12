@@ -13,7 +13,7 @@ from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from ..db import get_db
-from ..models import ROLES, Device, OfferingPackage, Temple, TempleStaff, User
+from ..models import ROLES, Device, OfferingPackage, SacredPlace, Temple, TempleStaff, User
 from ..security import check_csrf, hash_password
 from ..web import audit, can_manage_temple, flash, render, require_admin, require_backoffice, u
 
@@ -25,6 +25,23 @@ def slugify(text: str) -> str:
     text = text.replace("đ", "d").replace("Đ", "D")
     text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "den"
+
+
+def link_place(db: Session, temple: Temple, place_id: str) -> None:
+    """Gắn đền với một địa điểm của bản đồ (mỗi đền ≤ 1 địa điểm và ngược lại). Để trống = bỏ gắn."""
+    current = db.scalar(select(SacredPlace).where(SacredPlace.temple_id == temple.id))
+    target = None
+    if place_id:
+        if not place_id.isdigit() or (target := db.get(SacredPlace, int(place_id))) is None:
+            raise HTTPException(400, "Mã địa điểm không tồn tại")
+        if target.temple_id not in (None, temple.id):
+            raise HTTPException(409, "Địa điểm này đã gắn với đền khác")
+    if current is not None and current is not target:
+        current.temple_id = None
+        db.flush()
+    if target is not None:
+        target.temple_id = temple.id
+    db.flush()
 
 
 def _visible_temples(db: Session, user: User) -> list[Temple]:
@@ -68,14 +85,16 @@ def temple_form(temple_id: str, request: Request, db: Session = Depends(get_db),
             raise HTTPException(404)
         if not can_manage_temple(user, temple.id, roles=("temple_manager",)):
             raise HTTPException(403)
+    place = db.scalar(select(SacredPlace).where(SacredPlace.temple_id == temple.id)) if temple.id else None
     return render(request, "admin/temple_form.html", {
-        "t": temple, "devices": db.scalars(select(Device).order_by(Device.id)).all()})
+        "t": temple, "place": place, "devices": db.scalars(select(Device).order_by(Device.id)).all()})
 
 
 @router.post("/den/{temple_id}", dependencies=csrf)
 def temple_save(temple_id: str, request: Request, name: str = Form(...), address: str = Form(""),
                 province: str = Form(""), description: str = Form(""), deity: str = Form(""),
                 status: str = Form("active"), device_id: str = Form(""), slug: str = Form(""),
+                place_id: str = Form(""),
                 db: Session = Depends(get_db), user: User = Depends(require_backoffice)):
     if temple_id == "moi":
         if not user.is_admin:
@@ -97,6 +116,8 @@ def temple_save(temple_id: str, request: Request, name: str = Form(...), address
         temple.device_id = device_id or None
         temple.slug = slugify(slug or name)
     db.flush()
+    if user.is_admin:
+        link_place(db, temple, place_id.strip())
     audit(db, f"user:{user.id}", "temple.save", f"temple:{temple.id}", name=temple.name, device_id=temple.device_id)
     db.commit()
     flash(request, "Đã lưu đền.", "ok")

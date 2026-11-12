@@ -6,5 +6,6 @@
   <label for="q">Tìm đền, chùa, tỉnh thành</label>
   <input id="q" type="search" name="q" value="{{ q }}" placeholder="Ví dụ: Hà Nội, Ngọc Sơn…">
 </form>
+<p><a class="ld-btn secondary block" href="{{ u('/ban-do') }}">🗺 Bản đồ đình chùa cả nước</a></p>
 <div id="temples">{% include "public/_temple_list.html" %}</div>
 {% endblock %}

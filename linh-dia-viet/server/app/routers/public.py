@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..config import get_settings
 from ..db import get_db
-from ..models import Device, OfferingPackage, Temple, utcnow
+from ..models import Device, OfferingPackage, SacredPlace, Temple, utcnow
 from ..web import render, require_user
 
 router = APIRouter()
@@ -47,6 +47,7 @@ def temple_detail(slug: str, request: Request, db: Session = Depends(get_db), us
         raise HTTPException(404, "Không tìm thấy đền/chùa")
     return render(request, "public/temple.html", {
         "temple": temple, "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
+        "place": db.scalar(select(SacredPlace).where(SacredPlace.temple_id == temple.id, SacredPlace.status == "active")),
     })
 
 

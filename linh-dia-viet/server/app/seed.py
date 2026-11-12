@@ -81,6 +81,11 @@ def seed(db: Session) -> None:
             if not db.scalar(select(User).where(User.email == email)):
                 db.add(User(name=name, email=email, role=role, password_hash=hash_password(s.demo_staff_password),
                             staff_of=[TempleStaff(temple_id=first.id)]))
+    if s.places_autoload:
+        from .places import autoload
+        res = autoload(db)
+        if res:
+            log.info("Danh bạ đình chùa: %s", res)
     db.commit()
 
 

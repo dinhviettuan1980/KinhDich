@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Bản đồ đình chùa{% endblock %}
+{% block content %}
+<h1>Bản đồ đình chùa</h1>
+<p class="ld-muted">{{ "{:,}".format(total).replace(",", ".") }} đình, chùa, đền, miếu, phủ trên cả nước. Nơi có dấu
+  <span class="ld-badge on">★ nhận lễ từ xa</span> đặt lễ được ngay.</p>
+<div class="ld-card ld-map-tools">
+  <input id="ld-q" type="search" placeholder="Tìm tên đình chùa…" aria-label="Tìm tên đình chùa" autocomplete="off">
+  <div class="ld-row">
+    <select id="ld-kind" aria-label="Loại"><option value="">Tất cả loại</option></select>
+    <select id="ld-prov" aria-label="Tỉnh thành"><option value="">Cả nước</option></select>
+  </div>
+  <div class="ld-row">
+    <button type="button" class="ld-btn small" id="ld-near">📍 Gần tôi</button>
+    <label class="ld-check"><input type="checkbox" id="ld-book"> Chỉ nơi nhận lễ từ xa</label>
+  </div>
+</div>
+<div id="ld-map" class="ld-map" role="region" aria-label="Bản đồ"><p class="ld-muted" style="padding:16px">Đang tải bản đồ…</p></div>
+<p id="ld-count" class="ld-muted small"></p>
+<div id="ld-list"></div>
+<p class="ld-muted small">Dữ liệu địa điểm © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+  contributors (ODbL), <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>. Danh bạ còn thiếu và có thể sai,
+  rất mong được góp ý.</p>
+<script>
+window.LD_MAP = {
+  key: {{ settings().google_maps_api_key | tojson }},
+  mapId: {{ settings().google_maps_map_id | tojson }},
+  data: {{ u('/ban-do/diem.json') | tojson }},
+  detail: {{ u('/dia-diem/') | tojson }}
+};
+</script>
+<script src="{{ u('/static/map.js') }}" defer></script>
+{% endblock %}

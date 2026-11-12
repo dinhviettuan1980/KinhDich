@@ -10,6 +10,11 @@
   <label>Tỉnh/thành</label><input type="text" name="province" value="{{ t.province or '' }}">
   <label>Danh vị thần linh chính</label><input type="text" name="deity" value="{{ t.deity or '' }}">
   <label>Mô tả</label><textarea name="description">{{ t.description or '' }}</textarea>
+  {% if user.is_admin %}
+  <label>Mã địa điểm trên bản đồ</label>
+  <input type="number" name="place_id" min="1" value="{{ place.id if place else '' }}" placeholder="để trống = không hiện trên bản đồ">
+  <p class="ld-muted small">{% if place %}Đang gắn: <a href="{{ u('/dia-diem/' ~ place.id) }}">{{ place.name }}</a> ({{ place.province }}). {% endif %}Tìm nơi này trên <a href="{{ u('/ban-do') }}" target="_blank">Bản đồ</a>, mở trang chi tiết để xem mã.</p>
+  {% endif %}
   <label>Thiết bị</label>
   <select name="device_id"><option value="">— không —</option>
   {% for d in devices %}<option value="{{ d.id }}" {% if d.id == t.device_id %}selected{% endif %}>{{ d.id }} · {{ d.name }}</option>{% endfor %}</select>

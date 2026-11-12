@@ -104,3 +104,23 @@ Bốn vai trò trong `users.role`:
 - **Ghép Kinh Dịch:** sửa tối thiểu 1 file của repo Kinh Dịch (`src/pages/VanKhanPage.jsx`: thẻ link) + biến
   `VITE_LE_CHUA_URL`. Không đổi router/menu của Kinh Dịch.
 - **JSON trạng thái đơn** `/don/{id}/json` (chủ đơn/admin) cho script demo và app sau này.
+
+## Bản đồ đình chùa toàn quốc (`/ban-do`)
+- **Mục đích:** tra cứu công khai (không cần đăng nhập) để kéo khách vào; nơi nào là đền đối tác có thiết bị thì hiện
+  "★ Nhận lễ từ xa" và nút đặt lễ. Bảng `sacred_places` tách riêng khỏi `temples`; `sacred_places.temple_id` (unique) gắn
+  hai bảng, admin nhập "Mã địa điểm" ở form đền. Lần nạp đầu tự gắn theo tên (bỏ dấu, ưu tiên cùng tỉnh).
+- **Nguồn dữ liệu:** OpenStreetMap (ODbL) + Wikidata (CC0), mô tả lấy đoạn mở đầu Wikipedia tiếng Việt (CC BY-SA 4.0, lưu
+  URL bài gốc, hiện "Theo Wikipedia"). **Không** lấy dữ liệu Places của Google để lưu (điều khoản Google Maps Platform
+  chỉ cho lưu `place_id`), **không** chép bài báo/blog. Google chỉ dùng để *hiển thị* bản đồ và link chỉ đường.
+- **Lọc:** chỉ giữ Phật giáo + tín ngưỡng dân gian (chùa, đình, đền, miếu, phủ); bỏ nhà thờ, thánh thất, thánh đường, và
+  bỏ điểm không nhận ra loại từ tên/tôn giáo (tag thờ tự trên OSM hay gắn nhầm cho công ty, nhà văn hoá…). Gộp node+way
+  trùng tên trong 300 m; Wikidata gộp vào OSM theo QID hoặc trùng tên trong 600 m, còn lại thêm mới (OSM thiếu nhiều di
+  tích lớn, vd Đền Ngọc Sơn). Tỉnh gán bằng point-in-polygon trên ranh giới 34 tỉnh của OSM (ray casting, không cần
+  shapely). Snapshot 2026-11-12: 4.654 điểm, 153 có mô tả, phân bố lệch về TP.HCM/Hà Nội theo độ phủ của OSM.
+- **Hai bước:** `python -m app.places build --cache DIR` (tải Overpass + Wikidata + Wikipedia, ~3 phút) ghi
+  `app/data/places_vn.json.gz` (~190 KB, commit vào repo); seed tự nạp khi phiên bản snapshot đổi (`settings.places:snapshot`),
+  upsert theo `(source, source_id)`, bản ghi `edited` không bị ghi đè. Production không cần gọi dịch vụ ngoài.
+- **Hiển thị:** trình duyệt tải một lần mọi điểm dạng mảng gọn (`/ban-do/diem.json`, gzip ~85 KB) rồi tự lọc, tìm không dấu,
+  gom cụm và tính "Gần tôi". Có `GOOGLE_MAPS_API_KEY` → Google Maps JS (Advanced Marker cần Map ID) + Embed API ở trang chi
+  tiết; chưa có key → Leaflet + tile OpenStreetMap, **chỉ hợp dev/ít truy cập** (chính sách tile OSM cấm dùng nặng).
+  Trước khi ra mắt cần kiểm tra cách nền bản đồ thể hiện Hoàng Sa, Trường Sa.

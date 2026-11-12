@@ -1,7 +1,7 @@
 from datetime import date, datetime, timezone
 
 from sqlalchemy import false as sql_false
-from sqlalchemy import JSON, Boolean, Date, DateTime, ForeignKey, Integer, String, Text, TypeDecorator
+from sqlalchemy import JSON, Boolean, Date, DateTime, Float, ForeignKey, Integer, String, Text, TypeDecorator, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .db import Base
@@ -138,6 +138,49 @@ class Temple(Base):
     status: Mapped[str] = mapped_column(String(20), default="active")  # active | hidden
     device_id: Mapped[str | None] = mapped_column(ForeignKey("devices.id", ondelete="SET NULL"))
     device: Mapped[Device | None] = relationship()
+
+
+PLACE_KINDS = {"chua": "Chùa", "den": "Đền", "dinh": "Đình", "mieu": "Miếu", "phu": "Phủ", "khac": "Nơi thờ tự"}
+
+
+class SacredPlace(Base):
+    """Danh bạ đình chùa toàn quốc (chỉ để tra cứu trên bản đồ). Nhập từ OpenStreetMap (ODbL) + Wikidata (CC0),
+    mô tả lấy từ Wikipedia (CC BY-SA, ghi nguồn). Gắn `temple_id` khi địa điểm là đền nhận đặt lễ."""
+    __tablename__ = "sacred_places"
+    __table_args__ = (UniqueConstraint("source", "source_id"),)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    source: Mapped[str] = mapped_column(String(20))  # osm | wikidata | manual
+    source_id: Mapped[str] = mapped_column(String(40))  # vd "way/123", "Q1234"
+    name: Mapped[str] = mapped_column(String(200))
+    kind: Mapped[str] = mapped_column(String(10), default="khac", index=True)  # khoá của PLACE_KINDS
+    religion: Mapped[str] = mapped_column(String(30), default="")
+    lat: Mapped[float] = mapped_column(Float, index=True)
+    lng: Mapped[float] = mapped_column(Float, index=True)
+    province: Mapped[str] = mapped_column(String(100), default="", index=True)
+    address: Mapped[str] = mapped_column(String(300), default="")
+    phone: Mapped[str] = mapped_column(String(60), default="")
+    website: Mapped[str] = mapped_column(String(300), default="")
+    description: Mapped[str] = mapped_column(Text, default="")
+    description_source: Mapped[str] = mapped_column(String(300), default="")  # URL bài gốc (Wikipedia…)
+    image_url: Mapped[str] = mapped_column(String(500), default="")
+    wikidata: Mapped[str] = mapped_column(String(20), default="")
+    status: Mapped[str] = mapped_column(String(10), default="active")  # active | hidden
+    edited: Mapped[bool] = mapped_column(Boolean, default=False)  # admin đã sửa tay → lần nhập sau không ghi đè
+    temple_id: Mapped[int | None] = mapped_column(ForeignKey("temples.id", ondelete="SET NULL"), unique=True)
+    temple: Mapped[Temple | None] = relationship()
+    updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow, onupdate=utcnow)
+
+    @property
+    def kind_label(self) -> str:
+        return PLACE_KINDS.get(self.kind, PLACE_KINDS["khac"])
+
+    @property
+    def full_address(self) -> str:
+        """Địa chỉ + tỉnh, không lặp tỉnh khi địa chỉ OSM đã có sẵn (vd "…, Hà Nội")."""
+        addr, prov = self.address.strip(), self.province.strip()
+        if prov and prov.lower() not in addr.lower():
+            addr = f"{addr}, {prov}" if addr else prov
+        return addr
 
 
 class OfferingPackage(Base):

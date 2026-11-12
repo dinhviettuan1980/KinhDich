@@ -7,6 +7,7 @@
   <div class="ld-muted">{{ temple.address }}{% if temple.province %}, {{ temple.province }}{% endif %}</div>
   <p>{{ temple.description }}</p>
   {% if temple.deity %}<p><b>Thờ:</b> {{ temple.deity }}</p>{% endif %}
+  {% if place %}<p style="margin-bottom:0"><a href="{{ u('/dia-diem/' ~ place.id) }}">Giới thiệu, vị trí và chỉ đường →</a></p>{% endif %}
 </div>
 <h2>Lễ vật</h2>
 <div class="ld-card">

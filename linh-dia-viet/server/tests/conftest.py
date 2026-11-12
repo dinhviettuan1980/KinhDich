@@ -17,6 +17,7 @@ os.environ.update({
     "ADMIN_EMAIL": "admin@example.com",
     "ADMIN_PASSWORD": "admin12345",
     "PUBLIC_BASE_URL": "http://testserver",
+    "PLACES_AUTOLOAD": "false",
 })
 
 import pytest  # noqa: E402
