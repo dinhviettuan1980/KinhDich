@@ -8,6 +8,10 @@
 <form class="ld-card" method="post" action="{{ u('/admin/dia-diem/' ~ (p.id or 'moi')) }}">
   <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
   <label>Tên</label><input type="text" name="name" required value="{{ p.name or '' }}">
+  <label>Tên gọi khác <span class="ld-muted small">(cách nhau dấu ;, hiện "Còn gọi là" ở trang chi tiết)</span></label>
+  <input type="text" name="aliases" value="{{ p.aliases or '' }}" placeholder="vd: Đền Ông Hoàng Bảy; Đền Bảo Hà Lào Cai">
+  <label>Từ khoá tìm kiếm <span class="ld-muted small">(cách nhau dấu phẩy, chỉ dùng để tìm, không hiển thị)</span></label>
+  <input type="text" name="keywords" value="{{ p.keywords or '' }}" placeholder="vd: ông bảy, đền ông, cầu tài, sông hồng">
   <label>Loại</label>
   <select name="kind">{% for k, label in kinds.items() %}<option value="{{ k }}" {% if k == p.kind %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
   <label>Tỉnh/thành</label><input type="text" name="province" value="{{ p.province or '' }}">

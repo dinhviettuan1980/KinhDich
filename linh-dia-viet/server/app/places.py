@@ -190,6 +190,7 @@ def records_from_osm(elements: list[dict], provinces: ProvinceIndex | None) -> l
             "addr": _osm_address(t)[:300], "phone": (t.get("phone") or t.get("contact:phone") or "")[:60],
             "web": (t.get("website") or t.get("contact:website") or "")[:300],
             "wd": t.get("wikidata", ""), "wp": wp[3:] if wp.startswith("vi:") else "",
+            "alt": [a.strip() for k in OSM_ALIAS_TAGS for a in (t.get(k) or "").split(";") if a.strip()],
         })
     return out
 
@@ -236,6 +237,7 @@ def dedupe(records: list[dict], radius_km: float = 0.3) -> list[dict]:
             continue
         for key in ("addr", "phone", "web", "wd", "wp"):
             twin[key] = twin[key] or r[key]
+        _add_alt(twin, r.get("alt", []), r["name"])
     return kept
 
 
@@ -256,7 +258,111 @@ def merge(osm: list[dict], wd: list[dict], radius_km: float = 0.6) -> list[dict]
         target["wd"] = target["wd"] or w["sid"]
         target["wp"] = target["wp"] or w["wp"]
         target["img"] = target.get("img") or w.get("img", "")
+        _add_alt(target, w["name"])  # cùng QID nhưng Wikidata đặt tên khác (vd tên chữ Hán)
     return osm + extra
+
+
+OSM_ALIAS_TAGS = ("alt_name:vi", "alt_name", "old_name:vi", "old_name", "official_name:vi", "official_name",
+                  "loc_name", "short_name")
+# "Đền Bảo Hà, còn được gọi là Đền Ông Hoàng Bảy, …" → "Đền Ông Hoàng Bảy"
+_ALIAS_CUE = re.compile(
+    r"(?:còn (?:được )?(?:gọi|biết đến|có tên(?: (?:chữ|nôm|gọi))?(?: Hán)?)(?: là| với (?:cái )?tên(?: gọi)?(?: là)?)?"
+    r"|hay (?:còn )?(?:được )?gọi là|tên (?:gọi )?khác là|tên (?:chữ(?: Hán)?|nôm|dân gian|cũ) là"
+    r"|(?:thường|dân gian|người dân|nhân dân) (?:vẫn |hay )?(?:được )?gọi là|quen gọi là)\s+"
+    r"(.+?)(?=[,.;:()\"“”\[\]]|\s(?:là|nằm|ở|tọa|toạ|thuộc|được|có|tại|trên|do|vì|với|từ|thờ|xây)\s|$)",
+    re.I)
+_KIND_WORDS = ("chùa", "đền", "đình", "miếu", "phủ", "điện", "am", "nghè", "quán", "từ")
+
+
+def aliases_from_text(text: str) -> list[str]:
+    out = []
+    for m in _ALIAS_CUE.finditer(text or ""):
+        for part in re.split(r"\s+(?:hay|hoặc|và)\s+", m.group(1)):
+            a = part.strip(" '\"‘’“”")
+            first = a.split(" ", 1)[0]
+            if not a or not 1 <= len(a.split()) <= 6:
+                continue
+            if first[:1].islower():  # chỉ nhận tên riêng, hoặc "chùa X"/"đền X" viết thường
+                if first.lower() not in _KIND_WORDS or len(a.split()) < 2:
+                    continue
+                a = a[0].upper() + a[1:]
+            out.append(a)
+    return out
+
+
+def _add_alt(rec: dict, *names) -> None:
+    alt = rec.setdefault("alt", [])
+    for n in names:
+        alt.extend([n] if isinstance(n, str) else n)
+
+
+def finalize_aliases(records: list[dict], wd_aliases: dict[str, list[str]] | None = None, limit: int = 6) -> int:
+    """Gom tên gọi khác (tag OSM, alias Wikidata, tên bài Wikipedia, "còn gọi là …" trong mô tả) → `alias`
+    (chuỗi "; "), bỏ trùng (không dấu) với tên chính và giữa chúng. Trả về số điểm có tên khác."""
+    n = 0
+    for r in records:
+        cands = list(r.pop("alt", []))
+        cands += (wd_aliases or {}).get(r.get("wd") or "", [])
+        if r.get("wp"):
+            cands.append(re.sub(r"\s*\(.*\)\s*$", "", r["wp"]))
+        cands += aliases_from_text(r.get("desc", ""))
+        name_key, pos, keep = norm(r["name"]), {}, []
+        for a in cands:
+            a = re.sub(r"\s+", " ", a).strip()[:80]
+            k = norm(a)
+            if len(k) < 3 or k == name_key or EXCLUDED_NAME.search(a):
+                continue
+            if k in pos:  # trùng: giữ bản viết hoa chuẩn ("Đền Ông Hoàng Bảy" thay "đền ông hoàng bảy")
+                if keep[pos[k]] == keep[pos[k]].lower() and a != a.lower():
+                    keep[pos[k]] = a
+                continue
+            pos[k] = len(keep)
+            keep.append(a)
+        r["alias"] = "; ".join(keep[:limit])
+        n += bool(keep)
+    return n
+
+
+KEYWORDS_FILE = BASE_DIR / "data" / "places_keywords.json"
+
+
+def apply_keywords(records: list[dict], path: Path = KEYWORDS_FILE) -> int:
+    """Từ khoá soạn tay cho nơi nổi tiếng (vd Chùa Thiên Trù ← "chùa Hương"), khớp tên (bỏ dấu) + tỉnh."""
+    if not path.exists():
+        return 0
+    idx: dict[tuple[str, str], list[dict]] = {}
+    for r in records:
+        idx.setdefault((norm(r["name"]), r["prov"]), []).append(r)
+    n = 0
+    for e in json.loads(path.read_text("utf-8"))["places"]:
+        hits = idx.get((norm(e["name"]), e["prov"]), [])
+        if not hits:
+            log.warning("Từ khoá: không thấy %s (%s)", e["name"], e["prov"])
+        for r in hits:
+            r["kw"] = ", ".join(x for x in (r.get("kw", ""), e["kw"]) if x)
+            n += 1
+    return n
+
+
+WD_ALIAS_QUERY = """SELECT ?item ?alias WHERE {
+  VALUES ?item { %s }
+  ?item skos:altLabel ?alias. FILTER(lang(?alias)="vi")
+}"""
+
+
+def fetch_wikidata_aliases(qids: list[str], client, batch: int = 200, delay: float = 1.0) -> dict[str, list[str]]:
+    out: dict[str, list[str]] = {}
+    for i in range(0, len(qids), batch):
+        q = WD_ALIAS_QUERY % " ".join(f"wd:{x}" for x in qids[i:i + batch])
+
+        def go():
+            r = client.post(WDQS_URL, data={"query": q}, headers={"Accept": "application/sparql-results+json"})
+            r.raise_for_status()
+            return r.json()
+        for b in _retry(go)["results"]["bindings"]:
+            out.setdefault(b["item"]["value"].rsplit("/", 1)[-1], []).append(b["alias"]["value"])
+        time.sleep(delay)
+    return out
 
 
 def _http():
@@ -439,6 +545,7 @@ def merge_wikipedia(records: list[dict], wp: list[dict], radius_km: float = 1.5)
         for key in ("wd", "wp", "img", "desc", "desc_src"):
             if w.get(key) and not target.get(key):
                 target[key] = w[key]
+        _add_alt(target, w["name"])
     return records + extra
 
 
@@ -473,10 +580,15 @@ def build(out: Path = SNAPSHOT, cache: Path | None = None) -> dict:
         titles = sorted({r["wp"] for r in records if r["wp"] and not r.get("desc")})
         log.info("Tải %d tóm tắt Wikipedia…", len(titles))
         summaries = _cached_json(cache, "wiki.json", lambda: fetch_wiki_summaries(titles, client))
+        qids = sorted({r["wd"] for r in records if re.fullmatch(r"Q\d+", r.get("wd") or "")})
+        log.info("Tải tên gọi khác của %d mục Wikidata…", len(qids))
+        wd_alias = _cached_json(cache, "wd_aliases.json", lambda: fetch_wikidata_aliases(qids, client))
     for r in records:
         s = summaries.get(r["wp"])
         if s and not r.get("desc"):
             r["desc"], r["desc_src"] = s["desc"], s["url"]
+    log.info("%d điểm có tên gọi khác", finalize_aliases(records, wd_alias))
+    log.info("%d điểm có từ khoá soạn tay", apply_keywords(records))
     records.sort(key=lambda r: (r["prov"], norm(r["name"]), r["sid"]))
     snap = {"version": datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S"),
             "attribution": "© OpenStreetMap contributors (ODbL) · Wikidata (CC0) · Wikipedia (CC BY-SA 4.0)",
@@ -503,7 +615,7 @@ def load(db: Session, snap: dict) -> dict:
                       lat=r["lat"], lng=r["lng"], province=r.get("prov", ""), address=r.get("addr", ""),
                       phone=r.get("phone", ""), website=r.get("web", ""), wikidata=r.get("wd", ""),
                       description=r.get("desc", ""), description_source=r.get("desc_src", ""),
-                      image_url=r.get("img", ""))
+                      image_url=r.get("img", ""), aliases=r.get("alias", ""), keywords=r.get("kw", ""))
         p = existing.get((r["src"], r["sid"]))
         if p is None:
             db.add(SacredPlace(source=r["src"], source_id=r["sid"], **fields))

@@ -170,6 +170,8 @@ class SacredPlace(Base):
     website: Mapped[str] = mapped_column(String(300), default="")
     description: Mapped[str] = mapped_column(Text, default="")
     description_source: Mapped[str] = mapped_column(String(300), default="")  # URL bài gốc (Wikipedia…)
+    aliases: Mapped[str] = mapped_column(Text, default="")  # tên gọi khác, cách nhau "; " (vd "Đền Ông Hoàng Bảy")
+    keywords: Mapped[str] = mapped_column(Text, default="")  # từ khoá tìm kiếm (data/places_keywords.json; admin sửa → `edited`, snapshot không ghi đè)
     image_url: Mapped[str] = mapped_column(String(500), default="")
     wikidata: Mapped[str] = mapped_column(String(20), default="")
     status: Mapped[str] = mapped_column(String(10), default="active")  # active | hidden
@@ -189,6 +191,10 @@ class SacredPlace(Base):
         if prov and prov.lower() not in addr.lower():
             addr = f"{addr}, {prov}" if addr else prov
         return addr
+
+    @property
+    def alias_list(self) -> list[str]:
+        return [a.strip() for a in (self.aliases or "").split(";") if a.strip()]
 
 
 class OfferingPackage(Base):

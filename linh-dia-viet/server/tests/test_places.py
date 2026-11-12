@@ -251,3 +251,35 @@ def test_seo_meta_jsonld_and_sitemap(client, db):
     assert r.status_code == 200 and r.headers["content-type"].startswith("application/xml")
     assert f"{P}/ban-do</loc>" in r.text and f"{P}/dia-diem/{tq.id}</loc>" in r.text
     assert f"/dia-diem/{kl.id}</loc>" not in r.text
+
+
+def test_aliases_and_keywords_for_search():
+    assert places.aliases_from_text("Đền Bảo Hà, còn được gọi là Đền Ông Hoàng Bảy, là một ngôi đền") == ["Đền Ông Hoàng Bảy"]
+    assert places.aliases_from_text("Chùa Phi Tướng, còn gọi là chùa Tướng nằm ở tổ dân phố") == ["Chùa Tướng"]
+    assert places.aliases_from_text("còn gọi là núi Lạn Kha") == []  # không phải tên nơi thờ
+    recs = [{"name": "Đền Bảo Hà", "prov": "Lào Cai", "wd": "Q9", "wp": "Đền Bảo Hà (Lào Cai)",
+             "desc": "Đền Bảo Hà, còn được gọi là Đền Ông Hoàng Bảy, nằm bên sông Hồng.",
+             "alt": ["Đền Bảo Hà", "Bảo Hà Linh Từ"]}]
+    assert places.finalize_aliases(recs, {"Q9": ["đền ông hoàng bảy", "Đền Quan Hoàng Bảy"]}) == 1
+    assert recs[0]["alias"] == "Bảo Hà Linh Từ; Đền Ông Hoàng Bảy; Đền Quan Hoàng Bảy"  # bỏ trùng tên chính + trùng nhau
+    assert places.apply_keywords(recs) == 1 and "ông Hoàng Bảy" in recs[0]["kw"]
+    # bộ từ khoá soạn tay khớp được với snapshot thật
+    snap = places.read_snapshot()
+    thien_tru = next(p for p in snap["places"] if p["name"] == "Chùa Thiên Trù" and p["prov"] == "Hà Nội")
+    assert "chùa Hương" in thien_tru["kw"]
+
+
+def test_points_carry_aliases_keywords_and_admin_edits_them(admin_client, client, db):
+    places.load(db, _snap(alias="Khai Quốc tự", kw="hồ Tây"))
+    db.commit()
+    pt = next(x for x in client.get(f"{P}/ban-do/diem.json").json()["points"] if x[4] == "Chùa Trấn Quốc")
+    assert pt[7] == "Khai Quốc tự" and pt[9] == "hồ Tây" and "chua co nhat thang long" in pt[8]
+    tq = db.scalar(select(SacredPlace).where(SacredPlace.source_id == "way/2"))
+    assert "Còn gọi là: <b>Khai Quốc tự</b>" in client.get(f"{P}/dia-diem/{tq.id}").text
+    form = {"csrf_token": admin_client.csrf, "name": tq.name, "kind": "chua", "province": "Hà Nội", "lat": "21.048",
+            "lng": "105.837", "status": "active", "aliases": "Khai Quốc tự;\nAn Quốc tự", "keywords": "hồ Tây, cổ nhất"}
+    assert admin_client.post(f"{P}/admin/dia-diem/{tq.id}", data=form, follow_redirects=False).status_code == 303
+    db.expire_all()
+    p = db.get(SacredPlace, tq.id)
+    assert p.aliases == "Khai Quốc tự; An Quốc tự" and p.keywords == "hồ Tây, cổ nhất" and p.edited
+    assert "Chùa Trấn Quốc" in admin_client.get(f"{P}/admin/dia-diem", params={"q": "An Quốc"}).text

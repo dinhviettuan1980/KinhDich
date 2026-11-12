@@ -132,3 +132,10 @@ Bốn vai trò trong `users.role`:
   địa chỉ, ảnh, `sameAs` Wikidata/Wikipedia). `{prefix}/sitemap.xml` liệt kê `/ban-do` và mọi địa điểm đang hiện (trang
   đền/đặt lễ cần đăng nhập nên không đưa vào). robots.txt ở gốc domain thuộc site Kinh Dịch → khai báo sitemap trực tiếp
   trong Google Search Console.
+- **Tìm kiếm:** mỗi điểm có `aliases` (tên gọi khác, tự gom: tag OSM `alt_name/old_name/official_name…`, alias
+  Wikidata, tên bài Wikipedia, câu "còn gọi là …" trong mô tả) và `keywords` (soạn tay trong
+  `app/data/places_keywords.json` cho nơi nổi tiếng mà tên bản đồ khác tên dân gian, vd Chùa Thiên Trù ← "chùa Hương",
+  Đền Bảo Hà ← "ông Hoàng Bảy"; admin sửa từng điểm). Trình duyệt chấm điểm: mỗi từ gõ khớp đầu từ trong tên (10) /
+  tên khác + từ khoá (8) / tỉnh + tên tắt (5) / địa chỉ + 400 ký tự đầu mô tả (2), cộng thêm khi khớp nguyên cụm, hai từ
+  liền nhau, trọn tên tỉnh, trọn một từ khoá, đúng cả dấu; ít hơn 5 kết quả thì nới (sai 1 chữ cái, thiếu 1 từ).
+  `diem.json` ~130 KB gzip.

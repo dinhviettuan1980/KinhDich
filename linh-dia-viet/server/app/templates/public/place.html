@@ -31,6 +31,7 @@
 <div class="ld-card">
   {% if p.image_url %}<figure class="ld-place-img"><img src="{{ p.image_url }}" alt="{{ p.name }}" loading="lazy">
     <figcaption class="ld-muted small">Ảnh: <a href="https://www.wikidata.org/wiki/{{ p.wikidata }}" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>{% endif %}
+  {% if p.alias_list %}<p style="margin-top:0">Còn gọi là: {% for a in p.alias_list %}<b>{{ a }}</b>{{ ", " if not loop.last }}{% endfor %}</p>{% endif %}
   <div class="ld-muted">{{ p.full_address }}</div>
   {% if p.description %}
     {% for para in p.description.split('\n') if para.strip() %}<p>{{ para }}</p>{% endfor %}

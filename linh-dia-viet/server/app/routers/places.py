@@ -1,6 +1,7 @@
 """Bản đồ đình chùa toàn quốc (công khai, không cần đăng nhập): tra cứu → nơi nào nhận lễ từ xa thì đặt lễ ngay."""
 import gzip
 import json
+import re
 import secrets
 from xml.sax.saxutils import escape
 
@@ -11,11 +12,13 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..db import get_db
 from ..models import PLACE_KINDS, SacredPlace, Temple, User
+from ..places import norm
 from ..security import check_csrf
 from ..web import abs_url, audit, current_user, flash, render, require_admin, u
 from .public import device_online
 
 router = APIRouter()
+SEARCH_DESC_CHARS = 400  # đoạn mô tả đưa vào chỉ mục tìm kiếm phía trình duyệt
 
 
 def bookable(temple: Temple | None) -> int:
@@ -38,7 +41,11 @@ def map_points(request: Request, db: Session = Depends(get_db)):
                       .where(SacredPlace.status == "active").order_by(SacredPlace.id)).all()
     provinces = sorted({p.province for p in rows if p.province})
     pidx = {name: i for i, name in enumerate(provinces)}
-    points = [[p.id, p.lat, p.lng, p.kind, p.name, pidx.get(p.province, -1), bookable(p.temple)] for p in rows]
+    # [7] tên gọi khác, [8] chuỗi tìm kiếm phụ đã bỏ dấu (địa chỉ + đầu mô tả: gõ "mẫu", "trần hưng đạo", tên
+    # xã/phường… cũng ra; xếp hạng thấp), [9] từ khoá (vd Chùa Thiên Trù ← "chùa Hương"; xếp ngang tên gọi khác)
+    points = [[p.id, p.lat, p.lng, p.kind, p.name, pidx.get(p.province, -1), bookable(p.temple), p.aliases or "",
+               norm(" ".join((p.address or "", (p.description or "")[:SEARCH_DESC_CHARS]))), p.keywords or ""]
+              for p in rows]
     body = json.dumps({"kinds": PLACE_KINDS, "provinces": provinces, "points": points},
                       ensure_ascii=False, separators=(",", ":")).encode()
     headers = {"Cache-Control": "public, max-age=300", "Vary": "Accept-Encoding"}
@@ -81,6 +88,8 @@ def place_jsonld(p: SacredPlace) -> dict:
                     **({"streetAddress": p.address} if p.address else {}),
                     **({"addressRegion": p.province} if p.province else {})},
     }
+    if p.alias_list:
+        data["alternateName"] = p.alias_list
     if p.description:
         data["description"] = meta_description(p, 300)
     if p.image_url:
@@ -120,7 +129,8 @@ def admin_places(request: Request, q: str = "", prov: str = "", kind: str = "", 
     stmt = select(SacredPlace).options(joinedload(SacredPlace.temple))
     if q.strip():
         like = f"%{q.strip()}%"
-        cond = [SacredPlace.name.ilike(like), SacredPlace.address.ilike(like)]
+        cond = [SacredPlace.name.ilike(like), SacredPlace.address.ilike(like), SacredPlace.aliases.ilike(like),
+                SacredPlace.keywords.ilike(like)]
         if q.strip().isdigit():
             cond.append(SacredPlace.id == int(q.strip()))
         stmt = stmt.where(or_(*cond))
@@ -160,6 +170,7 @@ def admin_place_save(place_id: str, request: Request, name: str = Form(...), kin
                      province: str = Form(""), address: str = Form(""), lat: float = Form(...), lng: float = Form(...),
                      phone: str = Form(""), website: str = Form(""), description: str = Form(""),
                      description_source: str = Form(""), image_url: str = Form(""), status: str = Form("active"),
+                     aliases: str = Form(""), keywords: str = Form(""),
                      db: Session = Depends(get_db), user: User = Depends(require_admin)):
     if not (8.0 <= lat <= 23.5 and 102.0 <= lng <= 117.5):
         raise HTTPException(400, "Toạ độ nằm ngoài Việt Nam (vĩ độ 8–23,5; kinh độ 102–117,5)")
@@ -179,6 +190,8 @@ def admin_place_save(place_id: str, request: Request, name: str = Form(...), kin
     place.phone, place.website = phone.strip()[:60], website.strip()[:300]
     place.description, place.description_source = description.strip(), description_source.strip()[:300]
     place.image_url, place.status = image_url.strip()[:500], status if status in ("active", "hidden") else "hidden"
+    place.aliases = "; ".join(a.strip() for a in re.split(r"[;\n]", aliases) if a.strip())[:1000]
+    place.keywords = ", ".join(k.strip() for k in re.split(r"[,;\n]", keywords) if k.strip())[:1000]
     place.edited = True  # lần nhập snapshot sau không ghi đè
     db.flush()
     audit(db, f"user:{user.id}", "place.save", f"place:{place.id}", name=place.name, status=place.status)

@@ -160,11 +160,93 @@
   }
 
   /* ---- Lọc + danh sách ---- */
-  function filtered() {
-    var q = plain($("ld-q").value.trim()), k = $("ld-kind").value, pv = $("ld-prov").value, b = $("ld-book").checked;
-    return all.filter(function (p) {
-      return (!k || p.k === k) && (!pv || p.pv === pv) && (!b || p.b === 2) && (!q || p.q.indexOf(q) >= 0);
+  /* Tìm kiếm: không dấu, không cần đúng thứ tự, mỗi từ gõ khớp đầu một từ trong tên / tên gọi khác / tỉnh /
+     từ khoá + địa chỉ + mô tả (trọng số giảm dần); khớp nguyên cụm được cộng thêm. Ít kết quả quá → nới:
+     cho sai 1 chữ cái (từ ≥ 4 ký tự) và thiếu 1 từ (khi gõ ≥ 3 từ). */
+  var W = { n: 10, a: 8, pv: 5, x: 2 }, lowRaw = "";
+  var PV_ALIAS = { "Hồ Chí Minh": "tp hcm tphcm sai gon saigon thanh pho", "Hà Nội": "hn thu do thang long",
+    "Huế": "thua thien co do", "Đà Nẵng": "dn", "Hải Phòng": "hp" };
+  function words(s) { return plain(s).split(/[^a-z0-9]+/).filter(Boolean); }
+  function near1(a, b) {  // khoảng cách sửa ≤ 1
+    if (a === b) return true;
+    var la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > 1) return false;
+    var i = 0, j = 0, diff = 0;
+    while (i < la && j < lb) {
+      if (a[i] === b[j]) { i++; j++; continue; }
+      if (++diff > 1) return false;
+      if (la > lb) i++; else if (lb > la) j++; else { i++; j++; }
+    }
+    return diff + (la - i) + (lb - j) <= 1;
+  }
+  function tokScore(t, list, fuzzy) {  // 1 = trùng từ, .7 = khớp đầu từ, .45 = sai 1 chữ
+    var best = 0;
+    for (var i = 0; i < list.length; i++) {
+      var w = list[i];
+      if (w === t) return 1;
+      if (best < 0.7 && w.lastIndexOf(t, 0) === 0) best = 0.7;
+      else if (fuzzy && !best && t.length >= 4 && near1(t, w.slice(0, Math.max(t.length, Math.min(w.length, t.length + 1))))) best = 0.45;
+    }
+    return best;
+  }
+  function score(p, toks, phrase, fuzzy) {
+    var s = 0, miss = 0, viaAlias = false;
+    for (var i = 0; i < toks.length; i++) {
+      var t = toks[i], best = 0, f, v;
+      for (f in W) {
+        if (f === "x" && fuzzy) continue;  // không đoán sai chính tả trong mô tả (quá nhiễu)
+        v = tokScore(t, p.w[f], fuzzy) * W[f];
+        if (v > best) { best = v; if (f === "a" && v > tokScore(t, p.w.n, fuzzy) * W.n) viaAlias = true; }
+      }
+      if (!best) miss++; else s += best;
+    }
+    if (miss > (fuzzy && toks.length >= 3 ? 1 : 0)) return 0;
+    // từ gõ đứng liền nhau đúng như trong tên / tên gọi khác ("đền hùng phú thọ": "den hung" ∈ "Đền Hùng")
+    for (i = 0; i + 1 < toks.length; i++) {
+      var bg = toks[i] + " " + toks[i + 1];
+      if ((" " + p.s.n + " ").indexOf(" " + bg + " ") >= 0) s += 6;
+      else if ((" " + p.s.a + " ").indexOf(" " + bg + " ") >= 0) s += 4;
+    }
+    if (p.s.pv && (" " + phrase + " ").indexOf(" " + p.s.pv + " ") >= 0) s += 12;  // gõ trọn tên tỉnh
+    for (i = 0; i < p.it.length; i++) {  // gõ trọn một tên gọi khác / từ khoá ("chùa hương" → Chùa Thiên Trù)
+      if (p.it[i].w.join(" ") === phrase) { s += 20; viaAlias = true; break; }
+    }
+    if (lowRaw && p.lo.indexOf(lowRaw) >= 0) s += 12;  // đúng cả dấu: "bái đính" > "Bai Dinh", "yên tử" > "Yên Từ"
+    else if (lowRaw && p.loa.indexOf(lowRaw) >= 0) s += 8;
+    if (p.s.n.indexOf(phrase) >= 0) s += p.s.n.lastIndexOf(phrase, 0) === 0 || p.s.n.indexOf(" " + phrase) >= 0 ? 40 : 25;
+    else if (p.s.a.indexOf(phrase) >= 0) { s += 30; viaAlias = true; }
+    else if (toks.length > 1 && p.s.x.indexOf(phrase) >= 0) s += 8;
+    p.why = viaAlias ? whyItem(p, toks) : "";
+    return s - miss * 15 + (p.b === 2 ? 3 : 0) - p.w.n.length * 0.2;
+  }
+  function whyItem(p, toks) {  // cụm tên gọi khác / từ khoá khớp nhiều từ gõ nhất
+    var best = null, bn = 0;
+    p.it.forEach(function (o) {
+      var c = 0; toks.forEach(function (t) { if (tokScore(t, o.w, false)) c++; });
+      if (c > bn) { bn = c; best = o; }
     });
+    return best ? best.l + ": " + best.t : "";
+  }
+  function filtered() {
+    var raw = $("ld-q").value.trim(), toks = words(raw), phrase = toks.join(" ");
+    lowRaw = raw.toLowerCase().normalize("NFC").replace(/\s+/g, " ");
+    var k = $("ld-kind").value, pv = $("ld-prov").value, b = $("ld-book").checked;
+    var base = all.filter(function (p) { return (!k || p.k === k) && (!pv || p.pv === pv) && (!b || p.b === 2); });
+    if (!toks.length) { base.forEach(function (p) { p.why = ""; }); return base; }
+    function run(fuzzy, skip, out) {
+      base.forEach(function (p) {
+        if (skip[p.id]) return;
+        var s = score(p, toks, phrase, fuzzy);
+        if (s > 0) { p.sc = s + (fuzzy ? 0 : 100); out.push(p); }  // kết quả khớp chặt luôn đứng trước
+      });
+      return out;
+    }
+    var hits = run(false, {}, []);
+    if (hits.length < 5) {
+      var have = {}; hits.forEach(function (p) { have[p.id] = 1; });
+      run(true, have, hits);
+    }
+    return hits.sort(function (x, y) { return y.sc - x.sc || (x.n < y.n ? -1 : 1); });
   }
   function active() { return $("ld-q").value.trim() || $("ld-kind").value || $("ld-prov").value || $("ld-book").checked || me; }
 
@@ -178,7 +260,9 @@
     lastList = rows;
     box.innerHTML = rows.map(function (p, i) {
       return '<div class="ld-card ld-place-row"><div class="ld-spread"><span><a href="' + detailUrl(p) + '"><b>' + esc(p.n) + "</b></a>" +
-        (p.b === 2 ? ' <span class="ld-badge on">★ Nhận lễ</span>' : "") + '<br><span class="ld-muted small">' + esc(kinds[p.k] || "") +
+        (p.b === 2 ? ' <span class="ld-badge on">★ Nhận lễ</span>' : "") +
+        (p.why ? '<br><span class="small">' + esc(p.why) + "</span>" : "") +
+        '<br><span class="ld-muted small">' + esc(kinds[p.k] || "") +
         (p.pv ? " · " + esc(p.pv) : "") + (me ? " · " + fmtKm(p.d) : "") + "</span></span>" +
         '<button type="button" class="ld-btn small secondary" data-i="' + i + '">Xem</button></div></div>';
     }).join("") + (list.length > 50 ? '<p class="ld-muted small">Hiện 50 địa điểm đầu, hãy tìm cụ thể hơn để thu hẹp.</p>' : "");
@@ -227,7 +311,17 @@
       kinds = d.kinds;
       var counts = {}, provCounts = {};
       all = d.points.map(function (a) {
-        var p = { id: a[0], lat: a[1], lng: a[2], k: a[3], n: a[4], pv: d.provinces[a[5]] || "", b: a[6], q: plain(a[4]) };
+        var p = { id: a[0], lat: a[1], lng: a[2], k: a[3], n: a[4], pv: d.provinces[a[5]] || "", b: a[6] };
+        var x = a[8] || "", al = a[7] || "", kw = a[9] || "";  // x đã bỏ dấu phía server
+        // tên gọi khác + từ khoá: từng cụm riêng, để hiện đúng cụm đã khớp dưới kết quả
+        p.it = al.split(";").map(function (t) { return { t: t.trim(), l: "Còn gọi" }; })
+          .concat(kw.split(/[,;]/).map(function (t) { return { t: t.trim(), l: "Từ khoá" }; }))
+          .filter(function (o) { return o.t; });
+        p.it.forEach(function (o) { o.w = words(o.t); });
+        p.w = { n: words(p.n), a: words(al + " " + kw), pv: words(p.pv + " " + (PV_ALIAS[p.pv] || "")), x: x ? x.split(" ") : [] };
+        p.s = { n: p.w.n.join(" "), a: p.it.map(function (o) { return o.w.join(" "); }).join(" | "), x: x, pv: words(p.pv).join(" ") };
+        p.lo = p.n.toLowerCase().normalize("NFC");
+        p.loa = p.it.map(function (o) { return o.t.toLowerCase().normalize("NFC"); }).join(" | ");
         counts[p.k] = (counts[p.k] || 0) + 1; if (p.pv) provCounts[p.pv] = (provCounts[p.pv] || 0) + 1;
         return p;
       });
