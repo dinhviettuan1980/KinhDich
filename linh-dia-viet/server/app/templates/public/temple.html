@@ -5,10 +5,24 @@
 <p>{% if not temple.device_id %}<span class="ld-badge">Chưa nhận lễ từ xa</span>{% elif online %}<span class="ld-badge on">● Thiết bị đang trực tuyến</span>{% else %}<span class="ld-badge off">Thiết bị ngoại tuyến</span>{% endif %}</p>
 <div class="ld-card">
   <div class="ld-muted">{{ temple.address }}{% if temple.province %}, {{ temple.province }}{% endif %}
-    {% if temple.lat is not none %} · <a href="https://www.google.com/maps/search/?api=1&query={{ temple.lat }},{{ temple.lng }}" target="_blank" rel="noopener">Xem bản đồ</a>{% endif %}</div>
-  {% if temple.purpose_list %}<div class="ld-chips small">{% for k in temple.purpose_list %}<span class="ld-badge">Cầu {{ purposes[k]|lower }}</span>{% endfor %}</div>{% endif %}
-  <p>{{ temple.description }}</p>
+    {% if dist is not none %} · <b class="ld-dist">cách bạn {{ ('%.1f'|format(dist) if dist < 100 else '%.0f'|format(dist))|replace('.', ',') }} km</b>{% endif %}</div>
+  {% if temple.lat is not none %}
+  {% set d = 0.006 %}
+  <iframe class="ld-map" title="Bản đồ {{ temple.name }}" loading="lazy" referrerpolicy="no-referrer"
+    src="https://www.openstreetmap.org/export/embed.html?bbox={{ temple.lng - d * 1.6 }}%2C{{ temple.lat - d }}%2C{{ temple.lng + d * 1.6 }}%2C{{ temple.lat + d }}&amp;layer=mapnik&amp;marker={{ temple.lat }}%2C{{ temple.lng }}"></iframe>
+  <p class="small" style="margin:6px 0 0"><a href="https://www.google.com/maps/dir/?api=1&destination={{ temple.lat }},{{ temple.lng }}" target="_blank" rel="noopener">Chỉ đường tới đây →</a></p>
+  {% endif %}
+</div>
+<h2>Giới thiệu</h2>
+<div class="ld-card" id="gioi-thieu">
   {% if temple.deity %}<p><b>Thờ:</b> {{ temple.deity }}</p>{% endif %}
+  <p>{{ temple.description }}</p>
+  {% for d in deities %}
+  <div class="ld-deity-box"><b>{{ d.name }}</b>{% if d.aliases %} <span class="ld-muted">({{ d.aliases }})</span>{% endif %}
+    <div>{{ d.role }}</div><div class="ld-muted small">{{ d.group_name }} · nơi thờ chính: {{ d.places }}</div></div>
+  {% endfor %}
+  {% if temple.purpose_list %}<p style="margin-bottom:4px"><b>Khách thường đến cầu:</b></p>
+  <div class="ld-chips">{% for k in temple.purpose_list %}<span class="ld-badge warn">{{ purposes[k] }}</span>{% endfor %}</div>{% endif %}
 </div>
 <h2>Lễ vật</h2>
 <div class="ld-card">

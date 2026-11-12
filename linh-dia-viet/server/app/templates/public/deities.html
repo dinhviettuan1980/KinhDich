@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Thần thánh Việt Nam{% endblock %}
+{% block content %}
+<h1>Thần thánh Việt Nam</h1>
+<p class="ld-muted">Tra cứu các vị thần, thánh tiêu biểu: vai trò, nơi thờ chính, tỉnh thành.</p>
+<form class="ld-card" method="get">
+  <label for="q">Tìm theo tên, vai trò, nơi thờ</label>
+  <input id="q" type="search" name="q" value="{{ q }}" placeholder="Ví dụ: Liễu Hạnh, Thánh Gióng, Nam Định…">
+  <select name="nhom" onchange="this.form.submit()" style="margin-top:8px"><option value="">Mọi nhóm</option>
+  {% for k, v in groups.items() %}<option value="{{ k }}" {% if k == nhom %}selected{% endif %}>{{ k }} · {{ v }}</option>{% endfor %}</select>
+</form>
+<p class="ld-muted">{{ deities|length }} vị</p>
+{% for d in deities %}
+<div class="ld-card ld-deity">
+  <div class="ld-spread"><h3 style="margin:0">{{ d.name }}</h3><span class="ld-badge">{{ d.group_code }}</span></div>
+  {% if d.aliases %}<div class="ld-muted small">Tên khác: {{ d.aliases }}</div>{% endif %}
+  <p style="margin:6px 0">{{ d.role }}</p>
+  <div class="ld-muted small">Nơi thờ chính: {{ d.places }}{% if d.province_new %} · {{ d.province_new }}{% endif %}</div>
+  <p class="small" style="margin:6px 0 0"><a href="{{ u('/') }}?q={{ d.name|urlencode }}">Tìm đền thờ →</a></p>
+</div>
+{% else %}<p class="ld-muted">Không tìm thấy.</p>{% endfor %}
+{% endblock %}

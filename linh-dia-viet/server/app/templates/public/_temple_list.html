@@ -3,7 +3,7 @@
 {% for t in temples %}
   <div class="ld-card">
     <div class="ld-spread">
-      <h3><a href="{{ u('/den/' ~ t.slug) }}">{{ t.name }}</a></h3>
+      <h3><a href="{{ u('/den/' ~ t.slug) }}{% if dist %}?lat={{ lat }}&amp;lng={{ lng }}{% endif %}">{{ t.name }}</a></h3>
       {% if online[t.id] %}<span class="ld-badge on">● Đang trực tuyến</span>{% else %}<span class="ld-badge off">Ngoại tuyến</span>{% endif %}
     </div>
     <div class="ld-muted">{{ t.address }}{% if t.province %}, {{ t.province }}{% endif %}

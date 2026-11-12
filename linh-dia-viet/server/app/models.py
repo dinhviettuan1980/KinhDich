@@ -154,6 +154,31 @@ PURPOSES = {
 }
 
 
+class Deity(Base):
+    """Danh mục thần, thánh trong tín ngưỡng Việt (nhập từ bảng tính, giữ ID gốc). Độ tin cậy "Thấp" = cần xác minh,
+    không hiện công khai."""
+    __tablename__ = "deities"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=False)
+    name: Mapped[str] = mapped_column(String(200))
+    aliases: Mapped[str] = mapped_column(String(300), default="")
+    group_code: Mapped[str] = mapped_column(String(10), default="")
+    group_name: Mapped[str] = mapped_column(String(200), default="")
+    role: Mapped[str] = mapped_column(Text, default="")
+    places: Mapped[str] = mapped_column(Text, default="")  # nơi thờ chính
+    province_old: Mapped[str] = mapped_column(String(200), default="")
+    province_new: Mapped[str] = mapped_column(String(200), default="")  # sau sáp nhập 2025
+    reliability: Mapped[str] = mapped_column(String(40), default="")
+    note: Mapped[str] = mapped_column(Text, default="")
+
+    @property
+    def public(self) -> bool:
+        return not self.reliability.lower().startswith("thấp")
+
+    @property
+    def names(self) -> list[str]:
+        return [self.name] + [a.strip() for a in self.aliases.replace(";", ",").split(",") if a.strip()]
+
+
 class OfferingPackage(Base):
     """Một món lễ vật bán lẻ (hương, hoa, gà luộc…): khách chọn số lượng từng món, không bán theo combo."""
     __tablename__ = "offering_packages"

@@ -27,7 +27,8 @@ TEMPLES = [
          purposes="may-man,tai-loc,binh-an", lat=10.6806, lng=105.0806),
     dict(slug="phu-tay-ho", name="Phủ Tây Hồ", address="Đặng Thai Mai, Tây Hồ", province="Hà Nội",
          deity="Thánh Mẫu Liễu Hạnh",
-         description="Phủ thờ Mẫu trên bán đảo Hồ Tây, đông người đi lễ đầu năm cầu may.",
+         description="Phủ thờ Thánh Mẫu Liễu Hạnh, một trong Tứ bất tử của tín ngưỡng Việt, nằm trên bán đảo nhỏ "
+         "nhô ra Hồ Tây. Đầu năm, ngày rằm và mùng một, người Hà Nội đến đây cầu may mắn, tài lộc và bình an.",
          purposes="may-man,tai-loc,tinh-duyen", lat=21.0572, lng=105.8195),
     dict(slug="den-ba-chua-kho", name="Đền Bà Chúa Kho", address="Cổ Mễ, Vũ Ninh", province="Bắc Ninh",
          deity="Bà Chúa Kho",

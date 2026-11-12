@@ -54,7 +54,7 @@ def test_distance_km():
 
 def test_temple_page_shows_purposes_and_map(user_client):
     page = user_client.get(f"{P}/den/phu-tay-ho").text
-    assert "Cầu may mắn" in page and "Cầu tài lộc" in page and "Xem bản đồ" in page
+    assert "May mắn" in page and "Tài lộc" in page and "Chỉ đường tới đây" in page
 
 
 def test_admin_saves_purposes_and_coords(admin_client, db):
@@ -79,3 +79,20 @@ def test_serif_font_has_vietnamese_fallback():
     css = (Path(__file__).resolve().parents[1] / "app" / "static" / "ld.css").read_text(encoding="utf-8")
     stacks = re.findall(r'font-family:\s*"Noto Serif",([^;]+);', css)
     assert stacks and all("Georgia" not in s and "Cambria" in s for s in stacks)
+
+
+def test_temple_page_has_map_intro_and_distance(user_client):
+    page = user_client.get(f"{P}/den/phu-tay-ho", params=CAU_GIAY).text
+    assert 'class="ld-map"' in page and "openstreetmap.org/export/embed.html" in page and "marker=21.0572%2C105.8195" in page
+    assert "Giới thiệu" in page and "Tứ bất tử" in page and "Khách thường đến cầu" in page
+    assert re.search(r"cách bạn \d+,\d km", page)
+    assert "cách bạn" not in user_client.get(f"{P}/den/phu-tay-ho").text
+
+
+def test_list_links_keep_location_and_history_restores_full_page(user_client):
+    part = user_client.get(f"{P}/", params={"nhu_cau": "may-man", **CAU_GIAY}, headers={"HX-Request": "true"}).text
+    assert "/den/phu-tay-ho?lat=21.0333&amp;lng=105.7900" in part and "<h1>" not in part
+    # quay lại từ trang đền: htmx xin cả trang để dựng lại kết quả lọc
+    full = user_client.get(f"{P}/", params={"nhu_cau": "may-man", **CAU_GIAY},
+                           headers={"HX-Request": "true", "HX-History-Restore-Request": "true"}).text
+    assert "<h1>Dâng lễ từ xa</h1>" in full and 'hx-push-url="true"' in full and "cách 4.1 km" in full

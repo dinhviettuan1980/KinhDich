@@ -7,7 +7,8 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..config import get_settings
 from ..db import get_db
-from ..models import PURPOSES, Device, OfferingPackage, Temple, utcnow
+from .. import deities
+from ..models import PURPOSES, Deity, Device, OfferingPackage, Temple, utcnow
 from ..web import render, require_user
 
 router = APIRouter()
@@ -65,19 +66,39 @@ def home(request: Request, q: str = "", nhu_cau: str = "", lat: str = "", lng: s
     ctx = {"temples": temples, "q": q, "nhu_cau": nhu_cau, "purposes": PURPOSES, "dist": dist,
            "lat": lat if dist else "", "lng": lng if dist else "",
            "online": {t.id: device_online(t.device) for t in temples}}
-    if request.headers.get("hx-request"):
+    # bấm "quay lại" từ trang đền: htmx xin lại cả trang (HX-History-Restore-Request) chứ không phải mảnh danh sách
+    if request.headers.get("hx-request") and not request.headers.get("hx-history-restore-request"):
         return render(request, "public/_temple_list.html", ctx)
     return render(request, "public/home.html", ctx)
 
 
 @router.get("/den/{slug}")
-def temple_detail(slug: str, request: Request, db: Session = Depends(get_db), user=Depends(require_user)):
+def temple_detail(slug: str, request: Request, lat: str = "", lng: str = "", db: Session = Depends(get_db),
+                  user=Depends(require_user)):
     temple = db.scalar(select(Temple).where(Temple.slug == slug, Temple.status == "active"))
     if not temple:
         raise HTTPException(404, "Không tìm thấy đền/chùa")
+    here = (_coord(lat, 90), _coord(lng, 180))
+    dist = distance_km(*here, temple.lat, temple.lng) if None not in here and temple.lat is not None else None
     return render(request, "public/temple.html", {
-        "temple": temple, "purposes": PURPOSES, "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
+        "temple": temple, "purposes": PURPOSES, "dist": dist, "deities": deities.for_temple(db, temple), "online": device_online(temple.device), "packages": packages_for(db, [temple.id]),
     })
+
+
+@router.get("/than-thanh")
+def deity_list(request: Request, q: str = "", nhom: str = "", db: Session = Depends(get_db), user=Depends(require_user)):
+    """Tra cứu thần thánh (chỉ mục độ tin cậy Cao / Trung bình)."""
+    rows = [d for d in db.scalars(select(Deity).order_by(Deity.id)) if d.public]
+    groups = {}
+    for d in rows:
+        groups.setdefault(d.group_code, d.group_name)
+    if nhom in groups:
+        rows = [d for d in rows if d.group_code == nhom]
+    if q.strip():
+        k = q.strip().lower()
+        rows = [d for d in rows if any(k in (x or "").lower() for x in
+                                       (d.name, d.aliases, d.role, d.places, d.province_old, d.province_new))]
+    return render(request, "public/deities.html", {"deities": rows, "q": q, "nhom": nhom, "groups": groups})
 
 
 @router.get("/may")

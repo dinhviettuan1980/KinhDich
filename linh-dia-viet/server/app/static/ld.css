@@ -140,3 +140,5 @@ a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122,
 .ld .ld-chip { border: 1px solid var(--ld-line); background: #fff; color: var(--ld-ink); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: .9rem; cursor: pointer; }
 .ld .ld-chip.on { background: var(--ld-primary); border-color: var(--ld-primary); color: #fff; }
 .ld-dist { color: var(--ld-primary); }
+.ld-map { width: 100%; height: 260px; border: 0; border-radius: 10px; margin-top: 10px; background: var(--ld-line); }
+.ld-deity-box { border-left: 4px solid var(--ld-gold); background: #fffaf0; padding: 8px 12px; margin: 8px 0; border-radius: 6px; }
