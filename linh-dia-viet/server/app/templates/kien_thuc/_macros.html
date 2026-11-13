@@ -1,0 +1,6 @@
+{% macro map(q=None, loai=None, label="") -%}
+<a href="{{ u('/ban-do') }}?{% if q %}q={{ q | urlencode }}{% endif %}{% if loai %}{{ '&' if q }}loai={{ loai }}{% endif %}">{{ label or q }}</a>
+{%- endmacro %}
+{% macro wp(title, label=None) -%}
+<a href="https://vi.wikipedia.org/wiki/{{ title | replace(' ', '_') | urlencode }}" target="_blank" rel="noopener">{{ label or title }}</a>
+{%- endmacro %}

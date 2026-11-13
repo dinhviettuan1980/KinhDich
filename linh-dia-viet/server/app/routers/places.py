@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..db import get_db
 from ..models import PLACE_INTENTS, PLACE_KINDS, SacredPlace, Temple, User
+from ..knowledge import ARTICLES, related as related_articles
 from ..places import deity_notes, norm
 from ..security import check_csrf
 from ..web import abs_url, audit, current_user, flash, render, require_admin, u
@@ -71,7 +72,7 @@ def place_detail(place_id: int, request: Request, db: Session = Depends(get_db),
         "p": place, "bookable": bookable(place.temple),
         "online": device_online(place.temple.device) if place.temple else False,
         "meta_desc": meta_description(place), "jsonld": place_jsonld(place),
-        "deity_notes": deity_notes(place.deity, place.deity_groups),
+        "deity_notes": deity_notes(place.deity, place.deity_groups), "articles": related_articles(place),
     })
 
 
@@ -124,7 +125,9 @@ def sitemap(db: Session = Depends(get_db)):
     rows = db.execute(select(SacredPlace.id, SacredPlace.updated_at)
                       .where(SacredPlace.status == "active").order_by(SacredPlace.id)).all()
     parts = ['<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-             f"<url><loc>{escape(abs_url('/ban-do'))}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>"]
+             f"<url><loc>{escape(abs_url('/ban-do'))}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>",
+             f"<url><loc>{escape(abs_url('/kien-thuc'))}</loc><priority>0.7</priority></url>",
+             *(f"<url><loc>{escape(abs_url('/kien-thuc/' + a['slug']))}</loc><priority>0.7</priority></url>" for a in ARTICLES)]
     for pid, updated in rows:
         lastmod = f"<lastmod>{updated.date().isoformat()}</lastmod>" if updated else ""
         parts.append(f"<url><loc>{escape(abs_url(f'/dia-diem/{pid}'))}</loc>{lastmod}</url>")

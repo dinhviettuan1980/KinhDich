@@ -1,0 +1,30 @@
+{% extends "kien_thuc/_article.html" %}
+{% from "kien_thuc/_macros.html" import map, wp %}
+{% block body %}
+<h2>Đình là gì</h2>
+<p>Đình là ngôi nhà chung của làng: nơi thờ <b>Thành hoàng làng</b>, nơi hội họp, xử việc làng và mở hội. Nhiều ngôi đình cổ ở miền Bắc
+  có giá trị kiến trúc, điêu khắc gỗ đặc sắc, như Đình Tây Đằng (Hà Nội) hay Đình Đình Bảng (Bắc Ninh).</p>
+
+<h2>Thành hoàng là ai</h2>
+<p>Thành hoàng là vị thần bảo hộ cả làng, có thể là:</p>
+<ul>
+  <li><b>Thiên thần, nhiên thần</b>: thần núi, thần sông, như Tản Viên Sơn Thánh.</li>
+  <li><b>Nhân thần</b>: người có công với làng, với nước, như anh hùng chống giặc, người lập làng, ông tổ nghề.</li>
+</ul>
+<p>Thời phong kiến, triều đình ban <b>sắc phong</b> cho Thành hoàng các làng. Nhiều đình còn giữ sắc phong cổ.</p>
+
+<h2>Hội làng</h2>
+<ul>
+  <li>Hội làng thường mở vào mùa xuân (cầu cho năm mới) hoặc mùa thu (tạ ơn sau mùa gặt), ngày tháng theo lệ riêng từng làng.</li>
+  <li>Hội có lễ rước kiệu, tế lễ (tế nam quan, tế nữ quan), các trò chơi dân gian.</li>
+</ul>
+
+<h2>Đi lễ đình</h2>
+<ul>
+  <li>Đình thường mở cửa ngày mồng Một, ngày Rằm và dịp hội làng. Ngày thường nên liên hệ thủ từ hoặc người trông đình.</li>
+  <li>Lễ thường ngày: hương, hoa, quả. Dịp hội có thể dâng xôi, gà, rượu theo lệ làng.</li>
+  <li>Người xa quê về lễ đình làng là dịp nhớ cội nguồn; ghi tên vào sổ công đức nếu muốn đóng góp tu bổ đình.</li>
+</ul>
+<p>Tìm đình: {{ map(loai="dinh", label="tất cả đình trên bản đồ") }}, hoặc gõ tên làng, xã.</p>
+{% endblock %}
+{% block refs %}<p style="margin-bottom:0">Đọc thêm: {{ wp("Đình") }}, {{ wp("Thành hoàng") }}, {{ wp("Tứ bất tử") }} (Wikipedia).</p>{% endblock %}

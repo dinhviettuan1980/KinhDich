@@ -1,0 +1,41 @@
+{% extends "kien_thuc/_article.html" %}
+{% from "kien_thuc/_macros.html" import map, wp %}
+{% block body %}
+<h2>Những dịp viếng</h2>
+<ul>
+  <li><b>27 tháng 7</b>: Ngày Thương binh – Liệt sĩ (có từ năm 1947). Cả tháng 7 là "tháng tri ân".</li>
+  <li>Các ngày lễ lớn: 30/4, 2/9, 22/12; dịp Tết Nguyên đán.</li>
+  <li>Ngày giỗ của người thân là liệt sĩ.</li>
+</ul>
+
+<h2>Thứ tự viếng</h2>
+<ol>
+  <li>Dâng hương, hoa tại <b>Đài Tổ quốc ghi công</b> (đài tưởng niệm) của nghĩa trang trước.</li>
+  <li>Sau đó mới đến phần mộ người thân, thắp hương cả các phần mộ xung quanh, nhất là mộ liệt sĩ chưa xác định được danh tính.</li>
+  <li>Đoàn đông người: đứng nghiêm, mặc niệm một phút trước khi dâng hương.</li>
+</ol>
+
+<h2>Sắm lễ, ứng xử</h2>
+<ul>
+  <li>Lễ giản dị: hương, hoa (cúc trắng, cúc vàng, sen…), nến, nước, hoa quả.</li>
+  <li>Ăn mặc trang nghiêm; không cười đùa, không ngồi hay bước lên mộ; giữ vệ sinh, mang rác về đúng nơi.</li>
+  <li>Hạn chế đồ mã; nhiều nghĩa trang có nơi đốt riêng.</li>
+</ul>
+
+<h2>Tìm mộ liệt sĩ</h2>
+<ul>
+  <li>Hỏi <b>ban quản lý nghĩa trang</b>: mỗi nghĩa trang có sổ mộ, sơ đồ khu mộ theo quê quán.</li>
+  <li>Liên hệ UBND xã/phường nơi liệt sĩ có quê quán, hoặc cơ quan phụ trách chính sách người có công của tỉnh (từ năm 2025 thuộc ngành Nội vụ).</li>
+  <li>Mang theo giấy tờ: giấy báo tử, bằng Tổ quốc ghi công, thông tin đơn vị, nơi hy sinh (nếu có).</li>
+</ul>
+
+<h2>Tảo mộ người thân</h2>
+<p>Tảo mộ (sửa sang, dọn cỏ, thắp hương mộ tổ tiên) thường làm vào <b>tiết Thanh minh</b> (đầu tháng 4 dương lịch) và những ngày cuối năm
+  trước Tết. Gia đình nên đi cùng nhau, nhắc con cháu về nguồn cội.</p>
+
+<p>Trên bản đồ: {{ map(loai="ntls", label="nghĩa trang liệt sĩ") }} ·
+  {{ map(loai="tuongniem", label="đài tưởng niệm liệt sĩ") }} · {{ map(loai="ntrang", label="nghĩa trang") }}.
+  Ví dụ: {{ map("liệt sĩ trường sơn", label="Nghĩa trang liệt sĩ Trường Sơn") }}.</p>
+{% endblock %}
+{% block refs %}<p style="margin-bottom:0">Đọc thêm: {{ wp("Ngày thương binh liệt sĩ") }}, {{ wp("Thanh minh") }},
+  {{ wp("Nghĩa trang liệt sĩ Trường Sơn") }} (Wikipedia).</p>{% endblock %}

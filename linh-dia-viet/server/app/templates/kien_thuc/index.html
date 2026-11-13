@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Kiến thức đi lễ{% endblock %}
+{% block head %}
+  <meta name="description" content="Kiến thức cơ bản khi đi lễ: đạo Mẫu Tứ phủ, thờ Đức Thánh Trần, đi lễ chùa, đình làng và Thành hoàng, viếng nghĩa trang liệt sĩ.">
+  <link rel="canonical" href="{{ abs_url('/kien-thuc') }}">
+{% endblock %}
+{% block content %}
+<h1>Kiến thức</h1>
+<p class="ld-muted">Những hiểu biết cơ bản trước khi đi lễ, theo từng dòng thờ tự.</p>
+{% for a in articles %}
+<a class="ld-card ld-kt-item" href="{{ u('/kien-thuc/' ~ a.slug) }}">
+  <b>{{ a.title }}</b>
+  <span class="ld-muted small">{{ a.short }}</span>
+</a>
+{% endfor %}
+{% endblock %}

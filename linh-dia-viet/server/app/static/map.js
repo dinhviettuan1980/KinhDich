@@ -355,8 +355,16 @@
       return mapP;
     }).then(function (a) {
       adapter = a;
-      var pre = /[?&]cau=([a-z-]+)/.exec(location.search);  // từ trang chi tiết: "Thường cầu: Tài lộc"
-      if (pre && $("ld-intent").querySelector('option[value="' + pre[1] + '"]')) { $("ld-intent").value = pre[1]; apply(true); return; }
+      // liên kết từ trang khác: ?cau=tai-loc (Thường cầu), ?q=ông hoàng bảy, ?loai=ntls (bài Kiến thức)
+      var qs = {};
+      location.search.replace(/^\?/, "").split("&").forEach(function (kv) {
+        var i = kv.indexOf("="); if (i > 0) { try { qs[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1).replace(/\+/g, " ")); } catch (e) {} }
+      });
+      var preset = false;
+      if (qs.cau && $("ld-intent").querySelector('option[value="' + qs.cau + '"]')) { $("ld-intent").value = qs.cau; preset = true; }
+      if (qs.loai && $("ld-kind").querySelector('option[value="' + qs.loai + '"]')) { $("ld-kind").value = qs.loai; preset = true; }
+      if (qs.q) { $("ld-q").value = qs.q.slice(0, 100); preset = true; }
+      if (preset) { apply(true); return; }
       apply(false);
       var m = /^#p(\d+)$/.exec(location.hash);
       var target = m && all.filter(function (p) { return p.id === +m[1]; })[0];

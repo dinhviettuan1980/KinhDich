@@ -1,0 +1,43 @@
+{% extends "kien_thuc/_article.html" %}
+{% from "kien_thuc/_macros.html" import map, wp %}
+{% block body %}
+<h2>Chùa thờ những ai</h2>
+<ul>
+  <li><b>Chính điện (Tam bảo)</b>: Đức Phật Thích Ca, chư Phật, Bồ Tát Quán Thế Âm…</li>
+  <li><b>Ban Đức Ông</b> (vị hộ trì chùa) và <b>Đức Thánh Hiền</b>, thường ở hai bên trước chính điện (chùa miền Bắc).</li>
+  <li><b>Điện Mẫu</b> (nhiều chùa miền Bắc): theo lối "tiền Phật, hậu Thánh", tức Phật ở trước, Thánh ở sau.</li>
+  <li><b>Nhà Tổ</b>: thờ các vị sư tổ, sư trụ trì đã viên tịch.</li>
+</ul>
+
+<h2>Thứ tự lễ</h2>
+<ol>
+  <li>Thắp hương ở bát hương chung ngoài sân (nếu có).</li>
+  <li>Lễ ban Đức Ông trước, sau đó vào chính điện lễ Phật.</li>
+  <li>Lễ điện Mẫu, nhà Tổ và các ban khác sau cùng.</li>
+</ol>
+
+<h2>Sắm lễ</h2>
+<ul>
+  <li><b>Chỉ lễ chay</b>: hương, hoa (sen, huệ, cúc…), quả, oản, xôi, chè, bánh kẹo.</li>
+  <li>Không mang lễ mặn, rượu, đồ mã vào chính điện. Nhiều chùa không nhận đốt đồ mã.</li>
+  <li>Muốn ghi tên cầu an, cầu siêu: liên hệ văn phòng nhà chùa.</li>
+</ul>
+
+<h2>Ngày lễ Phật giáo lớn (âm lịch)</h2>
+<ul>
+  <li><b>Rằm tháng Giêng</b> (Tết Nguyên tiêu, lễ Thượng nguyên).</li>
+  <li><b>Rằm tháng Tư</b>: Lễ Phật Đản.</li>
+  <li><b>Rằm tháng Bảy</b>: Lễ Vu Lan, mùa báo hiếu cha mẹ.</li>
+  <li>Ngày vía Quan Thế Âm: 19 tháng Hai, 19 tháng Sáu, 19 tháng Chín.</li>
+  <li>Hằng tháng: mồng Một và ngày Rằm.</li>
+</ul>
+
+<h2>Ứng xử trong chùa</h2>
+<ul>
+  <li>Ăn mặc kín đáo; bỏ mũ nón, nói khẽ; không chạm vào tượng.</li>
+  <li>Chào nhà sư bằng cách chắp tay, nói "A Di Đà Phật"; gọi là thầy, sư cô.</li>
+  <li>Đi vòng bên trái hoặc bên phải chính điện, không đi thẳng cửa giữa nếu nhà chùa có quy định.</li>
+</ul>
+<p>Tìm chùa: {{ map(loai="chua", label="tất cả chùa trên bản đồ") }}, hoặc gõ tên chùa, tên xã/phường.</p>
+{% endblock %}
+{% block refs %}<p style="margin-bottom:0">Đọc thêm: {{ wp("Chùa Việt Nam") }}, {{ wp("Lễ Phật Đản") }}, {{ wp("Vu-lan", "Lễ Vu Lan") }} (Wikipedia).</p>{% endblock %}

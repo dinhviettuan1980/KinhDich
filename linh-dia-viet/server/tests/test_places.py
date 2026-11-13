@@ -394,3 +394,28 @@ def test_records_from_cemeteries_names_unnamed_and_drops_duplicates():
     assert out["way/1"]["kind"] == "ntls" and out["way/1"]["addr"] == "gần Thôn Đông"
     assert "liệt sỹ" in out["way/1"]["kw"]
     assert out["way/3"]["name"] == "Nghĩa trang gần Thôn Đông"
+
+
+def test_knowledge_pages_render_and_link_from_places(client, db):
+    from app.knowledge import ARTICLES, related
+    html = client.get(f"{P}/kien-thuc").text
+    assert all(a["title"] in html for a in ARTICLES) and f"{P}/kien-thuc" in client.get(f"{P}/ban-do").text
+    for a in ARTICLES:
+        r = client.get(f"{P}/kien-thuc/{a['slug']}")
+        assert r.status_code == 200 and a["title"] in r.text and "Wikipedia" in r.text
+    art = client.get(f"{P}/kien-thuc/dao-mau-tu-phu").text
+    assert f"{P}/ban-do?q=ph%E1%BB%A7%20d%E1%BA%A7y" in art  # liên kết sang bản đồ có sẵn từ khoá
+    assert client.get(f"{P}/kien-thuc/khong-co").status_code == 404
+    assert f"{P}/kien-thuc/vieng-nghia-trang-liet-si" in client.get(f"{P}/sitemap.xml").text
+
+    def place(**kw):
+        return SacredPlace(**{"name": "X", "kind": "den", "deity": "", "deity_groups": "", "keywords": "", **kw})
+    slugs = lambda p: [a["slug"] for a in related(p)]  # noqa: E731
+    assert slugs(place(deity="Đức Thánh Trần và Tứ phủ", deity_groups="Quan")) == ["tho-duc-thanh-tran", "dao-mau-tu-phu", "di-le-co-ban"]
+    assert slugs(place(kind="chua")) == ["di-le-chua", "di-le-co-ban"]
+    assert slugs(place(kind="ntls")) == ["vieng-nghia-trang-liet-si"]
+
+    places.load(db, _snap())
+    db.commit()
+    tq = db.scalar(select(SacredPlace).where(SacredPlace.source_id == "way/2"))
+    assert f"{P}/kien-thuc/di-le-chua" in client.get(f"{P}/dia-diem/{tq.id}").text

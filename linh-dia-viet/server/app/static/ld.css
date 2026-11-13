@@ -163,3 +163,12 @@ a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122,
 .ld-deity { border-top: 1px solid var(--ld-line, #e5e0d6); padding: .4rem 0; }
 .ld-deity summary { cursor: pointer; font-weight: 600; }
 .ld-deity p { margin: .4rem 0; }
+.ld-kt-item { display: block; color: inherit; text-decoration: none; }
+.ld-kt-item b { display: block; margin-bottom: 4px; color: var(--ld-primary); }
+.ld-kt-item:hover { border-color: var(--ld-gold); }
+.ld-article h2 { font-size: 1.15rem; margin: 1.4rem 0 .5rem; color: var(--ld-primary); }
+.ld-article li { margin: .25rem 0; }
+.ld-article .ld-lead { font-size: 1.02rem; color: var(--ld-muted); }
+.ld-article table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.ld-article th, .ld-article td { border: 1px solid var(--ld-line); padding: 6px 8px; text-align: left; vertical-align: top; }
+.ld-related a { display: inline-block; margin: 2px 6px 2px 0; }

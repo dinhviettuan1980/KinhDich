@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ art.title }} · Kiến thức{% endblock %}
+{% block head %}
+  <meta name="description" content="{{ art.short }}">
+  <link rel="canonical" href="{{ abs_url('/kien-thuc/' ~ art.slug) }}">
+  <meta property="og:title" content="{{ art.title }}">
+  <meta property="og:description" content="{{ art.short }}">
+  <meta property="og:type" content="article">
+  <script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "Article", "headline": art.title,
+    "description": art.short, "inLanguage": "vi", "url": abs_url('/kien-thuc/' ~ art.slug)} | tojson }}</script>
+{% endblock %}
+{% block content %}
+<p class="ld-muted small"><a href="{{ u('/kien-thuc') }}">← Kiến thức</a></p>
+<article class="ld-article">
+  <h1>{{ art.title }}</h1>
+  <p class="ld-lead">{{ art.short }}</p>
+  {% block body %}{% endblock %}
+  <div class="ld-card ld-muted small">
+    <p style="margin-top:0">Bài viết tóm lược kiến thức phổ thông để tham khảo. Phong tục mỗi vùng, mỗi nơi thờ một khác: đến nơi nên hỏi
+      thủ nhang, nhà chùa hoặc ban quản lý di tích.</p>
+    {% block refs %}{% endblock %}
+  </div>
+</article>
+<p class="ld-row">
+  {% if prev %}<a class="ld-btn small secondary" href="{{ u('/kien-thuc/' ~ prev.slug) }}">← {{ prev.title }}</a>{% endif %}
+  {% if next %}<a class="ld-btn small secondary" href="{{ u('/kien-thuc/' ~ next.slug) }}">{{ next.title }} →</a>{% endif %}
+</p>
+{% endblock %}

@@ -62,6 +62,8 @@
   </div>
 </div>
 
+{% if articles %}<p class="ld-related small">📖 Tìm hiểu thêm: {% for a in articles %}<a href="{{ u('/kien-thuc/' ~ a.slug) }}">{{ a.title }}</a>{% endfor %}</p>{% endif %}
+
 <div class="ld-place-map">
 {% if settings().google_maps_api_key %}
   <iframe title="Vị trí {{ p.name }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"

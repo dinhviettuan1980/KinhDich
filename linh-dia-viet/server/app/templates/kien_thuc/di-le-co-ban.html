@@ -1,0 +1,51 @@
+{% extends "kien_thuc/_article.html" %}
+{% from "kien_thuc/_macros.html" import map, wp %}
+{% block body %}
+<h2>Phân biệt các nơi thờ</h2>
+<table>
+  <tr><th>Nơi thờ</th><th>Thờ ai</th></tr>
+  <tr><td><b>Chùa</b></td><td>Đức Phật và chư Bồ Tát; nhiều chùa miền Bắc có thêm điện Mẫu, nhà Tổ (thờ các vị sư trụ trì đã viên tịch).</td></tr>
+  <tr><td><b>Đền</b></td><td>Thánh thần, anh hùng có công với đất nước hoặc địa phương: vua Hùng, Đức Thánh Trần, Ông Hoàng, Chầu bà…</td></tr>
+  <tr><td><b>Phủ</b></td><td>Nơi thờ Thánh Mẫu và các vị trong Tứ phủ, thường quy mô lớn (Phủ Dầy, Phủ Tây Hồ…).</td></tr>
+  <tr><td><b>Đình</b></td><td>Thành hoàng làng, vị thần bảo hộ cả làng; đồng thời là nơi hội họp, lễ hội của làng.</td></tr>
+  <tr><td><b>Miếu, nghè</b></td><td>Thần linh của một vùng nhỏ (thổ thần, sơn thần, thủy thần) hoặc nơi thờ vọng của một đền lớn.</td></tr>
+  <tr><td><b>Điện, am</b></td><td>Điện là nơi thờ (thường thờ Mẫu) có thể nhỏ, kể cả trong nhà riêng; am là ngôi thờ nhỏ, nhiều am thuộc chùa.</td></tr>
+</table>
+
+<h2>Lễ chay và lễ mặn</h2>
+<ul>
+  <li><b>Lễ chay</b>: hương, hoa tươi, quả, oản, xôi, chè, bánh kẹo, nước sạch. Dâng ở <b>ban Phật</b>, <b>ban Thánh Mẫu</b>.</li>
+  <li><b>Lễ mặn</b> (gà luộc, giò, xôi, rượu…): chỉ dâng ở các ban thánh, thần khi lệ nơi đó cho phép (ban Quan lớn, Thành hoàng…).
+    <b>Không đặt lễ mặn lên ban Phật.</b></li>
+  <li>Lễ không cốt to, cốt ở lòng thành. Mâm lễ nên vừa sức, đồ tươi, sạch.</li>
+</ul>
+
+<h2>Thứ tự hành lễ</h2>
+<ol>
+  <li>Đến nơi, đặt lễ lên ban chính (hoặc nơi ban quản lý chỉ dẫn), thắp hương ở bát hương chung trước.</li>
+  <li>Lễ ban chính trước, các ban phụ sau. Ở chùa có cả điện Mẫu thì lễ Phật trước, lễ Mẫu sau ("tiền Phật, hậu Thánh").</li>
+  <li>Khấn xong, đợi hương cháy được khoảng hai phần ba nén mới xin hạ lễ (vái tạ rồi thu lễ, để lại một phần công đức nếu muốn).</li>
+</ol>
+
+<h2>Thắp hương và khấn</h2>
+<ul>
+  <li>Thắp hương số lẻ, thường <b>1 hoặc 3 nén</b>. Nhiều nơi đề nghị mỗi người chỉ thắp ở bát hương chung để giữ sạch không khí, phòng cháy.</li>
+  <li>Lời khấn gồm: kính lạy vị được thờ; xưng họ tên, tuổi, nơi ở; hôm nay là ngày nào, đến dâng lễ vì việc gì; điều cầu mong; lời tạ ơn.
+    Khấn khẽ, rõ ràng, không cần thuộc văn khấn dài.</li>
+  <li>Ở chùa, mở đầu và kết thúc lời khấn thường niệm "Nam mô A Di Đà Phật" (3 lần).</li>
+</ul>
+
+<h2>Ứng xử nơi thờ tự</h2>
+<ul>
+  <li>Ăn mặc kín đáo, lịch sự; nói khẽ, không chen lấn.</li>
+  <li>Bỏ tiền công đức vào hòm công đức; không nhét tiền vào tay tượng, không rải tiền lẻ lên ban thờ.</li>
+  <li>Hạn chế đồ mã; nếu đốt thì đốt đúng nơi quy định. Nhiều chùa không nhận đốt đồ mã.</li>
+  <li>Hỏi trước khi chụp ảnh trong chính điện, hậu cung.</li>
+</ul>
+
+<h2>Đi lễ vào ngày nào</h2>
+<p>Thường đi lễ ngày mồng Một và ngày Rằm âm lịch, dịp đầu năm (tháng Giêng), ngày giỗ, ngày tiệc của vị thánh được thờ.
+  Ngày tiệc của từng đền ghi ở trang chi tiết trên {{ map(label="bản đồ") }}.</p>
+<p>Không đến được? Có thể <a href="{{ u('/') }}">đặt lễ từ xa</a> ở các đền chùa đối tác: nhà đền bày lễ, đọc sớ và gửi ảnh, video về cho bạn.</p>
+{% endblock %}
+{% block refs %}<p style="margin-bottom:0">Đọc thêm: {{ wp("Chùa Việt Nam") }}, {{ wp("Đình") }}, {{ wp("Đồ mã") }} (Wikipedia).</p>{% endblock %}
