@@ -150,7 +150,10 @@ class Temple(Base):
 
 PLACE_INTENTS = {"binh-an": "Bình an", "tai-loc": "Tài lộc", "tinh-duyen": "Tình duyên", "suc-khoe": "Sức khỏe",
                  "cong-danh": "Công danh"}
-PLACE_KINDS = {"chua": "Chùa", "den": "Đền", "dinh": "Đình", "mieu": "Miếu", "phu": "Phủ", "khac": "Nơi thờ tự"}
+PLACE_KINDS = {"chua": "Chùa", "den": "Đền", "dinh": "Đình", "mieu": "Miếu", "phu": "Phủ", "khac": "Nơi thờ tự",
+               "ntls": "Nghĩa trang liệt sĩ", "tuongniem": "Đài tưởng niệm liệt sĩ", "ntrang": "Nghĩa trang",
+               "mo": "Lăng mộ"}
+CEMETERY_KINDS = ("ntls", "tuongniem", "ntrang", "mo")
 
 
 class SacredPlace(Base):
@@ -188,6 +191,10 @@ class SacredPlace(Base):
     temple_id: Mapped[int | None] = mapped_column(ForeignKey("temples.id", ondelete="SET NULL"), unique=True)
     temple: Mapped[Temple | None] = relationship()
     updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow, onupdate=utcnow)
+
+    @property
+    def is_cemetery(self) -> bool:
+        return self.kind in CEMETERY_KINDS
 
     @property
     def kind_label(self) -> str:

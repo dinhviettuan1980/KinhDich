@@ -3,7 +3,8 @@
 (function () {
   "use strict";
   var C = window.LD_MAP || {};
-  var COLORS = { chua: "#b8892b", den: "#7a1f1f", dinh: "#8a4b1f", mieu: "#c2410c", phu: "#6b3fa0", khac: "#6f5f52" };
+  var COLORS = { chua: "#b8892b", den: "#7a1f1f", dinh: "#8a4b1f", mieu: "#c2410c", phu: "#6b3fa0", khac: "#6f5f52",
+    ntls: "#b91c1c", tuongniem: "#9f1239", ntrang: "#475569", mo: "#57534e" };
   var BOOK = "#2f6b3a";
   // Tâm lệch ra biển để khung mặc định (zoom 5, cả trên điện thoại) thấy trọn đất liền + Hoàng Sa + Trường Sa.
   var VN = { lat: 15.8, lng: 108.6 };

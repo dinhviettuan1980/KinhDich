@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from ..db import get_db
 from ..models import PLACE_INTENTS, PLACE_KINDS, SacredPlace, Temple, User
-from ..places import norm
+from ..places import deity_notes, norm
 from ..security import check_csrf
 from ..web import abs_url, audit, current_user, flash, render, require_admin, u
 from .public import device_online
@@ -71,6 +71,7 @@ def place_detail(place_id: int, request: Request, db: Session = Depends(get_db),
         "p": place, "bookable": bookable(place.temple),
         "online": device_online(place.temple.device) if place.temple else False,
         "meta_desc": meta_description(place), "jsonld": place_jsonld(place),
+        "deity_notes": deity_notes(place.deity, place.deity_groups),
     })
 
 
@@ -82,10 +83,13 @@ def meta_description(p: SacredPlace, limit: int = 160) -> str:
     if p.deity:
         text = f"{p.name} ({where}) thờ {p.deity}." + (f" Lễ hội, ngày tiệc: {p.festival}" if p.festival else "")
         return text if len(text) <= limit else text[:limit - 1].rsplit(" ", 1)[0] + "…"
+    if p.is_cemetery:
+        return f"{p.name} – {where}. Vị trí trên bản đồ, chỉ đường đi viếng, thắp hương."
     return f"{p.kind_label} {p.name.removeprefix(p.kind_label + ' ')} – {where}. Vị trí trên bản đồ, chỉ đường và thông tin giới thiệu."
 
 
-_SCHEMA_TYPE = {"chua": "BuddhistTemple"}
+_SCHEMA_TYPE = {"chua": "BuddhistTemple", "ntls": "Cemetery", "ntrang": "Cemetery", "mo": "Cemetery",
+                "tuongniem": "LandmarksOrHistoricalBuildings"}
 
 
 def place_jsonld(p: SacredPlace) -> dict:

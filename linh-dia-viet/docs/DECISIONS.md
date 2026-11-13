@@ -149,3 +149,21 @@ Bốn vai trò trong `users.role`:
   vi.wikipedia chỉ nhận khi tiêu đề là tên nơi thờ, phần tên riêng trùng khít, không phải trang định hướng, và toạ độ
   ≤ 15 km hoặc bài nhắc tỉnh/huyện. Bản đồ có lọc "Cầu gì", nơi bậc 1 có nhãn "Tiêu biểu" và được ưu tiên khi tìm.
   Cập nhật file Excel: chạy `server/scripts/curated_from_xlsx.py` (cần openpyxl) rồi `python -m app.places build --cache DIR`.
+
+### Nghĩa trang, nghĩa trang liệt sĩ (bổ sung 11/2026)
+- Luồng riêng `records_from_cemeteries`: OSM `landuse=cemetery`, `amenity=grave_yard`, `historic=memorial` tên có "liệt sĩ",
+  và mọi tên "Nghĩa trang/Nghĩa địa/Đài tưởng niệm…". Loại: `ntls` (nghĩa trang liệt sĩ), `tuongniem` (đài tưởng niệm
+  liệt sĩ), `ntrang` (nghĩa trang), `mo` (lăng mộ). Tượng đài chung (không phải liệt sĩ) bị bỏ.
+- Lấy cả nghĩa trang **không tên** (≈2.200): tên hiển thị "Nghĩa trang gần <thôn/xóm gần nhất ≤3 km>" (mô tả vị trí, không
+  bịa tên riêng); trùng chỗ một nghĩa trang có tên (≤250 m) thì bỏ. Từ khoá kèm cả "liệt sỹ"/"liệt sĩ".
+- Mô tả: Wikipedia thể loại "Nghĩa trang tại Việt Nam", "Nghĩa trang và khu tưởng niệm Chiến tranh Việt Nam"; chỉ nhận bài
+  có tên đúng là nghĩa trang (bỏ bảo tàng, địa đạo lẫn trong thể loại).
+- Còn thiếu: Việt Nam có hơn 3.000 nghĩa trang liệt sĩ, OSM mới có ≈300 → bổ sung dần qua admin hoặc danh sách soạn tay.
+
+### Giới thiệu vị thánh (`app/data/deities.json`)
+- Phần mở đầu bài vi.wikipedia của từng vị (Liễu Hạnh, Đức Thánh Trần, Mẫu Thượng Ngàn, Mẫu Thoải…), chọn tay và kiểm tra
+  đúng vị thần; bài trùng tên khác nghĩa (Dương Quý phi nhà Đường, chòm sao Nam Tào/Bắc Đẩu) cố ý không gắn.
+- Trang địa điểm hiện "Về <vị thánh>" theo ô "Thờ"; không có bài riêng mà thuộc hàng Tứ phủ → giới thiệu chung về Tứ phủ.
+
+### Sao lưu khi deploy
+- `deploy/server/update.sh` sao lưu `linhdia.db` vào `~/backups/linhdia-<giờ>.db` trước migrate/seed, giữ 15 bản.

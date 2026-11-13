@@ -160,3 +160,6 @@ a.ld-hist.new { border-color: var(--ld-primary); box-shadow: 0 0 0 2px rgba(122,
 .ld-facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; margin: 12px 0; }
 .ld-facts dt { color: var(--ld-muted, #6f5f52); font-size: .9em; }
 .ld-facts dd { margin: 0; }
+.ld-deity { border-top: 1px solid var(--ld-line, #e5e0d6); padding: .4rem 0; }
+.ld-deity summary { cursor: pointer; font-weight: 600; }
+.ld-deity p { margin: .4rem 0; }

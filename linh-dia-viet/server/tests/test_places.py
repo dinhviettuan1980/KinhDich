@@ -167,7 +167,8 @@ def test_real_snapshot_is_sane():
     assert snap and len(snap["places"]) > 3000
     names = {p["name"] for p in snap["places"]}
     assert {"Đền Ngọc Sơn", "Chùa Trấn Quốc", "Miếu Bà Chúa Xứ Núi Sam"} <= names
-    assert all(p["kind"] in ("chua", "den", "dinh", "mieu", "phu") for p in snap["places"])
+    assert all(p["kind"] in ("chua", "den", "dinh", "mieu", "phu", *places.CEMETERY_KINDS) for p in snap["places"])
+    assert sum(p["kind"] == "ntls" for p in snap["places"]) > 200 and "Nghĩa trang liệt sĩ Trường Sơn" in names
     assert sum(1 for p in snap["places"] if not p["prov"]) < len(snap["places"]) * 0.02
 
 
@@ -354,3 +355,42 @@ def test_province_hint_from_old_address_and_real_curated_snapshot():
     assert cur["Đền Sở"]["prov"] == "Hà Nội" and cur["Đền Sở"]["approx"]
     assert cur["Đền Bảo Hà"]["src"] == "osm" and not cur["Đền Bảo Hà"].get("approx")  # toạ độ OSM chính xác
     assert cur["Đền Bảo Hà"]["intents"] == ["tai-loc"] and cur["Đền Bảo Hà"]["prio"] == 1
+
+
+def test_deity_notes_match_order_and_tu_phu_fallback():
+    from app.places import deity_notes
+    titles = [d["title"] for d in deity_notes("Thánh Mẫu Thoải cung và Đức Ông Lê Thọ Vực", "Mẫu")]
+    assert titles == ["Thủy cung Thánh Mẫu", "Lê Thọ Vực"]
+    assert [d["title"] for d in deity_notes("Chầu Bát", "Chầu")] == ["Bát Nàn"]
+    assert [d["title"] for d in deity_notes("Quan lớn Đệ Bát", "Quan")] == ["Tứ phủ"]  # không có bài riêng
+    assert deity_notes("Dương Quý Phi", "") == []  # bài trùng tên (phi tần nhà Đường) cố ý không gắn
+    assert deity_notes("", "") == []
+
+
+def test_classify_cemetery():
+    from app.places import classify_cemetery
+    g = {"landuse": "cemetery"}
+    assert classify_cemetery("Nghĩa trang liệt sĩ Trường Sơn", g) == "ntls"
+    assert classify_cemetery("Nghĩa Trang Liệt Sỹ xã Thái Bảo", {}) == "ntls"
+    assert classify_cemetery("Đài tưởng niệm các Anh hùng liệt sĩ Đông Mỹ", {"historic": "monument"}) == "tuongniem"
+    assert classify_cemetery("Nghĩa trang giáo xứ Bến Gỗ", g) == "ntrang"
+    assert classify_cemetery("", g) == "ntrang"
+    assert classify_cemetery("Lăng Khiêm Thọ", g) == "mo"
+    assert classify_cemetery("Tượng đài Lê Thái Tổ", {"historic": "monument"}) is None
+    assert classify_cemetery("Bảo tàng Chiến thắng B52", {}) is None  # bài Wikipedia lẫn trong thể loại
+
+
+def test_records_from_cemeteries_names_unnamed_and_drops_duplicates():
+    from app.places import SettlementIndex, records_from_cemeteries
+    settle = SettlementIndex([{"lat": 21.001, "lon": 105.801, "tags": {"name": "Thôn Đông"}}])
+    els = [
+        {"type": "way", "id": 1, "center": {"lat": 21.0, "lon": 105.8}, "tags": {"landuse": "cemetery", "name": "Nghĩa trang liệt sĩ xã A"}},
+        {"type": "way", "id": 2, "center": {"lat": 21.0005, "lon": 105.8}, "tags": {"landuse": "cemetery"}},  # trùng chỗ → bỏ
+        {"type": "way", "id": 3, "center": {"lat": 21.02, "lon": 105.8}, "tags": {"landuse": "cemetery"}},
+        {"type": "node", "id": 4, "lat": 21.0, "lon": 105.8, "tags": {"amenity": "place_of_worship", "name": "Lăng X"}},
+    ]
+    out = {r["sid"]: r for r in records_from_cemeteries(els, None, settle, skip_sids={"node/4"})}
+    assert set(out) == {"way/1", "way/3"}
+    assert out["way/1"]["kind"] == "ntls" and out["way/1"]["addr"] == "gần Thôn Đông"
+    assert "liệt sỹ" in out["way/1"]["kw"]
+    assert out["way/3"]["name"] == "Nghĩa trang gần Thôn Đông"

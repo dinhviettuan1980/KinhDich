@@ -18,6 +18,7 @@ import math
 import re
 import time
 import unicodedata
+from functools import lru_cache
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote, unquote
@@ -26,7 +27,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from .config import BASE_DIR
-from .models import PLACE_INTENTS, PLACE_KINDS, SacredPlace, Setting, Temple
+from .models import CEMETERY_KINDS, PLACE_INTENTS, PLACE_KINDS, SacredPlace, Setting, Temple
 
 log = logging.getLogger(__name__)
 
@@ -377,7 +378,7 @@ def curated_match(c: dict, records: list[dict]) -> dict | None:
     best = None
     for r in records:
         # đền/phủ không ghép vào chùa, đình; miếu chỉ khi tên riêng đủ dài
-        if r.get("lat") is None or r["kind"] in ("chua", "dinh") or r.get("_cur"):
+        if r.get("lat") is None or r["kind"] in ("chua", "dinh", *CEMETERY_KINDS) or r.get("_cur"):
             continue
         km = _km(r, c)
         if km > 30:
@@ -551,6 +552,34 @@ def attach_wikipedia_to_curated(records: list[dict], client, cache: Path | None)
     return n
 
 
+DEITIES_FILE = BASE_DIR / "data" / "deities.json"
+TU_PHU_GROUPS = {"Mẫu", "Quan", "Chầu", "Cô", "Cậu", "Ông Hoàng"}
+
+
+@lru_cache
+def _deities() -> list[dict]:
+    if not DEITIES_FILE.exists():
+        return []
+    items = json.loads(DEITIES_FILE.read_text(encoding="utf-8"))["deities"]
+    return [{**d, "_keys": [norm(k) for k in d["keys"]]} for d in items]
+
+
+def deity_notes(deity: str | None, groups: str | None = "", limit: int = 2) -> list[dict]:
+    """Giới thiệu vị thánh được thờ (trích Wikipedia, deities.json) theo thứ tự xuất hiện trong ô "Thờ";
+    không khớp vị nào mà thuộc hàng Tứ phủ → giới thiệu chung về Tứ phủ."""
+    nd = f" {norm(deity)} "
+    hits = []
+    for d in _deities():
+        pos = [nd.find(f" {k} ") for k in d["_keys"] if f" {k} " in nd]
+        if pos:
+            hits.append((min(pos), d))
+    hits.sort(key=lambda h: h[0])
+    out = [d for _, d in hits][:limit]
+    if not out and {g.strip() for g in (groups or "").split(",")} & TU_PHU_GROUPS:
+        out = [d for d in _deities() if d["title"] == "Tứ phủ"]
+    return out
+
+
 KEYWORDS_FILE = BASE_DIR / "data" / "places_keywords.json"
 
 
@@ -658,11 +687,11 @@ WIKI_SKIP_CAT = re.compile(r"hải ngoại|nước ngoài|ở nước|ấn độ
                            r"sơ khai|nhà sư|tăng nhân|trụ trì|lễ hội|bản mẫu|hình ảnh|văn miếu|khổng", re.I)
 
 
-def wiki_category_pages(client, max_depth: int = 4, delay: float = 0.5) -> dict[str, str]:
+def wiki_category_pages(client, max_depth: int = 4, delay: float = 0.5, roots: dict[str, str] | None = None) -> dict[str, str]:
     """Duyệt đệ quy các thể loại gốc → {tiêu đề bài: loại}. Bỏ thể loại hải ngoại, tháp Chăm, nhà thờ…"""
     pages: dict[str, str] = {}
     seen: set[str] = set()
-    queue = [(cat, kind, 0) for cat, kind in WIKI_ROOTS.items()]
+    queue = [(cat, kind, 0) for cat, kind in (roots or WIKI_ROOTS).items()]
     while queue:
         cat, kind, depth = queue.pop(0)
         if cat in seen:
@@ -777,6 +806,136 @@ def merge_wikipedia(records: list[dict], wp: list[dict], radius_km: float = 1.5)
     return records + extra
 
 
+# ── Nghĩa trang, nghĩa trang liệt sĩ, đài tưởng niệm liệt sĩ ──────────────────────────────────────────────────────
+# Luồng riêng (luồng thờ tự ở trên cố ý bỏ tên "Nghĩa trang…"). Lấy cả nghĩa trang không tên trên OSM: đặt tên
+# "Nghĩa trang" + địa chỉ "gần <thôn/xóm/phường gần nhất>" để vẫn tìm được theo địa danh.
+OVERPASS_CEMETERIES = """[out:json][timeout:300];
+area["ISO3166-1"="VN"][admin_level=2]->.vn;
+(nwr["landuse"="cemetery"](area.vn); nwr["amenity"="grave_yard"](area.vn);
+ nwr["historic"="memorial"]["name"~"[Ll]iệt [Ss]ĩ|[Ll]iệt [Ss]ỹ"](area.vn);
+ nwr["name"~"^(Nghĩa trang|Nghĩa địa|Nghĩa trủng|Đài tưởng niệm)",i][!highway](area.vn););
+out center tags;"""
+OVERPASS_SETTLEMENTS = """[out:json][timeout:300];
+area["ISO3166-1"="VN"][admin_level=2]->.vn;
+node["place"~"^(city|town|village|hamlet|suburb|quarter|neighbourhood)$"]["name"](area.vn);
+out;"""
+WIKI_CEMETERY_ROOTS = {"Thể loại:Nghĩa trang tại Việt Nam": "ntrang",
+                       "Thể loại:Nghĩa trang và khu tưởng niệm Chiến tranh Việt Nam": "ntrang"}
+_MARTYR = re.compile(r"liệt s[ĩỹi]|liet s[iy]\b|anh hùng|tử sĩ|thanh niên xung phong|\btnxp\b", re.I)
+_MEMORIAL = re.compile(r"^(đài|bia|nhà bia|tượng đài|nhà tưởng niệm|khu tưởng niệm|tháp|đền thờ liệt)", re.I)
+_GROUND_NAME = ("nghĩa trang", "hoa viên nghĩa trang", "nghĩa địa", "nghĩa trủng", "đất thánh", "công viên nghĩa trang", "công viên vĩnh hằng")
+_TOMB = re.compile(r"^(lăng|mộ|khu mộ|lăng mộ|khu lăng mộ)\b", re.I)
+CEMETERY_KW = {
+    "ntls": "nghĩa trang liệt sĩ, nghĩa trang liệt sỹ, liệt sĩ, liệt sỹ, mộ liệt sĩ, viếng liệt sĩ, thắp hương liệt sĩ",
+    "tuongniem": "đài tưởng niệm liệt sĩ, đài liệt sĩ, đài liệt sỹ, liệt sĩ, liệt sỹ, tri ân",
+    "ntrang": "nghĩa trang, nghĩa địa, tảo mộ, thăm mộ",
+    "mo": "lăng mộ, mộ, tảo mộ",
+}
+
+
+def classify_cemetery(name: str, t: dict) -> str | None:
+    """Loại cho một đối tượng OSM nghĩa trang/đài tưởng niệm; None = bỏ (tượng đài chung, mộ lẻ không phải khu mộ…)."""
+    low = (name or "").strip().lower()
+    ground = t.get("landuse") == "cemetery" or t.get("amenity") == "grave_yard"
+    if not low:
+        return "ntrang" if ground else None
+    if _MARTYR.search(low):
+        return "ntls" if low.startswith(_GROUND_NAME) or (ground and not _MEMORIAL.match(low)) else "tuongniem"
+    if low.startswith(_GROUND_NAME):
+        return "ntrang"
+    if _TOMB.match(low):
+        return "mo" if ground else None
+    if _MEMORIAL.match(low):
+        return None
+    return "ntrang" if ground else None
+
+
+class SettlementIndex:
+    """Thôn/xóm/phường có tên gần nhất (lưới 0,05°) → "gần thôn X" cho điểm thiếu địa chỉ."""
+    CELL = 0.05
+
+    def __init__(self, elements: list[dict]):
+        self.grid: dict[tuple, list] = {}
+        for e in elements:
+            t = e.get("tags") or {}
+            name = (t.get("name:vi") or t.get("name") or "").strip()
+            if name and "lat" in e:
+                self.grid.setdefault(self._cell(e["lat"], e["lon"]), []).append((e["lat"], e["lon"], name))
+
+    def _cell(self, lat, lng):
+        return (math.floor(lat / self.CELL), math.floor(lng / self.CELL))
+
+    def near(self, lat: float, lng: float, max_km: float = 3.0) -> str:
+        ci, cj = self._cell(lat, lng)
+        best = None
+        for i in (ci - 1, ci, ci + 1):
+            for j in (cj - 1, cj, cj + 1):
+                for plat, plng, name in self.grid.get((i, j), []):
+                    km = _km({"lat": lat, "lng": lng}, {"lat": plat, "lng": plng})
+                    if km <= max_km and (best is None or km < best[0]):
+                        best = (km, name)
+        return best[1] if best else ""
+
+
+def records_from_cemeteries(elements: list[dict], provinces: ProvinceIndex | None,
+                            settlements: SettlementIndex | None, skip_sids: set[str] = frozenset()) -> list[dict]:
+    named, unnamed = [], []
+    for e in elements:
+        sid = f"{e['type']}/{e['id']}"
+        t = e.get("tags") or {}
+        name = re.sub(r"\s+", " ", (t.get("name:vi") or t.get("name") or "").strip())
+        kind = classify_cemetery(name, t)
+        lat, lng = (e["lat"], e["lon"]) if "lat" in e else (e.get("center", {}).get("lat"), e.get("center", {}).get("lon"))
+        if kind is None or lat is None or sid in skip_sids:
+            continue
+        if name.isupper():  # "NGHĨA TRANG ĐỒNG RẮN" → "Nghĩa Trang Đồng Rắn"
+            name = name.title()
+        prov = (provinces.lookup(lat, lng) if provinces else "") or province_name(t.get("addr:province", ""))
+        if provinces and not prov:
+            continue
+        addr = _osm_address(t)
+        near = settlements.near(lat, lng) if settlements and not (addr and name) else ""
+        if near and not addr:
+            addr = f"gần {near}"
+        if not name and near:
+            name = f"Nghĩa trang gần {near}"  # mô tả vị trí, không phải tên riêng
+        wp = t.get("wikipedia", "")
+        rec = {"src": "osm", "sid": sid, "name": (name or "Nghĩa trang")[:200], "kind": kind,
+               "rel": t.get("religion", "")[:30], "lat": round(lat, 6), "lng": round(lng, 6), "prov": prov,
+               "addr": addr[:300], "phone": (t.get("phone") or t.get("contact:phone") or "")[:60],
+               "web": (t.get("website") or t.get("contact:website") or "")[:300],
+               "wd": t.get("wikidata", ""), "wp": wp[3:] if wp.startswith("vi:") else "",
+               "alt": [a.strip() for k in OSM_ALIAS_TAGS for a in (t.get(k) or "").split(";") if a.strip()],
+               "kw": CEMETERY_KW[kind]}
+        (named if t.get("name") or t.get("name:vi") else unnamed).append(rec)
+    named = dedupe(named)
+    # nghĩa trang không tên trùng chỗ một nghĩa trang có tên (vẽ hai lần) → bỏ; không tên sát nhau → giữ một
+    kept_unnamed: list[dict] = []
+    for r in unnamed:
+        if any(_km(r, k) <= 0.25 for k in named if abs(k["lat"] - r["lat"]) < 0.01) or \
+           any(_km(r, k) <= 0.15 for k in kept_unnamed if abs(k["lat"] - r["lat"]) < 0.01):
+            continue
+        kept_unnamed.append(r)
+    return named + kept_unnamed
+
+
+def records_from_wikipedia_cemeteries(details: list[dict], provinces: ProvinceIndex | None) -> list[dict]:
+    out = []
+    for d in details:
+        name = re.sub(r"\s*\(.*\)\s*$", "", d["title"]).strip()
+        kind = classify_cemetery(name, {})  # chỉ nhận bài có tên đúng là nghĩa trang / liệt sĩ (bỏ bảo tàng, địa đạo…)
+        if kind is None or d["lat"] is None:
+            continue
+        lat, lng = round(d["lat"], 6), round(d["lng"], 6)
+        prov = provinces.lookup(lat, lng) if provinces else ""
+        if provinces and not prov:
+            continue
+        out.append({"src": "wikipedia", "sid": f"vi:{d['pageid']}", "name": name[:200], "kind": kind, "rel": "",
+                    "lat": lat, "lng": lng, "prov": prov, "addr": "", "phone": "", "web": "", "wd": d["qid"],
+                    "wp": d["title"], "img": d["img"], "desc": d["desc"], "desc_src": d["url"], "kw": CEMETERY_KW[kind]})
+    return out
+
+
 def build(out: Path = SNAPSHOT, cache: Path | None = None) -> dict:
     with _http() as client:
         def overpass(q):
@@ -811,6 +970,22 @@ def build(out: Path = SNAPSHOT, cache: Path | None = None) -> dict:
         qids = sorted({r["wd"] for r in records if re.fullmatch(r"Q\d+", r.get("wd") or "")})
         log.info("Tải tên gọi khác của %d mục Wikidata…", len(qids))
         wd_alias = _cached_json(cache, "wd_aliases.json", lambda: fetch_wikidata_aliases(qids, client))
+        log.info("Tải nghĩa trang, đài tưởng niệm liệt sĩ…")
+        settle = SettlementIndex(_cached_json(cache, "settlements.json", lambda: overpass(OVERPASS_SETTLEMENTS))["elements"])
+        cem = records_from_cemeteries(_cached_json(cache, "cemetery.json", lambda: overpass(OVERPASS_CEMETERIES))["elements"],
+                                      provs, settle, skip_sids={r["sid"] for r in records if r["src"] == "osm"})
+        cem_kinds = _cached_json(cache, "wiki_cem_cats.json",
+                                 lambda: wiki_category_pages(client, max_depth=2, roots=WIKI_CEMETERY_ROOTS))
+        cem_details = _cached_json(cache, "wiki_cem_pages.json", lambda: wiki_page_details(sorted(cem_kinds), client))
+        cem = merge_wikipedia(cem, records_from_wikipedia_cemeteries(cem_details, provs))
+        cem_titles = sorted({r["wp"] for r in cem if r["wp"] and not r.get("desc")})
+        cem_sum = _cached_json(cache, "wiki_cem.json", lambda: fetch_wiki_summaries(cem_titles, client))
+        for r in cem:
+            s = cem_sum.get(r["wp"])
+            if s and not r.get("desc"):
+                r["desc"], r["desc_src"] = s["desc"], s["url"]
+        log.info("Nghĩa trang: %s", {k: sum(r["kind"] == k for r in cem) for k in CEMETERY_KINDS})
+        records += cem
     for r in records:
         s = summaries.get(r["wp"])
         if s and not r.get("desc"):

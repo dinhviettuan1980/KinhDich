@@ -12,7 +12,7 @@
   <script type="application/ld+json">{{ jsonld | tojson }}</script>
 {% endblock %}
 {% block content %}
-<p class="ld-muted small"><a href="{{ u('/ban-do') }}#p{{ p.id }}">← Bản đồ đình chùa</a></p>
+<p class="ld-muted small"><a href="{{ u('/ban-do') }}#p{{ p.id }}">← Bản đồ đình chùa, nghĩa trang</a></p>
 <h1>{{ p.name }}</h1>
 <p>
   <span class="ld-badge">{{ p.kind_label }}</span>
@@ -44,9 +44,16 @@
   {% if p.description %}
     {% for para in p.description.split('\n') if para.strip() %}<p>{{ para }}</p>{% endfor %}
     {% if p.description_source %}<p class="ld-muted small">Theo <a href="{{ p.description_source }}" target="_blank" rel="noopener">{% if 'wikipedia.org' in p.description_source %}Wikipedia</a> (CC BY-SA 4.0){% else %}nguồn này</a>{% endif %}.</p>{% endif %}
-  {% elif not p.deity %}
+  {% elif not p.deity and not p.is_cemetery %}
     <p class="ld-muted">Chưa có thông tin giới thiệu về nơi này.</p>
   {% endif %}
+  {% for d in deity_notes %}
+  <details class="ld-deity"{% if loop.first and not p.description %} open{% endif %}>
+    <summary>Về {{ d.label }}</summary>
+    {% for para in d.text.split('\n') if para.strip() %}<p>{{ para }}</p>{% endfor %}
+    <p class="ld-muted small">Theo <a href="{{ d.url }}" target="_blank" rel="noopener">Wikipedia: {{ d.title }}</a> (CC BY-SA 4.0).</p>
+  </details>
+  {% endfor %}
   {% if p.phone %}<p>☎ <a href="tel:{{ p.phone | replace(' ', '') }}">{{ p.phone }}</a></p>{% endif %}
   {% if p.website %}<p>🌐 <a href="{{ p.website }}" target="_blank" rel="noopener nofollow">{{ p.website }}</a></p>{% endif %}
   <div class="ld-row">
@@ -65,7 +72,7 @@
 {% endif %}
 </div>
 
-{% if bookable != 2 %}<p class="ld-muted">Nơi này chưa nhận lễ từ xa. Bạn có thể xem <a href="{{ u('/') }}">các đền chùa đang nhận lễ</a>.</p>{% endif %}
+{% if bookable != 2 and not p.is_cemetery %}<p class="ld-muted">Nơi này chưa nhận lễ từ xa. Bạn có thể xem <a href="{{ u('/') }}">các đền chùa đang nhận lễ</a>.</p>{% endif %}
 <p class="ld-muted small">Nguồn: {% if p.source == 'osm' %}<a href="https://www.openstreetmap.org/{{ p.source_id }}" target="_blank" rel="noopener">OpenStreetMap</a> (© OpenStreetMap contributors, ODbL){% elif p.source == 'wikidata' %}<a href="https://www.wikidata.org/wiki/{{ p.source_id }}" target="_blank" rel="noopener">Wikidata</a>{% elif p.source == 'wikipedia' %}<a href="{{ p.description_source }}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0){% else %}Linh Địa Việt{% endif %}
   {% if user and user.is_admin %} · Mã địa điểm: <b>{{ p.id }}</b> (nhập ở Quản lý → Đền để gắn với đền nhận lễ) · <a href="{{ u('/admin/dia-diem/' ~ p.id) }}">Sửa</a>{% endif %}</p>
 {% endblock %}

@@ -1,18 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Bản đồ đình chùa{% endblock %}
+{% block title %}Bản đồ đình chùa, nghĩa trang{% endblock %}
 {% block head %}
-  <meta name="description" content="Bản đồ {{ "{:,}".format(total).replace(",", ".") }} đình, chùa, đền, miếu, phủ trên cả nước: tra cứu theo tỉnh, tìm nơi gần bạn, xem giới thiệu và chỉ đường.">
+  <meta name="description" content="Bản đồ {{ "{:,}".format(total).replace(",", ".") }} đình, chùa, đền, miếu, phủ, nghĩa trang liệt sĩ và nghĩa trang trên cả nước: tra cứu theo tỉnh, tìm nơi gần bạn, xem giới thiệu và chỉ đường.">
   <link rel="canonical" href="{{ abs_url('/ban-do') }}">
-  <meta property="og:title" content="Bản đồ đình chùa Việt Nam · Linh Địa Việt">
+  <meta property="og:title" content="Bản đồ đình chùa, nghĩa trang Việt Nam · Linh Địa Việt">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ abs_url('/ban-do') }}">
 {% endblock %}
 {% block content %}
-<h1>Bản đồ đình chùa</h1>
-<p class="ld-muted">{{ "{:,}".format(total).replace(",", ".") }} đình, chùa, đền, miếu, phủ trên cả nước. Nơi có dấu
+<h1>Bản đồ đình chùa, nghĩa trang</h1>
+<p class="ld-muted">{{ "{:,}".format(total).replace(",", ".") }} đình, chùa, đền, miếu, phủ, nghĩa trang liệt sĩ và nghĩa trang trên cả nước. Nơi có dấu
   <span class="ld-badge on">★ nhận lễ từ xa</span> đặt lễ được ngay.</p>
 <div class="ld-card ld-map-tools">
-  <input id="ld-q" type="search" placeholder="Tên đền chùa, thánh thờ, địa danh… (vd: ông hoàng bảy)" aria-label="Tìm đình chùa" autocomplete="off">
+  <input id="ld-q" type="search" placeholder="Tên đền chùa, nghĩa trang, thánh thờ, địa danh… (vd: ông hoàng bảy, liệt sĩ Trường Sơn)" aria-label="Tìm đình chùa, nghĩa trang" autocomplete="off">
   <div class="ld-row">
     <select id="ld-kind" aria-label="Loại"><option value="">Tất cả loại</option></select>
     <select id="ld-prov" aria-label="Tỉnh thành"><option value="">Cả nước</option></select>
