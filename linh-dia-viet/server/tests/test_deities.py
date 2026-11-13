@@ -61,8 +61,8 @@ def test_cli_import(db, tmp_path, capsys):
     assert db.scalar(select(AuditLog).where(AuditLog.action == "deity.import"))
 
 
-def _place(db, name, deity):
-    p = SacredPlace(source="manual", source_id=name, name=name, lat=21.05, lng=105.82, deity=deity)
+def _place(db, name, deity, keywords=""):
+    p = SacredPlace(source="manual", source_id=name, name=name, lat=21.05, lng=105.82, deity=deity, keywords=keywords)
     db.add(p)
     db.commit()
     return p
@@ -78,6 +78,20 @@ def test_place_page_shows_matching_deity(client, db, tmp_path):
     assert "Đệ tứ Tứ Bất Tử" in page and "Mẫu Thượng Thiên" in page
     assert "Đệ tứ Tứ Bất Tử" not in client.get(f"{P}/dia-diem/{other.id}").text
     assert not matching(db, "Thần làng X")  # mục độ tin cậy thấp không đem ra khớp
+
+
+def test_place_matches_by_short_name_keyword_or_main_shrine(client, db, tmp_path):
+    """Dữ liệu thật: Phủ Tây Hồ ghi "Thánh Mẫu thần chủ", từ khoá "Mẫu Liễu Hạnh"; Lăng Mẫu Phủ Dầy không ghi tên vị."""
+    import_xlsx(db, _xlsx(tmp_path))
+    db.commit()
+    tay_ho = _place(db, "Phủ Tây Hồ", "Thánh Mẫu thần chủ", "thờ Mẫu, cầu tài lộc, Mẫu Liễu Hạnh, hồ Tây")
+    assert "Đệ tứ Tứ Bất Tử" in client.get(f"{P}/dia-diem/{tay_ho.id}").text
+    assert "Đệ tứ Tứ Bất Tử" in client.get(f"{P}/dia-diem/{_place(db, 'Lăng Mẫu Phủ Dầy', '').id}").text
+    assert [d.id for d in matching(db, names=("Đền Sòng Sơn",))] == [4]
+    assert [d.id for d in matching(db, names=("Đền Phù Đổng",))] == [2]
+    # không khớp nửa chữ hay chỉ danh xưng chung chung
+    assert not matching(db, "thờ Mẫu, Thánh Mẫu thần chủ", names=("Đền Sóc",))
+    assert not matching(db, "Liễu Hạnhh", names=("Đền Sòngg",))
 
 
 def test_deity_list_search_and_hides_unverified(client, db, tmp_path):

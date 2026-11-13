@@ -69,7 +69,8 @@ def place_detail(place_id: int, request: Request, db: Session = Depends(get_db),
     if place is None or (place.status != "active" and not (user and user.is_admin)):
         raise HTTPException(404, "Không tìm thấy địa điểm")
     return render(request, "public/place.html", {
-        "p": place, "bookable": bookable(place.temple), "deities": deities_matching(db, place.deity, place.name),
+        "p": place, "bookable": bookable(place.temple), "deities": deities_matching(db, place.deity, place.name, place.keywords, place.aliases,
+                                     names=(place.name, place.aliases)),
         "online": device_online(place.temple.device) if place.temple else False,
         "meta_desc": meta_description(place), "jsonld": place_jsonld(place),
     })
